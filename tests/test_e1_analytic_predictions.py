@@ -10,9 +10,11 @@ import pytest
 from phrt.audits.rank import spectrum_of
 from phrt.operators import mixing
 from phrt.operators.structured import (ToySpec, _low_rank_sampler, build_order_blocks)
-from phrt.sources.toy_classes import smooth_separable
+from phrt.sources.toy_classes import (REGISTERED_RS, REGISTERED_RT,
+                                      smooth_separable)
 
-N_CELLS, N_SCREEN, HISTORY, N_TEMPORAL, N_SPATIAL = 6, 2, 44, 6, 4
+N_CELLS, N_SCREEN, HISTORY = 6, 2, 44
+N_TEMPORAL, N_SPATIAL = REGISTERED_RT, REGISTERED_RS   # pinned: 8 x 3 = 24
 
 
 def _restricted_rank(spatial, delay, seed=9000):
@@ -31,20 +33,35 @@ def test_common_sampler_caps_restricted_rank_at_rank_P_times_n_temporal(delay):
     subspace is the fixed image of P however many delayed copies are stacked.
 
     The class is separable, so the restricted rank is exactly
-    rank(P) * n_temporal = 2 * 6 = 12, independent of the delay ladder.  This
-    is the closed form behind E1's central negative result: a pure delay
-    ladder recovers no source-plane direction that the sampler annihilates.
+    rank(P) * RT = 2 * 8 = 16, independent of the delay ladder.  This is the
+    closed form behind E1's central negative result: a pure delay ladder
+    recovers no source-plane direction that the sampler annihilates.
     """
     P = _low_rank_sampler(N_SCREEN, N_CELLS)
     predicted = np.linalg.matrix_rank(P) * N_TEMPORAL
-    assert predicted == 12
+    assert predicted == 16
     assert _restricted_rank("identical", delay) == predicted
+
+
+def test_registered_class_dimension_is_rs_times_rt():
+    """RS = 3, RT = 8 are pinned; their product is the registered 24."""
+    assert REGISTERED_RS * REGISTERED_RT == 24
+    assert smooth_separable(N_CELLS, HISTORY).shape[1] == 24
+
+
+def test_rs_three_is_impossible_with_two_source_cells():
+    """The pin settles the (K, M) reading without the generator: a separable
+    class with three spatial modes cannot exist over two source-plane cells."""
+    from phrt.sources.toy_classes import ClassNotConstructible
+
+    with pytest.raises(ClassNotConstructible):
+        smooth_separable(2, HISTORY, REGISTERED_RS, REGISTERED_RT)
 
 
 def test_cell_dependent_delay_breaks_the_cap():
     """A delay that varies across source cells is no longer a pure delay: it
     couples the spatial and temporal axes and lifts the cap."""
-    assert _restricted_rank("identical", "cell_dependent") > 12
+    assert _restricted_rank("identical", "cell_dependent") > 16
 
 
 @pytest.mark.parametrize("spatial", ["rotation", "rotation_shear", "independent"])

@@ -14,6 +14,16 @@ import scipy.fft as sfft
 
 ToyClass = Literal["full", "smooth_separable", "localized_atoms", "orbit_tangent"]
 
+# Pinned by the reviewer ruling of the v0.1 unblock: the 24-dimensional smooth
+# restricted model is RS = 3 spatial modes x RT = 8 temporal modes.
+#
+# RS = 3 also settles the (K, M) ambiguity on its own, without needing the
+# generator: a separable class with three spatial modes cannot be built over
+# two source-plane cells, so the reading in which M = 2 counts cells is
+# impossible.  K = 6 counts source cells and M = 2 counts screen channels.
+REGISTERED_RS = 3
+REGISTERED_RT = 8
+
 
 class ClassNotConstructible(ValueError):
     """The requested source class does not exist at these dimensions."""
@@ -34,12 +44,12 @@ def _dct_modes(length: int, count: int) -> np.ndarray:
     return M / np.linalg.norm(M, axis=0, keepdims=True)
 
 
-def smooth_separable(n_cells: int, history: int, n_spatial: int = 4,
-                     n_temporal: int = 6) -> np.ndarray:
+def smooth_separable(n_cells: int, history: int, n_spatial: int = REGISTERED_RS,
+                     n_temporal: int = REGISTERED_RT) -> np.ndarray:
     """Separable low-frequency class: n_spatial x n_temporal smooth modes.
 
-    With the registered E0 numbers (4 spatial, 6 temporal) this is exactly the
-    24-dimensional smooth restricted model.
+    Defaults are the pinned v0.1 values RS = 3, RT = 8, giving exactly the
+    registered 24-dimensional smooth restricted model.
     """
     S = _dct_modes(n_cells, n_spatial)          # (M, n_spatial)
     T = _dct_modes(history, n_temporal)         # (H, n_temporal)

@@ -1,0 +1,284 @@
+{
+  "schema": "PREFIX_INVALIDATION_LEDGER/1",
+  "generated_at": "2026-08-24T22:47:49+00:00",
+  "invalidated_prefix_commit": "72f7c8807752dd1219fe3c17fae5153252422752",
+  "corrected_commit": "72f7c8807752dd1219fe3c17fae5153252422752",
+  "statement": "Every artifact produced at or before the invalidated prefix commit is withdrawn. Files listed as byte_identical_after_regeneration are still withdrawn as evidence from the prefix; the identical hash means only that the defect did not reach that file's contents, not that the prefix run may be cited.",
+  "defects": [
+    {
+      "id": "D-A_identical_independent_collapse",
+      "summary": "The 'independent' matched-rank spatial control was silently identical to the 'identical' arm, because the low-rank sampler accepted a generator it never used.",
+      "consequence": "Any comparison between structured and order-specific spatial diversity was a comparison of an arm with itself. The matched-rank control did not exist.",
+      "corrected_in": "8468c0b",
+      "invalidates": [
+        "e1_*"
+      ]
+    },
+    {
+      "id": "D-B_linearoperator_h_collision",
+      "summary": "Dimension attributes H/W/K/M shadowed scipy LinearOperator.H, the Hermitian adjoint property.",
+      "consequence": "Construction raised rather than silently miscomputing, so no numerical artifact carries this defect. Recorded because the fix renamed public attributes.",
+      "corrected_in": "8468c0b",
+      "invalidates": []
+    },
+    {
+      "id": "D-C_silent_delay_clamping",
+      "summary": "A delay ladder longer than the history was clipped to fit instead of refused, collapsing every order onto delay zero.",
+      "consequence": "A misconfigured spec would have deleted the delay mechanism entirely while still reporting success. No shipped artifact used such a spec; the registered ladder fits exactly (44 = 24 + 5*4).",
+      "corrected_in": "8468c0b",
+      "invalidates": []
+    },
+    {
+      "id": "D-D_mixer_noise_propagation",
+      "summary": "Every readout was whitened at a flat sigma. Channel c observes sum_n L[c,n](A_n x + eta_n) and carries noise sigma*||L[c,:]||_2.",
+      "consequence": "MATERIAL. The unresolved channel received a free sqrt(6) amplitude gain purely for summing orders. Its operational rank was reported as 6, better than resolved; corrected it is 0. Every cross-readout comparison before the fix is retracted.",
+      "corrected_in": "430db48",
+      "invalidates": [
+        "e0_*",
+        "e1_*",
+        "e2_*"
+      ]
+    },
+    {
+      "id": "D-E_retarded_age_sign",
+      "summary": "Mode labels computed retarded age as (H-1-com), reflecting the history axis. Order n samples ages [nD, nD+W), so the index is the age already.",
+      "consequence": "MATERIAL for interpretation. The correlation of log10(sigma) with age had the wrong sign, reporting the deep past as the best-seen epoch instead of the worst.",
+      "corrected_in": "430db48",
+      "invalidates": [
+        "e2_*"
+      ]
+    },
+    {
+      "id": "D-F_dct_nan_columns",
+      "summary": "Requesting more DCT modes than an axis has samples padded with zero columns and then normalised, yielding NaN basis vectors that survived QR as a quietly smaller class.",
+      "consequence": "Affected only the rejected (K, M) reading, where the class does not exist. Now refused explicitly.",
+      "corrected_in": "8468c0b",
+      "invalidates": [
+        "e0_*"
+      ]
+    },
+    {
+      "id": "D-G_restricted_class_rs_rt_misinference",
+      "summary": "The 24-dimensional smooth class was inferred as 4 spatial x 6 temporal. The reviewer ruling pins it to RS = 3 spatial x RT = 8 temporal.",
+      "consequence": "MATERIAL. The analytic rank cap rank(P)*RT changes from 12 to 16 and every restricted-class number moves. The qualitative conclusion is unchanged: with a common sampler the cap binds regardless of the delay ladder. RS = 3 also settles the (K, M) reading independently, since three spatial modes cannot exist over two cells.",
+      "corrected_in": "PENDING_COMMIT",
+      "invalidates": [
+        "e0_*",
+        "e1_*",
+        "e2_*"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "artifacts/e0_reproduction/e0_metrics.json",
+      "state": "superseded",
+      "sha256_before": "87c63349301bf701f34cc62d40bbaf237873b97db6ce127eca459978d2ce28e1",
+      "sha256_after": "f6650473f8a9470b0bacfb572cc35e40edd08d4d716d41ab4563de51e27e8994"
+    },
+    {
+      "path": "artifacts/gates/correctness_gates.json",
+      "state": "superseded",
+      "sha256_before": "2eff02594c6636a55ec70950049c441b9daecd4af15dd9af51aceec3d264a980",
+      "sha256_after": "55386e6ae8bbff89036925e31fc35f47fc3307527bd0b3c822fceab4601472ca"
+    },
+    {
+      "path": "artifacts/manifests/AMD001_20260824T224126Z_2ba66f02.json",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "737b6e40c7452b1feaafe388dc4933ae71916244a4637a2a1c50f86c0e8fd32c"
+    },
+    {
+      "path": "artifacts/manifests/E0_20260824T215711Z_2ba66f02.json",
+      "state": "byte_identical_after_regeneration",
+      "sha256_before": "50ac9963313bb21233c315e6ce8db624dfe43376b9cf2ddfc04f631b627d7604",
+      "sha256_after": "50ac9963313bb21233c315e6ce8db624dfe43376b9cf2ddfc04f631b627d7604"
+    },
+    {
+      "path": "artifacts/manifests/E0_20260824T221018Z_2ba66f02.json",
+      "state": "byte_identical_after_regeneration",
+      "sha256_before": "fb2c4e66f9e0b95019b4d641aed4b2546dc656c9cb6e860c4c88bd9f293ab149",
+      "sha256_after": "fb2c4e66f9e0b95019b4d641aed4b2546dc656c9cb6e860c4c88bd9f293ab149"
+    },
+    {
+      "path": "artifacts/manifests/E0_20260824T224151Z_2ba66f02.json",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "183729d6948823fe6548347245878c03cf041851c53acbab3a195bb6b6852acd"
+    },
+    {
+      "path": "artifacts/manifests/E1_20260824T220437Z_2ba66f02.json",
+      "state": "byte_identical_after_regeneration",
+      "sha256_before": "5a25e3d4ff36f24bfff2e772782eb52377639b910c67ea40dafc0462cc7f910e",
+      "sha256_after": "5a25e3d4ff36f24bfff2e772782eb52377639b910c67ea40dafc0462cc7f910e"
+    },
+    {
+      "path": "artifacts/manifests/E1_20260824T221028Z_2ba66f02.json",
+      "state": "byte_identical_after_regeneration",
+      "sha256_before": "cd17812ea66048c073cb4daaa1dd94e249a324025ca66bb530f7cb20bb87c199",
+      "sha256_after": "cd17812ea66048c073cb4daaa1dd94e249a324025ca66bb530f7cb20bb87c199"
+    },
+    {
+      "path": "artifacts/manifests/E1_20260824T224158Z_2ba66f02.json",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "31141f437b54543e2c9c76757ce3caa560aa0784c217f8c2bdcdf662130044b1"
+    },
+    {
+      "path": "artifacts/manifests/E2_20260824T221608Z_2ba66f02.json",
+      "state": "byte_identical_after_regeneration",
+      "sha256_before": "a9699052412eb2e206e7825d7cd6f0fe86ef78382b340b1021532115bfd7debf",
+      "sha256_after": "a9699052412eb2e206e7825d7cd6f0fe86ef78382b340b1021532115bfd7debf"
+    },
+    {
+      "path": "artifacts/manifests/E2_20260824T221722Z_2ba66f02.json",
+      "state": "byte_identical_after_regeneration",
+      "sha256_before": "ce44b9303e69539600a58d87fc3dbd2f68ef74769d01ba9ff96e5f23de4fec65",
+      "sha256_after": "ce44b9303e69539600a58d87fc3dbd2f68ef74769d01ba9ff96e5f23de4fec65"
+    },
+    {
+      "path": "artifacts/manifests/E2_20260824T224155Z_2ba66f02.json",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "8a43be9b5d2d857276c46377b8aed5022fd645e7b0cdd67688bc3b8d6a9a8461"
+    },
+    {
+      "path": "artifacts/reports/P1_E0_REPRODUCTION.md",
+      "state": "byte_identical_after_regeneration",
+      "sha256_before": "c819506057ce03c5857a5d09bca6474e9c70043316490cf4c8929162f2156e52",
+      "sha256_after": "c819506057ce03c5857a5d09bca6474e9c70043316490cf4c8929162f2156e52"
+    },
+    {
+      "path": "artifacts/reports/P1_E1_E2_STRUCTURED_OPERATOR.md",
+      "state": "byte_identical_after_regeneration",
+      "sha256_before": "e54b7b2ede96a42851aef360b1af85bd05dfdd00e5ede6b4bf5ed575d0f6ae13",
+      "sha256_after": "e54b7b2ede96a42851aef360b1af85bd05dfdd00e5ede6b4bf5ed575d0f6ae13"
+    },
+    {
+      "path": "artifacts/reports/TASK0_ENVIRONMENT.md",
+      "state": "byte_identical_after_regeneration",
+      "sha256_before": "1ce39da3eafa489024bf55f1a038c6170bb57413f68b4ccf7f3e62c93aa646c8",
+      "sha256_after": "1ce39da3eafa489024bf55f1a038c6170bb57413f68b4ccf7f3e62c93aa646c8"
+    },
+    {
+      "path": "artifacts/tables/amd001_localized_support.csv",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "dfc2775026410c73ba4b3a99c332b19b73be3179b02cc096c4bb59fb026fda99"
+    },
+    {
+      "path": "artifacts/tables/amd001_localized_support.parquet",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "03aff4bd4e36fa4b994a74a1f90abcc60950b10085ce6cafc89d17c572ad1122"
+    },
+    {
+      "path": "artifacts/tables/e0_reconstruction.csv",
+      "state": "superseded",
+      "sha256_before": "ed7cd2e5d3d261a773a71822e3a83fe48ad5fb1f1ce9af278ca0200fa3114bb2",
+      "sha256_after": "1e1b6f3cc8f5116b7c53be5ad08210b1d0591af43dc31caf49dc5d478d5a2c6c"
+    },
+    {
+      "path": "artifacts/tables/e0_reconstruction.parquet",
+      "state": "superseded",
+      "sha256_before": "129748f6944ea2af34e4c47b0040589ebe9cd42fc5e346cf874a16d3e5c8ec48",
+      "sha256_after": "f709d59764c9ea075a4012a91cd053cb4710889f3f719b352f833cfc1c963ea6"
+    },
+    {
+      "path": "artifacts/tables/e0_reproduction.csv",
+      "state": "superseded",
+      "sha256_before": "36641db6a8f32f4a394e88301058b7bb1db03b39b5f7b0cfb3ad2a6b2426e341",
+      "sha256_after": "a03de00b2d7ac4d3c9cda40bb59be714ec8a5020a415a8be6d3ea5ebb3f35388"
+    },
+    {
+      "path": "artifacts/tables/e0_reproduction.parquet",
+      "state": "superseded",
+      "sha256_before": "3c3abdbc16ba7b2c3a51dd43937b535770f183dbf46fce74997faa98c3670144",
+      "sha256_after": "1c02aae64081d480f7253e6d85185abcdd0c3750ea4d53e6fc9edbfa98bb1b56"
+    },
+    {
+      "path": "artifacts/tables/e1_controls.csv",
+      "state": "superseded",
+      "sha256_before": "8612043ea50f94e6107aee6fd2c490e01ca59660c2cf74cb78a07de5cd0a4964",
+      "sha256_after": "0e6eb64e1039ada30050b9542c22a3e0d472445ba2ad49f29aabaf06f0f84cee"
+    },
+    {
+      "path": "artifacts/tables/e1_controls.parquet",
+      "state": "superseded",
+      "sha256_before": "6c184584df64dd9f3c4052deeff71eb5ed732a0455f94cd4d84547ee1c011cab",
+      "sha256_after": "226b2cd982072454cf18b38e2f75f5cddd8cf6f91ae64ff32cd3b59a9a07a3d0"
+    },
+    {
+      "path": "artifacts/tables/e1_identifiability_factorial.csv",
+      "state": "superseded",
+      "sha256_before": "65beac4f657cace1436b1ed8ed751d17e4d42b1d254b4aede4a3479154a5ed4d",
+      "sha256_after": "64aabd063699f71350cc09f2729400dc3655af02af8b3560494bd8d1ba261c7e"
+    },
+    {
+      "path": "artifacts/tables/e1_identifiability_factorial.parquet",
+      "state": "superseded",
+      "sha256_before": "8016f0e6a048f58b172c0a9dc9e02370e41de3299bddef77a1df5a068c8c59cc",
+      "sha256_after": "281f3b838e2e79909a52c6749016068facc2c92a382629a431862327298c6cef"
+    },
+    {
+      "path": "artifacts/tables/e1_mode_onset.csv",
+      "state": "superseded",
+      "sha256_before": "935fc25f0e4e64f3ec080cadcb01254bf4817506a362703ac141d2a27a400026",
+      "sha256_after": "ce80541b16a1afe6b341ae796709d4199b02f0d293b3632c1e05267016ac29fc"
+    },
+    {
+      "path": "artifacts/tables/e1_mode_onset.parquet",
+      "state": "superseded",
+      "sha256_before": "e4ec12db7758066faa6a663367aee35098769e1b91a0550d345e8707da7fd198",
+      "sha256_after": "eaf3ceff304539a3e0c3e0ab0b65aea755eab1ff0b6c9e2d460b52721bb2b984"
+    },
+    {
+      "path": "artifacts/tables/e2_injection.csv",
+      "state": "superseded",
+      "sha256_before": "31887c0e727438afdb7f05a9a5ff8242c8ac9a5dcf218cdf4d8d4b7a899ef995",
+      "sha256_after": "0bb89a5f99bed2f42de007dcc7a5155b833855a6fae7e2f03a486e3011d01f26"
+    },
+    {
+      "path": "artifacts/tables/e2_injection.parquet",
+      "state": "superseded",
+      "sha256_before": "7ad5dc38400ec2dd63bf04a2a923de62c9a8eb8e4c92532a6df7e57b46ff60b9",
+      "sha256_after": "ebc22b3f3f5e881e66ccee18082293cccfc9d1e6904f4f848f0b2355308b3835"
+    },
+    {
+      "path": "artifacts/tables/e2_mode_atlas.csv",
+      "state": "superseded",
+      "sha256_before": "8d2d8e020493f1a20350fdfdd60752d84e3edb77e5a91388c774bce3c7915573",
+      "sha256_after": "d47147926c6447b3b86a7f9529f8571a6b5bbd7b464c768de3ee9297c0b9372c"
+    },
+    {
+      "path": "artifacts/tables/e2_mode_atlas.parquet",
+      "state": "superseded",
+      "sha256_before": "7d9c53ddcb0241cb9639e5f2f8a578271607742e9d1e766f2ceced9a6e328213",
+      "sha256_after": "74ac97452afd9dd99457e4f7ef663dd60f6d484507ac3652fd65e9b18ad26ae0"
+    },
+    {
+      "path": "artifacts/tables/e2_mode_onset.csv",
+      "state": "superseded",
+      "sha256_before": "024a8e6fc0e099898c2f7dd581a331ae2da7cb537051cab6f6d4ff36c9e95220",
+      "sha256_after": "3658e51b9cac2f08846443f1096e325dadb7194b370fcb229c4645ab9d4f7dd6"
+    },
+    {
+      "path": "artifacts/tables/e2_mode_onset.parquet",
+      "state": "superseded",
+      "sha256_before": "d830137dd6c84087731d6ba37ed10ccde131fc78758526c861b5cba178c6bc4e",
+      "sha256_after": "39b2592ed2821b59d85ab1e146a5a6abc83ec0e68888a4ae9346b2155b1a2ad4"
+    }
+  ],
+  "summary": {
+    "n_artifacts": 33,
+    "superseded": 18,
+    "byte_identical_after_regeneration": 9,
+    "created_after_correction": 6,
+    "withdrawn": 0,
+    "material_defects": [
+      "D-D_mixer_noise_propagation",
+      "D-E_retarded_age_sign",
+      "D-G_restricted_class_rs_rt_misinference"
+    ]
+  }
+}

@@ -2,12 +2,12 @@
 
 ## Identity
 - branch: `claude/experiment-review-mac-rthiz1`
-- commit: `79fbb89d109131ab7454f45094d01720d5397bc6`  (source tree dirty: True)
+- commit: `72f7c8807752dd1219fe3c17fae5153252422752`  (source tree dirty: False)
 - config: `paper1_experiment_registry_v0.2.yaml`  sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - environment sha256: `2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd`
 - hardware: Linux x86_64, 4 cores, 15.7 GiB
 - python 3.11.15; numpy 2.4.6, scipy 1.17.1, torch 2.13.0, aart 2.1.10
-- run_id: `E0_20260824T221018Z_2ba66f02`
+- run_id: `E0_20260824T224151Z_2ba66f02`
 
 ## Mechanical gate result
 **STOP on G1 / PASS on everything E0 can execute without the original.**
@@ -22,7 +22,7 @@ Kerr phases E3 and beyond are blocked on the v0.1 generator arriving. The
 mathematical phases E1 and E2 do not depend on it and proceed.
 
 ## Inputs
-- registered symbols: `{'H': 44, 'K': 6, 'W': 24, 'M': 2, 'N_max': 5, 'D': 4, 'Gamma': 0.6, 'restricted_dim': 24}`
+- registered symbols: `{'H': 44, 'K': 6, 'W': 24, 'M': 2, 'N_max': 5, 'D': 4, 'Gamma': 0.6, 'RT': 8, 'RS': 3, 'restricted_dim': 24}`
 - operator seed: 42
 
 ## Results
@@ -63,9 +63,9 @@ Reading A is rejected on three independent grounds:
 
 | arm | data dim | full rank / source dim | restricted rank / dim | restricted sigma_min | restricted kappa+ |
 |---|---:|---:|---:|---:|---:|
-| `resolved_identical` | 288 | 88 / 264 | 12 / 24 | 7.5961e-02 | 1.6407e+01 |
-| `resolved_diverse` | 288 | 216 / 264 | 24 / 24 | 9.8798e-03 | 1.3225e+02 |
-| `unresolved_diverse` | 48 | 48 / 264 | 22 / 24 | 5.2415e-08 | 1.6840e+07 |
+| `resolved_identical` | 288 | 88 / 264 | 16 / 24 | 6.0696e-02 | 2.0623e+01 |
+| `resolved_diverse` | 288 | 216 / 264 | 24 / 24 | 3.0941e-02 | 4.2195e+01 |
+| `unresolved_diverse` | 48 | 48 / 264 | 23 / 24 | 6.9092e-08 | 1.2461e+07 |
 
 Reading B produces three distinct rows, a non-trivial null space in every arm,
 and a 24-dimensional smooth class that exists exactly (4 spatial x 6 temporal).
@@ -102,14 +102,14 @@ sources, ridge with three hyperparameter rules:
 | arm | SNR | discrepancy | gcv | oracle |
 |---|---:|---:|---:|---:|
 | `resolved_diverse` | noise-free | – | 0.00000 | 0.00000 |
-| `resolved_diverse` | 10 | 0.52430 | 0.52238 | 0.49786 |
-| `resolved_diverse` | 100 | 0.20265 | 0.13730 | 0.09564 |
-| `resolved_identical` | noise-free | – | 0.48335 | 0.48335 |
-| `resolved_identical` | 10 | 0.58167 | 0.58607 | 0.55569 |
-| `resolved_identical` | 100 | 0.50328 | 0.48595 | 0.47004 |
-| `unresolved_diverse` | noise-free | – | 0.44189 | 0.44189 |
-| `unresolved_diverse` | 10 | 0.75893 | 0.85090 | 0.75253 |
-| `unresolved_diverse` | 100 | 0.66108 | 0.73158 | 0.62734 |
+| `resolved_diverse` | 10 | 0.50247 | 0.44871 | 0.42660 |
+| `resolved_diverse` | 100 | 0.14978 | 0.09368 | 0.07588 |
+| `resolved_identical` | noise-free | – | 0.43284 | 0.43284 |
+| `resolved_identical` | 10 | 0.61111 | 0.58275 | 0.58247 |
+| `resolved_identical` | 100 | 0.45091 | 0.43866 | 0.43488 |
+| `unresolved_diverse` | noise-free | – | 0.25567 | 0.25567 |
+| `unresolved_diverse` | 10 | 0.80136 | 0.81368 | 0.79735 |
+| `unresolved_diverse` | 100 | 0.68888 | 0.67586 | 0.67167 |
 
 Median error of the **null component** of the same reconstructions:
 
@@ -118,12 +118,12 @@ Median error of the **null component** of the same reconstructions:
 | `resolved_diverse` | noise-free | – | 0.00000 | 0.00000 |
 | `resolved_diverse` | 10 | 0.00000 | 0.00000 | 0.00000 |
 | `resolved_diverse` | 100 | 0.00000 | 0.00000 | 0.00000 |
-| `resolved_identical` | noise-free | – | 0.80140 | 0.80140 |
-| `resolved_identical` | 10 | 0.80140 | 0.80140 | 0.80140 |
-| `resolved_identical` | 100 | 0.80140 | 0.80140 | 0.76804 |
-| `unresolved_diverse` | noise-free | – | 0.52497 | 0.52497 |
-| `unresolved_diverse` | 10 | 0.52497 | 0.52497 | 0.52497 |
-| `unresolved_diverse` | 100 | 0.52497 | 0.52497 | 0.52497 |
+| `resolved_identical` | noise-free | – | 0.72100 | 0.72100 |
+| `resolved_identical` | 10 | 0.72100 | 0.72100 | 0.72100 |
+| `resolved_identical` | 100 | 0.72100 | 0.72100 | 0.68700 |
+| `unresolved_diverse` | noise-free | – | 0.17275 | 0.17275 |
+| `unresolved_diverse` | 10 | 0.17276 | 0.17276 | 0.17276 |
+| `unresolved_diverse` | 100 | 0.17276 | 0.17276 | 0.17276 |
 
 In the two rank-deficient arms the null-component error is invariant across
 every *deployable* rule and every SNR — 0.8014 for `resolved_identical` and
@@ -191,7 +191,7 @@ established; any black-hole language whatsoever at this stage.
 - `artifacts/tables/e0_reconstruction.parquet` (+ `.csv`)
 - `artifacts/e0_reproduction/e0_metrics.json`
 - `artifacts/gates/correctness_gates.json`
-- `artifacts/manifests/E0_20260824T221018Z_2ba66f02.json`
+- `artifacts/manifests/E0_20260824T224151Z_2ba66f02.json`
 
 ## Next authorized step
 P3 — E1 structured factorial and E2 null-mode atlas. (P2, the operator library

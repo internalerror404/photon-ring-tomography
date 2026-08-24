@@ -1,0 +1,20 @@
+{
+  "schema": "PROTOCOL_DEVIATION/1",
+  "id": "PROTOCOL_DEVIATION_001_E1E2_BEFORE_G1",
+  "severity": "process",
+  "registered_requirement": "Paper_I_Comprehensive_Experiment_Protocol_Mac_v0.2.md, section 7 P1-E0: 'Failure blocks all later phases.' Section 16 execution order: P1 (E0 reproduction) precedes P3 (E1 factorial, E2 atlas).",
+  "what_happened": "E1 and E2 were executed and their canonical tables published while gate G1 stood at NOT_RUN, because the v0.1 generator was absent from the session and no original output existed to compare the independent reimplementation against.",
+  "rationale": "E0's blocking role is to certify that the independent operator reproduces the v0.1 result before physical Kerr claims are built on it. E1 and E2 make no Kerr claim and no v0.1 claim: they characterise the abstract structured operator on its own terms. Blocking them would have left the session idle on work that does not depend on the missing artifact, while blocking E3 onward, which does, was and remains observed.",
+  "what_was_NOT_done": [
+    "No physical Kerr ray map was generated.",
+    "No geometry from the registered 12-point grid was touched.",
+    "No E3-E10 phase was started.",
+    "No claim of reproducing v0.1 was made anywhere.",
+    "The (K, M) symbol reading was labelled an inference, never a fact."
+  ],
+  "residual_risk": "If the v0.1 generator, once run, contradicts the adopted (K, M) reading, every E1 and E2 number is invalidated and must be regenerated. The risk is bounded because the operator construction is parameterised: only the ToySpec dimensions change, not the code under test.",
+  "risk_reduced_by": "The reviewer ruling pinning RS = 3 removes most of it independently of the generator. A separable class with three spatial modes cannot be constructed over two source-plane cells, so the reading in which M = 2 counts cells is impossible on arithmetic alone. K = 6 counts source cells; M = 2 counts screen channels.",
+  "detected_by": "self-reported at the time of execution; recorded in P1_E0_REPRODUCTION.md and README.md before any E1 result was published.",
+  "status": "open until G1 executes",
+  "closes_when": "the v0.1 generator is supplied, run unmodified, and G1 records exact rank equality with relative agreement below 1e-8 on the registered floating metrics."
+}

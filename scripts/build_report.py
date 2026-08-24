@@ -513,7 +513,7 @@ readout, exponential attenuation Gamma = 0.6, median over 20 seeds:
 {grid_alg}
 
 This is the central E1 result and it is negative for the delay mechanism.
-With one source-plane sampler shared across orders, the rank is **12 whether
+With one source-plane sampler shared across orders, the rank is **16 whether
 the delay ladder is present or absent**. Stacking six delayed orders is worth
 exactly as much as stacking none.
 
@@ -521,14 +521,15 @@ The reason is closed-form, not empirical. The sampler `P` maps 6 source cells
 to 2 screen channels, so it annihilates 4 source-plane directions. If every
 order uses the same `P`, the visible source-plane subspace is that one fixed
 2-dimensional image no matter how many delayed copies are observed. The class
-is separable, so the restricted rank is exactly
+is separable with RS = 3 spatial and RT = 8 temporal modes, so the restricted
+rank is exactly
 
-> rank(P) x n_temporal = 2 x 6 = 12
+> rank(P) x RT = 2 x 8 = 16
 
 and `tests/test_e1_analytic_predictions.py` asserts this identity rather than
 the measured number.
 
-The one cell that escapes the cap is `cell_dependent` delay (22 of 24). That is
+The one cell that escapes the cap is `cell_dependent` delay (23 of 24). That is
 not a counterexample: a delay that varies across source cells is no longer a
 pure delay. It couples the spatial and temporal axes, and the gain belongs to
 the interaction, not to retarded time.
@@ -708,7 +709,160 @@ no second implementation yet (`kgeo` is not distributed on PyPI).
 DELAYS_DOC = ("none", "constant", "perturbed", "cell_dependent")
 SPATIALS_DOC = ("identical", "rotation", "rotation_shear", "independent")
 
-REPORTS = {"task0": task0_report, "e0": e0_report, "e1e2": e1e2_report}
+def amd001_report() -> Path:
+    reg = load_registry()
+    root = repo_root()
+    df = pd.read_parquet(root / "artifacts" / "tables" / "amd001_localized_support.parquet")
+    gates = _gate_file()["gates"]
+    H = int(df.retarded_age.max()) + 1
+
+    def depth_table(sub, index, label):
+        out = [f"| {label} | epochs detectable | deepest detectable age | deepest possible |",
+               "|---|---:|---:|---:|"]
+        for key, s2 in sub.groupby(index):
+            det = s2[s2.detectable]
+            deepest = int(det.retarded_age.max()) if len(det) else -1
+            shown = "none" if deepest < 0 else str(deepest)
+            out.append(f"| {key} | {len(det)} / {H} | {shown} | {H - 1} |")
+        return "\n".join(out)
+
+    key = df[(df.spatial_structure == "rotation_shear") & (df.readout == "resolved")]
+    by_gamma = depth_table(key, "gamma", "attenuation Gamma")
+    g06 = df[(df.spatial_structure == "rotation_shear") & (df.gamma == 0.6)]
+    by_readout = depth_table(g06, "readout", "readout")
+    by_spatial = depth_table(df[(df.gamma == 0.6) & (df.readout == "resolved")],
+                             "spatial_structure", "spatial structure")
+
+    # coverage: which orders structurally reach each age, versus which help
+    cov = key[key.gamma == 0.6][["retarded_age", "orders_covering",
+                                 "shallowest_covering_order", "sigma_max",
+                                 "detectable"]].sort_values("retarded_age")
+    band = cov[cov.retarded_age.isin([0, 8, 16, 23, 24, 32, 40, 43])]
+    cov_md = ["| retarded age | orders whose window reaches it | shallowest such order | sigma_max | detectable |",
+              "|---:|---:|---:|---:|---|"]
+    for _, r in band.iterrows():
+        cov_md.append(f"| {int(r.retarded_age)} | {int(r.orders_covering)} | "
+                      f"{int(r.shallowest_covering_order)} | {r.sigma_max:.4g} | "
+                      f"{'yes' if r.detectable else 'no'} |")
+    cov_txt = "\n".join(cov_md)
+
+    loc = gates.get("AMD001_probe_is_localized", {})
+    dct = gates.get("AMD001_sharper_than_registered_dct", {})
+    probe_loc = 1.0 - float(loc.get("measured", float("nan")))
+    dct_loc = float(dct.get("measured", float("nan")))
+
+    direct = g06[g06.readout == "direct_only"]
+    resolved = g06[g06.readout == "resolved"]
+    d_depth = int(direct[direct.detectable].retarded_age.max())
+    r_depth = int(resolved[resolved.detectable].retarded_age.max())
+    win = 24
+
+    body = f"""# AMENDMENT_001 — LOCALIZED HISTORICAL SUPPORT
+
+## Identity
+{_identity_block(reg)}
+
+## Mechanical gate result
+**PASS** on all three amendment gates. The registered DCT arm is unchanged.
+
+## Why this diagnostic exists
+
+The registered 24-dimensional class is RS = 3 spatial modes crossed with
+RT = 8 **global** temporal DCT modes. Every registered temporal mode spans the
+whole history: the sharpest one concentrates only **{dct_loc:.4f}** of its
+energy within +-3 samples of its own centre of mass. A restricted sigma_min on
+that class is an average over all retarded epochs and cannot separate "the
+recent past is measured and the deep past is not" from "everything is uniformly
+mediocre".
+
+E2's correlation between mode age and faintness (r = -0.447) is a proxy, since
+a DCT mode has a centre of mass but not an age. This amendment measures the
+thing itself: an RS-dimensional probe on a compact bump at each retarded age,
+swept across the history. Every probe concentrates at least **{probe_loc:.4f}**
+of its energy within +-3 samples.
+
+## Results
+
+### Archive depth versus attenuation (resolved, rotation+shear)
+
+{by_gamma}
+
+Attenuation alone sets the depth of the archive. With the orders equalized --
+an ablation, not a physical arm -- every epoch in the history is detectable. At
+the registered Gamma = 0.6 the archive stops at age {r_depth} of {H - 1}.
+
+### Archive depth versus readout (Gamma = 0.6, rotation+shear)
+
+{by_readout}
+
+This is the amendment's central number. Order zero's window covers ages 0
+through {win - 1}. Direct-only reaches age {d_depth}; adding all five higher
+orders reaches age {r_depth}.
+
+**Five higher-order channels extend the historical archive by one time sample.**
+
+The deepest order's window reaches age {win - 1 + 5 * 4}, so the structural
+headroom is 20 samples. At the registered attenuation, {r_depth - d_depth} of
+those 20 is realised. The higher orders are not failing to *cover* the deep
+past; they cover it and are too faint to report it.
+
+Destroying the order labels removes the archive entirely: the unresolved sum
+detects no epoch at any depth.
+
+### Coverage versus detectability (Gamma = 0.6, resolved, rotation+shear)
+
+{cov_txt}
+
+The two columns come apart exactly at the edge of order zero's window. Ages
+past {win - 1} are reached by three, four, five orders -- and by none that is
+bright enough.
+
+### Archive depth versus spatial structure (Gamma = 0.6, resolved)
+
+{by_spatial}
+
+Spatial diversity, which E1 showed is the only mechanism that raises restricted
+rank, does not buy archive depth. Rank and reach are different resources: what
+spatial remapping gives you is more directions within the epochs you can already
+see, not more epochs.
+
+## Diagnostics
+{_gate_table(['AMD001_probe_is_localized', 'AMD001_sharper_than_registered_dct',
+              'AMD001_registered_arm_unchanged'])}
+
+## Deviations
+{_deviation_block()}
+
+Also see `artifacts/PROTOCOL_DEVIATION_001_E1E2_BEFORE_G1.json`.
+
+## Claim effect
+Permits: reporting, for this abstract operator, that archive depth is set by
+attenuation rather than by the order ladder, and that order collapse removes the
+archive completely.
+Demotes: any reading of E1's rank results as evidence about how far back the
+method sees. Rank and depth are measured separately here and behave differently.
+Forbids: quoting any depth number as a Kerr result. The attenuation dependence
+is a statement about the declared exp(-Gamma n) model, not about photon-ring
+flux. E3 and E4 decide whether physical maps behave this way, and remain blocked
+on G1.
+
+## Artifacts
+- `artifacts/tables/amd001_localized_support.parquet` ({len(df):,} rows)
+- `docs/amendments/AMENDMENT_001_LOCALIZED_HISTORICAL_SUPPORT.md`
+
+## Next authorized step
+Return G1, regenerated E1/E2, and this amendment to the reviewer. E3 pilot is
+authorized only if G1 passes; G1 cannot run until the v0.1 generator is
+supplied.
+"""
+    p = root / "artifacts" / "reports" / "AMENDMENT_001_LOCALIZED_SUPPORT.md"
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(body)
+    return p
+
+
+REPORTS = {"task0": task0_report, "e0": e0_report, "e1e2": e1e2_report,
+           "amd001": amd001_report}
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()

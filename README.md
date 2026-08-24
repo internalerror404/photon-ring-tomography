@@ -15,23 +15,26 @@ anywhere in this tree.
 |---|---|
 | P0 governance, environment lock, provenance | **done** |
 | P1 E0 toy reproduction | **partial — G1 blocked**, see below |
-| P2 matrix-free operator library + gates G2–G6, G9, G13 | **done**, 73 tests |
-| P3 E1 factorial + E2 mode atlas | in progress |
+| P2 matrix-free operator library + gates G2–G6, G9, G13 | **done**, 86 tests |
+| P3 E1 factorial + E2 mode atlas | **done** |
+| AMENDMENT_001 localized historical support | **done** |
 | P4+ physical Kerr (E3–E10) | blocked on G1 |
 
 ## Two live blockers
 
-**B1 — the v0.1 generator is absent.** E0 requires running the supplied v0.1
-generator unchanged and comparing it against an independent reimplementation.
-Neither the generator nor the v0.1 manuscript is in this session. Gate G1 is
-recorded `NOT_RUN`, not passed, and no reproduction is claimed. The protocol's
-own rule blocks the physical Kerr phases until it can run. The reimplementation
-itself is complete and reported.
+**B1 — the v0.1 generator has still not arrived.** The reviewer ruling of the
+G1 unblock states that it is supplied, but no file accompanied the message and
+the session upload directory contains nothing newer than the environment YAMLs.
+Steps 1–5 of that ruling — import byte-for-byte under `archive/v0.1/`, run
+unmodified, compare against the canonical CSVs, require exact rank equality and
+1e-8 relative agreement, emit G1 — cannot start. Gate G1 remains `NOT_RUN`, not
+passed, and no reproduction is claimed. The physical Kerr phases stay blocked.
 
-A consequence: two of the seven registered E0 symbols (K and M) are not pinned
-by the registered list. `artifacts/reports/P1_E0_REPRODUCTION.md` gives three
-independent consistency arguments for the operative reading and labels it an
-inference. One line of the v0.1 generator settles it.
+The ruling did however pin `RT = 8` and `RS = 3`, and that settles the (K, M)
+ambiguity without the generator: a separable class with three spatial modes
+cannot be built over two source-plane cells, so `K = 6` counts source cells and
+`M = 2` counts screen channels. The previously inferred 4 x 6 class was wrong;
+everything has been regenerated against 3 x 8.
 
 **B2 — no independent geodesic tracer.** AART 2.1.10 installs and imports from
 PyPI, so the primary ray tracer is available. `kgeo` is not on PyPI, so the
@@ -50,6 +53,17 @@ Recorded in every manifest under `protocol_deviations`, and in
   parity) is `NOT_RUN`. CUDA is deliberately **not** substituted for MPS in any
   registered gate.
 - **D3_missing_v01_generator** — see B1.
+- **PROTOCOL_DEVIATION_001_E1E2_BEFORE_G1** — E1 and E2 were run and published
+  while G1 stood at `NOT_RUN`. Full record, including what was deliberately not
+  done, in `artifacts/PROTOCOL_DEVIATION_001_E1E2_BEFORE_G1.json`.
+
+## Withdrawn results
+
+`artifacts/PREFIX_INVALIDATION_LEDGER.json` withdraws every artifact produced
+before three material defects were corrected: flat-sigma whitening that gave
+the unresolved channel a free sqrt(6) gain, a reflected retarded-age axis, and
+the 4 x 6 restricted-class misinference. Each superseded file is paired with
+its replacement hash.
 
 ## Layout
 

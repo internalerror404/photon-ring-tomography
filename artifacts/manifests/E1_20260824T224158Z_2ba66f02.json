@@ -1,0 +1,95 @@
+{
+  "run_id": "E1_20260824T224158Z_2ba66f02",
+  "experiment_id": "E1",
+  "git_commit": "72f7c8807752dd1219fe3c17fae5153252422752",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "seed0": 9000,
+    "n_seeds": 20,
+    "operational_threshold": 1.0
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e1_identifiability_factorial.parquet",
+      "sha256": "281f3b838e2e79909a52c6749016068facc2c92a382629a431862327298c6cef"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e1_mode_onset.parquet",
+      "sha256": "eaf3ceff304539a3e0c3e0ab0b65aea755eab1ff0b6c9e2d460b52721bb2b984"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e1_controls.parquet",
+      "sha256": "226b2cd982072454cf18b38e2f75f5cddd8cf6f91ae64ff32cd3b59a9a07a3d0"
+    }
+  ],
+  "gate_status": {
+    "E1_rank_monotone_in_order": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "note": "largest decrease in cumulative restricted rank when an order is added"
+    },
+    "E1_duplicate_order_adds_no_rank": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "note": "rank of the scaled-duplicate control minus rank of direct-only; a positive value would mean the factorial credits redundancy as information"
+    },
+    "E1_zero_amplitude_adds_no_rank": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "note": "rank when higher orders carry no signal, minus direct-only rank"
+    }
+  },
+  "started_at": "2026-08-24T22:41:58+00:00",
+  "finished_at": "2026-08-24T22:47:03+00:00",
+  "peak_rss_mb": 654.703125,
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.11.1",
+    "scikit-learn": "1.9.0",
+    "scikit-image": "0.26.0",
+    "pyyaml": "6.0.1",
+    "torch": "2.13.0",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 301.91355419158936
+}

@@ -1,5 +1,5 @@
 {
-  "run_id": "E0_20260824T221018Z_2ba66f02",
+  "run_id": "E0_20260824T224151Z_2ba66f02",
   "registered_symbols": {
     "H": 44,
     "K": 6,
@@ -8,6 +8,8 @@
     "N_max": 5,
     "D": 4,
     "Gamma": 0.6,
+    "RT": 8,
+    "RS": 3,
     "restricted_dim": 24
   },
   "arithmetic_identity": {
@@ -48,7 +50,7 @@
       "restricted_nullity": -1,
       "restricted_sigma_min": NaN,
       "restricted_kappa_positive": NaN,
-      "restricted_status": "NOT_CONSTRUCTIBLE: cannot build 4 DCT modes on an axis of length 2"
+      "restricted_status": "NOT_CONSTRUCTIBLE: cannot build 3 DCT modes on an axis of length 2"
     },
     {
       "reading": "A_screen6_cells2",
@@ -70,7 +72,7 @@
       "restricted_nullity": -1,
       "restricted_sigma_min": NaN,
       "restricted_kappa_positive": NaN,
-      "restricted_status": "NOT_CONSTRUCTIBLE: cannot build 4 DCT modes on an axis of length 2"
+      "restricted_status": "NOT_CONSTRUCTIBLE: cannot build 3 DCT modes on an axis of length 2"
     },
     {
       "reading": "A_screen6_cells2",
@@ -92,7 +94,7 @@
       "restricted_nullity": -1,
       "restricted_sigma_min": NaN,
       "restricted_kappa_positive": NaN,
-      "restricted_status": "NOT_CONSTRUCTIBLE: cannot build 4 DCT modes on an axis of length 2"
+      "restricted_status": "NOT_CONSTRUCTIBLE: cannot build 3 DCT modes on an axis of length 2"
     },
     {
       "restricted_status": "ok",
@@ -111,10 +113,10 @@
       "stable_rank": 43.25352925417242,
       "effective_rank": 69.02040114249588,
       "trace_information": 68.63733056998055,
-      "restricted_rank": 12,
-      "restricted_nullity": 12,
-      "restricted_sigma_min": 0.07596065159473937,
-      "restricted_kappa_positive": 16.40703973509871
+      "restricted_rank": 16,
+      "restricted_nullity": 8,
+      "restricted_sigma_min": 0.060696388801539956,
+      "restricted_kappa_positive": 20.622551289744237
     },
     {
       "restricted_status": "ok",
@@ -135,8 +137,8 @@
       "trace_information": 79.46873566836742,
       "restricted_rank": 24,
       "restricted_nullity": 0,
-      "restricted_sigma_min": 0.009879810742804007,
-      "restricted_kappa_positive": 132.25375366782023
+      "restricted_sigma_min": 0.030941209122984908,
+      "restricted_kappa_positive": 42.1951618423123
     },
     {
       "restricted_status": "ok",
@@ -155,10 +157,10 @@
       "stable_rank": 16.866995552034272,
       "effective_rank": 43.81804747972272,
       "trace_information": 13.24478927806123,
-      "restricted_rank": 22,
-      "restricted_nullity": 2,
-      "restricted_sigma_min": 5.2415061698806337e-08,
-      "restricted_kappa_positive": 16840114.99472248
+      "restricted_rank": 23,
+      "restricted_nullity": 1,
+      "restricted_sigma_min": 6.909242951986438e-08,
+      "restricted_kappa_positive": 12461412.306582678
     }
   ],
   "gates": {

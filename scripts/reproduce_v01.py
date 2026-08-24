@@ -45,7 +45,8 @@ from phrt.seeds import SeedNamespaces
 from phrt.sources.toy_classes import ClassNotConstructible, source_class
 
 E0_SEED = 42
-REGISTERED = dict(H=44, K=6, W=24, M=2, N_max=5, D=4, Gamma=0.6, restricted_dim=24)
+REGISTERED = dict(H=44, K=6, W=24, M=2, N_max=5, D=4, Gamma=0.6,
+                  RT=8, RS=3, restricted_dim=24)
 
 # The two candidate readings of the unpinned pair (K, M).
 READINGS = {
