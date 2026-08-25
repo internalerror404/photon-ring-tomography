@@ -1,7 +1,7 @@
 {
   "experiment": "R0A_CORRECTNESS_SMOKE",
-  "run_id": "R0A_20260825T203839Z_2ba66f02",
-  "freeze_sha256": "07f5e28c2f02642d56ec27233869d6f440b7626b1f53107d874e4458cc7572fb",
+  "run_id": "R0A_20260825T214234Z_2ba66f02",
+  "freeze_sha256": "60c5fce0c502be3e162ecf445f29977aab093138f603937c7b864447166692f4",
   "profile": "R0_SMOKE",
   "gates": {
     "R0_G1_dense_matrix_free_parity": {
@@ -40,9 +40,9 @@
     },
     "R0_G7_right_censoring": {
       "status": "PASS",
-      "measured": 3,
-      "threshold": 3,
-      "note": "contiguous_interior: oldest=12 contig=12 censored=False; island_beyond_gap: oldest=36 contig=8 censored=True; runs_to_boundary: oldest=36 contig=36 censored=True. A boundary endpoint is emitted as a lower bound, never as exact"
+      "measured": 4,
+      "threshold": 4,
+      "note": "contiguous_interior: oldest=12 longest_run=12 from_anchor=12 censored=False; island_beyond_gap: oldest=36 longest_run=8 from_anchor=8 censored=True; long_run_not_touching_anchor: oldest=28 longest_run=12 from_anchor=4 censored=False; runs_to_boundary: oldest=36 longest_run=36 from_anchor=36 censored=True. A boundary endpoint is emitted as a lower bound, never as exact"
     },
     "R0_G8_estimator_closed_form": {
       "status": "PASS",

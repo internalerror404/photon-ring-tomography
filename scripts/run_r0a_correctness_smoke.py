@@ -33,6 +33,7 @@ from phrt.inverse.state_space import (random_walk_precision, state_space_dense,
                                       state_space_from_statistic)
 from phrt.inverse.tsvd import tsvd_dense, tsvd_from_statistic
 from phrt.inverse.wiener import fit_gaussian_prior, wiener_dense, wiener_from_statistic
+from phrt.governance import r0_provenance
 from phrt.io.manifests import Gate, RunManifest, gate_from_tolerance, make_run_id
 from phrt.io.tables import write_table
 from phrt.operators.physical import OrderRays, PhysicalOperator
@@ -99,7 +100,8 @@ def main() -> int:
     run_id = make_run_id("R0A", reg.sha256)
     man = RunManifest(run_id=run_id, experiment_id="R0A_CORRECTNESS_SMOKE",
                       seeds={"smoke": 4242},
-                      extra={"profile": "R0_SMOKE", "freeze_sha256": freeze_hash})
+                      extra={"profile": "R0_SMOKE", "freeze_sha256": freeze_hash,
+                             **r0_provenance()})
     man.add_input(FREEZE)
     rows = []
 

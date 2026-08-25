@@ -1,22 +1,27 @@
-"""Stable historical depth, and the reach/contiguity statistics beside it.
+"""Stable historical depth under AGE_INTERVAL_SEMANTICS_AMENDMENT_003.
 
-Three different questions, deliberately not collapsed into one number:
+The primary endpoint is anchored:
 
-``T_reach``   the oldest age whose error clears the threshold at all -- a
-              supremum, and so blind to holes, exactly as in the E3C v2 depth
-              contract.
-``T_contig``  the longest contiguous run of passing ages, which is the span a
-              historical reconstruction could actually use.
-``T_stable``  the oldest age up to which a *quantile* q of truths pass at
-              tolerance epsilon, i.e. a statement about a population of movies
-              rather than about one lucky draw.
+    T_stable^anchor(eps, q) = sup { T >= a_anchor :
+                                    Pr[ sup_{a_anchor <= a <= T} E(a) <= eps ] >= q }
+    L_stable^anchor          = T_stable^anchor - a_anchor
 
-Right-censoring is reported rather than hidden: a depth sitting on the last age
-of the grid is a lower bound and is never emitted as an exact endpoint.
+with the supremum over the age window **inside** the probability, taken per
+truth. A truth counts only if the whole window from the anchor out to T is good
+for that truth. The pre-amendment implementation thresholded the per-age passing
+fraction, which lets a different subset of truths fail at each age and still
+calls the window stable; that quantity is retained below as the secondary
+unanchored interval, reported with both endpoints and never called depth from
+the present.
+
+Right-censoring is reported rather than hidden: an endpoint sitting on the last
+age of the grid is a lower bound and is never emitted as exact.
 """
 from __future__ import annotations
 
 import numpy as np
+
+from phrt.metrics.age_intervals import anchored_stable_depth, interval_statistics
 
 
 def passing_mask(errors: np.ndarray, epsilon: float) -> np.ndarray:
@@ -27,53 +32,50 @@ def passing_mask(errors: np.ndarray, epsilon: float) -> np.ndarray:
 def quantile_pass(mask: np.ndarray, q: float) -> np.ndarray:
     """Per-age fraction of truths passing, thresholded at the quantile level.
 
-    An age counts as stable when at least a fraction ``q`` of truths pass there.
+    The weaker, unanchored question. Kept because the interval structure of the
+    per-age pass set is worth reporting, not because it is the depth.
     """
-    frac = mask.mean(axis=0)
-    return frac >= q
+    return mask.mean(axis=0) >= q
 
 
-def depth_statistics(ages: np.ndarray, stable: np.ndarray,
-                     a_max: float) -> dict:
-    """T_reach, T_contig and the censoring flag from a per-age pass mask."""
+def secondary_interval(ages: np.ndarray, stable: np.ndarray, a_anchor: float,
+                       a_max: float) -> dict:
+    """Interval structure of the per-age pass mask, all endpoints reported."""
+    st = interval_statistics(ages, stable, a_anchor)
+    reach = st["oldest_detectable_age_probe"]
+    return {"secondary_reach_M": reach,
+            "secondary_longest_run_span_M": st["longest_detectable_run_span_M"],
+            "secondary_longest_run_start_M": st["longest_detectable_run_start_M"],
+            "secondary_longest_run_end_M": st["longest_detectable_run_end_M"],
+            "secondary_span_from_anchor_M":
+                st["contiguous_detectable_span_from_anchor_M"],
+            "secondary_end_from_anchor_M":
+                st["contiguous_detectable_end_from_anchor_M"],
+            "n_passing_runs": st["n_detectable_runs"],
+            "is_contiguous": st["is_contiguous"],
+            "secondary_right_censored": bool(reach >= 0
+                                             and np.isclose(reach, a_max)),
+            "age_pass_mask": st["age_mask"],
+            "secondary_label": "unanchored; never depth from the present"}
+
+
+def anchored_depth_surface(ages: np.ndarray, errors: np.ndarray, epsilons,
+                           quantiles, a_anchor: float, a_max: float) -> list[dict]:
+    """The full (epsilon, q) surface: anchored endpoint plus the secondary."""
     ages = np.asarray(ages, float)
-    ok = np.asarray(stable, bool)
-    if not ok.any():
-        return {"T_reach": -1.0, "T_contig": 0.0, "T_stable": -1.0,
-                "contig_start_M": -1.0, "contig_end_M": -1.0,
-                "n_passing_runs": 0, "is_contiguous": False,
-                "right_censored": False,
-                "age_pass_mask": "".join("0" for _ in ok)}
-    idx = np.flatnonzero(ok)
-    runs = np.split(idx, np.flatnonzero(np.diff(idx) > 1) + 1)
-    spans = [(float(ages[r[0]]), float(ages[r[-1]])) for r in runs]
-    lengths = [hi - lo for lo, hi in spans]
-    k = int(np.argmax(lengths))
-    reach = float(ages[idx[-1]])
-    # T_stable is the depth of the run that starts at the present: history is
-    # only usable if it connects back to now
-    first_run = runs[0]
-    t_stable = float(ages[first_run[-1]]) if ages[first_run[0]] <= ages[0] + 1e-9 \
-        else 0.0
-    return {"T_reach": reach,
-            "T_contig": float(lengths[k]),
-            "T_stable": t_stable,
-            "contig_start_M": float(spans[k][0]),
-            "contig_end_M": float(spans[k][1]),
-            "n_passing_runs": len(runs),
-            "is_contiguous": len(runs) == 1,
-            "right_censored": bool(np.isclose(reach, a_max)),
-            "age_pass_mask": "".join("1" if b else "0" for b in ok)}
-
-
-def stable_depth_surface(ages: np.ndarray, errors: np.ndarray,
-                         epsilons, quantiles, a_max: float) -> list[dict]:
-    """The full (epsilon, q) surface, every cell reported."""
     out = []
     for eps in epsilons:
         mask = passing_mask(errors, eps)
         for q in quantiles:
-            stats = depth_statistics(ages, quantile_pass(mask, q), a_max)
-            out.append({"epsilon": float(eps), "quantile": float(q),
-                        "n_truths": int(mask.shape[0]), **stats})
+            a = anchored_stable_depth(ages, errors, float(eps), float(q), a_anchor)
+            t = a["T_stable_anchor"]
+            out.append({
+                "epsilon": float(eps), "quantile": float(q),
+                "n_truths": int(mask.shape[0]),
+                "a_anchor_M": float(a_anchor),
+                "T_stable_anchor": t,
+                "L_stable_anchor": a["L_stable_anchor"],
+                "fraction_at_anchor": a["fraction_at_anchor"],
+                "right_censored": bool(t >= 0 and np.isclose(t, a_max)),
+                **secondary_interval(ages, quantile_pass(mask, q), a_anchor, a_max)})
     return out

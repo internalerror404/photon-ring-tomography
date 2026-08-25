@@ -1,0 +1,32 @@
+{
+  "schema": "phrt-r0-splits/1",
+  "freeze_sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
+  "sizes": {
+    "prior_fit_train": 2048,
+    "validation_in_class": 512,
+    "validation_off_grid": 320,
+    "validation_ood": 256,
+    "future_main_test": 320
+  },
+  "unique_sizes": {
+    "prior_fit_train": 2048,
+    "validation_in_class": 512,
+    "validation_off_grid": 320,
+    "validation_ood": 256,
+    "future_main_test": 320
+  },
+  "pairwise_overlap": {
+    "future_main_test|prior_fit_train": 0,
+    "future_main_test|validation_in_class": 0,
+    "future_main_test|validation_off_grid": 0,
+    "future_main_test|validation_ood": 0,
+    "prior_fit_train|validation_in_class": 0,
+    "prior_fit_train|validation_off_grid": 0,
+    "prior_fit_train|validation_ood": 0,
+    "validation_in_class|validation_off_grid": 0,
+    "validation_in_class|validation_ood": 0,
+    "validation_off_grid|validation_ood": 0
+  },
+  "worst_overlap": 0,
+  "disjoint": true
+}

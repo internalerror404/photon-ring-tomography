@@ -1,0 +1,131 @@
+{
+  "run_id": "R0B_20260825T215835Z_2ba66f02",
+  "experiment_id": "R0B_CANARY_RECONSTRUCTION_PILOT",
+  "git_commit": "e1619fa046a765e4da0e8482e81301ac5f434b1c",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "master": 20260901,
+    "streams": {
+      "prior_fit_train": 1000,
+      "validation_in_class": 2000,
+      "validation_off_grid": 3000,
+      "validation_ood": 4000,
+      "null_pairs": 5000,
+      "noise_draws": 6000,
+      "bootstrap": 7000,
+      "future_main_test": 9000
+    }
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/R0_CANARY_RECONSTRUCTION_PILOT_FREEZE.json",
+      "sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_pilot_age_errors.parquet",
+      "sha256": "595fec0531a03aca03f1d251dddcee51d7cf33ce018bb4fd340bb36328a9b9f4"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_pilot_stable_depth.parquet",
+      "sha256": "cada27432385a67c2b29bc06b99bc8156d334c75acbf39cc98eadbfe7828a480"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_pilot_estimator_selection.parquet",
+      "sha256": "bb91afa4ce431058711c718811511c050edd5740505fbf4e64d3e9a6f20e94e9"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_pilot_data_weak_errors.parquet",
+      "sha256": "2d1536d1ca1b996630207e30d53ec88b06f3dadfd6600688cf4799da828288c1"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_pilot_coverage.parquet",
+      "sha256": "ee52bf87ff8e5b251ee00a0e47334636b18d096fc9a43a118f3c41e6ccbf7f10"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_pilot_null_pairs.parquet",
+      "sha256": "a528f2835560dbca9be6eb56c6a49795a55a6853b4bffbcf82e8658b89978d7a"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_pilot_incremental_pairs.parquet",
+      "sha256": "7fc9f9207782482ffc5ead3f73ce3ab7f79247f88b102c0e4c42a8b133e82d61"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_pilot_runtime.parquet",
+      "sha256": "da7fa1321eee10fddb1e9931bd7d86ee4a8d8d4433599eadab15bd23e072b7dc"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_pilot_arm_contrasts.parquet",
+      "sha256": "a297fb54ce5a23be5f26cfdfce0d4ad6906867649c4117f8a6c646f57a6c4328"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_pilot_representation_floor.parquet",
+      "sha256": "05f88052ce3df62f6decf97cb9d010987b6e7a3706b9a1c999c83a9f5da7bbda"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_pilot_representation_floor_depth.parquet",
+      "sha256": "7c93a5128cc59b573842161666b6863e9de9563dcc6a48dce4f778b121fbda94"
+    }
+  ],
+  "gate_status": {},
+  "started_at": "2026-08-25T21:58:35+00:00",
+  "finished_at": "2026-08-25T21:58:35+00:00",
+  "peak_rss_mb": 791.41015625,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 610.028077840805,
+  "freeze_sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
+  "scale": 1.0,
+  "n_eval_points": 4800,
+  "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+  "measurement_correction_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
+  "e3c_execution_code_commit": "546763ed29e2be3fb129ec707cb07ee37a4f7db8",
+  "e3c_artifact_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
+  "e3c_age_interval_amendment_commit": "f034f19829623efa1f29bdcf27f95e10bd2de62e",
+  "e3c_freeze_sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
+  "e3c_registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "ray_map_manifest_sha256": "d163a630842ddec4b2143f9268bc70125857e78b84aa8fa122c5ef1bfc7b3638",
+  "r0_config_sha256": "dfc8d35eb2b7cb201409295698e9c623a10a0fa5ce730c7050e67c55f0ddb31e",
+  "r0_freeze_file_sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
+  "a_anchor_M": 0.0,
+  "age_interval_amendment": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003"
+}

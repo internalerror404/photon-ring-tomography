@@ -1,0 +1,10 @@
+{
+  "schema": "phrt-r0-null-summary/1",
+  "freeze_sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
+  "n_tested": 800,
+  "n_exceeding": 17,
+  "expected_exceedances": 18.200105558543356,
+  "binomial_p_excess": 0.6446294224456536,
+  "defect": false,
+  "rule": "a defect requires an excess beyond binomial multiplicity, not a single two-sigma excursion"
+}

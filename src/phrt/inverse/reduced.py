@@ -46,8 +46,16 @@ class ReducedOperator:
         return (self.V * self.s ** 2) @ self.V.T
 
     def forward_statistic(self, x: np.ndarray) -> np.ndarray:
-        """G x, the clean part of the sufficient statistic."""
-        return self.V @ (self.s ** 2 * (self.V.T @ x))
+        """G x, the clean part of the sufficient statistic.
+
+        Accepts a single coefficient vector or a stack with one per row. The
+        stacked path is written explicitly rather than relying on broadcasting a
+        (k,) scale against a (k, n) product, which aligns on the wrong axis.
+        """
+        x = np.asarray(x, float)
+        if x.ndim == 1:
+            return self.V @ (self.s ** 2 * (self.V.T @ x))
+        return ((x @ self.V) * self.s ** 2) @ self.V.T
 
     def noise_statistic(self, rng: np.random.Generator,
                         size: int = 1) -> np.ndarray:

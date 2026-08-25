@@ -24,8 +24,13 @@ def coverage_rows(estimator: str, truth: np.ndarray, mean: np.ndarray,
                  "reason": "point estimator with no posterior covariance"}
                 for lv in LEVELS]
     var = np.diag(cov)
+    # coverage over every truth in the regime, not a single draw: a
+    # per-coefficient rate estimated from one movie would be noise
+    truth = np.atleast_2d(truth)
+    mean = np.atleast_2d(mean)
     rows = [{"estimator": estimator, "level": float(lv),
-             "coverage": central_interval_coverage(truth, mean, var, lv),
+             "coverage": central_interval_coverage(truth, mean, var[None, :], lv),
+             "n_truths": int(truth.shape[0]),
              "disposition": "SUPPORTED", "reason": ""}
             for lv in LEVELS]
     joint = mahalanobis_calibration(truth, mean, cov)

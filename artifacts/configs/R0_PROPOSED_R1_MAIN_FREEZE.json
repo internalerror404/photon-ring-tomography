@@ -1,0 +1,124 @@
+{
+  "schema": "phrt-r1-proposed-freeze/1",
+  "status": "PROPOSED_NOT_AUTHORIZED",
+  "created_utc": "2026-08-25T22:08:53Z",
+  "derives_from_pilot_freeze_sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
+  "no_test_score_present": true,
+  "scope_restriction": "single canary geometry a* = 0.5, i = 50 deg, class C224; a main test does not license a geometry-wide or arbitrary-movie claim",
+  "recommendation": "R0_REPAIR_REQUIRED",
+  "repairs_declared_here_not_applied_to_the_pilot": [
+    {
+      "id": "REPAIR_1_primary_tolerance",
+      "needed": true,
+      "change": "the primary point moves off epsilon = 0.50, q = 0.90, which is right-censored for every arm at every SNR in the pilot, to a registered cell the observation can resolve",
+      "declared_primary": {
+        "epsilon": 0.25,
+        "quantile": 0.95
+      },
+      "evidence": "the cell-by-cell survey in the pilot report; the declared cell is a member of the already-registered epsilon x q surface, not a new tolerance"
+    },
+    {
+      "id": "REPAIR_2_in_class_truths_in_span",
+      "needed": true,
+      "change": "in-class truths are projected onto C224, or their coefficients drawn directly, so the in-class representation floor is zero; off-grid truths keep their analytic rendering, where being outside the span is the point",
+      "evidence": {
+        "in_class_structure_floor_range": [
+          0.4061554017093665,
+          0.4264922754445827
+        ],
+        "anchored_span_of_the_structure_floor_M": 0.0
+      }
+    },
+    {
+      "id": "REPAIR_3_uncertainty_calibration",
+      "needed": true,
+      "change": "the Gaussian prior is refitted or widened so the joint chi-square ratio lies within a factor of two of one on the validation mix, or the probabilistic estimators stop reporting posteriors",
+      "observed_joint_ratio": {
+        "DIRECT_PHYSICAL/LINEAR_STATE_SPACE": 0.0164959271652979,
+        "DIRECT_PHYSICAL/WIENER_GAUSSIAN": 5.7937308275345,
+        "RESOLVED_PHYSICAL/LINEAR_STATE_SPACE": 0.015450922558142788,
+        "RESOLVED_PHYSICAL/WIENER_GAUSSIAN": 5.781599351539791,
+        "TOTAL_FLUX/LINEAR_STATE_SPACE": 0.023407931976870255,
+        "TOTAL_FLUX/WIENER_GAUSSIAN": 6.547721295380861,
+        "UNRESOLVED_IMAGE/LINEAR_STATE_SPACE": 0.01648831392299404,
+        "UNRESOLVED_IMAGE/WIENER_GAUSSIAN": 5.797837207584144
+      },
+      "registered_stop_condition": "UNCALIBRATED_UNCERTAINTY"
+    }
+  ],
+  "main_counts": {
+    "test_in_class_per_prior_fit_family": 512,
+    "test_off_grid_per_physical_family": 256,
+    "test_ood_total": 1024,
+    "null_pairs_per_target": 200,
+    "noise_draws_per_test_truth_and_snr": 8
+  },
+  "age_interval_amendment": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003",
+  "a_anchor_M": 0.0,
+  "provenance": {
+    "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+    "measurement_correction_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
+    "e3c_execution_code_commit": "546763ed29e2be3fb129ec707cb07ee37a4f7db8",
+    "e3c_artifact_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
+    "e3c_age_interval_amendment_commit": "f034f19829623efa1f29bdcf27f95e10bd2de62e",
+    "e3c_freeze_sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
+    "e3c_registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+    "ray_map_manifest_sha256": "d163a630842ddec4b2143f9268bc70125857e78b84aa8fa122c5ef1bfc7b3638",
+    "r0_config_sha256": "dfc8d35eb2b7cb201409295698e9c623a10a0fa5ce730c7050e67c55f0ddb31e",
+    "r0_freeze_file_sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
+    "a_anchor_M": 0.0,
+    "age_interval_amendment": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003"
+  },
+  "representation_floor_in_class": {
+    "registered_normalized_error_range": [
+      0.0629548526291468,
+      0.07052241214196858
+    ],
+    "structure_normalized_error_range": [
+      0.4061554017093665,
+      0.4264922754445827
+    ],
+    "anchored_span_of_the_floor_M": {
+      "registered": 120.0,
+      "structure": 0.0
+    },
+    "meaning": "the error of the exact least-squares projection of the truth onto C224. No estimator can beat it within the declared class, and any main-test success criterion has to be stated against it"
+  },
+  "success_criteria": {
+    "primary": "L_stable_anchor(0.25, 0.95) for RESOLVED_PHYSICAL exceeds DIRECT_PHYSICAL by at least one age-grid step of 4 M at two or more consecutive SNR_0 values, with the anchor frozen at 0 M. The tolerance differs from the pilot's registered primary point under REPAIR_1: that point is right-censored for every arm at every SNR here and cannot express a difference. The replacement is a member of the already-registered surface and is declared before any test truth is rendered",
+    "secondary": [
+      "old-band normalized error strictly lower for the resolved arm at the same SNR",
+      "the same holding for the structure-normalized companion, so the gain is not an artefact of the positive baseline in the registered denominator",
+      "data-supported error strictly lower, so the gain is not a weak-subspace prior effect",
+      "null-pair accuracy at or below the Bayes bound within binomial multiplicity"
+    ],
+    "declared_before_test": true
+  },
+  "test_hash_commitment": "d7e472d34d21f54e00b1fee3454e6395ce1b9e248727785bef707e780cc1d31e",
+  "estimators": {
+    "required": [
+      "TSVD",
+      "RIDGE_IDENTITY",
+      "TIKHONOV_TEMPORAL",
+      "WIENER_GAUSSIAN"
+    ],
+    "conditional": [
+      "LINEAR_STATE_SPACE"
+    ],
+    "conditional_on": "R0_G8_estimator_closed_form",
+    "not_authorized": [
+      "TOTAL_VARIATION",
+      "AUTOENCODER",
+      "NEURAL_FIELD",
+      "UNROLLED_NETWORK",
+      "DIFFUSION",
+      "ANY_TEST_TUNED_ESTIMATOR"
+    ]
+  },
+  "hyperparameters": "selected on the pilot's validation split and frozen; no re-tuning on test data",
+  "observed_pilot_headline": {
+    "max_resolved_minus_direct_L_stable_anchor_M": 0.0,
+    "any_positive_gain": false,
+    "gain_of_at_least_one_step_at_consecutive_snr": false
+  }
+}

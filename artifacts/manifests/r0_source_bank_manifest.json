@@ -1,0 +1,186 @@
+{
+  "schema": "phrt-r0-source-bank/1",
+  "freeze_sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
+  "baseline_intensity": 1.0,
+  "positivity": "every physical family renders a strictly positive intensity; signed null perturbations sit on the positive baseline",
+  "off_grid": [
+    {
+      "family": "single_orbiting_hotspot",
+      "median_projection_residual": 0.05049274354563385,
+      "median_projection_residual_structure": 0.8460300443467916,
+      "median_fluctuation_fraction": 0.05564235522297781,
+      "degenerate_constant_fraction": 0.0,
+      "note": "the structure residual is the one that characterises the regime; the plain relative residual is diluted by the in-class positive baseline"
+    },
+    {
+      "family": "two_independent_hotspots",
+      "median_projection_residual": 0.07280221182348105,
+      "median_projection_residual_structure": 0.8440482004453125,
+      "median_fluctuation_fraction": 0.08836536866676227,
+      "degenerate_constant_fraction": 0.0,
+      "note": "the structure residual is the one that characterises the regime; the plain relative residual is diluted by the in-class positive baseline"
+    },
+    {
+      "family": "rotating_asymmetric_crescent",
+      "median_projection_residual": 0.1909749906657347,
+      "median_projection_residual_structure": 0.7880478015841568,
+      "median_fluctuation_fraction": 0.25322807104772516,
+      "degenerate_constant_fraction": 0.0,
+      "note": "the structure residual is the one that characterises the regime; the plain relative residual is diluted by the in-class positive baseline"
+    },
+    {
+      "family": "correlated_extended_field",
+      "median_projection_residual": 0.08229135908309107,
+      "median_projection_residual_structure": 0.7634208013423014,
+      "median_fluctuation_fraction": 0.10131971360014251,
+      "degenerate_constant_fraction": 0.0,
+      "note": "the structure residual is the one that characterises the regime; the plain relative residual is diluted by the in-class positive baseline"
+    },
+    {
+      "family": "moving_flare_birth_decay",
+      "median_projection_residual": 0.005644207345347487,
+      "median_projection_residual_structure": 0.8768352759733651,
+      "median_fluctuation_fraction": 0.006702930771603246,
+      "degenerate_constant_fraction": 0.0,
+      "note": "the structure residual is the one that characterises the regime; the plain relative residual is diluted by the in-class positive baseline"
+    }
+  ],
+  "families": {
+    "single_orbiting_hotspot": {
+      "prior_fit_train": {
+        "n": 512,
+        "content_hash_sample": [
+          "377abbaa5291259d57feb62a1b54bd40da17944afc42670cc6f104246ddf2eba",
+          "5f9c47ca69cf45900fd4e410425b8d5262e979f41f1dbb3769cca969228f3d89",
+          "995ee3daed587343e1d88233cb56427a7f4e1b54c5a543bb29b23a409b7e6d6c"
+        ],
+        "off_grid": false
+      },
+      "validation_in_class": {
+        "n": 128,
+        "content_hash_sample": [
+          "def3a9548953e157378a2166b6eb649e314d69f40053c0de0b127a14ce3f01c8",
+          "4a9847de13aa5f984d8ce6236f620af93078f46b15c1049d203d678fd80f41c9",
+          "72ba96184dff6838f1b3dc010ac610eb65e42fcb3cdb941e7c44faf068c835cc"
+        ],
+        "off_grid": false
+      },
+      "validation_off_grid": {
+        "n": 64,
+        "content_hash_sample": [
+          "892b7eb02213b032f36369a0a2d2c0115288fa242f42be97e118a093b9ba1393",
+          "3a606a983b10076f46f60b320e4f26b912a7451d57cd9d0f3ba751646cf5b90e",
+          "dbecaa24f0ca50f78901c4a98907a1940afab38a74468d1564c66fc7603299cc"
+        ],
+        "off_grid": true
+      }
+    },
+    "two_independent_hotspots": {
+      "prior_fit_train": {
+        "n": 512,
+        "content_hash_sample": [
+          "17915ec6b696a24a3f7de6f440c240d3f04b5644b9f233c251d46d01d2569b9b",
+          "27e858ba00954e5c146b1ed855273a8a3abcc014001fa06b2e1952d9ec006449",
+          "45e7240e19aa1700d8ae7430b7f5879665f234c7dfe4d264d49999f2b7e1b3c6"
+        ],
+        "off_grid": false
+      },
+      "validation_in_class": {
+        "n": 128,
+        "content_hash_sample": [
+          "cbb7f2303c598a87fe58904b39213928926b8ea539f0619f7c5c01590f2fed84",
+          "c4080419663bd6986970e5df95c642c1b98b8fc1bc84ec117ed486e73ee3dbfa",
+          "376432dbea8cf099bb62ee70e9435138d10540bf33a930d38b6500a23fe27ddc"
+        ],
+        "off_grid": false
+      },
+      "validation_off_grid": {
+        "n": 64,
+        "content_hash_sample": [
+          "c5ddb4f163f0b5eeee3bdec883c99822e4ecbe596a6003c11b9710bc0c241dfb",
+          "1965684da03db934511b9ada4006a00fe49c2d015241195dd468df3f88483dbe",
+          "3074396130a807136001c5b322c54e9b90441bccd8464bfc2893bc37442aa1d9"
+        ],
+        "off_grid": true
+      }
+    },
+    "rotating_asymmetric_crescent": {
+      "prior_fit_train": {
+        "n": 512,
+        "content_hash_sample": [
+          "1632a2ea6e1d3881c8cdd953b322b0c3718b4caebb88d5ab649661b5a63d4429",
+          "2558fbaaba6e1729a3a1cff91687b52d6e378b948736d6eee14e0b9e1f3d376a",
+          "7a0469b3b0291fd60cdc1eeacd788ae84da1610cc09eca6076a544ca35b81230"
+        ],
+        "off_grid": false
+      },
+      "validation_in_class": {
+        "n": 128,
+        "content_hash_sample": [
+          "a27597eb85735e6e1b388cc116e4a7fe7446b1e7ce0b62a54c5e7eb8b33112b8",
+          "cc4d0e8ee61adff04426ef167c2af1684f452b287cc0e8c19893dee2729f0f0b",
+          "0d95a074bdf43064fc06525e71f22ef8882a364bd07512cca976d6f90b4b9e1c"
+        ],
+        "off_grid": false
+      },
+      "validation_off_grid": {
+        "n": 64,
+        "content_hash_sample": [
+          "edda121254a6852b4ba77bbdef169ad89f30cad0a6be844033ac5c437a6644b4",
+          "c9234fea75ced1bfe0cf23a4a53f6f376a9e5613168bc6c508746257832eed42",
+          "2e92f64d4e36c99a22c33d3501481d2cccb3f969a2829234c0972d77e89c42d4"
+        ],
+        "off_grid": true
+      }
+    },
+    "correlated_extended_field": {
+      "prior_fit_train": {
+        "n": 512,
+        "content_hash_sample": [
+          "68e87efbc7bc4498de9e676c79e230482b79fbf4e52cf9d782787449cb404f63",
+          "33be4685e9e8fd95082cec9e4fb5b821d357220e5adc7037731d5b5388401e19",
+          "b1a4abec1a32b40abd811d584738b778e54512dabdb9d41b5514151324559326"
+        ],
+        "off_grid": false
+      },
+      "validation_in_class": {
+        "n": 128,
+        "content_hash_sample": [
+          "cb0905d4104283bc6d9439ef11cd18e2e52ec8cd65ab778f1eaf717fc80df671",
+          "3973ec59eb88b4be369ca9f299e96e64780ecc697ac872488074c92a9d3e11c7",
+          "c0ab55e17544f63352a1fa4527d507a2a1f48fdcb27b806e42a835329a09785d"
+        ],
+        "off_grid": false
+      },
+      "validation_off_grid": {
+        "n": 64,
+        "content_hash_sample": [
+          "792c4234ba8e70283a7573d2be1f4c4d299bf86b278f925be7990f7491f846b0",
+          "6240d3d25c24af42166b3fd613e3dad8118471c98f0a3beac0de614f2f011f01",
+          "e4c583aeb36adf32af623194cf1dd3bf8c64a2dad1365611361f32b2375c23f8"
+        ],
+        "off_grid": true
+      }
+    },
+    "moving_flare_birth_decay": {
+      "validation_off_grid": {
+        "n": 64,
+        "content_hash_sample": [
+          "118a1dbd52c031f63947ccd1b35b7dbdc80ab0e84c1a64499830be03e4afddc1",
+          "42e2b6a33cfa37040d4b2fbb6b3bd23ece2f237937f1040a4ba7a4ca04b5b6dd",
+          "21850b4b7834f0b9071f212c38901af3377faabf6fabe1ed542a77ac074cfe43"
+        ],
+        "off_grid": true
+      },
+      "validation_ood": {
+        "n": 256,
+        "content_hash_sample": [
+          "31ae125354beb636a67640c69845100b7bbe66a5b5f264b5d31d0a5bf86174a5",
+          "1f4d8821536bdf29dbfdc68e6b89fd746779e7fc108c34b527c74817b2ee51ad",
+          "2bcc3f9ce7dd8c6dd16c050f429b14dc4492f5af111c8ffda55f6021d77f9c34"
+        ],
+        "off_grid": false
+      }
+    }
+  }
+}

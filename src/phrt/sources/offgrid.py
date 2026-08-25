@@ -17,12 +17,23 @@ import numpy as np
 def projection_residual(values: np.ndarray, design: np.ndarray) -> dict:
     """How much of a rendered movie lies outside the span of the class.
 
-    ``design`` is the class design matrix evaluated at the same coordinates.
-    Returns the relative L2 residual of the least-squares projection, which is
-    zero for an in-class truth and strictly positive for a genuinely off-grid one.
+    Two normalisations, because the obvious one is misleading here. Every
+    physical family sits on a positive constant baseline, and a constant is
+    exactly representable in the class, so a residual taken relative to the full
+    movie norm is dominated by a part that is in-class by construction: a
+    strongly off-grid localized feature can still show a relative residual of a
+    per cent or less. ``relative_projection_residual_structure`` divides instead
+    by the norm of the fluctuation about the mean, which is the part the class
+    is actually being asked to represent, and is the number the off-grid regime
+    should be judged on.
     """
     coef, *_ = np.linalg.lstsq(design, values, rcond=None)
     resid = values - design @ coef
-    denom = max(float(np.linalg.norm(values)), 1e-300)
-    return {"relative_projection_residual": float(np.linalg.norm(resid) / denom),
+    r_norm = float(np.linalg.norm(resid))
+    full = max(float(np.linalg.norm(values)), 1e-300)
+    fluct = max(float(np.linalg.norm(values - values.mean())), 1e-300)
+    return {"relative_projection_residual": r_norm / full,
+            "relative_projection_residual_structure": r_norm / fluct,
+            "fluctuation_fraction": fluct / full,
+            "is_degenerate_constant": bool(fluct / full < 1e-9),
             "projected_coefficients": coef}

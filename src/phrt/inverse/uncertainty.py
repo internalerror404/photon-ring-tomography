@@ -34,10 +34,25 @@ def mahalanobis_calibration(truth: np.ndarray, mean: np.ndarray,
     """
     d = mean.shape[-1]
     diff = np.atleast_2d(truth - mean)
-    L = np.linalg.cholesky(cov + 1e-18 * np.eye(d))
-    sol = np.linalg.solve(L, diff.T)
-    m2 = np.sum(sol ** 2, axis=0)
+    # The posterior covariance is PD in exact arithmetic but is formed by
+    # inverting a near-singular shrunk prior plus a Gram, so a Cholesky can and
+    # does fail on directions the data and prior barely constrain. An
+    # eigendecomposition with a relative floor is used instead, and the number
+    # of clipped directions is reported: silently jittering the diagonal would
+    # hide how much of the posterior is numerically unsupported, which is
+    # exactly what a calibration statement should not do.
+    C = 0.5 * (cov + cov.T)
+    w, U = np.linalg.eigh(C)
+    scale = max(float(w.max()), 1e-300)
+    floor = 1e-12 * scale
+    clipped = int(np.sum(w < floor))
+    w = np.maximum(w, floor)
+    z = (diff @ U) / np.sqrt(w)
+    m2 = np.sum(z ** 2, axis=1)
+    dof = int(np.sum(w > floor))
     return {"mean_mahalanobis_squared": float(np.mean(m2)),
             "expected_mahalanobis_squared": float(d),
-            "ratio": float(np.mean(m2) / d),
-            "median_pvalue": float(np.median(stats.chi2.sf(m2, df=d)))}
+            "ratio": float(np.mean(m2) / max(d, 1)),
+            "median_pvalue": float(np.median(stats.chi2.sf(m2, df=d))),
+            "clipped_directions": clipped,
+            "numerically_supported_directions": dof}

@@ -1,0 +1,155 @@
+{
+  "run_id": "R0A_20260825T214234Z_2ba66f02",
+  "experiment_id": "R0A_CORRECTNESS_SMOKE",
+  "git_commit": "e1619fa046a765e4da0e8482e81301ac5f434b1c",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "smoke": 4242
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/R0_CANARY_RECONSTRUCTION_PILOT_FREEZE.json",
+      "sha256": "60c5fce0c502be3e162ecf445f29977aab093138f603937c7b864447166692f4"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_smoke_null_pair_calibration.parquet",
+      "sha256": "6f5775c2cb4e0f3fcf8f5c03fbcd166a3e3adb4ef2879ecc4840cdf4339ad71d"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_smoke_gate_values.parquet",
+      "sha256": "6f33a5f6b3f9fd51ca28db4eec2f297c4b8768737578cc56955140432e8f88a9"
+    }
+  ],
+  "gate_status": {
+    "R0_G1_dense_matrix_free_parity": {
+      "status": "PASS",
+      "measured": 2.1731844154456152e-15,
+      "threshold": 1e-10,
+      "note": "forward, adjoint and Gram action, every arm"
+    },
+    "R0_G2_physical_adjoint": {
+      "status": "PASS",
+      "measured": 6.394884621840902e-14,
+      "threshold": 1e-08
+    },
+    "R0_G3_G10q_quadrature_noise_invariance": {
+      "status": "PASS",
+      "measured": 7.2572437971255e-16,
+      "threshold": 1e-10,
+      "note": "pixel split into k equal-area children carrying the same transfer value"
+    },
+    "R0_G4_mixing_covariance": {
+      "status": "PASS",
+      "measured": 5.422652948973214e-16,
+      "threshold": 1e-10,
+      "note": "A_L = L A_R and C_L = L C_R L^T, dense and matrix-free"
+    },
+    "R0_G5_basis_round_trip": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "R0_G6_age_probe_normalization": {
+      "status": "PASS",
+      "measured": 5.551223562028085e-05,
+      "threshold": 0.005,
+      "note": "analytic probe norm against an independent 4001-point quadrature; the declared unit normalisation is exact by construction (deviation 0.0e+00), so the quadrature agreement is the real check"
+    },
+    "R0_G7_right_censoring": {
+      "status": "PASS",
+      "measured": 4,
+      "threshold": 4,
+      "note": "contiguous_interior: oldest=12 longest_run=12 from_anchor=12 censored=False; island_beyond_gap: oldest=36 longest_run=8 from_anchor=8 censored=True; long_run_not_touching_anchor: oldest=28 longest_run=12 from_anchor=4 censored=False; runs_to_boundary: oldest=36 longest_run=36 from_anchor=36 censored=True. A boundary endpoint is emitted as a lower bound, never as exact"
+    },
+    "R0_G8_estimator_closed_form": {
+      "status": "PASS",
+      "measured": 2.168632796018628e-15,
+      "threshold": 1e-09,
+      "note": "TSVD=4.70e-16; RIDGE_IDENTITY=2.17e-15; TIKHONOV_TEMPORAL=2.17e-15; WIENER_GAUSSIAN=2.04e-15; LINEAR_STATE_SPACE=2.48e-16; STATE_SPACE_PRECISION_CONSTRUCTION=0.00e+00"
+    },
+    "R0_G12_reduced_statistic_equivalence": {
+      "status": "PASS",
+      "measured": 0.024560531363674858,
+      "threshold": 0.08,
+      "note": "Monte-Carlo covariance of A^T eta (0.025) and of the reduced sampler (0.024) against G, 20000 draws. Added beyond the launch list because the pilot's reduced simulation would otherwise be an unchecked assumption"
+    },
+    "R0_G9_noise_replay": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "content hashes, rendered truths, noise draws and a reconstruction all compared with array_equal, not allclose"
+    },
+    "R0_G10_null_pair_calibration": {
+      "status": "PASS",
+      "measured": 2.220446049250313e-16,
+      "threshold": 0.02,
+      "note": "realized whitened Mahalanobis separation against target, all deltas"
+    },
+    "R0_G11_split_hash_disjointness": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "pairwise content-hash overlap across prior-fit, validation, off-grid, OOD and future-test splits: {\"future_main_test|prior_fit_train\": 0, \"future_main_test|validation_in_class\": 0, \"future_main_test|validation_off_grid\": 0, \"future_main_test|validation_ood\": 0, \"prior_fit_train|validation_in_class\": 0, \"prior_fit_train|validation_off_grid\": 0, \"prior_fit_train|validation_ood\": 0, \"validation_in_class|validation_off_grid\": 0, \"validation_in_class|validation_ood\": 0, \"validation_off_grid|validation_ood\": 0}"
+    }
+  },
+  "started_at": "2026-08-25T21:42:34+00:00",
+  "finished_at": "2026-08-25T21:42:37+00:00",
+  "peak_rss_mb": 196.41796875,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 2.382603883743286,
+  "profile": "R0_SMOKE",
+  "freeze_sha256": "60c5fce0c502be3e162ecf445f29977aab093138f603937c7b864447166692f4",
+  "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+  "measurement_correction_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
+  "e3c_execution_code_commit": "546763ed29e2be3fb129ec707cb07ee37a4f7db8",
+  "e3c_artifact_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
+  "e3c_age_interval_amendment_commit": "f034f19829623efa1f29bdcf27f95e10bd2de62e",
+  "e3c_freeze_sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
+  "e3c_registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "ray_map_manifest_sha256": "d163a630842ddec4b2143f9268bc70125857e78b84aa8fa122c5ef1bfc7b3638",
+  "r0_config_sha256": "5c4921c230401d0d9f52d374f287bc32f2166a60fd52f7aca9610d297341dfb9",
+  "r0_freeze_file_sha256": "60c5fce0c502be3e162ecf445f29977aab093138f603937c7b864447166692f4",
+  "a_anchor_M": 0.0,
+  "age_interval_amendment": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003"
+}

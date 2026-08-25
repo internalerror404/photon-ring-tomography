@@ -357,6 +357,7 @@ def main() -> int:
                           "resolution; no range was chosen from a reconstruction "
                           "score",
             "resolution_bounds": {
+                "probe_half_width_M": PROBE_HALF_WIDTH,
                 "finest_radial_feature_M": finest_radial,
                 "finest_temporal_feature_M": finest_temporal,
                 "highest_azimuthal_mode": finest_azimuthal_m,
@@ -485,6 +486,14 @@ def main() -> int:
         "metrics": {
             "age_window": "compact window W_a on the common age grid, "
                           f"half width {PROBE_HALF_WIDTH} M, step {AGE_STEP} M",
+            "age_grid_step_M": AGE_STEP,
+            "age_grid_max_M": float(np.ceil((max_delay - min(t_obs)) / AGE_STEP)
+                                    * AGE_STEP),
+            "age_grid_rule": "the oldest age any ray in the frozen set carries, "
+                             "max(delay) - min(t_obs), rounded up to the age "
+                             "step. Ages beyond it are unreachable by "
+                             "construction, so a depth sitting on the ceiling is "
+                             "right-censored and reported as a lower bound",
             "E_of_a": "||W_a(xhat - x)||_2 / max(||W_a x||_2, eta)",
             "E_abs_of_a": "||W_a(xhat - x)||_2",
             "eta_rule": "0.05 * median over prior-fit truths and ages with "

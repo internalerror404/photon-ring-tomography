@@ -1,11 +1,11 @@
 {
   "schema": "phrt-r0-reconstruction-freeze/1",
   "experiment_id": "R0_CANARY_RECONSTRUCTION_PILOT",
-  "created_utc": "2026-08-25T21:38:58Z",
+  "created_utc": "2026-08-25T21:44:45Z",
   "provenance": {
     "accepted_scientific_base": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
     "start_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
-    "head_at_registration": "f034f19829623efa1f29bdcf27f95e10bd2de62e",
+    "head_at_registration": "e1619fa046a765e4da0e8482e81301ac5f434b1c",
     "branch": "research/paper1_r0_canary_reconstruction_v0",
     "base_is_ancestor_of_start": true,
     "start_commit_is_documentation_only_descendant": false,
@@ -22,7 +22,7 @@
     "e3c_freeze_sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
     "e3c_registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
     "ray_map_manifest_sha256": "d163a630842ddec4b2143f9268bc70125857e78b84aa8fa122c5ef1bfc7b3638",
-    "r0_config_sha256": "5c4921c230401d0d9f52d374f287bc32f2166a60fd52f7aca9610d297341dfb9",
+    "r0_config_sha256": "dfc8d35eb2b7cb201409295698e9c623a10a0fa5ce730c7050e67c55f0ddb31e",
     "self_digest_rule": "r0_config_sha256 is sha256 over the canonical JSON of this document with r0_config_sha256 itself set to null, so the field can live inside the document it describes; ray_map_manifest_sha256 is sha256 over the canonical JSON of the sorted physical_model.raymap_sha256 map",
     "repository": "internalerror404/photon-ring-tomography"
   },
@@ -239,6 +239,7 @@
   "source_families": {
     "derivation": "ranges come from the declared physical support r in [1.866, 49.982] M and from the C224 resolution; no range was chosen from a reconstruction score",
     "resolution_bounds": {
+      "probe_half_width_M": 3.0,
       "finest_radial_feature_M": 2.3791207100279617,
       "finest_temporal_feature_M": 19.72779331149532,
       "highest_azimuthal_mode": 3,
@@ -575,6 +576,9 @@
   },
   "metrics": {
     "age_window": "compact window W_a on the common age grid, half width 3.0 M, step 4.0 M",
+    "age_grid_step_M": 4.0,
+    "age_grid_max_M": 120.0,
+    "age_grid_rule": "the oldest age any ray in the frozen set carries, max(delay) - min(t_obs), rounded up to the age step. Ages beyond it are unreachable by construction, so a depth sitting on the ceiling is right-censored and reported as a lower bound",
     "E_of_a": "||W_a(xhat - x)||_2 / max(||W_a x||_2, eta)",
     "E_abs_of_a": "||W_a(xhat - x)||_2",
     "eta_rule": "0.05 * median over prior-fit truths and ages with ||W_a x|| > 0 of ||W_a x||_2, frozen before scoring",
