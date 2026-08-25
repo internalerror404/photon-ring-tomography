@@ -1,0 +1,96 @@
+{
+  "geometry_id": "a050_i050",
+  "spin": 0.5,
+  "inclination_deg": 50.0,
+  "profile": "coarse",
+  "t_reference": -979.0666843556533,
+  "timing": {
+    "lensing_bands_seconds": 15.329689741134644,
+    "raytrace_seconds": 0.0997622013092041
+  },
+  "aart_files": {
+    "bands": "/home/user/photon-ring-tomography/artifacts/e3_pilot/aart_out/coarse/LensingBands_a_0.5_i_50.0_dx0_0.8_dx1_0.16_dx2_0.04.h5",
+    "rays": "/home/user/photon-ring-tomography/artifacts/e3_pilot/aart_out/coarse/Rays_a_0.5_i_50.0_bv_0_dx0_0.8_dx1_0.16_dx2_0.04.h5"
+  },
+  "runtime_seconds": 16.19382333755493,
+  "maps": [
+    {
+      "path": "artifacts/raymaps/a050_i050_n0_coarse.h5",
+      "sha256": "690d5f903fc0a44f39c6747fcd647cc2d003be3e1b9a7b8230f5f690d0ef9f91",
+      "geometry_id": "a050_i050",
+      "order": 0,
+      "spin": 0.5,
+      "inclination_deg": 50.0,
+      "profile": "coarse",
+      "n_rays": 4096,
+      "n_valid": 3992,
+      "valid_fraction": 0.974609375,
+      "source_r_range": [
+        1.9116585873909764,
+        43.719966214908204
+      ],
+      "delay_range": [
+        0.0,
+        57.42519866454245
+      ],
+      "redshift_range": [
+        0.019552937674659012,
+        1.1418365586402774
+      ],
+      "pixel_area": 0.6400000000000001,
+      "total_quadrature_area": 2554.880000000001
+    },
+    {
+      "path": "artifacts/raymaps/a050_i050_n1_coarse.h5",
+      "sha256": "6f0dfa77073a6b05d13876d7fe366ae1422d315e4e439df29c329ac8c3ce171e",
+      "geometry_id": "a050_i050",
+      "order": 1,
+      "spin": 0.5,
+      "inclination_deg": 50.0,
+      "profile": "coarse",
+      "n_rays": 15876,
+      "n_valid": 2156,
+      "valid_fraction": 0.13580246913580246,
+      "source_r_range": [
+        1.8768083030753413,
+        49.819143048792284
+      ],
+      "delay_range": [
+        45.8588316635678,
+        100.69814770181847
+      ],
+      "redshift_range": [
+        0.005517744642403843,
+        1.0289759332840915
+      ],
+      "pixel_area": 0.0256,
+      "total_quadrature_area": 55.19360000000001
+    },
+    {
+      "path": "artifacts/raymaps/a050_i050_n2_coarse.h5",
+      "sha256": "8a416fb173f2e51834a14a2162126613c1bb778909ffac32a0301159b5454338",
+      "geometry_id": "a050_i050",
+      "order": 2,
+      "spin": 0.5,
+      "inclination_deg": 50.0,
+      "profile": "coarse",
+      "n_rays": 122500,
+      "n_valid": 1037,
+      "valid_fraction": 0.00846530612244898,
+      "source_r_range": [
+        1.8673965475120258,
+        49.68827873508643
+      ],
+      "delay_range": [
+        61.92310318283353,
+        118.50260063512883
+      ],
+      "redshift_range": [
+        0.00048294543899541975,
+        1.0165771609057273
+      ],
+      "pixel_area": 0.0016,
+      "total_quadrature_area": 1.6592000000000007
+    }
+  ]
+}

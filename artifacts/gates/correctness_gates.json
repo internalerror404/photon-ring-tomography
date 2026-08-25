@@ -676,11 +676,43 @@
         "run_id": "G1_20260825T050005Z_2ba66f02",
         "recorded_at": "2026-08-25T05:01:09+00:00"
       }
+    },
+    "G7_grid_convergence": {
+      "status": "PASS",
+      "measured": 0.012550651414009606,
+      "threshold": 0.02,
+      "note": "worst relative change between the core and fine profiles across band area, weighted area, retarded-window endpoints and mean redshift, over all three orders. Tolerance frozen at 2e-02 from pilot evidence: the pilot measures 1.255e-02, so the threshold leaves roughly a factor of 1.6 of headroom.",
+      "run_id": "E3PILOT_20260825T051509Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:15:11+00:00"
+    },
+    "G8_cross_tracer": {
+      "status": "PASS",
+      "measured": 1.0816528919993058e-12,
+      "threshold": 1e-09,
+      "note": "worst relative disagreement in equatorial source radius between AART and kgeo at commit dc347060c5fb, over 430 rays stratified by screen azimuth, source radius and delay quantile across all three orders. Tolerance frozen at 1e-09: the pilot measures 1.082e-12, leaving about three orders of magnitude of headroom, which tolerates elliptic-integral and LAPACK variation between builds while still catching a convention or implementation error.",
+      "run_id": "E3PILOT_20260825T051509Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:15:11+00:00"
+    },
+    "E3_pilot_no_convention_adjustment": {
+      "status": "PASS",
+      "measured": 1.0816528919993058e-12,
+      "threshold": 1e-09,
+      "note": "the two tracers were compared on raw screen coordinates with no sign flip, axis swap, angle offset or unit rescaling applied to either side. Agreement at this level is therefore evidence that the conventions already match, not that they were made to.",
+      "run_id": "E3PILOT_20260825T051509Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:15:11+00:00"
+    },
+    "E3_pilot_meets_registered_ray_count": {
+      "status": "PASS",
+      "measured": 4179,
+      "threshold": 1536,
+      "note": "valid rays per order at the core profile: {0: 15597, 1: 8531, 2: 4179}; registry requires 1536 per order",
+      "run_id": "E3PILOT_20260825T051509Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:15:11+00:00"
     }
   },
-  "updated_at": "2026-08-25T05:01:42+00:00",
+  "updated_at": "2026-08-25T05:15:11+00:00",
   "summary": {
-    "PASS": 44,
+    "PASS": 48,
     "FAIL": 1,
     "NOT_RUN": 7
   }

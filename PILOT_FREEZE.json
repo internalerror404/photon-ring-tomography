@@ -1,0 +1,37 @@
+{
+  "frozen_at": "2026-08-25T05:15:09Z",
+  "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "pilot_geometry": "a050_i050",
+  "pilot_note": "Two non-grid pilot geometries are permitted by the protocol. Only a*=0.5, i=50 deg was authorized and run.",
+  "working_profile": "core",
+  "G7_grid_convergence": {
+    "tolerance": 0.02,
+    "pilot_measured": 0.012550651414009606,
+    "metrics": [
+      "area",
+      "weighted_area",
+      "delay_min",
+      "delay_max",
+      "mean_redshift"
+    ],
+    "comparison": "core versus fine profile, per order"
+  },
+  "G8_cross_tracer": {
+    "tolerance": 1e-09,
+    "pilot_measured": 1.0816528919993058e-12,
+    "reference_implementation": "achael/kgeo",
+    "kgeo_commit": "dc347060c5fb24e2c360c8aaffbfe25482a83805",
+    "quantity": "equatorial source radius",
+    "sampling": "stratified by screen azimuth, source radius and delay quantile; 6 strata per key, 8 rays per stratum, per order",
+    "rays_checked": 430
+  },
+  "validity_rule": {
+    "source": "phrt.geometry.raymap.validity",
+    "criteria": [
+      "inside the lensing-band mask",
+      "finite source radius, azimuth and coordinate time",
+      "horizon radius < source radius <= 50 M"
+    ],
+    "declared_before_inspection": true
+  }
+}

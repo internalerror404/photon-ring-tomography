@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+
+# External validation dependency: pinned by commit hash in
+# artifacts/provenance/kgeo_commit.txt and installed from source, never vendored.
+external/
+
+# Raw AART intermediates. Regenerable from scripts/build_raymaps.py; the
+# canonical records are the RayMap files in artifacts/raymaps/.
+artifacts/e3_pilot/aart_out/

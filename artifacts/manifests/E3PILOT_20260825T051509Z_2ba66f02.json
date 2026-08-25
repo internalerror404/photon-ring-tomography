@@ -1,0 +1,105 @@
+{
+  "run_id": "E3PILOT_20260825T051509Z_2ba66f02",
+  "experiment_id": "E3_PILOT",
+  "git_commit": "445246e18b887d2e2be5e5b074443d7dcb9f35ca",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "cross_check_seed": 20260825
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/e3_pilot/e3_validation.json",
+      "sha256": "fe22bb34bb0c4cf7ca2b6b1dcaf60a6c28beafe01e15facc0618102673ce7125"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/PILOT_FREEZE.json",
+      "sha256": "fd5a2da39ad1f06eacde0bbce3346749ac5fe697b1b34c2ae5b2c7320f6ae760"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3_raymap_convergence.parquet",
+      "sha256": "8942733cb92df4e66d6659c7fc04e6c4cd3510168a4b3309169473c994332247"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3_cross_tracer.parquet",
+      "sha256": "6bfb03883963c158c091cd23346cb45a19bad41bb95b2e7b2fbfab78588d2e9d"
+    }
+  ],
+  "gate_status": {
+    "G7_grid_convergence": {
+      "status": "PASS",
+      "measured": 0.012550651414009606,
+      "threshold": 0.02,
+      "note": "worst relative change between the core and fine profiles across band area, weighted area, retarded-window endpoints and mean redshift, over all three orders. Tolerance frozen at 2e-02 from pilot evidence: the pilot measures 1.255e-02, so the threshold leaves roughly a factor of 1.6 of headroom."
+    },
+    "G8_cross_tracer": {
+      "status": "PASS",
+      "measured": 1.0816528919993058e-12,
+      "threshold": 1e-09,
+      "note": "worst relative disagreement in equatorial source radius between AART and kgeo at commit dc347060c5fb, over 430 rays stratified by screen azimuth, source radius and delay quantile across all three orders. Tolerance frozen at 1e-09: the pilot measures 1.082e-12, leaving about three orders of magnitude of headroom, which tolerates elliptic-integral and LAPACK variation between builds while still catching a convention or implementation error."
+    },
+    "E3_pilot_no_convention_adjustment": {
+      "status": "PASS",
+      "measured": 1.0816528919993058e-12,
+      "threshold": 1e-09,
+      "note": "the two tracers were compared on raw screen coordinates with no sign flip, axis swap, angle offset or unit rescaling applied to either side. Agreement at this level is therefore evidence that the conventions already match, not that they were made to."
+    },
+    "E3_pilot_meets_registered_ray_count": {
+      "status": "PASS",
+      "measured": 4179,
+      "threshold": 1536,
+      "note": "valid rays per order at the core profile: {0: 15597, 1: 8531, 2: 4179}; registry requires 1536 per order"
+    }
+  },
+  "started_at": "2026-08-25T05:15:09+00:00",
+  "finished_at": "2026-08-25T05:15:11+00:00",
+  "peak_rss_mb": 629.23828125,
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.11.1",
+    "scikit-learn": "1.9.0",
+    "scikit-image": "0.26.0",
+    "pyyaml": "6.0.1",
+    "torch": "2.13.0",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 0.232133150100708,
+  "kgeo_commit": "dc347060c5fb24e2c360c8aaffbfe25482a83805",
+  "geometry": "a050_i050"
+}
