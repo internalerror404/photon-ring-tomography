@@ -1,9 +1,9 @@
 {
   "schema": "phrt-canonical-freeze/1",
-  "created_utc": "2026-08-25T15:41:52Z",
+  "created_utc": "2026-08-25T15:45:19Z",
   "campaign_tag": "paper-I-campaign-final",
   "campaign_commit": "03b0d1c9c63131aa553904df0c09849d641dee8f",
-  "campaign_commit_source": "git tag paper-I-campaign-final",
+  "campaign_commit_source": "pinned; cross-checked against local git tag paper-I-campaign-final",
   "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
   "measurement_convention": "pixel_integrated; whitened row sqrt(dOmega)/sigma_Omega * g^3 * B",
   "correcting_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",

@@ -29,6 +29,11 @@ from phrt.config import load_registry, sha256_file
 from phrt.io.dashboard import gate_counts
 
 TAG = "paper-I-campaign-final"
+# The commit the tag names, pinned literally. A fresh clone that does not
+# carry the tag must still reproduce this freeze, and the paper must keep
+# citing the commit that produced its numbers rather than whatever is
+# checked out. When the tag is present the two are cross-checked.
+CAMPAIGN_COMMIT = "03b0d1c9c63131aa553904df0c09849d641dee8f"
 
 # Directories whose contents are canonical evidence. Ray maps are hashed by the
 # E3C freeze already and are large, so they are referenced by that file rather
@@ -62,15 +67,13 @@ def superseded_paths() -> set[str]:
 def main() -> int:
     reg = load_registry()
     prov = provenance.collect()
-    # The campaign commit is the tag, not HEAD. Manuscript work lands after the
-    # campaign, and rebuilding the freeze from a later HEAD would silently
-    # restamp the paper as citing a commit that did not produce its numbers.
     r = subprocess.run(["git", "rev-list", "-n", "1", TAG], cwd=ROOT,
                        capture_output=True, text=True)
-    head = r.stdout.strip() if r.returncode == 0 and r.stdout.strip() else \
-        subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
-                       capture_output=True, text=True).stdout.strip()
     tag_resolved = r.returncode == 0 and bool(r.stdout.strip())
+    if tag_resolved and r.stdout.strip() != CAMPAIGN_COMMIT:
+        raise SystemExit(f"tag {TAG} points at {r.stdout.strip()}, but the "
+                         f"freeze pins {CAMPAIGN_COMMIT}")
+    head = CAMPAIGN_COMMIT
     sup = superseded_paths()
 
     files: list[Path] = []
@@ -107,8 +110,9 @@ def main() -> int:
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "campaign_tag": TAG,
         "campaign_commit": head,
-        "campaign_commit_source": ("git tag " + TAG) if tag_resolved
-                                  else "HEAD (tag not found)",
+        "campaign_commit_source": "pinned; " + ("cross-checked against local "
+                                  "git tag " + TAG if tag_resolved else
+                                  "tag not present in this clone"),
         "registry_sha256": reg.sha256,
         "measurement_convention": "pixel_integrated; whitened row "
                                   "sqrt(dOmega)/sigma_Omega * g^3 * B",

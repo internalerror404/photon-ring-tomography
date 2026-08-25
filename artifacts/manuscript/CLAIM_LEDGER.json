@@ -24,8 +24,8 @@
     "artifacts/tables/e3d_class_spectra.parquet",
     "artifacts/tables/e3d_operator_smoke.parquet"
   ],
-  "created_utc": "2026-08-25T15:41:53Z",
-  "git_commit": "03b0d1c9c63131aa553904df0c09849d641dee8f",
+  "created_utc": "2026-08-25T15:45:20Z",
+  "git_commit": "2310bac5db2713aadfacb0e262b9b424afd7e28b",
   "campaign_tag": "paper-I-campaign-final",
   "campaign_commit": "03b0d1c9c63131aa553904df0c09849d641dee8f",
   "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",

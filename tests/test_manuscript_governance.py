@@ -112,7 +112,15 @@ def test_readme_superseded_count_matches_the_record():
     assert int(m.group(1)) == n
 
 
-def test_freeze_pins_the_campaign_tag_not_head():
+def test_freeze_pins_the_campaign_commit_not_head():
+    """The paper must cite the commit that produced its numbers, not whatever
+    is checked out when the freeze is rebuilt."""
+    import subprocess
     fz = json.loads(CANON.read_text())
-    assert fz["campaign_commit_source"].startswith("git tag"), \
-        "the freeze fell back to HEAD; the campaign tag is missing"
+    assert fz["campaign_commit_source"].startswith("pinned")
+    # The pin must agree with the tag wherever the tag is present. A clone
+    # without the tag still gets the right commit, which is the point of pinning.
+    r = subprocess.run(["git", "rev-list", "-n", "1", fz["campaign_tag"]],
+                       cwd=ROOT, capture_output=True, text=True)
+    if r.returncode == 0 and r.stdout.strip():
+        assert r.stdout.strip() == fz["campaign_commit"]
