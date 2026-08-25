@@ -1,0 +1,556 @@
+{
+  "schema": "phrt-r0-reconstruction-freeze/1",
+  "experiment_id": "R0_CANARY_RECONSTRUCTION_PILOT",
+  "created_utc": "2026-08-25T20:28:00Z",
+  "provenance": {
+    "accepted_scientific_base": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+    "start_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
+    "branch": "research/paper1_r0_canary_reconstruction_v0",
+    "base_is_ancestor_of_start": true,
+    "start_commit_is_documentation_only_descendant": false,
+    "deviation_note": "The launch permits a descendant containing only approved documentation amendments. The start commit is not that: it carries the G10q measurement-model correction (d6869f8) and the accepted E3B/E3C work. Starting from the bare base is not possible under this launch's own frozen model -- at 0ef341d the forward coefficient is g^3 with a flat per-row sigma and no G10q gate exists, so the required whitened row sqrt(dOmega)/sigma_Omega * g^3 * B is absent and R0_G3 would stop immediately with QUADRATURE_NOISE_DEFECT.",
+    "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+    "git_dirty_at_registration": false
+  },
+  "environment": {
+    "packages": {
+      "numpy": "1.26.4",
+      "scipy": "1.11.4",
+      "pandas": "3.0.5",
+      "pyarrow": "25.0.1",
+      "h5py": "3.16.0",
+      "matplotlib": "3.8.4",
+      "scikit-learn": "ABSENT",
+      "scikit-image": "0.22.0",
+      "pyyaml": "6.0.3",
+      "torch": "ABSENT",
+      "aart": "2.1.10",
+      "imageio": "2.37.4"
+    },
+    "hardware": {
+      "platform": "Linux",
+      "platform_release": "6.18.44-fc-v21",
+      "architecture": "x86_64",
+      "memory_bytes": 16856150016,
+      "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+      "cpu_count": 4,
+      "mps_available": false
+    },
+    "python": "3.11.15",
+    "torch": {
+      "torch": "ABSENT"
+    },
+    "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+    "protocol_deviations": [
+      {
+        "id": "D1_platform",
+        "registered": "macos_native (execution_target in registry)",
+        "actual": "Linux x86_64",
+        "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+      },
+      {
+        "id": "D2_no_mps",
+        "registered": "optional Apple-Silicon MPS for compact neural models",
+        "actual": "no MPS device present",
+        "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+      }
+    ]
+  },
+  "scope": {
+    "authorized": [
+      "R0A_RECONSTRUCTION_CORRECTNESS_SMOKE",
+      "R0B_CANARY_RECONSTRUCTION_VALIDATION_PILOT"
+    ],
+    "not_authorized": [
+      "R1_MAIN",
+      "E3C",
+      "E3D",
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "VLBI",
+      "geometry_mismatch",
+      "order_leakage",
+      "ML"
+    ],
+    "restriction": "single canary geometry, single source class",
+    "forbidden_language": "no result may be described as geometry-wide or as arbitrary movie recovery"
+  },
+  "physical_model": {
+    "geometry": "a050_i050",
+    "spin": 0.5,
+    "inclination_deg": 50.0,
+    "orders": [
+      0,
+      1,
+      2
+    ],
+    "source_class": "C224",
+    "snr0_grid": [
+      1,
+      3,
+      10,
+      30,
+      100,
+      300,
+      1000,
+      3000,
+      10000,
+      30000,
+      100000,
+      1000000
+    ],
+    "operator_notation": {
+      "physical_operator": "mathcal A : mathcal X -> mathcal Y",
+      "restricted": "A_C = mathcal A Q_C",
+      "warning": "Q_C is applied exactly once; an estimator returning coefficients must not be synthesised twice"
+    },
+    "whitened_row": "sqrt(dOmega_p)/sigma_Omega * g_p^3 * B(r_p,phi_p,t_p)",
+    "noise": "one sigma_Omega for the whole pilot; no arm-specific scale",
+    "raymap_sha256": {
+      "a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+      "a050_i050_n1_core.h5": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+      "a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39"
+    },
+    "r_inner_M": 1.8660386527060988,
+    "r_outer_M": 49.98205255591607,
+    "delay_windows_M": {
+      "0": [
+        0.0003821855154910736,
+        57.80751574810631
+      ],
+      "1": [
+        46.31999187683857,
+        100.68969682830846
+      ],
+      "2": [
+        62.389356693789864,
+        119.82234649196255
+      ]
+    },
+    "solid_angle_by_order": {
+      "0": 2495.5200000000013,
+      "1": 54.59840000000003,
+      "2": 1.6716000000000006
+    },
+    "rays_per_order_after_common_count": {
+      "0": 1536,
+      "1": 1536,
+      "2": 1536
+    }
+  },
+  "observation": {
+    "rays_per_order": 1536,
+    "n_observer_times": 8,
+    "observer_span_M": 20.0,
+    "observer_times_M": [
+      0.0,
+      2.857142857142857,
+      5.714285714285714,
+      8.571428571428571,
+      11.428571428571429,
+      14.285714285714286,
+      17.142857142857142,
+      20.0
+    ],
+    "subsample_seed": 20260825,
+    "basis_t_min": -128.82234649196255,
+    "basis_t_max": 29.0,
+    "arms_primary": [
+      "DIRECT_PHYSICAL",
+      "RESOLVED_PHYSICAL",
+      "UNRESOLVED_IMAGE",
+      "TOTAL_FLUX"
+    ],
+    "arms_diagnostic": [
+      "DELAY_ONLY",
+      "EQUALIZED_ORDER_SENSITIVITY"
+    ],
+    "noise_construction": "one resolved Gaussian draw per (truth, SNR, draw index); the direct, unresolved and total-flux observations are the declared linear selections and readouts of that same draw, so arms are paired and covariance propagation is exact rather than resampled"
+  },
+  "smoke_profile": {
+    "profile": "R0_SMOKE",
+    "rays_per_order": 192,
+    "observer_times": 6,
+    "source_class": "C48",
+    "snr0": [
+      100,
+      1000000
+    ],
+    "movies_per_non_null_family": 4,
+    "null_pairs_per_delta": 4,
+    "noise_draws_per_movie": 2,
+    "isolation": "smoke tables are written under the r0_smoke_ prefix and are never merged with pilot or paper tables"
+  },
+  "gates": {
+    "R0_G1_dense_matrix_free_parity": 1e-10,
+    "R0_G2_physical_adjoint": 1e-08,
+    "R0_G3_G10q_quadrature_noise_invariance": 1e-10,
+    "R0_G4_mixing_covariance": 1e-10,
+    "R0_G5_basis_round_trip": 1e-10,
+    "R0_G6_age_probe_normalization": 1e-12,
+    "R0_G7_right_censoring": "structural",
+    "R0_G8_estimator_closed_form": 1e-09,
+    "R0_G9_noise_replay": "bitwise",
+    "R0_G10_null_pair_calibration": 0.02,
+    "R0_G11_split_hash_disjointness": "structural"
+  },
+  "source_families": {
+    "derivation": "ranges come from the declared physical support r in [1.866, 49.982] M and from the C224 resolution; no range was chosen from a reconstruction score",
+    "resolution_bounds": {
+      "finest_radial_feature_M": 2.3791207100279617,
+      "finest_temporal_feature_M": 19.72779331149532,
+      "highest_azimuthal_mode": 3,
+      "radial_log_span": 3.2878461756935122,
+      "temporal_span_M": 157.82234649196255
+    },
+    "positivity_construction": "every physical family is rendered as a strictly positive intensity: a positive baseline plus non-negative components. Signed near-null perturbations are added to that baseline and the admissible amplitude that keeps the rendered movie non-negative is recorded per pair",
+    "families": {
+      "single_orbiting_hotspot": {
+        "role": "prior_fit",
+        "r_centre_M": [
+          3.0,
+          29.989231533549642
+        ],
+        "sigma_r_M": [
+          2.3791207100279617,
+          12.495513138979017
+        ],
+        "sigma_phi_rad": [
+          0.5235987755982988,
+          1.5707963267948966
+        ],
+        "orbit": "Keplerian angular velocity at r_centre, Omega = r^{-3/2} in M units",
+        "amplitude": "unit peak over the positive baseline"
+      },
+      "two_independent_hotspots": {
+        "role": "prior_fit",
+        "same_ranges_as": "single_orbiting_hotspot",
+        "separation_rule": "independent radii and phases; amplitudes drawn independently"
+      },
+      "rotating_asymmetric_crescent": {
+        "role": "prior_fit",
+        "r_peak_M": [
+          3.0,
+          24.991026277958035
+        ],
+        "width_M": [
+          4.758241420055923,
+          14.994615766774821
+        ],
+        "asymmetry_modes": [
+          1,
+          3
+        ],
+        "pattern_speed": "rigid rotation at the Keplerian rate of r_peak"
+      },
+      "correlated_extended_field": {
+        "role": "prior_fit",
+        "radial_correlation_M": [
+          4.758241420055923,
+          24.991026277958035
+        ],
+        "azimuthal_modes": [
+          0,
+          3
+        ],
+        "temporal_spectrum": "power law in DCT index, exponent in [1, 3]",
+        "construction": "exponentiated Gaussian field, positive by construction"
+      },
+      "moving_flare_birth_decay": {
+        "role": "held_out_ood",
+        "why_ood": "birth and decay give a temporal profile that is compactly supported in time and not represented in the prior-fit families' stationary or smoothly-varying temporal structure",
+        "rise_M": [
+          9.86389665574766,
+          39.45558662299064
+        ],
+        "decay_M": [
+          19.72779331149532,
+          78.91117324598127
+        ],
+        "drift": "radial drift plus Keplerian azimuthal motion"
+      },
+      "near_null_combinations": {
+        "role": "control",
+        "construction": "pairs separated along directions chosen to realise a target whitened Mahalanobis distance under the declared arm"
+      }
+    },
+    "off_grid": {
+      "rule": "off-grid truths are rendered analytically and are NOT in the span of C224; they are evaluated directly at the ray coordinates",
+      "refinement_factor": 4,
+      "meaning": "feature scales a factor of 4 finer than the finest scale C224 can represent"
+    }
+  },
+  "split": {
+    "prior_fit_families": [
+      "single_orbiting_hotspot",
+      "two_independent_hotspots",
+      "rotating_asymmetric_crescent",
+      "correlated_extended_field"
+    ],
+    "held_out_ood_family": [
+      "moving_flare_birth_decay"
+    ],
+    "prior_free_estimators_evaluated_on": "every validation regime"
+  },
+  "pilot_counts": {
+    "prior_fit_train_per_family": 512,
+    "validation_in_class_per_prior_fit_family": 128,
+    "validation_off_grid_per_physical_family": 64,
+    "validation_ood_total": 256,
+    "null_pairs_per_target": 40,
+    "mahalanobis_targets": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "noise_draws_per_validation_truth_and_snr": 4,
+    "noiseless_control": 1,
+    "status": "PILOT_ONLY; these counts are not the main test campaign"
+  },
+  "estimators": {
+    "required": [
+      "TSVD",
+      "RIDGE_IDENTITY",
+      "TIKHONOV_TEMPORAL",
+      "WIENER_GAUSSIAN"
+    ],
+    "conditional": [
+      "LINEAR_STATE_SPACE"
+    ],
+    "conditional_on": "R0_G8_estimator_closed_form",
+    "not_authorized": [
+      "TOTAL_VARIATION",
+      "AUTOENCODER",
+      "NEURAL_FIELD",
+      "UNROLLED_NETWORK",
+      "DIFFUSION",
+      "ANY_TEST_TUNED_ESTIMATOR"
+    ]
+  },
+  "hyperparameter_grids": {
+    "frozen_before_first_validation_score": true,
+    "TSVD": {
+      "cut_on": "sigma_i / sigma_max",
+      "grid": [
+        1e-08,
+        3.162277660168379e-08,
+        1e-07,
+        3.162277660168379e-07,
+        1e-06,
+        3.162277660168379e-06,
+        9.999999999999999e-06,
+        3.1622776601683795e-05,
+        9.999999999999999e-05,
+        0.00031622776601683794,
+        0.001,
+        0.0031622776601683794,
+        0.01,
+        0.03162277660168379,
+        0.09999999999999999
+      ]
+    },
+    "RIDGE_IDENTITY": {
+      "cut_on": "lambda / lambda_max(G)",
+      "grid": [
+        9.999999999999999e-11,
+        3.162277660168379e-10,
+        9.999999999999999e-10,
+        3.162277660168379e-09,
+        1e-08,
+        3.162277660168379e-08,
+        1e-07,
+        3.162277660168379e-07,
+        1e-06,
+        3.162277660168379e-06,
+        9.999999999999999e-06,
+        3.1622776601683795e-05,
+        9.999999999999999e-05,
+        0.00031622776601683794,
+        0.001,
+        0.0031622776601683794,
+        0.01,
+        0.03162277660168379,
+        0.09999999999999999,
+        0.31622776601683794,
+        1.0
+      ]
+    },
+    "TIKHONOV_TEMPORAL": {
+      "cut_on": "lambda / lambda_max(A^T C^-1 A)",
+      "grid": [
+        9.999999999999999e-11,
+        3.162277660168379e-10,
+        9.999999999999999e-10,
+        3.162277660168379e-09,
+        1e-08,
+        3.162277660168379e-08,
+        1e-07,
+        3.162277660168379e-07,
+        1e-06,
+        3.162277660168379e-06,
+        9.999999999999999e-06,
+        3.1622776601683795e-05,
+        9.999999999999999e-05,
+        0.00031622776601683794,
+        0.001,
+        0.0031622776601683794,
+        0.01,
+        0.03162277660168379,
+        0.09999999999999999,
+        0.31622776601683794,
+        1.0
+      ]
+    },
+    "WIENER_GAUSSIAN": {
+      "cut_on": "covariance shrinkage",
+      "grid": [
+        1e-06,
+        3.162277660168379e-06,
+        9.999999999999999e-06,
+        3.1622776601683795e-05,
+        9.999999999999999e-05,
+        0.00031622776601683794,
+        0.001,
+        0.0031622776601683794,
+        0.01,
+        0.03162277660168379,
+        0.09999999999999999,
+        0.31622776601683794,
+        1.0
+      ]
+    },
+    "LINEAR_STATE_SPACE": {
+      "process_noise": [
+        1e-06,
+        9.999999999999999e-06,
+        9.999999999999999e-05,
+        0.001,
+        0.01,
+        0.09999999999999999,
+        1.0
+      ],
+      "observation_noise": [
+        1.0
+      ],
+      "note": "observation noise is fixed at the declared whitened scale; the arm may not choose its own sigma"
+    },
+    "selection": {
+      "data": "validation only, separately per arm, estimator and SNR",
+      "objective_lexicographic": [
+        "maximize T_stable(epsilon=0.50, q=0.90)",
+        "minimize old-band normalized error",
+        "minimize old-band absolute error",
+        "prefer the stronger regularizer or simpler model on an exact tie"
+      ],
+      "oracle": "truth-selected tuning is emitted only as ORACLE_UPPER_BOUND and never as a method result"
+    }
+  },
+  "metrics": {
+    "age_window": "compact window W_a on the common age grid, half width 3.0 M, step 4.0 M",
+    "E_of_a": "||W_a(xhat - x)||_2 / max(||W_a x||_2, eta)",
+    "E_abs_of_a": "||W_a(xhat - x)||_2",
+    "eta_rule": "0.05 * median over prior-fit truths and ages with ||W_a x|| > 0 of ||W_a x||_2, frozen before scoring",
+    "eta_value": null,
+    "stable_depth_surface": {
+      "epsilon": [
+        0.25,
+        0.35,
+        0.5
+      ],
+      "q": [
+        0.8,
+        0.9,
+        0.95
+      ]
+    },
+    "primary_point": "T_stable(epsilon=0.50, q=0.90)",
+    "also_reported": [
+      "T_reach",
+      "T_contig",
+      "D_hist(T)",
+      "d_eff(T)",
+      "recent/middle/old band errors",
+      "data-supported and weak-subspace errors",
+      "calibration and coverage",
+      "runtime",
+      "iterations",
+      "peak memory"
+    ],
+    "old_band_boundary_M": 57.666382656487954,
+    "old_band_rule": "the frozen direct-order 99.9% throughput-weighted age boundary; never selected from reconstruction curves",
+    "age_bands": {
+      "recent": [
+        0.0,
+        19.22212755216265
+      ],
+      "middle": [
+        19.22212755216265,
+        57.666382656487954
+      ],
+      "old": [
+        57.666382656487954,
+        null
+      ]
+    }
+  },
+  "subspaces": {
+    "P_data": "sum over i with SNR_0 * sigma_i >= rho of v_i v_i^T",
+    "P_weak": "I - P_data",
+    "rho": 1.0,
+    "reporting_rule": "errors reported separately; a weak-subspace improvement is never described as measured recovery"
+  },
+  "paired_comparison": {
+    "rule": "same truth and the same coupled resolved noise draw across arms",
+    "primary": "RESOLVED_PHYSICAL - DIRECT_PHYSICAL",
+    "secondary": [
+      "UNRESOLVED_IMAGE - DIRECT_PHYSICAL",
+      "TOTAL_FLUX - DIRECT_PHYSICAL"
+    ],
+    "bootstrap": {
+      "n_resamples": 2000,
+      "unit": "truth",
+      "preserves": "all noise draws belonging to a truth",
+      "seed_stream": "bootstrap"
+    }
+  },
+  "null_pairs": {
+    "targets": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "bayes_bound": "P_Bayes = Phi(delta/2) at equal priors",
+    "defect_rule": "a method exceeding the equal-prior data-only Bayes bound by more than Monte Carlo tolerance is an instrumentation or leakage defect, not a success",
+    "incremental_history_pairs": "pairs constructed weak under DIRECT_PHYSICAL and stronger under RESOLVED_PHYSICAL, to test whether higher orders create usable discriminability"
+  },
+  "seeds": {
+    "master": 20260901,
+    "streams": {
+      "prior_fit_train": 1000,
+      "validation_in_class": 2000,
+      "validation_off_grid": 3000,
+      "validation_ood": 4000,
+      "null_pairs": 5000,
+      "noise_draws": 6000,
+      "bootstrap": 7000,
+      "future_main_test": 9000
+    },
+    "derivation": "numpy SeedSequence(MASTER_SEED).spawn keyed by the stream offset; every truth also carries a content hash",
+    "content_hash_method": "sha256 over the canonical JSON of the family name and the rounded parameter dict, so two truths with identical physical parameters hash identically regardless of which split drew them"
+  },
+  "stop_conditions": [
+    "IMPLEMENTATION_DEFECT",
+    "QUADRATURE_NOISE_DEFECT",
+    "CROSS_GEOMETRY_SCHEMA_DEFECT",
+    "DATA_SPLIT_LEAKAGE",
+    "UNCALIBRATED_UNCERTAINTY",
+    "NULL_PAIR_CALIBRATION_DEFECT"
+  ],
+  "note_on_weak_result": "a weak or absent validation gain is a scientific pilot result, not an implementation defect"
+}
