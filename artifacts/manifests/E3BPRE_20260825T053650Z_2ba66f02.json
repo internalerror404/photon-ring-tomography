@@ -1,0 +1,105 @@
+{
+  "run_id": "E3BPRE_20260825T053650Z_2ba66f02",
+  "experiment_id": "E3B_PREREQ",
+  "git_commit": "f1e0cf327eef309e69f08ac317aafdad24066092",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "seed": 20260825
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/e3_pilot/g8t_retarded_time.json",
+      "sha256": "0a969b2c6482594dd034791d245f639d25affcb32a703f0dadf797f1eb7114c0"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3b_per_order_ray_count.parquet",
+      "sha256": "6291b81b572b4a47a83b3c77d28a084a3b490ec612670f8b0cae0e4610a3b28e"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/E3B_FREEZE.json",
+      "sha256": "de48377a2f507fca374a3178cfaf16c2818e77cce585bade5edc83107512f1d3"
+    }
+  ],
+  "gate_status": {
+    "G8t_retarded_time_validation": {
+      "status": "PASS",
+      "measured": 2.763106976999552e-06,
+      "threshold": 0.001,
+      "note": "largest disagreement in a PAIRWISE emission-time difference between AART and kgeo's independent analytic solution, over 25200 pairs from 225 stratified rays, 16875 of them spanning different orders. Differences are compared so that a common time origin cancels; here the measured common offset is -2.274e-13, i.e. the two codes already share an origin. Tolerance frozen at 1e-03 M, far below any temporal structure the source model resolves."
+    },
+    "G8t_azimuth_after_rigid_offset": {
+      "status": "PASS",
+      "measured": 6.328715329573242e-12,
+      "threshold": 1e-08,
+      "note": "AART and kgeo place phi = 0 on different axes. The offset is 1.570796326795 rad, exactly +1 quarter turns to 1.377e-14. A rigid rotation is a convention, as a common time origin is; what is gated is the residual once one global constant is removed."
+    },
+    "G8t_azimuth_offset_is_order_independent": {
+      "status": "PASS",
+      "measured": 1.3034018309099338e-13,
+      "threshold": 1e-09,
+      "note": "spread of the fitted azimuth offset across orders: {'0': 1.5707963267948932, '1': 1.570796326794984, '2': 1.5707963267948537}. This is the gate that matters. A single global rotation only relabels the azimuth axis; an order-dependent or screen-dependent one would corrupt every non-axisymmetric source model, and would not be a convention."
+    },
+    "G8t_radius_control": {
+      "status": "PASS",
+      "measured": 8.962695637776152e-13,
+      "threshold": 1e-09,
+      "note": "source radius on the same stratified sample, confirming the coordinate identification used to extract t and phi is correct"
+    },
+    "G9c_per_order_ray_count": {
+      "status": "PASS",
+      "measured": 4179,
+      "threshold": 1536,
+      "note": "n0_valid=15597, n1_valid=8531, n2_valid=4179, minimum_per_order=4179, total_valid=28307. The reported 4179 was the per-order minimum (n=2), not the combined total; every order independently exceeds 1536."
+    }
+  },
+  "started_at": "2026-08-25T05:36:50+00:00",
+  "finished_at": "2026-08-25T05:36:56+00:00",
+  "peak_rss_mb": 584.01953125,
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.11.1",
+    "scikit-learn": "1.9.0",
+    "scikit-image": "0.26.0",
+    "pyyaml": "6.0.1",
+    "torch": "2.13.0",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 0.36889195442199707
+}

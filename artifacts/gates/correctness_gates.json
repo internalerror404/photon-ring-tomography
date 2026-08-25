@@ -708,11 +708,51 @@
       "note": "valid rays per order at the core profile: {0: 15597, 1: 8531, 2: 4179}; registry requires 1536 per order",
       "run_id": "E3PILOT_20260825T051509Z_2ba66f02",
       "recorded_at": "2026-08-25T05:15:11+00:00"
+    },
+    "G8t_retarded_time_validation": {
+      "status": "PASS",
+      "measured": 2.763106976999552e-06,
+      "threshold": 0.001,
+      "note": "largest disagreement in a PAIRWISE emission-time difference between AART and kgeo's independent analytic solution, over 25200 pairs from 225 stratified rays, 16875 of them spanning different orders. Differences are compared so that a common time origin cancels; here the measured common offset is -2.274e-13, i.e. the two codes already share an origin. Tolerance frozen at 1e-03 M, far below any temporal structure the source model resolves.",
+      "run_id": "E3BPRE_20260825T053650Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:36:56+00:00"
+    },
+    "G8t_azimuth_after_rigid_offset": {
+      "status": "PASS",
+      "measured": 6.328715329573242e-12,
+      "threshold": 1e-08,
+      "note": "AART and kgeo place phi = 0 on different axes. The offset is 1.570796326795 rad, exactly +1 quarter turns to 1.377e-14. A rigid rotation is a convention, as a common time origin is; what is gated is the residual once one global constant is removed.",
+      "run_id": "E3BPRE_20260825T053650Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:36:56+00:00"
+    },
+    "G8t_azimuth_offset_is_order_independent": {
+      "status": "PASS",
+      "measured": 1.3034018309099338e-13,
+      "threshold": 1e-09,
+      "note": "spread of the fitted azimuth offset across orders: {'0': 1.5707963267948932, '1': 1.570796326794984, '2': 1.5707963267948537}. This is the gate that matters. A single global rotation only relabels the azimuth axis; an order-dependent or screen-dependent one would corrupt every non-axisymmetric source model, and would not be a convention.",
+      "run_id": "E3BPRE_20260825T053650Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:36:56+00:00"
+    },
+    "G8t_radius_control": {
+      "status": "PASS",
+      "measured": 8.962695637776152e-13,
+      "threshold": 1e-09,
+      "note": "source radius on the same stratified sample, confirming the coordinate identification used to extract t and phi is correct",
+      "run_id": "E3BPRE_20260825T053650Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:36:56+00:00"
+    },
+    "G9c_per_order_ray_count": {
+      "status": "PASS",
+      "measured": 4179,
+      "threshold": 1536,
+      "note": "n0_valid=15597, n1_valid=8531, n2_valid=4179, minimum_per_order=4179, total_valid=28307. The reported 4179 was the per-order minimum (n=2), not the combined total; every order independently exceeds 1536.",
+      "run_id": "E3BPRE_20260825T053650Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:36:56+00:00"
     }
   },
-  "updated_at": "2026-08-25T05:15:11+00:00",
+  "updated_at": "2026-08-25T05:36:56+00:00",
   "summary": {
-    "PASS": 48,
+    "PASS": 53,
     "FAIL": 1,
     "NOT_RUN": 7
   }

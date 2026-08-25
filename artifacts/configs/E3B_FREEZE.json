@@ -1,0 +1,22 @@
+{
+  "frozen_at": "2026-08-25T05:36:51Z",
+  "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "G8t_time_tolerance_M": 0.001,
+  "G8t_time_measured_M": 2.763106976999552e-06,
+  "G8t_azimuth_tolerance_rad": 1e-08,
+  "G8t_azimuth_measured_rad": 6.328715329573242e-12,
+  "G8t_offset_spread_tolerance_rad": 1e-09,
+  "G8t_offset_spread_measured_rad": 1.3034018309099338e-13,
+  "azimuth_convention": {
+    "repository_convention": "AART",
+    "kgeo_minus_aart_radians": 1.5707963267949103,
+    "exact_value": "+pi/2",
+    "note": "A rigid rotation of the equatorial azimuth origin. It relabels the azimuth axis and does not affect rank, conditioning or the delay structure, but any statement locating a source feature at a particular azimuth is only meaningful relative to the declared origin."
+  },
+  "G9c_required_per_order": 1536,
+  "G9c_measured": {
+    "n0": 15597,
+    "n1": 8531,
+    "n2": 4179
+  }
+}
