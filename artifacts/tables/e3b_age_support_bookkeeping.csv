@@ -1,0 +1,5 @@
+observer_time_min,observer_time_max,observer_time_span,n_observer_times,localized_probe_width_M,localized_probe_support_pm3sigma_M,age_grid_min,age_grid_max,age_grid_step,n_ages,global_class_t_min,global_class_t_max,order,delay_window_min_M,delay_window_max_M,delay_window_span_M,reachable_source_time_min,reachable_source_time_max
+0.0,20.0,20.0,8.0,3.0,9.0,0.0003821855154910736,120.00038218551549,4.0,31.0,-128.82234649196255,29.0,,,,,,
+,,,,,,,,,,,,0.0,0.0003821855154910736,57.80751574810631,57.80713356259082,-57.80751574810631,19.99961781448451
+,,,,,,,,,,,,1.0,46.31999187683857,100.68969682830846,54.369704951469885,-100.68969682830846,-26.31999187683857
+,,,,,,,,,,,,2.0,62.389356693789864,119.82234649196255,57.432989798172684,-119.82234649196255,-42.389356693789864

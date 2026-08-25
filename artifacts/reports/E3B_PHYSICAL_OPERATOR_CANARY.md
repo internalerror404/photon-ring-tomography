@@ -1,7 +1,7 @@
 # E3B — PHYSICAL HISTORICAL-OPERATOR CANARY
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `29d147b5cbb0b8cc1cc7a299e91c35ce65d9bdaa`
+- branch `claude/experiment-review-mac-rthiz1`, commit `92d183aa9ab46f9f73097deba9e6ce66a4e0ea69`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - geometry a* = 0.5, i = 50 deg, orders n = 0, 1, 2 (the single authorized pilot geometry)
 - kgeo commit `dc347060c5fb24e2c360c8aaffbfe25482a83805`
@@ -65,7 +65,10 @@ content is refuted by that row.
 ## Temporal depth
 
 Deepest retarded age (M) whose unit-norm localized mode is detectable, against
-the frozen SNR sweep. Dash means no epoch is detectable.
+the frozen SNR sweep. A dash means no epoch is detectable. A **≥** marks a
+right-censored entry: the arm reached the deepest age the grid contains, so the
+value is a lower bound and the sweep ran out of grid before the arm ran out of
+reach.
 
 | SNR_0 | DIRECT | RESOLVED | RESOLVED_EQUALIZED | DELAY_ONLY | SPATIAL_ONLY | UNRESOLVED | TOTAL_FLUX | PAIRING_DESTROYED |
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|
@@ -73,14 +76,14 @@ the frozen SNR sweep. Dash means no epoch is detectable.
 | 3 | – | – | – | – | – | – | – | – |
 | 10 | 48 | 84 | 96 | 84 | 52 | 64 | 40 | 72 |
 | 30 | 56 | 104 | 112 | 104 | 56 | 96 | 52 | 96 |
-| 100 | 60 | 116 | 120 | 116 | 60 | 112 | 56 | 112 |
-| 300 | 60 | 120 | 120 | 120 | 60 | 120 | 60 | 120 |
-| 1000 | 64 | 120 | 120 | 120 | 64 | 120 | 68 | 120 |
-| 3000 | 64 | 120 | 120 | 120 | 64 | 120 | 88 | 120 |
-| 10000 | 64 | 120 | 120 | 120 | 64 | 120 | 96 | 120 |
-| 30000 | 68 | 120 | 120 | 120 | 68 | 120 | 96 | 120 |
-| 100000 | 68 | 120 | 120 | 120 | 68 | 120 | 100 | 120 |
-| 1e+06 | 68 | 120 | 120 | 120 | 68 | 120 | 112 | 120 |
+| 100 | 60 | 116 | ≥120 | 116 | 60 | 112 | 56 | 112 |
+| 300 | 60 | ≥120 | ≥120 | ≥120 | 60 | ≥120 | 60 | ≥120 |
+| 1000 | 64 | ≥120 | ≥120 | ≥120 | 64 | ≥120 | 68 | ≥120 |
+| 3000 | 64 | ≥120 | ≥120 | ≥120 | 64 | ≥120 | 88 | ≥120 |
+| 10000 | 64 | ≥120 | ≥120 | ≥120 | 64 | ≥120 | 96 | ≥120 |
+| 30000 | 68 | ≥120 | ≥120 | ≥120 | 68 | ≥120 | 96 | ≥120 |
+| 100000 | 68 | ≥120 | ≥120 | ≥120 | 68 | ≥120 | 100 | ≥120 |
+| 1e+06 | 68 | ≥120 | ≥120 | ≥120 | 68 | ≥120 | 112 | ≥120 |
 
 Three readings, and the middle one is the paper's result.
 
@@ -117,29 +120,48 @@ Gamma_amp is 4.27 from order 0 to 1 and 4.03 pooled across 0 to 2. This is the
 prescription. It is not the geometric Kerr critical exponent and is not
 identified with it anywhere in this repository.
 
-## The two exponents are not the same number
+## Order dominance at fixed age
 
-| retarded age (M) | I(order 0) | I(order 1) | I(order 2) | Gamma_info 0→1 | Gamma_info 1→2 |
+| retarded age (M) | I(order 0) | I(order 1) | I(order 2) | dominance 0→1 | dominance 1→2 |
 |---:|---:|---:|---:|---:|---:|
 | 0 | 232 | 5.01e-35 | 1.03e-88 | – | – |
-| 20 | 272 | 0.0158 | 8.69e-26 | 4.88 | – |
-| 40 | 245 | 151 | 1.79 | 0.242 | 2.22 |
-| 60 | 4.3 | 152 | 148 | -1.78 | 0.0146 |
-| 80 | 1.95e-24 | 64 | 71.9 | – | -0.0583 |
-| 100 | 1.13e-86 | 1.05 | 24.6 | – | -1.58 |
+| 20 | 272 | 0.0158 | 8.69e-26 | 5.8e-05x | – |
+| 40 | 245 | 151 | 1.79 | 0.617x | 0.0118x |
+| 60 | 4.3 | 152 | 148 | 35.4x | 0.971x |
+| 80 | 1.95e-24 | 64 | 71.9 | – | 1.12x |
+| 100 | 1.13e-86 | 1.05 | 24.6 | – | 23.4x |
 | 116 | 3.19e-164 | 1.36e-12 | 1.03 | – | – |
 
-Gamma_amp is 4.0 at every age. Gamma_info is not: it is strongly age-dependent
-and **negative wherever the deep orders matter**. At age 60 M order 1 carries
-about 35x more information about the localized mode than order 0 does; at age
-100 M order 2 carries about 23x more than order 1. Entries are reported only
-where both orders carry information above a floor — a ratio of two vanishing
-informations is not an exponent.
+This is the **age_specific_order_dominance_ratio**: a pointwise comparison at a
+fixed absolute age between orders whose temporal supports barely overlap. It is
+deliberately *not* called Gamma_info, because it does not measure a decay along
+matched support. At age 60 M order 1 carries about 35x more information about
+the localized mode than order 0; at 100 M order 2 carries about 23x more than
+order 1. Entries appear only where both orders clear an information floor — a
+ratio of two vanishing informations is neither a ratio nor an exponent.
 
-So a single scalar attenuation exponent cannot describe the information
-structure. The suppression is in amplitude; the information is *complementary*
-in age. Higher orders are three thousand times fainter and are still the sole
-carriers of everything older than about 60 M.
+## Information attenuation on matched support
+
+Each order is sampled at the same fractional position within its **own** retarded
+window, so the orders are compared on matched temporal support and the resulting
+exponent is a genuine Gamma_info.
+
+| window fraction | age n=0 | age n=1 | age n=2 | Gamma_info 0→1 | Gamma_info 1→2 |
+|---:|---:|---:|---:|---:|---:|
+| 0.05 | 2.9 | 49.0 | 65.3 | 0.079 | 0.138 |
+| 0.25 | 14.5 | 59.9 | 76.7 | 0.253 | 0.296 |
+| 0.45 | 26.0 | 70.8 | 88.2 | 0.513 | 0.374 |
+| 0.65 | 37.6 | 81.7 | 99.7 | 0.794 | 0.404 |
+| 0.85 | 49.1 | 92.5 | 111.2 | 0.991 | 0.572 |
+
+Median Gamma_info is **0.576** from order 0 to 1 and **0.387** from 1 to 2,
+defined at all 19 window fractions. Against Gamma_amp of 4.27 and 4.03,
+**information decays roughly seven to ten times more slowly than amplitude**.
+
+That is the paper's sharpest quantitative statement, and it needed matched
+support to state: a single scalar attenuation exponent describes the throughput
+and badly misdescribes the information. Higher orders are three thousand times
+fainter and remain the sole carriers of everything older than about 60 M.
 
 ## Claim effect
 Permits, for this one geometry: reporting that the physical historical channel

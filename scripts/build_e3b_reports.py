@@ -80,11 +80,17 @@ def main() -> int:
 
     piv = depth.pivot_table(index="snr0", columns="arm", values="deepest_detectable_age")
     cols = [c for c in ARM_ORDER if c in piv.columns]
+    cens = depth.pivot_table(index="snr0", columns="arm", values="right_censored")
     dep_md = ["| SNR_0 | " + " | ".join(c.replace("_PHYSICAL", "") for c in cols) + " |",
               "|---:|" + "---:|" * len(cols)]
     for snr, r in piv.iterrows():
-        dep_md.append(f"| {snr:g} | " + " | ".join(
-            ("–" if r[c] < 0 else f"{r[c]:.0f}") for c in cols) + " |")
+        cells = []
+        for c in cols:
+            if r[c] < 0:
+                cells.append("–")
+            else:
+                cells.append(f"≥{r[c]:.0f}" if bool(cens.loc[snr, c]) else f"{r[c]:.0f}")
+        dep_md.append(f"| {snr:g} | " + " | ".join(cells) + " |")
 
     sp = spec.set_index("arm").reindex(cols)
     sp_md = ["| arm | rows | rank /224 | operational rank | kappa+ |",
@@ -102,13 +108,24 @@ def main() -> int:
 
     want = [0, 20, 40, 60, 80, 100, 116]
     sel = gi.iloc[[int(np.argmin(np.abs(gi.retarded_age.to_numpy() - x))) for x in want]]
-    gi_md = ["| retarded age (M) | I(order 0) | I(order 1) | I(order 2) | Gamma_info 0→1 | Gamma_info 1→2 |",
+    gi_md = ["| retarded age (M) | I(order 0) | I(order 1) | I(order 2) | dominance 0→1 | dominance 1→2 |",
              "|---:|---:|---:|---:|---:|---:|"]
     for _, r in sel.iterrows():
         def f(v):
-            return "–" if (isinstance(v, float) and not np.isfinite(v)) else f"{v:.3g}"
+            return "–" if (isinstance(v, float) and not np.isfinite(v)) else f"{v:.3g}x"
         gi_md.append(f"| {r.retarded_age:.0f} | {r.I_order0:.3g} | {r.I_order1:.3g} | "
-                     f"{r.I_order2:.3g} | {f(r.Gamma_info_0_to_1)} | {f(r.Gamma_info_1_to_2)} |")
+                     f"{r.I_order2:.3g} | {f(r.age_specific_order_dominance_ratio_0_to_1)} | "
+                     f"{f(r.age_specific_order_dominance_ratio_1_to_2)} |")
+
+    ms = pd.read_parquet(T / "e3b_matched_support_attenuation.parquet")
+    ms_md = ["| window fraction | age n=0 | age n=1 | age n=2 | Gamma_info 0→1 | Gamma_info 1→2 |",
+             "|---:|---:|---:|---:|---:|---:|"]
+    for _, r in ms.iloc[::4].iterrows():
+        ms_md.append(f"| {r.window_fraction:.2f} | {r.age_order0:.1f} | {r.age_order1:.1f} | "
+                     f"{r.age_order2:.1f} | {r.Gamma_info_matched_0_to_1:.3f} | "
+                     f"{r.Gamma_info_matched_1_to_2:.3f} |")
+    med01 = float(ms.Gamma_info_matched_0_to_1.median())
+    med12 = float(ms.Gamma_info_matched_1_to_2.median())
 
     d = "\n"
     # ---------------- canary report ---------------------------------------
@@ -152,7 +169,10 @@ content is refuted by that row.
 ## Temporal depth
 
 Deepest retarded age (M) whose unit-norm localized mode is detectable, against
-the frozen SNR sweep. Dash means no epoch is detectable.
+the frozen SNR sweep. A dash means no epoch is detectable. A **≥** marks a
+right-censored entry: the arm reached the deepest age the grid contains, so the
+value is a lower bound and the sweep ran out of grid before the arm ran out of
+reach.
 
 {d.join(dep_md)}
 
@@ -187,21 +207,34 @@ Gamma_amp is 4.27 from order 0 to 1 and 4.03 pooled across 0 to 2. This is the
 prescription. It is not the geometric Kerr critical exponent and is not
 identified with it anywhere in this repository.
 
-## The two exponents are not the same number
+## Order dominance at fixed age
 
 {d.join(gi_md)}
 
-Gamma_amp is 4.0 at every age. Gamma_info is not: it is strongly age-dependent
-and **negative wherever the deep orders matter**. At age 60 M order 1 carries
-about 35x more information about the localized mode than order 0 does; at age
-100 M order 2 carries about 23x more than order 1. Entries are reported only
-where both orders carry information above a floor — a ratio of two vanishing
-informations is not an exponent.
+This is the **age_specific_order_dominance_ratio**: a pointwise comparison at a
+fixed absolute age between orders whose temporal supports barely overlap. It is
+deliberately *not* called Gamma_info, because it does not measure a decay along
+matched support. At age 60 M order 1 carries about 35x more information about
+the localized mode than order 0; at 100 M order 2 carries about 23x more than
+order 1. Entries appear only where both orders clear an information floor — a
+ratio of two vanishing informations is neither a ratio nor an exponent.
 
-So a single scalar attenuation exponent cannot describe the information
-structure. The suppression is in amplitude; the information is *complementary*
-in age. Higher orders are three thousand times fainter and are still the sole
-carriers of everything older than about 60 M.
+## Information attenuation on matched support
+
+Each order is sampled at the same fractional position within its **own** retarded
+window, so the orders are compared on matched temporal support and the resulting
+exponent is a genuine Gamma_info.
+
+{d.join(ms_md)}
+
+Median Gamma_info is **{med01:.3f}** from order 0 to 1 and **{med12:.3f}** from 1 to 2,
+defined at all 19 window fractions. Against Gamma_amp of 4.27 and 4.03,
+**information decays roughly seven to ten times more slowly than amplitude**.
+
+That is the paper's sharpest quantitative statement, and it needed matched
+support to state: a single scalar attenuation exponent describes the throughput
+and badly misdescribes the information. Higher orders are three thousand times
+fainter and remain the sole carriers of everything older than about 60 M.
 
 ## Claim effect
 Permits, for this one geometry: reporting that the physical historical channel

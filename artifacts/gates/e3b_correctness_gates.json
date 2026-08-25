@@ -5,68 +5,68 @@
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "E3B_20260825T054957Z_2ba66f02",
-      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "run_id": "E3B_20260825T063023Z_2ba66f02",
+      "recorded_at": "2026-08-25T06:33:17+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
-        "run_id": "E3B_20260825T054600Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:48:37+00:00"
+        "run_id": "E3B_20260825T054957Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:52:34+00:00"
       }
     },
     "G3_physical_adjoint": {
       "status": "PASS",
       "measured": 5.2573729688035534e-14,
       "threshold": 1e-08,
-      "run_id": "E3B_20260825T054957Z_2ba66f02",
-      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "run_id": "E3B_20260825T063023Z_2ba66f02",
+      "recorded_at": "2026-08-25T06:33:17+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 5.2573729688035534e-14,
         "threshold": 1e-08,
-        "run_id": "E3B_20260825T054600Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:48:37+00:00"
+        "run_id": "E3B_20260825T054957Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:52:34+00:00"
       }
     },
     "G4_physical_resolved_unresolved_mixing": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "E3B_20260825T054957Z_2ba66f02",
-      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "run_id": "E3B_20260825T063023Z_2ba66f02",
+      "recorded_at": "2026-08-25T06:33:17+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
-        "run_id": "E3B_20260825T054600Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:48:37+00:00"
+        "run_id": "E3B_20260825T054957Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:52:34+00:00"
       }
     },
     "G5_physical_injected_null": {
       "status": "NOT_RUN",
       "note": "the registered global class has trivial numerical null space under this arm",
-      "run_id": "E3B_20260825T054957Z_2ba66f02",
-      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "run_id": "E3B_20260825T063023Z_2ba66f02",
+      "recorded_at": "2026-08-25T06:33:17+00:00",
       "superseded": {
         "status": "NOT_RUN",
         "note": "the registered global class has trivial numerical null space under this arm",
-        "run_id": "E3B_20260825T054600Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:48:37+00:00"
+        "run_id": "E3B_20260825T054957Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:52:34+00:00"
       }
     },
     "G6_physical_Gram_monotonicity": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "E3B_20260825T054957Z_2ba66f02",
-      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "run_id": "E3B_20260825T063023Z_2ba66f02",
+      "recorded_at": "2026-08-25T06:33:17+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
-        "run_id": "E3B_20260825T054600Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:48:37+00:00"
+        "run_id": "E3B_20260825T054957Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:52:34+00:00"
       }
     },
     "G6b_resolved_dominates_direct": {
@@ -74,15 +74,15 @@
       "measured": 0.0,
       "threshold": 1e-10,
       "note": "G_resolved - G_direct must be positive semidefinite",
-      "run_id": "E3B_20260825T054957Z_2ba66f02",
-      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "run_id": "E3B_20260825T063023Z_2ba66f02",
+      "recorded_at": "2026-08-25T06:33:17+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
         "note": "G_resolved - G_direct must be positive semidefinite",
-        "run_id": "E3B_20260825T054600Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:48:37+00:00"
+        "run_id": "E3B_20260825T054957Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:52:34+00:00"
       }
     },
     "G7b_transfer_field_convergence": {
@@ -154,15 +154,15 @@
       "measured": 0.0,
       "threshold": 1e-10,
       "note": "operator output for a unit source j=1, against sum(dOmega * g^3) computed outside the operator, per order",
-      "run_id": "E3B_20260825T054957Z_2ba66f02",
-      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "run_id": "E3B_20260825T063023Z_2ba66f02",
+      "recorded_at": "2026-08-25T06:33:17+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
         "note": "operator output for a unit source j=1, against sum(dOmega * g^3) computed outside the operator, per order",
-        "run_id": "E3B_20260825T054600Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:48:37+00:00"
+        "run_id": "E3B_20260825T054957Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:52:34+00:00"
       }
     },
     "G9c_per_order_ray_count": {

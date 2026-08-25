@@ -1,7 +1,7 @@
 # E3B — RETARDED-TIME AND AZIMUTH VALIDATION (G8t, G7b)
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `29d147b5cbb0b8cc1cc7a299e91c35ce65d9bdaa`
+- branch `claude/experiment-review-mac-rthiz1`, commit `92d183aa9ab46f9f73097deba9e6ce66a4e0ea69`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - geometry a* = 0.5, i = 50 deg, orders n = 0, 1, 2 (the single authorized pilot geometry)
 - kgeo commit `dc347060c5fb24e2c360c8aaffbfe25482a83805`
@@ -28,19 +28,19 @@ spanning different orders, so a common origin cancels.
 
 | quantity | value |
 |---|---:|
-| worst pairwise difference | 2.763e-06 M |
+| worst pairwise difference | 4.781e-06 M |
 | fitted common offset | -2.274e-13 |
-| radius control, max relative | 8.963e-13 |
+| radius control, max relative | 6.521e-13 |
 
 The fitted offset is zero: the two codes already share a time origin.
 
 ## Azimuth — a real convention difference
 
 `phi_kgeo = phi_aart + pi/2`, exactly, to
-1.377e-14. Residual after
+4.419e-14. Residual after
 removing one global constant:
-6.329e-12 rad. Spread of that constant
-across orders: 1.303e-13 rad.
+2.971e-11 rad. Spread of that constant
+across orders: 1.315e-13 rad.
 
 A reflection was tested and rejected (residual 3.14). This is a rigid rotation
 of the equatorial azimuth origin, a convention in the same sense a common time

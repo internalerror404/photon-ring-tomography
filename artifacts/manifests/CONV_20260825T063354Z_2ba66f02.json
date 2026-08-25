@@ -1,0 +1,90 @@
+{
+  "run_id": "CONV_20260825T063354Z_2ba66f02",
+  "experiment_id": "CONVENTION_GATES",
+  "git_commit": "92d183aa9ab46f9f73097deba9e6ce66a4e0ea69",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {},
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    }
+  ],
+  "outputs": [],
+  "gate_status": {
+    "G8r_source_radius_no_adjustment": {
+      "status": "PASS",
+      "measured": 1.0816528919993058e-12,
+      "threshold": 1e-09,
+      "note": "AART against kgeo on equatorial source radius over 430 stratified rays, compared on raw screen coordinates with no sign flip, axis swap, angle offset or rescaling applied to either side. The radius map needs no adjustment of any kind."
+    },
+    "G8t_emission_time_no_offset": {
+      "status": "PASS",
+      "measured": 2.2737367544323206e-13,
+      "threshold": 1e-06,
+      "note": "fitted common additive offset between AART and kgeo emission times over 225 stratified rays. The two codes share a time origin outright; no offset is removed anywhere, and the pairwise-difference gate G8t_retarded_time_validation (2.763e-06 M) would hold even if they did not."
+    },
+    "G8phi_rigid_origin_alignment": {
+      "status": "PASS",
+      "measured": 6.328715329573242e-12,
+      "threshold": 1e-08,
+      "note": "azimuth DOES need an alignment, and it is a single rigid rotation: phi_kgeo = phi_aart + pi/2, exact to 1.377e-14, with residual 6.329e-12 rad after one global constant and a spread across orders of 1.303e-13 rad. A reflection was tested and rejected. The repository adopts AART's origin. Unlike radius and time, this gate certifies alignment, not the absence of a difference."
+    },
+    "E3_pilot_no_convention_adjustment": {
+      "status": "NOT_RUN",
+      "disposition": "REPLACED",
+      "note": "a single gate could not distinguish 'needed no adjustment' (radius, time) from 'needed exactly one rigid rotation' (azimuth). Replaced by G8r_source_radius_no_adjustment, G8t_emission_time_no_offset and G8phi_rigid_origin_alignment."
+    },
+    "G7b_pointwise_cross_grid_field_metric": {
+      "status": "NOT_RUN",
+      "disposition": "WITHDRAWN_INVALID_CONVERGENCE_METRIC",
+      "measured": 0.366,
+      "threshold": 0.05,
+      "note": "compared transfer-field values between resolutions at matched screen points and read 0.366. Invalid as a convergence metric: AART's landing coordinates are analytic in (alpha, beta) and agree with the grid-free kgeo to 2.6e-15 (n=0), 1.1e-13 (n=1) and 2.2e-12 (n=2) at BOTH resolutions, so the per-ray fields carry no discretisation error. Two profiles never evaluate the same point, so the number measured the field gradient across the grid offset -- band steepness -- not convergence. Superseded by the quadrature-weighted G7b_transfer_field_convergence, which PASSES at 2.192e-02. The failing value is preserved here rather than deleted."
+    }
+  },
+  "started_at": "2026-08-25T06:33:54+00:00",
+  "finished_at": "2026-08-25T06:33:56+00:00",
+  "peak_rss_mb": 495.328125,
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.11.1",
+    "scikit-learn": "1.9.0",
+    "scikit-image": "0.26.0",
+    "pyyaml": "6.0.1",
+    "torch": "2.13.0",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 0.0133819580078125
+}

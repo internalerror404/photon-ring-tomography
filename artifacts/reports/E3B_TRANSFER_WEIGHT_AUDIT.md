@@ -1,7 +1,7 @@
 # E3B — TRANSFER-WEIGHT SEMANTICS AUDIT (G9w)
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `29d147b5cbb0b8cc1cc7a299e91c35ce65d9bdaa`
+- branch `claude/experiment-review-mac-rthiz1`, commit `92d183aa9ab46f9f73097deba9e6ce66a4e0ea69`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - geometry a* = 0.5, i = 50 deg, orders n = 0, 1, 2 (the single authorized pilot geometry)
 - kgeo commit `dc347060c5fb24e2c360c8aaffbfe25482a83805`

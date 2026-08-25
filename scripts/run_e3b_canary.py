@@ -351,12 +351,21 @@ def main() -> int:
                                       "sqrt_fisher": sd,
                                       "crlb": 1.0 / fisher if fisher > 0 else np.inf,
                                       "detectable": bool(sd >= OPERATIONAL_THRESHOLD)})
+            deepest = max(detectable) if detectable else -1.0
+            # A depth equal to the deepest age the grid contains is a lower
+            # bound, not a measurement: the sweep ran out of grid before the
+            # arm ran out of reach.
+            censored = bool(detectable and np.isclose(deepest, float(ages[-1])))
             depth_rows.append({
                 "arm": name, "snr0": snr,
                 "n_detectable_ages": len(detectable),
-                "deepest_detectable_age": max(detectable) if detectable else -1.0,
+                "deepest_detectable_age": deepest,
                 "shallowest_detectable_age": min(detectable) if detectable else -1.0,
-                "total_ages": int(ages.size)})
+                "total_ages": int(ages.size),
+                "right_censored": censored,
+                "age_grid_max": float(ages[-1]),
+                "depth_report": ("none" if not detectable else
+                                 (f">={deepest:.1f}" if censored else f"{deepest:.1f}"))})
         # restricted spectra on the registered global class
         B = op.to_dense() / row_sigma(
             op, detector_sigma(ops["DIRECT_PHYSICAL"], 100.0, unit))[:, None]
@@ -387,22 +396,70 @@ def main() -> int:
         row = {"retarded_age": float(a)}
         for k, v in enumerate(vals):
             row[f"I_order{k}"] = v
-        # A ratio of two vanishing informations is not an exponent. Where either
-        # order carries essentially nothing about this age, the pair is reported
-        # as undefined rather than as a large spurious slope.
+        # This is a pointwise comparison at a FIXED absolute age, between orders
+        # whose temporal supports barely overlap. It is a dominance ratio, not
+        # an attenuation exponent, and is named accordingly: calling it
+        # Gamma_info would imply a decay along matched support that this
+        # quantity does not measure. The matched-support exponent is computed
+        # separately below, in delay-aligned coordinates.
         floor = 1e-9 * max(max(vals), 1e-300)
         for k in range(1, len(vals)):
             lo, hi = vals[k - 1], vals[k]
             if lo <= floor or hi <= floor:
-                row[f"Gamma_info_{k-1}_to_{k}"] = float("nan")
-                row[f"Gamma_info_{k-1}_to_{k}_status"] = (
+                row[f"age_specific_order_dominance_ratio_{k-1}_to_{k}"] = float("nan")
+                row[f"age_specific_order_dominance_ratio_{k-1}_to_{k}_status"] = (
                     "undefined: at least one order carries no information at this age")
             else:
-                row[f"Gamma_info_{k-1}_to_{k}"] = float(-0.5 * np.log(hi / lo))
-                row[f"Gamma_info_{k-1}_to_{k}_status"] = "ok"
+                row[f"age_specific_order_dominance_ratio_{k-1}_to_{k}"] = float(hi / lo)
+                row[f"age_specific_order_dominance_ratio_{k-1}_to_{k}_status"] = "ok"
         ginfo.append(row)
 
+    # Matched-order information attenuation, in delay-aligned coordinates.
+    # Each order is sampled at the same FRACTIONAL position u within its own
+    # retarded window, so the orders are compared on matched temporal support
+    # and the resulting exponent is a genuine Gamma_info.
+    matched = []
+    windows = [(float(o.delay.min()), float(o.delay.max())) for o in base]
+    for u in np.linspace(0.05, 0.95, 19):
+        vals, agesu = [], []
+        for op, (lo, hi) in zip(per_order_ops, windows):
+            a_u = lo + u * (hi - lo)
+            agesu.append(a_u)
+            sg = row_sigma(op, detector_sigma(ops["DIRECT_PHYSICAL"], 100.0, unit))
+            vals.append(float(np.sum((age_direction(op, a_u, qnorm) / sg) ** 2)))
+        row = {"window_fraction": float(u)}
+        for k, (v, a_u) in enumerate(zip(vals, agesu)):
+            row[f"age_order{k}"] = float(a_u)
+            row[f"I_order{k}"] = v
+        floor = 1e-9 * max(max(vals), 1e-300)
+        for k in range(1, len(vals)):
+            lo_, hi_ = vals[k - 1], vals[k]
+            ok = lo_ > floor and hi_ > floor
+            row[f"Gamma_info_matched_{k-1}_to_{k}"] = (
+                float(-0.5 * np.log(hi_ / lo_)) if ok else float("nan"))
+            row[f"Gamma_info_matched_{k-1}_to_{k}_status"] = "ok" if ok else "undefined"
+        matched.append(row)
+
+    # Age-support bookkeeping, exact.
+    support = [{
+        "observer_time_min": float(t_obs.min()), "observer_time_max": float(t_obs.max()),
+        "observer_time_span": float(t_obs.max() - t_obs.min()),
+        "n_observer_times": int(t_obs.size),
+        "localized_probe_width_M": BUMP_WIDTH,
+        "localized_probe_support_pm3sigma_M": 3.0 * BUMP_WIDTH,
+        "age_grid_min": float(ages[0]), "age_grid_max": float(ages[-1]),
+        "age_grid_step": AGE_STEP, "n_ages": int(ages.size),
+        "global_class_t_min": basis.t_min, "global_class_t_max": basis.t_max,
+    }]
+    for k, (lo, hi) in enumerate(windows):
+        support.append({"order": k, "delay_window_min_M": lo, "delay_window_max_M": hi,
+                        "delay_window_span_M": hi - lo,
+                        "reachable_source_time_min": float(t_obs.min() - hi),
+                        "reachable_source_time_max": float(t_obs.max() - lo)})
+
     for name, rows in (("e3b_age_information", info_rows),
+                       ("e3b_matched_support_attenuation", matched),
+                       ("e3b_age_support_bookkeeping", support),
                        ("e3b_temporal_depth_curve", depth_rows),
                        ("e3b_singular_spectra", spec_rows),
                        ("e3b_attenuation_decomposition", decomp),

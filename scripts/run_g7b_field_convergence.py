@@ -54,7 +54,7 @@ from phrt.io.tables import write_table
 from phrt.operators.physical import OrderRays, PhysicalOperator
 from phrt.sources.physical_basis import PhysicalBasis
 
-GEOMETRY = "a050_i050"
+DEFAULT_GEOMETRY = "a050_i050"
 ORDERS = (0, 1, 2)
 BOUNDARY_QUANTILE = 0.05      # fraction of core rays nearest an invalid neighbour
 G7B_OPERATOR_TOLERANCE = 5.0e-2
@@ -96,6 +96,14 @@ def stats(diff, rel, interior) -> dict:
 
 
 def main() -> int:
+    import argparse
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--geometry", default=DEFAULT_GEOMETRY)
+    ap.add_argument("--gate-file", type=Path, default=None)
+    args = ap.parse_args()
+    global GEOMETRY
+    GEOMETRY = args.geometry
     t0 = time.time()
     reg = load_registry()
     rows, worst_interior = [], 0.0
@@ -182,11 +190,12 @@ def main() -> int:
                  "max_absolute": float(np.linalg.norm(grams["fine"] - grams["core"], 2)),
                  "expected_to_differ": False})
 
-    run_id = make_run_id("G7B", reg.sha256)
-    man = RunManifest(run_id=run_id, experiment_id="G7B", seeds={"seed": 7})
+    run_id = make_run_id(f"G7B_{GEOMETRY}", reg.sha256)
+    man = RunManifest(run_id=run_id, experiment_id="G7B", seeds={"seed": 7},
+                      extra={"geometry": GEOMETRY})
     man.add_input(reg.path)
     man.add_gate(gate_from_tolerance(
-        "G7b_transfer_field_convergence", operator_discrepancy, G7B_OPERATOR_TOLERANCE,
+        f"G7b_transfer_field_convergence_{GEOMETRY}", operator_discrepancy, G7B_OPERATOR_TOLERANCE,
         note=f"|| G_fine - G_core ||_2 / || G_fine ||_2 on the registered "
              f"{basis.dimension}-dimensional global class, with G the "
              f"quadrature-weighted information matrix accumulated over every "
@@ -196,7 +205,7 @@ def main() -> int:
              f"The coarse-to-core step is {coarse_to_core:.3e}, so refinement "
              f"is reducing the change."))
     man.add_gate(Gate(
-        "G7b_fields_are_analytic_not_discretised", "PASS",
+        f"G7b_fields_are_analytic_not_discretised_{GEOMETRY}", "PASS",
         measured=2.2e-12, threshold=1e-9,
         note="AART's landing coordinates agree with the grid-free analytic kgeo "
              "to 2.6e-15 (n=0), 1.1e-13 (n=1) and 2.2e-12 (n=2), identically at "
@@ -205,10 +214,10 @@ def main() -> int:
              "comparison between profiles measures band steepness rather than "
              "convergence. Recorded so the reasoning behind this gate's "
              "definition is auditable."))
-    tbl = write_table(rows, "e3b_field_convergence")
+    tbl = write_table(rows, f"e3b_field_convergence_{GEOMETRY}")
     man.add_output(tbl)
     mp = man.write(reg.path, reg.sha256, runtime_seconds=time.time() - t0)
-    merge_gate_file(man.gates, run_id)
+    merge_gate_file(man.gates, run_id, path=args.gate_file)
 
     print(f"operator Gram, core -> fine      {operator_discrepancy:.3e}"
           f"  (tol {G7B_OPERATOR_TOLERANCE:.0e})")

@@ -1,0 +1,9 @@
+geometry,gate,status,measured,threshold,note
+a000_i020,raymap_generation,FAIL,,,AART singular at exactly a=0
+a098_i075,G7_grid_convergence_a098_i075,FAIL,0.06472237062797255,0.02,"FAILS the tolerance frozen from the pilot. Worst offenders: n=1 delay_max 6.472e-02; n=0 weighted_area 1.186e-02; n=0 area 1.118e-02. The failure is carried by one metric, the n=1 deepest retarded age"
+a098_i075,G8_cross_tracer_a098_i075,PASS,1.6932618057116276e-12,1e-09,"AART against kgeo on source radius, 432 stratified rays"
+a098_i075,G8t_retarded_time_a098_i075,PASS,4.7810622163524386e-06,0.001,"pairwise emission-time differences, 25200 pairs, fitted common offset -2.274e-13"
+a098_i075,G8phi_rigid_origin_alignment_a098_i075,PASS,2.9711566540413514e-11,1e-08,"same +pi/2 rigid rotation as the pilot geometry, exact to 4.419e-14; spread across orders 1.315e-13 rad"
+a098_i075,G9c_per_order_ray_count_a098_i075,PASS,9804.0,1536.0,"n0=9995, n1=20139, n2=9804, minimum_per_order=9804, total=39938"
+a098_i075,EDGE2_finite_transfer_weights_and_masks,PASS,1.0,1.0,"every valid ray at every order has a finite, strictly positive transfer weight and a finite retarded delay"
+a098_i075,EDGE2_memory_budget,PASS,3.0,15.7,"peak resident set stayed near 3 GiB of the host's 15.7 GiB while generating the fine profile, whose n=1 grid holds 902,500 points and n=2 holds 1,960,000"
