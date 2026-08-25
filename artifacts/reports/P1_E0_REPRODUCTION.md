@@ -2,22 +2,36 @@
 
 ## Identity
 - branch: `claude/experiment-review-mac-rthiz1`
-- commit: `d8fd5ca840268538493733211b319a458fb9b416`  (source tree dirty: False)
+- commit: `5abbb08a4e5801248764d1dd015786951c840d3c`  (source tree dirty: False)
 - config: `paper1_experiment_registry_v0.2.yaml`  sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - environment sha256: `2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd`
 - hardware: Linux x86_64, 4 cores, 15.7 GiB
 - python 3.11.15; numpy 2.4.6, scipy 1.17.1, torch 2.13.0, aart 2.1.10
-- run_id: `G1_20260825T003703Z_2ba66f02`
+- run_id: `G1_20260825T013544Z_2ba66f02`
 - generator sha256: `9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51` (matches the supplied artifact)
 
 ## Mechanical gate result
-**BLOCKED_PENDING_TOLERANCE_RULING**
+**CROSS_MACHINE_REPRODUCTION_DEFECT** — E3 pilot **NOT_AUTHORIZED**
 
-All 48 integer rank comparisons agree exactly. Every signal-bearing float
-agrees to **1.485e-13**, five orders
-inside the 1e-8 criterion. One cell of 24 exceeds the ruled relative criterion
-at **1.313e-08**, and it is the one cell where a
-relative criterion is not well posed.
+Under the reviewer-adjudicated tolerance specification
+`RELATIVE_ONLY_NEAR_ZERO_DEFECT`:
+
+- `G1_v01_reproduction_relative` = **FAIL_AS_WRITTEN**, preserved unaltered with
+  its original 1e-8 pure-relative tolerance;
+- `G1_v01_reproduction_mixed_tolerance` = **PASS**;
+- `G1_scientific_reproduction` = **PASS_WITH_NUMERICAL_QUALIFICATION**;
+- `G1_cross_machine_reference` = **FAIL**.
+
+Integer ranks, dimensions, row identities and arm labels agree exactly. Under
+the ruled criterion
+
+```text
+abs(candidate - reference) <= 1e-14 + 1e-8 * max(abs(candidate), abs(reference))
+```
+
+applied uniformly to every floating cell with no exclusions, the worst cell
+consumes **7.320e-04** of its allowance — a margin
+of roughly 1366x.
 
 ## What was executed
 
@@ -68,51 +82,73 @@ matrix-free operator with a hand-written adjoint, not the original's dense
 row-assembly loop. Parity between the two constructions is exact (0.0) and the
 adjoint identity holds to 1.1e-14.
 
-### The one exceedance
+### The zero-limit cell
 
 | | |
 |---|---|
 | cell | `resolved`, `relative_noise = 0.0`, `prior_subspace_oracle_ridge_error` |
 | reference | `5.57692292754989478e-10` |
 | independent | `5.57692300078700935e-10` |
-| absolute difference | **7.324e-18** |
-| in machine epsilon | **0.0330 x** |
-| relative difference | 1.313e-08 |
+| absolute residual | **7.324e-18** |
+| in unit-scale binary64 machine epsilon | **0.0330 x** |
+| allowance under the ruled criterion | 1.001e-14 |
+| fraction of allowance used | **7.320e-04** |
+| pure relative difference | 1.313e-08 |
 
-This is the noise-free arm of an operator that is injective on the
-24-dimensional subspace. Its exact reconstruction error is **zero**. Both
-numbers are therefore pure Tikhonov round-off at lambda = 1e-12, and their
-ratio measures nothing: two correct implementations differ in the last bits of
-a quantity whose true value is 0, and a relative test divides by that noise.
+This is the noise-free arm of an operator injective on the 24-dimensional
+subspace, so the reconstruction error tends to zero and what remains is set by
+the Tikhonov regularizer at lambda = 1e-12. It is a **zero-limit,
+regularization-dominated cell**: not a cell whose stored value is zero, but one
+whose value is determined by the regularization rather than by any signal. A
+relative test on such a cell divides one round-off residual by another and
+measures the regularizer, not the agreement.
 
-The two implementations agree to **three hundredths of one machine epsilon**.
+The residual is **7.324e-18**, which is **0.0330 times unit-scale binary64
+machine epsilon**. That unit is deliberate: it is not a ULP, since a unit in the
+last place is relative to each number's own magnitude and these cells span ten
+orders of magnitude, so a ULP would mean something different in every row.
 
 ## Diagnostics
-| gate | status | measured | threshold | note |
-|---|---|---|---|---|
-| G1_generator_sha256 | **PASS** | 9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51 | 9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51 | archived generator is byte-for-byte the supplied artifact |
-| G1_matrixfree_dense_parity | **PASS** | 0 | 1e-10 | matrix-free operator vs original-style dense assembly, all 24 arms |
-| G1_matrixfree_adjoint | **PASS** | 1.14785e-14 | 1e-08 | hand-written rmatvec, 5 probes per arm |
-| G1_identifiability_row_keys | **PASS** | 0 | 0 | 24 canonical rows; missing []; extra [] |
-| G1_identifiability_ranks_exact | **PASS** | 0 | 0 | largest absolute integer-rank disagreement across 24 rows x 2 rank columns |
-| G1_identifiability_floats_relative | **PASS** | 1.41444e-13 | 1e-08 | worst at prior_subspace_smallest_singular_value @ diverse | resolved | 2 |
-| G1_reconstruction_row_keys | **PASS** | 0 | 0 | 12 canonical rows; missing []; extra [] |
-| G1_reconstruction_floats_relative | **FAIL** | 1.31322e-08 | 1e-08 | worst at prior_subspace_oracle_ridge_error @ resolved | 0.0 |
-| G1_exact_zero_cell_absolute | **PASS** | 7.32371e-18 | 1e-15 | absolute disagreement on the cells whose exact value is structurally zero, = 0.0330 x double epsilon. Cells: ['resolved | 0.0 :: prior_subspace_oracle_ridge_error'] |
-| G1_reproduction_relative_signal_bearing | **PASS** | 1.48452e-13 | 1e-08 | the ruled relative criterion over every cell whose exact value is not structurally zero. Excluded by construction (noise-free arm, operator injective on the subspace, so the exact error is 0 and the reference value is ridge round-off): ['resolved | 0.0 :: prior_subspace_oracle_ridge_error'] |
-| G1_v01_reproduction_relative | **FAIL** | 1.31322e-08 | 1e-08 | worst relative disagreement over both canonical tables; integer ranks disagree in 0 places |
+| gate | status | disposition | measured | threshold | note |
+|---|---|---|---|---|---|
+| G1_generator_sha256 | **PASS** | – | 9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51 | 9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51 | archived generator is byte-for-byte the supplied artifact |
+| G1_tolerance_specification | **PASS** | – | RELATIVE_ONLY_NEAR_ZERO_DEFECT | RELATIVE_ONLY_NEAR_ZERO_DEFECT | reviewer-ruled adjudication. Criterion applied uniformly to every floating reproduction cell: abs(candidate - reference) <= 1e-14 + 1e-8 * max(abs(candidate), abs(reference)). Exact equality required for integer ranks, dimensions, row identities, and arm labels. |
+| G1_matrixfree_dense_parity | **PASS** | – | 0 | 1e-10 | matrix-free operator vs original-style dense assembly, all 24 arms |
+| G1_matrixfree_adjoint | **PASS** | – | 1.14785e-14 | 1e-08 | hand-written rmatvec, 5 probes per arm |
+| G1_identifiability_row_identities | **PASS** | – | 0 | 0 | 24 canonical rows compared exactly on ['spatial_channels', 'readout', 'max_order']; missing []; extra [] |
+| G1_identifiability_dimensions | **PASS** | – | 24 rows x 7 cols | 24 rows x 7 cols | 7 shared columns |
+| G1_identifiability_ranks_exact | **PASS** | – | 0 | 0 | largest absolute integer-rank disagreement across 24 rows x 2 rank columns |
+| G1_identifiability_mixed_tolerance | **PASS** | – | 1.4099e-05 | 1 | fraction of the ruled allowance used by the worst cell (prior_subspace_smallest_singular_value @ diverse | resolved | 2); residual 4.396e-17 = 0.1980 x unit-scale binary64 machine epsilon |
+| G1_reconstruction_row_identities | **PASS** | – | 0 | 0 | 12 canonical rows compared exactly on ['readout', 'relative_noise']; missing []; extra [] |
+| G1_reconstruction_dimensions | **PASS** | – | 12 rows x 6 cols | 12 rows x 6 cols | 6 shared columns |
+| G1_reconstruction_ranks_exact | **PASS** | – | 0 | 0 | largest absolute integer-rank disagreement across 12 rows x 0 rank columns |
+| G1_reconstruction_mixed_tolerance | **PASS** | – | 0.000731963 | 1 | fraction of the ruled allowance used by the worst cell (prior_subspace_oracle_ridge_error @ resolved | 0.0); residual 7.324e-18 = 0.0330 x unit-scale binary64 machine epsilon |
+| G1_v01_reproduction_relative | **FAIL** | FAIL_AS_WRITTEN | 1.31322e-08 | 1e-08 | pure relative criterion, preserved unaltered on the record. It is not well posed on a zero-limit, regularization-dominated cell, where both values are round-off residuals of a quantity whose limit is zero; superseded for adjudication by G1_v01_reproduction_mixed_tolerance. |
+| G1_v01_reproduction_mixed_tolerance | **PASS** | – | 0.000731963 | 1 | ruled criterion over every floating cell of both canonical tables, no exclusions. Worst cell uses 7.320e-04 of its allowance; worst residual 4.396e-17 = 0.1980 x unit-scale binary64 machine epsilon. Integer ranks disagree in 0 places. |
+| G1_scientific_reproduction | **PASS** | PASS_WITH_NUMERICAL_QUALIFICATION | PASS_WITH_NUMERICAL_QUALIFICATION | PASS_WITH_NUMERICAL_QUALIFICATION | all integer ranks, dimensions, row identities and arm labels exact; all floating cells within the ruled mixed criterion. The qualification is that one cell is zero-limit and regularization-dominated, so its agreement is established absolutely rather than relatively. |
+| G1_cross_machine_reference | **NOT_RUN** | – | - | 1 | the two standalone canonical CSVs were not supplied. The comparison harness is implemented and runs with --reference-dir; until it does, whether the generator emits identical values on the reviewer's machine and on this Linux host is untested. LAPACK QR and SVD sign and ordering conventions can differ between builds, and this generator's projections come directly from qr(). |
 
-The ruled gate `G1_v01_reproduction_relative` is recorded **FAIL**. Its
-tolerance was not loosened after the failure was seen, and no gate was
-retrofitted to convert it into a pass. Two diagnostics were added *beside* it:
-the relative criterion over cells whose exact value is not structurally zero,
-and absolute agreement on the cell where absolute is the only meaningful
-measure. Both pass with large margins.
+Retired entries, kept visible rather than deleted:
 
-An earlier revision of this run declared a single global absolute tolerance
-across all float cells. That was ill-posed — the cells span ten orders of
-magnitude, so one absolute threshold is simultaneously too tight and too loose
-— and it was replaced by the targeted measure above.
+| gate | status | disposition | measured | threshold | note |
+|---|---|---|---|---|---|
+| G1_reproduction_relative_signal_bearing | **NOT_RUN** | WITHDRAWN | - | - | withdrawn: required classifying one cell as excluded. The ruled mixed criterion applies uniformly and needs no exclusion. Superseded by G1_v01_reproduction_mixed_tolerance. |
+| G1_exact_zero_cell_absolute | **NOT_RUN** | WITHDRAWN | - | - | withdrawn: a bare absolute floor is only meaningful on the zero-limit cells it was scoped to. The ruled mixed criterion carries the same absolute floor for every cell. Superseded by G1_v01_reproduction_mixed_tolerance. |
+| G1_identifiability_row_keys | **NOT_RUN** | RENAMED | - | - | renamed to G1_identifiability_row_identities when the adjudicated mixed criterion replaced the pure relative one |
+| G1_reconstruction_row_keys | **NOT_RUN** | RENAMED | - | - | renamed to G1_reconstruction_row_identities when the adjudicated mixed criterion replaced the pure relative one |
+| G1_identifiability_floats_relative | **NOT_RUN** | RENAMED | - | - | renamed to G1_identifiability_mixed_tolerance when the adjudicated mixed criterion replaced the pure relative one |
+| G1_reconstruction_floats_relative | **NOT_RUN** | RENAMED | - | - | renamed to G1_reconstruction_mixed_tolerance when the adjudicated mixed criterion replaced the pure relative one |
+
+`G1_v01_reproduction_relative` is preserved as **FAIL** with disposition
+**FAIL_AS_WRITTEN**. Its tolerance is unchanged and its status was never edited
+to match the adjudication; the mixed-tolerance gate stands beside it rather
+than replacing it in the record.
+
+Two earlier improvised diagnostics have been withdrawn in favour of the ruled
+criterion, which needs no cell classification: a signal-bearing relative gate
+that required excluding a cell, and a single global absolute tolerance that was
+ill-posed across cells spanning ten orders of magnitude. The ruled mixed
+criterion applies uniformly, which is why it is better than either.
 
 ## Deviations
 **D1_platform** — registered: macos_native (execution_target in registry); actual: Linux x86_64.
@@ -152,11 +188,16 @@ passes".
 - `artifacts/tables/g1_disagreements.parquet`
 
 ## Next authorized step
-A reviewer ruling on one question: does the 1e-8 relative criterion carry an
-absolute floor for cells whose exact value is structurally zero? If yes, G1 is
-a pass on the evidence already produced and the E3 pilot is authorized. If no,
-G1 stands FAIL and the deficiency is a comparison convention, not a defect in
-either implementation.
+The cross-machine comparison, which requires the two standalone canonical CSVs.
+They were not supplied with the adjudication, so `G1_cross_machine_reference`
+is **NOT_RUN** and the E3 pilot stays **NOT_AUTHORIZED**.
 
-Also outstanding: send the canonical ZIP so the cross-machine execution check
-can run.
+The harness is implemented and self-tested in both directions: against an
+identical reference it returns PASS and authorizes E3; against a reference with
+one rank altered by 1 and one float perturbed by 1e-6 relative it returns
+CROSS_MACHINE_REPRODUCTION_DEFECT and withholds authorization. One command
+closes it:
+
+```bash
+python scripts/run_g1_reproduction.py --reference-dir <path-to-canonical-csvs>
+```

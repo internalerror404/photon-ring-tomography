@@ -2,7 +2,7 @@
 
 ## Identity
 - branch: `claude/experiment-review-mac-rthiz1`
-- commit: `d8fd5ca840268538493733211b319a458fb9b416`  (source tree dirty: False)
+- commit: `5abbb08a4e5801248764d1dd015786951c840d3c`  (source tree dirty: False)
 - config: `paper1_experiment_registry_v0.2.yaml`  sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - environment sha256: `2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd`
 - hardware: Linux x86_64, 4 cores, 15.7 GiB
@@ -255,14 +255,14 @@ vanishing sigma is structural but unstable, and must not be described as usable
 history recovery.
 
 ## Diagnostics
-| gate | status | measured | threshold | note |
-|---|---|---|---|---|
-| E1_rank_monotone_in_order | **PASS** | 0 | 0 | largest decrease in cumulative restricted rank when an order is added |
-| E1_duplicate_order_adds_no_rank | **PASS** | 0 | 0 | rank of the scaled-duplicate control minus rank of direct-only; a positive value would mean the factorial credits redundancy as information |
-| E1_zero_amplitude_adds_no_rank | **PASS** | 0 | 0 | rank when higher orders carry no signal, minus direct-only rank |
-| E2_null_injection_invisible | **PASS** | 3.61543e-16 | 1e-08 | 841 injected exact-null vectors; worst relative data change |
-| E2_null_injection_moves_source | **PASS** | -2 | -1e-06 | every exact-null injection must actually change the source |
-| E2_near_null_is_not_null | **PASS** | -6.90924e-08 | 0 | smallest retained near-null singular value must be strictly positive |
+| gate | status | disposition | measured | threshold | note |
+|---|---|---|---|---|---|
+| E1_rank_monotone_in_order | **PASS** | – | 0 | 0 | largest decrease in cumulative restricted rank when an order is added |
+| E1_duplicate_order_adds_no_rank | **PASS** | – | 0 | 0 | rank of the scaled-duplicate control minus rank of direct-only; a positive value would mean the factorial credits redundancy as information |
+| E1_zero_amplitude_adds_no_rank | **PASS** | – | 0 | 0 | rank when higher orders carry no signal, minus direct-only rank |
+| E2_null_injection_invisible | **PASS** | – | 3.61543e-16 | 1e-08 | 841 injected exact-null vectors; worst relative data change |
+| E2_null_injection_moves_source | **PASS** | – | -2 | -1e-06 | every exact-null injection must actually change the source |
+| E2_near_null_is_not_null | **PASS** | – | -6.90924e-08 | 0 | smallest retained near-null singular value must be strictly positive |
 
 84 tests pass, including four analytic predictions that assert the closed-form
 rank cap rather than a recorded number.

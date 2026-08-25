@@ -2,12 +2,12 @@
 
 ## Identity
 - branch: `claude/experiment-review-mac-rthiz1`
-- commit: `d8fd5ca840268538493733211b319a458fb9b416`  (source tree dirty: False)
+- commit: `5abbb08a4e5801248764d1dd015786951c840d3c`  (source tree dirty: False)
 - config: `paper1_experiment_registry_v0.2.yaml`  sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - environment sha256: `2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd`
 - hardware: Linux x86_64, 4 cores, 15.7 GiB
 - python 3.11.15; numpy 2.4.6, scipy 1.17.1, torch 2.13.0, aart 2.1.10
-- run_id: `E0_20260824T224151Z_2ba66f02`
+- run_id: `E0_20260825T013040Z_2ba66f02`
 
 ## Mechanical gate result
 **STOP on G1 / PASS on everything E0 can execute without the original.**
@@ -149,18 +149,18 @@ The oracle-tuned curve is never beaten by a deployable rule
 (`E0_oracle_is_upper_bound`, measured 0.0), which is the registered expectation.
 
 ## Diagnostics
-| gate | status | measured | threshold | note |
-|---|---|---|---|---|
-| G1_v01_reproduction_relative | **FAIL** | 1.31322e-08 | 1e-08 | worst relative disagreement over both canonical tables; integer ranks disagree in 0 places |
-| G2_dense_operator_relative | **PASS** | 0 | 1e-10 |  |
-| G3_adjoint_relative | **PASS** | 2.91588e-14 | 1e-08 | worst of 20 probes, seed 42 |
-| G4_order_collapse_relative | **PASS** | 0 | 1e-10 |  |
-| G5_kernel_normalized_residual | **PASS** | 5.51347e-17 | 1e-08 | null dim 48, source moved by 0.064 relative |
-| G6_monotonicity_relative_negative_eigenvalue | **PASS** | 1.67537e-16 | 1e-10 | min relative increment eigenvalue per order: [-1.68e-16, -4.9e-17, -5.9e-17, -3.7e-17, -2e-17] |
-| G9_source_split_disjoint | **PASS** | 0 | 0 | all namespaces disjoint |
-| G13_replay | **PASS** | 0 | 0 | 3 builds compared |
-| G11_cpu_mps_inference_relative | **NOT_RUN** | - | 0.0001 | no MPS device on this host; see protocol_deviations D2_no_mps |
-| E0_oracle_is_upper_bound | **PASS** | 0 | 1e-12 | max amount by which a deployable rule beat the oracle-tuned curve; must be non-positive up to rounding |
+| gate | status | disposition | measured | threshold | note |
+|---|---|---|---|---|---|
+| G1_v01_reproduction_relative | **FAIL** | FAIL_AS_WRITTEN | 1.31322e-08 | 1e-08 | pure relative criterion, preserved unaltered on the record. It is not well posed on a zero-limit, regularization-dominated cell, where both values are round-off residuals of a quantity whose limit is zero; superseded for adjudication by G1_v01_reproduction_mixed_tolerance. |
+| G2_dense_operator_relative | **PASS** | – | 0 | 1e-10 |  |
+| G3_adjoint_relative | **PASS** | – | 2.91588e-14 | 1e-08 | worst of 20 probes, seed 42 |
+| G4_order_collapse_relative | **PASS** | – | 0 | 1e-10 |  |
+| G5_kernel_normalized_residual | **PASS** | – | 5.51347e-17 | 1e-08 | null dim 48, source moved by 0.064 relative |
+| G6_monotonicity_relative_negative_eigenvalue | **PASS** | – | 1.67537e-16 | 1e-10 | min relative increment eigenvalue per order: [-1.68e-16, -4.9e-17, -5.9e-17, -3.7e-17, -2e-17] |
+| G9_source_split_disjoint | **PASS** | – | 0 | 0 | all namespaces disjoint |
+| G13_replay | **PASS** | – | 0 | 0 | 3 builds compared |
+| G11_cpu_mps_inference_relative | **NOT_RUN** | – | - | 0.0001 | no MPS device on this host; see protocol_deviations D2_no_mps |
+| E0_oracle_is_upper_bound | **PASS** | – | 0 | 1e-12 | max amount by which a deployable rule beat the oracle-tuned curve; must be non-positive up to rounding |
 
 ## Deviations
 **D1_platform** — registered: macos_native (execution_target in registry); actual: Linux x86_64.
@@ -191,7 +191,7 @@ established; any black-hole language whatsoever at this stage.
 - `artifacts/tables/e0_reconstruction.parquet` (+ `.csv`)
 - `artifacts/e0_reproduction/e0_metrics.json`
 - `artifacts/gates/correctness_gates.json`
-- `artifacts/manifests/E0_20260824T224151Z_2ba66f02.json`
+- `artifacts/manifests/E0_20260825T013040Z_2ba66f02.json`
 
 ## Next authorized step
 P3 — E1 structured factorial and E2 null-mode atlas. (P2, the operator library

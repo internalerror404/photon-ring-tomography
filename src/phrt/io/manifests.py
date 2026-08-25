@@ -45,9 +45,18 @@ class Gate:
     threshold: Any = None
     evidence_path: str | None = None
     note: str | None = None
+    disposition: str | None = None
+    """Reviewer-assigned label carried alongside the mechanical status.
+
+    A gate can be mechanically FAIL and still have an adjudicated disposition
+    such as FAIL_AS_WRITTEN, meaning the failure is preserved on the record
+    rather than reinterpreted.  The status is never edited to match the
+    disposition."""
 
     def to_dict(self) -> dict[str, Any]:
         d: dict[str, Any] = {"status": self.status}
+        if self.disposition:
+            d["disposition"] = self.disposition
         if self.measured is not None:
             d["measured"] = self.measured
         if self.threshold is not None:

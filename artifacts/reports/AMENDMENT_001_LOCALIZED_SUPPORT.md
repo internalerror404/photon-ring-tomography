@@ -2,7 +2,7 @@
 
 ## Identity
 - branch: `claude/experiment-review-mac-rthiz1`
-- commit: `d8fd5ca840268538493733211b319a458fb9b416`  (source tree dirty: False)
+- commit: `5abbb08a4e5801248764d1dd015786951c840d3c`  (source tree dirty: False)
 - config: `paper1_experiment_registry_v0.2.yaml`  sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - environment sha256: `2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd`
 - hardware: Linux x86_64, 4 cores, 15.7 GiB
@@ -94,11 +94,11 @@ spatial remapping gives you is more directions within the epochs you can already
 see, not more epochs.
 
 ## Diagnostics
-| gate | status | measured | threshold | note |
-|---|---|---|---|---|
-| AMD001_probe_is_localized | **PASS** | 0.000625157 | 0.05 | worst fraction of probe energy within 3 samples of its centre: 0.9994 |
-| AMD001_sharper_than_registered_dct | **PASS** | 0.257055 | 0.999375 | best single registered DCT temporal mode concentrates only 0.2571 of its energy within 3 samples; the probe concentrates at least 0.9994. The registered arm cannot resolve an epoch, which is why this amendment exists. |
-| AMD001_registered_arm_unchanged | **PASS** | 24 | 24 | the registered DCT class is added to, never replaced |
+| gate | status | disposition | measured | threshold | note |
+|---|---|---|---|---|---|
+| AMD001_probe_is_localized | **PASS** | – | 0.000625157 | 0.05 | worst fraction of probe energy within 3 samples of its centre: 0.9994 |
+| AMD001_sharper_than_registered_dct | **PASS** | – | 0.257055 | 0.999375 | best single registered DCT temporal mode concentrates only 0.2571 of its energy within 3 samples; the probe concentrates at least 0.9994. The registered arm cannot resolve an epoch, which is why this amendment exists. |
+| AMD001_registered_arm_unchanged | **PASS** | – | 24 | 24 | the registered DCT class is added to, never replaced |
 
 ## Deviations
 **D1_platform** — registered: macos_native (execution_target in registry); actual: Linux x86_64.

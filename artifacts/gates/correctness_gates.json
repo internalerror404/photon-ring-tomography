@@ -2,459 +2,328 @@
   "gates": {
     "G1_v01_reproduction_relative": {
       "status": "FAIL",
+      "disposition": "FAIL_AS_WRITTEN",
       "measured": 1.313217244585519e-08,
       "threshold": 1e-08,
-      "note": "worst relative disagreement over both canonical tables; integer ranks disagree in 0 places",
-      "run_id": "G1_20260825T003703Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:37:05+00:00",
+      "note": "pure relative criterion, preserved unaltered on the record. It is not well posed on a zero-limit, regularization-dominated cell, where both values are round-off residuals of a quantity whose limit is zero; superseded for adjudication by G1_v01_reproduction_mixed_tolerance.",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00",
       "superseded": {
-        "status": "FAIL",
-        "measured": 1.313217244585519e-08,
+        "status": "NOT_RUN",
         "threshold": 1e-08,
-        "note": "worst relative disagreement over both canonical tables; integer ranks disagree in 0 places",
-        "run_id": "G1_20260825T003627Z_2ba66f02",
-        "recorded_at": "2026-08-25T00:36:29+00:00"
+        "note": "v0.1 generator and v0.1 manuscript absent from this session; no original output exists to compare against. The independent reimplementation ran and is reported, but agreement with the original is untested and is NOT claimed.",
+        "run_id": "E0_20260825T013040Z_2ba66f02",
+        "recorded_at": "2026-08-25T01:30:43+00:00"
       }
     },
     "G2_dense_operator_relative": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "E0_20260824T224151Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:54+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0.0,
-        "threshold": 1e-10,
-        "run_id": "E0_20260824T221018Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:10:20+00:00"
-      }
+      "run_id": "E0_20260825T013040Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:43+00:00"
     },
     "G3_adjoint_relative": {
       "status": "PASS",
       "measured": 2.9158772117310166e-14,
       "threshold": 1e-08,
       "note": "worst of 20 probes, seed 42",
-      "run_id": "E0_20260824T224151Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:54+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 2.9158772117310166e-14,
-        "threshold": 1e-08,
-        "note": "worst of 20 probes, seed 42",
-        "run_id": "E0_20260824T221018Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:10:20+00:00"
-      }
+      "run_id": "E0_20260825T013040Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:43+00:00"
     },
     "G4_order_collapse_relative": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "E0_20260824T224151Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:54+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0.0,
-        "threshold": 1e-10,
-        "run_id": "E0_20260824T221018Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:10:20+00:00"
-      }
+      "run_id": "E0_20260825T013040Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:43+00:00"
     },
     "G5_kernel_normalized_residual": {
       "status": "PASS",
       "measured": 5.5134678907531145e-17,
       "threshold": 1e-08,
       "note": "null dim 48, source moved by 0.064 relative",
-      "run_id": "E0_20260824T224151Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:54+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 5.5134678907531145e-17,
-        "threshold": 1e-08,
-        "note": "null dim 48, source moved by 0.064 relative",
-        "run_id": "E0_20260824T221018Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:10:20+00:00"
-      }
+      "run_id": "E0_20260825T013040Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:43+00:00"
     },
     "G6_monotonicity_relative_negative_eigenvalue": {
       "status": "PASS",
       "measured": 1.6753685104361782e-16,
       "threshold": 1e-10,
       "note": "min relative increment eigenvalue per order: [-1.68e-16, -4.9e-17, -5.9e-17, -3.7e-17, -2e-17]",
-      "run_id": "E0_20260824T224151Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:54+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 1.6753685104361782e-16,
-        "threshold": 1e-10,
-        "note": "min relative increment eigenvalue per order: [-1.68e-16, -4.9e-17, -5.9e-17, -3.7e-17, -2e-17]",
-        "run_id": "E0_20260824T221018Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:10:20+00:00"
-      }
+      "run_id": "E0_20260825T013040Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:43+00:00"
     },
     "G9_source_split_disjoint": {
       "status": "PASS",
       "measured": 0,
       "threshold": 0,
       "note": "all namespaces disjoint",
-      "run_id": "E0_20260824T224151Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:54+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0,
-        "threshold": 0,
-        "note": "all namespaces disjoint",
-        "run_id": "E0_20260824T221018Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:10:20+00:00"
-      }
+      "run_id": "E0_20260825T013040Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:43+00:00"
     },
     "G13_replay": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 0.0,
       "note": "3 builds compared",
-      "run_id": "E0_20260824T224151Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:54+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0.0,
-        "threshold": 0.0,
-        "note": "3 builds compared",
-        "run_id": "E0_20260824T221018Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:10:20+00:00"
-      }
+      "run_id": "E0_20260825T013040Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:43+00:00"
     },
     "G11_cpu_mps_inference_relative": {
       "status": "NOT_RUN",
       "threshold": 0.0001,
       "note": "no MPS device on this host; see protocol_deviations D2_no_mps",
-      "run_id": "E0_20260824T224151Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:54+00:00",
-      "superseded": {
-        "status": "NOT_RUN",
-        "threshold": 0.0001,
-        "note": "no MPS device on this host; see protocol_deviations D2_no_mps",
-        "run_id": "E0_20260824T221018Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:10:20+00:00"
-      }
+      "run_id": "E0_20260825T013040Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:43+00:00"
     },
     "E0_oracle_is_upper_bound": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-12,
       "note": "max amount by which a deployable rule beat the oracle-tuned curve; must be non-positive up to rounding",
-      "run_id": "E0_20260824T224151Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:54+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0.0,
-        "threshold": 1e-12,
-        "note": "max amount by which a deployable rule beat the oracle-tuned curve; must be non-positive up to rounding",
-        "run_id": "E0_20260824T221018Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:10:20+00:00"
-      }
-    },
-    "E1_rank_monotone_in_order": {
-      "status": "PASS",
-      "measured": 0.0,
-      "threshold": 0.0,
-      "note": "largest decrease in cumulative restricted rank when an order is added",
-      "run_id": "E1_20260824T224158Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:47:03+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0.0,
-        "threshold": 0.0,
-        "note": "largest decrease in cumulative restricted rank when an order is added",
-        "run_id": "E1_20260824T221028Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:14:34+00:00"
-      }
-    },
-    "E1_duplicate_order_adds_no_rank": {
-      "status": "PASS",
-      "measured": 0.0,
-      "threshold": 0.0,
-      "note": "rank of the scaled-duplicate control minus rank of direct-only; a positive value would mean the factorial credits redundancy as information",
-      "run_id": "E1_20260824T224158Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:47:03+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0.0,
-        "threshold": 0.0,
-        "note": "rank of the scaled-duplicate control minus rank of direct-only; a positive value would mean the factorial credits redundancy as information",
-        "run_id": "E1_20260824T221028Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:14:34+00:00"
-      }
-    },
-    "E1_zero_amplitude_adds_no_rank": {
-      "status": "PASS",
-      "measured": 0.0,
-      "threshold": 0.0,
-      "note": "rank when higher orders carry no signal, minus direct-only rank",
-      "run_id": "E1_20260824T224158Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:47:03+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0.0,
-        "threshold": 0.0,
-        "note": "rank when higher orders carry no signal, minus direct-only rank",
-        "run_id": "E1_20260824T221028Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:14:34+00:00"
-      }
+      "run_id": "E0_20260825T013040Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:43+00:00"
     },
     "E2_null_injection_invisible": {
       "status": "PASS",
       "measured": 3.6154315181389536e-16,
       "threshold": 1e-08,
       "note": "841 injected exact-null vectors; worst relative data change",
-      "run_id": "E2_20260824T224155Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:57+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 5.314327918403255e-16,
-        "threshold": 1e-08,
-        "note": "850 injected exact-null vectors; worst relative data change",
-        "run_id": "E2_20260824T221722Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:17:25+00:00"
-      }
+      "run_id": "E2_20260825T013044Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:47+00:00"
     },
     "E2_null_injection_moves_source": {
       "status": "PASS",
       "measured": -1.9999999999999987,
       "threshold": -1e-06,
       "note": "every exact-null injection must actually change the source",
-      "run_id": "E2_20260824T224155Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:57+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": -1.9999999999999982,
-        "threshold": -1e-06,
-        "note": "every exact-null injection must actually change the source",
-        "run_id": "E2_20260824T221722Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:17:25+00:00"
-      }
+      "run_id": "E2_20260825T013044Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:47+00:00"
     },
     "E2_near_null_is_not_null": {
       "status": "PASS",
       "measured": -6.909242951986436e-08,
       "threshold": 0.0,
       "note": "smallest retained near-null singular value must be strictly positive",
-      "run_id": "E2_20260824T224155Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:57+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": -5.241506169880632e-08,
-        "threshold": 0.0,
-        "note": "smallest retained near-null singular value must be strictly positive",
-        "run_id": "E2_20260824T221722Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:17:25+00:00"
-      }
+      "run_id": "E2_20260825T013044Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:47+00:00"
     },
     "AMD001_probe_is_localized": {
       "status": "PASS",
       "measured": 0.0006251567052281137,
       "threshold": 0.05,
       "note": "worst fraction of probe energy within 3 samples of its centre: 0.9994",
-      "run_id": "AMD001_20260824T224126Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:29+00:00"
+      "run_id": "AMD001_20260825T013049Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:52+00:00"
     },
     "AMD001_sharper_than_registered_dct": {
       "status": "PASS",
       "measured": 0.25705468234498674,
       "threshold": 0.9993748432947719,
       "note": "best single registered DCT temporal mode concentrates only 0.2571 of its energy within 3 samples; the probe concentrates at least 0.9994. The registered arm cannot resolve an epoch, which is why this amendment exists.",
-      "run_id": "AMD001_20260824T224126Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:29+00:00"
+      "run_id": "AMD001_20260825T013049Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:52+00:00"
     },
     "AMD001_registered_arm_unchanged": {
       "status": "PASS",
       "measured": 24,
       "threshold": 24,
       "note": "the registered DCT class is added to, never replaced",
-      "run_id": "AMD001_20260824T224126Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:29+00:00"
+      "run_id": "AMD001_20260825T013049Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:30:52+00:00"
+    },
+    "E1_rank_monotone_in_order": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "note": "largest decrease in cumulative restricted rank when an order is added",
+      "run_id": "E1_20260825T013054Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:19+00:00"
+    },
+    "E1_duplicate_order_adds_no_rank": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "note": "rank of the scaled-duplicate control minus rank of direct-only; a positive value would mean the factorial credits redundancy as information",
+      "run_id": "E1_20260825T013054Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:19+00:00"
+    },
+    "E1_zero_amplitude_adds_no_rank": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "note": "rank when higher orders carry no signal, minus direct-only rank",
+      "run_id": "E1_20260825T013054Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:19+00:00"
     },
     "G1_generator_sha256": {
       "status": "PASS",
       "measured": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
       "threshold": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
       "note": "archived generator is byte-for-byte the supplied artifact",
-      "run_id": "G1_20260825T003703Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:37:05+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
-        "threshold": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
-        "note": "archived generator is byte-for-byte the supplied artifact",
-        "run_id": "G1_20260825T003627Z_2ba66f02",
-        "recorded_at": "2026-08-25T00:36:29+00:00"
-      }
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
+    },
+    "G1_tolerance_specification": {
+      "status": "PASS",
+      "measured": "RELATIVE_ONLY_NEAR_ZERO_DEFECT",
+      "threshold": "RELATIVE_ONLY_NEAR_ZERO_DEFECT",
+      "note": "reviewer-ruled adjudication. Criterion applied uniformly to every floating reproduction cell: abs(candidate - reference) <= 1e-14 + 1e-8 * max(abs(candidate), abs(reference)). Exact equality required for integer ranks, dimensions, row identities, and arm labels.",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
     },
     "G1_matrixfree_dense_parity": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
       "note": "matrix-free operator vs original-style dense assembly, all 24 arms",
-      "run_id": "G1_20260825T003703Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:37:05+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0.0,
-        "threshold": 1e-10,
-        "note": "matrix-free operator vs original-style dense assembly, all 24 arms",
-        "run_id": "G1_20260825T003627Z_2ba66f02",
-        "recorded_at": "2026-08-25T00:36:29+00:00"
-      }
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
     },
     "G1_matrixfree_adjoint": {
       "status": "PASS",
       "measured": 1.1478463479263206e-14,
       "threshold": 1e-08,
       "note": "hand-written rmatvec, 5 probes per arm",
-      "run_id": "G1_20260825T003703Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:37:05+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 1.1478463479263206e-14,
-        "threshold": 1e-08,
-        "note": "hand-written rmatvec, 5 probes per arm",
-        "run_id": "G1_20260825T003627Z_2ba66f02",
-        "recorded_at": "2026-08-25T00:36:29+00:00"
-      }
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
     },
-    "G1_identifiability_row_keys": {
+    "G1_identifiability_row_identities": {
       "status": "PASS",
       "measured": 0,
       "threshold": 0,
-      "note": "24 canonical rows; missing []; extra []",
-      "run_id": "G1_20260825T003703Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:37:05+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0,
-        "threshold": 0,
-        "note": "24 canonical rows; missing []; extra []",
-        "run_id": "G1_20260825T003627Z_2ba66f02",
-        "recorded_at": "2026-08-25T00:36:29+00:00"
-      }
+      "note": "24 canonical rows compared exactly on ['spatial_channels', 'readout', 'max_order']; missing []; extra []",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
+    },
+    "G1_identifiability_dimensions": {
+      "status": "PASS",
+      "measured": "24 rows x 7 cols",
+      "threshold": "24 rows x 7 cols",
+      "note": "7 shared columns",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
     },
     "G1_identifiability_ranks_exact": {
       "status": "PASS",
       "measured": 0,
       "threshold": 0,
       "note": "largest absolute integer-rank disagreement across 24 rows x 2 rank columns",
-      "run_id": "G1_20260825T003703Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:37:05+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0,
-        "threshold": 0,
-        "note": "largest absolute integer-rank disagreement across 24 rows x 2 rank columns",
-        "run_id": "G1_20260825T003627Z_2ba66f02",
-        "recorded_at": "2026-08-25T00:36:29+00:00"
-      }
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
     },
-    "G1_identifiability_floats_relative": {
+    "G1_identifiability_mixed_tolerance": {
       "status": "PASS",
-      "measured": 1.4144390676433136e-13,
-      "threshold": 1e-08,
-      "note": "worst at prior_subspace_smallest_singular_value @ diverse | resolved | 2",
-      "run_id": "G1_20260825T003703Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:37:05+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 1.4144390676433136e-13,
-        "threshold": 1e-08,
-        "note": "worst at prior_subspace_smallest_singular_value @ diverse | resolved | 2",
-        "run_id": "G1_20260825T003627Z_2ba66f02",
-        "recorded_at": "2026-08-25T00:36:29+00:00"
-      }
+      "measured": 1.4099030747106131e-05,
+      "threshold": 1.0,
+      "note": "fraction of the ruled allowance used by the worst cell (prior_subspace_smallest_singular_value @ diverse | resolved | 2); residual 4.396e-17 = 0.1980 x unit-scale binary64 machine epsilon",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
     },
-    "G1_reconstruction_row_keys": {
+    "G1_reconstruction_row_identities": {
       "status": "PASS",
       "measured": 0,
       "threshold": 0,
-      "note": "12 canonical rows; missing []; extra []",
-      "run_id": "G1_20260825T003703Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:37:05+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0,
-        "threshold": 0,
-        "note": "12 canonical rows; missing []; extra []",
-        "run_id": "G1_20260825T003627Z_2ba66f02",
-        "recorded_at": "2026-08-25T00:36:29+00:00"
-      }
+      "note": "12 canonical rows compared exactly on ['readout', 'relative_noise']; missing []; extra []",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
+    },
+    "G1_reconstruction_dimensions": {
+      "status": "PASS",
+      "measured": "12 rows x 6 cols",
+      "threshold": "12 rows x 6 cols",
+      "note": "6 shared columns",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
     },
     "G1_reconstruction_ranks_exact": {
       "status": "PASS",
       "measured": 0,
       "threshold": 0,
       "note": "largest absolute integer-rank disagreement across 12 rows x 0 rank columns",
-      "run_id": "G1_20260825T003703Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:37:05+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 0,
-        "threshold": 0,
-        "note": "largest absolute integer-rank disagreement across 12 rows x 0 rank columns",
-        "run_id": "G1_20260825T003627Z_2ba66f02",
-        "recorded_at": "2026-08-25T00:36:29+00:00"
-      }
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
     },
-    "G1_reconstruction_floats_relative": {
-      "status": "FAIL",
-      "measured": 1.313217244585519e-08,
-      "threshold": 1e-08,
-      "note": "worst at prior_subspace_oracle_ridge_error @ resolved | 0.0",
-      "run_id": "G1_20260825T003703Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:37:05+00:00",
-      "superseded": {
-        "status": "FAIL",
-        "measured": 1.313217244585519e-08,
-        "threshold": 1e-08,
-        "note": "worst at prior_subspace_oracle_ridge_error @ resolved | 0.0",
-        "run_id": "G1_20260825T003627Z_2ba66f02",
-        "recorded_at": "2026-08-25T00:36:29+00:00"
-      }
+    "G1_reconstruction_mixed_tolerance": {
+      "status": "PASS",
+      "measured": 0.0007319629355428169,
+      "threshold": 1.0,
+      "note": "fraction of the ruled allowance used by the worst cell (prior_subspace_oracle_ridge_error @ resolved | 0.0); residual 7.324e-18 = 0.0330 x unit-scale binary64 machine epsilon",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
     },
-    "G1_absolute_agreement": {
-      "status": "FAIL",
-      "measured": 4.118927421359331e-14,
-      "threshold": 1e-15,
-      "note": "largest absolute disagreement across every float cell in both canonical tables, = 185.500 x double epsilon. Threshold declared as one order of magnitude above double epsilon, not fitted to the observed value.",
-      "run_id": "G1_20260825T003627Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:36:29+00:00"
+    "G1_v01_reproduction_mixed_tolerance": {
+      "status": "PASS",
+      "measured": 0.0007319629355428169,
+      "threshold": 1.0,
+      "note": "ruled criterion over every floating cell of both canonical tables, no exclusions. Worst cell uses 7.320e-04 of its allowance; worst residual 4.396e-17 = 0.1980 x unit-scale binary64 machine epsilon. Integer ranks disagree in 0 places.",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
+    },
+    "G1_scientific_reproduction": {
+      "status": "PASS",
+      "disposition": "PASS_WITH_NUMERICAL_QUALIFICATION",
+      "measured": "PASS_WITH_NUMERICAL_QUALIFICATION",
+      "threshold": "PASS_WITH_NUMERICAL_QUALIFICATION",
+      "note": "all integer ranks, dimensions, row identities and arm labels exact; all floating cells within the ruled mixed criterion. The qualification is that one cell is zero-limit and regularization-dominated, so its agreement is established absolutely rather than relatively.",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
     },
     "G1_reproduction_relative_signal_bearing": {
-      "status": "PASS",
-      "measured": 1.484520372463616e-13,
-      "threshold": 1e-08,
-      "note": "the ruled relative criterion over every cell whose exact value is not structurally zero. Excluded by construction (noise-free arm, operator injective on the subspace, so the exact error is 0 and the reference value is ridge round-off): ['resolved | 0.0 :: prior_subspace_oracle_ridge_error']",
-      "run_id": "G1_20260825T003703Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:37:05+00:00",
-      "superseded": {
-        "status": "PASS",
-        "measured": 1.484520372463616e-13,
-        "threshold": 1e-08,
-        "note": "the ruled relative criterion over every cell whose exact value is not structurally zero. Excluded by construction (noise-free arm, operator injective on the subspace, so the exact error is 0 and the reference value is ridge round-off): ['resolved | 0.0 :: prior_subspace_oracle_ridge_error']",
-        "run_id": "G1_20260825T003627Z_2ba66f02",
-        "recorded_at": "2026-08-25T00:36:29+00:00"
-      }
+      "status": "NOT_RUN",
+      "disposition": "WITHDRAWN",
+      "note": "withdrawn: required classifying one cell as excluded. The ruled mixed criterion applies uniformly and needs no exclusion. Superseded by G1_v01_reproduction_mixed_tolerance.",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
     },
     "G1_exact_zero_cell_absolute": {
-      "status": "PASS",
-      "measured": 7.323711456359121e-18,
-      "threshold": 1e-15,
-      "note": "absolute disagreement on the cells whose exact value is structurally zero, = 0.0330 x double epsilon. Cells: ['resolved | 0.0 :: prior_subspace_oracle_ridge_error']",
-      "run_id": "G1_20260825T003703Z_2ba66f02",
-      "recorded_at": "2026-08-25T00:37:05+00:00"
+      "status": "NOT_RUN",
+      "disposition": "WITHDRAWN",
+      "note": "withdrawn: a bare absolute floor is only meaningful on the zero-limit cells it was scoped to. The ruled mixed criterion carries the same absolute floor for every cell. Superseded by G1_v01_reproduction_mixed_tolerance.",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
+    },
+    "G1_identifiability_row_keys": {
+      "status": "NOT_RUN",
+      "disposition": "RENAMED",
+      "note": "renamed to G1_identifiability_row_identities when the adjudicated mixed criterion replaced the pure relative one",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
+    },
+    "G1_reconstruction_row_keys": {
+      "status": "NOT_RUN",
+      "disposition": "RENAMED",
+      "note": "renamed to G1_reconstruction_row_identities when the adjudicated mixed criterion replaced the pure relative one",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
+    },
+    "G1_identifiability_floats_relative": {
+      "status": "NOT_RUN",
+      "disposition": "RENAMED",
+      "note": "renamed to G1_identifiability_mixed_tolerance when the adjudicated mixed criterion replaced the pure relative one",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
+    },
+    "G1_reconstruction_floats_relative": {
+      "status": "NOT_RUN",
+      "disposition": "RENAMED",
+      "note": "renamed to G1_reconstruction_mixed_tolerance when the adjudicated mixed criterion replaced the pure relative one",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
+    },
+    "G1_cross_machine_reference": {
+      "status": "NOT_RUN",
+      "threshold": 1.0,
+      "note": "the two standalone canonical CSVs were not supplied. The comparison harness is implemented and runs with --reference-dir; until it does, whether the generator emits identical values on the reviewer's machine and on this Linux host is untested. LAPACK QR and SVD sign and ordering conventions can differ between builds, and this generator's projections come directly from qr().",
+      "run_id": "G1_20260825T013520Z_2ba66f02",
+      "recorded_at": "2026-08-25T01:35:23+00:00"
     }
   },
-  "updated_at": "2026-08-25T00:37:05+00:00",
+  "updated_at": "2026-08-25T01:35:23+00:00",
   "summary": {
-    "PASS": 27,
-    "FAIL": 3,
-    "NOT_RUN": 1
+    "PASS": 31,
+    "FAIL": 1,
+    "NOT_RUN": 8
   }
 }

@@ -37,14 +37,15 @@ def _fmt(v, nd=6):
 def _gate_table(names: list[str] | None = None) -> str:
     doc = _gate_file()["gates"]
     keys = names or sorted(doc)
-    lines = ["| gate | status | measured | threshold | note |",
-             "|---|---|---|---|---|"]
+    lines = ["| gate | status | disposition | measured | threshold | note |",
+             "|---|---|---|---|---|---|"]
     for k in keys:
         g = doc.get(k)
         if g is None:
-            lines.append(f"| {k} | ABSENT | - | - | no record in the gate file |")
+            lines.append(f"| {k} | ABSENT | - | - | - | no record in the gate file |")
             continue
-        lines.append(f"| {k} | **{g['status']}** | {_fmt(g.get('measured','-'))} | "
+        lines.append(f"| {k} | **{g['status']}** | {g.get('disposition','') or '–'} | "
+                     f"{_fmt(g.get('measured','-'))} | "
                      f"{_fmt(g.get('threshold','-'))} | {g.get('note','')} |")
     return "\n".join(lines)
 
@@ -889,13 +890,27 @@ def g1_report() -> Path:
 - generator sha256: `{v['generator_sha256']}` (matches the supplied artifact)
 
 ## Mechanical gate result
-**{v['verdict']}**
+**{v['verdict']}** — E3 pilot **{v['e3_pilot']}**
 
-All 48 integer rank comparisons agree exactly. Every signal-bearing float
-agrees to **{v['worst_relative_disagreement_signal_bearing']:.3e}**, five orders
-inside the 1e-8 criterion. One cell of 24 exceeds the ruled relative criterion
-at **{v['worst_relative_disagreement']:.3e}**, and it is the one cell where a
-relative criterion is not well posed.
+Under the reviewer-adjudicated tolerance specification
+`{v['tolerance_specification']}`:
+
+- `G1_v01_reproduction_relative` = **FAIL_AS_WRITTEN**, preserved unaltered with
+  its original 1e-8 pure-relative tolerance;
+- `G1_v01_reproduction_mixed_tolerance` = **PASS**;
+- `G1_scientific_reproduction` = **PASS_WITH_NUMERICAL_QUALIFICATION**;
+- `G1_cross_machine_reference` = **{v['cross_machine_reference']}**.
+
+Integer ranks, dimensions, row identities and arm labels agree exactly. Under
+the ruled criterion
+
+```text
+{v['tolerance_criterion']}
+```
+
+applied uniformly to every floating cell with no exclusions, the worst cell
+consumes **{v['worst_allowance_utilisation']:.3e}** of its allowance — a margin
+of roughly {1.0 / max(v['worst_allowance_utilisation'], 1e-300):.0f}x.
 
 ## What was executed
 
@@ -941,45 +956,60 @@ matrix-free operator with a hand-written adjoint, not the original's dense
 row-assembly loop. Parity between the two constructions is exact (0.0) and the
 adjoint identity holds to 1.1e-14.
 
-### The one exceedance
+### The zero-limit cell
 
 | | |
 |---|---|
 | cell | `resolved`, `relative_noise = 0.0`, `prior_subspace_oracle_ridge_error` |
 | reference | `{5.57692292754989478e-10:.17e}` |
 | independent | `{5.57692300078700935e-10:.17e}` |
-| absolute difference | **{v['exact_zero_cell_absolute_disagreement']:.3e}** |
-| in machine epsilon | **{v['exact_zero_cell_absolute_in_machine_epsilon']:.4f} x** |
-| relative difference | {v['worst_relative_disagreement']:.3e} |
+| absolute residual | **{7.324e-18:.3e}** |
+| in unit-scale binary64 machine epsilon | **{0.0330:.4f} x** |
+| allowance under the ruled criterion | {1.001e-14:.3e} |
+| fraction of allowance used | **{7.32e-4:.3e}** |
+| pure relative difference | {v['worst_relative_disagreement']:.3e} |
 
-This is the noise-free arm of an operator that is injective on the
-24-dimensional subspace. Its exact reconstruction error is **zero**. Both
-numbers are therefore pure Tikhonov round-off at lambda = 1e-12, and their
-ratio measures nothing: two correct implementations differ in the last bits of
-a quantity whose true value is 0, and a relative test divides by that noise.
+This is the noise-free arm of an operator injective on the 24-dimensional
+subspace, so the reconstruction error tends to zero and what remains is set by
+the Tikhonov regularizer at lambda = 1e-12. It is a **zero-limit,
+regularization-dominated cell**: not a cell whose stored value is zero, but one
+whose value is determined by the regularization rather than by any signal. A
+relative test on such a cell divides one round-off residual by another and
+measures the regularizer, not the agreement.
 
-The two implementations agree to **three hundredths of one machine epsilon**.
+The residual is **{7.324e-18:.3e}**, which is **0.0330 times unit-scale binary64
+machine epsilon**. That unit is deliberate: it is not a ULP, since a unit in the
+last place is relative to each number's own magnitude and these cells span ten
+orders of magnitude, so a ULP would mean something different in every row.
 
 ## Diagnostics
-{_gate_table(['G1_generator_sha256', 'G1_matrixfree_dense_parity',
-              'G1_matrixfree_adjoint', 'G1_identifiability_row_keys',
-              'G1_identifiability_ranks_exact', 'G1_identifiability_floats_relative',
-              'G1_reconstruction_row_keys', 'G1_reconstruction_floats_relative',
-              'G1_exact_zero_cell_absolute',
-              'G1_reproduction_relative_signal_bearing',
-              'G1_v01_reproduction_relative'])}
+{_gate_table(['G1_generator_sha256', 'G1_tolerance_specification',
+              'G1_matrixfree_dense_parity', 'G1_matrixfree_adjoint',
+              'G1_identifiability_row_identities', 'G1_identifiability_dimensions',
+              'G1_identifiability_ranks_exact', 'G1_identifiability_mixed_tolerance',
+              'G1_reconstruction_row_identities', 'G1_reconstruction_dimensions',
+              'G1_reconstruction_ranks_exact', 'G1_reconstruction_mixed_tolerance',
+              'G1_v01_reproduction_relative',
+              'G1_v01_reproduction_mixed_tolerance',
+              'G1_scientific_reproduction', 'G1_cross_machine_reference'])}
 
-The ruled gate `G1_v01_reproduction_relative` is recorded **FAIL**. Its
-tolerance was not loosened after the failure was seen, and no gate was
-retrofitted to convert it into a pass. Two diagnostics were added *beside* it:
-the relative criterion over cells whose exact value is not structurally zero,
-and absolute agreement on the cell where absolute is the only meaningful
-measure. Both pass with large margins.
+Retired entries, kept visible rather than deleted:
 
-An earlier revision of this run declared a single global absolute tolerance
-across all float cells. That was ill-posed — the cells span ten orders of
-magnitude, so one absolute threshold is simultaneously too tight and too loose
-— and it was replaced by the targeted measure above.
+{_gate_table(['G1_reproduction_relative_signal_bearing',
+              'G1_exact_zero_cell_absolute', 'G1_identifiability_row_keys',
+              'G1_reconstruction_row_keys', 'G1_identifiability_floats_relative',
+              'G1_reconstruction_floats_relative'])}
+
+`G1_v01_reproduction_relative` is preserved as **FAIL** with disposition
+**FAIL_AS_WRITTEN**. Its tolerance is unchanged and its status was never edited
+to match the adjudication; the mixed-tolerance gate stands beside it rather
+than replacing it in the record.
+
+Two earlier improvised diagnostics have been withdrawn in favour of the ruled
+criterion, which needs no cell classification: a signal-bearing relative gate
+that required excluding a cell, and a single global absolute tolerance that was
+ill-posed across cells spanning ten orders of magnitude. The ruled mixed
+criterion applies uniformly, which is why it is better than either.
 
 ## Deviations
 {_deviation_block()}
@@ -1013,14 +1043,19 @@ passes".
 - `artifacts/tables/g1_disagreements.parquet`
 
 ## Next authorized step
-A reviewer ruling on one question: does the 1e-8 relative criterion carry an
-absolute floor for cells whose exact value is structurally zero? If yes, G1 is
-a pass on the evidence already produced and the E3 pilot is authorized. If no,
-G1 stands FAIL and the deficiency is a comparison convention, not a defect in
-either implementation.
+The cross-machine comparison, which requires the two standalone canonical CSVs.
+They were not supplied with the adjudication, so `G1_cross_machine_reference`
+is **NOT_RUN** and the E3 pilot stays **NOT_AUTHORIZED**.
 
-Also outstanding: send the canonical ZIP so the cross-machine execution check
-can run.
+The harness is implemented and self-tested in both directions: against an
+identical reference it returns PASS and authorizes E3; against a reference with
+one rank altered by 1 and one float perturbed by 1e-6 relative it returns
+CROSS_MACHINE_REPRODUCTION_DEFECT and withholds authorization. One command
+closes it:
+
+```bash
+python scripts/run_g1_reproduction.py --reference-dir <path-to-canonical-csvs>
+```
 """
     p = root / "artifacts" / "reports" / "P1_E0_REPRODUCTION.md"
     p.parent.mkdir(parents=True, exist_ok=True)

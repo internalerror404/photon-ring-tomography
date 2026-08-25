@@ -14,33 +14,41 @@ anywhere in this tree.
 | phase | state |
 |---|---|
 | P0 governance, environment lock, provenance | **done** |
-| P1 E0 / G1 canonical reproduction | **BLOCKED_PENDING_TOLERANCE_RULING**, see below |
-| P2 matrix-free operator library + gates G2–G6, G9, G13 | **done**, 125 tests |
+| P1 E0 / G1 canonical reproduction | **PASS_PENDING_CROSS_MACHINE_REFERENCE**, see below |
+| P2 matrix-free operator library + gates G2–G6, G9, G13 | **done**, 137 tests |
 | P3 E1 factorial + E2 mode atlas | **done** |
 | AMENDMENT_001 localized historical support | **done** |
 | P4+ physical Kerr (E3–E10) | blocked on G1 |
 
 ## Two live blockers
 
-**B1 — G1 is substantively reproduced but one cell misses the ruled criterion.**
-The generator arrived, hash-verified, and was run unmodified. All 48 integer
-rank comparisons agree exactly; every signal-bearing float agrees to 1.5e-13.
+**B1 — G1 is reproduced; the cross-machine check is the last open step.**
+The generator arrived, hash-verified, and ran unmodified. Under the
+reviewer-adjudicated tolerance specification `RELATIVE_ONLY_NEAR_ZERO_DEFECT`:
 
-One cell of 24 exceeds the 1e-8 relative criterion at 1.31e-8: the noise-free
-resolved arm, whose operator is injective on the subspace, so its exact
-reconstruction error is zero and both numbers are pure ridge round-off. The two
-implementations agree there to 7.3e-18 — 0.033 machine epsilon — but a relative
-test on a quantity whose true value is 0 divides by noise.
+| gate | result |
+|---|---|
+| `G1_v01_reproduction_relative` | FAIL, disposition **FAIL_AS_WRITTEN**, tolerance unaltered |
+| `G1_v01_reproduction_mixed_tolerance` | **PASS** — worst cell uses 7.3e-4 of its allowance |
+| `G1_scientific_reproduction` | **PASS_WITH_NUMERICAL_QUALIFICATION** |
+| `G1_cross_machine_reference` | **NOT_RUN** — the two standalone canonical CSVs were not supplied |
 
-The ruled tolerance was **not** loosened and no gate was retrofitted to convert
-the failure into a pass. Diagnostics were added beside it. The verdict is
-`BLOCKED_PENDING_TOLERANCE_RULING`: the agent does not award itself a pass the
-registered criterion does not give. E3 stays unauthorized.
+Integer ranks, dimensions, row identities and arm labels agree exactly. The one
+cell that fails the pure relative test is zero-limit and
+regularization-dominated: the residual is 7.3e-18, or 0.033 times unit-scale
+binary64 machine epsilon.
 
-Two secondary findings: the generator aborts under pandas 3.x (copy-on-write
-makes `to_numpy()` read-only) and was run in a pinned venv rather than patched;
-and the canonical ZIP never arrived, so the *cross-machine* execution check is
-unperformed.
+E3 stays **NOT_AUTHORIZED** until the cross-machine comparison runs. Its harness
+is implemented and self-tested in both directions — PASS on an identical
+reference, CROSS_MACHINE_REPRODUCTION_DEFECT on a reference with one rank and
+one float perturbed. One command closes it:
+
+```bash
+python scripts/run_g1_reproduction.py --reference-dir <path-to-canonical-csvs>
+```
+
+Diagnostic runs take `--gate-file` so they cannot write into the provenance
+record.
 
 **B2 — no independent geodesic tracer.** AART 2.1.10 installs and imports from
 PyPI, so the primary ray tracer is available. `kgeo` is not on PyPI, so the

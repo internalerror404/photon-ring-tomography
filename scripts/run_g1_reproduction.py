@@ -14,6 +14,7 @@ Terminal verdict is one of PASS, IMPLEMENTATION_DEFECT, REFERENCE_EXECUTION_DEFE
 """
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 import time
@@ -24,6 +25,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
+from phrt.audits import tolerance as tol
 from phrt.audits.rank import lapack_rank_threshold
 from phrt.config import load_registry, repo_root, sha256_file
 from phrt.io.manifests import Gate, RunManifest, gate_from_tolerance, make_run_id, merge_gate_file
@@ -141,16 +143,33 @@ def oracle_ridge_rows(spec: V01Spec, noise_levels: np.ndarray) -> list[dict]:
 def compare(ref: pd.DataFrame, got: pd.DataFrame, key: tuple[str, ...],
             rank_cols: tuple[str, ...], float_cols: tuple[str, ...],
             label: str) -> tuple[list[Gate], list[dict], dict]:
+    """Compare two canonical tables under the reviewer-ruled criteria.
+
+    Exact equality is required for integer ranks, dimensions, row identities,
+    and arm labels.  Floating cells use the mixed criterion uniformly, with no
+    cell classified or excluded.
+    """
     gates: list[Gate] = []
     detail: list[dict] = []
 
+    # -- row identities and arm labels, exactly -----------------------------
     ref_keys = set(map(tuple, ref[list(key)].values))
     got_keys = set(map(tuple, got[list(key)].values))
     missing, extra = sorted(ref_keys - got_keys), sorted(got_keys - ref_keys)
     gates.append(Gate(
-        f"G1_{label}_row_keys", "PASS" if not missing and not extra else "FAIL",
+        f"G1_{label}_row_identities", "PASS" if not missing and not extra else "FAIL",
         measured=len(missing) + len(extra), threshold=0,
-        note=f"{len(ref_keys)} canonical rows; missing {missing}; extra {extra}"))
+        note=f"{len(ref_keys)} canonical rows compared exactly on {list(key)}; "
+             f"missing {missing}; extra {extra}"))
+
+    # -- table dimensions, exactly ------------------------------------------
+    same_shape = (len(ref) == len(got))
+    shared_cols = [c for c in ref.columns if c in got.columns]
+    gates.append(Gate(
+        f"G1_{label}_dimensions", "PASS" if same_shape else "FAIL",
+        measured=f"{len(got)} rows x {len(got.columns)} cols",
+        threshold=f"{len(ref)} rows x {len(ref.columns)} cols",
+        note=f"{len(shared_cols)} shared columns"))
 
     merged = ref.merge(got, on=list(key), suffixes=("_ref", "_got"))
     if len(merged) != len(ref):
@@ -159,46 +178,88 @@ def compare(ref: pd.DataFrame, got: pd.DataFrame, key: tuple[str, ...],
                           note="merge lost rows; keys are not unique"))
         return gates, detail, {}
 
+    # -- integer ranks, exactly ---------------------------------------------
     worst_rank_mismatch = 0
     for c in rank_cols:
         d = (merged[f"{c}_ref"].astype(int) - merged[f"{c}_got"].astype(int)).abs()
         worst_rank_mismatch = max(worst_rank_mismatch, int(d.max()))
-        for i, row in merged[d > 0].iterrows():
+        for _, row in merged[d > 0].iterrows():
             detail.append({"table": label, "column": c,
                            "key": " | ".join(str(row[k]) for k in key),
-                           "reference": row[f"{c}_ref"], "independent": row[f"{c}_got"],
-                           "relative_error": float("nan")})
+                           "reference": float(row[f"{c}_ref"]),
+                           "candidate": float(row[f"{c}_got"]),
+                           "residual": float("nan"), "allowance": float("nan"),
+                           "utilisation": float("nan"), "kind": "integer_rank"})
     gates.append(Gate(f"G1_{label}_ranks_exact",
                       "PASS" if worst_rank_mismatch == 0 else "FAIL",
                       measured=worst_rank_mismatch, threshold=0,
                       note=f"largest absolute integer-rank disagreement across "
                            f"{len(merged)} rows x {len(rank_cols)} rank columns"))
 
-    worst_rel, worst_where = 0.0, ""
+    # -- floating cells, mixed criterion, applied uniformly ------------------
+    worst_util, worst_where, worst_resid = 0.0, "", 0.0
+    worst_rel = 0.0
     for c in float_cols:
         a = merged[f"{c}_ref"].to_numpy(dtype=float)
         b = merged[f"{c}_got"].to_numpy(dtype=float)
-        denom = np.maximum(np.maximum(np.abs(a), np.abs(b)), 1e-300)
-        rel = np.abs(a - b) / denom
-        # exact zeros on both sides are agreement, not a division artefact
-        rel[(a == 0.0) & (b == 0.0)] = 0.0
-        for i, r in enumerate(rel):
-            if r > FLOAT_TOL:
-                detail.append({"table": label, "column": c,
-                               "key": " | ".join(str(merged.iloc[i][k]) for k in key),
-                               "reference": float(a[i]), "independent": float(b[i]),
-                               "relative_error": float(r)})
-        if rel.max() > worst_rel:
-            worst_rel = float(rel.max())
-            worst_where = f"{c} @ " + " | ".join(
-                str(merged.iloc[int(np.argmax(rel))][k]) for k in key)
-    gates.append(gate_from_tolerance(f"G1_{label}_floats_relative", worst_rel, FLOAT_TOL,
-                                     note=f"worst at {worst_where}"))
+        util = tol.utilisation(b, a)
+        resid = tol.residual(b, a)
+        allow = tol.allowance(b, a)
+        den = np.maximum(np.maximum(np.abs(a), np.abs(b)), 1e-300)
+        rel = np.where((a == 0.0) & (b == 0.0), 0.0, resid / den)
+        for i in range(len(a)):
+            row_key = " | ".join(str(merged.iloc[i][k]) for k in key)
+            if util[i] > 1.0:
+                detail.append({"table": label, "column": c, "key": row_key,
+                               "reference": float(a[i]), "candidate": float(b[i]),
+                               "residual": float(resid[i]),
+                               "allowance": float(allow[i]),
+                               "utilisation": float(util[i]), "kind": "float_cell"})
+        if util.max() > worst_util:
+            j = int(np.argmax(util))
+            worst_util = float(util[j])
+            worst_resid = float(resid[j])
+            worst_where = f"{c} @ " + " | ".join(str(merged.iloc[j][k]) for k in key)
+        worst_rel = max(worst_rel, float(rel.max()))
+
+    gates.append(Gate(
+        f"G1_{label}_mixed_tolerance", "PASS" if worst_util <= 1.0 else "FAIL",
+        measured=worst_util, threshold=1.0,
+        note=f"fraction of the ruled allowance used by the worst cell "
+             f"({worst_where}); residual {worst_resid:.3e} = "
+             f"{tol.in_machine_eps(worst_resid):.4f} x unit-scale binary64 "
+             f"machine epsilon"))
+
     return gates, detail, {"worst_relative": worst_rel,
+                           "worst_utilisation": worst_util,
+                           "worst_residual": worst_resid,
                            "worst_rank_mismatch": worst_rank_mismatch}
 
 
+def load_canonical(directory: Path) -> dict[str, pd.DataFrame]:
+    """Read the two standalone canonical CSVs from a reviewer-supplied directory."""
+    out = {}
+    for name in ("paper1_identifiability", "paper1_reconstruction"):
+        hits = sorted(directory.rglob(f"{name}.csv"))
+        if not hits:
+            raise FileNotFoundError(f"{name}.csv not found under {directory}")
+        out[name] = pd.read_csv(hits[0])
+        out[f"{name}__path"] = hits[0]
+    return out
+
+
 def main() -> int:
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--gate-file", type=Path, default=None,
+                    help="write gates here instead of the canonical "
+                         "artifacts/gates/correctness_gates.json. Use for "
+                         "diagnostic and self-test runs so they cannot leave "
+                         "failures in the provenance record.")
+    ap.add_argument("--reference-dir", type=Path, default=None,
+                    help="directory holding the reviewer's standalone canonical "
+                         "CSVs; enables the cross-machine comparison")
+    args = ap.parse_args()
+
     t0 = time.time()
     reg = load_registry()
     root = repo_root()
@@ -207,10 +268,12 @@ def main() -> int:
                       seeds={"generator_seed": SEED, "reconstruction_seed": 123},
                       extra={"registered_constants": {
                           "W": W, "D": 4, "NMAX": NMAX, "H": H, "K": K, "M": M,
-                          "GAMMA": GAMMA, "RT": RT, "RS": RS, "seed": SEED}})
+                          "GAMMA": GAMMA, "RT": RT, "RS": RS, "seed": SEED},
+                          "tolerance_specification": tol.SPECIFICATION,
+                          "tolerance_criterion": tol.CRITERION})
 
     gen = root / "archive" / "v0.1" / "generate_synthetic_results.py"
-    ref_dir = root / "artifacts" / "g1_run" / "results"
+    local_dir = root / "artifacts" / "g1_run" / "results"
     man.add_input(gen)
     man.add_input(reg.path)
 
@@ -219,10 +282,16 @@ def main() -> int:
                       "PASS" if measured_sha == GENERATOR_SHA256 else "FAIL",
                       measured=measured_sha, threshold=GENERATOR_SHA256,
                       note="archived generator is byte-for-byte the supplied artifact"))
+    man.add_gate(Gate("G1_tolerance_specification", "PASS",
+                      measured=tol.SPECIFICATION, threshold=tol.SPECIFICATION,
+                      note=f"reviewer-ruled adjudication. Criterion applied "
+                           f"uniformly to every floating reproduction cell: "
+                           f"{tol.CRITERION}. Exact equality required for integer "
+                           f"ranks, dimensions, row identities, and arm labels."))
 
     spec = V01Spec.build()
 
-    # operator-level gates on the independent implementation itself
+    # -- operator-level gates on the independent implementation --------------
     worst_parity = worst_adj = 0.0
     rng = np.random.default_rng(0)
     for name in ("identical", "diverse"):
@@ -231,150 +300,181 @@ def main() -> int:
                 op = V01Operator(N, spec.projections(name), resolved)
                 ref = reference_dense(N, spec.projections(name), resolved)
                 dn = max(float(np.abs(ref).max()), 1e-300)
-                worst_parity = max(worst_parity, float(np.abs(op.to_dense() - ref).max()) / dn)
+                worst_parity = max(worst_parity,
+                                   float(np.abs(op.to_dense() - ref).max()) / dn)
                 for _ in range(5):
                     x, y = rng.normal(size=op.shape[1]), rng.normal(size=op.shape[0])
                     a, b = float(y @ op.matvec(x)), float(x @ op.rmatvec(y))
                     worst_adj = max(worst_adj, abs(a - b) / max(abs(a), abs(b), 1e-300))
-    man.add_gate(gate_from_tolerance("G1_matrixfree_dense_parity", worst_parity,
-                                     reg.data["correctness_gates"]["G2_dense_operator_relative"],
-                                     note="matrix-free operator vs original-style dense assembly, all 24 arms"))
-    man.add_gate(gate_from_tolerance("G1_matrixfree_adjoint", worst_adj,
-                                     reg.data["correctness_gates"]["G3_adjoint_relative"],
-                                     note="hand-written rmatvec, 5 probes per arm"))
+    man.add_gate(gate_from_tolerance(
+        "G1_matrixfree_dense_parity", worst_parity,
+        reg.data["correctness_gates"]["G2_dense_operator_relative"],
+        note="matrix-free operator vs original-style dense assembly, all 24 arms"))
+    man.add_gate(gate_from_tolerance(
+        "G1_matrixfree_adjoint", worst_adj,
+        reg.data["correctness_gates"]["G3_adjoint_relative"],
+        note="hand-written rmatvec, 5 probes per arm"))
 
-    # --- the reproduction comparison proper ---------------------------------
-    ident_ref = pd.read_csv(ref_dir / "paper1_identifiability.csv")
+    # -- A: independent implementation vs locally generated reference --------
+    ident_local = pd.read_csv(local_dir / "paper1_identifiability.csv")
+    recon_local = pd.read_csv(local_dir / "paper1_reconstruction.csv")
     ident_got = pd.DataFrame(identifiability_rows(spec))
-    g1, d1, s1 = compare(ident_ref, ident_got, KEY, RANK_COLUMNS, FLOAT_COLUMNS,
-                         "identifiability")
-
-    recon_ref = pd.read_csv(ref_dir / "paper1_reconstruction.csv")
-    noise_levels = np.array(sorted(recon_ref.relative_noise.unique()))
+    noise_levels = np.array(sorted(recon_local.relative_noise.unique()))
     recon_got = pd.DataFrame(oracle_ridge_rows(spec, noise_levels))
-    g2, d2, s2 = compare(recon_ref, recon_got, RECON_KEY, (), RECON_FLOAT_COLUMNS,
-                         "reconstruction")
 
-    for g in g1 + g2:
+    gA1, dA1, sA1 = compare(ident_local, ident_got, KEY, RANK_COLUMNS,
+                            FLOAT_COLUMNS, "identifiability")
+    gA2, dA2, sA2 = compare(recon_local, recon_got, RECON_KEY, (),
+                            RECON_FLOAT_COLUMNS, "reconstruction")
+    for g in gA1 + gA2:
         man.add_gate(g)
 
-    # Absolute agreement, reported beside the ruled relative criterion.  A
-    # relative test is ill-posed on a cell whose exact value is zero: both
-    # implementations then report pure round-off and their ratio is arbitrary.
-    abs_rows = []
-    for ref_df, got_df, keys, cols in (
-            (ident_ref, ident_got, KEY, FLOAT_COLUMNS),
-            (recon_ref, recon_got, RECON_KEY, RECON_FLOAT_COLUMNS)):
-        mg = ref_df.merge(got_df, on=list(keys), suffixes=("_ref", "_got"))
-        for c in cols:
-            a = mg[f"{c}_ref"].to_numpy(dtype=float)
-            b = mg[f"{c}_got"].to_numpy(dtype=float)
-            for i in range(len(a)):
-                abs_rows.append({"column": c,
-                                 "key": " | ".join(str(mg.iloc[i][k]) for k in keys),
-                                 "absolute_difference": float(abs(a[i] - b[i])),
-                                 "reference": float(a[i])})
-    worst_abs = max(r["absolute_difference"] for r in abs_rows)
-    EPS = float(np.finfo(float).eps)
-    # No global absolute gate is declared. Absolute differences scale with the
-    # magnitude of the cell, and these cells span ten orders of magnitude, so a
-    # single absolute threshold across all of them would be meaningless in
-    # both directions. Absolute agreement is the right yardstick on exactly one
-    # class of cell -- those whose exact value is zero -- and it is gated there.
+    worst_rel = max(sA1.get("worst_relative", np.inf), sA2.get("worst_relative", np.inf))
+    worst_util = max(sA1.get("worst_utilisation", np.inf), sA2.get("worst_utilisation", np.inf))
+    worst_resid = max(sA1.get("worst_residual", 0.0), sA2.get("worst_residual", 0.0))
+    worst_rank = max(sA1.get("worst_rank_mismatch", 1), sA2.get("worst_rank_mismatch", 0))
 
-    # The ruled relative criterion, restricted to cells that carry signal.
-    # Exclusion is structural, not a magnitude cut: in the noise-free arm with
-    # an operator injective on the subspace the exact reconstruction error is
-    # zero, so the reference number is round-off by construction.
-    exact_zero_cells = []
-    recon_m = recon_ref.merge(recon_got, on=list(RECON_KEY), suffixes=("_ref", "_got"))
-    injective = set(ident_got[(ident_got.spatial_channels == "diverse")
-                              & (ident_got.max_order == NMAX)
-                              & (ident_got.prior_subspace_rank == RT * RS)].readout)
-    worst_signal = 0.0
-    for ref_df, got_df, keys, cols in (
-            (ident_ref, ident_got, KEY, FLOAT_COLUMNS),
-            (recon_ref, recon_got, RECON_KEY, RECON_FLOAT_COLUMNS)):
-        mg = ref_df.merge(got_df, on=list(keys), suffixes=("_ref", "_got"))
-        for c in cols:
-            a = mg[f"{c}_ref"].to_numpy(dtype=float)
-            b = mg[f"{c}_got"].to_numpy(dtype=float)
-            for i in range(len(a)):
-                row = mg.iloc[i]
-                is_exact_zero = (
-                    "relative_noise" in mg.columns
-                    and float(row["relative_noise"]) == 0.0
-                    and c == "prior_subspace_oracle_ridge_error"
-                    and str(row["readout"]) in injective)
-                if is_exact_zero:
-                    exact_zero_cells.append(
-                        " | ".join(str(row[k]) for k in keys) + f" :: {c}")
-                    continue
-                den = max(abs(a[i]), abs(b[i]), 1e-300)
-                if a[i] == 0.0 and b[i] == 0.0:
-                    continue
-                worst_signal = max(worst_signal, abs(a[i] - b[i]) / den)
-    # Absolute agreement on the structurally-exact-zero cells, where the exact
-    # value is 0 and absolute difference is therefore the only meaningful
-    # measure. Threshold 1e-15, a few multiples of double epsilon.
-    zero_abs = 0.0
-    for r in abs_rows:
-        for cell in exact_zero_cells:
-            k, c = cell.rsplit(" :: ", 1)
-            if r["key"] == k and r["column"] == c:
-                zero_abs = max(zero_abs, r["absolute_difference"])
-    man.add_gate(gate_from_tolerance(
-        "G1_exact_zero_cell_absolute", zero_abs, 1e-15,
-        note=f"absolute disagreement on the cells whose exact value is "
-             f"structurally zero, = {zero_abs / EPS:.4f} x double epsilon. "
-             f"Cells: {exact_zero_cells}"))
+    # The originally ruled gate is preserved exactly as written, including its
+    # tolerance and its failure. It is never edited to match the adjudication.
+    man.add_gate(Gate(
+        "G1_v01_reproduction_relative", "FAIL" if worst_rel > FLOAT_TOL else "PASS",
+        measured=worst_rel, threshold=FLOAT_TOL,
+        disposition="FAIL_AS_WRITTEN",
+        note="pure relative criterion, preserved unaltered on the record. It is "
+             "not well posed on a zero-limit, regularization-dominated cell, "
+             "where both values are round-off residuals of a quantity whose "
+             "limit is zero; superseded for adjudication by "
+             "G1_v01_reproduction_mixed_tolerance."))
+    man.add_gate(Gate(
+        "G1_v01_reproduction_mixed_tolerance",
+        "PASS" if (worst_util <= 1.0 and worst_rank == 0) else "FAIL",
+        measured=worst_util, threshold=1.0,
+        note=f"ruled criterion over every floating cell of both canonical "
+             f"tables, no exclusions. Worst cell uses {worst_util:.3e} of its "
+             f"allowance; worst residual {worst_resid:.3e} = "
+             f"{tol.in_machine_eps(worst_resid):.4f} x unit-scale binary64 "
+             f"machine epsilon. Integer ranks disagree in {worst_rank} places."))
+    man.add_gate(Gate(
+        "G1_scientific_reproduction",
+        "PASS" if (worst_util <= 1.0 and worst_rank == 0) else "FAIL",
+        measured="PASS_WITH_NUMERICAL_QUALIFICATION" if worst_util <= 1.0 else "FAIL",
+        threshold="PASS_WITH_NUMERICAL_QUALIFICATION",
+        disposition="PASS_WITH_NUMERICAL_QUALIFICATION",
+        note="all integer ranks, dimensions, row identities and arm labels exact; "
+             "all floating cells within the ruled mixed criterion. The "
+             "qualification is that one cell is zero-limit and "
+             "regularization-dominated, so its agreement is established "
+             "absolutely rather than relatively."))
 
-    man.add_gate(gate_from_tolerance(
-        "G1_reproduction_relative_signal_bearing", worst_signal, FLOAT_TOL,
-        note=f"the ruled relative criterion over every cell whose exact value is "
-             f"not structurally zero. Excluded by construction (noise-free arm, "
-             f"operator injective on the subspace, so the exact error is 0 and "
-             f"the reference value is ridge round-off): {exact_zero_cells}"))
+    # Two diagnostics improvised before the adjudication are withdrawn. They
+    # are emitted as NOT_RUN rather than deleted so the gate file shows the
+    # withdrawal instead of silently dropping entries a reader may have seen.
+    for name, why in (
+        ("G1_reproduction_relative_signal_bearing",
+         "withdrawn: required classifying one cell as excluded. The ruled mixed "
+         "criterion applies uniformly and needs no exclusion."),
+        ("G1_exact_zero_cell_absolute",
+         "withdrawn: a bare absolute floor is only meaningful on the zero-limit "
+         "cells it was scoped to. The ruled mixed criterion carries the same "
+         "absolute floor for every cell."),
+    ):
+        man.add_gate(Gate(name, "NOT_RUN", disposition="WITHDRAWN",
+                          note=why + " Superseded by "
+                               "G1_v01_reproduction_mixed_tolerance."))
 
-    worst_float = max(s1.get("worst_relative", np.inf), s2.get("worst_relative", np.inf))
-    worst_rank = max(s1.get("worst_rank_mismatch", 1), s2.get("worst_rank_mismatch", 0))
-    man.add_gate(gate_from_tolerance(
-        "G1_v01_reproduction_relative", worst_float,
-        reg.data["correctness_gates"]["G1_v01_reproduction_relative"],
-        note=f"worst relative disagreement over both canonical tables; "
-             f"integer ranks disagree in {worst_rank} places"))
+    # Gates renamed when the adjudicated criterion replaced the pure relative
+    # one. Retired by name so the file cannot show a stale entry as current.
+    for old, new in (
+        ("G1_identifiability_row_keys", "G1_identifiability_row_identities"),
+        ("G1_reconstruction_row_keys", "G1_reconstruction_row_identities"),
+        ("G1_identifiability_floats_relative", "G1_identifiability_mixed_tolerance"),
+        ("G1_reconstruction_floats_relative", "G1_reconstruction_mixed_tolerance"),
+    ):
+        man.add_gate(Gate(old, "NOT_RUN", disposition="RENAMED",
+                          note=f"renamed to {new} when the adjudicated mixed "
+                               f"criterion replaced the pure relative one"))
 
-    failed = man.failed_gates
-    ruled_gate_passed = worst_rank == 0 and worst_float <= FLOAT_TOL
-    if ruled_gate_passed:
-        verdict = "PASS"
-    elif worst_rank > 0 or worst_signal > FLOAT_TOL or zero_abs > 1e-15:
-        # a real disagreement: ranks differ, or a signal-bearing value differs,
-        # or the absolute gap is larger than round-off can explain
-        verdict = "IMPLEMENTATION_DEFECT"
+    # -- B: cross-machine, locally generated vs reviewer's canonical CSVs ----
+    cross_rows: list[dict] = []
+    cross_status = "NOT_RUN"
+    if args.reference_dir is not None:
+        canon = load_canonical(args.reference_dir)
+        man.add_input(canon["paper1_identifiability__path"])
+        man.add_input(canon["paper1_reconstruction__path"])
+        gB1, dB1, sB1 = compare(canon["paper1_identifiability"], ident_local, KEY,
+                                RANK_COLUMNS, FLOAT_COLUMNS, "crossmachine_identifiability")
+        gB2, dB2, sB2 = compare(canon["paper1_reconstruction"], recon_local, RECON_KEY,
+                                (), RECON_FLOAT_COLUMNS, "crossmachine_reconstruction")
+        for g in gB1 + gB2:
+            man.add_gate(g)
+        x_util = max(sB1.get("worst_utilisation", np.inf), sB2.get("worst_utilisation", np.inf))
+        x_rank = max(sB1.get("worst_rank_mismatch", 1), sB2.get("worst_rank_mismatch", 0))
+        ok = (x_util <= 1.0 and x_rank == 0)
+        cross_status = "PASS" if ok else "FAIL"
+        man.add_gate(Gate(
+            "G1_cross_machine_reference", cross_status,
+            measured=x_util, threshold=1.0,
+            note=f"reviewer's canonical CSVs vs this host's execution of the "
+                 f"hash-verified generator. Integer ranks disagree in {x_rank} "
+                 f"places. Tests whether LAPACK QR and SVD conventions differ "
+                 f"between the two builds."))
+        cross_rows = dB1 + dB2
+        # also compare the independent implementation directly to the canonical CSVs
+        gC1, dC1, sC1 = compare(canon["paper1_identifiability"], ident_got, KEY,
+                                RANK_COLUMNS, FLOAT_COLUMNS, "canonical_vs_independent")
+        for g in gC1:
+            man.add_gate(g)
     else:
-        # the only exceedance is a relative comparison of two round-off
-        # residuals of a quantity whose exact value is zero. Neither of the two
-        # ruled failure labels describes this, and the agent does not award
-        # itself a PASS the registered criterion does not give.
-        verdict = "BLOCKED_PENDING_TOLERANCE_RULING"
+        man.add_gate(Gate(
+            "G1_cross_machine_reference", "NOT_RUN", threshold=1.0,
+            note="the two standalone canonical CSVs were not supplied. The "
+                 "comparison harness is implemented and runs with "
+                 "--reference-dir; until it does, whether the generator emits "
+                 "identical values on the reviewer's machine and on this Linux "
+                 "host is untested. LAPACK QR and SVD sign and ordering "
+                 "conventions can differ between builds, and this generator's "
+                 "projections come directly from qr()."))
 
+    # -- verdict -------------------------------------------------------------
+    scientific_ok = (worst_util <= 1.0 and worst_rank == 0)
+    if not scientific_ok:
+        verdict = "IMPLEMENTATION_DEFECT"
+    elif cross_status == "FAIL":
+        verdict = "CROSS_MACHINE_REPRODUCTION_DEFECT"
+    elif cross_status == "PASS":
+        verdict = "PASS"
+    else:
+        verdict = "PASS_PENDING_CROSS_MACHINE_REFERENCE"
+
+    e3 = "AUTHORIZED" if verdict == "PASS" else "NOT_AUTHORIZED"
+
+    # -- artifacts -----------------------------------------------------------
+    detail = dA1 + dA2 + cross_rows
     tbl = write_table(ident_got.to_dict("records"), "e0_reproduction_independent")
     rtb = write_table(recon_got.to_dict("records"), "e0_reconstruction_independent")
-    dtl = write_table(d1 + d2 if (d1 + d2) else
+    dtl = write_table(detail if detail else
                       [{"table": "none", "column": "none", "key": "none",
-                        "reference": 0.0, "independent": 0.0, "relative_error": 0.0}],
+                        "reference": 0.0, "candidate": 0.0, "residual": 0.0,
+                        "allowance": 0.0, "utilisation": 0.0, "kind": "none"}],
                       "g1_disagreements")
-    comparison = ident_ref.merge(ident_got, on=list(KEY), suffixes=("_ref", "_got"))
+    comparison = ident_local.merge(ident_got, on=list(KEY), suffixes=("_ref", "_got"))
     cmp_tbl = write_table(comparison.to_dict("records"), "g1_identifiability_comparison")
-    for p in (tbl, rtb, dtl, cmp_tbl):
-        man.add_output(p)
-    for f in sorted(ref_dir.glob("*.csv")):
+    outputs = [tbl, rtb, dtl, cmp_tbl]
+    if args.reference_dir is not None:
+        xm = canon["paper1_identifiability"].merge(
+            ident_local, on=list(KEY), suffixes=("_canonical", "_thishost"))
+        outputs.append(write_table(xm.to_dict("records"), "g1_cross_machine_comparison"))
+    for p_ in outputs:
+        man.add_output(p_)
+    for f in sorted(local_dir.glob("*.csv")):
         man.add_output(f)
 
     verdict_doc = {
         "run_id": run_id, "verdict": verdict,
+        "e3_pilot": e3,
         "generator_sha256": measured_sha,
+        "tolerance_specification": tol.SPECIFICATION,
+        "tolerance_criterion": tol.CRITERION,
         "reference_execution": {
             "interpreter": "pinned venv (numpy 2.2.6, pandas 2.2.3, matplotlib 3.10.9)",
             "note": ("The generator aborts under the session's default pandas 3.0.5 at "
@@ -384,24 +484,12 @@ def main() -> int:
                      "environment matching the generator's expectations was "
                      "provided instead, and the source hash is unchanged."),
         },
-        "worst_relative_disagreement": worst_float,
-        "worst_relative_disagreement_signal_bearing": worst_signal,
-        "worst_absolute_disagreement_any_cell": worst_abs,
-        "exact_zero_cell_absolute_disagreement": zero_abs,
-        "exact_zero_cell_absolute_in_machine_epsilon": zero_abs / float(np.finfo(float).eps),
+        "worst_relative_disagreement": worst_rel,
+        "worst_allowance_utilisation": worst_util,
+        "worst_absolute_residual": worst_resid,
+        "worst_absolute_residual_in_machine_eps": tol.in_machine_eps(worst_resid),
         "integer_rank_disagreements": worst_rank,
-        "structurally_exact_zero_cells": exact_zero_cells,
-        "verdict_basis": (
-            "All 48 integer rank comparisons agree exactly. All float cells agree "
-            "to at most 7.3e-18 absolute, i.e. 0.033 x double epsilon. The single "
-            "cell exceeding the ruled 1e-8 relative criterion is the noise-free "
-            "resolved arm, whose operator is injective on the 24-dimensional "
-            "subspace: its exact reconstruction error is zero, so both the "
-            "reference and the independent value are pure ridge round-off at "
-            "lambda = 1e-12 and their ratio carries no information. The agent "
-            "does not reclassify this as a pass; the registered criterion was "
-            "not met as written and the reviewer should rule on whether an "
-            "absolute floor applies."),
+        "cross_machine_reference": cross_status,
         "gates": {g.name: g.to_dict() for g in man.gates},
     }
     vp = root / "artifacts" / "g1_run" / "G1_VERDICT.json"
@@ -409,25 +497,29 @@ def main() -> int:
     man.add_output(vp)
 
     mp = man.write(reg.path, reg.sha256, runtime_seconds=time.time() - t0)
-    merge_gate_file(man.gates, run_id)
+    merge_gate_file(man.gates, run_id, path=args.gate_file)
 
     print(f"run_id {run_id}")
-    print("\ngates")
+    print(f"tolerance specification: {tol.SPECIFICATION}")
+    print(f"criterion: {tol.CRITERION}\n")
+    print("gates")
     for g in man.gates:
         m = g.measured
         ms = f"{m:.3e}" if isinstance(m, float) else str(m)
-        print(f"  {g.name:36s} {g.status:8s} measured={ms}")
-    print(f"\nworst relative disagreement            : {worst_float:.3e}  (tol {FLOAT_TOL:.0e})")
-    print(f"worst relative, signal-bearing cells   : {worst_signal:.3e}")
-    print(f"worst absolute, any cell               : {worst_abs:.3e}")
-    print(f"absolute on exact-zero cell            : {zero_abs:.3e}"
-          f"  ({zero_abs / float(np.finfo(float).eps):.4f} x double eps)")
-    print(f"integer rank disagreements             : {worst_rank}")
-    if exact_zero_cells:
-        print(f"structurally-exact-zero cells excluded : {exact_zero_cells}")
+        if len(ms) > 34:
+            ms = ms[:31] + "..."
+        disp = f"  [{g.disposition}]" if g.disposition else ""
+        print(f"  {g.name:44s} {g.status:8s} {ms}{disp}")
+    print(f"\nworst allowance utilisation : {worst_util:.3e}   (pass <= 1.0)")
+    print(f"worst absolute residual     : {worst_resid:.3e}"
+          f"  ({tol.in_machine_eps(worst_resid):.4f} x unit-scale binary64 machine eps)")
+    print(f"worst pure relative         : {worst_rel:.3e}   (ruled gate, preserved FAIL_AS_WRITTEN)")
+    print(f"integer rank disagreements  : {worst_rank}")
+    print(f"cross-machine reference     : {cross_status}")
     print(f"\nVERDICT: {verdict}")
+    print(f"E3 PILOT: {e3}")
     print(f"manifest {mp}")
-    return 0 if verdict == "PASS" else 1
+    return 0 if verdict.startswith("PASS") else 1
 
 
 if __name__ == "__main__":
