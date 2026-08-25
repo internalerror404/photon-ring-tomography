@@ -1,17 +1,19 @@
 {
   "gates": {
     "G1_v01_reproduction_relative": {
-      "status": "NOT_RUN",
+      "status": "FAIL",
+      "measured": 1.313217244585519e-08,
       "threshold": 1e-08,
-      "note": "v0.1 generator and v0.1 manuscript absent from this session; no original output exists to compare against. The independent reimplementation ran and is reported, but agreement with the original is untested and is NOT claimed.",
-      "run_id": "E0_20260824T224151Z_2ba66f02",
-      "recorded_at": "2026-08-24T22:41:54+00:00",
+      "note": "worst relative disagreement over both canonical tables; integer ranks disagree in 0 places",
+      "run_id": "G1_20260825T003703Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:37:05+00:00",
       "superseded": {
-        "status": "NOT_RUN",
+        "status": "FAIL",
+        "measured": 1.313217244585519e-08,
         "threshold": 1e-08,
-        "note": "v0.1 generator and v0.1 manuscript absent from this session; no original output exists to compare against. The independent reimplementation ran and is reported, but agreement with the original is untested and is NOT claimed.",
-        "run_id": "E0_20260824T221018Z_2ba66f02",
-        "recorded_at": "2026-08-24T22:10:20+00:00"
+        "note": "worst relative disagreement over both canonical tables; integer ranks disagree in 0 places",
+        "run_id": "G1_20260825T003627Z_2ba66f02",
+        "recorded_at": "2026-08-25T00:36:29+00:00"
       }
     },
     "G2_dense_operator_relative": {
@@ -271,12 +273,188 @@
       "note": "the registered DCT class is added to, never replaced",
       "run_id": "AMD001_20260824T224126Z_2ba66f02",
       "recorded_at": "2026-08-24T22:41:29+00:00"
+    },
+    "G1_generator_sha256": {
+      "status": "PASS",
+      "measured": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
+      "threshold": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
+      "note": "archived generator is byte-for-byte the supplied artifact",
+      "run_id": "G1_20260825T003703Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:37:05+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
+        "threshold": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
+        "note": "archived generator is byte-for-byte the supplied artifact",
+        "run_id": "G1_20260825T003627Z_2ba66f02",
+        "recorded_at": "2026-08-25T00:36:29+00:00"
+      }
+    },
+    "G1_matrixfree_dense_parity": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "matrix-free operator vs original-style dense assembly, all 24 arms",
+      "run_id": "G1_20260825T003703Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:37:05+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0.0,
+        "threshold": 1e-10,
+        "note": "matrix-free operator vs original-style dense assembly, all 24 arms",
+        "run_id": "G1_20260825T003627Z_2ba66f02",
+        "recorded_at": "2026-08-25T00:36:29+00:00"
+      }
+    },
+    "G1_matrixfree_adjoint": {
+      "status": "PASS",
+      "measured": 1.1478463479263206e-14,
+      "threshold": 1e-08,
+      "note": "hand-written rmatvec, 5 probes per arm",
+      "run_id": "G1_20260825T003703Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:37:05+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 1.1478463479263206e-14,
+        "threshold": 1e-08,
+        "note": "hand-written rmatvec, 5 probes per arm",
+        "run_id": "G1_20260825T003627Z_2ba66f02",
+        "recorded_at": "2026-08-25T00:36:29+00:00"
+      }
+    },
+    "G1_identifiability_row_keys": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "24 canonical rows; missing []; extra []",
+      "run_id": "G1_20260825T003703Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:37:05+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0,
+        "threshold": 0,
+        "note": "24 canonical rows; missing []; extra []",
+        "run_id": "G1_20260825T003627Z_2ba66f02",
+        "recorded_at": "2026-08-25T00:36:29+00:00"
+      }
+    },
+    "G1_identifiability_ranks_exact": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "largest absolute integer-rank disagreement across 24 rows x 2 rank columns",
+      "run_id": "G1_20260825T003703Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:37:05+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0,
+        "threshold": 0,
+        "note": "largest absolute integer-rank disagreement across 24 rows x 2 rank columns",
+        "run_id": "G1_20260825T003627Z_2ba66f02",
+        "recorded_at": "2026-08-25T00:36:29+00:00"
+      }
+    },
+    "G1_identifiability_floats_relative": {
+      "status": "PASS",
+      "measured": 1.4144390676433136e-13,
+      "threshold": 1e-08,
+      "note": "worst at prior_subspace_smallest_singular_value @ diverse | resolved | 2",
+      "run_id": "G1_20260825T003703Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:37:05+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 1.4144390676433136e-13,
+        "threshold": 1e-08,
+        "note": "worst at prior_subspace_smallest_singular_value @ diverse | resolved | 2",
+        "run_id": "G1_20260825T003627Z_2ba66f02",
+        "recorded_at": "2026-08-25T00:36:29+00:00"
+      }
+    },
+    "G1_reconstruction_row_keys": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "12 canonical rows; missing []; extra []",
+      "run_id": "G1_20260825T003703Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:37:05+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0,
+        "threshold": 0,
+        "note": "12 canonical rows; missing []; extra []",
+        "run_id": "G1_20260825T003627Z_2ba66f02",
+        "recorded_at": "2026-08-25T00:36:29+00:00"
+      }
+    },
+    "G1_reconstruction_ranks_exact": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "largest absolute integer-rank disagreement across 12 rows x 0 rank columns",
+      "run_id": "G1_20260825T003703Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:37:05+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0,
+        "threshold": 0,
+        "note": "largest absolute integer-rank disagreement across 12 rows x 0 rank columns",
+        "run_id": "G1_20260825T003627Z_2ba66f02",
+        "recorded_at": "2026-08-25T00:36:29+00:00"
+      }
+    },
+    "G1_reconstruction_floats_relative": {
+      "status": "FAIL",
+      "measured": 1.313217244585519e-08,
+      "threshold": 1e-08,
+      "note": "worst at prior_subspace_oracle_ridge_error @ resolved | 0.0",
+      "run_id": "G1_20260825T003703Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:37:05+00:00",
+      "superseded": {
+        "status": "FAIL",
+        "measured": 1.313217244585519e-08,
+        "threshold": 1e-08,
+        "note": "worst at prior_subspace_oracle_ridge_error @ resolved | 0.0",
+        "run_id": "G1_20260825T003627Z_2ba66f02",
+        "recorded_at": "2026-08-25T00:36:29+00:00"
+      }
+    },
+    "G1_absolute_agreement": {
+      "status": "FAIL",
+      "measured": 4.118927421359331e-14,
+      "threshold": 1e-15,
+      "note": "largest absolute disagreement across every float cell in both canonical tables, = 185.500 x double epsilon. Threshold declared as one order of magnitude above double epsilon, not fitted to the observed value.",
+      "run_id": "G1_20260825T003627Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:36:29+00:00"
+    },
+    "G1_reproduction_relative_signal_bearing": {
+      "status": "PASS",
+      "measured": 1.484520372463616e-13,
+      "threshold": 1e-08,
+      "note": "the ruled relative criterion over every cell whose exact value is not structurally zero. Excluded by construction (noise-free arm, operator injective on the subspace, so the exact error is 0 and the reference value is ridge round-off): ['resolved | 0.0 :: prior_subspace_oracle_ridge_error']",
+      "run_id": "G1_20260825T003703Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:37:05+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 1.484520372463616e-13,
+        "threshold": 1e-08,
+        "note": "the ruled relative criterion over every cell whose exact value is not structurally zero. Excluded by construction (noise-free arm, operator injective on the subspace, so the exact error is 0 and the reference value is ridge round-off): ['resolved | 0.0 :: prior_subspace_oracle_ridge_error']",
+        "run_id": "G1_20260825T003627Z_2ba66f02",
+        "recorded_at": "2026-08-25T00:36:29+00:00"
+      }
+    },
+    "G1_exact_zero_cell_absolute": {
+      "status": "PASS",
+      "measured": 7.323711456359121e-18,
+      "threshold": 1e-15,
+      "note": "absolute disagreement on the cells whose exact value is structurally zero, = 0.0330 x double epsilon. Cells: ['resolved | 0.0 :: prior_subspace_oracle_ridge_error']",
+      "run_id": "G1_20260825T003703Z_2ba66f02",
+      "recorded_at": "2026-08-25T00:37:05+00:00"
     }
   },
-  "updated_at": "2026-08-24T22:47:03+00:00",
+  "updated_at": "2026-08-25T00:37:05+00:00",
   "summary": {
-    "PASS": 17,
-    "FAIL": 0,
-    "NOT_RUN": 2
+    "PASS": 27,
+    "FAIL": 3,
+    "NOT_RUN": 1
   }
 }

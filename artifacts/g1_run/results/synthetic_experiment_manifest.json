@@ -1,0 +1,22 @@
+{
+  "paper1": {
+    "seed": 42,
+    "history_samples": 44,
+    "observer_samples": 24,
+    "delay_samples_per_order": 4,
+    "spatial_source_modes": 6,
+    "measurements_per_order_time": 2,
+    "max_order": 5,
+    "attenuation_gamma": 0.6,
+    "prior_dimension": 24
+  },
+  "paper2": {
+    "threshold_snr": 5.0,
+    "monte_carlo_gamma": 0.7,
+    "monte_carlo_snr0": 10000.0,
+    "monte_carlo_trials_per_order": 200000,
+    "illustrative_baseline_ratio": 10000.0,
+    "illustrative_geometry_order_ceiling": 18,
+    "illustrative_window_order_ceiling": 15
+  }
+}

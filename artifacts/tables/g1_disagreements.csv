@@ -1,0 +1,2 @@
+table,column,key,reference,independent,relative_error
+reconstruction,prior_subspace_oracle_ridge_error,resolved | 0.0,5.576922927549895e-10,5.576923000787009e-10,1.313217244585519e-08

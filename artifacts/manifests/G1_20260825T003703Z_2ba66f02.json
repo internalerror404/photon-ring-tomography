@@ -1,0 +1,192 @@
+{
+  "run_id": "G1_20260825T003703Z_2ba66f02",
+  "experiment_id": "G1",
+  "git_commit": "d8fd5ca840268538493733211b319a458fb9b416",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "generator_seed": 42,
+    "reconstruction_seed": 123
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/archive/v0.1/generate_synthetic_results.py",
+      "sha256": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e0_reproduction_independent.parquet",
+      "sha256": "946e2320984029f074fa184acfdbf5776162056e2830c74e0936910d23765dad"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e0_reconstruction_independent.parquet",
+      "sha256": "4c576d5d66889ee61b653d338700939c4f0179925de9658e06725883841f8d7a"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/g1_disagreements.parquet",
+      "sha256": "428b18d251b0b1d1b76175396a65d37b0f593f36a6e03c064d2334caf8c429cb"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/g1_identifiability_comparison.parquet",
+      "sha256": "3c895653930c0c308b55401c43ad66be6a6cef113224befa7bdf76b980c8bd15"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/g1_run/results/paper1_identifiability.csv",
+      "sha256": "812b9d952ce8f3b2def420bf88ab3a0ed082b032ab2ee1e5cb08da7bd786ae43"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/g1_run/results/paper1_reconstruction.csv",
+      "sha256": "6224ed15855a3257e19b76404568d2f53c430502d06ab3880b1057b198334f4c"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/g1_run/results/paper2_depth_law.csv",
+      "sha256": "e14b469031a1566038700abebf9ca14094772febdbf891f8c085519d28db9bd6"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/g1_run/results/paper2_monte_carlo_rmse.csv",
+      "sha256": "9bfd8400ee33e9ba4a828fbeedfa611a58f21e907e33f57871b24fd42b7dbe53"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/g1_run/results/paper2_prior_information.csv",
+      "sha256": "678f55645342a0c828266d3ec8527f0329e2e2a0a59ae93a864d775a6f0cf79a"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/g1_run/G1_VERDICT.json",
+      "sha256": "e00655981ae721f6da7c4cd507be6672f47b2acc116d4d233e22388461282656"
+    }
+  ],
+  "gate_status": {
+    "G1_generator_sha256": {
+      "status": "PASS",
+      "measured": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
+      "threshold": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
+      "note": "archived generator is byte-for-byte the supplied artifact"
+    },
+    "G1_matrixfree_dense_parity": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "matrix-free operator vs original-style dense assembly, all 24 arms"
+    },
+    "G1_matrixfree_adjoint": {
+      "status": "PASS",
+      "measured": 1.1478463479263206e-14,
+      "threshold": 1e-08,
+      "note": "hand-written rmatvec, 5 probes per arm"
+    },
+    "G1_identifiability_row_keys": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "24 canonical rows; missing []; extra []"
+    },
+    "G1_identifiability_ranks_exact": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "largest absolute integer-rank disagreement across 24 rows x 2 rank columns"
+    },
+    "G1_identifiability_floats_relative": {
+      "status": "PASS",
+      "measured": 1.4144390676433136e-13,
+      "threshold": 1e-08,
+      "note": "worst at prior_subspace_smallest_singular_value @ diverse | resolved | 2"
+    },
+    "G1_reconstruction_row_keys": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "12 canonical rows; missing []; extra []"
+    },
+    "G1_reconstruction_ranks_exact": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "largest absolute integer-rank disagreement across 12 rows x 0 rank columns"
+    },
+    "G1_reconstruction_floats_relative": {
+      "status": "FAIL",
+      "measured": 1.313217244585519e-08,
+      "threshold": 1e-08,
+      "note": "worst at prior_subspace_oracle_ridge_error @ resolved | 0.0"
+    },
+    "G1_exact_zero_cell_absolute": {
+      "status": "PASS",
+      "measured": 7.323711456359121e-18,
+      "threshold": 1e-15,
+      "note": "absolute disagreement on the cells whose exact value is structurally zero, = 0.0330 x double epsilon. Cells: ['resolved | 0.0 :: prior_subspace_oracle_ridge_error']"
+    },
+    "G1_reproduction_relative_signal_bearing": {
+      "status": "PASS",
+      "measured": 1.484520372463616e-13,
+      "threshold": 1e-08,
+      "note": "the ruled relative criterion over every cell whose exact value is not structurally zero. Excluded by construction (noise-free arm, operator injective on the subspace, so the exact error is 0 and the reference value is ridge round-off): ['resolved | 0.0 :: prior_subspace_oracle_ridge_error']"
+    },
+    "G1_v01_reproduction_relative": {
+      "status": "FAIL",
+      "measured": 1.313217244585519e-08,
+      "threshold": 1e-08,
+      "note": "worst relative disagreement over both canonical tables; integer ranks disagree in 0 places"
+    }
+  },
+  "started_at": "2026-08-25T00:37:03+00:00",
+  "finished_at": "2026-08-25T00:37:05+00:00",
+  "peak_rss_mb": 601.171875,
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.11.1",
+    "scikit-learn": "1.9.0",
+    "scikit-image": "0.26.0",
+    "pyyaml": "6.0.1",
+    "torch": "2.13.0",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 0.6009988784790039,
+  "registered_constants": {
+    "W": 24,
+    "D": 4,
+    "NMAX": 5,
+    "H": 44,
+    "K": 6,
+    "M": 2,
+    "GAMMA": 0.6,
+    "RT": 8,
+    "RS": 3,
+    "seed": 42
+  }
+}

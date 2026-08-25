@@ -1,166 +1,118 @@
-# TASK 1 — P1-E0 TOY REPRODUCTION AND INDEPENDENT AUDIT
+# TASK 1 — P1-E0 / GATE G1 CANONICAL REPRODUCTION
 
 ## Identity
 - branch: `claude/experiment-review-mac-rthiz1`
-- commit: `72f7c8807752dd1219fe3c17fae5153252422752`  (source tree dirty: False)
+- commit: `d8fd5ca840268538493733211b319a458fb9b416`  (source tree dirty: False)
 - config: `paper1_experiment_registry_v0.2.yaml`  sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - environment sha256: `2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd`
 - hardware: Linux x86_64, 4 cores, 15.7 GiB
 - python 3.11.15; numpy 2.4.6, scipy 1.17.1, torch 2.13.0, aart 2.1.10
-- run_id: `E0_20260824T224151Z_2ba66f02`
+- run_id: `G1_20260825T003703Z_2ba66f02`
+- generator sha256: `9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51` (matches the supplied artifact)
 
 ## Mechanical gate result
-**STOP on G1 / PASS on everything E0 can execute without the original.**
+**BLOCKED_PENDING_TOLERANCE_RULING**
 
-G1 is the gate E0 exists to run, and it is recorded `NOT_RUN`. The v0.1
-generator and the v0.1 manuscript are not present in this session, so there is
-no original output to compare the reimplementation against. No substitute
-number is reported in its place, and no claim of reproduction is made.
+All 48 integer rank comparisons agree exactly. Every signal-bearing float
+agrees to **1.485e-13**, five orders
+inside the 1e-8 criterion. One cell of 24 exceeds the ruled relative criterion
+at **1.313e-08**, and it is the one cell where a
+relative criterion is not well posed.
 
-Per the protocol's own rule ("Failure blocks all later phases"), the physical
-Kerr phases E3 and beyond are blocked on the v0.1 generator arriving. The
-mathematical phases E1 and E2 do not depend on it and proceed.
+## What was executed
 
-## Inputs
-- registered symbols: `{'H': 44, 'K': 6, 'W': 24, 'M': 2, 'N_max': 5, 'D': 4, 'Gamma': 0.6, 'RT': 8, 'RS': 3, 'restricted_dim': 24}`
-- operator seed: 42
+1. The supplied generator was hashed, matched, and copied byte-for-byte to
+   `archive/v0.1/generate_synthetic_results.py`. It was **not** edited,
+   reformatted, import-wrapped, or parameterized.
+2. It was executed unmodified in an isolated output directory.
+3. An independent matrix-free reimplementation
+   (`src/phrt/operators/v01_toy.py`) was compared against its outputs.
+
+### Reference-execution defect, resolved without touching the source
+
+The generator aborts under this session's default **pandas 3.0.5** at line 124:
+
+```text
+vals = d.prior_subspace_smallest_singular_value.to_numpy()
+vals[vals <= 0] = np.nan
+ValueError: assignment destination is read-only
+```
+
+Under copy-on-write, `DataFrame.to_numpy()` returns a read-only array. This is
+an environment incompatibility in a **figure** block, not a defect in the
+science, and it occurs after `paper1_identifiability.csv` is written.
+
+The source was not patched. A pinned interpreter matching the generator's
+expectations was supplied instead — numpy 2.2.6, pandas 2.2.3, matplotlib
+3.10.9 — under which it runs to completion. The archived source hash is
+unchanged.
 
 ## Results
 
-### Symbol pinning
+### Canonical identifiability table at N = 5
 
-Four of the seven registered symbols are pinned by an exact arithmetic identity:
-
-> **H == W + N_max * D** — 44 == 24 + 5*4 — holds: **True**
-
-The deepest order's window ends exactly at the end of the history, so the
-registered history length is precisely what the order stack consumes. Nothing
-is truncated and nothing is padded. This fixes H, W, N_max and D.
-
-The remaining pair (K, M) is **not** pinned by the registered list. The two
-readings are not equivalent, and only one of them yields a usable experiment.
-
-#### Reading A — K = 6 screen samples, M = 2 source-plane cells
-
-| arm | data dim | full rank / source dim | restricted rank / dim | restricted sigma_min | restricted kappa+ |
-|---|---:|---:|---:|---:|---:|
-| `resolved_identical` | 864 | 88 / 88 | NOT CONSTRUCTIBLE | – | – |
-| `resolved_diverse` | 864 | 88 / 88 | NOT CONSTRUCTIBLE | – | – |
-| `unresolved_diverse` | 144 | 48 / 88 | NOT CONSTRUCTIBLE | – | – |
-
-Reading A is rejected on three independent grounds:
-
-1. the three registered maximum-order rows are **not distinct** — two of them
-   collapse to the same rank, so a v0.1 table with three separate rows could
-   not have been produced this way;
-2. the resolved arms are full rank at 88/88, making the null-space experiment
-   vacuous — there is nothing to be identifiable *about*;
-3. the registered 24-dimensional smooth restricted model **cannot be built at
-   all**: a separable class over 2 source cells admits at most 2 spatial modes,
-   so 4 x 6 = 24 does not exist.
-
-#### Reading B — K = 6 source-plane cells, M = 2 screen channels
-
-| arm | data dim | full rank / source dim | restricted rank / dim | restricted sigma_min | restricted kappa+ |
-|---|---:|---:|---:|---:|---:|
-| `resolved_identical` | 288 | 88 / 264 | 16 / 24 | 6.0696e-02 | 2.0623e+01 |
-| `resolved_diverse` | 288 | 216 / 264 | 24 / 24 | 3.0941e-02 | 4.2195e+01 |
-| `unresolved_diverse` | 48 | 48 / 264 | 23 / 24 | 6.9092e-08 | 1.2461e+07 |
-
-Reading B produces three distinct rows, a non-trivial null space in every arm,
-and a 24-dimensional smooth class that exists exactly (4 spatial x 6 temporal).
-It is adopted as the operative reading and is flagged as an inference, not a
-fact: it is confirmed or refuted the moment the v0.1 generator arrives.
-
-### What the three rows show
-
-Under reading B the registered rows separate the paper's own claim hierarchy:
-
-- `resolved_identical` — delay diversity alone. Restricted rank 12 of 24: half
-  the smooth class is invisible however much the data are collected.
-- `resolved_diverse` — delay plus spatial diversity. Restricted rank 24 of 24,
-  a strict **C1 structural gain**: 12 directions that no amount of order-zero
-  data could constrain become identifiable.
-- `unresolved_diverse` — the same physics, order labels destroyed. Restricted
-  rank 22 of 24 but restricted sigma_min 1.28e-07 and kappa+ 1.68e+07. This is
-  the distinction the paper turns on: the collapse is **not** mainly a rank
-  loss, it is a conditioning catastrophe. Reporting rank 22 alone would read as
-  "almost everything is still visible", which is false in any operational sense.
-
-Note that `resolved_identical` has a *larger* restricted sigma_min (7.60e-02)
-than `resolved_diverse` (9.88e-03). These are not comparable as quality scores:
-they are minima over supports of different size (12 versus 24). Spatial
-diversity converts twelve strictly invisible directions into visible but
-weakly-constrained ones. That is a gain in identifiability bought at a cost in
-conditioning, and it must be reported as both.
-
-### Reconstruction diagnostics
-
-Median NRMSE on the 24-dimensional smooth class, 8 registered `test_id`
-sources, ridge with three hyperparameter rules:
-
-| arm | SNR | discrepancy | gcv | oracle |
+| arm | rank (ref / independent) | restricted rank (ref / independent) | restricted sigma_min (ref) | (independent) |
 |---|---:|---:|---:|---:|
-| `resolved_diverse` | noise-free | – | 0.00000 | 0.00000 |
-| `resolved_diverse` | 10 | 0.50247 | 0.44871 | 0.42660 |
-| `resolved_diverse` | 100 | 0.14978 | 0.09368 | 0.07588 |
-| `resolved_identical` | noise-free | – | 0.43284 | 0.43284 |
-| `resolved_identical` | 10 | 0.61111 | 0.58275 | 0.58247 |
-| `resolved_identical` | 100 | 0.45091 | 0.43866 | 0.43488 |
-| `unresolved_diverse` | noise-free | – | 0.25567 | 0.25567 |
-| `unresolved_diverse` | 10 | 0.80136 | 0.81368 | 0.79735 |
-| `unresolved_diverse` | 100 | 0.68888 | 0.67586 | 0.67167 |
+| `identical` / `resolved` | 88 / 88 | 16 / 16 | 0.000000e+00 | 0.000000e+00 |
+| `identical` / `unresolved` | 48 / 48 | 16 / 16 | 0.000000e+00 | 0.000000e+00 |
+| `diverse` / `resolved` | 216 / 216 | 24 / 24 | 1.876416e-02 | 1.876416e-02 |
+| `diverse` / `unresolved` | 48 / 48 | 23 / 23 | 0.000000e+00 | 0.000000e+00 |
 
-Median error of the **null component** of the same reconstructions:
+Every rank matches. Note `prior_subspace_rank = 16` for the identical arm: that
+is exactly the analytic cap this repository derived before the generator
+arrived, **rank(P) x RT = 2 x 8 = 16**, and it holds at every N in the
+reference table.
 
-| arm | SNR | discrepancy | gcv | oracle |
-|---|---:|---:|---:|---:|
-| `resolved_diverse` | noise-free | – | 0.00000 | 0.00000 |
-| `resolved_diverse` | 10 | 0.00000 | 0.00000 | 0.00000 |
-| `resolved_diverse` | 100 | 0.00000 | 0.00000 | 0.00000 |
-| `resolved_identical` | noise-free | – | 0.72100 | 0.72100 |
-| `resolved_identical` | 10 | 0.72100 | 0.72100 | 0.72100 |
-| `resolved_identical` | 100 | 0.72100 | 0.72100 | 0.68700 |
-| `unresolved_diverse` | noise-free | – | 0.17275 | 0.17275 |
-| `unresolved_diverse` | 10 | 0.17276 | 0.17276 | 0.17276 |
-| `unresolved_diverse` | 100 | 0.17276 | 0.17276 | 0.17276 |
+The independent implementation reaches these numbers by a different route: a
+matrix-free operator with a hand-written adjoint, not the original's dense
+row-assembly loop. Parity between the two constructions is exact (0.0) and the
+adjoint identity holds to 1.1e-14.
 
-In the two rank-deficient arms the null-component error is invariant across
-every *deployable* rule and every SNR — 0.8014 for `resolved_identical` and
-0.5250 for `unresolved_diverse`, identical from noise-free through SNR 10 to
-SNR 100. That is the E0 result worth carrying into the manuscript: the
-unidentified component is not estimated badly, it is not estimated at all.
-Whatever appears there was chosen by the regulariser, and adding photons does
-not change it.
+### The one exceedance
 
-There is exactly one exception in the table, and it is diagnostic rather than
-contradictory: `resolved_identical` at SNR 100 under the **oracle** rule reads
-0.76804 instead of 0.80140. The oracle rule selects lambda by looking at the
-truth, so it can pull the regularised solution slightly toward the true null
-component. No rule that lacks the answer can do this. The exception is
-therefore a direct measurement of how much of an oracle-tuned result comes from
-the oracle rather than from the data, and it is the reason the oracle curve is
-reported only as a ceiling.
+| | |
+|---|---|
+| cell | `resolved`, `relative_noise = 0.0`, `prior_subspace_oracle_ridge_error` |
+| reference | `5.57692292754989478e-10` |
+| independent | `5.57692300078700935e-10` |
+| absolute difference | **7.324e-18** |
+| in machine epsilon | **0.0330 x** |
+| relative difference | 1.313e-08 |
 
-`resolved_diverse` reaches exactly 0.0 null error because its restricted
-operator has no null space to begin with.
+This is the noise-free arm of an operator that is injective on the
+24-dimensional subspace. Its exact reconstruction error is **zero**. Both
+numbers are therefore pure Tikhonov round-off at lambda = 1e-12, and their
+ratio measures nothing: two correct implementations differ in the last bits of
+a quantity whose true value is 0, and a relative test divides by that noise.
 
-The oracle-tuned curve is never beaten by a deployable rule
-(`E0_oracle_is_upper_bound`, measured 0.0), which is the registered expectation.
+The two implementations agree to **three hundredths of one machine epsilon**.
 
 ## Diagnostics
 | gate | status | measured | threshold | note |
 |---|---|---|---|---|
-| G1_v01_reproduction_relative | **NOT_RUN** | - | 1e-08 | v0.1 generator and v0.1 manuscript absent from this session; no original output exists to compare against. The independent reimplementation ran and is reported, but agreement with the original is untested and is NOT claimed. |
-| G2_dense_operator_relative | **PASS** | 0 | 1e-10 |  |
-| G3_adjoint_relative | **PASS** | 2.91588e-14 | 1e-08 | worst of 20 probes, seed 42 |
-| G4_order_collapse_relative | **PASS** | 0 | 1e-10 |  |
-| G5_kernel_normalized_residual | **PASS** | 5.51347e-17 | 1e-08 | null dim 48, source moved by 0.064 relative |
-| G6_monotonicity_relative_negative_eigenvalue | **PASS** | 1.67537e-16 | 1e-10 | min relative increment eigenvalue per order: [-1.68e-16, -4.9e-17, -5.9e-17, -3.7e-17, -2e-17] |
-| G9_source_split_disjoint | **PASS** | 0 | 0 | all namespaces disjoint |
-| G13_replay | **PASS** | 0 | 0 | 3 builds compared |
-| G11_cpu_mps_inference_relative | **NOT_RUN** | - | 0.0001 | no MPS device on this host; see protocol_deviations D2_no_mps |
-| E0_oracle_is_upper_bound | **PASS** | 0 | 1e-12 | max amount by which a deployable rule beat the oracle-tuned curve; must be non-positive up to rounding |
+| G1_generator_sha256 | **PASS** | 9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51 | 9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51 | archived generator is byte-for-byte the supplied artifact |
+| G1_matrixfree_dense_parity | **PASS** | 0 | 1e-10 | matrix-free operator vs original-style dense assembly, all 24 arms |
+| G1_matrixfree_adjoint | **PASS** | 1.14785e-14 | 1e-08 | hand-written rmatvec, 5 probes per arm |
+| G1_identifiability_row_keys | **PASS** | 0 | 0 | 24 canonical rows; missing []; extra [] |
+| G1_identifiability_ranks_exact | **PASS** | 0 | 0 | largest absolute integer-rank disagreement across 24 rows x 2 rank columns |
+| G1_identifiability_floats_relative | **PASS** | 1.41444e-13 | 1e-08 | worst at prior_subspace_smallest_singular_value @ diverse | resolved | 2 |
+| G1_reconstruction_row_keys | **PASS** | 0 | 0 | 12 canonical rows; missing []; extra [] |
+| G1_reconstruction_floats_relative | **FAIL** | 1.31322e-08 | 1e-08 | worst at prior_subspace_oracle_ridge_error @ resolved | 0.0 |
+| G1_exact_zero_cell_absolute | **PASS** | 7.32371e-18 | 1e-15 | absolute disagreement on the cells whose exact value is structurally zero, = 0.0330 x double epsilon. Cells: ['resolved | 0.0 :: prior_subspace_oracle_ridge_error'] |
+| G1_reproduction_relative_signal_bearing | **PASS** | 1.48452e-13 | 1e-08 | the ruled relative criterion over every cell whose exact value is not structurally zero. Excluded by construction (noise-free arm, operator injective on the subspace, so the exact error is 0 and the reference value is ridge round-off): ['resolved | 0.0 :: prior_subspace_oracle_ridge_error'] |
+| G1_v01_reproduction_relative | **FAIL** | 1.31322e-08 | 1e-08 | worst relative disagreement over both canonical tables; integer ranks disagree in 0 places |
+
+The ruled gate `G1_v01_reproduction_relative` is recorded **FAIL**. Its
+tolerance was not loosened after the failure was seen, and no gate was
+retrofitted to convert it into a pass. Two diagnostics were added *beside* it:
+the relative criterion over cells whose exact value is not structurally zero,
+and absolute agreement on the cell where absolute is the only meaningful
+measure. Both pass with large margins.
+
+An earlier revision of this run declared a single global absolute tolerance
+across all float cells. That was ill-posed — the cells span ten orders of
+magnitude, so one absolute threshold is simultaneously too tight and too loose
+— and it was replaced by the targeted measure above.
 
 ## Deviations
 **D1_platform** — registered: macos_native (execution_target in registry); actual: Linux x86_64.
@@ -171,28 +123,40 @@ The oracle-tuned curve is never beaten by a deployable rule
 
   Effect: Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate.
 
-**D3_missing_v01_generator** — registered: run the supplied v0.1 generator
-unchanged and compare. Actual: neither the generator nor the v0.1 manuscript is
-present in this session.
+**REFERENCE_EXECUTION_ENVIRONMENT** — the generator requires pandas < 3.0. A
+pinned venv was supplied rather than editing the source. Recorded in
+`artifacts/g1_run/G1_VERDICT.json`.
 
-  Effect: G1 is NOT_RUN. The reimplementation is reported on its own terms.
-  The (K, M) reading is an inference from three consistency arguments, not a
-  reproduction. Physical Kerr claims stay blocked until G1 can run.
+**MISSING_REFERENCE_CSVS** — the ruling's step 6 compares against
+`reference_results/paper1_identifiability.csv` and
+`paper1_reconstruction.csv`, shipped in the canonical ZIP. Only the `.py`
+arrived; the ZIP and `.txt` did not. The comparison therefore runs against
+outputs generated *on this host* from the hash-verified source, so the
+independent implementation is fully checked, but the cross-machine question —
+does the generator produce identical bytes on the reviewer's Mac and on this
+Linux host? — is **unperformed**. QR and SVD sign and ordering conventions can
+differ between LAPACK builds, so this is not a formality.
 
 ## Claim effect
-Permits: the operator library, the gate battery, and E1/E2 as mathematical
-computation.
-Demotes: nothing yet.
-Forbids: describing any of this as "reproducing v0.1"; describing reading B as
-established; any black-hole language whatsoever at this stage.
+Permits: nothing new yet. The reproduction is substantively complete but the
+registered criterion was not met as written, and the agent does not award
+itself the pass.
+Forbids: starting the E3 pilot, which the ruling authorizes only "once G1
+passes".
 
 ## Artifacts
-- `artifacts/tables/e0_reproduction.parquet` (+ `.csv`)
-- `artifacts/tables/e0_reconstruction.parquet` (+ `.csv`)
-- `artifacts/e0_reproduction/e0_metrics.json`
-- `artifacts/gates/correctness_gates.json`
-- `artifacts/manifests/E0_20260824T224151Z_2ba66f02.json`
+- `archive/v0.1/generate_synthetic_results.py` (byte-for-byte, sha256 verified)
+- `artifacts/g1_run/results/*.csv`, `artifacts/g1_run/G1_VERDICT.json`
+- `artifacts/tables/g1_identifiability_comparison.parquet`
+- `artifacts/tables/e0_reproduction_independent.parquet`
+- `artifacts/tables/g1_disagreements.parquet`
 
 ## Next authorized step
-P3 — E1 structured factorial and E2 null-mode atlas. (P2, the operator library
-and its gates, is complete and is exercised by 73 passing tests.)
+A reviewer ruling on one question: does the 1e-8 relative criterion carry an
+absolute floor for cells whose exact value is structurally zero? If yes, G1 is
+a pass on the evidence already produced and the E3 pilot is authorized. If no,
+G1 stands FAIL and the deficiency is a comparison convention, not a defect in
+either implementation.
+
+Also outstanding: send the canonical ZIP so the cross-machine execution check
+can run.

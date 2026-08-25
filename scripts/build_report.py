@@ -347,7 +347,7 @@ established; any black-hole language whatsoever at this stage.
 P3 — E1 structured factorial and E2 null-mode atlas. (P2, the operator library
 and its gates, is complete and is exercised by 73 passing tests.)
 """
-    p = root / "artifacts" / "reports" / "P1_E0_REPRODUCTION.md"
+    p = root / "artifacts" / "reports" / "P1_E0_INDEPENDENT_IMPLEMENTATION.md"
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(body)
     return p
@@ -861,8 +861,175 @@ supplied.
     return p
 
 
+def g1_report() -> Path:
+    reg = load_registry()
+    root = repo_root()
+    v = json.loads((root / "artifacts" / "g1_run" / "G1_VERDICT.json").read_text())
+    ref = pd.read_csv(root / "artifacts" / "g1_run" / "results" / "paper1_identifiability.csv")
+    got = pd.read_parquet(root / "artifacts" / "tables" / "e0_reproduction_independent.parquet")
+    m = ref.merge(got, on=["spatial_channels", "readout", "max_order"],
+                  suffixes=("_ref", "_got"))
+    head = m[m.max_order == 5]
+    rows = ["| arm | rank (ref / independent) | restricted rank (ref / independent) | restricted sigma_min (ref) | (independent) |",
+            "|---|---:|---:|---:|---:|"]
+    for _, r in head.iterrows():
+        rows.append(f"| `{r.spatial_channels}` / `{r.readout}` | "
+                    f"{int(r.rank_ref)} / {int(r.rank_got)} | "
+                    f"{int(r.prior_subspace_rank_ref)} / {int(r.prior_subspace_rank_got)} | "
+                    f"{r.prior_subspace_smallest_singular_value_ref:.6e} | "
+                    f"{r.prior_subspace_smallest_singular_value_got:.6e} |")
+    head_txt = "\n".join(rows)
+    c = v["registered_constants"] if "registered_constants" in v else {}
+
+    body = f"""# TASK 1 — P1-E0 / GATE G1 CANONICAL REPRODUCTION
+
+## Identity
+{_identity_block(reg)}
+- run_id: `{v['run_id']}`
+- generator sha256: `{v['generator_sha256']}` (matches the supplied artifact)
+
+## Mechanical gate result
+**{v['verdict']}**
+
+All 48 integer rank comparisons agree exactly. Every signal-bearing float
+agrees to **{v['worst_relative_disagreement_signal_bearing']:.3e}**, five orders
+inside the 1e-8 criterion. One cell of 24 exceeds the ruled relative criterion
+at **{v['worst_relative_disagreement']:.3e}**, and it is the one cell where a
+relative criterion is not well posed.
+
+## What was executed
+
+1. The supplied generator was hashed, matched, and copied byte-for-byte to
+   `archive/v0.1/generate_synthetic_results.py`. It was **not** edited,
+   reformatted, import-wrapped, or parameterized.
+2. It was executed unmodified in an isolated output directory.
+3. An independent matrix-free reimplementation
+   (`src/phrt/operators/v01_toy.py`) was compared against its outputs.
+
+### Reference-execution defect, resolved without touching the source
+
+The generator aborts under this session's default **pandas 3.0.5** at line 124:
+
+```text
+vals = d.prior_subspace_smallest_singular_value.to_numpy()
+vals[vals <= 0] = np.nan
+ValueError: assignment destination is read-only
+```
+
+Under copy-on-write, `DataFrame.to_numpy()` returns a read-only array. This is
+an environment incompatibility in a **figure** block, not a defect in the
+science, and it occurs after `paper1_identifiability.csv` is written.
+
+The source was not patched. A pinned interpreter matching the generator's
+expectations was supplied instead — numpy 2.2.6, pandas 2.2.3, matplotlib
+3.10.9 — under which it runs to completion. The archived source hash is
+unchanged.
+
+## Results
+
+### Canonical identifiability table at N = 5
+
+{head_txt}
+
+Every rank matches. Note `prior_subspace_rank = 16` for the identical arm: that
+is exactly the analytic cap this repository derived before the generator
+arrived, **rank(P) x RT = 2 x 8 = 16**, and it holds at every N in the
+reference table.
+
+The independent implementation reaches these numbers by a different route: a
+matrix-free operator with a hand-written adjoint, not the original's dense
+row-assembly loop. Parity between the two constructions is exact (0.0) and the
+adjoint identity holds to 1.1e-14.
+
+### The one exceedance
+
+| | |
+|---|---|
+| cell | `resolved`, `relative_noise = 0.0`, `prior_subspace_oracle_ridge_error` |
+| reference | `{5.57692292754989478e-10:.17e}` |
+| independent | `{5.57692300078700935e-10:.17e}` |
+| absolute difference | **{v['exact_zero_cell_absolute_disagreement']:.3e}** |
+| in machine epsilon | **{v['exact_zero_cell_absolute_in_machine_epsilon']:.4f} x** |
+| relative difference | {v['worst_relative_disagreement']:.3e} |
+
+This is the noise-free arm of an operator that is injective on the
+24-dimensional subspace. Its exact reconstruction error is **zero**. Both
+numbers are therefore pure Tikhonov round-off at lambda = 1e-12, and their
+ratio measures nothing: two correct implementations differ in the last bits of
+a quantity whose true value is 0, and a relative test divides by that noise.
+
+The two implementations agree to **three hundredths of one machine epsilon**.
+
+## Diagnostics
+{_gate_table(['G1_generator_sha256', 'G1_matrixfree_dense_parity',
+              'G1_matrixfree_adjoint', 'G1_identifiability_row_keys',
+              'G1_identifiability_ranks_exact', 'G1_identifiability_floats_relative',
+              'G1_reconstruction_row_keys', 'G1_reconstruction_floats_relative',
+              'G1_exact_zero_cell_absolute',
+              'G1_reproduction_relative_signal_bearing',
+              'G1_v01_reproduction_relative'])}
+
+The ruled gate `G1_v01_reproduction_relative` is recorded **FAIL**. Its
+tolerance was not loosened after the failure was seen, and no gate was
+retrofitted to convert it into a pass. Two diagnostics were added *beside* it:
+the relative criterion over cells whose exact value is not structurally zero,
+and absolute agreement on the cell where absolute is the only meaningful
+measure. Both pass with large margins.
+
+An earlier revision of this run declared a single global absolute tolerance
+across all float cells. That was ill-posed — the cells span ten orders of
+magnitude, so one absolute threshold is simultaneously too tight and too loose
+— and it was replaced by the targeted measure above.
+
+## Deviations
+{_deviation_block()}
+
+**REFERENCE_EXECUTION_ENVIRONMENT** — the generator requires pandas < 3.0. A
+pinned venv was supplied rather than editing the source. Recorded in
+`artifacts/g1_run/G1_VERDICT.json`.
+
+**MISSING_REFERENCE_CSVS** — the ruling's step 6 compares against
+`reference_results/paper1_identifiability.csv` and
+`paper1_reconstruction.csv`, shipped in the canonical ZIP. Only the `.py`
+arrived; the ZIP and `.txt` did not. The comparison therefore runs against
+outputs generated *on this host* from the hash-verified source, so the
+independent implementation is fully checked, but the cross-machine question —
+does the generator produce identical bytes on the reviewer's Mac and on this
+Linux host? — is **unperformed**. QR and SVD sign and ordering conventions can
+differ between LAPACK builds, so this is not a formality.
+
+## Claim effect
+Permits: nothing new yet. The reproduction is substantively complete but the
+registered criterion was not met as written, and the agent does not award
+itself the pass.
+Forbids: starting the E3 pilot, which the ruling authorizes only "once G1
+passes".
+
+## Artifacts
+- `archive/v0.1/generate_synthetic_results.py` (byte-for-byte, sha256 verified)
+- `artifacts/g1_run/results/*.csv`, `artifacts/g1_run/G1_VERDICT.json`
+- `artifacts/tables/g1_identifiability_comparison.parquet`
+- `artifacts/tables/e0_reproduction_independent.parquet`
+- `artifacts/tables/g1_disagreements.parquet`
+
+## Next authorized step
+A reviewer ruling on one question: does the 1e-8 relative criterion carry an
+absolute floor for cells whose exact value is structurally zero? If yes, G1 is
+a pass on the evidence already produced and the E3 pilot is authorized. If no,
+G1 stands FAIL and the deficiency is a comparison convention, not a defect in
+either implementation.
+
+Also outstanding: send the canonical ZIP so the cross-machine execution check
+can run.
+"""
+    p = root / "artifacts" / "reports" / "P1_E0_REPRODUCTION.md"
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(body)
+    return p
+
+
 REPORTS = {"task0": task0_report, "e0": e0_report, "e1e2": e1e2_report,
-           "amd001": amd001_report}
+           "amd001": amd001_report, "g1": g1_report}
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()

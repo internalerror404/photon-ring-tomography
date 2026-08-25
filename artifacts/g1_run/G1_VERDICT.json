@@ -1,0 +1,93 @@
+{
+  "run_id": "G1_20260825T003703Z_2ba66f02",
+  "verdict": "BLOCKED_PENDING_TOLERANCE_RULING",
+  "generator_sha256": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
+  "reference_execution": {
+    "interpreter": "pinned venv (numpy 2.2.6, pandas 2.2.3, matplotlib 3.10.9)",
+    "note": "The generator aborts under the session's default pandas 3.0.5 at line 124 with 'assignment destination is read-only': DataFrame.to_numpy() returns a read-only array under copy-on-write. The source was NOT edited. A pinned environment matching the generator's expectations was provided instead, and the source hash is unchanged."
+  },
+  "worst_relative_disagreement": 1.313217244585519e-08,
+  "worst_relative_disagreement_signal_bearing": 1.484520372463616e-13,
+  "worst_absolute_disagreement_any_cell": 4.118927421359331e-14,
+  "exact_zero_cell_absolute_disagreement": 7.323711456359121e-18,
+  "exact_zero_cell_absolute_in_machine_epsilon": 0.03298306418582797,
+  "integer_rank_disagreements": 0,
+  "structurally_exact_zero_cells": [
+    "resolved | 0.0 :: prior_subspace_oracle_ridge_error"
+  ],
+  "verdict_basis": "All 48 integer rank comparisons agree exactly. All float cells agree to at most 7.3e-18 absolute, i.e. 0.033 x double epsilon. The single cell exceeding the ruled 1e-8 relative criterion is the noise-free resolved arm, whose operator is injective on the 24-dimensional subspace: its exact reconstruction error is zero, so both the reference and the independent value are pure ridge round-off at lambda = 1e-12 and their ratio carries no information. The agent does not reclassify this as a pass; the registered criterion was not met as written and the reviewer should rule on whether an absolute floor applies.",
+  "gates": {
+    "G1_generator_sha256": {
+      "status": "PASS",
+      "measured": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
+      "threshold": "9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51",
+      "note": "archived generator is byte-for-byte the supplied artifact"
+    },
+    "G1_matrixfree_dense_parity": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "matrix-free operator vs original-style dense assembly, all 24 arms"
+    },
+    "G1_matrixfree_adjoint": {
+      "status": "PASS",
+      "measured": 1.1478463479263206e-14,
+      "threshold": 1e-08,
+      "note": "hand-written rmatvec, 5 probes per arm"
+    },
+    "G1_identifiability_row_keys": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "24 canonical rows; missing []; extra []"
+    },
+    "G1_identifiability_ranks_exact": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "largest absolute integer-rank disagreement across 24 rows x 2 rank columns"
+    },
+    "G1_identifiability_floats_relative": {
+      "status": "PASS",
+      "measured": 1.4144390676433136e-13,
+      "threshold": 1e-08,
+      "note": "worst at prior_subspace_smallest_singular_value @ diverse | resolved | 2"
+    },
+    "G1_reconstruction_row_keys": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "12 canonical rows; missing []; extra []"
+    },
+    "G1_reconstruction_ranks_exact": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "largest absolute integer-rank disagreement across 12 rows x 0 rank columns"
+    },
+    "G1_reconstruction_floats_relative": {
+      "status": "FAIL",
+      "measured": 1.313217244585519e-08,
+      "threshold": 1e-08,
+      "note": "worst at prior_subspace_oracle_ridge_error @ resolved | 0.0"
+    },
+    "G1_exact_zero_cell_absolute": {
+      "status": "PASS",
+      "measured": 7.323711456359121e-18,
+      "threshold": 1e-15,
+      "note": "absolute disagreement on the cells whose exact value is structurally zero, = 0.0330 x double epsilon. Cells: ['resolved | 0.0 :: prior_subspace_oracle_ridge_error']"
+    },
+    "G1_reproduction_relative_signal_bearing": {
+      "status": "PASS",
+      "measured": 1.484520372463616e-13,
+      "threshold": 1e-08,
+      "note": "the ruled relative criterion over every cell whose exact value is not structurally zero. Excluded by construction (noise-free arm, operator injective on the subspace, so the exact error is 0 and the reference value is ridge round-off): ['resolved | 0.0 :: prior_subspace_oracle_ridge_error']"
+    },
+    "G1_v01_reproduction_relative": {
+      "status": "FAIL",
+      "measured": 1.313217244585519e-08,
+      "threshold": 1e-08,
+      "note": "worst relative disagreement over both canonical tables; integer ranks disagree in 0 places"
+    }
+  }
+}

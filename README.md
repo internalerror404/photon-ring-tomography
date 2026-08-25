@@ -14,27 +14,33 @@ anywhere in this tree.
 | phase | state |
 |---|---|
 | P0 governance, environment lock, provenance | **done** |
-| P1 E0 toy reproduction | **partial — G1 blocked**, see below |
-| P2 matrix-free operator library + gates G2–G6, G9, G13 | **done**, 86 tests |
+| P1 E0 / G1 canonical reproduction | **BLOCKED_PENDING_TOLERANCE_RULING**, see below |
+| P2 matrix-free operator library + gates G2–G6, G9, G13 | **done**, 125 tests |
 | P3 E1 factorial + E2 mode atlas | **done** |
 | AMENDMENT_001 localized historical support | **done** |
 | P4+ physical Kerr (E3–E10) | blocked on G1 |
 
 ## Two live blockers
 
-**B1 — the v0.1 generator has still not arrived.** The reviewer ruling of the
-G1 unblock states that it is supplied, but no file accompanied the message and
-the session upload directory contains nothing newer than the environment YAMLs.
-Steps 1–5 of that ruling — import byte-for-byte under `archive/v0.1/`, run
-unmodified, compare against the canonical CSVs, require exact rank equality and
-1e-8 relative agreement, emit G1 — cannot start. Gate G1 remains `NOT_RUN`, not
-passed, and no reproduction is claimed. The physical Kerr phases stay blocked.
+**B1 — G1 is substantively reproduced but one cell misses the ruled criterion.**
+The generator arrived, hash-verified, and was run unmodified. All 48 integer
+rank comparisons agree exactly; every signal-bearing float agrees to 1.5e-13.
 
-The ruling did however pin `RT = 8` and `RS = 3`, and that settles the (K, M)
-ambiguity without the generator: a separable class with three spatial modes
-cannot be built over two source-plane cells, so `K = 6` counts source cells and
-`M = 2` counts screen channels. The previously inferred 4 x 6 class was wrong;
-everything has been regenerated against 3 x 8.
+One cell of 24 exceeds the 1e-8 relative criterion at 1.31e-8: the noise-free
+resolved arm, whose operator is injective on the subspace, so its exact
+reconstruction error is zero and both numbers are pure ridge round-off. The two
+implementations agree there to 7.3e-18 — 0.033 machine epsilon — but a relative
+test on a quantity whose true value is 0 divides by noise.
+
+The ruled tolerance was **not** loosened and no gate was retrofitted to convert
+the failure into a pass. Diagnostics were added beside it. The verdict is
+`BLOCKED_PENDING_TOLERANCE_RULING`: the agent does not award itself a pass the
+registered criterion does not give. E3 stays unauthorized.
+
+Two secondary findings: the generator aborts under pandas 3.x (copy-on-write
+makes `to_numpy()` read-only) and was run in a pinned venv rather than patched;
+and the canonical ZIP never arrived, so the *cross-machine* execution check is
+unperformed.
 
 **B2 — no independent geodesic tracer.** AART 2.1.10 installs and imports from
 PyPI, so the primary ray tracer is available. `kgeo` is not on PyPI, so the
