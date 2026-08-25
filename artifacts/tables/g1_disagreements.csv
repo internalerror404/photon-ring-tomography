@@ -1,3 +1,2 @@
 table,column,key,reference,candidate,residual,allowance,utilisation,kind
-crossmachine_identifiability,rank,identical | resolved | 5,89.0,88.0,,,,integer_rank
-crossmachine_identifiability,prior_subspace_smallest_singular_value,diverse | resolved | 5,0.0187641813545192,0.0187641625903567,1.87641625015722e-08,1.87651813545192e-10,99.99457051372033,float_cell
+none,none,none,0.0,0.0,0.0,0.0,0.0,none

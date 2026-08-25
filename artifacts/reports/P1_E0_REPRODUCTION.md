@@ -2,16 +2,16 @@
 
 ## Identity
 - branch: `claude/experiment-review-mac-rthiz1`
-- commit: `5abbb08a4e5801248764d1dd015786951c840d3c`  (source tree dirty: False)
+- commit: `a5f31a30bf96a7f5040f4adca711f32620e7d426`  (source tree dirty: False)
 - config: `paper1_experiment_registry_v0.2.yaml`  sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - environment sha256: `2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd`
 - hardware: Linux x86_64, 4 cores, 15.7 GiB
 - python 3.11.15; numpy 2.4.6, scipy 1.17.1, torch 2.13.0, aart 2.1.10
-- run_id: `G1_20260825T013544Z_2ba66f02`
+- run_id: `G1_20260825T050139Z_2ba66f02`
 - generator sha256: `9e93848f306c646a84da204c6b1be0508620f83ba860b7c8a51f94e039bf3d51` (matches the supplied artifact)
 
 ## Mechanical gate result
-**CROSS_MACHINE_REPRODUCTION_DEFECT** — E3 pilot **NOT_AUTHORIZED**
+**PASS** — E3 pilot **AUTHORIZED**
 
 Under the reviewer-adjudicated tolerance specification
 `RELATIVE_ONLY_NEAR_ZERO_DEFECT`:
@@ -20,7 +20,8 @@ Under the reviewer-adjudicated tolerance specification
   its original 1e-8 pure-relative tolerance;
 - `G1_v01_reproduction_mixed_tolerance` = **PASS**;
 - `G1_scientific_reproduction` = **PASS_WITH_NUMERICAL_QUALIFICATION**;
-- `G1_cross_machine_reference` = **FAIL**.
+- `G1_cross_machine_reference` = **PASS**;
+- E3 pilot = **AUTHORIZED**.
 
 Integer ranks, dimensions, row identities and arm labels agree exactly. Under
 the ruled criterion
@@ -126,7 +127,7 @@ orders of magnitude, so a ULP would mean something different in every row.
 | G1_v01_reproduction_relative | **FAIL** | FAIL_AS_WRITTEN | 1.31322e-08 | 1e-08 | pure relative criterion, preserved unaltered on the record. It is not well posed on a zero-limit, regularization-dominated cell, where both values are round-off residuals of a quantity whose limit is zero; superseded for adjudication by G1_v01_reproduction_mixed_tolerance. |
 | G1_v01_reproduction_mixed_tolerance | **PASS** | – | 0.000731963 | 1 | ruled criterion over every floating cell of both canonical tables, no exclusions. Worst cell uses 7.320e-04 of its allowance; worst residual 4.396e-17 = 0.1980 x unit-scale binary64 machine epsilon. Integer ranks disagree in 0 places. |
 | G1_scientific_reproduction | **PASS** | PASS_WITH_NUMERICAL_QUALIFICATION | PASS_WITH_NUMERICAL_QUALIFICATION | PASS_WITH_NUMERICAL_QUALIFICATION | all integer ranks, dimensions, row identities and arm labels exact; all floating cells within the ruled mixed criterion. The qualification is that one cell is zero-limit and regularization-dominated, so its agreement is established absolutely rather than relatively. |
-| G1_cross_machine_reference | **NOT_RUN** | – | - | 1 | the two standalone canonical CSVs were not supplied. The comparison harness is implemented and runs with --reference-dir; until it does, whether the generator emits identical values on the reviewer's machine and on this Linux host is untested. LAPACK QR and SVD sign and ordering conventions can differ between builds, and this generator's projections come directly from qr(). |
+| G1_cross_machine_reference | **PASS** | – | 0.000185076 | 1 | reviewer's canonical CSVs vs this host's execution of the hash-verified generator. Integer ranks disagree in 0 places. Tests whether LAPACK QR and SVD conventions differ between the two builds. |
 
 Retired entries, kept visible rather than deleted:
 
@@ -187,17 +188,32 @@ passes".
 - `artifacts/tables/e0_reproduction_independent.parquet`
 - `artifacts/tables/g1_disagreements.parquet`
 
+### Cross-machine reference
+
+The canonical CSVs arrived three independent ways — a self-verifying
+materializer script, direct CSV uploads, and a plain-text transcript — and all
+three are byte-identical to the supplied SHA-256 manifest. They are vendored at
+`archive/v0.1/reference/` so this comparison reproduces from the repository
+alone.
+
+| comparison | allowance used | ranks |
+|---|---:|---:|
+| canonical vs this host's generator run, identifiability | **0.000e+00** | exact |
+| canonical vs this host's generator run, reconstruction | 1.851e-04 | exact |
+| canonical vs the independent implementation, identifiability | 1.410e-05 | exact |
+
+The identifiability table is **bit-for-bit identical** between the reviewer's
+machine and this Linux host. Every rank, every singular value, every restricted
+value. The QR-convention contingency therefore does not arise: had LAPACK sign
+or ordering conventions differed between the builds, this is the table that
+would have shown it, and it shows nothing.
+
+Only the reconstruction table moves, by 1.851e-04 of its allowance. That is the
+effect anticipated in the ruling: the generator draws coordinate-wise noise
+after constructing the projections, so the realized finite sample is
+sign-sensitive even where the statistical experiment is not. The movement is
+four orders inside tolerance.
+
 ## Next authorized step
-The cross-machine comparison, which requires the two standalone canonical CSVs.
-They were not supplied with the adjudication, so `G1_cross_machine_reference`
-is **NOT_RUN** and the E3 pilot stays **NOT_AUTHORIZED**.
-
-The harness is implemented and self-tested in both directions: against an
-identical reference it returns PASS and authorizes E3; against a reference with
-one rank altered by 1 and one float perturbed by 1e-6 relative it returns
-CROSS_MACHINE_REPRODUCTION_DEFECT and withholds authorization. One command
-closes it:
-
-```bash
-python scripts/run_g1_reproduction.py --reference-dir <path-to-canonical-csvs>
-```
+**E3 pilot, single geometry only** — a* = 0.5, i = 50 degrees, n in (0, 1, 2),
+stopping before the 12-geometry grid.

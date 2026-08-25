@@ -14,37 +14,37 @@ anywhere in this tree.
 | phase | state |
 |---|---|
 | P0 governance, environment lock, provenance | **done** |
-| P1 E0 / G1 canonical reproduction | **PASS_PENDING_CROSS_MACHINE_REFERENCE**, see below |
+| P1 E0 / G1 canonical reproduction | **PASS** (cross-machine verified) |
 | P2 matrix-free operator library + gates G2–G6, G9, G13 | **done**, 137 tests |
 | P3 E1 factorial + E2 mode atlas | **done** |
 | AMENDMENT_001 localized historical support | **done** |
-| P4+ physical Kerr (E3–E10) | blocked on G1 |
+| P4 E3 pilot, single geometry a\*=0.5 i=50° n∈{0,1,2} | **AUTHORIZED**, in progress |
+| P5+ (E4–E10) and the 12-geometry grid | not authorized |
 
 ## Two live blockers
 
-**B1 — G1 is reproduced; the cross-machine check is the last open step.**
-The generator arrived, hash-verified, and ran unmodified. Under the
-reviewer-adjudicated tolerance specification `RELATIVE_ONLY_NEAR_ZERO_DEFECT`:
+**B1 — closed.** G1 passes. The generator was hash-verified and run
+unmodified; the canonical reference arrived three independent ways, all
+byte-identical to its SHA-256 manifest, and is vendored at
+`archive/v0.1/reference/`.
 
 | gate | result |
 |---|---|
 | `G1_v01_reproduction_relative` | FAIL, disposition **FAIL_AS_WRITTEN**, tolerance unaltered |
-| `G1_v01_reproduction_mixed_tolerance` | **PASS** — worst cell uses 7.3e-4 of its allowance |
+| `G1_v01_reproduction_mixed_tolerance` | **PASS** — worst cell uses 7.32e-4 of allowance |
 | `G1_scientific_reproduction` | **PASS_WITH_NUMERICAL_QUALIFICATION** |
-| `G1_cross_machine_reference` | **NOT_RUN** — the two standalone canonical CSVs were not supplied |
+| `G1_cross_machine_reference` | **PASS** |
 
-Integer ranks, dimensions, row identities and arm labels agree exactly. The one
-cell that fails the pure relative test is zero-limit and
-regularization-dominated: the residual is 7.3e-18, or 0.033 times unit-scale
-binary64 machine epsilon.
+The identifiability table is **bit-for-bit identical** between the reviewer's
+machine and this Linux host — every rank and every singular value, utilisation
+0.000e+00. The QR-convention contingency does not arise. Only the reconstruction
+table moves, at 1.85e-4 of allowance, the anticipated finite-noise-sample
+effect.
 
-E3 stays **NOT_AUTHORIZED** until the cross-machine comparison runs. Its harness
-is implemented and self-tested in both directions — PASS on an identical
-reference, CROSS_MACHINE_REPRODUCTION_DEFECT on a reference with one rank and
-one float perturbed. One command closes it:
+Reproduce with:
 
 ```bash
-python scripts/run_g1_reproduction.py --reference-dir <path-to-canonical-csvs>
+python scripts/run_g1_reproduction.py --reference-dir archive/v0.1/reference/reference_results
 ```
 
 Diagnostic runs take `--gate-file` so they cannot write into the provenance

@@ -899,7 +899,8 @@ Under the reviewer-adjudicated tolerance specification
   its original 1e-8 pure-relative tolerance;
 - `G1_v01_reproduction_mixed_tolerance` = **PASS**;
 - `G1_scientific_reproduction` = **PASS_WITH_NUMERICAL_QUALIFICATION**;
-- `G1_cross_machine_reference` = **{v['cross_machine_reference']}**.
+- `G1_cross_machine_reference` = **{v['cross_machine_reference']}**;
+- E3 pilot = **{v['e3_pilot']}**.
 
 Integer ranks, dimensions, row identities and arm labels agree exactly. Under
 the ruled criterion
@@ -1042,20 +1043,35 @@ passes".
 - `artifacts/tables/e0_reproduction_independent.parquet`
 - `artifacts/tables/g1_disagreements.parquet`
 
+### Cross-machine reference
+
+The canonical CSVs arrived three independent ways — a self-verifying
+materializer script, direct CSV uploads, and a plain-text transcript — and all
+three are byte-identical to the supplied SHA-256 manifest. They are vendored at
+`archive/v0.1/reference/` so this comparison reproduces from the repository
+alone.
+
+| comparison | allowance used | ranks |
+|---|---:|---:|
+| canonical vs this host's generator run, identifiability | **0.000e+00** | exact |
+| canonical vs this host's generator run, reconstruction | 1.851e-04 | exact |
+| canonical vs the independent implementation, identifiability | 1.410e-05 | exact |
+
+The identifiability table is **bit-for-bit identical** between the reviewer's
+machine and this Linux host. Every rank, every singular value, every restricted
+value. The QR-convention contingency therefore does not arise: had LAPACK sign
+or ordering conventions differed between the builds, this is the table that
+would have shown it, and it shows nothing.
+
+Only the reconstruction table moves, by 1.851e-04 of its allowance. That is the
+effect anticipated in the ruling: the generator draws coordinate-wise noise
+after constructing the projections, so the realized finite sample is
+sign-sensitive even where the statistical experiment is not. The movement is
+four orders inside tolerance.
+
 ## Next authorized step
-The cross-machine comparison, which requires the two standalone canonical CSVs.
-They were not supplied with the adjudication, so `G1_cross_machine_reference`
-is **NOT_RUN** and the E3 pilot stays **NOT_AUTHORIZED**.
-
-The harness is implemented and self-tested in both directions: against an
-identical reference it returns PASS and authorizes E3; against a reference with
-one rank altered by 1 and one float perturbed by 1e-6 relative it returns
-CROSS_MACHINE_REPRODUCTION_DEFECT and withholds authorization. One command
-closes it:
-
-```bash
-python scripts/run_g1_reproduction.py --reference-dir <path-to-canonical-csvs>
-```
+**E3 pilot, single geometry only** — a* = 0.5, i = 50 degrees, n in {0,1,2},
+stopping before the 12-geometry grid.
 """
     p = root / "artifacts" / "reports" / "P1_E0_REPRODUCTION.md"
     p.parent.mkdir(parents=True, exist_ok=True)

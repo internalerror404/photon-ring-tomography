@@ -1,8 +1,8 @@
 {
   "schema": "PREFIX_INVALIDATION_LEDGER/1",
-  "generated_at": "2026-08-25T01:36:23+00:00",
+  "generated_at": "2026-08-25T05:02:09+00:00",
   "invalidated_prefix_commit": "72f7c8807752dd1219fe3c17fae5153252422752",
-  "corrected_commit": "5abbb08a4e5801248764d1dd015786951c840d3c",
+  "corrected_commit": "a5f31a30bf96a7f5040f4adca711f32620e7d426",
   "statement": "Every artifact produced at or before the invalidated prefix commit is withdrawn. Files listed as byte_identical_after_regeneration are still withdrawn as evidence from the prefix; the identical hash means only that the defect did not reach that file's contents, not that the prefix run may be cited.",
   "defects": [
     {
@@ -74,7 +74,7 @@
       "path": "artifacts/PREFIX_INVALIDATION_LEDGER.json",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "9d97b6ecdbc35f013bad878209d273ce875bc88bbb0a6afca9f1632452396957"
+      "sha256_after": "7acd3d2ef40cf4ec4a54e57e6836c48c4edb9505369280ce4b16b0edd76d48ef"
     },
     {
       "path": "artifacts/PROTOCOL_DEVIATION_001_E1E2_BEFORE_G1.json",
@@ -92,7 +92,7 @@
       "path": "artifacts/g1_run/G1_VERDICT.json",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "d6266e443da99f5c7eafd8f58268fca849af4b4981c446cef2ac7b910715122f"
+      "sha256_after": "fb0f54a94ede2187488b686d496686e6a99b595ad6b0828bed72b8503eb3808d"
     },
     {
       "path": "artifacts/g1_run/code/generate_synthetic_results.py",
@@ -248,7 +248,7 @@
       "path": "artifacts/gates/correctness_gates.json",
       "state": "superseded",
       "sha256_before": "2eff02594c6636a55ec70950049c441b9daecd4af15dd9af51aceec3d264a980",
-      "sha256_after": "fff7b2dcfcbca275d6985212f9c91f6d00241f467c65a11a6d9374db4285b1ec"
+      "sha256_after": "9c5f939b276e181e6a11439f8e308309fbcd26bf11c0711b804bfebcb46d8cec"
     },
     {
       "path": "artifacts/manifests/AMD001_20260824T224126Z_2ba66f02.json",
@@ -407,34 +407,46 @@
       "sha256_after": "5ccc9021cd25272cd8b69a16b0f22a713be6c3826649614fba981b45257e6631"
     },
     {
+      "path": "artifacts/manifests/G1_20260825T050005Z_2ba66f02.json",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "b5b42df765e4b6519d1b6b518abaff178def4df51908c9d8dca91a346bfd3767"
+    },
+    {
+      "path": "artifacts/manifests/G1_20260825T050139Z_2ba66f02.json",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "459d065bacf9f7ecf96dbf9ea3165085a724f24df4316b3b00c26aba9575c1c4"
+    },
+    {
       "path": "artifacts/reports/AMENDMENT_001_LOCALIZED_SUPPORT.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "173f9c7f3d1ac6ed691cdb92845f7a817f97230df6b12113c7b71097bffcd1e8"
+      "sha256_after": "a8c13649169848cdc44f257b725f61670e4e038952fef4fe7574c2cade4b5038"
     },
     {
       "path": "artifacts/reports/P1_E0_INDEPENDENT_IMPLEMENTATION.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "169b7f757b16cdead6aa46c4b04a5466dea7ebad35cd8c2a8c41e32419f151a6"
+      "sha256_after": "9c278fa971f4df24ba7f5a7f96b028c93b8f585c669442bd91a718bb1edd2e19"
     },
     {
       "path": "artifacts/reports/P1_E0_REPRODUCTION.md",
       "state": "superseded",
       "sha256_before": "c819506057ce03c5857a5d09bca6474e9c70043316490cf4c8929162f2156e52",
-      "sha256_after": "82373cd31ffa2533cb33227bb2d726c347f8349422c7b9c51d225f5a67e0eefc"
+      "sha256_after": "df073308117f3a3776d510ab4624f6bf441d0ea9925f81c7c5bc7bdd12fbb747"
     },
     {
       "path": "artifacts/reports/P1_E1_E2_STRUCTURED_OPERATOR.md",
       "state": "superseded",
       "sha256_before": "e54b7b2ede96a42851aef360b1af85bd05dfdd00e5ede6b4bf5ed575d0f6ae13",
-      "sha256_after": "b6c75fd0a8915a1ac0087c84f9f0d1a74f7cf144c970a33250ca904ec99c00db"
+      "sha256_after": "b655f8ac3a47c27f8542f1bd517cd5240c86330318a332eb8516705e46c0d1ce"
     },
     {
       "path": "artifacts/reports/TASK0_ENVIRONMENT.md",
       "state": "superseded",
       "sha256_before": "1ce39da3eafa489024bf55f1a038c6170bb57413f68b4ccf7f3e62c93aa646c8",
-      "sha256_after": "6e7bd576f9b5735e5033e664c11eaf53f41c3b3822579c97d6eebffa78bc3af1"
+      "sha256_after": "b7c455921b4b9ea94736878b13028ed04ba7705d44ccda38047c1932650833f8"
     },
     {
       "path": "artifacts/tables/amd001_localized_support.csv",
@@ -572,25 +584,25 @@
       "path": "artifacts/tables/g1_cross_machine_comparison.csv",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "e84f306317d442f8a9c921752ae3f5e0e5b3b9e0d2370870522b37b40a528d76"
+      "sha256_after": "4753eedf27a4854893728708e73443ad2213f63cee0ffc46b85acaa07cba027b"
     },
     {
       "path": "artifacts/tables/g1_cross_machine_comparison.parquet",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "e42f15f1ab8720a62c7f5d89e2633918dccf20918c25bd56f113bc97d51833b1"
+      "sha256_after": "9266c8e2f48bed07f91431744b2ab430d998b681c060d8882f0973367ab33078"
     },
     {
       "path": "artifacts/tables/g1_disagreements.csv",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "4238be6e102c05b62d1548c619975b4234f7a129cf8850169ee3f6ba0ea55337"
+      "sha256_after": "9137554e326302da5a9d9417f2a5e0a1569e4e058929c3f519f5f05a34abb5d9"
     },
     {
       "path": "artifacts/tables/g1_disagreements.parquet",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "920457be8bfbb10ddba72f548ffe5ed42ea5ccb59d3024cef1fa7b5f19b52a88"
+      "sha256_after": "fd30e88f7d45fb771a5c032bf1e555bd08ac0e39659b0b17a367bc6e23577e6b"
     },
     {
       "path": "artifacts/tables/g1_identifiability_comparison.csv",
@@ -606,10 +618,10 @@
     }
   ],
   "summary": {
-    "n_artifacts": 89,
+    "n_artifacts": 91,
     "superseded": 21,
     "byte_identical_after_regeneration": 6,
-    "created_after_correction": 62,
+    "created_after_correction": 64,
     "withdrawn": 0,
     "material_defects": [
       "D-D_mixer_noise_propagation",
