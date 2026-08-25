@@ -874,11 +874,18 @@
     },
     "G7b_weighted_operator_discrepancy": {
       "status": "FAIL",
-      "measured": 0.36589097338874566,
-      "threshold": 0.05,
-      "note": "|| C^-1/2 (A_fine - A_core) || / max(1, || C^-1/2 A_fine ||) on the registered 224-dimensional global class, both operators sharing 800 rays per order so only the fields differ",
-      "run_id": "G7B_20260825T055336Z_2ba66f02",
-      "recorded_at": "2026-08-25T05:53:38+00:00"
+      "disposition": "WITHDRAWN_INVALID_CONVERGENCE_METRIC",
+      "note": "an earlier name for the pointwise cross-grid field comparison. AART's per-ray fields are analytic and carry no discretisation error, so comparing field values between resolutions measures the field gradient across the grid offset. Superseded by the quadrature-weighted G7b_transfer_field_convergence.",
+      "run_id": "DISP_20260825T074310Z_2ba66f02",
+      "recorded_at": "2026-08-25T07:43:11+00:00",
+      "superseded": {
+        "status": "FAIL",
+        "measured": 0.36589097338874566,
+        "threshold": 0.05,
+        "note": "|| C^-1/2 (A_fine - A_core) || / max(1, || C^-1/2 A_fine ||) on the registered 224-dimensional global class, both operators sharing 800 rays per order so only the fields differ",
+        "run_id": "G7B_20260825T055336Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:53:38+00:00"
+      }
     },
     "G7b_fields_are_analytic_not_discretised": {
       "status": "PASS",
@@ -1053,20 +1060,34 @@
     },
     "EDGE1_a000_i020_raymap_generation": {
       "status": "FAIL",
-      "disposition": "BACKEND_LIMITATION_NOT_A_PHYSICS_FAILURE",
-      "measured": "CritCurve returns an empty root set",
-      "threshold": "non-empty",
-      "note": "AART 2.1.10 cannot generate the Schwarzschild geometry. Its critical-curve parameterisation is singular at exactly a = 0: lensingbands.CritCurve forms lam = a + (r/a)(...) and eta = (r^3/a^2)(...), and sweeps r over the photon shell [rM, rP], which collapses to the single radius 3M when a = 0. Both expressions divide by the spin and the positivity mask then selects no points. Measured behaviour: a = 0 fails; a = 1e-6 succeeds and gives a critical curve at alpha = +-5.1969 against the exact Schwarzschild value 3*sqrt(3) = 5.19615, so the backend converges smoothly as a -> 0 and is singular only at the endpoint. No AART source was modified and no substitute spin was adopted: changing the registered grid is not the agent's call.",
-      "run_id": "EDGE_20260825T063916Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:39:18+00:00"
+      "disposition": "RESOLVED_BY_S0_BACKEND",
+      "note": "AART cannot generate a* = 0 and that remains true. The registered geometry is now produced by the S0 backend (kgeo geodesics, explicit Schwarzschild velocity, kgeo redshift), which passes all 19 S0 gates. The AART limitation is preserved as a fact about the backend, not as an open blocker.",
+      "run_id": "DISP_20260825T074310Z_2ba66f02",
+      "recorded_at": "2026-08-25T07:43:11+00:00",
+      "superseded": {
+        "status": "FAIL",
+        "disposition": "BACKEND_LIMITATION_NOT_A_PHYSICS_FAILURE",
+        "measured": "CritCurve returns an empty root set",
+        "threshold": "non-empty",
+        "note": "AART 2.1.10 cannot generate the Schwarzschild geometry. Its critical-curve parameterisation is singular at exactly a = 0: lensingbands.CritCurve forms lam = a + (r/a)(...) and eta = (r^3/a^2)(...), and sweeps r over the photon shell [rM, rP], which collapses to the single radius 3M when a = 0. Both expressions divide by the spin and the positivity mask then selects no points. Measured behaviour: a = 0 fails; a = 1e-6 succeeds and gives a critical curve at alpha = +-5.1969 against the exact Schwarzschild value 3*sqrt(3) = 5.19615, so the backend converges smoothly as a -> 0 and is singular only at the endpoint. No AART source was modified and no substitute spin was adopted: changing the registered grid is not the agent's call.",
+        "run_id": "EDGE_20260825T063916Z_2ba66f02",
+        "recorded_at": "2026-08-25T06:39:18+00:00"
+      }
     },
     "G7_grid_convergence_a098_i075": {
       "status": "FAIL",
-      "measured": 0.06472237062797255,
-      "threshold": 0.02,
-      "note": "FAILS the tolerance frozen from the pilot. Worst offenders: n=1 delay_max 6.472e-02; n=0 weighted_area 1.186e-02; n=0 area 1.118e-02. The failure is carried by one metric, the n=1 deepest retarded age, which moves from 161.8 M to 173.0 M between the core and fine profiles. That is an extreme-value statistic over rays, populated by the band edge, and it converges far more slowly than any integral: every other metric at this geometry is within 1.2e-2. The tolerance was NOT adjusted after seeing this, and the metric was NOT re-specified as a quantile; both would be post-hoc loosening.",
-      "run_id": "EDGE_20260825T063916Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:39:18+00:00"
+      "disposition": "RETIRED_NONCONVERGENT_EXTREME_STATISTIC",
+      "note": "the failure was carried entirely by the sampled maximum ray delay, which the ruling retired as a convergence metric. Superseded by the weighted delay quantiles, which converge at this geometry (solid angle 1.49e-02, throughput 1.07e-02, Fisher 1.90e-02), and by the operator-level gate, which passes at 3.088e-02.",
+      "run_id": "DISP_20260825T074310Z_2ba66f02",
+      "recorded_at": "2026-08-25T07:43:11+00:00",
+      "superseded": {
+        "status": "FAIL",
+        "measured": 0.06472237062797255,
+        "threshold": 0.02,
+        "note": "FAILS the tolerance frozen from the pilot. Worst offenders: n=1 delay_max 6.472e-02; n=0 weighted_area 1.186e-02; n=0 area 1.118e-02. The failure is carried by one metric, the n=1 deepest retarded age, which moves from 161.8 M to 173.0 M between the core and fine profiles. That is an extreme-value statistic over rays, populated by the band edge, and it converges far more slowly than any integral: every other metric at this geometry is within 1.2e-2. The tolerance was NOT adjusted after seeing this, and the metric was NOT re-specified as a quantile; both would be post-hoc loosening.",
+        "run_id": "EDGE_20260825T063916Z_2ba66f02",
+        "recorded_at": "2026-08-25T06:39:18+00:00"
+      }
     },
     "G8_cross_tracer_a098_i075": {
       "status": "PASS",
@@ -1118,12 +1139,19 @@
     },
     "GRID_AUTHORIZATION": {
       "status": "FAIL",
-      "disposition": "STOPPED_BEFORE_PRODUCTION_GRID",
-      "measured": "1 of 2 edge canaries generated; 1 registered gate failed",
-      "threshold": "both edge canaries pass",
-      "note": "Edge canary 1 (a*=0, i=20) cannot be generated by the backend. Edge canary 2 (a*=0.98, i=75) generates and passes every registered gate except G7_grid_convergence, which fails at 6.472e-02 against the frozen 2e-02. The ruling conditions the ten remaining geometries on both canaries passing and directs an immediate stop on any registered gate failure. Neither condition is met, so the production grid was not started.",
-      "run_id": "EDGE_20260825T063916Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:39:18+00:00"
+      "disposition": "SUPERSEDED_GRID_COMPLETE",
+      "note": "recorded when one edge canary could not be generated and another failed a then-live gate. Both were resolved by the ruling and by the S0 backend; all 12 registered geometries are now generated and integrity-checked. The stop is preserved as the correct decision at the time.",
+      "run_id": "DISP_20260825T074310Z_2ba66f02",
+      "recorded_at": "2026-08-25T07:43:11+00:00",
+      "superseded": {
+        "status": "FAIL",
+        "disposition": "STOPPED_BEFORE_PRODUCTION_GRID",
+        "measured": "1 of 2 edge canaries generated; 1 registered gate failed",
+        "threshold": "both edge canaries pass",
+        "note": "Edge canary 1 (a*=0, i=20) cannot be generated by the backend. Edge canary 2 (a*=0.98, i=75) generates and passes every registered gate except G7_grid_convergence, which fails at 6.472e-02 against the frozen 2e-02. The ruling conditions the ten remaining geometries on both canaries passing and directs an immediate stop on any registered gate failure. Neither condition is met, so the production grid was not started.",
+        "run_id": "EDGE_20260825T063916Z_2ba66f02",
+        "recorded_at": "2026-08-25T06:39:18+00:00"
+      }
     },
     "DQ_solid_angle_quantile_convergence": {
       "status": "PASS",
@@ -1486,7 +1514,7 @@
       "recorded_at": "2026-08-25T07:41:43+00:00"
     }
   },
-  "updated_at": "2026-08-25T07:41:43+00:00",
+  "updated_at": "2026-08-25T07:43:11+00:00",
   "summary": {
     "PASS": 104,
     "FAIL": 6,
