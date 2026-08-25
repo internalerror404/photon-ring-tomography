@@ -292,6 +292,14 @@ def main() -> int:
                     "mathcal A follows from a spectrum of A_C.",
         },
 
+        # Kept verbatim so this script still reproduces the pinned freeze
+        # byte for byte. The vocabulary below is the pre-amendment one:
+        # AGE_INTERVAL_SEMANTICS_AMENDMENT_003 retires
+        # largest_contiguous_detectable_depth in favour of
+        # longest_detectable_run_span_M and adds the anchored span, and the
+        # derived tables and reports carry the amended names. Changing the text
+        # here would change the freeze digest, which is pinned, so the
+        # amendment is recorded alongside the freeze rather than inside it.
         "depth_contract": {
             "oldest_detectable_age_probe":
                 "sup { a : SNR_0^2 I(a) >= rho^2 }, a supremum over a possibly "

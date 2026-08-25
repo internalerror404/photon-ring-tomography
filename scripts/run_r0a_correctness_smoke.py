@@ -240,31 +240,47 @@ def main() -> int:
                            "quadrature agreement is the real check"))
     rows.append({"gate": "R0_G6_age_probe_normalization", "measured": probe_dev})
 
-    # ---- R0_G7 right censoring ---------------------------------------------
+    # ---- R0_G7 right censoring and anchored interval semantics -------------
+    # Synthetic masks on a synthetic grid: this gate tests the reporting logic,
+    # not a geometry, so the anchor is the grid origin by construction.
     ages = np.arange(0.0, 40.0, 4.0)
+    R0A_ANCHOR_M = 0.0
     cases = {
         "contiguous_interior": [1, 1, 1, 1, 0, 0, 0, 0, 0, 0],
         "island_beyond_gap": [1, 1, 1, 0, 0, 0, 0, 0, 1, 1],
+        "long_run_not_touching_anchor": [1, 1, 0, 0, 1, 1, 1, 1, 0, 0],
         "runs_to_boundary": [1] * 10,
     }
     ok7, notes7 = True, []
     for label, m in cases.items():
-        dd = detectability(ages, m)
+        dd = detectability(ages, m, R0A_ANCHOR_M)
         censored = bool(dd["oldest_detectable_age_probe"] >= 0
                         and np.isclose(dd["oldest_detectable_age_probe"],
                                        ages[-1]))
         if label == "contiguous_interior":
             ok7 &= (dd["oldest_detectable_age_probe"] == 12.0
-                    and dd["largest_contiguous_detectable_depth"] == 12.0
+                    and dd["longest_detectable_run_span_M"] == 12.0
+                    and dd["contiguous_detectable_span_from_anchor_M"] == 12.0
                     and not censored)
         if label == "island_beyond_gap":
             ok7 &= (dd["oldest_detectable_age_probe"] == 36.0
-                    and dd["largest_contiguous_detectable_depth"] == 8.0
+                    and dd["longest_detectable_run_span_M"] == 8.0
+                    and dd["contiguous_detectable_span_from_anchor_M"] == 8.0
                     and dd["n_detectable_runs"] == 2)
+        if label == "long_run_not_touching_anchor":
+            # AGE_INTERVAL_SEMANTICS_AMENDMENT_003: the longest run is 16-28 M
+            # and does not reach the anchor. Reporting 12 M as depth from the
+            # present would be exactly the error the amendment forbids.
+            ok7 &= (dd["oldest_detectable_age_probe"] == 28.0
+                    and dd["longest_detectable_run_span_M"] == 12.0
+                    and dd["longest_detectable_run_start_M"] == 16.0
+                    and dd["contiguous_detectable_span_from_anchor_M"] == 4.0
+                    and dd["anchor_is_detectable"])
         if label == "runs_to_boundary":
             ok7 &= censored
         notes7.append(f"{label}: oldest={dd['oldest_detectable_age_probe']:.0f} "
-                      f"contig={dd['largest_contiguous_detectable_depth']:.0f} "
+                      f"longest_run={dd['longest_detectable_run_span_M']:.0f} "
+                      f"from_anchor={dd['contiguous_detectable_span_from_anchor_M']:.0f} "
                       f"censored={censored}")
     man.add_gate(Gate("R0_G7_right_censoring", "PASS" if ok7 else "FAIL",
                       measured=len(cases), threshold=len(cases),

@@ -1,17 +1,30 @@
 {
   "schema": "phrt-r0-reconstruction-freeze/1",
   "experiment_id": "R0_CANARY_RECONSTRUCTION_PILOT",
-  "created_utc": "2026-08-25T20:38:39Z",
+  "created_utc": "2026-08-25T21:36:38Z",
   "provenance": {
     "accepted_scientific_base": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
     "start_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
-    "head_at_registration": "a74426d1c236cc461108af9b2fd87e9d32b5991a",
+    "head_at_registration": "c59d0987ad7f70e5ef9dc91d51b9336a782fb52e",
     "branch": "research/paper1_r0_canary_reconstruction_v0",
     "base_is_ancestor_of_start": true,
     "start_commit_is_documentation_only_descendant": false,
     "deviation_note": "The launch permits a descendant containing only approved documentation amendments. The start commit is not that: it carries the G10q measurement-model correction (d6869f8) and the accepted E3B/E3C work. Starting from the bare base is not possible under this launch's own frozen model -- at 0ef341d the forward coefficient is g^3 with a flat per-row sigma and no G10q gate exists, so the required whitened row sqrt(dOmega)/sigma_Omega * g^3 * B is absent and R0_G3 would stop immediately with QUADRATURE_NOISE_DEFECT.",
     "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
-    "git_dirty_at_registration": false
+    "git_dirty_at_registration": false,
+    "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+    "measurement_correction_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
+    "e3c_execution_code_commit": "546763ed29e2be3fb129ec707cb07ee37a4f7db8",
+    "e3c_artifact_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
+    "e3c_age_interval_amendment_commit": null,
+    "e3c_age_interval_amendment_commit_note": "The amendment, its tests, the reassembled derived E3C tables and this freeze are committed together, so this field names the commit that contains this very file. A commit cannot carry its own hash: it is null in that commit and pinned literally in the single-file commit immediately after, which changes nothing else.",
+    "head_before_amendment_commit": "c59d0987ad7f70e5ef9dc91d51b9336a782fb52e",
+    "e3c_freeze_sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
+    "e3c_registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+    "ray_map_manifest_sha256": "d163a630842ddec4b2143f9268bc70125857e78b84aa8fa122c5ef1bfc7b3638",
+    "r0_config_sha256": "fe917f2d7da05b158cefe2f15a81a392d945aecc26174f4222ed3f2f8b32ff1b",
+    "self_digest_rule": "r0_config_sha256 is sha256 over the canonical JSON of this document with r0_config_sha256 itself set to null, so the field can live inside the document it describes; ray_map_manifest_sha256 is sha256 over the canonical JSON of the sorted physical_model.raymap_sha256 map",
+    "repository": "internalerror404/photon-ring-tomography"
   },
   "environment": {
     "packages": {
@@ -140,6 +153,25 @@
       "1": 1536,
       "2": 1536
     }
+  },
+  "source_class": {
+    "id": "C224",
+    "dimension": 224,
+    "n_radial": 4,
+    "n_azimuthal": 7,
+    "n_temporal": 8,
+    "factorization": "4 cubic B-splines in log r x 7 real Fourier modes (|m| <= 3) x 8 DCT modes in source time",
+    "column_order": "radial-major, then azimuthal, then temporal",
+    "radial_support_M": [
+      1.8660386527060988,
+      49.98205255591607
+    ],
+    "temporal_support_M": [
+      -128.82234649196255,
+      29.0
+    ],
+    "basis_sha256": "52549b36f35703afb65d7e30185919d8aef6135134e8df355210ee5ba0377820",
+    "synthesis_rule": "Q_C is applied exactly once; the class is the same object in every arm"
   },
   "observation": {
     "rays_per_order": 1536,
@@ -379,7 +411,12 @@
     "held_out_ood_family": [
       "moving_flare_birth_decay"
     ],
-    "prior_free_estimators_evaluated_on": "every validation regime"
+    "prior_free_estimators_evaluated_on": "every validation regime",
+    "control_families": [
+      "near_null_combinations"
+    ],
+    "test_truth_access": "forbidden. The R1 main test truths are committed by content hash only; they are neither rendered nor scored in R0",
+    "future_main_test": "a hash commitment over the R1 test truth parameters is written from the future_main_test seed stream without rendering or scoring any of them"
   },
   "pilot_counts": {
     "prior_fit_train_per_family": 512,
@@ -528,7 +565,7 @@
     "selection": {
       "data": "validation only, separately per arm, estimator and SNR",
       "objective_lexicographic": [
-        "maximize T_stable(epsilon=0.50, q=0.90)",
+        "maximize T_stable_anchor(epsilon=0.50, q=0.90)",
         "minimize old-band normalized error",
         "minimize old-band absolute error",
         "prefer the stronger regularizer or simpler model on an exact tie"
@@ -554,12 +591,27 @@
         0.95
       ]
     },
-    "primary_point": "T_stable(epsilon=0.50, q=0.90)",
+    "age_interval_amendment": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003",
+    "a_anchor_M": 0.0,
+    "anchor_rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+    "anchor_derivation": {
+      "probe_centre": "a probe at age a occupies source time -a within 3 half widths",
+      "reachable_source_time_M": [
+        -119.82234649196255,
+        19.99961781448451
+      ],
+      "delay_min_M": 0.0003821855154910736,
+      "delay_max_M": 119.82234649196255,
+      "frozen_before": "any movie is rendered or any error curve exists"
+    },
+    "primary_point": "T_stable_anchor(epsilon=0.50, q=0.90)",
+    "T_stable_anchor": "sup { T >= a_anchor : Pr[ sup_{a_anchor <= a <= T} E(a) <= epsilon ] >= q }. The supremum over the age window is inside the probability and is taken per truth: a truth counts only if the whole window from the anchor out to T is good for that truth. Thresholding the per-age passing fraction instead asks a weaker question and is not what is reported.",
+    "L_stable_anchor": "T_stable_anchor - a_anchor",
+    "secondary_unanchored_interval": "a longest stable interval anywhere on the grid may be reported with both endpoints; it must not be called depth from the present",
     "also_reported": [
-      "T_reach",
-      "T_contig",
-      "D_hist(T)",
-      "d_eff(T)",
+      "oldest_detectable_age_probe",
+      "longest_detectable_run_span_M with both endpoints",
+      "contiguous_detectable_span_from_anchor_M",
       "recent/middle/old band errors",
       "data-supported and weak-subspace errors",
       "calibration and coverage",
@@ -567,6 +619,13 @@
       "iterations",
       "peak memory"
     ],
+    "withheld_from_the_launch_list": {
+      "fields": [
+        "D_hist(T)",
+        "d_eff(T)"
+      ],
+      "reason": "PAPER_I_V2_PRE_E3C_AMENDMENT_001 item 6 reserves D_hist, d_eff and the retired alias effective_rank for E3D, and the activation ruling restates that they are E3D quantities. E3D is deferred and not started, so R0 does not emit them under any name. The interval statistics above replace them in the R0 return."
+    },
     "old_band_boundary_M": 57.666382656487954,
     "old_band_rule": "the frozen direct-order 99.9% throughput-weighted age boundary; never selected from reconstruction curves",
     "age_bands": {
@@ -582,7 +641,9 @@
         57.666382656487954,
         null
       ]
-    }
+    },
+    "primary_epsilon": 0.5,
+    "primary_q": 0.9
   },
   "subspaces": {
     "P_data": "sum over i with SNR_0 * sigma_i >= rho of v_i v_i^T",
@@ -639,5 +700,87 @@
     "UNCALIBRATED_UNCERTAINTY",
     "NULL_PAIR_CALIBRATION_DEFECT"
   ],
-  "note_on_weak_result": "a weak or absent validation gain is a scientific pilot result, not an implementation defect"
+  "note_on_weak_result": "a weak or absent validation gain is a scientific pilot result, not an implementation defect",
+  "template": "schemas/R0_CANARY_RECONSTRUCTION_PILOT_FREEZE_TEMPLATE_v1.0.json",
+  "template_conformance": {
+    "schema_version": "schema",
+    "phase": "experiment_id",
+    "profile": "experiment_id",
+    "status": "provenance.r0_config_sha256",
+    "identity.repository": "provenance.repository",
+    "identity.start_commit": "provenance.start_commit",
+    "identity.branch": "provenance.branch",
+    "identity.environment_hash": "environment.environment_sha256",
+    "identity.hardware": "environment.hardware",
+    "governance.amendment": "governance.amendments",
+    "governance.geometry_wide_claim_forbidden": "scope.forbidden_language",
+    "governance.main_test_scoring_forbidden": "scope.not_authorized",
+    "governance.ml_forbidden": "estimators.not_authorized",
+    "geometry.geometry_id": "physical_model.geometry",
+    "geometry.spin": "physical_model.spin",
+    "geometry.inclination_deg": "physical_model.inclination_deg",
+    "geometry.orders": "physical_model.orders",
+    "geometry.map_manifest_hash": "provenance.ray_map_manifest_sha256",
+    "source_class.name": "physical_model.source_class",
+    "source_class.dimension": "source_class.dimension",
+    "source_class.radial_modes": "source_class.n_radial",
+    "source_class.azimuthal_real_modes": "source_class.n_azimuthal",
+    "source_class.temporal_modes": "source_class.n_temporal",
+    "source_class.basis_hash": "source_class.basis_sha256",
+    "source_class.radial_support_M": "source_class.radial_support_M",
+    "source_class.temporal_support_M": "source_class.temporal_support_M",
+    "operator.operator_hashes": "physical_model.raymap_sha256",
+    "operator.whitened_row": "physical_model.whitened_row",
+    "operator.noise_density": "physical_model.noise",
+    "operator.arm_specific_noise_scale_forbidden": "physical_model.noise",
+    "operator.g10q_required": "gates.R0_G3_G10q_quadrature_noise_invariance",
+    "snr0_grid": "physical_model.snr0_grid",
+    "observation_arms": "observation.arms_primary",
+    "diagnostic_arms": "observation.arms_diagnostic",
+    "source_families.prior_fit": "split.prior_fit_families",
+    "source_families.held_out_ood": "split.held_out_ood_family",
+    "source_families.control": "split.control_families",
+    "source_families.parameter_ranges": "source_families.resolved_ranges",
+    "source_families.positivity_rule": "source_families.positivity_construction",
+    "source_families.off_grid_rule": "source_families.off_grid",
+    "pilot_counts": "pilot_counts",
+    "null_pair_targets": "null_pairs.targets",
+    "estimators.required": "estimators.required",
+    "estimators.conditional": "estimators.conditional",
+    "estimators.forbidden": "estimators.not_authorized",
+    "estimators.hyperparameter_grids": "hyperparameter_grids",
+    "estimators.selection_rule": "hyperparameter_grids.selection.objective_lexicographic",
+    "metrics.epsilon_grid": "metrics.stable_depth_surface.epsilon",
+    "metrics.q_grid": "metrics.stable_depth_surface.q",
+    "metrics.primary_epsilon": "metrics.stable_depth_surface.epsilon",
+    "metrics.primary_q": "metrics.stable_depth_surface.q",
+    "metrics.eta_rule": "metrics.eta_rule",
+    "metrics.old_band_rule": "metrics.old_band_rule",
+    "metrics.projector_rule": "subspaces.P_data",
+    "metrics.right_censoring_required": "gates.R0_G7_right_censoring",
+    "splits.seed_bank": "seeds.streams",
+    "splits.content_hash_method": "seeds.content_hash_method",
+    "splits.future_main_test_hash_commitment": "split.future_main_test",
+    "splits.test_truth_access_forbidden": "split.test_truth_access",
+    "correctness_gates": "gates",
+    "artifact_policy": "artifact_policy"
+  },
+  "governance": {
+    "amendments": [
+      "PAPER_I_V2_PRE_E3C_AMENDMENT_001",
+      "PAPER_I_V2_RECONSTRUCTION_AMENDMENT_002",
+      "AGE_INTERVAL_SEMANTICS_AMENDMENT_003"
+    ],
+    "ruling": "PAPER_I_R0_ACTIVATION_AFTER_E3C_V2 v1.2",
+    "geometry_wide_claim_forbidden": true,
+    "main_test_scoring_forbidden": true,
+    "ml_forbidden": true
+  },
+  "artifact_policy": {
+    "figures_from_canonical_tables_only": true,
+    "test_truth_hyperparameter_tuning_forbidden": true,
+    "posthoc_threshold_change_forbidden": true,
+    "failed_artifacts_preserved": true,
+    "sha256_manifest_required": true
+  }
 }

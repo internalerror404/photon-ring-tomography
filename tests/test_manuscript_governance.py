@@ -149,17 +149,26 @@ def test_v2_dispositions_are_registered_values():
 
 @v2_only
 def test_v2_depth_table_carries_the_full_depth_contract():
-    """Item 4. The supremum alone is not the contract."""
+    """Item 4, as amended by AGE_INTERVAL_SEMANTICS_AMENDMENT_003."""
     p = TABLES / "e3c_depth_curves.parquet"
     if not p.exists():
         pytest.skip("E3C depth table not built")
     cols = set(pd.read_parquet(p).columns)
-    for c in ("oldest_detectable_age_probe",
-              "largest_contiguous_detectable_depth",
+    for c in ("oldest_detectable_age_probe", "a_anchor_M",
+              "longest_detectable_run_span_M",
+              "longest_detectable_run_start_M",
+              "longest_detectable_run_end_M",
+              "contiguous_detectable_end_from_anchor_M",
+              "contiguous_detectable_span_from_anchor_M",
               "age_threshold_mask", "censor_boundary_M",
               "detectable_set_is_contiguous"):
         assert c in cols, f"the depth table is missing {c}"
     assert "T_rec" not in cols, "T_rec was renamed by amendment item 4"
+    for retired in ("largest_contiguous_detectable_depth",
+                    "largest_contiguous_start_M", "largest_contiguous_end_M"):
+        assert retired not in cols, (
+            f"{retired} was retired by AGE_INTERVAL_SEMANTICS_AMENDMENT_003 "
+            "because a span length is not a depth from the present")
 
 
 def test_v2_freeze_records_the_amendment_and_notation():

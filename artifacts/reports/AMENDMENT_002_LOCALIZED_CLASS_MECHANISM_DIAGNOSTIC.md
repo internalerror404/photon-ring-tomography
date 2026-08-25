@@ -1,7 +1,7 @@
 # AMENDMENT 002 — Age-resolved information matrix on the registered localized class
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `546763ed29e2be3fb129ec707cb07ee37a4f7db8`
+- branch `research/paper1_r0_canary_reconstruction_v0`, commit `c59d0987ad7f70e5ef9dc91d51b9336a782fb52e`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - freeze `artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json` sha256 `7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b`
 - 12 registered geometries, orders n = 0, 1, 2, profile `core`

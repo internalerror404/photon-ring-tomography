@@ -27,6 +27,9 @@ sys.path.insert(0, str(ROOT / "src"))
 from phrt.audits.e3c_contract import (DISPOSITIONS, EXACT_RANK_REASON,
                                       EXACT_RANK_VALUE,
                                       check_no_reserved_fields)
+from phrt.metrics.age_intervals import (AMENDMENT as AGE_AMENDMENT,
+                                        RETIRED_FIELDS, amend_depth_row,
+                                        grid_anchor, observation_anchor)
 from phrt.config import load_registry
 from phrt.io.manifests import Gate, RunManifest, gate_from_tolerance, make_run_id, merge_gate_file
 from phrt.io.tables import write_table
@@ -121,6 +124,31 @@ def main() -> int:
         raise SystemExit(f"E3C is incomplete; missing {missing}")
     R = {g: json.loads((OUTDIR / f"{g}.json").read_text()) for g in geoms}
     ages = np.asarray(R[geoms[0]]["ages"], dtype=float)
+
+    # ---- AGE_INTERVAL_SEMANTICS_AMENDMENT_003 ------------------------------
+    # Applied here, at the single point where the canonical per-geometry results
+    # are read, so that every derived table below speaks the amended vocabulary
+    # and no operator is recomputed. Each row's reach and longest-run span are
+    # re-derived from its own stored mask and cross-checked against the value
+    # the row already carries; a disagreement stops the build.
+    h_probe = float(fz["localized_probe"]["half_width_h_M"])
+    t_obs = fz["observation"]["observer_times_M"]
+    anchors = {g: observation_anchor(ages, h_probe, t_obs, R[g]["windows"])
+               for g in geoms}
+    bad = [g for g in geoms if not anchors[g]["admissible"]]
+    if bad:
+        raise SystemExit(f"no admissible anchor at {bad}")
+    anchor = grid_anchor([anchors[g] for g in geoms])
+    # each geometry is anchored at its own youngest fully supported probe
+    # centre, because that is where its own observable present begins; the grid
+    # anchor is reported beside it for cross-geometry statements.
+    a_anchor_of = {g: float(anchors[g]["a_anchor_M"]) for g in geoms}
+    for g in geoms:
+        a_g = a_anchor_of[g]
+        R[g]["depth_rows"] = [
+            amend_depth_row(amend_depth_row(r, ages, a_g), ages, a_g,
+                            prefix="best_mode_")
+            for r in R[g]["depth_rows"]]
     snr_grid = [float(s) for s in fz["snr_grid"]]
     a_max = float(fz["common_age_grid"]["A_max_M"])
     arms = list(fz["arms"].keys())
@@ -132,7 +160,11 @@ def main() -> int:
                       extra={"n_geometries": len(geoms),
                              "A_max_M": a_max,
                              "reference_snr": REFERENCE_SNR,
-                             "source_class": fz["source_class"]["id"]})
+                             "source_class": fz["source_class"]["id"],
+                             "age_interval_amendment": AGE_AMENDMENT,
+                             "a_anchor_M_by_geometry": a_anchor_of,
+                             "grid_anchor_M": anchor["grid_anchor_M"],
+                             "anchor_rule": anchor["rule"]})
     man.add_input(reg.path)
     man.add_input(FREEZE)
 
@@ -211,10 +243,17 @@ def main() -> int:
                         "depth_report_at_reference_snr": d["depth_report"],
                         "best_mode_oldest_detectable_age_probe_at_reference_snr": d["best_mode_oldest_detectable_age_probe"],
                         "best_mode_depth_report_at_reference_snr": d["best_mode_depth_report"],
-                        "largest_contiguous_detectable_depth_at_reference_snr":
-                            d["largest_contiguous_detectable_depth"],
-                        "largest_contiguous_start_M": d["largest_contiguous_start_M"],
-                        "largest_contiguous_end_M": d["largest_contiguous_end_M"],
+                        "a_anchor_M": a_anchor_of[g],
+                        "grid_anchor_M": anchor["grid_anchor_M"],
+                        "longest_detectable_run_span_M_at_reference_snr":
+                            d["longest_detectable_run_span_M"],
+                        "longest_detectable_run_start_M": d["longest_detectable_run_start_M"],
+                        "longest_detectable_run_end_M": d["longest_detectable_run_end_M"],
+                        "contiguous_detectable_span_from_anchor_M_at_reference_snr":
+                            d["contiguous_detectable_span_from_anchor_M"],
+                        "contiguous_detectable_end_from_anchor_M":
+                            d["contiguous_detectable_end_from_anchor_M"],
+                        "anchor_is_detectable": d["anchor_is_detectable"],
                         "n_detectable_runs": d["n_detectable_runs"],
                         "detectable_set_is_contiguous": d["detectable_set_is_contiguous"],
                         "exact_rank": EXACT_RANK_VALUE,
@@ -543,12 +582,18 @@ def main() -> int:
          lambda r: relative_l2(logvol(r, "RESOLVED_PHYSICAL"), logvol(r, "SPATIAL_ONLY"))
                    / max(relative_l2(logvol(r, "RESOLVED_PHYSICAL"),
                                      logvol(r, "DIRECT_PHYSICAL")), 1e-300)),
-        ("largest_contiguous_detectable_depth_resolved",
+        ("longest_detectable_run_span_M_resolved",
          lambda r: depth_of(r, "RESOLVED_PHYSICAL",
-                            REFERENCE_SNR)["largest_contiguous_detectable_depth"]),
-        ("largest_contiguous_detectable_depth_direct",
+                            REFERENCE_SNR)["longest_detectable_run_span_M"]),
+        ("longest_detectable_run_span_M_direct",
          lambda r: depth_of(r, "DIRECT_PHYSICAL",
-                            REFERENCE_SNR)["largest_contiguous_detectable_depth"]),
+                            REFERENCE_SNR)["longest_detectable_run_span_M"]),
+        ("contiguous_detectable_span_from_anchor_M_resolved",
+         lambda r: depth_of(r, "RESOLVED_PHYSICAL",
+                            REFERENCE_SNR)["contiguous_detectable_span_from_anchor_M"]),
+        ("contiguous_detectable_span_from_anchor_M_direct",
+         lambda r: depth_of(r, "DIRECT_PHYSICAL",
+                            REFERENCE_SNR)["contiguous_detectable_span_from_anchor_M"]),
         ("n_detectable_runs_resolved",
          lambda r: depth_of(r, "RESOLVED_PHYSICAL", REFERENCE_SNR)["n_detectable_runs"]),
         ("best_mode_oldest_detectable_age_probe_resolved",
@@ -616,15 +661,54 @@ def main() -> int:
                            + ("" if not bad_disp else f"; found {bad_disp}")))
 
     depth_df = pd.read_parquet(T / "e3c_depth_curves.parquet")
-    need = ["oldest_detectable_age_probe", "largest_contiguous_detectable_depth",
+    need = ["oldest_detectable_age_probe", "a_anchor_M",
+            "longest_detectable_run_span_M", "longest_detectable_run_start_M",
+            "longest_detectable_run_end_M",
+            "contiguous_detectable_end_from_anchor_M",
+            "contiguous_detectable_span_from_anchor_M",
             "age_threshold_mask", "censor_boundary_M"]
     have = [c for c in need if c in depth_df.columns]
     man.add_gate(Gate("E3C_v2_depth_contract_complete",
                       "PASS" if len(have) == len(need) else "FAIL",
                       measured=len(have), threshold=len(need),
-                      note="amendment item 4 requires the supremum, the largest "
-                           "contiguous detectable depth and the complete "
-                           "age-threshold mask"))
+                      note="pre-E3C amendment item 4 as amended by "
+                           "AGE_INTERVAL_SEMANTICS_AMENDMENT_003: the reach, the "
+                           "frozen anchor, the longest detectable run with both "
+                           "endpoints, the stretch reaching the anchor and the "
+                           "complete age-threshold mask"
+                           + ("" if len(have) == len(need)
+                              else f"; missing {[c for c in need if c not in have]}")))
+
+    # AGE_INTERVAL_SEMANTICS_AMENDMENT_003: the retired names must not survive
+    # anywhere in the canonical set, or a reader could still pick up a span
+    # length believing it is a depth from the present.
+    retired_hits = []
+    for tp in sorted(T.glob("e3c_*.parquet")):
+        cols = set(pd.read_parquet(tp).columns)
+        for col in RETIRED_FIELDS:
+            if col in cols:
+                retired_hits.append(f"{tp.name}:{col}")
+    man.add_gate(Gate("E3C_v2_retired_age_interval_names_absent",
+                      "PASS" if not retired_hits else "FAIL",
+                      measured=len(retired_hits), threshold=0,
+                      note="largest_contiguous_detectable_depth and its endpoints "
+                           "are retired by AGE_INTERVAL_SEMANTICS_AMENDMENT_003"
+                           + ("" if not retired_hits else f"; found {retired_hits}")))
+
+    anchored_differs = int((depth_df["contiguous_detectable_span_from_anchor_M"]
+                            != depth_df["longest_detectable_run_span_M"]).sum())
+    man.add_gate(Gate("E3C_v2_anchored_span_differs_from_longest_run",
+                      "PASS", measured=anchored_differs, threshold=None,
+                      note="rows where the longest detectable run anywhere on the "
+                           "grid is not the stretch that reaches that "
+                           "geometry's own frozen anchor. Instrumentation: this "
+                           "is the difference the amendment exists to expose, "
+                           "not a pass/fail criterion"))
+    man.add_gate(Gate("E3C_v2_anchor_frozen_from_reachable_support", "PASS",
+                      measured=anchor["grid_anchor_M"], threshold=None,
+                      note="per-geometry anchors "
+                           + ", ".join(f"{g}={a_anchor_of[g]:g}" for g in geoms)
+                           + f" M. {anchor['rule']}"))
     # the two depth statistics must genuinely differ somewhere, or the
     # contiguous one is not telling us anything the supremum did not
     noncontig = int((~depth_df["detectable_set_is_contiguous"]

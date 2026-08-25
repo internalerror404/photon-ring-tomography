@@ -1,0 +1,281 @@
+{
+  "run_id": "E3C_20260825T212723Z_2ba66f02",
+  "experiment_id": "E3C",
+  "git_commit": "c59d0987ad7f70e5ef9dc91d51b9336a782fb52e",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "subsample_seed": 20260825,
+    "permutation_seeds": [
+      20260825,
+      20261825,
+      20262825,
+      20263825,
+      20264825,
+      20265825,
+      20266825,
+      20267825,
+      20268825,
+      20269825,
+      20270825,
+      20271825,
+      20272825,
+      20273825,
+      20274825,
+      20275825
+    ]
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+      "sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_geometry_metrics.parquet",
+      "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_incremental_indirect_gram.parquet",
+      "sha256": "090fee09d5fc741c07f2fe302054248bbf76f5051f72c3ce4b9f5475a6210438"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_age_information.parquet",
+      "sha256": "c820a9bf15e5e8553d9d25e953bb3777ddcbedd19ece025bf186d1bdbdd0d8aa"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_depth_curves.parquet",
+      "sha256": "90fe0b235cbaf0fa92d39b678d814575ab9e325ebaa440acd625f272b2416ebd"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_historical_innovation.parquet",
+      "sha256": "2c781f8da403fd483cc0dafbf7d2db81fa516074bdf1ca238c809850825e92c9"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_matched_sensitivity_exponents.parquet",
+      "sha256": "f3a8d80f76cb3fc8efc2578aa59eedcf41be619107adabd35d46f9058917a3cb"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+      "sha256": "b7bd80cc8679f0d8b5b9ab72309bc0373cef871195e4c1da7b7a77a194bd046e"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_weighted_delay_quantiles_long.parquet",
+      "sha256": "8b8feec8dc3118ee2e51d73934b5bf201384c48c0bf86ae5a8154804430edbe9"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_pairing_destroyed_distribution.parquet",
+      "sha256": "786c989280a0b14d79755d5190e0994b461d2f0b9fe97a34933dd72ae3e97101"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_common_radial_support_control.parquet",
+      "sha256": "527c9fb7ad263d34da704f46c7666a43bc131c3cbfe8920b33bb9e304d0b266e"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_hypothesis_tests.parquet",
+      "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_geometry_surface.parquet",
+      "sha256": "a4811d073177135d8fe468fff5f2b006cf72083fe0a79a889f4d3ba3cb4b9af5"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_gate_detail.parquet",
+      "sha256": "77b0cadc76c3e29a88de9f16842f86f445a5489a327f18cf6d691de5103fd32f"
+    }
+  ],
+  "gate_status": {
+    "E3C_G2_physical_dense_matrix_free": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "worst over 12 geometries (at a000_i020)"
+    },
+    "E3C_G3_physical_adjoint": {
+      "status": "PASS",
+      "measured": 5.523079531068608e-14,
+      "threshold": 1e-08,
+      "note": "worst over 12 geometries (at a050_i075)"
+    },
+    "E3C_G4_physical_resolved_unresolved_mixing": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "worst over 12 geometries (at a000_i020)"
+    },
+    "E3C_G4b_linear_collapse_covariance_propagation": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-12,
+      "note": "worst over 12 geometries (at a000_i020)"
+    },
+    "E3C_G6_physical_Gram_monotonicity": {
+      "status": "PASS",
+      "measured": 9.378373831178594e-17,
+      "threshold": 1e-10,
+      "note": "worst over 12 geometries (at a000_i075)"
+    },
+    "E3C_G6b_resolved_dominates_direct": {
+      "status": "PASS",
+      "measured": 7.25047495155196e-17,
+      "threshold": 1e-10,
+      "note": "worst over 12 geometries (at a098_i075)"
+    },
+    "E3C_G9w_transfer_weight_semantics": {
+      "status": "PASS",
+      "measured": 4.3778502867990174e-16,
+      "threshold": 1e-10,
+      "note": "worst over 12 geometries (at a090_i050)"
+    },
+    "E3C_freeze_raymap_hashes": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "ray maps evaluated match the sha256 pinned in the freeze"
+    },
+    "E3C_frozen_grid_invariance": {
+      "status": "PASS",
+      "measured": "dims=[224] n_ages=[64]",
+      "threshold": "dims=[224] n_ages=[64]",
+      "note": "no basis, support, SNR grid, age grid or threshold changed across the grid"
+    },
+    "E3C_H2_registered_statistic_is_an_identity": {
+      "status": "PASS",
+      "measured": 12,
+      "threshold": 12,
+      "note": "Amendment 002: the registered scalar H2 statistic is identically zero because the flat probe cannot see a spatial substitution. This gate asserts that the degeneracy is exactly what it is claimed to be -- bitwise equality at every geometry -- so the zero is never read as evidence"
+    },
+    "E3C_v2_no_reserved_e3d_fields": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "D_hist, d_eff and effective_rank are reserved for E3D by amendment item 6"
+    },
+    "E3C_v2_exact_rank_not_applicable": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "every table reporting a rank must carry exact_rank = NOT_APPLICABLE per amendment item 5"
+    },
+    "E3C_v2_dispositions_are_registered": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "allowed dispositions are ['SUPPORTED', 'UNDEFINED_NO_COMMON_MATCHED_SUPPORT', 'NOT_APPLICABLE', 'NOT_RUN']"
+    },
+    "E3C_v2_depth_contract_complete": {
+      "status": "PASS",
+      "measured": 9,
+      "threshold": 9,
+      "note": "pre-E3C amendment item 4 as amended by AGE_INTERVAL_SEMANTICS_AMENDMENT_003: the reach, the frozen anchor, the longest detectable run with both endpoints, the stretch reaching the anchor and the complete age-threshold mask"
+    },
+    "E3C_v2_retired_age_interval_names_absent": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "largest_contiguous_detectable_depth and its endpoints are retired by AGE_INTERVAL_SEMANTICS_AMENDMENT_003"
+    },
+    "E3C_v2_anchored_span_differs_from_longest_run": {
+      "status": "PASS",
+      "measured": 316,
+      "note": "rows where the longest detectable run anywhere on the grid is not the stretch that reaches that geometry's own frozen anchor. Instrumentation: this is the difference the amendment exists to expose, not a pass/fail criterion"
+    },
+    "E3C_v2_anchor_frozen_from_reachable_support": {
+      "status": "PASS",
+      "measured": 32.0,
+      "note": "per-geometry anchors a000_i020=0, a000_i050=0, a000_i075=32, a050_i020=0, a050_i050=0, a050_i075=28, a090_i020=0, a090_i050=0, a090_i075=28, a098_i020=0, a098_i050=0, a098_i075=28 M. oldest of the per-geometry youngest admissible probe centres, so it is admissible in every geometry; frozen from the reachable source-time windows before any detectability or reconstruction result was read"
+    },
+    "E3C_v2_noncontiguous_detectable_sets": {
+      "status": "PASS",
+      "measured": 2,
+      "note": "rows whose detectable age set is not an interval, so the supremum overstates the recoverable span. Instrumentation, not a pass/fail criterion"
+    },
+    "E3C_v2_canonical_e3c_incremental_indirect_gram": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "amendment item 7 registers this table as canonical storage"
+    },
+    "E3C_v2_canonical_e3c_weighted_delay_quantiles_long": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "amendment item 7 registers this table as canonical storage"
+    },
+    "E3C_v2_canonical_e3c_pairing_destroyed_distribution": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "amendment item 7 registers this table as canonical storage"
+    }
+  },
+  "started_at": "2026-08-25T21:27:23+00:00",
+  "finished_at": "2026-08-25T21:27:24+00:00",
+  "peak_rss_mb": 182.1328125,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 1.1714646816253662,
+  "n_geometries": 12,
+  "A_max_M": 252.0,
+  "reference_snr": 100.0,
+  "source_class": "C224",
+  "age_interval_amendment": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003",
+  "a_anchor_M_by_geometry": {
+    "a000_i020": 0.0,
+    "a000_i050": 0.0,
+    "a000_i075": 32.0,
+    "a050_i020": 0.0,
+    "a050_i050": 0.0,
+    "a050_i075": 28.0,
+    "a090_i020": 0.0,
+    "a090_i050": 0.0,
+    "a090_i075": 28.0,
+    "a098_i020": 0.0,
+    "a098_i050": 0.0,
+    "a098_i075": 28.0
+  },
+  "grid_anchor_M": 32.0,
+  "anchor_rule": "oldest of the per-geometry youngest admissible probe centres, so it is admissible in every geometry; frozen from the reachable source-time windows before any detectability or reconstruction result was read"
+}

@@ -15,54 +15,76 @@ from phrt.audits.e3c_contract import (DISPOSITIONS, EXACT_RANK_VALUE,
                                       restrict_spectrum)
 
 AGES = np.arange(0.0, 40.0, 4.0)          # 10 ages, 4 M apart
+ANCHOR = 0.0                              # synthetic grid; anchor at the origin
 
 
 def test_contiguous_set_agrees_with_the_supremum():
-    d = detectability(AGES, [1, 1, 1, 1, 0, 0, 0, 0, 0, 0])
+    d = detectability(AGES, [1, 1, 1, 1, 0, 0, 0, 0, 0, 0], ANCHOR)
     assert d["oldest_detectable_age_probe"] == 12.0
-    assert d["largest_contiguous_detectable_depth"] == 12.0
+    assert d["longest_detectable_run_span_M"] == 12.0
     assert d["detectable_set_is_contiguous"] is True
     assert d["n_detectable_runs"] == 1
 
 
 def test_island_beyond_a_gap_is_where_the_two_differ():
     """The supremum says 36 M; only 8 M of history is actually usable."""
-    d = detectability(AGES, [1, 1, 1, 0, 0, 0, 0, 0, 1, 1])
+    d = detectability(AGES, [1, 1, 1, 0, 0, 0, 0, 0, 1, 1], ANCHOR)
     assert d["oldest_detectable_age_probe"] == 36.0
-    assert d["largest_contiguous_detectable_depth"] == 8.0
-    assert d["largest_contiguous_start_M"] == 0.0
-    assert d["largest_contiguous_end_M"] == 8.0
+    assert d["longest_detectable_run_span_M"] == 8.0
+    assert d["longest_detectable_run_start_M"] == 0.0
+    assert d["longest_detectable_run_end_M"] == 8.0
     assert d["detectable_set_is_contiguous"] is False
     assert d["n_detectable_runs"] == 2
 
 
 def test_longest_run_wins_even_when_it_is_not_the_first():
-    d = detectability(AGES, [1, 0, 0, 1, 1, 1, 1, 0, 0, 0])
-    assert d["largest_contiguous_detectable_depth"] == 12.0
-    assert d["largest_contiguous_start_M"] == 12.0
-    assert d["largest_contiguous_end_M"] == 24.0
+    d = detectability(AGES, [1, 0, 0, 1, 1, 1, 1, 0, 0, 0], ANCHOR)
+    assert d["longest_detectable_run_span_M"] == 12.0
+    assert d["longest_detectable_run_start_M"] == 12.0
+    assert d["longest_detectable_run_end_M"] == 24.0
+    # AGE_INTERVAL_SEMANTICS_AMENDMENT_003: that 12 M run starts at 12 M and is
+    # not history from the anchor. Only the isolated age 0 reaches the anchor.
+    assert d["contiguous_detectable_span_from_anchor_M"] == 0.0
+    assert d["anchor_is_detectable"] is True
+
+
+def test_anchor_outside_the_detectable_set_yields_no_anchored_history():
+    d = detectability(AGES, [0, 0, 1, 1, 1, 1, 0, 0, 0, 0], ANCHOR)
+    assert d["longest_detectable_run_span_M"] == 12.0
+    assert d["contiguous_detectable_span_from_anchor_M"] == 0.0
+    assert d["contiguous_detectable_end_from_anchor_M"] == -1.0
+    assert d["anchor_is_detectable"] is False
+
+
+def test_the_retired_names_are_gone_from_the_contract():
+    """A later edit reintroducing the ambiguous name should fail here."""
+    d = detectability(AGES, [1] * 10, ANCHOR)
+    for retired in ("largest_contiguous_detectable_depth",
+                    "largest_contiguous_start_M", "largest_contiguous_end_M"):
+        assert retired not in d
+    assert d["a_anchor_M"] == ANCHOR
 
 
 def test_nothing_detectable_is_reported_as_such():
-    d = detectability(AGES, [0] * 10)
+    d = detectability(AGES, [0] * 10, ANCHOR)
     assert d["oldest_detectable_age_probe"] == -1.0
-    assert d["largest_contiguous_detectable_depth"] == 0.0
+    assert d["longest_detectable_run_span_M"] == 0.0
     assert d["n_detectable_runs"] == 0
     assert set(d["age_threshold_mask"]) == {"0"}
 
 
 def test_mask_is_complete_and_aligned_with_the_grid():
     mask = [1, 0, 1, 1, 0, 0, 1, 0, 0, 1]
-    d = detectability(AGES, mask)
+    d = detectability(AGES, mask, ANCHOR)
     assert d["age_threshold_mask"] == "".join(str(b) for b in mask)
     assert len(d["age_threshold_mask"]) == AGES.size
 
 
 def test_single_detectable_age_has_zero_contiguous_span():
     """One isolated point is not a recoverable span, and says so."""
-    d = detectability(AGES, [0, 0, 1, 0, 0, 0, 0, 0, 0, 0])
+    d = detectability(AGES, [0, 0, 1, 0, 0, 0, 0, 0, 0, 0], ANCHOR)
     assert d["oldest_detectable_age_probe"] == 8.0
-    assert d["largest_contiguous_detectable_depth"] == 0.0
+    assert d["longest_detectable_run_span_M"] == 0.0
 
 
 def test_restrict_spectrum_strips_the_reserved_effective_dimension():

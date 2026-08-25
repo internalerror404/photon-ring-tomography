@@ -1,0 +1,173 @@
+{
+  "schema_version": "1.0",
+  "phase": "R0",
+  "profile": "R0_CANARY_RECONSTRUCTION_PILOT",
+  "status": "MUST_BE_FILLED_AND_COMMITTED_BEFORE_VALIDATION",
+  "identity": {
+    "repository": "internalerror404/photon-ring-tomography",
+    "start_commit": null,
+    "branch": "research/paper1_r0_canary_reconstruction_v0",
+    "environment_hash": null,
+    "hardware": null
+  },
+  "governance": {
+    "amendment": "PAPER_I_V2_RECONSTRUCTION_AMENDMENT_002",
+    "geometry_wide_claim_forbidden": true,
+    "main_test_scoring_forbidden": true,
+    "ml_forbidden": true
+  },
+  "geometry": {
+    "geometry_id": "a0p5_i50",
+    "spin": 0.5,
+    "inclination_deg": 50,
+    "orders": [
+      0,
+      1,
+      2
+    ],
+    "map_manifest_hash": null
+  },
+  "source_class": {
+    "name": "C224",
+    "dimension": 224,
+    "radial_modes": 4,
+    "azimuthal_real_modes": 7,
+    "temporal_modes": 8,
+    "basis_hash": null,
+    "radial_support_M": null,
+    "temporal_support_M": null
+  },
+  "operator": {
+    "operator_hashes": {},
+    "whitened_row": "sqrt(pixel_area) * g_factor^3 * source_basis / sigma_omega",
+    "noise_density": "white_per_unit_solid_angle",
+    "arm_specific_noise_scale_forbidden": true,
+    "g10q_required": true
+  },
+  "snr0_grid": [
+    1,
+    3,
+    10,
+    30,
+    100,
+    300,
+    1000,
+    3000,
+    10000,
+    30000,
+    100000,
+    1000000
+  ],
+  "observation_arms": [
+    "DIRECT_PHYSICAL",
+    "RESOLVED_PHYSICAL",
+    "UNRESOLVED_IMAGE",
+    "TOTAL_FLUX"
+  ],
+  "diagnostic_arms": [
+    "DELAY_ONLY",
+    "EQUALIZED_ORDER_SENSITIVITY"
+  ],
+  "source_families": {
+    "prior_fit": [
+      "single_orbiting_hotspot",
+      "two_independent_hotspots",
+      "rotating_asymmetric_crescent",
+      "correlated_extended_field"
+    ],
+    "held_out_ood": [
+      "moving_flare_birth_decay"
+    ],
+    "control": [
+      "near_null_combinations"
+    ],
+    "parameter_ranges": "FILL_BEFORE_GENERATION",
+    "positivity_rule": "FILL_BEFORE_GENERATION",
+    "off_grid_rule": "FILL_BEFORE_GENERATION"
+  },
+  "pilot_counts": {
+    "prior_fit_train_per_family": 512,
+    "validation_in_class_per_prior_fit_family": 128,
+    "validation_off_grid_per_physical_family": 64,
+    "validation_ood_total": 256,
+    "null_pairs_per_mahalanobis_target": 40,
+    "noise_draws_per_validation_truth_and_snr": 4,
+    "noiseless_control": true
+  },
+  "null_pair_targets": [
+    0.25,
+    0.5,
+    1.0,
+    2.0,
+    4.0
+  ],
+  "estimators": {
+    "required": [
+      "TSVD",
+      "RIDGE_IDENTITY",
+      "TIKHONOV_TEMPORAL",
+      "WIENER_GAUSSIAN"
+    ],
+    "conditional": [
+      "LINEAR_STATE_SPACE"
+    ],
+    "forbidden": [
+      "TOTAL_VARIATION",
+      "AUTOENCODER",
+      "NEURAL_FIELD",
+      "UNROLLED_NETWORK",
+      "DIFFUSION"
+    ],
+    "hyperparameter_grids": "FILL_AND_HASH_BEFORE_VALIDATION",
+    "selection_rule": [
+      "maximize_T_stable_eps0p50_q0p90",
+      "minimize_old_band_normalized_error",
+      "minimize_old_band_absolute_error",
+      "prefer_stronger_regularizer_or_simpler_model_on_exact_tie"
+    ]
+  },
+  "metrics": {
+    "epsilon_grid": [
+      0.25,
+      0.35,
+      0.5
+    ],
+    "q_grid": [
+      0.8,
+      0.9,
+      0.95
+    ],
+    "primary_epsilon": 0.5,
+    "primary_q": 0.9,
+    "eta_rule": "0.05 * median nonzero prior-fit age-window norm",
+    "old_band_rule": "age greater than frozen direct 0.999 throughput-weighted boundary",
+    "projector_rule": "snr0 * singular_value >= rho",
+    "right_censoring_required": true
+  },
+  "splits": {
+    "seed_bank": "FILL_AND_HASH",
+    "content_hash_method": "FILL",
+    "future_main_test_hash_commitment": "FILL_WITHOUT_RENDERING_OR_SCORING",
+    "test_truth_access_forbidden": true
+  },
+  "correctness_gates": {
+    "R0_G1_dense_matrix_free_parity": 1e-10,
+    "R0_G2_physical_adjoint": 1e-08,
+    "R0_G3_G10q_quadrature_noise_invariance": 1e-10,
+    "R0_G4_mixing_covariance": 1e-10,
+    "R0_G5_basis_round_trip": 1e-10,
+    "R0_G6_age_probe_normalization": 1e-12,
+    "R0_G7_right_censoring": "EXACT_LOGIC_TEST",
+    "R0_G8_estimator_closed_form": 1e-09,
+    "R0_G9_noise_replay": "BITWISE_IDENTICAL_CPU",
+    "R0_G10_null_pair_calibration_relative": 0.02,
+    "R0_G11_split_hash_disjointness": "ZERO_OVERLAP"
+  },
+  "artifact_policy": {
+    "figures_from_canonical_tables_only": true,
+    "test_truth_hyperparameter_tuning_forbidden": true,
+    "posthoc_threshold_change_forbidden": true,
+    "failed_artifacts_preserved": true,
+    "sha256_manifest_required": true
+  }
+}

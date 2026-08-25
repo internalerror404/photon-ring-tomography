@@ -111,7 +111,7 @@
       }
     },
     "depth": {
-      "description": "Item 4. The supremum is reported under a name that says it is a supremum, alongside the contiguous span a reconstruction can use and the complete mask.",
+      "description": "Item 4 as amended by AGE_INTERVAL_SEMANTICS_AMENDMENT_003. Three distinct observables: the reach, the longest run anywhere on the grid with its endpoints, and the stretch that connects to the frozen anchor. Only the last is history from the present. The complete mask is emitted so none has to be taken on trust.",
       "properties": {
         "oldest_detectable_age_probe": {
           "type": "number"
@@ -119,15 +119,32 @@
         "shallowest_detectable_age": {
           "type": "number"
         },
-        "largest_contiguous_detectable_depth": {
+        "a_anchor_M": {
           "type": "number",
-          "minimum": 0
+          "description": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003. The reconstruction anchor, frozen from the admissible source and probe support before any reconstruction result is observed."
         },
-        "largest_contiguous_start_M": {
+        "longest_detectable_run_span_M": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Length of the longest run of consecutive detectable ages anywhere on the grid. Formerly largest_contiguous_detectable_depth. Not a depth from the present and never to be labelled as one."
+        },
+        "longest_detectable_run_start_M": {
           "type": "number"
         },
-        "largest_contiguous_end_M": {
+        "longest_detectable_run_end_M": {
           "type": "number"
+        },
+        "contiguous_detectable_end_from_anchor_M": {
+          "type": "number",
+          "description": "End of the detectable stretch that contains a_anchor, or -1 when the anchor itself is not detectable."
+        },
+        "contiguous_detectable_span_from_anchor_M": {
+          "type": "number",
+          "minimum": 0,
+          "description": "The only span that may be described as continuous history from the anchor."
+        },
+        "anchor_is_detectable": {
+          "type": "boolean"
         },
         "n_detectable_ages": {
           "type": "integer",
@@ -147,7 +164,9 @@
       },
       "required": [
         "oldest_detectable_age_probe",
-        "largest_contiguous_detectable_depth",
+        "a_anchor_M",
+        "longest_detectable_run_span_M",
+        "contiguous_detectable_span_from_anchor_M",
         "age_threshold_mask"
       ]
     },

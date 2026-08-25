@@ -1,7 +1,7 @@
 # E3C — GEOMETRY-WIDE PHYSICAL-OPERATOR AUDIT
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `546763ed29e2be3fb129ec707cb07ee37a4f7db8`
+- branch `research/paper1_r0_canary_reconstruction_v0`, commit `c59d0987ad7f70e5ef9dc91d51b9336a782fb52e`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - freeze `artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json` sha256 `7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b`
 - 12 registered geometries, orders n = 0, 1, 2, profile `core`
@@ -27,7 +27,7 @@ the per-geometry values are in `artifacts/tables/e3c_gate_detail.parquet`.
 | `E3C_v2_no_reserved_e3d_fields` | **PASS** | 0 | 0 |
 | `E3C_v2_exact_rank_not_applicable` | **PASS** | 0 | 0 |
 | `E3C_v2_dispositions_are_registered` | **PASS** | 0 | 0 |
-| `E3C_v2_depth_contract_complete` | **PASS** | 4 | 4 |
+| `E3C_v2_depth_contract_complete` | **PASS** | 9 | 9 |
 | `G10q_continuum_noise_quadrature_invariance` | **PASS** | 5.401e-15 | 1e-10 |
 
 ## Governance counts
@@ -75,14 +75,21 @@ was previously called rank is `numerical_rank`, under a name that says it is a
 tolerance decision. No statement below says "full rank" without that
 qualification.
 
-**Depth is two statistics, not one.** `oldest_detectable_age_probe` is the
-supremum of the detectable age set — the old `T_rec`, renamed because a
-supremum cannot distinguish a history detectable all the way back from a
-detectable island beyond an undetectable gap.
-`largest_contiguous_detectable_depth` is the longest run of consecutive
-detectable ages, which is the span a reconstruction could use. The complete
-`age_threshold_mask` is emitted so neither has to be taken on trust.
-On this grid the two differ in **2 of 952** rows with any detectable age. The largest disagreement is at `a098_i020`, arm `SPATIAL_ONLY`, SNR 30000: the supremum reads 64 M while the longest contiguous span is 28 M. Reporting the supremum alone would have overstated the usable history there.
+**Depth is three statistics, not one** (AGE_INTERVAL_SEMANTICS_AMENDMENT_003).
+`oldest_detectable_age_probe` is the reach: the supremum of the detectable age
+set, the old `T_rec`, renamed because a supremum cannot distinguish a history
+detectable all the way back from a detectable island beyond an undetectable gap.
+`longest_detectable_run_span_M`, reported with `..._start_M` and `..._end_M`, is
+the longest run of consecutive detectable ages **anywhere** on the grid; it is
+the quantity previously called `largest_contiguous_detectable_depth`, and it is
+not a depth from the present, because a long run can sit entirely in the past.
+`contiguous_detectable_span_from_anchor_M`, with
+`contiguous_detectable_end_from_anchor_M`, is the stretch that actually connects
+to the frozen anchor, and is the only one of the three that may be described as
+continuous history from the present. The complete `age_threshold_mask` is
+emitted so none of them has to be taken on trust.
+Each geometry is anchored at its own youngest fully supported probe centre, computed from the reachable source-time window `[min(t_obs) - max(delay), max(t_obs) - min(delay)]` before any detectability curve was read. In **8 of 12** geometries that centre is age zero. In `a000_i075` it is **32 M**, `a050_i075` it is **28 M**, `a090_i075` it is **28 M**, `a098_i075` it is **28 M**: the minimum delay in the frozen ray set exceeds the last observer sample, so the present is not observed there at all and the youngest recoverable epoch is that positive age, recorded rather than rounded down to zero. The longest detectable run is not the stretch reaching the anchor in **316 of 1152** depth rows.
+On this grid the reach and the longest run differ in **2 of 952** rows with any detectable age. The largest disagreement is at `a098_i020`, arm `SPATIAL_ONLY`, SNR 30000: the reach reads 64 M while the longest detectable run spans 28 M from 0 to 28 M, and the stretch that reaches the anchor spans 28 M. Reporting the reach alone would have overstated the usable history there.
 
 **Reserved names.** `D_hist` and `d_eff` belong to E3D. The spectral-entropy
 effective rank is `d_eff` under another name and has been removed from every
@@ -143,8 +150,8 @@ the contiguous span below.
 | 0.98 | 60 | 84 | 144 | nondecreasing |
 | **monotone in spin** | constant | constant | constant | |
 
-**Longest contiguous detectable span, resolved stack (M)** — the span a
-reconstruction could use:
+**Longest detectable run, resolved stack (M)** — the longest run anywhere on
+the age grid, not a depth from the present:
 
 | a\* \ i | 20 deg | 50 deg | 75 deg | monotone in inclination |
 |---|---:|---:|---:|---|
@@ -152,6 +159,17 @@ reconstruction could use:
 | 0.50 | 60 | 84 | 128 | nondecreasing |
 | 0.90 | 60 | 84 | 128 | nondecreasing |
 | 0.98 | 60 | 84 | 128 | nondecreasing |
+| **monotone in spin** | constant | constant | nondecreasing | |
+
+**Contiguous detectable span from the anchor, resolved stack (M)** — the only
+one of the three that is history from the present:
+
+| a\* \ i | 20 deg | 50 deg | 75 deg | monotone in inclination |
+|---|---:|---:|---:|---|
+| 0.00 | 60 | 84 | 112 | nondecreasing |
+| 0.50 | 60 | 84 | 116 | nondecreasing |
+| 0.90 | 60 | 84 | 116 | nondecreasing |
+| 0.98 | 60 | 84 | 116 | nondecreasing |
 | **monotone in spin** | constant | constant | nondecreasing | |
 
 **Number of detectable runs, resolved stack.** A value above 1 is a detectable
@@ -181,6 +199,14 @@ against the direct channel:
 | 0.50 | 20 | 60 | 124 | nondecreasing |
 | 0.90 | 20 | 60 | 124 | nondecreasing |
 | 0.98 | 20 | 60 | 124 | nondecreasing |
+| **monotone in spin** | constant | constant | nondecreasing | |
+
+| a\* \ i | 20 deg | 50 deg | 75 deg | monotone in inclination |
+|---|---:|---:|---:|---|
+| 0.00 | 20 | 60 | 108 | nondecreasing |
+| 0.50 | 20 | 60 | 112 | nondecreasing |
+| 0.90 | 20 | 60 | 112 | nondecreasing |
+| 0.98 | 20 | 60 | 112 | nondecreasing |
 | **monotone in spin** | constant | constant | nondecreasing | |
 
 and the threshold-independent innovation:

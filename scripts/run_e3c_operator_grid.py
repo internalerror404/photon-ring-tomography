@@ -37,6 +37,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from phrt.metrics.age_intervals import admissible_anchor
 from phrt.audits.e3c_contract import (EXACT_RANK_REASON, EXACT_RANK_VALUE,
                                       check_no_reserved_fields, detectability,
                                       restrict_spectrum)
@@ -173,16 +174,16 @@ CENSORING_RULE = ("a depth equal to the common age-grid ceiling is "
 
 
 def depth_from_curve(ages: np.ndarray, ihat: np.ndarray, snr: float,
-                     rho: float, a_max: float) -> dict:
-    """The item-4 depth contract for one curve.
+                     rho: float, a_max: float, a_anchor: float) -> dict:
+    """The item-4 depth contract for one curve, as amended by 003.
 
     The registered statistic was the supremum of the detectable set alone. A
     supremum cannot distinguish a history detectable all the way back from a
     detectable island beyond an undetectable gap, so it is now reported under a
-    name that says it is a supremum, beside the longest contiguous detectable
-    span and the complete mask.
+    name that says it is a supremum, beside the longest detectable run anywhere
+    on the grid, the stretch that reaches ``a_anchor``, and the complete mask.
     """
-    d = detectability(ages, (snr ** 2) * ihat >= rho ** 2)
+    d = detectability(ages, (snr ** 2) * ihat >= rho ** 2, a_anchor)
     oldest = d["oldest_detectable_age_probe"]
     censored = bool(oldest >= 0 and np.isclose(oldest, a_max))
     d.update({
@@ -255,6 +256,14 @@ def evaluate(base: list[OrderRays], fz: dict, r_in: float, r_out: float,
 
     t_lo = float(t_obs.min() - max(o.delay.max() for o in base)) - 3.0 * h
     t_hi = float(t_obs.max()) + 3.0 * h
+
+    # AGE_INTERVAL_SEMANTICS_AMENDMENT_003: the reconstruction anchor is a
+    # property of the observation, computed here from the reachable source-time
+    # window and never from an error or detectability curve.
+    a_anchor = float(admissible_anchor(
+        ages, h,
+        float(t_obs.min() - max(o.delay.max() for o in base)),
+        float(t_obs.max()))["a_anchor_M"])
     basis = PhysicalBasis(r_in, r_out, t_lo, t_hi)
     unit = unit_source(basis)
     qnorm = age_norm(r_in, r_out, h)
@@ -396,16 +405,18 @@ def evaluate(base: list[OrderRays], fz: dict, r_in: float, r_out: float,
                              "lambda_min_per_snr2": float(ln),
                              "log_information_volume_at_reference_snr": float(lv)})
         for snr in snr_grid:
-            d = depth_from_curve(ages, ihat, snr, rho, a_max)
+            d = depth_from_curve(ages, ihat, snr, rho, a_max, a_anchor)
             d.update({"arm": name, "snr0": snr, "total_ages": int(ages.size),
                       "age_grid_max": a_max})
             # the same contract on the best-determined localized mode
-            best = depth_from_curve(ages, lam_max, snr, rho, a_max)
+            best = depth_from_curve(ages, lam_max, snr, rho, a_max, a_anchor)
             d.update({
                 "best_mode_oldest_detectable_age_probe":
                     best["oldest_detectable_age_probe"],
-                "best_mode_largest_contiguous_detectable_depth":
-                    best["largest_contiguous_detectable_depth"],
+                "best_mode_longest_detectable_run_span_M":
+                    best["longest_detectable_run_span_M"],
+                "best_mode_contiguous_detectable_span_from_anchor_M":
+                    best["contiguous_detectable_span_from_anchor_M"],
                 "best_mode_age_threshold_mask": best["age_threshold_mask"],
                 "best_mode_detectable_set_is_contiguous":
                     best["detectable_set_is_contiguous"],

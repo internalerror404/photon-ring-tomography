@@ -1,6 +1,6 @@
 {
   "experiment": "E3C",
-  "run_id": "E3C_20260825T194442Z_2ba66f02",
+  "run_id": "E3C_20260825T212723Z_2ba66f02",
   "gates": {
     "E3C_G2_physical_dense_matrix_free": {
       "status": "PASS",
@@ -82,9 +82,25 @@
     },
     "E3C_v2_depth_contract_complete": {
       "status": "PASS",
-      "measured": 4,
-      "threshold": 4,
-      "note": "amendment item 4 requires the supremum, the largest contiguous detectable depth and the complete age-threshold mask"
+      "measured": 9,
+      "threshold": 9,
+      "note": "pre-E3C amendment item 4 as amended by AGE_INTERVAL_SEMANTICS_AMENDMENT_003: the reach, the frozen anchor, the longest detectable run with both endpoints, the stretch reaching the anchor and the complete age-threshold mask"
+    },
+    "E3C_v2_retired_age_interval_names_absent": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "largest_contiguous_detectable_depth and its endpoints are retired by AGE_INTERVAL_SEMANTICS_AMENDMENT_003"
+    },
+    "E3C_v2_anchored_span_differs_from_longest_run": {
+      "status": "PASS",
+      "measured": 316,
+      "note": "rows where the longest detectable run anywhere on the grid is not the stretch that reaches that geometry's own frozen anchor. Instrumentation: this is the difference the amendment exists to expose, not a pass/fail criterion"
+    },
+    "E3C_v2_anchor_frozen_from_reachable_support": {
+      "status": "PASS",
+      "measured": 32.0,
+      "note": "per-geometry anchors a000_i020=0, a000_i050=0, a000_i075=32, a050_i020=0, a050_i050=0, a050_i075=28, a090_i020=0, a090_i050=0, a090_i075=28, a098_i020=0, a098_i050=0, a098_i075=28 M. oldest of the per-geometry youngest admissible probe centres, so it is admissible in every geometry; frozen from the reachable source-time windows before any detectability or reconstruction result was read"
     },
     "E3C_v2_noncontiguous_detectable_sets": {
       "status": "PASS",
@@ -111,7 +127,7 @@
     }
   },
   "summary": {
-    "PASS": 18,
+    "PASS": 21,
     "FAIL": 0,
     "NOT_RUN": 0
   }

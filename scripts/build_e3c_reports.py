@@ -256,25 +256,55 @@ def main() -> int:
     n_noncontig = int((~dep.detectable_set_is_contiguous
                        & (dep.oldest_detectable_age_probe >= 0)).sum())
     n_detrows = int((dep.oldest_detectable_age_probe >= 0).sum())
+    n_anchor_differs = int((dep.contiguous_detectable_span_from_anchor_M
+                            != dep.longest_detectable_run_span_M).sum())
+    anch = dep.groupby("geometry").a_anchor_M.first()
+    a_anchor_at_zero = sorted(anch[anch == 0].index)
+    a_anchor_positive = {g: float(v) for g, v in anch[anch > 0].items()}
     if n_noncontig:
         worst = dep[~dep.detectable_set_is_contiguous].assign(
             gap=lambda x: x.oldest_detectable_age_probe
-            - x.largest_contiguous_detectable_depth).sort_values(
+            - x.longest_detectable_run_span_M).sort_values(
                 "gap", ascending=False).iloc[0]
         contiguity_note = (
-            f"On this grid the two differ in **{n_noncontig} of {n_detrows}** "
-            f"rows with any detectable age. The largest disagreement is at "
-            f"`{worst.geometry}`, arm `{worst.arm}`, SNR {worst.snr0:g}: the "
-            f"supremum reads {worst.oldest_detectable_age_probe:.0f} M while the "
-            f"longest contiguous span is "
-            f"{worst.largest_contiguous_detectable_depth:.0f} M. Reporting the "
-            "supremum alone would have overstated the usable history there.")
+            f"On this grid the reach and the longest run differ in "
+            f"**{n_noncontig} of {n_detrows}** rows with any detectable age. The "
+            f"largest disagreement is at `{worst.geometry}`, arm `{worst.arm}`, "
+            f"SNR {worst.snr0:g}: the reach reads "
+            f"{worst.oldest_detectable_age_probe:.0f} M while the longest "
+            f"detectable run spans "
+            f"{worst.longest_detectable_run_span_M:.0f} M from "
+            f"{worst.longest_detectable_run_start_M:.0f} to "
+            f"{worst.longest_detectable_run_end_M:.0f} M, and the stretch that "
+            f"reaches the anchor spans "
+            f"{worst.contiguous_detectable_span_from_anchor_M:.0f} M. Reporting "
+            "the reach alone would have overstated the usable history there.")
     else:
         contiguity_note = (
             f"On this grid the detectable age set is an interval in all "
-            f"{n_detrows} rows with any detectable age, so the two statistics "
+            f"{n_detrows} rows with any detectable age, so the three statistics "
             "coincide everywhere. That is a result of this grid, not a property "
-            "of the operator, and it is why both are reported.")
+            "of the operator, and it is why all three are reported.")
+    anchor_note = (
+        "Each geometry is anchored at its own youngest fully supported probe "
+        "centre, computed from the reachable source-time window "
+        "`[min(t_obs) - max(delay), max(t_obs) - min(delay)]` before any "
+        "detectability curve was read. "
+        + (f"In **{len(a_anchor_at_zero)} of {len(anch)}** geometries that centre "
+           f"is age zero. "
+           if a_anchor_at_zero else "")
+        + (("In " + ", ".join(f"`{g}` it is **{v:g} M**"
+                              for g, v in sorted(a_anchor_positive.items()))
+            + ": the minimum delay in the frozen ray set exceeds the last "
+              "observer sample, so the present is not observed there at all and "
+              "the youngest recoverable epoch is that positive age, recorded "
+              "rather than rounded down to zero. ")
+           if a_anchor_positive else "")
+        + (f"The longest detectable run is not the stretch reaching the anchor in "
+           f"**{n_anchor_differs} of {len(dep)}** depth rows."
+           if n_anchor_differs else
+           "On this grid the longest detectable run is the stretch reaching the "
+           "anchor in every depth row."))
 
     # =========================================================================
     (REPORTS / "E3C_GEOMETRY_WIDE_OPERATOR_AUDIT.md").write_text(f"""# E3C — GEOMETRY-WIDE PHYSICAL-OPERATOR AUDIT
@@ -319,13 +349,20 @@ was previously called rank is `numerical_rank`, under a name that says it is a
 tolerance decision. No statement below says "full rank" without that
 qualification.
 
-**Depth is two statistics, not one.** `oldest_detectable_age_probe` is the
-supremum of the detectable age set — the old `T_rec`, renamed because a
-supremum cannot distinguish a history detectable all the way back from a
-detectable island beyond an undetectable gap.
-`largest_contiguous_detectable_depth` is the longest run of consecutive
-detectable ages, which is the span a reconstruction could use. The complete
-`age_threshold_mask` is emitted so neither has to be taken on trust.
+**Depth is three statistics, not one** (AGE_INTERVAL_SEMANTICS_AMENDMENT_003).
+`oldest_detectable_age_probe` is the reach: the supremum of the detectable age
+set, the old `T_rec`, renamed because a supremum cannot distinguish a history
+detectable all the way back from a detectable island beyond an undetectable gap.
+`longest_detectable_run_span_M`, reported with `..._start_M` and `..._end_M`, is
+the longest run of consecutive detectable ages **anywhere** on the grid; it is
+the quantity previously called `largest_contiguous_detectable_depth`, and it is
+not a depth from the present, because a long run can sit entirely in the past.
+`contiguous_detectable_span_from_anchor_M`, with
+`contiguous_detectable_end_from_anchor_M`, is the stretch that actually connects
+to the frozen anchor, and is the only one of the three that may be described as
+continuous history from the present. The complete `age_threshold_mask` is
+emitted so none of them has to be taken on trust.
+{anchor_note}
 {contiguity_note}
 
 **Reserved names.** `D_hist` and `d_eff` belong to E3D. The spectral-entropy
@@ -372,10 +409,15 @@ the contiguous span below.
 
 {surface_table(surf, 'oldest_detectable_age_probe_resolved')}
 
-**Longest contiguous detectable span, resolved stack (M)** — the span a
-reconstruction could use:
+**Longest detectable run, resolved stack (M)** — the longest run anywhere on
+the age grid, not a depth from the present:
 
-{surface_table(surf, 'largest_contiguous_detectable_depth_resolved')}
+{surface_table(surf, 'longest_detectable_run_span_M_resolved')}
+
+**Contiguous detectable span from the anchor, resolved stack (M)** — the only
+one of the three that is history from the present:
+
+{surface_table(surf, 'contiguous_detectable_span_from_anchor_M_resolved')}
 
 **Number of detectable runs, resolved stack.** A value above 1 is a detectable
 set with a hole in it, and is where the two statistics above part company:
@@ -386,7 +428,9 @@ against the direct channel:
 
 {surface_table(surf, 'oldest_detectable_age_probe_direct')}
 
-{surface_table(surf, 'largest_contiguous_detectable_depth_direct')}
+{surface_table(surf, 'longest_detectable_run_span_M_direct')}
+
+{surface_table(surf, 'contiguous_detectable_span_from_anchor_M_direct')}
 
 and the threshold-independent innovation:
 

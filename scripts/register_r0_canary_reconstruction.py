@@ -29,9 +29,28 @@ from phrt import provenance
 from phrt.config import load_registry, sha256_file
 from phrt.geometry.raymap import read
 from phrt.geometry.sampling import common_count, stratified_subsample
+from phrt.sources.physical_basis import (DEFAULT_N_AZIMUTHAL,
+                                         DEFAULT_N_RADIAL,
+                                         DEFAULT_N_TEMPORAL,
+                                         PhysicalBasis)
+from phrt.metrics.age_intervals import AMENDMENT as AGE_AMENDMENT
+from phrt.metrics.age_intervals import observation_anchor
 
 OUT = ROOT / "artifacts" / "configs" / "R0_CANARY_RECONSTRUCTION_PILOT_FREEZE.json"
 ACCEPTED_BASE = "0ef341dae3b21bc2bdd0e54a18971cff208af783"
+# The nine provenance fields the activation ruling requires on the freeze and on
+# every result manifest. Pinned literally; four of them the ruling states.
+MEASUREMENT_CORRECTION_COMMIT = "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+E3C_EXECUTION_CODE_COMMIT = "546763ed29e2be3fb129ec707cb07ee37a4f7db8"
+E3C_ARTIFACT_COMMIT = "7d610121adc95fb641ab5692d37d2b761b082039"
+E3C_FREEZE_SHA256 = ("7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc"
+                     "29896c53634bf1b")
+E3C_REGISTRY_SHA256 = ("2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a"
+                       "7a1f9eb4b783796")
+TEMPLATE = ("schemas/R0_CANARY_RECONSTRUCTION_PILOT_FREEZE_TEMPLATE_v1.0.json")
+# Null until the amendment commit exists; then pinned literally. See the note
+# recorded next to the field in the freeze.
+AGE_AMENDMENT_COMMIT = None
 # The tree state the pilot started from, pinned rather than read from HEAD:
 # re-running the registration after the freeze commit would otherwise move
 # the recorded start commit forward and misdescribe where the work began.
@@ -82,6 +101,55 @@ def canary_support() -> dict:
                                                   for o in base}}
 
 
+def leaves(node, prefix: str = ""):
+    """Every leaf path of the launch template, as dotted keys."""
+    if isinstance(node, dict) and node:
+        for k, v in node.items():
+            yield from leaves(v, f"{prefix}.{k}" if prefix else k)
+    else:
+        yield prefix, node
+
+
+def dig(doc: dict, path: str):
+    cur = doc
+    for part in path.split("."):
+        if not isinstance(cur, dict) or part not in cur:
+            return None, False
+        cur = cur[part]
+    return cur, True
+
+
+def check_template(freeze: dict) -> list[str]:
+    """Every template leaf must map to a filled value in the freeze.
+
+    The template ships with ``null`` and ``FILL...`` markers. This refuses to
+    register a freeze in which any of them survived, or in which a mapping
+    points at a key that does not exist -- either way the freeze would look
+    complete while leaving a registered choice open.
+    """
+    tpl = json.loads((ROOT / TEMPLATE).read_text())
+    mapping = freeze["template_conformance"]
+    bad = []
+    for path, _ in leaves(tpl):
+        # a template leaf under a mapped parent is covered by that parent
+        target = None
+        for depth in range(path.count(".") + 1, 0, -1):
+            head = ".".join(path.split(".")[:depth])
+            if head in mapping:
+                target = mapping[head]
+                break
+        if target is None:
+            bad.append(f"{path}: no entry in template_conformance")
+            continue
+        value, present = dig(freeze, target)
+        if not present:
+            bad.append(f"{path} -> {target}: missing from the freeze")
+        elif value is None or (isinstance(value, str)
+                               and value.upper().startswith("FILL")):
+            bad.append(f"{path} -> {target}: still unfilled ({value!r})")
+    return bad
+
+
 def main() -> int:
     reg = load_registry()
     prov = provenance.collect()
@@ -91,6 +159,17 @@ def main() -> int:
     max_delay = max(w[1] for w in sup["delay_windows_M"].values())
     t_lo = float(min(t_obs) - max_delay) - 3.0 * PROBE_HALF_WIDTH
     t_hi = float(max(t_obs)) + 3.0 * PROBE_HALF_WIDTH
+
+    # AGE_INTERVAL_SEMANTICS_AMENDMENT_003. The anchor is frozen here, from the
+    # reachable source-time window of this observation, before a single movie
+    # exists -- so it cannot be chosen to flatter a depth curve later.
+    age_grid = np.arange(0.0, max_delay + OBSERVER_SPAN + 3.0 * PROBE_HALF_WIDTH,
+                         AGE_STEP)
+    anchor = observation_anchor(age_grid, PROBE_HALF_WIDTH, t_obs,
+                                list(sup["delay_windows_M"].values()))
+    if not anchor["admissible"]:
+        raise SystemExit("no admissible probe centre on the R0 age grid")
+    a_anchor = float(anchor["a_anchor_M"])
 
     e3c = json.loads((ROOT / "artifacts" / "configs"
                       / "E3C_OPERATOR_GRID_FREEZE.json").read_text())
@@ -132,6 +211,35 @@ def main() -> int:
                 "R0_G3 would stop immediately with QUADRATURE_NOISE_DEFECT.",
             "registry_sha256": reg.sha256,
             "git_dirty_at_registration": provenance.git_dirty(),
+
+            # The nine fields the activation ruling requires the freeze and
+            # every result manifest to record separately. The execution commit
+            # and the artifact commit are kept apart on purpose: one is the code
+            # that ran E3C, the other is the tree its outputs were committed in,
+            # and a single ambiguous "commit" field cannot say which is which.
+            "accepted_base_commit": ACCEPTED_BASE,
+            "measurement_correction_commit": MEASUREMENT_CORRECTION_COMMIT,
+            "e3c_execution_code_commit": E3C_EXECUTION_CODE_COMMIT,
+            "e3c_artifact_commit": E3C_ARTIFACT_COMMIT,
+            "e3c_age_interval_amendment_commit": AGE_AMENDMENT_COMMIT,
+            "e3c_age_interval_amendment_commit_note":
+                "The amendment, its tests, the reassembled derived E3C tables "
+                "and this freeze are committed together, so this field names the "
+                "commit that contains this very file. A commit cannot carry its "
+                "own hash: it is null in that commit and pinned literally in the "
+                "single-file commit immediately after, which changes nothing "
+                "else.",
+            "head_before_amendment_commit": git("rev-parse", "HEAD"),
+            "e3c_freeze_sha256": E3C_FREEZE_SHA256,
+            "e3c_registry_sha256": E3C_REGISTRY_SHA256,
+            "ray_map_manifest_sha256": None,   # filled below, over the digests
+            "r0_config_sha256": None,          # filled below, over this document
+            "self_digest_rule":
+                "r0_config_sha256 is sha256 over the canonical JSON of this "
+                "document with r0_config_sha256 itself set to null, so the field "
+                "can live inside the document it describes; "
+                "ray_map_manifest_sha256 is sha256 over the canonical JSON of "
+                "the sorted physical_model.raymap_sha256 map",
         },
 
         "environment": {
@@ -168,6 +276,30 @@ def main() -> int:
                     sha256_file(ROOT / "artifacts" / "raymaps"
                                 / f"{GEOMETRY}_n{n}_core.h5") for n in ORDERS},
             **sup,
+        },
+
+        "source_class": {
+            "id": "C224",
+            "dimension": int(PhysicalBasis(r_in, r_out, t_lo, t_hi).dimension),
+            "n_radial": DEFAULT_N_RADIAL,
+            "n_azimuthal": DEFAULT_N_AZIMUTHAL,
+            "n_temporal": DEFAULT_N_TEMPORAL,
+            "factorization": f"{DEFAULT_N_RADIAL} cubic B-splines in log r x "
+                             f"{DEFAULT_N_AZIMUTHAL} real Fourier modes "
+                             f"(|m| <= {(DEFAULT_N_AZIMUTHAL - 1) // 2}) x "
+                             f"{DEFAULT_N_TEMPORAL} DCT modes in source time",
+            "column_order": "radial-major, then azimuthal, then temporal",
+            "radial_support_M": [r_in, r_out],
+            "temporal_support_M": [t_lo, t_hi],
+            "basis_sha256": hashlib.sha256(json.dumps(
+                {"n_radial": DEFAULT_N_RADIAL,
+                 "n_azimuthal": DEFAULT_N_AZIMUTHAL,
+                 "n_temporal": DEFAULT_N_TEMPORAL,
+                 "r_inner_M": r_in, "r_outer_M": r_out,
+                 "t_min_M": t_lo, "t_max_M": t_hi},
+                sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
+            "synthesis_rule": "Q_C is applied exactly once; the class is the "
+                              "same object in every arm",
         },
 
         "observation": {
@@ -339,7 +471,7 @@ def main() -> int:
             "selection": {
                 "data": "validation only, separately per arm, estimator and SNR",
                 "objective_lexicographic": [
-                    "maximize T_stable(epsilon=0.50, q=0.90)",
+                    "maximize T_stable_anchor(epsilon=0.50, q=0.90)",
                     "minimize old-band normalized error",
                     "minimize old-band absolute error",
                     "prefer the stronger regularizer or simpler model on an "
@@ -358,12 +490,46 @@ def main() -> int:
             "eta_value": None,
             "stable_depth_surface": {"epsilon": [0.25, 0.35, 0.50],
                                      "q": [0.80, 0.90, 0.95]},
-            "primary_point": "T_stable(epsilon=0.50, q=0.90)",
-            "also_reported": ["T_reach", "T_contig", "D_hist(T)", "d_eff(T)",
+            "age_interval_amendment": AGE_AMENDMENT,
+            "a_anchor_M": a_anchor,
+            "anchor_rule": anchor["rule"],
+            "anchor_derivation": {
+                "probe_centre": "a probe at age a occupies source time -a "
+                                "within 3 half widths",
+                "reachable_source_time_M": [anchor["source_time_min_M"],
+                                            anchor["source_time_max_M"]],
+                "delay_min_M": anchor["delay_min_M"],
+                "delay_max_M": anchor["delay_max_M"],
+                "frozen_before": "any movie is rendered or any error curve exists",
+            },
+            "primary_point": "T_stable_anchor(epsilon=0.50, q=0.90)",
+            "T_stable_anchor":
+                "sup { T >= a_anchor : Pr[ sup_{a_anchor <= a <= T} E(a) <= "
+                "epsilon ] >= q }. The supremum over the age window is inside "
+                "the probability and is taken per truth: a truth counts only if "
+                "the whole window from the anchor out to T is good for that "
+                "truth. Thresholding the per-age passing fraction instead asks "
+                "a weaker question and is not what is reported.",
+            "L_stable_anchor": "T_stable_anchor - a_anchor",
+            "secondary_unanchored_interval":
+                "a longest stable interval anywhere on the grid may be reported "
+                "with both endpoints; it must not be called depth from the present",
+            "also_reported": ["oldest_detectable_age_probe",
+                              "longest_detectable_run_span_M with both endpoints",
+                              "contiguous_detectable_span_from_anchor_M",
                               "recent/middle/old band errors",
                               "data-supported and weak-subspace errors",
                               "calibration and coverage", "runtime",
                               "iterations", "peak memory"],
+            "withheld_from_the_launch_list": {
+                "fields": ["D_hist(T)", "d_eff(T)"],
+                "reason": "PAPER_I_V2_PRE_E3C_AMENDMENT_001 item 6 reserves "
+                          "D_hist, d_eff and the retired alias effective_rank "
+                          "for E3D, and the activation ruling restates that they "
+                          "are E3D quantities. E3D is deferred and not started, "
+                          "so R0 does not emit them under any name. The interval "
+                          "statistics above replace them in the R0 return.",
+            },
             "old_band_boundary_M": a0_999,
             "old_band_rule": "the frozen direct-order 99.9% throughput-weighted "
                              "age boundary; never selected from reconstruction "
@@ -450,11 +616,127 @@ def main() -> int:
     freeze["source_families"]["resolved_ranges"] = resolved
     freeze["source_families"]["baseline_intensity"] = 1.0
 
+    # ---- template conformance ------------------------------------------
+    # The launch shipped a skeleton with null and FILL markers. Rather than
+    # rename this freeze's keys to match it and lose the more explicit names,
+    # every leaf of the template is mapped to the place in this document that
+    # satisfies it, and the mapping is checked mechanically. A template leaf
+    # with no entry, or an entry pointing at a missing or still-unfilled value,
+    # fails registration.
+    freeze["template"] = TEMPLATE
+    freeze["template_conformance"] = {
+        "schema_version": "schema",
+        "phase": "experiment_id",
+        "profile": "experiment_id",
+        "status": "provenance.r0_config_sha256",
+        "identity.repository": "provenance.repository",
+        "identity.start_commit": "provenance.start_commit",
+        "identity.branch": "provenance.branch",
+        "identity.environment_hash": "environment.environment_sha256",
+        "identity.hardware": "environment.hardware",
+        "governance.amendment": "governance.amendments",
+        "governance.geometry_wide_claim_forbidden": "scope.forbidden_language",
+        "governance.main_test_scoring_forbidden": "scope.not_authorized",
+        "governance.ml_forbidden": "estimators.not_authorized",
+        "geometry.geometry_id": "physical_model.geometry",
+        "geometry.spin": "physical_model.spin",
+        "geometry.inclination_deg": "physical_model.inclination_deg",
+        "geometry.orders": "physical_model.orders",
+        "geometry.map_manifest_hash": "provenance.ray_map_manifest_sha256",
+        "source_class.name": "physical_model.source_class",
+        "source_class.dimension": "source_class.dimension",
+        "source_class.radial_modes": "source_class.n_radial",
+        "source_class.azimuthal_real_modes": "source_class.n_azimuthal",
+        "source_class.temporal_modes": "source_class.n_temporal",
+        "source_class.basis_hash": "source_class.basis_sha256",
+        "source_class.radial_support_M": "source_class.radial_support_M",
+        "source_class.temporal_support_M": "source_class.temporal_support_M",
+        "operator.operator_hashes": "physical_model.raymap_sha256",
+        "operator.whitened_row": "physical_model.whitened_row",
+        "operator.noise_density": "physical_model.noise",
+        "operator.arm_specific_noise_scale_forbidden": "physical_model.noise",
+        "operator.g10q_required": "gates.R0_G3_G10q_quadrature_noise_invariance",
+        "snr0_grid": "physical_model.snr0_grid",
+        "observation_arms": "observation.arms_primary",
+        "diagnostic_arms": "observation.arms_diagnostic",
+        "source_families.prior_fit": "split.prior_fit_families",
+        "source_families.held_out_ood": "split.held_out_ood_family",
+        "source_families.control": "split.control_families",
+        "source_families.parameter_ranges": "source_families.resolved_ranges",
+        "source_families.positivity_rule": "source_families.positivity_construction",
+        "source_families.off_grid_rule": "source_families.off_grid",
+        "pilot_counts": "pilot_counts",
+        "null_pair_targets": "null_pairs.targets",
+        "estimators.required": "estimators.required",
+        "estimators.conditional": "estimators.conditional",
+        "estimators.forbidden": "estimators.not_authorized",
+        "estimators.hyperparameter_grids": "hyperparameter_grids",
+        "estimators.selection_rule": "hyperparameter_grids.selection.objective_lexicographic",
+        "metrics.epsilon_grid": "metrics.stable_depth_surface.epsilon",
+        "metrics.q_grid": "metrics.stable_depth_surface.q",
+        "metrics.primary_epsilon": "metrics.stable_depth_surface.epsilon",
+        "metrics.primary_q": "metrics.stable_depth_surface.q",
+        "metrics.eta_rule": "metrics.eta_rule",
+        "metrics.old_band_rule": "metrics.old_band_rule",
+        "metrics.projector_rule": "subspaces.P_data",
+        "metrics.right_censoring_required": "gates.R0_G7_right_censoring",
+        "splits.seed_bank": "seeds.streams",
+        "splits.content_hash_method": "seeds.content_hash_method",
+        "splits.future_main_test_hash_commitment": "split.future_main_test",
+        "splits.test_truth_access_forbidden": "split.test_truth_access",
+        "correctness_gates": "gates",
+        "artifact_policy": "artifact_policy",
+    }
+
+    # fields the template asks for that this freeze did not previously name
+    freeze["provenance"]["repository"] = "internalerror404/photon-ring-tomography"
+    freeze["governance"] = {
+        "amendments": ["PAPER_I_V2_PRE_E3C_AMENDMENT_001",
+                       "PAPER_I_V2_RECONSTRUCTION_AMENDMENT_002",
+                       AGE_AMENDMENT],
+        "ruling": "PAPER_I_R0_ACTIVATION_AFTER_E3C_V2 v1.2",
+        "geometry_wide_claim_forbidden": True,
+        "main_test_scoring_forbidden": True,
+        "ml_forbidden": True,
+    }
+    freeze["split"]["control_families"] = ["near_null_combinations"]
+    freeze["split"]["test_truth_access"] = (
+        "forbidden. The R1 main test truths are committed by content hash only; "
+        "they are neither rendered nor scored in R0")
+    freeze["split"]["future_main_test"] = (
+        "a hash commitment over the R1 test truth parameters is written from the "
+        "future_main_test seed stream without rendering or scoring any of them")
+    freeze["artifact_policy"] = {
+        "figures_from_canonical_tables_only": True,
+        "test_truth_hyperparameter_tuning_forbidden": True,
+        "posthoc_threshold_change_forbidden": True,
+        "failed_artifacts_preserved": True,
+        "sha256_manifest_required": True,
+    }
+    freeze["metrics"]["primary_epsilon"] = 0.50
+    freeze["metrics"]["primary_q"] = 0.90
+
+    # ---- the two self-referential digests -------------------------------
+    freeze["provenance"]["ray_map_manifest_sha256"] = hashlib.sha256(
+        json.dumps(freeze["physical_model"]["raymap_sha256"], sort_keys=True,
+                   separators=(",", ":")).encode()).hexdigest()
+    freeze["provenance"]["r0_config_sha256"] = None
+    freeze["provenance"]["r0_config_sha256"] = hashlib.sha256(
+        json.dumps(freeze, sort_keys=True, separators=(",", ":"),
+                   default=float).encode()).hexdigest()
+
+    unfilled = check_template(freeze)
+    if unfilled:
+        raise SystemExit("template not satisfied: " + "; ".join(unfilled))
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(freeze, indent=2, default=float) + "\n")
     digest = hashlib.sha256(OUT.read_bytes()).hexdigest()
     print(f"wrote {OUT.relative_to(ROOT)}")
-    print(f"  freeze sha256 {digest}")
+    print(f"  freeze file sha256   {digest}")
+    print(f"  r0_config_sha256     {freeze['provenance']['r0_config_sha256']}")
+    print(f"  ray_map_manifest     {freeze['provenance']['ray_map_manifest_sha256']}")
+    print(f"  a_anchor_M           {a_anchor:g}")
     print(f"  start commit  {freeze['provenance']['start_commit']}")
     print(f"  branch        {freeze['provenance']['branch']}")
     print(f"  support       r in [{r_in:.3f}, {r_out:.3f}] M")

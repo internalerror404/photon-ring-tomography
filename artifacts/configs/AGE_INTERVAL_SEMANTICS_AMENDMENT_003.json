@@ -1,0 +1,266 @@
+{
+  "amendment": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003",
+  "reassembled_derived_artifacts": [
+    {
+      "path": "artifacts/tables/e3c_depth_curves.parquet",
+      "sha256_at_e3c_artifact_commit": "d9994424f4b8b55f3a4a0f33dcce26ae89cfe9b331b6e7b13609ba097672d722",
+      "sha256_after_amendment": "90fe0b235cbaf0fa92d39b678d814575ab9e325ebaa440acd625f272b2416ebd",
+      "changed": true
+    },
+    {
+      "path": "artifacts/tables/e3c_depth_curves.csv",
+      "sha256_at_e3c_artifact_commit": "f116eb70402747e2ac22b5a675dea603b2eb2609182c14f21d5897f323f1e71b",
+      "sha256_after_amendment": "cd3ba4e1280db2064f3ccb46e1c6ff27070944c62d9af855cb469c6125a1eded",
+      "changed": true
+    },
+    {
+      "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+      "sha256_at_e3c_artifact_commit": "cf07eac61e11574ab2fe1b86ac348f30765738f36640b8c38eb8425b98d30d0c",
+      "sha256_after_amendment": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
+      "changed": true
+    },
+    {
+      "path": "artifacts/tables/e3c_geometry_metrics.csv",
+      "sha256_at_e3c_artifact_commit": "ad39a1550ce21b0f5086f5f8722cd56d4d38a7e92f3dac87c902aa2bd5870c1e",
+      "sha256_after_amendment": "c9f32fe34f6cd0afc075cf9065261529f89f3d072d3cae1914e8e3e02de74fe9",
+      "changed": true
+    },
+    {
+      "path": "artifacts/tables/e3c_geometry_surface.parquet",
+      "sha256_at_e3c_artifact_commit": "81346893ef3c32ddfa5e3249a1124d60089d77140860726b97079bea16033d88",
+      "sha256_after_amendment": "a4811d073177135d8fe468fff5f2b006cf72083fe0a79a889f4d3ba3cb4b9af5",
+      "changed": true
+    },
+    {
+      "path": "artifacts/tables/e3c_geometry_surface.csv",
+      "sha256_at_e3c_artifact_commit": "e135469276b6cd46611c7cdf609be3093e707bbb840d0c3d49c09c1a752be127",
+      "sha256_after_amendment": "20aef7b6767b69d03088f96cc57e758d1e43085751dd213cca7337c4476d8a77",
+      "changed": true
+    },
+    {
+      "path": "artifacts/reports/E3C_GEOMETRY_WIDE_OPERATOR_AUDIT.md",
+      "sha256_at_e3c_artifact_commit": "60d1525870bf53030ae8ac33de12cbf87c9a0101a73b5eafd9586410eb85e3bc",
+      "sha256_after_amendment": "e7406f9f550f3d23747ab6f8533afe711838e8b7ecb452bbca86ab82ec830c6c",
+      "changed": true
+    },
+    {
+      "path": "artifacts/reports/E3C_MECHANISM_DECOMPOSITION.md",
+      "sha256_at_e3c_artifact_commit": "d616f9a73c1e9ba89321465e0e5963d93c6650a1b65dd2a6f58e29334fd01a63",
+      "sha256_after_amendment": "65273c538d8987b8a4f32bbe635761c2947da154f6592cf4d5509d5128e954e8",
+      "changed": true
+    },
+    {
+      "path": "artifacts/reports/E3C_MEASUREMENT_NOISE_MODEL.md",
+      "sha256_at_e3c_artifact_commit": "e95d7d1afc00ad57f9014b2348fe8f964d2b6afbbe8a5ef80d5e49b82b3e9fe5",
+      "sha256_after_amendment": "1e9c4ebe69dc3ba1f76b1acf4c8fac7979b2569b43f18bc5011dc6da94be3368",
+      "changed": true
+    },
+    {
+      "path": "artifacts/reports/AMENDMENT_002_LOCALIZED_CLASS_MECHANISM_DIAGNOSTIC.md",
+      "sha256_at_e3c_artifact_commit": "ddba3b2211a17302e71ae829ff3ce61a904a68603258002658c96cd719665e3c",
+      "sha256_after_amendment": "230f38f06d682bbf60beeaa115ceabaebb59c332b90db0f4d0052161015cdace",
+      "changed": true
+    },
+    {
+      "path": "artifacts/provenance/E3C_ARTIFACT_MANIFEST.json",
+      "sha256_at_e3c_artifact_commit": "29f98cf946a6a85e14a6aadca21fb03371e96a9a30d1de32f3d2aa57c5353433",
+      "sha256_after_amendment": "5d43dfc2463c32fd08441adafe7e50b17731e9e2d901cb6de359d0246dd207c4",
+      "changed": true
+    }
+  ],
+  "supersedes": {
+    "largest_contiguous_detectable_depth": "longest_detectable_run_span_M",
+    "largest_contiguous_start_M": "longest_detectable_run_start_M",
+    "largest_contiguous_end_M": "longest_detectable_run_end_M"
+  },
+  "adds": [
+    "a_anchor_M",
+    "contiguous_detectable_end_from_anchor_M",
+    "contiguous_detectable_span_from_anchor_M",
+    "anchor_is_detectable"
+  ],
+  "reach_statistic_retained": "oldest_detectable_age_probe",
+  "a_anchor_M_by_geometry": {
+    "a000_i020": 0.0,
+    "a000_i050": 0.0,
+    "a000_i075": 32.0,
+    "a050_i020": 0.0,
+    "a050_i050": 0.0,
+    "a050_i075": 28.0,
+    "a090_i020": 0.0,
+    "a090_i050": 0.0,
+    "a090_i075": 28.0,
+    "a098_i020": 0.0,
+    "a098_i050": 0.0,
+    "a098_i075": 28.0
+  },
+  "grid_anchor_M": 32.0,
+  "anchor_rule": "oldest of the per-geometry youngest admissible probe centres, so it is admissible in every geometry; frozen from the reachable source-time windows before any detectability or reconstruction result was read",
+  "per_geometry_anchor": {
+    "a000_i020": {
+      "a_anchor_M": 0.0,
+      "admissible": true,
+      "n_sigma": 3.0,
+      "source_time_min_M": -96.45139000620463,
+      "source_time_max_M": 19.988509073875207,
+      "rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+      "delay_min_M": 0.011490926124793077,
+      "delay_max_M": 96.45139000620463,
+      "observer_time_min_M": 0.0,
+      "observer_time_max_M": 20.0
+    },
+    "a000_i050": {
+      "a_anchor_M": 0.0,
+      "admissible": true,
+      "n_sigma": 3.0,
+      "source_time_min_M": -120.34208211223859,
+      "source_time_max_M": 20.0,
+      "rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+      "delay_min_M": 0.0,
+      "delay_max_M": 120.34208211223859,
+      "observer_time_min_M": 0.0,
+      "observer_time_max_M": 20.0
+    },
+    "a000_i075": {
+      "a_anchor_M": 32.0,
+      "admissible": true,
+      "n_sigma": 3.0,
+      "source_time_min_M": -171.23245856673918,
+      "source_time_max_M": -19.063476156264755,
+      "rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+      "delay_min_M": 39.063476156264755,
+      "delay_max_M": 171.23245856673918,
+      "observer_time_min_M": 0.0,
+      "observer_time_max_M": 20.0
+    },
+    "a050_i020": {
+      "a_anchor_M": 0.0,
+      "admissible": true,
+      "n_sigma": 3.0,
+      "source_time_min_M": -95.4711424270306,
+      "source_time_max_M": 19.966628107941006,
+      "rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+      "delay_min_M": 0.03337189205899449,
+      "delay_max_M": 95.4711424270306,
+      "observer_time_min_M": 0.0,
+      "observer_time_max_M": 20.0
+    },
+    "a050_i050": {
+      "a_anchor_M": 0.0,
+      "admissible": true,
+      "n_sigma": 3.0,
+      "source_time_min_M": -119.82234649196255,
+      "source_time_max_M": 19.99961781448451,
+      "rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+      "delay_min_M": 0.0003821855154910736,
+      "delay_max_M": 119.82234649196255,
+      "observer_time_min_M": 0.0,
+      "observer_time_max_M": 20.0
+    },
+    "a050_i075": {
+      "a_anchor_M": 28.0,
+      "admissible": true,
+      "n_sigma": 3.0,
+      "source_time_min_M": -177.8547894623306,
+      "source_time_max_M": -17.462265915005787,
+      "rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+      "delay_min_M": 37.46226591500579,
+      "delay_max_M": 177.8547894623306,
+      "observer_time_min_M": 0.0,
+      "observer_time_max_M": 20.0
+    },
+    "a090_i020": {
+      "a_anchor_M": 0.0,
+      "admissible": true,
+      "n_sigma": 3.0,
+      "source_time_min_M": -94.67506634279687,
+      "source_time_max_M": 19.981877399143855,
+      "rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+      "delay_min_M": 0.018122600856145255,
+      "delay_max_M": 94.67506634279687,
+      "observer_time_min_M": 0.0,
+      "observer_time_max_M": 20.0
+    },
+    "a090_i050": {
+      "a_anchor_M": 0.0,
+      "admissible": true,
+      "n_sigma": 3.0,
+      "source_time_min_M": -117.06945301639303,
+      "source_time_max_M": 19.999752233906634,
+      "rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+      "delay_min_M": 0.0002477660933664083,
+      "delay_max_M": 117.06945301639303,
+      "observer_time_min_M": 0.0,
+      "observer_time_max_M": 20.0
+    },
+    "a090_i075": {
+      "a_anchor_M": 28.0,
+      "admissible": true,
+      "n_sigma": 3.0,
+      "source_time_min_M": -173.76979105591545,
+      "source_time_max_M": -17.460634671742696,
+      "rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+      "delay_min_M": 37.460634671742696,
+      "delay_max_M": 173.76979105591545,
+      "observer_time_min_M": 0.0,
+      "observer_time_max_M": 20.0
+    },
+    "a098_i020": {
+      "a_anchor_M": 0.0,
+      "admissible": true,
+      "n_sigma": 3.0,
+      "source_time_min_M": -96.11089970014416,
+      "source_time_max_M": 19.898953701000778,
+      "rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+      "delay_min_M": 0.10104629899922202,
+      "delay_max_M": 96.11089970014416,
+      "observer_time_min_M": 0.0,
+      "observer_time_max_M": 20.0
+    },
+    "a098_i050": {
+      "a_anchor_M": 0.0,
+      "admissible": true,
+      "n_sigma": 3.0,
+      "source_time_min_M": -117.75220795223834,
+      "source_time_max_M": 19.999904965986957,
+      "rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+      "delay_min_M": 9.503401304300496e-05,
+      "delay_max_M": 117.75220795223834,
+      "observer_time_min_M": 0.0,
+      "observer_time_max_M": 20.0
+    },
+    "a098_i075": {
+      "a_anchor_M": 28.0,
+      "admissible": true,
+      "n_sigma": 3.0,
+      "source_time_min_M": -179.33826122343305,
+      "source_time_max_M": -17.461593997971477,
+      "rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+      "delay_min_M": 37.46159399797148,
+      "delay_max_M": 179.33826122343305,
+      "observer_time_min_M": 0.0,
+      "observer_time_max_M": 20.0
+    }
+  },
+  "anchor_definition": "a probe centred at age a occupies source time -a within 3 half widths; the anchor is the youngest age on the common grid whose whole probe support lies inside the reachable source-time window [min(t_obs) - max(delay), max(t_obs) - min(delay)]. Where the minimum delay exceeds the last observer sample the anchor is a positive age and the present is simply not observed",
+  "anchored_stable_depth": "T_stable_anchor(eps,q) = sup{ T >= a_anchor : Pr[ sup_{a_anchor <= a <= T} E(a) <= eps ] >= q }; the supremum over the age window is inside the probability, taken per truth, so a truth counts only if the whole window from the anchor out to T is good for that truth",
+  "anchored_stable_span": "L_stable_anchor = T_stable_anchor - a_anchor",
+  "prohibition": "an arbitrary old detectable island is never labelled continuous history from the anchor; a secondary unanchored longest stable interval may be reported with both endpoints but must not be called depth from the present",
+  "operators_recomputed": false,
+  "depth_rows_reassembled": 1152,
+  "rows_where_anchored_span_differs": 316,
+  "noncontiguous_rows": 2,
+  "rows_with_no_detectable_age": 200,
+  "retired_names_present_in_preamendment_results": [
+    "best_mode_largest_contiguous_detectable_depth",
+    "largest_contiguous_detectable_depth",
+    "largest_contiguous_end_M",
+    "largest_contiguous_start_M"
+  ],
+  "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+  "measurement_correction_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
+  "e3c_execution_code_commit": "546763ed29e2be3fb129ec707cb07ee37a4f7db8",
+  "e3c_artifact_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
+  "e3c_freeze_sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
+  "e3c_registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+}

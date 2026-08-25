@@ -101,43 +101,50 @@ def check_disposition(value: str, where: str) -> str:
     return value
 
 
-def detectability(ages, detectable) -> dict[str, Any]:
-    """The full depth contract of item 4.
+def detectability(ages, detectable, a_anchor: float) -> dict[str, Any]:
+    """The full depth contract of item 4, under AGE_INTERVAL_SEMANTICS_AMENDMENT_003.
 
-    ``oldest_detectable_age_probe`` is a supremum over a possibly non-contiguous
-    set, so on its own it can describe a detectable island sitting beyond an
-    undetectable gap. ``largest_contiguous_detectable_depth`` is the span a
-    historical reconstruction can actually use, and the complete mask is emitted
-    so neither has to be taken on trust.
+    Three different observables, which the pre-amendment contract collapsed into
+    two and named ambiguously:
+
+    ``oldest_detectable_age_probe``
+        the reach. A supremum over a possibly non-contiguous set, so on its own
+        it can describe a detectable island sitting beyond an undetectable gap.
+
+    ``longest_detectable_run_span_M`` (with ``_start_M`` and ``_end_M``)
+        the longest run of consecutive detectable ages anywhere on the grid.
+        This is the quantity previously called
+        ``largest_contiguous_detectable_depth``; the name is changed because a
+        span length is not a depth from the present, and at high inclination the
+        longest run can sit entirely in the past.
+
+    ``contiguous_detectable_span_from_anchor_M`` (with ``_end_from_anchor_M``)
+        the stretch that actually connects to ``a_anchor``. Only this one may be
+        described as continuous history from the anchor.
+
+    ``a_anchor`` is required rather than defaulted: defaulting it to zero is
+    exactly the silent assumption the amendment exists to remove.
     """
+    from phrt.metrics.age_intervals import interval_statistics
+
     import numpy as np
 
     ages = np.asarray(ages, dtype=float)
     ok = np.asarray(detectable, dtype=bool)
-    if not ok.any():
-        return {"oldest_detectable_age_probe": -1.0,
-                "shallowest_detectable_age": -1.0,
-                "n_detectable_ages": 0,
-                "n_detectable_runs": 0,
-                "largest_contiguous_detectable_depth": 0.0,
-                "largest_contiguous_start_M": -1.0,
-                "largest_contiguous_end_M": -1.0,
-                "detectable_set_is_contiguous": False,
-                "age_threshold_mask": "".join("0" for _ in ok)}
-
-    # contiguous runs of True on the age grid
+    st = interval_statistics(ages, ok, a_anchor)
     idx = np.flatnonzero(ok)
-    splits = np.flatnonzero(np.diff(idx) > 1)
-    runs = np.split(idx, splits + 1)
-    spans = [(float(ages[r[0]]), float(ages[r[-1]])) for r in runs]
-    lengths = [hi - lo for lo, hi in spans]
-    k = int(np.argmax(lengths))
-    return {"oldest_detectable_age_probe": float(ages[idx[-1]]),
-            "shallowest_detectable_age": float(ages[idx[0]]),
+    return {"oldest_detectable_age_probe": st["oldest_detectable_age_probe"],
+            "shallowest_detectable_age": float(ages[idx[0]]) if idx.size else -1.0,
             "n_detectable_ages": int(ok.sum()),
-            "n_detectable_runs": len(runs),
-            "largest_contiguous_detectable_depth": float(lengths[k]),
-            "largest_contiguous_start_M": float(spans[k][0]),
-            "largest_contiguous_end_M": float(spans[k][1]),
-            "detectable_set_is_contiguous": len(runs) == 1,
-            "age_threshold_mask": "".join("1" if b else "0" for b in ok)}
+            "n_detectable_runs": st["n_detectable_runs"],
+            "a_anchor_M": st["a_anchor_M"],
+            "longest_detectable_run_span_M": st["longest_detectable_run_span_M"],
+            "longest_detectable_run_start_M": st["longest_detectable_run_start_M"],
+            "longest_detectable_run_end_M": st["longest_detectable_run_end_M"],
+            "contiguous_detectable_end_from_anchor_M":
+                st["contiguous_detectable_end_from_anchor_M"],
+            "contiguous_detectable_span_from_anchor_M":
+                st["contiguous_detectable_span_from_anchor_M"],
+            "anchor_is_detectable": st["anchor_is_detectable"],
+            "detectable_set_is_contiguous": st["is_contiguous"],
+            "age_threshold_mask": st["age_mask"]}
