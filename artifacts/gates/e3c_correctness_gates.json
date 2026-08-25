@@ -1,6 +1,6 @@
 {
   "experiment": "E3C",
-  "run_id": "E3C_20260825T151334Z_2ba66f02",
+  "run_id": "E3C_20260825T194442Z_2ba66f02",
   "gates": {
     "E3C_G2_physical_dense_matrix_free": {
       "status": "PASS",
@@ -10,9 +10,9 @@
     },
     "E3C_G3_physical_adjoint": {
       "status": "PASS",
-      "measured": 2.674323598055886e-13,
+      "measured": 5.523079531068608e-14,
       "threshold": 1e-08,
-      "note": "worst over 12 geometries (at a098_i050)"
+      "note": "worst over 12 geometries (at a050_i075)"
     },
     "E3C_G4_physical_resolved_unresolved_mixing": {
       "status": "PASS",
@@ -28,17 +28,17 @@
     },
     "E3C_G6_physical_Gram_monotonicity": {
       "status": "PASS",
-      "measured": 1.8611783301799085e-16,
+      "measured": 9.378373831178594e-17,
       "threshold": 1e-10,
-      "note": "worst over 12 geometries (at a090_i075)"
+      "note": "worst over 12 geometries (at a000_i075)"
     },
     "E3C_G6b_resolved_dominates_direct": {
       "status": "PASS",
-      "measured": 1.573861179619174e-16,
+      "measured": 7.25047495155196e-17,
       "threshold": 1e-10,
-      "note": "worst over 12 geometries (at a090_i075)"
+      "note": "worst over 12 geometries (at a098_i075)"
     },
-    "E3C_G9w_weight_semantics": {
+    "E3C_G9w_transfer_weight_semantics": {
       "status": "PASS",
       "measured": 4.3778502867990174e-16,
       "threshold": 1e-10,
@@ -61,10 +61,57 @@
       "measured": 12,
       "threshold": 12,
       "note": "Amendment 002: the registered scalar H2 statistic is identically zero because the flat probe cannot see a spatial substitution. This gate asserts that the degeneracy is exactly what it is claimed to be -- bitwise equality at every geometry -- so the zero is never read as evidence"
+    },
+    "E3C_v2_no_reserved_e3d_fields": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "D_hist, d_eff and effective_rank are reserved for E3D by amendment item 6"
+    },
+    "E3C_v2_exact_rank_not_applicable": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "every table reporting a rank must carry exact_rank = NOT_APPLICABLE per amendment item 5"
+    },
+    "E3C_v2_dispositions_are_registered": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "allowed dispositions are ['SUPPORTED', 'UNDEFINED_NO_COMMON_MATCHED_SUPPORT', 'NOT_APPLICABLE', 'NOT_RUN']"
+    },
+    "E3C_v2_depth_contract_complete": {
+      "status": "PASS",
+      "measured": 4,
+      "threshold": 4,
+      "note": "amendment item 4 requires the supremum, the largest contiguous detectable depth and the complete age-threshold mask"
+    },
+    "E3C_v2_noncontiguous_detectable_sets": {
+      "status": "PASS",
+      "measured": 2,
+      "note": "rows whose detectable age set is not an interval, so the supremum overstates the recoverable span. Instrumentation, not a pass/fail criterion"
+    },
+    "E3C_v2_canonical_e3c_incremental_indirect_gram": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "amendment item 7 registers this table as canonical storage"
+    },
+    "E3C_v2_canonical_e3c_weighted_delay_quantiles_long": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "amendment item 7 registers this table as canonical storage"
+    },
+    "E3C_v2_canonical_e3c_pairing_destroyed_distribution": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "amendment item 7 registers this table as canonical storage"
     }
   },
   "summary": {
-    "PASS": 10,
+    "PASS": 18,
     "FAIL": 0,
     "NOT_RUN": 0
   }

@@ -1,9 +1,9 @@
 # E3C — MEASUREMENT AND NOISE MODEL
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `e766cfcd9c9340c40e969f90c322e04de01c8ba3`
+- branch `claude/experiment-review-mac-rthiz1`, commit `546763ed29e2be3fb129ec707cb07ee37a4f7db8`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
-- freeze `artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json` sha256 `818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2`
+- freeze `artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json` sha256 `7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b`
 - 12 registered geometries, orders n = 0, 1, 2, profile `core`
 - source class `C224` (224 dimensions), unmodified
 - common age grid 0 to 252 M in steps of 4 M
@@ -84,7 +84,7 @@ If the primary radial knots move with spin, a source-domain change is confounded
 Control on the three anchor geometries, one fixed interval in r/M with identical
 knot locations:
 
-| geometry | arm | support | r range | oprank | kappa+ | J_old | T_rec |
+| geometry | arm | support | r range | oprank | kappa+ | J_old | oldest probe |
 |---|---|---|---|---:|---:|---:|---:|
 | `a000_i020` | DIRECT_PHYSICAL | primary geometry dependent | 2.000–49.94 | 133 | 3.38e+10 | 15.02 | 20 |
 | `a000_i020` | DIRECT_PHYSICAL | common radial support | 2.000–49.94 | 133 | 3.38e+10 | 15.02 | 20 |
@@ -115,7 +115,7 @@ knot locations:
 conclusions.** Operational rank moves under the common support in
 12 of 24 anchor–arm combinations, by at most
 5 of 224 (median move 2.5).
-`T_rec` is unchanged in 23 of 24 combinations, and
+The oldest detectable age probe is unchanged in 23 of 24 combinations, and
 `J_old` moves by at most 18.7% (median
 2.3%). The largest shifts are at `a098_i075`, whose
 primary radial support reaches to r/M = 1.20 against the common interval's 2.00

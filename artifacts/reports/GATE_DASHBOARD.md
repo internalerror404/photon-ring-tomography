@@ -1,7 +1,7 @@
 # GATE DASHBOARD
 
-- commit `03b0d1c9c63131aa553904df0c09849d641dee8f`
-- 139 gates, 121 passing
+- commit `546763ed29e2be3fb129ec707cb07ee37a4f7db8`
+- 148 gates, 130 passing
 
 ```
     active_blocking_failures:   0
@@ -39,15 +39,24 @@ A preserved literal failure is a FAIL that has been adjudicated and kept on the 
 | `E2_null_injection_invisible` | PASS | – | 3.615e-16 | 1e-08 |
 | `E2_null_injection_moves_source` | PASS | – | -2 | -1e-06 |
 | `E3C_G2_physical_dense_matrix_free` | PASS | – | 0 | 1e-10 |
-| `E3C_G3_physical_adjoint` | PASS | – | 2.674e-13 | 1e-08 |
+| `E3C_G3_physical_adjoint` | PASS | – | 5.523e-14 | 1e-08 |
 | `E3C_G4_physical_resolved_unresolved_mixing` | PASS | – | 0 | 1e-10 |
 | `E3C_G4b_linear_collapse_covariance_propagation` | PASS | – | 0 | 1e-12 |
-| `E3C_G6_physical_Gram_monotonicity` | PASS | – | 1.861e-16 | 1e-10 |
-| `E3C_G6b_resolved_dominates_direct` | PASS | – | 1.574e-16 | 1e-10 |
+| `E3C_G6_physical_Gram_monotonicity` | PASS | – | 9.378e-17 | 1e-10 |
+| `E3C_G6b_resolved_dominates_direct` | PASS | – | 7.25e-17 | 1e-10 |
+| `E3C_G9w_transfer_weight_semantics` | PASS | – | 4.378e-16 | 1e-10 |
 | `E3C_G9w_weight_semantics` | PASS | – | 4.378e-16 | 1e-10 |
 | `E3C_H2_registered_statistic_is_an_identity` | PASS | – | 12 | 12 |
 | `E3C_freeze_raymap_hashes` | PASS | – | 0 | 0 |
 | `E3C_frozen_grid_invariance` | PASS | – | dims=[224] n_ages=[64] | dims=[224] n_ages=[64] |
+| `E3C_v2_canonical_e3c_incremental_indirect_gram` | PASS | – | 1 | 1 |
+| `E3C_v2_canonical_e3c_pairing_destroyed_distribution` | PASS | – | 1 | 1 |
+| `E3C_v2_canonical_e3c_weighted_delay_quantiles_long` | PASS | – | 1 | 1 |
+| `E3C_v2_depth_contract_complete` | PASS | – | 4 | 4 |
+| `E3C_v2_dispositions_are_registered` | PASS | – | 0 | 0 |
+| `E3C_v2_exact_rank_not_applicable` | PASS | – | 0 | 0 |
+| `E3C_v2_no_reserved_e3d_fields` | PASS | – | 0 | 0 |
+| `E3C_v2_noncontiguous_detectable_sets` | PASS | – | 2 | – |
 | `E3D_Gram_monotonicity` | PASS | – | 1.136e-16 | 1e-10 |
 | `E3D_adjoint` | PASS | – | 4.89e-13 | 1e-08 |
 | `E3D_class_nesting` | PASS | – | 2.73e-14 | 1e-10 |

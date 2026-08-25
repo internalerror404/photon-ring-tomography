@@ -1,9 +1,9 @@
 # E3C — MECHANISM DECOMPOSITION
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `e766cfcd9c9340c40e969f90c322e04de01c8ba3`
+- branch `claude/experiment-review-mac-rthiz1`, commit `546763ed29e2be3fb129ec707cb07ee37a4f7db8`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
-- freeze `artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json` sha256 `818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2`
+- freeze `artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json` sha256 `7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b`
 - 12 registered geometries, orders n = 0, 1, 2, profile `core`
 - source class `C224` (224 dimensions), unmodified
 - common age grid 0 to 252 M in steps of 4 M

@@ -121,9 +121,9 @@ def main() -> int:
     # ---------------- H1 -----------------------------------------------------
     h1 = hyp[hyp.hypothesis == "H1_historical_extension"]
     h1r = h1[h1.snr0 == REF]
-    h1_hold = int(h1r.T_resolved_gt_T_direct.sum())
+    h1_hold = int(h1r.resolved_probe_deeper_than_direct.sum())
     h1_j = int((h1r.J_old_resolved > 0).sum())
-    h1_any = h1.groupby("geometry").T_resolved_gt_T_direct.any()
+    h1_any = h1.groupby("geometry").resolved_probe_deeper_than_direct.any()
 
     # ---------------- H2 / H3, registered and amended -------------------------
     h2 = hyp[hyp.hypothesis == "H2_delay_mechanism"].set_index("geometry")
@@ -544,9 +544,16 @@ depth; population-style inference across the twelve cells.
 
 ## Artifacts
 `artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json`,
+`artifacts/configs/PAPER_I_V2_PRE_E3C_AMENDMENT_001.json`,
+`schemas/e3c_result_schema_v2.json`,
 `artifacts/tables/e3c_*.parquet`,
 `artifacts/gates/e3c_correctness_gates.json`,
 `artifacts/provenance/E3C_ARTIFACT_MANIFEST.json`.
+
+The v1 line -- the earlier E3C tables, the v1 manuscript and its claim ledger --
+is preserved under `artifacts/v1_line/` with its own hash manifest, because this
+run rewrote the E3C tables in place. E3D was not re-run and its v1 artifacts
+remain as they were; nothing in this report cites them.
 """)
 
     # =========================================================================

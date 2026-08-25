@@ -1,9 +1,9 @@
 # E3C — GEOMETRY-WIDE PHYSICAL-OPERATOR AUDIT
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `e766cfcd9c9340c40e969f90c322e04de01c8ba3`
+- branch `claude/experiment-review-mac-rthiz1`, commit `546763ed29e2be3fb129ec707cb07ee37a4f7db8`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
-- freeze `artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json` sha256 `818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2`
+- freeze `artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json` sha256 `7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b`
 - 12 registered geometries, orders n = 0, 1, 2, profile `core`
 - source class `C224` (224 dimensions), unmodified
 - common age grid 0 to 252 M in steps of 4 M
@@ -16,14 +16,18 @@ the per-geometry values are in `artifacts/tables/e3c_gate_detail.parquet`.
 | gate | status | measured | threshold |
 |---|---|---:|---:|
 | `E3C_G2_physical_dense_matrix_free` | **PASS** | 0 | 1e-10 |
-| `E3C_G3_physical_adjoint` | **PASS** | 2.674e-13 | 1e-08 |
+| `E3C_G3_physical_adjoint` | **PASS** | 5.523e-14 | 1e-08 |
 | `E3C_G4_physical_resolved_unresolved_mixing` | **PASS** | 0 | 1e-10 |
 | `E3C_G4b_linear_collapse_covariance_propagation` | **PASS** | 0 | 1e-12 |
-| `E3C_G6_physical_Gram_monotonicity` | **PASS** | 1.861e-16 | 1e-10 |
-| `E3C_G6b_resolved_dominates_direct` | **PASS** | 1.574e-16 | 1e-10 |
-| `E3C_G9w_weight_semantics` | **PASS** | 4.378e-16 | 1e-10 |
+| `E3C_G6_physical_Gram_monotonicity` | **PASS** | 9.378e-17 | 1e-10 |
+| `E3C_G6b_resolved_dominates_direct` | **PASS** | 7.25e-17 | 1e-10 |
+| `E3C_G9w_transfer_weight_semantics` | **PASS** | 4.378e-16 | 1e-10 |
 | `E3C_freeze_raymap_hashes` | **PASS** | 0 | 0 |
 | `E3C_frozen_grid_invariance` | **PASS** | dims=[224] n_ages=[64] | dims=[224] n_ages=[64] |
+| `E3C_v2_no_reserved_e3d_fields` | **PASS** | 0 | 0 |
+| `E3C_v2_exact_rank_not_applicable` | **PASS** | 0 | 0 |
+| `E3C_v2_dispositions_are_registered` | **PASS** | 0 | 0 |
+| `E3C_v2_depth_contract_complete` | **PASS** | 4 | 4 |
 | `G10q_continuum_noise_quadrature_invariance` | **PASS** | 5.401e-15 | 1e-10 |
 
 ## Governance counts
@@ -45,6 +49,44 @@ A preserved literal failure is a FAIL that has been adjudicated and kept on the 
 | `G7_grid_convergence_raw_max` | `RETIRED_NONCONVERGENT_EXTREME_STATISTIC` |
 | `G7b_weighted_operator_discrepancy` | `WITHDRAWN_INVALID_CONVERGENCE_METRIC` |
 | `GRID_AUTHORIZATION` | `SUPERSEDED_GRID_COMPLETE` |
+
+## The v2 contract
+
+This run executes E3C under `PAPER_I_V2_PRE_E3C_AMENDMENT_001`, committed with
+the final freeze before any non-canary geometry was evaluated. Four clauses
+change what the tables mean, so they are stated before the numbers.
+
+**Notation.** The physical operator is `mathcal A`, a continuum map from a
+source function to whitened observations. It has no matrix of its own. Every
+spectrum below describes
+
+    A_C = mathcal A Q_C
+
+the restricted coefficient matrix, where `Q_C` synthesises a source function
+from a coefficient vector of the declared class `C224`. Nothing about
+`mathcal A` follows from a spectrum of `A_C`, and every spectral row carries the
+class it belongs to.
+
+**Exact rank is not reported.** For a float64 physical operator, `exact_rank` is
+`NOT_APPLICABLE`: the transfer coefficients are finite-precision, so a computed
+spectrum supports a decision at a stated tolerance and nothing stronger. Only a
+structural certificate could license an exact claim and none exists here. What
+was previously called rank is `numerical_rank`, under a name that says it is a
+tolerance decision. No statement below says "full rank" without that
+qualification.
+
+**Depth is two statistics, not one.** `oldest_detectable_age_probe` is the
+supremum of the detectable age set — the old `T_rec`, renamed because a
+supremum cannot distinguish a history detectable all the way back from a
+detectable island beyond an undetectable gap.
+`largest_contiguous_detectable_depth` is the longest run of consecutive
+detectable ages, which is the span a reconstruction could use. The complete
+`age_threshold_mask` is emitted so neither has to be taken on trust.
+On this grid the two differ in **2 of 952** rows with any detectable age. The largest disagreement is at `a098_i020`, arm `SPATIAL_ONLY`, SNR 30000: the supremum reads 64 M while the longest contiguous span is 28 M. Reporting the supremum alone would have overstated the usable history there.
+
+**Reserved names.** `D_hist` and `d_eff` belong to E3D. The spectral-entropy
+effective rank is `d_eff` under another name and has been removed from every
+E3C return; gate `E3C_v2_no_reserved_e3d_fields` fails the run if it reappears.
 
 ## What was frozen before the first geometry was evaluated
 
@@ -69,7 +111,7 @@ right-censored: the reported depths are measurements, not grid ceilings.
 
 ## Arms across the grid, at the reference SNR_0 = 100
 
-| arm | oprank median | oprank min–max | kappa+ median | J_old median | T_rec median |
+| arm | oprank median | oprank min–max | kappa+ median | J_old median | oldest probe (median) |
 |---|---:|---|---:|---:|---:|
 | `DIRECT_PHYSICAL` | 153 | 133–159 | 9.00e+08 | 8.29 | 60 |
 | `RESOLVED_PHYSICAL` | 202 | 184–205 | 7.84e+05 | 40.72 | 84 |
@@ -84,10 +126,14 @@ The full cell-by-cell surface is in `artifacts/tables/e3c_geometry_metrics.parqu
 
 ## H1 — historical extension
 
-At the reference SNR, `T_resolved > T_direct` in **12 of 12**
-geometries, and `J_old_resolved > 0` in **12 of 12**. Across the
-whole SNR sweep the depth inequality is strict somewhere in
-**12 of 12** geometries.
+At the reference SNR the resolved stack's oldest detectable age probe exceeds
+the direct image's in **12 of 12** geometries, and
+`J_old_resolved > 0` in **12 of 12**. Across the whole SNR sweep
+the inequality is strict somewhere in **12 of 12**
+geometries.
+
+**Oldest detectable age probe, resolved stack (M).** A supremum; read it beside
+the contiguous span below.
 
 | a\* \ i | 20 deg | 50 deg | 75 deg | monotone in inclination |
 |---|---:|---:|---:|---|
@@ -95,6 +141,28 @@ whole SNR sweep the depth inequality is strict somewhere in
 | 0.50 | 60 | 84 | 144 | nondecreasing |
 | 0.90 | 60 | 84 | 144 | nondecreasing |
 | 0.98 | 60 | 84 | 144 | nondecreasing |
+| **monotone in spin** | constant | constant | constant | |
+
+**Longest contiguous detectable span, resolved stack (M)** — the span a
+reconstruction could use:
+
+| a\* \ i | 20 deg | 50 deg | 75 deg | monotone in inclination |
+|---|---:|---:|---:|---|
+| 0.00 | 60 | 84 | 124 | nondecreasing |
+| 0.50 | 60 | 84 | 128 | nondecreasing |
+| 0.90 | 60 | 84 | 128 | nondecreasing |
+| 0.98 | 60 | 84 | 128 | nondecreasing |
+| **monotone in spin** | constant | constant | nondecreasing | |
+
+**Number of detectable runs, resolved stack.** A value above 1 is a detectable
+set with a hole in it, and is where the two statistics above part company:
+
+| a\* \ i | 20 deg | 50 deg | 75 deg | monotone in inclination |
+|---|---:|---:|---:|---|
+| 0.00 | 1 | 1 | 1 | constant |
+| 0.50 | 1 | 1 | 1 | constant |
+| 0.90 | 1 | 1 | 1 | constant |
+| 0.98 | 1 | 1 | 1 | constant |
 | **monotone in spin** | constant | constant | constant | |
 
 against the direct channel:
@@ -106,6 +174,14 @@ against the direct channel:
 | 0.90 | 20 | 60 | 140 | nondecreasing |
 | 0.98 | 20 | 60 | 140 | nondecreasing |
 | **monotone in spin** | constant | constant | constant | |
+
+| a\* \ i | 20 deg | 50 deg | 75 deg | monotone in inclination |
+|---|---:|---:|---:|---|
+| 0.00 | 20 | 60 | 120 | nondecreasing |
+| 0.50 | 20 | 60 | 124 | nondecreasing |
+| 0.90 | 20 | 60 | 124 | nondecreasing |
+| 0.98 | 20 | 60 | 124 | nondecreasing |
+| **monotone in spin** | constant | constant | nondecreasing | |
 
 and the threshold-independent innovation:
 
@@ -376,12 +452,22 @@ by these rows.
 
 Permits: geometry-wide statements about the registered class `C224` on the
 twelve registered geometries under the frozen measurement convention.
-Forbids: continuum injectivity claims from full rank on `C224`; any geometry
+Forbids: continuum injectivity claims from the numerical rank of `A_C` on
+`C224` — the spectrum describes `A_C = mathcal A Q_C`, not `mathcal A`, and
+`exact_rank` is `NOT_APPLICABLE` for a float64 operator absent a structural
+certificate; any geometry
 mismatch, order-leakage or ML claim; any raw maximum delay used as a historical
 depth; population-style inference across the twelve cells.
 
 ## Artifacts
 `artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json`,
+`artifacts/configs/PAPER_I_V2_PRE_E3C_AMENDMENT_001.json`,
+`schemas/e3c_result_schema_v2.json`,
 `artifacts/tables/e3c_*.parquet`,
 `artifacts/gates/e3c_correctness_gates.json`,
 `artifacts/provenance/E3C_ARTIFACT_MANIFEST.json`.
+
+The v1 line -- the earlier E3C tables, the v1 manuscript and its claim ledger --
+is preserved under `artifacts/v1_line/` with its own hash manifest, because this
+run rewrote the E3C tables in place. E3D was not re-run and its v1 artifacts
+remain as they were; nothing in this report cites them.
