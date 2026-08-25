@@ -57,6 +57,8 @@ SPECTRAL_FIELDS = (
     "sigma_max", "sigma_min_positive", "kappa_positive", "stable_rank",
     "trace_information",
 )
+# Rank under a sweep of relative cut-offs travels with every spectrum, prefixed
+# ``rank_rel_``. It is the instrumentation behind ``exact_rank = NOT_APPLICABLE``.
 
 
 def restrict_spectrum(summary: dict[str, Any], source_class: str) -> dict[str, Any]:
@@ -66,6 +68,12 @@ def restrict_spectrum(summary: dict[str, Any], source_class: str) -> dict[str, A
     and names the class every field belongs to.
     """
     out = {k: summary[k] for k in SPECTRAL_FIELDS if k in summary}
+    # Rank under a sweep of relative cut-offs. Item 5 says exact rank is not
+    # available; these columns are the evidence for that rather than a footnote
+    # to it, because they show how far the answer moves with the tolerance.
+    out.update({k: v for k, v in summary.items() if k.startswith("rank_rel_")})
+    if "primary_threshold" in summary:
+        out["numerical_rank_threshold"] = summary["primary_threshold"]
     out["exact_rank"] = EXACT_RANK_VALUE
     out["exact_rank_reason"] = EXACT_RANK_REASON
     out["structural_certificate"] = None

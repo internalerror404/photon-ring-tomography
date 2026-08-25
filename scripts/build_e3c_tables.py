@@ -209,7 +209,17 @@ def main() -> int:
                         "right_censored_at_reference_snr": d["right_censored"],
                         "depth_report_at_reference_snr": d["depth_report"],
                         "best_mode_oldest_detectable_age_probe_at_reference_snr": d["best_mode_oldest_detectable_age_probe"],
-                        "best_mode_depth_report_at_reference_snr": d["best_mode_depth_report"]})
+                        "best_mode_depth_report_at_reference_snr": d["best_mode_depth_report"],
+                        "largest_contiguous_detectable_depth_at_reference_snr":
+                            d["largest_contiguous_detectable_depth"],
+                        "largest_contiguous_start_M": d["largest_contiguous_start_M"],
+                        "largest_contiguous_end_M": d["largest_contiguous_end_M"],
+                        "n_detectable_runs": d["n_detectable_runs"],
+                        "detectable_set_is_contiguous": d["detectable_set_is_contiguous"],
+                        "exact_rank": EXACT_RANK_VALUE,
+                        "exact_rank_reason": EXACT_RANK_REASON,
+                        "disposition": "SUPPORTED",
+                        "counts_toward_denominator": True})
             metrics.append(row)
     check_no_reserved_fields({k for r in metrics for k in r},
                              "e3c_geometry_metrics")
@@ -532,6 +542,14 @@ def main() -> int:
          lambda r: relative_l2(logvol(r, "RESOLVED_PHYSICAL"), logvol(r, "SPATIAL_ONLY"))
                    / max(relative_l2(logvol(r, "RESOLVED_PHYSICAL"),
                                      logvol(r, "DIRECT_PHYSICAL")), 1e-300)),
+        ("largest_contiguous_detectable_depth_resolved",
+         lambda r: depth_of(r, "RESOLVED_PHYSICAL",
+                            REFERENCE_SNR)["largest_contiguous_detectable_depth"]),
+        ("largest_contiguous_detectable_depth_direct",
+         lambda r: depth_of(r, "DIRECT_PHYSICAL",
+                            REFERENCE_SNR)["largest_contiguous_detectable_depth"]),
+        ("n_detectable_runs_resolved",
+         lambda r: depth_of(r, "RESOLVED_PHYSICAL", REFERENCE_SNR)["n_detectable_runs"]),
         ("best_mode_oldest_detectable_age_probe_resolved",
          lambda r: depth_of(r, "RESOLVED_PHYSICAL", REFERENCE_SNR)["best_mode_oldest_detectable_age_probe"]),
         ("best_mode_oldest_detectable_age_probe_direct",

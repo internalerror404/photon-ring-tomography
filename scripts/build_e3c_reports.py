@@ -111,8 +111,10 @@ def main() -> int:
                   "G4_physical_resolved_unresolved_mixing",
                   "G4b_linear_collapse_covariance_propagation",
                   "G6_physical_Gram_monotonicity", "G6b_resolved_dominates_direct",
-                  "G9w_weight_semantics")] + [
+                  "G9w_transfer_weight_semantics")] + [
         "E3C_freeze_raymap_hashes", "E3C_frozen_grid_invariance",
+        "E3C_v2_no_reserved_e3d_fields", "E3C_v2_exact_rank_not_applicable",
+        "E3C_v2_dispositions_are_registered", "E3C_v2_depth_contract_complete",
         "G10q_continuum_noise_quadrature_invariance"]
     n_fail = sum(1 for k in E3C_GATES if gates().get(k, {}).get("status") == "FAIL")
 
@@ -219,20 +221,20 @@ def main() -> int:
                    f"{s.kappa_median:.2e} / {s.kappa_max:.2e} | {res_k[g]:.2e} |")
 
     # ---------------- common radial support control ---------------------------
-    ct = ["| geometry | arm | support | r range | oprank | kappa+ | J_old | T_rec |",
+    ct = ["| geometry | arm | support | r range | oprank | kappa+ | J_old | oldest probe |",
           "|---|---|---|---|---:|---:|---:|---:|"]
     for _, r in ctrl[ctrl.arm.isin(["DIRECT_PHYSICAL", "RESOLVED_PHYSICAL",
                                     "DELAY_ONLY", "SPATIAL_ONLY"])].iterrows():
         ct.append(f"| `{r.geometry}` | {r.arm} | {r.support.replace('_', ' ').lower()} | "
                   f"{r.r_inner:.3f}–{r.r_outer:.2f} | {int(r.operational_rank)} | "
                   f"{r.kappa_positive:.2e} | {r.J_old_at_reference_snr:.2f} | "
-                  f"{r.T_rec_at_reference_snr:.0f} |")
+                  f"{r.oldest_detectable_age_probe_at_reference_snr:.0f} |")
     piv = ctrl.pivot_table(index=["geometry", "arm"], columns="support",
                            values="operational_rank")
     ctrl_moves = piv[piv["COMMON_RADIAL_SUPPORT"] != piv["PRIMARY_GEOMETRY_DEPENDENT"]]
     d_rank = (piv["COMMON_RADIAL_SUPPORT"] - piv["PRIMARY_GEOMETRY_DEPENDENT"]).abs()
     tpiv = ctrl.pivot_table(index=["geometry", "arm"], columns="support",
-                            values="T_rec_at_reference_snr")
+                            values="oldest_detectable_age_probe_at_reference_snr")
     t_moves = int((tpiv["COMMON_RADIAL_SUPPORT"] != tpiv["PRIMARY_GEOMETRY_DEPENDENT"]).sum())
     jpiv = ctrl.pivot_table(index=["geometry", "arm"], columns="support",
                             values="J_old_at_reference_snr")
@@ -241,16 +243,38 @@ def main() -> int:
 
     # ---------------- arm summary at the reference SNR ------------------------
     armt = ["| arm | oprank median | oprank min–max | kappa+ median | "
-            "J_old median | T_rec median |", "|---|---:|---|---:|---:|---:|"]
+            "J_old median | oldest probe (median) |", "|---|---:|---|---:|---:|---:|"]
     for a in ARM_ORDER:
         s = met[met.arm == a]
         armt.append(f"| `{a}` | {s.operational_rank.median():.0f} | "
                     f"{int(s.operational_rank.min())}–{int(s.operational_rank.max())} | "
                     f"{s.kappa_positive.median():.2e} | "
                     f"{s.J_old_at_reference_snr.median():.2f} | "
-                    f"{s.T_rec_at_reference_snr.median():.0f} |")
+                    f"{s.oldest_detectable_age_probe_at_reference_snr.median():.0f} |")
 
     censored = int(dep.right_censored.sum())
+    n_noncontig = int((~dep.detectable_set_is_contiguous
+                       & (dep.oldest_detectable_age_probe >= 0)).sum())
+    n_detrows = int((dep.oldest_detectable_age_probe >= 0).sum())
+    if n_noncontig:
+        worst = dep[~dep.detectable_set_is_contiguous].assign(
+            gap=lambda x: x.oldest_detectable_age_probe
+            - x.largest_contiguous_detectable_depth).sort_values(
+                "gap", ascending=False).iloc[0]
+        contiguity_note = (
+            f"On this grid the two differ in **{n_noncontig} of {n_detrows}** "
+            f"rows with any detectable age. The largest disagreement is at "
+            f"`{worst.geometry}`, arm `{worst.arm}`, SNR {worst.snr0:g}: the "
+            f"supremum reads {worst.oldest_detectable_age_probe:.0f} M while the "
+            f"longest contiguous span is "
+            f"{worst.largest_contiguous_detectable_depth:.0f} M. Reporting the "
+            "supremum alone would have overstated the usable history there.")
+    else:
+        contiguity_note = (
+            f"On this grid the detectable age set is an interval in all "
+            f"{n_detrows} rows with any detectable age, so the two statistics "
+            "coincide everywhere. That is a result of this grid, not a property "
+            "of the operator, and it is why both are reported.")
 
     # =========================================================================
     (REPORTS / "E3C_GEOMETRY_WIDE_OPERATOR_AUDIT.md").write_text(f"""# E3C — GEOMETRY-WIDE PHYSICAL-OPERATOR AUDIT
@@ -269,6 +293,44 @@ the per-geometry values are in `artifacts/tables/e3c_gate_detail.parquet`.
 ## Governance counts
 
 {summary_block()}
+
+## The v2 contract
+
+This run executes E3C under `PAPER_I_V2_PRE_E3C_AMENDMENT_001`, committed with
+the final freeze before any non-canary geometry was evaluated. Four clauses
+change what the tables mean, so they are stated before the numbers.
+
+**Notation.** The physical operator is `mathcal A`, a continuum map from a
+source function to whitened observations. It has no matrix of its own. Every
+spectrum below describes
+
+    A_C = mathcal A Q_C
+
+the restricted coefficient matrix, where `Q_C` synthesises a source function
+from a coefficient vector of the declared class `C224`. Nothing about
+`mathcal A` follows from a spectrum of `A_C`, and every spectral row carries the
+class it belongs to.
+
+**Exact rank is not reported.** For a float64 physical operator, `exact_rank` is
+`NOT_APPLICABLE`: the transfer coefficients are finite-precision, so a computed
+spectrum supports a decision at a stated tolerance and nothing stronger. Only a
+structural certificate could license an exact claim and none exists here. What
+was previously called rank is `numerical_rank`, under a name that says it is a
+tolerance decision. No statement below says "full rank" without that
+qualification.
+
+**Depth is two statistics, not one.** `oldest_detectable_age_probe` is the
+supremum of the detectable age set — the old `T_rec`, renamed because a
+supremum cannot distinguish a history detectable all the way back from a
+detectable island beyond an undetectable gap.
+`largest_contiguous_detectable_depth` is the longest run of consecutive
+detectable ages, which is the span a reconstruction could use. The complete
+`age_threshold_mask` is emitted so neither has to be taken on trust.
+{contiguity_note}
+
+**Reserved names.** `D_hist` and `d_eff` belong to E3D. The spectral-entropy
+effective rank is `d_eff` under another name and has been removed from every
+E3C return; gate `E3C_v2_no_reserved_e3d_fields` fails the run if it reappears.
 
 ## What was frozen before the first geometry was evaluated
 
@@ -299,16 +361,32 @@ The full cell-by-cell surface is in `artifacts/tables/e3c_geometry_metrics.parqu
 
 ## H1 — historical extension
 
-At the reference SNR, `T_resolved > T_direct` in **{h1_hold} of {len(geoms)}**
-geometries, and `J_old_resolved > 0` in **{h1_j} of {len(geoms)}**. Across the
-whole SNR sweep the depth inequality is strict somewhere in
-**{int(h1_any.sum())} of {len(geoms)}** geometries.
+At the reference SNR the resolved stack's oldest detectable age probe exceeds
+the direct image's in **{h1_hold} of {len(geoms)}** geometries, and
+`J_old_resolved > 0` in **{h1_j} of {len(geoms)}**. Across the whole SNR sweep
+the inequality is strict somewhere in **{int(h1_any.sum())} of {len(geoms)}**
+geometries.
 
-{surface_table(surf, 'T_rec_resolved')}
+**Oldest detectable age probe, resolved stack (M).** A supremum; read it beside
+the contiguous span below.
+
+{surface_table(surf, 'oldest_detectable_age_probe_resolved')}
+
+**Longest contiguous detectable span, resolved stack (M)** — the span a
+reconstruction could use:
+
+{surface_table(surf, 'largest_contiguous_detectable_depth_resolved')}
+
+**Number of detectable runs, resolved stack.** A value above 1 is a detectable
+set with a hole in it, and is where the two statistics above part company:
+
+{surface_table(surf, 'n_detectable_runs_resolved')}
 
 against the direct channel:
 
-{surface_table(surf, 'T_rec_direct')}
+{surface_table(surf, 'oldest_detectable_age_probe_direct')}
+
+{surface_table(surf, 'largest_contiguous_detectable_depth_direct')}
 
 and the threshold-independent innovation:
 
@@ -457,7 +535,10 @@ by these rows.
 
 Permits: geometry-wide statements about the registered class `C224` on the
 twelve registered geometries under the frozen measurement convention.
-Forbids: continuum injectivity claims from full rank on `C224`; any geometry
+Forbids: continuum injectivity claims from the numerical rank of `A_C` on
+`C224` — the spectrum describes `A_C = mathcal A Q_C`, not `mathcal A`, and
+`exact_rank` is `NOT_APPLICABLE` for a float64 operator absent a structural
+certificate; any geometry
 mismatch, order-leakage or ML claim; any raw maximum delay used as a historical
 depth; population-style inference across the twelve cells.
 
@@ -556,7 +637,7 @@ knot locations:
 conclusions.** Operational rank moves under the common support in
 {len(ctrl_moves)} of {len(piv)} anchor–arm combinations, by at most
 {int(d_rank.max())} of 224 (median move {float(d_rank[d_rank > 0].median()) if len(ctrl_moves) else 0:.1f}).
-`T_rec` is unchanged in {len(tpiv) - t_moves} of {len(tpiv)} combinations, and
+The oldest detectable age probe is unchanged in {len(tpiv) - t_moves} of {len(tpiv)} combinations, and
 `J_old` moves by at most {float(j_rel.max()):.1%} (median
 {float(j_rel.median()):.1%}). The largest shifts are at `a098_i075`, whose
 primary radial support reaches to r/M = 1.20 against the common interval's 2.00
