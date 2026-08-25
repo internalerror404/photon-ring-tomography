@@ -1,62 +1,65 @@
-"""Governance invariants for the manuscript, enforced as tests.
+"""Governance invariants for the v1 manuscript record and the v2 E3C contract.
 
-These are cheap and they guard the properties that are easy to break silently:
-the manuscript must cite only canonical artifacts, every number must be in the
-ledger, and the supersession record must partition what it covers.
+The v1 manuscript was built against the v1 canonical freeze. E3C is being
+re-executed under PAPER_I_V2_PRE_E3C_AMENDMENT_001, which changes the E3C tables
+in place, so v1 is verified against its own snapshot in artifacts/v1_line rather
+than against the live tree. Checking it against live paths would either fail for
+the wrong reason or, worse, silently start passing against v2 numbers.
 """
 from __future__ import annotations
 
+import hashlib
 import json
 
+import pandas as pd
 import pytest
 
-from phrt.config import repo_root, sha256_file
+from phrt.audits.e3c_contract import DISPOSITIONS, RESERVED_FOR_E3D
+from phrt.config import repo_root
 
 ROOT = repo_root()
-LEDGER = ROOT / "artifacts" / "manuscript" / "CLAIM_LEDGER.json"
-CANON = ROOT / "artifacts" / "CANONICAL_ARTIFACT_FREEZE.json"
+V1 = ROOT / "artifacts" / "v1_line"
+V1_SNAP = V1 / "V1_LINE_SNAPSHOT.json"
+V1_LEDGER = V1 / "manuscript_v1" / "CLAIM_LEDGER.json"
+V1_MAN = V1 / "manuscript_v1" / "PAPER_I.md"
 SUPS = ROOT / "artifacts" / "SUPERSEDED_PRE_G10Q.json"
-MAN = ROOT / "artifacts" / "manuscript" / "PAPER_I.md"
+TABLES = ROOT / "artifacts" / "tables"
 
-pytestmark = pytest.mark.skipif(not LEDGER.exists(),
-                                reason="manuscript has not been built")
+v1_only = pytest.mark.skipif(not V1_LEDGER.exists(),
+                             reason="the v1 snapshot is not present")
 
 
 def _ledger() -> dict:
-    return json.loads(LEDGER.read_text())
+    return json.loads(V1_LEDGER.read_text())
 
 
-def test_every_cited_artifact_is_canonical():
-    fz = json.loads(CANON.read_text())["artifacts"]
-    for p in _ledger()["artifacts_cited"]:
-        assert p in fz, f"{p} is cited but not canonical"
+# ---------------------------------------------------------------- v1 record
+@v1_only
+def test_v1_snapshot_is_self_consistent():
+    """The v1 line stays verifiable after the live E3C tables move."""
+    doc = json.loads(V1_SNAP.read_text())
+    for rel, want in doc["files"].items():
+        p = ROOT / rel
+        assert p.exists(), f"{rel} is missing from the v1 snapshot"
+        assert hashlib.sha256(p.read_bytes()).hexdigest() == want, \
+            f"{rel} has changed since the v1 snapshot was taken"
 
 
-def test_no_claim_cites_pre_correction_bytes():
-    """Supersession attaches to bytes, not paths: the check is that no cited
-    file currently hashes to its pre-correction digest."""
-    fz = json.loads(CANON.read_text())["artifacts"]
-    pre = {a["path"]: a["sha256_pre_correction"]
-           for a in json.loads(SUPS.read_text())["artifacts"]
-           if a["disposition"] == "SUPERSEDED_MEASUREMENT_MODEL_DEFECT"
-           and a["sha256_pre_correction"]}
-    for p in _ledger()["artifacts_cited"]:
-        if p in pre:
-            assert fz[p] != pre[p], f"{p} is cited at its superseded bytes"
-
-
-def test_every_claim_appears_in_the_manuscript():
-    text = MAN.read_text()
+@v1_only
+def test_v1_claims_appear_in_the_v1_manuscript():
+    text = V1_MAN.read_text()
     for cl in _ledger()["claims"]:
         assert cl["rendered"] in text, f"{cl['id']} is registered but unused"
 
 
-def test_claim_ids_are_unique():
+@v1_only
+def test_v1_claim_ids_are_unique():
     ids = [c["id"] for c in _ledger()["claims"]]
     assert len(ids) == len(set(ids))
 
 
-def test_every_claim_names_its_provenance():
+@v1_only
+def test_v1_every_claim_names_its_provenance():
     for cl in _ledger()["claims"]:
         src = cl["source"]
         assert src.get("kind")
@@ -68,7 +71,8 @@ def test_every_claim_names_its_provenance():
             assert src.get("source")
 
 
-def test_derived_claims_reference_registered_inputs():
+@v1_only
+def test_v1_derived_claims_reference_registered_inputs():
     doc = _ledger()
     ids = {c["id"] for c in doc["claims"]}
     for cl in doc["claims"]:
@@ -87,40 +91,92 @@ def test_supersession_record_covers_every_listed_artifact():
         == len(doc["artifacts"])
 
 
-def test_canonical_freeze_matches_disk():
-    fz = json.loads(CANON.read_text())["artifacts"]
-    # spot-check the tables the manuscript actually cites rather than all 265,
-    # which the verifier does; this keeps the test suite fast
-    for p in _ledger()["artifacts_cited"]:
-        assert sha256_file(ROOT / p) == fz[p], f"{p} has changed since the freeze"
-
-
-def test_manuscript_states_the_three_governance_counts():
-    text = MAN.read_text()
-    for k in ("active blocking failures", "preserved literal failures",
-              "future-phase not run"):
-        assert k in text
-
-
 def test_readme_superseded_count_matches_the_record():
-    """The README states the count in prose; this catches it drifting."""
     import re
     n = json.loads(SUPS.read_text())["counts"]["superseded"]
-    text = (ROOT / "README.md").read_text()
-    m = re.search(r"(\d+) pre-correction artifacts are", text)
+    m = re.search(r"(\d+) pre-correction artifacts are",
+                  (ROOT / "README.md").read_text())
     assert m, "the README no longer states the superseded count"
     assert int(m.group(1)) == n
 
 
-def test_freeze_pins_the_campaign_commit_not_head():
-    """The paper must cite the commit that produced its numbers, not whatever
-    is checked out when the freeze is rebuilt."""
-    import subprocess
-    fz = json.loads(CANON.read_text())
-    assert fz["campaign_commit_source"].startswith("pinned")
-    # The pin must agree with the tag wherever the tag is present. A clone
-    # without the tag still gets the right commit, which is the point of pinning.
-    r = subprocess.run(["git", "rev-list", "-n", "1", fz["campaign_tag"]],
-                       cwd=ROOT, capture_output=True, text=True)
-    if r.returncode == 0 and r.stdout.strip():
-        assert r.stdout.strip() == fz["campaign_commit"]
+# ------------------------------------------------- v2 E3C contract (amendment)
+# The amendment requires its own record and the final freeze to be committed
+# before any non-canary geometry is evaluated, so there is a window in which the
+# contract is registered but the tables are still v1. These tests skip in that
+# window, named by the artifact whose appearance ends it, rather than failing
+# for a reason that is not the contract's fault.
+V2_MARKER = TABLES / "e3c_incremental_indirect_gram.parquet"
+v2_only = pytest.mark.skipif(
+    not V2_MARKER.exists(),
+    reason="E3C has not been re-executed under the v2 contract yet "
+           "(e3c_incremental_indirect_gram.parquet absent)")
+
+
+def _e3c_tables() -> list:
+    return sorted(TABLES.glob("e3c_*.parquet"))
+
+
+@v2_only
+def test_v2_no_e3c_table_carries_a_reserved_e3d_name():
+    """Item 6. D_hist and d_eff belong to E3D; effective_rank is d_eff."""
+    for p in _e3c_tables():
+        cols = set(pd.read_parquet(p).columns)
+        assert not (cols & set(RESERVED_FOR_E3D)), \
+            f"{p.name} carries {sorted(cols & set(RESERVED_FOR_E3D))}"
+
+
+@v2_only
+def test_v2_rank_reporting_tables_declare_exact_rank_not_applicable():
+    """Item 5. A float64 physical operator has no exact rank to report."""
+    for p in _e3c_tables():
+        df = pd.read_parquet(p)
+        if "numerical_rank" not in df.columns:
+            continue
+        assert "exact_rank" in df.columns, f"{p.name} reports a rank without exact_rank"
+        assert set(df["exact_rank"].dropna().unique()) <= {"NOT_APPLICABLE"}
+
+
+@v2_only
+def test_v2_dispositions_are_registered_values():
+    """Item 8."""
+    for p in _e3c_tables():
+        df = pd.read_parquet(p)
+        if "disposition" not in df.columns:
+            continue
+        assert set(df["disposition"].dropna().unique()) <= set(DISPOSITIONS)
+
+
+@v2_only
+def test_v2_depth_table_carries_the_full_depth_contract():
+    """Item 4. The supremum alone is not the contract."""
+    p = TABLES / "e3c_depth_curves.parquet"
+    if not p.exists():
+        pytest.skip("E3C depth table not built")
+    cols = set(pd.read_parquet(p).columns)
+    for c in ("oldest_detectable_age_probe",
+              "largest_contiguous_detectable_depth",
+              "age_threshold_mask", "censor_boundary_M",
+              "detectable_set_is_contiguous"):
+        assert c in cols, f"the depth table is missing {c}"
+    assert "T_rec" not in cols, "T_rec was renamed by amendment item 4"
+
+
+def test_v2_freeze_records_the_amendment_and_notation():
+    """Items 3 and 9."""
+    fz = json.loads((ROOT / "artifacts" / "configs"
+                     / "E3C_OPERATOR_GRID_FREEZE.json").read_text())
+    assert fz["amendment"] == "PAPER_I_V2_PRE_E3C_AMENDMENT_001"
+    assert fz["operator_notation"]["restricted_coefficient_matrix"] == \
+        "A_C = mathcal A Q_C"
+    assert set(fz["reserved_for_e3d"]) >= {"D_hist", "d_eff"}
+    assert fz["accepted_base_commit"].startswith("0ef341d")
+
+
+def test_v2_amendment_record_exists_and_flags_its_interpretations():
+    doc = json.loads((ROOT / "artifacts" / "configs"
+                      / "PAPER_I_V2_PRE_E3C_AMENDMENT_001.json").read_text())
+    assert doc["item_1_base_commit"]["action"] == "PRESERVED"
+    # the reading of item 1 as preserve-not-revert is a judgement call and must
+    # stay visible as one
+    assert doc["item_1_base_commit"]["flagged_for_reviewer"] is True

@@ -136,8 +136,14 @@ def main() -> int:
 
     prov = collect_provenance()
     freeze = {
-        "schema": "phrt-e3c-freeze/1",
+        "schema": "phrt-e3c-freeze/2",
         "experiment_id": "E3C",
+        "line": "PAPER_I_V2",
+        "amendment": "PAPER_I_V2_PRE_E3C_AMENDMENT_001",
+        "amendment_record":
+            "artifacts/configs/PAPER_I_V2_PRE_E3C_AMENDMENT_001.json",
+        "result_schema": "schemas/e3c_result_schema_v2.json",
+        "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "registry_sha256": reg.sha256,
         "git_commit": prov.git_commit,
@@ -251,11 +257,61 @@ def main() -> int:
 
         "snr_grid": list(SNR_GRID),
         "arms": ARMS,
+        "registered_gates": {
+            "G9w_transfer_weight_semantics":
+                "per order, the operator's response to the declared unit source "
+                "with the declared row noise removed equals sum(dOmega * g^3) "
+                "computed independently; tolerance 1e-10",
+            "E3C_v2_no_reserved_e3d_fields": "no E3C table carries a name "
+                                             "reserved for E3D",
+            "E3C_v2_exact_rank_not_applicable": "every rank-reporting table "
+                                                "carries exact_rank = NOT_APPLICABLE",
+            "E3C_v2_dispositions_are_registered": "every disposition is one of "
+                                                  "the registered values",
+            "E3C_v2_depth_contract_complete": "the depth tables carry the "
+                                              "supremum, the contiguous depth "
+                                              "and the mask",
+        },
+        "canonical_tables": [
+            "e3c_geometry_metrics", "e3c_age_information", "e3c_depth_curves",
+            "e3c_historical_innovation", "e3c_incremental_indirect_gram",
+            "e3c_matched_sensitivity_exponents", "e3c_matched_sensitivity_summary",
+            "e3c_weighted_delay_quantiles", "e3c_weighted_delay_quantiles_long",
+            "e3c_pairing_destroyed_distribution",
+            "e3c_common_radial_support_control", "e3c_hypothesis_tests",
+            "e3c_geometry_surface", "e3c_gate_detail",
+        ],
         "permutation_seeds": list(PERMUTATION_SEEDS),
 
+        "operator_notation": {
+            "physical_operator": "mathcal A",
+            "restricted_coefficient_matrix": "A_C = mathcal A Q_C",
+            "Q_C": "the synthesis map of the declared class C",
+            "rule": "every rank, nullity, singular value and conditioning "
+                    "reported by E3C is a property of A_C. Nothing about "
+                    "mathcal A follows from a spectrum of A_C.",
+        },
+
+        "depth_contract": {
+            "oldest_detectable_age_probe":
+                "sup { a : SNR_0^2 I(a) >= rho^2 }, a supremum over a possibly "
+                "non-contiguous detectable set",
+            "largest_contiguous_detectable_depth":
+                "length in M of the longest run of consecutive detectable ages, "
+                "reported with its endpoints; the span a reconstruction can use",
+            "age_threshold_mask":
+                "the complete boolean detectability mask over the common age grid",
+            "retired_name": "T_rec, which did not say it was a supremum",
+        },
+
+        "reserved_for_e3d": ["D_hist", "d_eff", "effective_rank"],
+
         "rank_conventions": {
+            "exact_rank": "NOT_APPLICABLE for float64 physical operators absent "
+                          "a structural certificate; none exists here",
             "numerical_rank": "LAPACK default: sigma > max(m, d) * eps * "
-                              "sigma_max, eps = binary64 machine epsilon",
+                              "sigma_max, eps = binary64 machine epsilon. A "
+                              "decision at a tolerance, not an algebraic rank",
             "operational_rank": "count of sigma >= rho with rho = "
                                 f"{OPERATIONAL_THRESHOLD}, on the operator "
                                 "scaled to the reference SNR",

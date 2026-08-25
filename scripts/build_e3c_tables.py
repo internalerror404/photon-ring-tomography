@@ -23,6 +23,9 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from phrt.audits.e3c_contract import (DISPOSITIONS, EXACT_RANK_REASON,
+                                      EXACT_RANK_VALUE,
+                                      check_no_reserved_fields)
 from phrt.config import load_registry
 from phrt.io.manifests import Gate, RunManifest, gate_from_tolerance, make_run_id, merge_gate_file
 from phrt.io.tables import write_table
@@ -30,6 +33,7 @@ from phrt.io.tables import write_table
 FREEZE = ROOT / "artifacts" / "configs" / "E3C_OPERATOR_GRID_FREEZE.json"
 OUTDIR = ROOT / "artifacts" / "e3c"
 REFERENCE_SNR = 100.0
+SOURCE_CLASS = "C224"
 
 GATE_TOLERANCES = {
     "G2_physical_dense_matrix_free": 1e-10,
@@ -38,7 +42,7 @@ GATE_TOLERANCES = {
     "G4b_linear_collapse_covariance_propagation": 1e-12,
     "G6_physical_Gram_monotonicity": 1e-10,
     "G6b_resolved_dominates_direct": 1e-10,
-    "G9w_weight_semantics": 1e-10,
+    "G9w_transfer_weight_semantics": 1e-10,
 }
 
 SPIN_OF = {"a000": 0.0, "a050": 0.5, "a090": 0.9, "a098": 0.98}
@@ -201,41 +205,45 @@ def main() -> int:
                        relative_l2(logvol(res, "RESOLVED_PHYSICAL"), logvol(res, arm)),
                    "log_information_volume_total": float(logvol(res, arm).sum())}
             d = depth_of(res, arm, REFERENCE_SNR)
-            row.update({"T_rec_at_reference_snr": d["deepest_detectable_age"],
-                        "T_rec_right_censored": d["right_censored"],
-                        "T_rec_report": d["depth_report"],
-                        "T_rec_best_mode_at_reference_snr": d["T_rec_best_mode"],
-                        "T_rec_best_mode_report": d["T_rec_best_mode_report"]})
+            row.update({"oldest_detectable_age_probe_at_reference_snr": d["oldest_detectable_age_probe"],
+                        "right_censored_at_reference_snr": d["right_censored"],
+                        "depth_report_at_reference_snr": d["depth_report"],
+                        "best_mode_oldest_detectable_age_probe_at_reference_snr": d["best_mode_oldest_detectable_age_probe"],
+                        "best_mode_depth_report_at_reference_snr": d["best_mode_depth_report"]})
             metrics.append(row)
-        # delta_G_indirect rides in the same table as a pseudo-arm: it is a
-        # Gram difference, not an operator, so its operational rank and depth
-        # columns are explicitly marked not applicable rather than left blank.
-        metrics.append({"geometry": g, "spin": a, "inclination_deg": inc,
-                        "arm": "DELTA_G_INDIRECT", "support": res["support"],
-                        "source_dimension": res["source_dimension"],
-                        "data_dimension": 0, "rays_per_order": res["rays_per_order"],
-                        "r_inner": res["r_inner"], "r_outer": res["r_outer"],
-                        "a0_999_M": res["a0_999_M"], "reference_snr": REFERENCE_SNR,
-                        "numerical_rank": res["delta_G_indirect"]["rank"],
-                        "trace_information": res["delta_G_indirect"]["trace"],
-                        "stable_rank": res["delta_G_indirect"]["stable_rank"],
-                        "sigma_min_positive":
-                            res["delta_G_indirect"]["min_positive_eigenvalue"],
-                        "sigma_max": res["delta_G_indirect"]["max_eigenvalue"],
-                        "kappa_positive": (res["delta_G_indirect"]["max_eigenvalue"]
-                                           / max(res["delta_G_indirect"]
-                                                 ["min_positive_eigenvalue"], 1e-300)),
-                        "operational_rank": -1, "nullity": -1,
-                        "effective_rank": float("nan"),
-                        "J_old_at_reference_snr": float("nan"),
-                        "D_vs_resolved": float("nan"),
-                        "D_vs_resolved_localized_class": float("nan"),
-                        "log_information_volume_total": float("nan"),
-                        "T_rec_at_reference_snr": float("nan"),
-                        "T_rec_right_censored": False, "T_rec_report": "n/a",
-                        "T_rec_best_mode_at_reference_snr": float("nan"),
-                        "T_rec_best_mode_report": "n/a"})
+    check_no_reserved_fields({k for r in metrics for k in r},
+                             "e3c_geometry_metrics")
     man.add_output(write_table(metrics, "e3c_geometry_metrics"))
+
+    # ---- item 7: incremental indirect Gram, its own canonical table --------
+    # Previously a pseudo-arm row inside the metrics table, which forced a Gram
+    # difference to borrow columns meant for an operator and left half of them
+    # not applicable. It is a different object and now has its own record.
+    dg_rows = []
+    for g in geoms:
+        a, inc = parse_geometry(g)
+        d = R[g]["delta_G_indirect"]
+        dg_rows.append({
+            "geometry": g, "spin": a, "inclination_deg": inc,
+            "quantity": "delta_G_indirect",
+            "definition": d.get("definition",
+                                "G_resolved - G_direct, both Gram matrices of A_C"),
+            "source_class": d.get("source_class", "C224"),
+            "operator_notation": d.get("operator_notation", "A_C = mathcal A Q_C"),
+            "reference_snr": REFERENCE_SNR,
+            "source_dimension": R[g]["source_dimension"],
+            "numerical_rank": d["rank"],
+            "exact_rank": EXACT_RANK_VALUE,
+            "exact_rank_reason": EXACT_RANK_REASON,
+            "trace": d["trace"], "stable_rank": d["stable_rank"],
+            "min_positive_eigenvalue": d["min_positive_eigenvalue"],
+            "max_eigenvalue": d["max_eigenvalue"],
+            "min_eigenvalue": d["min_eigenvalue"],
+            "numerical_tolerance": d["numerical_tolerance"],
+            "disposition": "SUPPORTED", "counts_toward_denominator": True})
+    check_no_reserved_fields({k for r in dg_rows for k in r},
+                             "e3c_incremental_indirect_gram")
+    man.add_output(write_table(dg_rows, "e3c_incremental_indirect_gram"))
 
     # ---- age information curves -------------------------------------------
     age_rows = []
@@ -250,7 +258,18 @@ def main() -> int:
     for g in geoms:
         a, inc = parse_geometry(g)
         for r in R[g]["depth_rows"]:
-            depth_rows.append({"geometry": g, "spin": a, "inclination_deg": inc, **r})
+            depth_rows.append({
+                "geometry": g, "spin": a, "inclination_deg": inc,
+                "source_class": SOURCE_CLASS,
+                "operator_notation": "A_C = mathcal A Q_C", **r,
+                "disposition": ("SUPPORTED" if r["oldest_detectable_age_probe"] >= 0
+                                else "NOT_APPLICABLE"),
+                "disposition_reasons": ("" if r["oldest_detectable_age_probe"] >= 0
+                                        else "no age on the grid clears the "
+                                             "operational threshold"),
+                "counts_toward_denominator": True})
+    check_no_reserved_fields({k for r in depth_rows for k in r},
+                             "e3c_depth_curves")
     man.add_output(write_table(depth_rows, "e3c_depth_curves"))
 
     # ---- historical innovation --------------------------------------------
@@ -286,10 +305,15 @@ def main() -> int:
                 float(-np.log(max(att[2]["A_g"] / att[1]["A_g"], 1e-300)))
             msummary.append({
                 "geometry": g, "spin": a, "inclination_deg": inc,
+                "source_class": SOURCE_CLASS,
+                "operator_notation": "A_C = mathcal A Q_C",
                 "order_pair": f"{k}->{k+1}",
+                "order_lower": k, "order_upper": k + 1,
                 "n_fractions_total": len(res["matched"]),
                 "n_fractions_defined": len(vals),
                 "n_fractions_unsupported": len(res["matched"]) - len(vals),
+                "matched_fraction_defined": (len(vals) / len(res["matched"])
+                                             if res["matched"] else 0.0),
                 "median": float(np.median(vals)) if vals else float("nan"),
                 "q25": float(np.quantile(vals, 0.25)) if vals else float("nan"),
                 "q75": float(np.quantile(vals, 0.75)) if vals else float("nan"),
@@ -326,12 +350,47 @@ def main() -> int:
     man.add_output(write_table(mrows, "e3c_matched_sensitivity_exponents"))
     man.add_output(write_table(msummary, "e3c_matched_sensitivity_summary"))
 
+    # ---- item 7 and 8: weighted delay quantiles, long form -----------------
+    # The wide table stays as the human-readable record; this is the schema-
+    # conforming one, and it forces every row to declare whether its weighting
+    # makes it a property of the spacetime or of the declared source model.
+    wide = pd.read_parquet(ROOT / "artifacts/tables/e3c_weighted_delay_quantiles.parquet")
+    qrows = []
+    for _, r in wide.iterrows():
+        for wtag, dep_ in (("Omega", False), ("I", False), ("F", True)):
+            for q in (0.5, 0.9, 0.99, 0.999):
+                col = f"Q_{q:g}_{wtag}"
+                if col not in wide.columns:
+                    continue
+                qrows.append({
+                    "geometry": r.geometry, "order": int(r.order),
+                    "profile": r.profile, "n_valid_rays": int(r.n_valid_rays),
+                    "quantile_q": q, "quantile_weighting": wtag,
+                    "quantile_value_M": float(r[col]),
+                    "quantile_is_source_model_dependent": dep_,
+                    "weight_definition": {"Omega": "dOmega",
+                                          "I": "dOmega * g^3",
+                                          "F": "dOmega * g^6"}[wtag],
+                    "delay_max_M": float(r.delay_max_M),
+                    "disposition": "SUPPORTED",
+                    "counts_toward_denominator": True})
+    check_no_reserved_fields({k for r in qrows for k in r},
+                             "e3c_weighted_delay_quantiles_long")
+    man.add_output(write_table(qrows, "e3c_weighted_delay_quantiles_long"))
+
     # ---- PAIRING_DESTROYED distribution ------------------------------------
     prows = []
     for g in geoms:
         a, inc = parse_geometry(g)
         for r in R[g]["pairing_destroyed_seeds"]:
-            prows.append({"geometry": g, "spin": a, "inclination_deg": inc, **r})
+            prows.append({
+                "geometry": g, "spin": a, "inclination_deg": inc,
+                "arm": "PAIRING_DESTROYED",
+                "control_class": "NONPHYSICAL_NEGATIVE_CONTROL",
+                "never_rank_as_architecture": True, **r,
+                "disposition": "SUPPORTED", "counts_toward_denominator": True})
+    check_no_reserved_fields({k for r in prows for k in r},
+                             "e3c_pairing_destroyed_distribution")
     man.add_output(write_table(prows, "e3c_pairing_destroyed_distribution"))
 
     # ---- common-radial-support control -------------------------------------
@@ -352,8 +411,8 @@ def main() -> int:
                               "rays_per_order": blob["rays_per_order"],
                               **s,
                               "J_old_at_reference_snr": jold_of(blob, arm, REFERENCE_SNR),
-                              "T_rec_at_reference_snr": d["deepest_detectable_age"],
-                              "T_rec_right_censored": d["right_censored"]})
+                              "oldest_detectable_age_probe_at_reference_snr": d["oldest_detectable_age_probe"],
+                              "right_censored_at_reference_snr": d["right_censored"]})
     man.add_output(write_table(crows, "e3c_common_radial_support_control"))
 
     # ---- hypotheses H1..H6 --------------------------------------------------
@@ -371,19 +430,19 @@ def main() -> int:
             jr = jold_of(res, "RESOLVED_PHYSICAL", snr)
             ju = jold_of(res, "UNRESOLVED_IMAGE", snr)
             hyp.append({**base, "hypothesis": "H1_historical_extension", "snr0": snr,
-                        "T_resolved": dr["deepest_detectable_age"],
-                        "T_direct": dd["deepest_detectable_age"],
-                        "T_resolved_gt_T_direct":
-                            dr["deepest_detectable_age"] > dd["deepest_detectable_age"],
+                        "oldest_detectable_age_probe_resolved": dr["oldest_detectable_age_probe"],
+                        "oldest_detectable_age_probe_direct": dd["oldest_detectable_age_probe"],
+                        "resolved_probe_deeper_than_direct":
+                            dr["oldest_detectable_age_probe"] > dd["oldest_detectable_age_probe"],
                         "J_old_resolved": jr, "J_old_resolved_positive": jr > 0.0,
                         "right_censored": dr["right_censored"] or dd["right_censored"],
-                        "value": dr["deepest_detectable_age"] - dd["deepest_detectable_age"]})
+                        "value": dr["oldest_detectable_age_probe"] - dd["oldest_detectable_age_probe"]})
             hyp.append({**base, "hypothesis": "H4_order_label_value", "snr0": snr,
-                        "T_unresolved": du["deepest_detectable_age"],
-                        "T_resolved": dr["deepest_detectable_age"],
-                        "R_unres_T": (du["deepest_detectable_age"]
-                                      / dr["deepest_detectable_age"])
-                                     if dr["deepest_detectable_age"] > 0 else float("nan"),
+                        "oldest_detectable_age_probe_unresolved": du["oldest_detectable_age_probe"],
+                        "oldest_detectable_age_probe_resolved": dr["oldest_detectable_age_probe"],
+                        "R_unres_T": (du["oldest_detectable_age_probe"]
+                                      / dr["oldest_detectable_age_probe"])
+                                     if dr["oldest_detectable_age_probe"] > 0 else float("nan"),
                         "J_old_unresolved": ju, "J_old_resolved": jr,
                         "R_unres_J": ju / jr if jr > 0 else float("nan"),
                         "right_censored": du["right_censored"] or dr["right_censored"],
@@ -446,10 +505,10 @@ def main() -> int:
          lambda r: r["arms"]["RESOLVED_PHYSICAL"]["spectrum"]["kappa_positive"]),
         ("J_old_resolved", lambda r: jold_of(r, "RESOLVED_PHYSICAL", REFERENCE_SNR)),
         ("J_old_direct", lambda r: jold_of(r, "DIRECT_PHYSICAL", REFERENCE_SNR)),
-        ("T_rec_resolved",
-         lambda r: depth_of(r, "RESOLVED_PHYSICAL", REFERENCE_SNR)["deepest_detectable_age"]),
-        ("T_rec_direct",
-         lambda r: depth_of(r, "DIRECT_PHYSICAL", REFERENCE_SNR)["deepest_detectable_age"]),
+        ("oldest_detectable_age_probe_resolved",
+         lambda r: depth_of(r, "RESOLVED_PHYSICAL", REFERENCE_SNR)["oldest_detectable_age_probe"]),
+        ("oldest_detectable_age_probe_direct",
+         lambda r: depth_of(r, "DIRECT_PHYSICAL", REFERENCE_SNR)["oldest_detectable_age_probe"]),
         ("delta_G_indirect_rank", lambda r: r["delta_G_indirect"]["rank"]),
         ("delta_G_indirect_trace", lambda r: r["delta_G_indirect"]["trace"]),
         ("D_delay_registered_degenerate",
@@ -473,10 +532,10 @@ def main() -> int:
          lambda r: relative_l2(logvol(r, "RESOLVED_PHYSICAL"), logvol(r, "SPATIAL_ONLY"))
                    / max(relative_l2(logvol(r, "RESOLVED_PHYSICAL"),
                                      logvol(r, "DIRECT_PHYSICAL")), 1e-300)),
-        ("T_rec_best_mode_resolved",
-         lambda r: depth_of(r, "RESOLVED_PHYSICAL", REFERENCE_SNR)["T_rec_best_mode"]),
-        ("T_rec_best_mode_direct",
-         lambda r: depth_of(r, "DIRECT_PHYSICAL", REFERENCE_SNR)["T_rec_best_mode"]),
+        ("best_mode_oldest_detectable_age_probe_resolved",
+         lambda r: depth_of(r, "RESOLVED_PHYSICAL", REFERENCE_SNR)["best_mode_oldest_detectable_age_probe"]),
+        ("best_mode_oldest_detectable_age_probe_direct",
+         lambda r: depth_of(r, "DIRECT_PHYSICAL", REFERENCE_SNR)["best_mode_oldest_detectable_age_probe"]),
     ):
         cells = {g: float(getter(R[g])) for g in geoms}
         vals = list(cells.values())
@@ -497,6 +556,74 @@ def main() -> int:
         surface.append(row)
     man.add_output(write_table(surface, "e3c_geometry_surface"))
     man.add_output(write_table(gate_rows, "e3c_gate_detail"))
+
+    # ---- amendment conformance gates ---------------------------------------
+    # The amendment is only worth the paper it is written on if a later edit
+    # cannot quietly undo it, so each clause that can be checked mechanically is.
+    T = ROOT / "artifacts" / "tables"
+    e3c_tables = sorted(T.glob("e3c_*.parquet"))
+    reserved_hits, missing_exact, bad_disp = [], [], []
+    for tp in e3c_tables:
+        df = pd.read_parquet(tp)
+        for col in ("D_hist", "d_eff", "effective_rank"):
+            if col in df.columns:
+                reserved_hits.append(f"{tp.name}:{col}")
+        if "numerical_rank" in df.columns and "exact_rank" not in df.columns:
+            missing_exact.append(tp.name)
+        if "exact_rank" in df.columns:
+            vals = set(df["exact_rank"].dropna().unique())
+            if vals - {EXACT_RANK_VALUE}:
+                missing_exact.append(f"{tp.name}:{sorted(vals)}")
+        if "disposition" in df.columns:
+            vals = set(df["disposition"].dropna().unique()) - set(DISPOSITIONS)
+            if vals:
+                bad_disp.append(f"{tp.name}:{sorted(vals)}")
+    man.add_gate(Gate("E3C_v2_no_reserved_e3d_fields",
+                      "PASS" if not reserved_hits else "FAIL",
+                      measured=len(reserved_hits), threshold=0,
+                      note="D_hist, d_eff and effective_rank are reserved for "
+                           "E3D by amendment item 6"
+                           + ("" if not reserved_hits else f"; found {reserved_hits}")))
+    man.add_gate(Gate("E3C_v2_exact_rank_not_applicable",
+                      "PASS" if not missing_exact else "FAIL",
+                      measured=len(missing_exact), threshold=0,
+                      note="every table reporting a rank must carry "
+                           "exact_rank = NOT_APPLICABLE per amendment item 5"
+                           + ("" if not missing_exact else f"; {missing_exact}")))
+    man.add_gate(Gate("E3C_v2_dispositions_are_registered",
+                      "PASS" if not bad_disp else "FAIL",
+                      measured=len(bad_disp), threshold=0,
+                      note=f"allowed dispositions are {list(DISPOSITIONS)}"
+                           + ("" if not bad_disp else f"; found {bad_disp}")))
+
+    depth_df = pd.read_parquet(T / "e3c_depth_curves.parquet")
+    need = ["oldest_detectable_age_probe", "largest_contiguous_detectable_depth",
+            "age_threshold_mask", "censor_boundary_M"]
+    have = [c for c in need if c in depth_df.columns]
+    man.add_gate(Gate("E3C_v2_depth_contract_complete",
+                      "PASS" if len(have) == len(need) else "FAIL",
+                      measured=len(have), threshold=len(need),
+                      note="amendment item 4 requires the supremum, the largest "
+                           "contiguous detectable depth and the complete "
+                           "age-threshold mask"))
+    # the two depth statistics must genuinely differ somewhere, or the
+    # contiguous one is not telling us anything the supremum did not
+    noncontig = int((~depth_df["detectable_set_is_contiguous"]
+                     & (depth_df["oldest_detectable_age_probe"] >= 0)).sum())
+    man.add_gate(Gate("E3C_v2_noncontiguous_detectable_sets",
+                      "PASS", measured=noncontig, threshold=None,
+                      note="rows whose detectable age set is not an interval, so "
+                           "the supremum overstates the recoverable span. "
+                           "Instrumentation, not a pass/fail criterion"))
+
+    for tp in (T / "e3c_incremental_indirect_gram.parquet",
+               T / "e3c_weighted_delay_quantiles_long.parquet",
+               T / "e3c_pairing_destroyed_distribution.parquet"):
+        man.add_gate(Gate(f"E3C_v2_canonical_{tp.stem}",
+                          "PASS" if tp.exists() else "FAIL",
+                          measured=int(tp.exists()), threshold=1,
+                          note="amendment item 7 registers this table as "
+                               "canonical storage"))
 
     mp = man.write(reg.path, reg.sha256, runtime_seconds=time.time() - t0)
     merge_gate_file(man.gates, run_id)

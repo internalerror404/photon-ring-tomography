@@ -37,6 +37,9 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
+from phrt.audits.e3c_contract import (EXACT_RANK_REASON, EXACT_RANK_VALUE,
+                                      check_no_reserved_fields, detectability,
+                                      restrict_spectrum)
 from phrt.audits.rank import spectrum_of
 from phrt.config import load_registry
 from phrt.geometry.raymap import read
@@ -50,6 +53,7 @@ from phrt.sources.physical_basis import (PhysicalBasis, age_probe_norms,
 FREEZE = ROOT / "artifacts" / "configs" / "E3C_OPERATOR_GRID_FREEZE.json"
 OUTDIR = ROOT / "artifacts" / "e3c"
 REFERENCE_SNR = 100.0     # the scale at which spectra, J_old and H2/H3 are reported
+SOURCE_CLASS = "C224"     # the class C whose synthesis map Q_C defines A_C
 
 
 # ---------------------------------------------------------------------------
@@ -164,22 +168,32 @@ def log_information_volume(M: np.ndarray, snr: float) -> float:
     return float(np.sum(np.log1p((snr ** 2) * np.clip(lam, 0.0, None))))
 
 
+CENSORING_RULE = ("a depth equal to the common age-grid ceiling is "
+                  "right-censored and reported as a lower bound")
+
+
 def depth_from_curve(ages: np.ndarray, ihat: np.ndarray, snr: float,
                      rho: float, a_max: float) -> dict:
-    """T_rec = sup { a : SNR_0^2 I(a) >= rho^2 }, with the censoring rule."""
-    ok = (snr ** 2) * ihat >= rho ** 2
-    if not ok.any():
-        return {"deepest_detectable_age": -1.0, "shallowest_detectable_age": -1.0,
-                "n_detectable_ages": 0, "right_censored": False,
-                "depth_report": "none"}
-    sel = ages[ok]
-    deepest = float(sel.max())
-    censored = bool(np.isclose(deepest, a_max))
-    return {"deepest_detectable_age": deepest,
-            "shallowest_detectable_age": float(sel.min()),
-            "n_detectable_ages": int(ok.sum()),
-            "right_censored": censored,
-            "depth_report": f">={deepest:.1f}" if censored else f"{deepest:.1f}"}
+    """The item-4 depth contract for one curve.
+
+    The registered statistic was the supremum of the detectable set alone. A
+    supremum cannot distinguish a history detectable all the way back from a
+    detectable island beyond an undetectable gap, so it is now reported under a
+    name that says it is a supremum, beside the longest contiguous detectable
+    span and the complete mask.
+    """
+    d = detectability(ages, (snr ** 2) * ihat >= rho ** 2)
+    oldest = d["oldest_detectable_age_probe"]
+    censored = bool(oldest >= 0 and np.isclose(oldest, a_max))
+    d.update({
+        "right_censored": censored,
+        "age_grid_max_M": float(a_max),
+        "censor_boundary_M": float(a_max),
+        "censoring_rule": CENSORING_RULE,
+        "depth_report": ("none" if oldest < 0 else
+                         (f">={oldest:.1f}" if censored else f"{oldest:.1f}")),
+    })
+    return d
 
 
 def j_old(ages: np.ndarray, ihat: np.ndarray, snr: float, a0: float) -> float:
@@ -323,13 +337,19 @@ def evaluate(base: list[OrderRays], fz: dict, r_in: float, r_out: float,
         worst_w = max(worst_w, abs(got - indep) / max(abs(indep), 1e-300))
         w_rows.append({"order": o.order, "operator_unit_source_throughput": got,
                        "independent_sum_dOmega_g3": indep})
-    gates["G9w_weight_semantics"] = worst_w
+    gates["G9w_transfer_weight_semantics"] = worst_w
     out["gates"] = gates
     out["weight_semantics"] = w_rows
 
     # -- delta G indirect ----------------------------------------------------
     scale2 = (REFERENCE_SNR / s_ref) ** 2
-    out["delta_G_indirect"] = psd_summary(dG * scale2)
+    # Item 7: promoted to a canonical record of its own rather than a field
+    # tucked inside the historical-innovation table.
+    out["delta_G_indirect"] = {**psd_summary(dG * scale2),
+                               "source_class": SOURCE_CLASS,
+                               "operator_notation": "A_C = mathcal A Q_C",
+                               "definition": "G_resolved - G_direct, both Gram "
+                                             "matrices of A_C at the reference SNR"}
     out["G_resolved"] = psd_summary(g_res * scale2)
     out["G_direct"] = psd_summary(g_dir * scale2)
 
@@ -337,7 +357,9 @@ def evaluate(base: list[OrderRays], fz: dict, r_in: float, r_out: float,
     per_arm, age_rows, depth_rows, jold_rows = {}, [], [], []
     for name, op in ops.items():
         B = op.to_dense() * (REFERENCE_SNR / s_ref)
-        s = spectrum_of(B, basis.dimension, operational_threshold=rho).summary()
+        s = restrict_spectrum(
+            spectrum_of(B, basis.dimension, operational_threshold=rho).summary(),
+            SOURCE_CLASS)
         ihat = np.array([float(np.sum((age_direction(op, float(a), qnorm, h)
                                        / s_ref) ** 2)) for a in ages])
         # AMENDMENT 002: the same epochs on the registered 28-dim localized
@@ -351,11 +373,7 @@ def evaluate(base: list[OrderRays], fz: dict, r_in: float, r_out: float,
                             for M in mats])
         logvol = np.array([log_information_volume(M, REFERENCE_SNR) for M in mats])
         per_arm[name] = {
-            "spectrum": {k: s[k] for k in ("numerical_rank", "operational_rank",
-                                           "nullity", "sigma_max",
-                                           "sigma_min_positive", "kappa_positive",
-                                           "stable_rank", "effective_rank",
-                                           "trace_information")},
+            "spectrum": s,
             "data_dimension": int(op.shape[0]),
             "ihat": ihat.tolist(),
             "lambda_max": lam_max.tolist(),
@@ -381,10 +399,19 @@ def evaluate(base: list[OrderRays], fz: dict, r_in: float, r_out: float,
             d = depth_from_curve(ages, ihat, snr, rho, a_max)
             d.update({"arm": name, "snr0": snr, "total_ages": int(ages.size),
                       "age_grid_max": a_max})
+            # the same contract on the best-determined localized mode
             best = depth_from_curve(ages, lam_max, snr, rho, a_max)
-            d.update({"T_rec_best_mode": best["deepest_detectable_age"],
-                      "T_rec_best_mode_right_censored": best["right_censored"],
-                      "T_rec_best_mode_report": best["depth_report"]})
+            d.update({
+                "best_mode_oldest_detectable_age_probe":
+                    best["oldest_detectable_age_probe"],
+                "best_mode_largest_contiguous_detectable_depth":
+                    best["largest_contiguous_detectable_depth"],
+                "best_mode_age_threshold_mask": best["age_threshold_mask"],
+                "best_mode_detectable_set_is_contiguous":
+                    best["detectable_set_is_contiguous"],
+                "best_mode_n_detectable_runs": best["n_detectable_runs"],
+                "best_mode_right_censored": best["right_censored"],
+                "best_mode_depth_report": best["depth_report"]})
             depth_rows.append(d)
     out["arms"] = per_arm
     out["jold_rows"] = jold_rows
@@ -442,13 +469,11 @@ def evaluate(base: list[OrderRays], fz: dict, r_in: float, r_out: float,
             op = PhysicalOperator(orders=destroy_pairing(base, sd),
                                   observer_times=t_obs, design=basis.design,
                                   dimension=basis.dimension)
-            s = spectrum_of(op.to_dense() * (REFERENCE_SNR / s_ref),
-                            basis.dimension, operational_threshold=rho).summary()
-            dist.append({"seed": sd, **{k: s[k] for k in
-                                        ("numerical_rank", "operational_rank",
-                                         "sigma_min_positive", "kappa_positive",
-                                         "stable_rank", "effective_rank",
-                                         "trace_information")}})
+            s = restrict_spectrum(
+                spectrum_of(op.to_dense() * (REFERENCE_SNR / s_ref),
+                            basis.dimension,
+                            operational_threshold=rho).summary(), SOURCE_CLASS)
+            dist.append({"seed": sd, **s})
         out["pairing_destroyed_seeds"] = dist
     return out
 

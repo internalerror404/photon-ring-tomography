@@ -1,0 +1,144 @@
+{
+  "amendment": "PAPER_I_V2_PRE_E3C_AMENDMENT_001",
+  "line": "PAPER_I_V2",
+  "status": "ADOPTED_BEFORE_NON_CANARY_EVALUATION",
+  "created_utc": "2026-08-25T19:12:23Z",
+  "scope": "Amends the E3C contract and return schema before E3C is executed on the v2 line. E3D and any reconstruction phase are out of scope and are not begun.",
+  "item_1_base_commit": {
+    "accepted_base": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+    "action": "PRESERVED",
+    "interpretation": "'Preserve' is read as: this commit remains the accepted base of record and is not rewritten, deleted or detached. It is NOT read as an instruction to revert the branch to it.",
+    "why_not_a_revert": "d6869f8 (the G10q measurement-model correction) is a descendant of the accepted base and was explicitly accepted by the preceding ruling. This amendment does not mention the measurement convention. Reverting to the base would reintroduce the flat-sigma convention, under which Fisher information scales with pixel count, and every v2 E3C number would be computed under a defect that is already on the record as corrected. The asymmetry is decisive: keeping the correction costs nothing if a revert was intended, while reverting silently destroys an accepted fix.",
+    "flagged_for_reviewer": true,
+    "base_is_ancestor_of_head": true
+  },
+  "item_2_gate_registration": {
+    "gate": "G9w_transfer_weight_semantics",
+    "action": "REGISTERED_IN_E3C",
+    "supersedes_local_name": "G9w_weight_semantics",
+    "statement": "For each order, the operator's response to the declared unit source j = 1, with the declared row noise removed, equals sum(dOmega * g^3) computed outside the operator.",
+    "tolerance": 1e-10,
+    "why": "The transfer weights are where a measurement-convention error hides. This gate is the only one that compares the operator's own arithmetic against an independent sum over the same rays."
+  },
+  "item_3_notation": {
+    "physical_operator": "mathcal A",
+    "physical_operator_meaning": "the continuum forward map from a source function j on the equatorial plane to whitened observations; it has no matrix representation independent of a declared class",
+    "restricted_coefficient_matrix": "A_C = mathcal A Q_C",
+    "Q_C_meaning": "the synthesis map of the declared class C, taking a coefficient vector to the source function it represents",
+    "consequence": "Every rank, nullity, singular value, conditioning and operational rank in E3C is a property of A_C, not of mathcal A. A statement about mathcal A cannot be inferred from a spectrum of A_C, and the return schema names the class on every such field.",
+    "applies_to": [
+      "all E3C tables",
+      "all E3C reports",
+      "the result schema"
+    ]
+  },
+  "item_4_depth_contract": {
+    "renamed": {
+      "T_rec": "oldest_detectable_age_probe"
+    },
+    "oldest_detectable_age_probe": "sup { a on the common age grid : SNR_0^2 I(a) >= rho^2 }. A supremum over a possibly non-contiguous detectable set; it says nothing about whether the epochs between it and the present are themselves detectable.",
+    "largest_contiguous_detectable_depth": "the length in M of the longest run of consecutive detectable ages on the common age grid, reported with its start and end. This is the quantity a historical reconstruction can actually use, because a detectable island beyond an undetectable gap is not a recoverable history.",
+    "age_threshold_mask": "the complete boolean detectability mask over the common age grid, emitted in full so no downstream statistic has to be trusted",
+    "why": "The supremum and the contiguous depth coincide only when the detectable set is an interval. Reporting the supremum alone would overstate recoverable history wherever it is not.",
+    "additional_fields": [
+      "n_detectable_ages",
+      "n_detectable_runs",
+      "shallowest_detectable_age",
+      "largest_contiguous_start_M",
+      "largest_contiguous_end_M",
+      "detectable_set_is_contiguous"
+    ]
+  },
+  "item_5_exact_rank": {
+    "rule": "For physical float64 operators, exact_rank is NOT_APPLICABLE unless supported by a structural certificate.",
+    "emitted_value": "NOT_APPLICABLE",
+    "reason_field": "exact_rank_reason",
+    "default_reason": "float64 physical operator with no structural certificate; the spectrum is computed from finite-precision transfer coefficients and no exact algebraic statement is available",
+    "structural_certificate_meaning": "an argument that fixes the rank independently of the floating-point spectrum -- for example an exactly-constructed null vector, or a dimension count forced by the class and the row structure",
+    "retained": [
+      "numerical_rank (LAPACK threshold, explicitly a finite-precision decision)",
+      "operational_rank",
+      "nullity_numerical"
+    ],
+    "consequence": "No E3C output or report may say 'full rank' without qualifying it as the numerical rank of A_C at the stated tolerance."
+  },
+  "item_6_reserved_for_e3d": {
+    "reserved_names": [
+      "D_hist",
+      "d_eff"
+    ],
+    "action": "REMOVED_FROM_E3C_RETURN_CONTRACT",
+    "removed_field": "effective_rank",
+    "removed_field_rationale": "effective_rank is the entropy-based effective dimension, i.e. d_eff under another name. It is removed from every E3C table and report and reserved for E3D.",
+    "retained_and_why": {
+      "stable_rank": "a different quantity, ||A||_F^2 / ||A||_2^2, not d_eff",
+      "D_delay, D_spatial, D_direct_reference": "registered hypothesis statistics H2/H3 with their own names and definitions. They are relative L2 discrepancies between age-information curves, not the reserved D_hist. Read as an instruction to remove these, the amendment would delete the registered mechanism test, which items 4 and 8 presuppose exists. Flagged."
+    },
+    "flagged_for_reviewer": true,
+    "enforcement": "a gate fails the run if any reserved name appears in an E3C table column"
+  },
+  "item_7_canonical_storage": {
+    "e3c_incremental_indirect_gram": "delta_G = G_resolved - G_direct per geometry: rank, trace, stable rank, smallest positive eigenvalue on its image, extremes and the numerical tolerance used. Promoted out of the historical-innovation table into its own canonical table.",
+    "e3c_weighted_delay_quantiles": "Q_q^Omega, Q_q^I and Q_q^F at q = 0.50, 0.90, 0.99, 0.999 for every geometry and order, with Q^F explicitly marked as depending on the declared measurement model and source class",
+    "e3c_pairing_destroyed_distribution": "the full frozen-seed distribution of the nonphysical control, registered explicitly as a required artifact rather than as a by-product; it is never ranked as a measurement architecture"
+  },
+  "item_8_result_schema": {
+    "schema_file": "schemas/e3c_result_schema_v2.json",
+    "added_field_groups": {
+      "matched_fraction": [
+        "window_fraction",
+        "n_fractions_total",
+        "n_fractions_defined",
+        "n_fractions_unsupported",
+        "n_fractions_negative",
+        "matched_fraction_defined"
+      ],
+      "quantile": [
+        "quantile_q",
+        "quantile_weighting",
+        "quantile_value_M",
+        "quantile_is_source_model_dependent"
+      ],
+      "order_pair": [
+        "order_pair",
+        "order_lower",
+        "order_upper",
+        "window_overlap_fraction",
+        "windows_disjoint"
+      ],
+      "censor_boundary": [
+        "age_grid_max_M",
+        "censor_boundary_M",
+        "right_censored",
+        "censoring_rule"
+      ],
+      "disposition": [
+        "disposition",
+        "disposition_reasons",
+        "counts_toward_denominator"
+      ]
+    },
+    "allowed_dispositions": [
+      "SUPPORTED",
+      "UNDEFINED_NO_COMMON_MATCHED_SUPPORT",
+      "NOT_APPLICABLE",
+      "NOT_RUN"
+    ]
+  },
+  "item_9_ordering": {
+    "rule": "this amendment and the final E3C_OPERATOR_GRID_FREEZE are committed before any non-canary operator evaluation",
+    "canary_geometry": "a050_i050",
+    "canary_use": "permitted before the freeze commit, for contract validation only; its numbers are recomputed after the freeze along with the rest of the grid"
+  },
+  "item_10_scope": {
+    "execute": [
+      "E3C"
+    ],
+    "do_not_begin": [
+      "E3D",
+      "any reconstruction phase"
+    ],
+    "existing_v1_artifacts": "E3D and the v1 manuscript remain on the record as the v1 line. They are not regenerated under the v2 contract and not deleted. The v1 canonical freeze and manuscript are snapshotted so the v1 record stays independently verifiable after the E3C tables change.",
+    "flagged_for_reviewer": true
+  }
+}

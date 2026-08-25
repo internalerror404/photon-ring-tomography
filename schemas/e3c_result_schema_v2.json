@@ -1,0 +1,295 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "phrt/e3c_result_schema_v2",
+  "title": "E3C result record, v2",
+  "description": "Row contract for every E3C canonical table, as amended by PAPER_I_V2_PRE_E3C_AMENDMENT_001. Field groups are optional as groups -- a depth row carries the censor-boundary group, a matched-support row carries the matched-fraction and order-pair groups -- but any field that appears must satisfy its definition here.",
+  "type": "object",
+  "definitions": {
+    "identity": {
+      "description": "Which geometry, arm and class a row describes.",
+      "properties": {
+        "geometry": {
+          "type": "string",
+          "pattern": "^a[0-9p e+-]+_i[0-9]{3}$"
+        },
+        "spin": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 1.0
+        },
+        "inclination_deg": {
+          "type": "number",
+          "minimum": 0.0,
+          "maximum": 90.0
+        },
+        "arm": {
+          "type": "string"
+        },
+        "source_class": {
+          "type": "string",
+          "description": "the class C whose synthesis map Q_C defines A_C"
+        },
+        "operator_notation": {
+          "const": "A_C = mathcal A Q_C"
+        },
+        "reference_snr": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        }
+      }
+    },
+    "spectral": {
+      "description": "Item 3 and item 5. Every field is a property of the restricted coefficient matrix A_C, never of the continuum operator mathcal A. exact_rank is NOT_APPLICABLE absent a structural certificate.",
+      "properties": {
+        "exact_rank": {
+          "enum": [
+            "NOT_APPLICABLE"
+          ],
+          "description": "no structural certificate exists for a float64 physical operator"
+        },
+        "exact_rank_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "structural_certificate": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "numerical_rank": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "LAPACK-threshold decision at the stated tolerance, not an algebraic rank"
+        },
+        "operational_rank": {
+          "type": "integer"
+        },
+        "nullity": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "sigma_max": {
+          "type": "number",
+          "minimum": 0
+        },
+        "sigma_min_positive": {
+          "type": "number",
+          "minimum": 0
+        },
+        "kappa_positive": {
+          "type": "number",
+          "minimum": 0
+        },
+        "stable_rank": {
+          "type": "number",
+          "minimum": 0
+        },
+        "trace_information": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "not": {
+        "anyOf": [
+          {
+            "required": [
+              "effective_rank"
+            ]
+          },
+          {
+            "required": [
+              "d_eff"
+            ]
+          },
+          {
+            "required": [
+              "D_hist"
+            ]
+          }
+        ]
+      }
+    },
+    "depth": {
+      "description": "Item 4. The supremum is reported under a name that says it is a supremum, alongside the contiguous span a reconstruction can use and the complete mask.",
+      "properties": {
+        "oldest_detectable_age_probe": {
+          "type": "number"
+        },
+        "shallowest_detectable_age": {
+          "type": "number"
+        },
+        "largest_contiguous_detectable_depth": {
+          "type": "number",
+          "minimum": 0
+        },
+        "largest_contiguous_start_M": {
+          "type": "number"
+        },
+        "largest_contiguous_end_M": {
+          "type": "number"
+        },
+        "n_detectable_ages": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_detectable_runs": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "detectable_set_is_contiguous": {
+          "type": "boolean"
+        },
+        "age_threshold_mask": {
+          "type": "string",
+          "pattern": "^[01]*$"
+        }
+      },
+      "required": [
+        "oldest_detectable_age_probe",
+        "largest_contiguous_detectable_depth",
+        "age_threshold_mask"
+      ]
+    },
+    "censor_boundary": {
+      "description": "Item 8. What the ceiling is and whether this row hit it.",
+      "properties": {
+        "age_grid_max_M": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "censor_boundary_M": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "right_censored": {
+          "type": "boolean"
+        },
+        "censoring_rule": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "age_grid_max_M",
+        "censor_boundary_M",
+        "right_censored"
+      ]
+    },
+    "matched_fraction": {
+      "description": "Item 8. How much of the 19-fraction sweep actually supported an exponent.",
+      "properties": {
+        "window_fraction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "n_fractions_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_fractions_defined": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_fractions_unsupported": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "n_fractions_negative": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "matched_fraction_defined": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "order_pair": {
+      "description": "Item 8. Which two orders, and whether their windows overlap at all.",
+      "properties": {
+        "order_pair": {
+          "type": "string",
+          "pattern": "^[0-9]+->[0-9]+$"
+        },
+        "order_lower": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "order_upper": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "window_overlap_fraction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "windows_disjoint": {
+          "type": "boolean"
+        }
+      }
+    },
+    "quantile": {
+      "description": "Item 8. Q^Omega and Q^I are properties of the spacetime and the transfer; Q^F is not, and must say so.",
+      "properties": {
+        "quantile_q": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "quantile_weighting": {
+          "enum": [
+            "Omega",
+            "I",
+            "F"
+          ]
+        },
+        "quantile_value_M": {
+          "type": "number"
+        },
+        "quantile_is_source_model_dependent": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "quantile_q",
+        "quantile_weighting",
+        "quantile_value_M",
+        "quantile_is_source_model_dependent"
+      ]
+    },
+    "disposition": {
+      "description": "Item 8. A cell that cannot carry its statistic says so and still counts toward its denominator.",
+      "properties": {
+        "disposition": {
+          "enum": [
+            "SUPPORTED",
+            "UNDEFINED_NO_COMMON_MATCHED_SUPPORT",
+            "NOT_APPLICABLE",
+            "NOT_RUN"
+          ]
+        },
+        "disposition_reasons": {
+          "type": "string"
+        },
+        "counts_toward_denominator": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "disposition",
+        "counts_toward_denominator"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "$ref": "#/definitions/spectral/not"
+    }
+  ],
+  "properties": {},
+  "additionalProperties": true
+}
