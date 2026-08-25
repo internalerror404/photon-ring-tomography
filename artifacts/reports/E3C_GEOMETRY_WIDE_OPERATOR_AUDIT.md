@@ -1,7 +1,7 @@
 # E3C — GEOMETRY-WIDE PHYSICAL-OPERATOR AUDIT
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `d6869f8d1c08889fee34e91d392c2bbc1bc9a62f`
+- branch `claude/experiment-review-mac-rthiz1`, commit `e766cfcd9c9340c40e969f90c322e04de01c8ba3`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - freeze `artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json` sha256 `818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2`
 - 12 registered geometries, orders n = 0, 1, 2, profile `core`
@@ -25,6 +25,26 @@ the per-geometry values are in `artifacts/tables/e3c_gate_detail.parquet`.
 | `E3C_freeze_raymap_hashes` | **PASS** | 0 | 0 |
 | `E3C_frozen_grid_invariance` | **PASS** | dims=[224] n_ages=[64] | dims=[224] n_ages=[64] |
 | `G10q_continuum_noise_quadrature_invariance` | **PASS** | 5.401e-15 | 1e-10 |
+
+## Governance counts
+
+```
+    active_blocking_failures:   0
+    preserved_literal_failures: 7
+    future_phase_not_run:       11
+```
+
+A preserved literal failure is a FAIL that has been adjudicated and kept on the record rather than reinterpreted; the status is never edited to match the disposition. A not-run gate belongs to a phase that is not yet in scope. Neither is an unresolved scientific failure.
+
+| preserved failure | disposition |
+|---|---|
+| `EDGE1_a000_i020_raymap_generation` | `RESOLVED_BY_S0_BACKEND` |
+| `G10q_retired_flat_sigma_convention` | `RETIRED_PIXELIZATION_DEPENDENT` |
+| `G1_v01_reproduction_relative` | `FAIL_AS_WRITTEN` |
+| `G7_grid_convergence_a098_i075` | `RETIRED_NONCONVERGENT_EXTREME_STATISTIC` |
+| `G7_grid_convergence_raw_max` | `RETIRED_NONCONVERGENT_EXTREME_STATISTIC` |
+| `G7b_weighted_operator_discrepancy` | `WITHDRAWN_INVALID_CONVERGENCE_METRIC` |
+| `GRID_AUTHORIZATION` | `SUPERSEDED_GRID_COMPLETE` |
 
 ## What was frozen before the first geometry was evaluated
 

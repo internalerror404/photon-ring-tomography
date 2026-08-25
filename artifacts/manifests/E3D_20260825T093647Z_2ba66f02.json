@@ -1,0 +1,147 @@
+{
+  "run_id": "E3D_20260825T093647Z_2ba66f02",
+  "experiment_id": "E3D",
+  "git_commit": "e766cfcd9c9340c40e969f90c322e04de01c8ba3",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "subsample_seed": 20260825,
+    "permutation_seed": 20260825
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+      "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3d_class_spectra.parquet",
+      "sha256": "c4f25513899b0722b9bda3c24a1f68c2d27e5ec1c707b6dd534709237ede5cb5"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3d_depth_by_class.parquet",
+      "sha256": "510a250b9807f76b235700164d50a09c110323909138497e2f491a35ce647269"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3d_class_nesting.parquet",
+      "sha256": "607af2e31b327221b497d41836515dcc3956bf7b9e811a2ec041c9ab573a4f81"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3d_operator_smoke.parquet",
+      "sha256": "672b02c57eaf7fc6e3c700c296f725b2856550635b5a6bfd24de4db354edafdc"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3d_age_information.parquet",
+      "sha256": "7dbb367b0c2d3ca2b229315bab3725d7ad57e48b229d9475db540113f23e7ffe"
+    }
+  ],
+  "gate_status": {
+    "E3D_adjoint": {
+      "status": "PASS",
+      "measured": 7.172906863508169e-14,
+      "threshold": 1e-08,
+      "note": "exact adjoint at every class including C1056_ST"
+    },
+    "E3D_dense_smoke_comparison": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "matrix-free columns against the dense operator"
+    },
+    "E3D_Gram_monotonicity": {
+      "status": "PASS",
+      "measured": 1.0727792495617831e-16,
+      "threshold": 1e-10
+    },
+    "E3D_class_nesting": {
+      "status": "PASS",
+      "measured": 2.1355313351012487e-14,
+      "threshold": 1e-10,
+      "note": "the parent class design projected onto the child's span; the radial columns are refined rather than preserved, so nesting is asserted on the function space"
+    },
+    "E3D_enrichment_does_not_lose_rank": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0,
+      "note": "numerical rank of the enriched class is at least the parent's, for every arm and anchor"
+    }
+  },
+  "started_at": "2026-08-25T09:36:47+00:00",
+  "finished_at": "2026-08-25T09:40:21+00:00",
+  "peak_rss_mb": 1648.21484375,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 213.74444222450256,
+  "anchor_geometries": [
+    "a050_i050"
+  ],
+  "classes": {
+    "C224": {
+      "n_radial": 4,
+      "n_azimuthal": 7,
+      "n_temporal": 8,
+      "dimension": 224
+    },
+    "C448_T": {
+      "n_radial": 4,
+      "n_azimuthal": 7,
+      "n_temporal": 16,
+      "dimension": 448
+    },
+    "C528_S": {
+      "n_radial": 6,
+      "n_azimuthal": 11,
+      "n_temporal": 8,
+      "dimension": 528
+    },
+    "C1056_ST": {
+      "n_radial": 6,
+      "n_azimuthal": 11,
+      "n_temporal": 16,
+      "dimension": 1056
+    }
+  },
+  "reference_snr": 100.0
+}

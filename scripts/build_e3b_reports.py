@@ -15,6 +15,7 @@ sys.path.insert(0, str(ROOT / "src"))
 
 from phrt.config import load_registry, sha256_file
 from phrt import provenance
+from phrt.io.dashboard import summary_block
 
 E3B_GATES = [
     "G2_physical_dense_matrix_free", "G3_physical_adjoint",
@@ -194,6 +195,10 @@ auditable rather than silent. It is not an active blocking failure.
 Scope restriction observed: one geometry, no production grid, no ML.
 
 {gate_table(E3B_GATES)}
+
+## Governance counts
+
+{summary_block()}
 
 ## The operator
 

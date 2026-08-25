@@ -1,7 +1,7 @@
 # E3B — PHYSICAL HISTORICAL-OPERATOR CANARY
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `0ef341dae3b21bc2bdd0e54a18971cff208af783`
+- branch `claude/experiment-review-mac-rthiz1`, commit `e766cfcd9c9340c40e969f90c322e04de01c8ba3`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - geometry a* = 0.5, i = 50 deg, orders n = 0, 1, 2 (the single authorized pilot geometry)
 - kgeo commit `dc347060c5fb24e2c360c8aaffbfe25482a83805`
@@ -33,6 +33,26 @@ Scope restriction observed: one geometry, no production grid, no ML.
 | `G9c_per_order_ray_count` | **PASS** | 4179 | 1536 |
 | `G10q_continuum_noise_quadrature_invariance` | **PASS** | 5.401e-15 | 1e-10 |
 | `G10q_retired_flat_sigma_convention` | **FAIL** | 7 | 1e-10 |
+
+## Governance counts
+
+```
+    active_blocking_failures:   0
+    preserved_literal_failures: 7
+    future_phase_not_run:       11
+```
+
+A preserved literal failure is a FAIL that has been adjudicated and kept on the record rather than reinterpreted; the status is never edited to match the disposition. A not-run gate belongs to a phase that is not yet in scope. Neither is an unresolved scientific failure.
+
+| preserved failure | disposition |
+|---|---|
+| `EDGE1_a000_i020_raymap_generation` | `RESOLVED_BY_S0_BACKEND` |
+| `G10q_retired_flat_sigma_convention` | `RETIRED_PIXELIZATION_DEPENDENT` |
+| `G1_v01_reproduction_relative` | `FAIL_AS_WRITTEN` |
+| `G7_grid_convergence_a098_i075` | `RETIRED_NONCONVERGENT_EXTREME_STATISTIC` |
+| `G7_grid_convergence_raw_max` | `RETIRED_NONCONVERGENT_EXTREME_STATISTIC` |
+| `G7b_weighted_operator_discrepancy` | `WITHDRAWN_INVALID_CONVERGENCE_METRIC` |
+| `GRID_AUTHORIZATION` | `SUPERSEDED_GRID_COMPLETE` |
 
 ## The operator
 

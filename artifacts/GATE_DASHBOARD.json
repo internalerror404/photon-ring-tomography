@@ -1,0 +1,33 @@
+{
+  "schema": "phrt-gate-dashboard/1",
+  "created_utc": "2026-08-25T09:53:44Z",
+  "git_commit": "e766cfcd9c9340c40e969f90c322e04de01c8ba3",
+  "total_gates": 139,
+  "passing": 121,
+  "active_blocking_failures": 0,
+  "preserved_literal_failures": 7,
+  "future_phase_not_run": 11,
+  "active_blocking_failure_names": [],
+  "preserved_literal_failure_dispositions": {
+    "EDGE1_a000_i020_raymap_generation": "RESOLVED_BY_S0_BACKEND",
+    "G10q_retired_flat_sigma_convention": "RETIRED_PIXELIZATION_DEPENDENT",
+    "G1_v01_reproduction_relative": "FAIL_AS_WRITTEN",
+    "G7_grid_convergence_a098_i075": "RETIRED_NONCONVERGENT_EXTREME_STATISTIC",
+    "G7_grid_convergence_raw_max": "RETIRED_NONCONVERGENT_EXTREME_STATISTIC",
+    "G7b_weighted_operator_discrepancy": "WITHDRAWN_INVALID_CONVERGENCE_METRIC",
+    "GRID_AUTHORIZATION": "SUPERSEDED_GRID_COMPLETE"
+  },
+  "future_phase_not_run_names": [
+    "E3_pilot_no_convention_adjustment",
+    "G11_cpu_mps_inference_relative",
+    "G1_exact_zero_cell_absolute",
+    "G1_identifiability_floats_relative",
+    "G1_identifiability_row_keys",
+    "G1_reconstruction_floats_relative",
+    "G1_reconstruction_row_keys",
+    "G1_reproduction_relative_signal_bearing",
+    "G5_natural_null_on_registered_class",
+    "G5_physical_injected_null",
+    "G7b_pointwise_cross_grid_field_metric"
+  ]
+}

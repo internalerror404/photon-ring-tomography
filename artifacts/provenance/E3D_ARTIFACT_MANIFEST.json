@@ -1,0 +1,24 @@
+{
+  "experiment": "E3D",
+  "git_commit": "e766cfcd9c9340c40e969f90c322e04de01c8ba3",
+  "created_utc": "2026-08-25T09:53:46Z",
+  "anchor_geometries": [
+    "a000_i020",
+    "a050_i050",
+    "a098_i075"
+  ],
+  "artifacts": {
+    "artifacts/gates/e3d_correctness_gates.json": "e4633b25928e097017bb0b5b2b161db64ecf7652b34dc47ad7b6704127655490",
+    "artifacts/reports/E3D_SOURCE_CLASS_STRESS.md": "ff4ec0fe51e56d4e0f1fefc964e20fb41c7ce26c460bc5c677b9244eb688f3d8",
+    "artifacts/tables/e3d_age_information.csv": "b64c5172e57fed0174b5e7b2c1a44cb3ef9dc08ec7aaec035c49dee12556efbf",
+    "artifacts/tables/e3d_age_information.parquet": "8c9ec90bd34e373eb8e375c0773d09a2d9c5a957fe57b99f45c721826c70295c",
+    "artifacts/tables/e3d_class_nesting.csv": "0e283e6a02711691dfa26038337152591265300d32d79380b71c22aae5747bba",
+    "artifacts/tables/e3d_class_nesting.parquet": "55381beabbea57c70bde6c2bb8c0ceb842010279b9da970b9e8141f258907f28",
+    "artifacts/tables/e3d_class_spectra.csv": "8e49e2d36a5d20b0f73aa5318c83c8dfe178af60e153c3a9b4ab12c07b5d9659",
+    "artifacts/tables/e3d_class_spectra.parquet": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+    "artifacts/tables/e3d_depth_by_class.csv": "ad1cb13c49b7c3087e620d89cb8b750ac965b01ad08a0732cb638eddc81ff479",
+    "artifacts/tables/e3d_depth_by_class.parquet": "a974f06dd446f2fc06f3f18045928ac5108a42d173ea8b9d09aa009da1783be8",
+    "artifacts/tables/e3d_operator_smoke.csv": "36a0ada338470fc554e8d7ccceef4cca4cb6b93881d67c1ba7fdffbbcd423a4c",
+    "artifacts/tables/e3d_operator_smoke.parquet": "e66f6e866838dfd2197117eb147941f0c2ec7b655ba3df0e9c3b32b94731ff2e"
+  }
+}

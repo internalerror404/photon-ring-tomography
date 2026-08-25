@@ -21,6 +21,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from phrt import provenance
+from phrt.io.dashboard import summary_block
 from phrt.config import load_registry, sha256_file
 
 T = ROOT / "artifacts" / "tables"
@@ -264,6 +265,10 @@ Each mechanical gate below is the worst case over all {len(geoms)} geometries;
 the per-geometry values are in `artifacts/tables/e3c_gate_detail.parquet`.
 
 {gate_table(E3C_GATES)}
+
+## Governance counts
+
+{summary_block()}
 
 ## What was frozen before the first geometry was evaluated
 

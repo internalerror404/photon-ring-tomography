@@ -1,8 +1,8 @@
 {
   "schema": "PREFIX_INVALIDATION_LEDGER/1",
-  "generated_at": "2026-08-25T09:35:41+00:00",
+  "generated_at": "2026-08-25T09:53:49+00:00",
   "invalidated_prefix_commit": "UNKNOWN",
-  "corrected_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
+  "corrected_commit": "e766cfcd9c9340c40e969f90c322e04de01c8ba3",
   "statement": "Every artifact produced at or before the invalidated prefix commit is withdrawn. Files listed as byte_identical_after_regeneration are still withdrawn as evidence from the prefix; the identical hash means only that the defect did not reach that file's contents, not that the prefix run may be cited.",
   "defects": [
     {
@@ -81,10 +81,16 @@
   ],
   "artifacts": [
     {
+      "path": "artifacts/GATE_DASHBOARD.json",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "38e015db0fee97d18a9c0b799021dcd802acf373eb396eb00c82c6ac9900d29e"
+    },
+    {
       "path": "artifacts/PREFIX_INVALIDATION_LEDGER.json",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "2809039d60fec697098f91307250b5976320ad9f31fc70adb726bcb70dea4c6d"
+      "sha256_after": "c89b8705c402be3b476f77f0d5bc5b8784b22688af8adf7039dfb8be49d298c9"
     },
     {
       "path": "artifacts/PROTOCOL_DEVIATION_001_E1E2_BEFORE_G1.json",
@@ -570,19 +576,25 @@
       "path": "artifacts/gates/correctness_gates.json",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "588e9436dc7da602a0345f97ff445f2d8222d1343c9a96e54d2cdc122a5423be"
+      "sha256_after": "9a811cd025a407c98cd95857f7d796a54ddced8559f44bb8393e4dbfed7cff1a"
     },
     {
       "path": "artifacts/gates/e3b_correctness_gates.json",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "8c296adc39be7f898faa0448115b495c18f7d25e7c76ce4455ab5d4d5167bc47"
+      "sha256_after": "341a8788ab5440e420cff312fb586d447c1177303469fe813bc5464d8ec79134"
     },
     {
       "path": "artifacts/gates/e3c_correctness_gates.json",
       "state": "created_after_correction",
       "sha256_before": null,
       "sha256_after": "2e2c7575e9b21ffc59004dee43de2a5d72dcafe7420be91bd61a18d8bd7f15e2"
+    },
+    {
+      "path": "artifacts/gates/e3d_correctness_gates.json",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "e4633b25928e097017bb0b5b2b161db64ecf7652b34dc47ad7b6704127655490"
     },
     {
       "path": "artifacts/gates/s0_correctness_gates.json",
@@ -771,6 +783,18 @@
       "sha256_after": "2f733a06786e12e998afddba18fe6eb35e644a935965f2e49da3f2f12715f218"
     },
     {
+      "path": "artifacts/manifests/E3D_20260825T093647Z_2ba66f02.json",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "37a8aafa1b4daed0c5118eb71519134a477ea2dc8bb26c5fd77f58491bd79ddc"
+    },
+    {
+      "path": "artifacts/manifests/E3D_20260825T094103Z_2ba66f02.json",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "428e4770a3b07c782a2e27c681fbcc07e96b4b129edb93c6da2f18a36b11ac85"
+    },
+    {
       "path": "artifacts/manifests/E3PILOT_20260825T051509Z_2ba66f02.json",
       "state": "created_after_correction",
       "sha256_before": null,
@@ -948,13 +972,19 @@
       "path": "artifacts/provenance/E3B_ARTIFACT_MANIFEST.json",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "c4d0ebdc0e8e72f1ffe5767622408422bd46576c5322369525dd6376b7ae6f40"
+      "sha256_after": "68f69c3740bb26e3027959ea46ba6a43ec4fe917d0a0a05d4807a558308b8e59"
     },
     {
       "path": "artifacts/provenance/E3C_ARTIFACT_MANIFEST.json",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "5ffad31901c55b56daeefc1f5fb9baa50758f2aa8576f0d534c5696473765a22"
+      "sha256_after": "e2fa68e1ddc22d63d478bc386c7db06f16e92f46dedafeaf6f5ecd970160a3e9"
+    },
+    {
+      "path": "artifacts/provenance/E3D_ARTIFACT_MANIFEST.json",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "6c3dbe6e157d6721f6c5a933748068c447b75dc3a065ceef8aa414b1291cb093"
     },
     {
       "path": "artifacts/provenance/kgeo_commit.txt",
@@ -1476,49 +1506,55 @@
       "path": "artifacts/reports/AMENDMENT_001_LOCALIZED_SUPPORT.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "4556896e954b812ebd5700e9d3a666e7e936457983fee7d52b9eda3c62bfcf9e"
+      "sha256_after": "00164ecd1fe1609369f502af0443a488307250db2ef70013cdaba5da498bc496"
     },
     {
       "path": "artifacts/reports/AMENDMENT_002_LOCALIZED_CLASS_MECHANISM_DIAGNOSTIC.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "b1f9bdd4c7b27d4b7c001f45313bbcc60fc6253120845168b340b8ffa88a14ba"
+      "sha256_after": "49509b7a170308a9cd94f98298a44b87b547733cd0fc72d123d57bf23127602f"
     },
     {
       "path": "artifacts/reports/E3B_PHYSICAL_OPERATOR_CANARY.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "1d37fdc3a2e7d9c449a81b1c763766f924b7107d4722c952ef1883377cc7e58c"
+      "sha256_after": "4d972a96a5381549152819deff2d0cfb11b584933827785e6ef43154d84ac60c"
     },
     {
       "path": "artifacts/reports/E3B_RETARDED_TIME_VALIDATION.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "4237a643591357bc98fbd487f5e13d6f19e229eae7f626d4bbc9b31f60151e72"
+      "sha256_after": "8e7d7d50e60b6d8c3b5a799d612e497afc5248613f3194564243c5fb030ebbfd"
     },
     {
       "path": "artifacts/reports/E3B_TRANSFER_WEIGHT_AUDIT.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "230a661bf27be9ebfc30e6ca62f4da7cb45d89bafe3bbe18c5e8f78e7be5161a"
+      "sha256_after": "47c4e0284f73254149e285dc45e0c946d8594e1f0f83a0418c66371fb7550632"
     },
     {
       "path": "artifacts/reports/E3C_GEOMETRY_WIDE_OPERATOR_AUDIT.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "9a394417d7fd0e4fc7984d77a1ff74f7e7531d552e8ac3f96c38ffa9a4434878"
+      "sha256_after": "2e3faf3ff633de4b8961b4aba16081098eb5603431ccaace9532061b41ab9904"
     },
     {
       "path": "artifacts/reports/E3C_MEASUREMENT_NOISE_MODEL.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "937974b810b103df3d5fbaba8b1a160bfcbfc0f5583dcd337c858c47bb82e27d"
+      "sha256_after": "850a028b9fa2b7e0e2a2bc869cfb7a654bd2683fa71cccdd3ebae9c1a906338c"
     },
     {
       "path": "artifacts/reports/E3C_MECHANISM_DECOMPOSITION.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "331baf6e8805b46e6f8c0cc393722422c3bddc92a5053dab2990200db3164450"
+      "sha256_after": "5259abd7788838ce4c7fc8618caa830d1b87cc0a4043e027be05dec096d5ce9f"
+    },
+    {
+      "path": "artifacts/reports/E3D_SOURCE_CLASS_STRESS.md",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "ff4ec0fe51e56d4e0f1fefc964e20fb41c7ce26c460bc5c677b9244eb688f3d8"
     },
     {
       "path": "artifacts/reports/E3_EDGE_CANARY_STOP.md",
@@ -1527,22 +1563,28 @@
       "sha256_after": "354b26ef69e81231d8e9b81746634943b0d0d0b8d387e6749a463b5df0468cb3"
     },
     {
+      "path": "artifacts/reports/GATE_DASHBOARD.md",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "749617750f4572128db0789d2d0fc51020a30da1617c929d04361cd5b6bf3e35"
+    },
+    {
       "path": "artifacts/reports/P1_E0_INDEPENDENT_IMPLEMENTATION.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "b5fc534d17735b078a0cef74636760c0a46169bb71687daae155a9ea366f6d89"
+      "sha256_after": "342729311f2991c915c397ddeb9196b4f4ef2a39fedfe64633d9a122340fe40c"
     },
     {
       "path": "artifacts/reports/P1_E0_REPRODUCTION.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "e48a73f3f651d03a40f5148bbc9b3866b25046725793054852b15371ce27bb84"
+      "sha256_after": "8cc75d6fe7cd11e47ef436ce8eadb98aacec929f3aef5e245d41a5170ddeeb35"
     },
     {
       "path": "artifacts/reports/P1_E1_E2_STRUCTURED_OPERATOR.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "eec7915320b4460656012bc1160f994288e1e0415a5a2814c2f48a36ba978f1f"
+      "sha256_after": "68e361fefa279a618fd6d3bb41c77d9c39a6290480d876b8b228d6c6c60e99cb"
     },
     {
       "path": "artifacts/reports/S0_BACKEND_CANARY.md",
@@ -1554,7 +1596,7 @@
       "path": "artifacts/reports/TASK0_ENVIRONMENT.md",
       "state": "created_after_correction",
       "sha256_before": null,
-      "sha256_after": "8aff14dc471152d506f3665f1cd5780ee67b3755574e8aa2f28feaf0fbf4dfaf"
+      "sha256_after": "54a187fa7e2381f60579f5c0a48539636637dd2e13447e72a4dd76a1878f7093"
     },
     {
       "path": "artifacts/tables/amd001_localized_support.csv",
@@ -2037,6 +2079,66 @@
       "sha256_after": "943985f43e34919bb92534fe05de45b43395f6b5ed8b7769200af608d7bf670f"
     },
     {
+      "path": "artifacts/tables/e3d_age_information.csv",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "b64c5172e57fed0174b5e7b2c1a44cb3ef9dc08ec7aaec035c49dee12556efbf"
+    },
+    {
+      "path": "artifacts/tables/e3d_age_information.parquet",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "8c9ec90bd34e373eb8e375c0773d09a2d9c5a957fe57b99f45c721826c70295c"
+    },
+    {
+      "path": "artifacts/tables/e3d_class_nesting.csv",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "0e283e6a02711691dfa26038337152591265300d32d79380b71c22aae5747bba"
+    },
+    {
+      "path": "artifacts/tables/e3d_class_nesting.parquet",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "55381beabbea57c70bde6c2bb8c0ceb842010279b9da970b9e8141f258907f28"
+    },
+    {
+      "path": "artifacts/tables/e3d_class_spectra.csv",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "8e49e2d36a5d20b0f73aa5318c83c8dfe178af60e153c3a9b4ab12c07b5d9659"
+    },
+    {
+      "path": "artifacts/tables/e3d_class_spectra.parquet",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827"
+    },
+    {
+      "path": "artifacts/tables/e3d_depth_by_class.csv",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "ad1cb13c49b7c3087e620d89cb8b750ac965b01ad08a0732cb638eddc81ff479"
+    },
+    {
+      "path": "artifacts/tables/e3d_depth_by_class.parquet",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "a974f06dd446f2fc06f3f18045928ac5108a42d173ea8b9d09aa009da1783be8"
+    },
+    {
+      "path": "artifacts/tables/e3d_operator_smoke.csv",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "36a0ada338470fc554e8d7ccceef4cca4cb6b93881d67c1ba7fdffbbcd423a4c"
+    },
+    {
+      "path": "artifacts/tables/e3d_operator_smoke.parquet",
+      "state": "created_after_correction",
+      "sha256_before": null,
+      "sha256_after": "e66f6e866838dfd2197117eb147941f0c2ec7b655ba3df0e9c3b32b94731ff2e"
+    },
+    {
       "path": "artifacts/tables/edge_canary_gates.csv",
       "state": "created_after_correction",
       "sha256_before": null,
@@ -2122,10 +2224,10 @@
     }
   ],
   "summary": {
-    "n_artifacts": 340,
+    "n_artifacts": 357,
     "superseded": 0,
     "byte_identical_after_regeneration": 0,
-    "created_after_correction": 340,
+    "created_after_correction": 357,
     "withdrawn": 0,
     "material_defects": [
       "D-D_mixer_noise_propagation",

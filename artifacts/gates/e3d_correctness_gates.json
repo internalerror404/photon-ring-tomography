@@ -1,0 +1,40 @@
+{
+  "experiment": "E3D",
+  "run_id": "E3D_20260825T094103Z_2ba66f02",
+  "gates": {
+    "E3D_adjoint": {
+      "status": "PASS",
+      "measured": 4.889504983165385e-13,
+      "threshold": 1e-08,
+      "note": "exact adjoint at every class including C1056_ST"
+    },
+    "E3D_dense_smoke_comparison": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "matrix-free columns against the dense operator"
+    },
+    "E3D_Gram_monotonicity": {
+      "status": "PASS",
+      "measured": 1.1361266990499718e-16,
+      "threshold": 1e-10
+    },
+    "E3D_class_nesting": {
+      "status": "PASS",
+      "measured": 2.7304547511874947e-14,
+      "threshold": 1e-10,
+      "note": "the parent class design projected onto the child's span; the radial columns are refined rather than preserved, so nesting is asserted on the function space"
+    },
+    "E3D_enrichment_does_not_lose_rank": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0,
+      "note": "numerical rank of the enriched class is at least the parent's, for every arm and anchor"
+    }
+  },
+  "summary": {
+    "PASS": 5,
+    "FAIL": 0,
+    "NOT_RUN": 0
+  }
+}

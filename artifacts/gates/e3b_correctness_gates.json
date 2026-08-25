@@ -5,42 +5,42 @@
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "E3B_20260825T084443Z_2ba66f02",
-      "recorded_at": "2026-08-25T08:47:24+00:00",
+      "run_id": "E3B_20260825T090237Z_2ba66f02",
+      "recorded_at": "2026-08-25T09:05:12+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
-        "run_id": "E3B_20260825T084121Z_2ba66f02",
-        "recorded_at": "2026-08-25T08:44:03+00:00"
+        "run_id": "E3B_20260825T084443Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:47:24+00:00"
       }
     },
     "G3_physical_adjoint": {
       "status": "PASS",
       "measured": 7.172906863508169e-14,
       "threshold": 1e-08,
-      "run_id": "E3B_20260825T084443Z_2ba66f02",
-      "recorded_at": "2026-08-25T08:47:24+00:00",
+      "run_id": "E3B_20260825T090237Z_2ba66f02",
+      "recorded_at": "2026-08-25T09:05:12+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 7.172906863508169e-14,
         "threshold": 1e-08,
-        "run_id": "E3B_20260825T084121Z_2ba66f02",
-        "recorded_at": "2026-08-25T08:44:03+00:00"
+        "run_id": "E3B_20260825T084443Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:47:24+00:00"
       }
     },
     "G4_physical_resolved_unresolved_mixing": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "E3B_20260825T084443Z_2ba66f02",
-      "recorded_at": "2026-08-25T08:47:24+00:00",
+      "run_id": "E3B_20260825T090237Z_2ba66f02",
+      "recorded_at": "2026-08-25T09:05:12+00:00",
       "superseded": {
-        "status": "FAIL",
-        "measured": 0.3653519910994384,
+        "status": "PASS",
+        "measured": 0.0,
         "threshold": 1e-10,
-        "run_id": "E3B_20260825T084121Z_2ba66f02",
-        "recorded_at": "2026-08-25T08:44:03+00:00"
+        "run_id": "E3B_20260825T084443Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:47:24+00:00"
       }
     },
     "G4b_linear_collapse_covariance_propagation": {
@@ -48,33 +48,41 @@
       "measured": 0.0,
       "threshold": 1e-12,
       "note": "channel variance against an independently formed L C_R L^T",
-      "run_id": "E3B_20260825T084443Z_2ba66f02",
-      "recorded_at": "2026-08-25T08:47:24+00:00"
+      "run_id": "E3B_20260825T090237Z_2ba66f02",
+      "recorded_at": "2026-08-25T09:05:12+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0.0,
+        "threshold": 1e-12,
+        "note": "channel variance against an independently formed L C_R L^T",
+        "run_id": "E3B_20260825T084443Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:47:24+00:00"
+      }
     },
     "G5_physical_injected_null": {
       "status": "NOT_RUN",
       "note": "the registered global class has trivial numerical null space under this arm",
-      "run_id": "E3B_20260825T084443Z_2ba66f02",
-      "recorded_at": "2026-08-25T08:47:24+00:00",
+      "run_id": "E3B_20260825T090237Z_2ba66f02",
+      "recorded_at": "2026-08-25T09:05:12+00:00",
       "superseded": {
         "status": "NOT_RUN",
         "note": "the registered global class has trivial numerical null space under this arm",
-        "run_id": "E3B_20260825T084121Z_2ba66f02",
-        "recorded_at": "2026-08-25T08:44:03+00:00"
+        "run_id": "E3B_20260825T084443Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:47:24+00:00"
       }
     },
     "G6_physical_Gram_monotonicity": {
       "status": "PASS",
       "measured": 6.562745738215744e-17,
       "threshold": 1e-10,
-      "run_id": "E3B_20260825T084443Z_2ba66f02",
-      "recorded_at": "2026-08-25T08:47:24+00:00",
+      "run_id": "E3B_20260825T090237Z_2ba66f02",
+      "recorded_at": "2026-08-25T09:05:12+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 6.562745738215744e-17,
         "threshold": 1e-10,
-        "run_id": "E3B_20260825T084121Z_2ba66f02",
-        "recorded_at": "2026-08-25T08:44:03+00:00"
+        "run_id": "E3B_20260825T084443Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:47:24+00:00"
       }
     },
     "G6b_resolved_dominates_direct": {
@@ -82,15 +90,15 @@
       "measured": 0.0,
       "threshold": 1e-10,
       "note": "G_resolved - G_direct must be positive semidefinite",
-      "run_id": "E3B_20260825T084443Z_2ba66f02",
-      "recorded_at": "2026-08-25T08:47:24+00:00",
+      "run_id": "E3B_20260825T090237Z_2ba66f02",
+      "recorded_at": "2026-08-25T09:05:12+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
         "note": "G_resolved - G_direct must be positive semidefinite",
-        "run_id": "E3B_20260825T084121Z_2ba66f02",
-        "recorded_at": "2026-08-25T08:44:03+00:00"
+        "run_id": "E3B_20260825T084443Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:47:24+00:00"
       }
     },
     "G7b_transfer_field_convergence": {
@@ -162,15 +170,15 @@
       "measured": 1.6921312011308915e-16,
       "threshold": 1e-10,
       "note": "operator output for a unit source j=1, against sum(dOmega * g^3) computed outside the operator, per order",
-      "run_id": "E3B_20260825T084443Z_2ba66f02",
-      "recorded_at": "2026-08-25T08:47:24+00:00",
+      "run_id": "E3B_20260825T090237Z_2ba66f02",
+      "recorded_at": "2026-08-25T09:05:12+00:00",
       "superseded": {
-        "status": "FAIL",
-        "measured": 0.9799820558794974,
+        "status": "PASS",
+        "measured": 1.6921312011308915e-16,
         "threshold": 1e-10,
         "note": "operator output for a unit source j=1, against sum(dOmega * g^3) computed outside the operator, per order",
-        "run_id": "E3B_20260825T084121Z_2ba66f02",
-        "recorded_at": "2026-08-25T08:44:03+00:00"
+        "run_id": "E3B_20260825T084443Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:47:24+00:00"
       }
     },
     "G9c_per_order_ray_count": {

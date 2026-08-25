@@ -1,7 +1,7 @@
 {
   "experiment": "E3B",
-  "generated_at": "2026-08-25T08:55:25Z",
-  "git_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+  "generated_at": "2026-08-25T09:53:45Z",
+  "git_commit": "e766cfcd9c9340c40e969f90c322e04de01c8ba3",
   "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
   "kgeo_commit": "dc347060c5fb24e2c360c8aaffbfe25482a83805",
   "physics_environment": "pinned venv: numpy 1.26.4, scipy 1.11.4, aart 2.1.10",
@@ -12,7 +12,7 @@
     },
     {
       "path": "artifacts/gates/e3b_correctness_gates.json",
-      "sha256": "8c296adc39be7f898faa0448115b495c18f7d25e7c76ce4455ab5d4d5167bc47"
+      "sha256": "341a8788ab5440e420cff312fb586d447c1177303469fe813bc5464d8ec79134"
     },
     {
       "path": "artifacts/provenance/kgeo_commit.txt",
@@ -32,15 +32,15 @@
     },
     {
       "path": "artifacts/reports/E3B_PHYSICAL_OPERATOR_CANARY.md",
-      "sha256": "1d37fdc3a2e7d9c449a81b1c763766f924b7107d4722c952ef1883377cc7e58c"
+      "sha256": "4d972a96a5381549152819deff2d0cfb11b584933827785e6ef43154d84ac60c"
     },
     {
       "path": "artifacts/reports/E3B_RETARDED_TIME_VALIDATION.md",
-      "sha256": "4237a643591357bc98fbd487f5e13d6f19e229eae7f626d4bbc9b31f60151e72"
+      "sha256": "8e7d7d50e60b6d8c3b5a799d612e497afc5248613f3194564243c5fb030ebbfd"
     },
     {
       "path": "artifacts/reports/E3B_TRANSFER_WEIGHT_AUDIT.md",
-      "sha256": "230a661bf27be9ebfc30e6ca62f4da7cb45d89bafe3bbe18c5e8f78e7be5161a"
+      "sha256": "47c4e0284f73254149e285dc45e0c946d8594e1f0f83a0418c66371fb7550632"
     },
     {
       "path": "artifacts/tables/e3b_age_information.parquet",
