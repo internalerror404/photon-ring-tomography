@@ -1578,15 +1578,15 @@
       "measured": 0.0,
       "threshold": 1e-10,
       "note": "worst over 12 geometries (at a000_i020)",
-      "run_id": "E3C_20260825T093413Z_2ba66f02",
-      "recorded_at": "2026-08-25T09:34:14+00:00",
+      "run_id": "E3C_20260825T151334Z_2ba66f02",
+      "recorded_at": "2026-08-25T15:13:38+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
         "note": "worst over 12 geometries (at a000_i020)",
-        "run_id": "E3C_20260825T093312Z_2ba66f02",
-        "recorded_at": "2026-08-25T09:33:12+00:00"
+        "run_id": "E3C_20260825T093413Z_2ba66f02",
+        "recorded_at": "2026-08-25T09:34:14+00:00"
       }
     },
     "E3C_G3_physical_adjoint": {
@@ -1594,15 +1594,15 @@
       "measured": 2.674323598055886e-13,
       "threshold": 1e-08,
       "note": "worst over 12 geometries (at a098_i050)",
-      "run_id": "E3C_20260825T093413Z_2ba66f02",
-      "recorded_at": "2026-08-25T09:34:14+00:00",
+      "run_id": "E3C_20260825T151334Z_2ba66f02",
+      "recorded_at": "2026-08-25T15:13:38+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 2.674323598055886e-13,
         "threshold": 1e-08,
         "note": "worst over 12 geometries (at a098_i050)",
-        "run_id": "E3C_20260825T093312Z_2ba66f02",
-        "recorded_at": "2026-08-25T09:33:12+00:00"
+        "run_id": "E3C_20260825T093413Z_2ba66f02",
+        "recorded_at": "2026-08-25T09:34:14+00:00"
       }
     },
     "E3C_G4_physical_resolved_unresolved_mixing": {
@@ -1610,15 +1610,15 @@
       "measured": 0.0,
       "threshold": 1e-10,
       "note": "worst over 12 geometries (at a000_i020)",
-      "run_id": "E3C_20260825T093413Z_2ba66f02",
-      "recorded_at": "2026-08-25T09:34:14+00:00",
+      "run_id": "E3C_20260825T151334Z_2ba66f02",
+      "recorded_at": "2026-08-25T15:13:38+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
         "note": "worst over 12 geometries (at a000_i020)",
-        "run_id": "E3C_20260825T093312Z_2ba66f02",
-        "recorded_at": "2026-08-25T09:33:12+00:00"
+        "run_id": "E3C_20260825T093413Z_2ba66f02",
+        "recorded_at": "2026-08-25T09:34:14+00:00"
       }
     },
     "E3C_G4b_linear_collapse_covariance_propagation": {
@@ -1626,15 +1626,15 @@
       "measured": 0.0,
       "threshold": 1e-12,
       "note": "worst over 12 geometries (at a000_i020)",
-      "run_id": "E3C_20260825T093413Z_2ba66f02",
-      "recorded_at": "2026-08-25T09:34:14+00:00",
+      "run_id": "E3C_20260825T151334Z_2ba66f02",
+      "recorded_at": "2026-08-25T15:13:38+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-12,
         "note": "worst over 12 geometries (at a000_i020)",
-        "run_id": "E3C_20260825T093312Z_2ba66f02",
-        "recorded_at": "2026-08-25T09:33:12+00:00"
+        "run_id": "E3C_20260825T093413Z_2ba66f02",
+        "recorded_at": "2026-08-25T09:34:14+00:00"
       }
     },
     "E3C_G6_physical_Gram_monotonicity": {
@@ -1642,15 +1642,15 @@
       "measured": 1.8611783301799085e-16,
       "threshold": 1e-10,
       "note": "worst over 12 geometries (at a090_i075)",
-      "run_id": "E3C_20260825T093413Z_2ba66f02",
-      "recorded_at": "2026-08-25T09:34:14+00:00",
+      "run_id": "E3C_20260825T151334Z_2ba66f02",
+      "recorded_at": "2026-08-25T15:13:38+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 1.8611783301799085e-16,
         "threshold": 1e-10,
         "note": "worst over 12 geometries (at a090_i075)",
-        "run_id": "E3C_20260825T093312Z_2ba66f02",
-        "recorded_at": "2026-08-25T09:33:12+00:00"
+        "run_id": "E3C_20260825T093413Z_2ba66f02",
+        "recorded_at": "2026-08-25T09:34:14+00:00"
       }
     },
     "E3C_G6b_resolved_dominates_direct": {
@@ -1658,15 +1658,15 @@
       "measured": 1.573861179619174e-16,
       "threshold": 1e-10,
       "note": "worst over 12 geometries (at a090_i075)",
-      "run_id": "E3C_20260825T093413Z_2ba66f02",
-      "recorded_at": "2026-08-25T09:34:14+00:00",
+      "run_id": "E3C_20260825T151334Z_2ba66f02",
+      "recorded_at": "2026-08-25T15:13:38+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 1.573861179619174e-16,
         "threshold": 1e-10,
         "note": "worst over 12 geometries (at a090_i075)",
-        "run_id": "E3C_20260825T093312Z_2ba66f02",
-        "recorded_at": "2026-08-25T09:33:12+00:00"
+        "run_id": "E3C_20260825T093413Z_2ba66f02",
+        "recorded_at": "2026-08-25T09:34:14+00:00"
       }
     },
     "E3C_G9w_weight_semantics": {
@@ -1674,15 +1674,15 @@
       "measured": 4.3778502867990174e-16,
       "threshold": 1e-10,
       "note": "worst over 12 geometries (at a090_i050)",
-      "run_id": "E3C_20260825T093413Z_2ba66f02",
-      "recorded_at": "2026-08-25T09:34:14+00:00",
+      "run_id": "E3C_20260825T151334Z_2ba66f02",
+      "recorded_at": "2026-08-25T15:13:38+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 4.3778502867990174e-16,
         "threshold": 1e-10,
         "note": "worst over 12 geometries (at a090_i050)",
-        "run_id": "E3C_20260825T093312Z_2ba66f02",
-        "recorded_at": "2026-08-25T09:33:12+00:00"
+        "run_id": "E3C_20260825T093413Z_2ba66f02",
+        "recorded_at": "2026-08-25T09:34:14+00:00"
       }
     },
     "E3C_freeze_raymap_hashes": {
@@ -1690,15 +1690,15 @@
       "measured": 0,
       "threshold": 0,
       "note": "ray maps evaluated match the sha256 pinned in the freeze",
-      "run_id": "E3C_20260825T093413Z_2ba66f02",
-      "recorded_at": "2026-08-25T09:34:14+00:00",
+      "run_id": "E3C_20260825T151334Z_2ba66f02",
+      "recorded_at": "2026-08-25T15:13:38+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0,
         "threshold": 0,
         "note": "ray maps evaluated match the sha256 pinned in the freeze",
-        "run_id": "E3C_20260825T093312Z_2ba66f02",
-        "recorded_at": "2026-08-25T09:33:12+00:00"
+        "run_id": "E3C_20260825T093413Z_2ba66f02",
+        "recorded_at": "2026-08-25T09:34:14+00:00"
       }
     },
     "E3C_frozen_grid_invariance": {
@@ -1706,15 +1706,15 @@
       "measured": "dims=[224] n_ages=[64]",
       "threshold": "dims=[224] n_ages=[64]",
       "note": "no basis, support, SNR grid, age grid or threshold changed across the grid",
-      "run_id": "E3C_20260825T093413Z_2ba66f02",
-      "recorded_at": "2026-08-25T09:34:14+00:00",
+      "run_id": "E3C_20260825T151334Z_2ba66f02",
+      "recorded_at": "2026-08-25T15:13:38+00:00",
       "superseded": {
         "status": "PASS",
         "measured": "dims=[224] n_ages=[64]",
         "threshold": "dims=[224] n_ages=[64]",
         "note": "no basis, support, SNR grid, age grid or threshold changed across the grid",
-        "run_id": "E3C_20260825T093312Z_2ba66f02",
-        "recorded_at": "2026-08-25T09:33:12+00:00"
+        "run_id": "E3C_20260825T093413Z_2ba66f02",
+        "recorded_at": "2026-08-25T09:34:14+00:00"
       }
     },
     "E3C_H2_registered_statistic_is_an_identity": {
@@ -1722,15 +1722,15 @@
       "measured": 12,
       "threshold": 12,
       "note": "Amendment 002: the registered scalar H2 statistic is identically zero because the flat probe cannot see a spatial substitution. This gate asserts that the degeneracy is exactly what it is claimed to be -- bitwise equality at every geometry -- so the zero is never read as evidence",
-      "run_id": "E3C_20260825T093413Z_2ba66f02",
-      "recorded_at": "2026-08-25T09:34:14+00:00",
+      "run_id": "E3C_20260825T151334Z_2ba66f02",
+      "recorded_at": "2026-08-25T15:13:38+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 12,
         "threshold": 12,
         "note": "Amendment 002: the registered scalar H2 statistic is identically zero because the flat probe cannot see a spatial substitution. This gate asserts that the degeneracy is exactly what it is claimed to be -- bitwise equality at every geometry -- so the zero is never read as evidence",
-        "run_id": "E3C_20260825T093312Z_2ba66f02",
-        "recorded_at": "2026-08-25T09:33:12+00:00"
+        "run_id": "E3C_20260825T093413Z_2ba66f02",
+        "recorded_at": "2026-08-25T09:34:14+00:00"
       }
     },
     "E3D_adjoint": {
@@ -1812,7 +1812,7 @@
       }
     }
   },
-  "updated_at": "2026-08-25T09:51:07+00:00",
+  "updated_at": "2026-08-25T15:13:38+00:00",
   "summary": {
     "PASS": 121,
     "FAIL": 7,

@@ -1,0 +1,2168 @@
+{
+  "schema": "phrt-claim-ledger/1",
+  "n_claims": 143,
+  "claims_by_kind": {
+    "literal": 11,
+    "json": 43,
+    "parquet_count": 15,
+    "parquet": 62,
+    "derived": 12
+  },
+  "artifacts_cited": [
+    "artifacts/SUPERSEDED_PRE_G10Q.json",
+    "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+    "artifacts/gates/correctness_gates.json",
+    "artifacts/tables/e3b_matched_support_attenuation.parquet",
+    "artifacts/tables/e3b_singular_spectra.parquet",
+    "artifacts/tables/e3c_depth_curves.parquet",
+    "artifacts/tables/e3c_geometry_metrics.parquet",
+    "artifacts/tables/e3c_hypothesis_tests.parquet",
+    "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+    "artifacts/tables/e3c_pairing_destroyed_distribution.parquet",
+    "artifacts/tables/e3c_weighted_delay_quantiles.parquet",
+    "artifacts/tables/e3d_class_nesting.parquet",
+    "artifacts/tables/e3d_class_spectra.parquet",
+    "artifacts/tables/e3d_operator_smoke.parquet"
+  ],
+  "created_utc": "2026-08-25T15:41:53Z",
+  "git_commit": "03b0d1c9c63131aa553904df0c09849d641dee8f",
+  "campaign_tag": "paper-I-campaign-final",
+  "campaign_commit": "03b0d1c9c63131aa553904df0c09849d641dee8f",
+  "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "manuscript": "artifacts/manuscript/PAPER_I.md",
+  "rule": "every number in the manuscript is registered here; the verifier re-derives each one from the frozen bytes and checks that the rendered string appears in the manuscript",
+  "claims": [
+    {
+      "id": "grid.n_geometries",
+      "value": 12,
+      "rendered": "12",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json /geometries"
+      },
+      "prose": "registered geometries"
+    },
+    {
+      "id": "class.C224.dimension",
+      "value": 224,
+      "rendered": "224",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "pointer": "/source_class/dimension",
+        "format": "{:d}"
+      },
+      "prose": "dimension of the registered source class"
+    },
+    {
+      "id": "grid.A_max",
+      "value": 252.0,
+      "rendered": "252",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "pointer": "/common_age_grid/A_max_M",
+        "format": "{:.0f}"
+      },
+      "prose": "common age-grid ceiling, M"
+    },
+    {
+      "id": "grid.age_step",
+      "value": 4.0,
+      "rendered": "4",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "pointer": "/common_age_grid/step_M",
+        "format": "{:.0f}"
+      },
+      "prose": "age-grid spacing, M"
+    },
+    {
+      "id": "grid.max_Q0999",
+      "value": 178.88065009886833,
+      "rendered": "178.9",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "pointer": "/common_age_grid/max_Q_0999_over_grid_M",
+        "format": "{:.1f}"
+      },
+      "prose": "largest 99.9% weighted delay quantile on the grid, M"
+    },
+    {
+      "id": "grid.A_max_raw",
+      "value": 249.6008126235854,
+      "rendered": "249.6",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "pointer": "/common_age_grid/raw_before_rounding_M",
+        "format": "{:.1f}"
+      },
+      "prose": "age ceiling before rounding, M"
+    },
+    {
+      "id": "probe.half_width",
+      "value": 3.0,
+      "rendered": "3",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "pointer": "/localized_probe/half_width_h_M",
+        "format": "{:.0f}"
+      },
+      "prose": "localized probe half width, M"
+    },
+    {
+      "id": "obs.rays_per_order",
+      "value": 1536,
+      "rendered": "1536",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "pointer": "/observation/rays_per_order",
+        "format": "{:d}"
+      },
+      "prose": "rays retained per order"
+    },
+    {
+      "id": "obs.n_times",
+      "value": 8,
+      "rendered": "8",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "pointer": "/observation/n_observer_times",
+        "format": "{:d}"
+      },
+      "prose": "observer-time samples"
+    },
+    {
+      "id": "obs.span",
+      "value": 20.0,
+      "rendered": "20",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "pointer": "/observation/observer_span_M",
+        "format": "{:.0f}"
+      },
+      "prose": "observer-time span, M"
+    },
+    {
+      "id": "control.seeds",
+      "value": 16,
+      "rendered": "16",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3c_pairing_destroyed_distribution.parquet",
+        "sha256": "33057d801a714847dfc5b882d7791592d184bcd7ba0572cfad86b4d6a4068db1",
+        "where": {
+          "geometry": "a050_i050"
+        },
+        "format": "{:d}"
+      },
+      "prose": "frozen permutation seeds per geometry"
+    },
+    {
+      "id": "gate.E3C_G2_physical_dense_matrix_free.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G2_physical_dense_matrix_free/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3C_G2_physical_dense_matrix_free"
+    },
+    {
+      "id": "gate.E3C_G2_physical_dense_matrix_free.measured",
+      "value": 0.0,
+      "rendered": "0",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G2_physical_dense_matrix_free/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3C_G2_physical_dense_matrix_free"
+    },
+    {
+      "id": "gate.E3C_G3_physical_adjoint.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G3_physical_adjoint/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3C_G3_physical_adjoint"
+    },
+    {
+      "id": "gate.E3C_G3_physical_adjoint.measured",
+      "value": 2.674323598055886e-13,
+      "rendered": "2.67e-13",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G3_physical_adjoint/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3C_G3_physical_adjoint"
+    },
+    {
+      "id": "gate.E3C_G4_physical_resolved_unresolved_mixing.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G4_physical_resolved_unresolved_mixing/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3C_G4_physical_resolved_unresolved_mixing"
+    },
+    {
+      "id": "gate.E3C_G4_physical_resolved_unresolved_mixing.measured",
+      "value": 0.0,
+      "rendered": "0",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G4_physical_resolved_unresolved_mixing/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3C_G4_physical_resolved_unresolved_mixing"
+    },
+    {
+      "id": "gate.E3C_G4b_linear_collapse_covariance_propagation.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G4b_linear_collapse_covariance_propagation/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3C_G4b_linear_collapse_covariance_propagation"
+    },
+    {
+      "id": "gate.E3C_G4b_linear_collapse_covariance_propagation.measured",
+      "value": 0.0,
+      "rendered": "0",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G4b_linear_collapse_covariance_propagation/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3C_G4b_linear_collapse_covariance_propagation"
+    },
+    {
+      "id": "gate.E3C_G6_physical_Gram_monotonicity.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G6_physical_Gram_monotonicity/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3C_G6_physical_Gram_monotonicity"
+    },
+    {
+      "id": "gate.E3C_G6_physical_Gram_monotonicity.measured",
+      "value": 1.8611783301799085e-16,
+      "rendered": "1.86e-16",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G6_physical_Gram_monotonicity/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3C_G6_physical_Gram_monotonicity"
+    },
+    {
+      "id": "gate.E3C_G6b_resolved_dominates_direct.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G6b_resolved_dominates_direct/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3C_G6b_resolved_dominates_direct"
+    },
+    {
+      "id": "gate.E3C_G6b_resolved_dominates_direct.measured",
+      "value": 1.573861179619174e-16,
+      "rendered": "1.57e-16",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G6b_resolved_dominates_direct/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3C_G6b_resolved_dominates_direct"
+    },
+    {
+      "id": "gate.E3C_G9w_weight_semantics.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G9w_weight_semantics/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3C_G9w_weight_semantics"
+    },
+    {
+      "id": "gate.E3C_G9w_weight_semantics.measured",
+      "value": 4.3778502867990174e-16,
+      "rendered": "4.38e-16",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_G9w_weight_semantics/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3C_G9w_weight_semantics"
+    },
+    {
+      "id": "gate.E3C_freeze_raymap_hashes.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_freeze_raymap_hashes/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3C_freeze_raymap_hashes"
+    },
+    {
+      "id": "gate.E3C_freeze_raymap_hashes.measured",
+      "value": 0,
+      "rendered": "0",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_freeze_raymap_hashes/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3C_freeze_raymap_hashes"
+    },
+    {
+      "id": "gate.E3C_frozen_grid_invariance.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_frozen_grid_invariance/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3C_frozen_grid_invariance"
+    },
+    {
+      "id": "gate.E3C_H2_registered_statistic_is_an_identity.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_H2_registered_statistic_is_an_identity/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3C_H2_registered_statistic_is_an_identity"
+    },
+    {
+      "id": "gate.E3C_H2_registered_statistic_is_an_identity.measured",
+      "value": 12,
+      "rendered": "12",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3C_H2_registered_statistic_is_an_identity/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3C_H2_registered_statistic_is_an_identity"
+    },
+    {
+      "id": "gate.E3D_adjoint.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3D_adjoint/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3D_adjoint"
+    },
+    {
+      "id": "gate.E3D_adjoint.measured",
+      "value": 4.889504983165385e-13,
+      "rendered": "4.89e-13",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3D_adjoint/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3D_adjoint"
+    },
+    {
+      "id": "gate.E3D_dense_smoke_comparison.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3D_dense_smoke_comparison/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3D_dense_smoke_comparison"
+    },
+    {
+      "id": "gate.E3D_dense_smoke_comparison.measured",
+      "value": 0.0,
+      "rendered": "0",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3D_dense_smoke_comparison/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3D_dense_smoke_comparison"
+    },
+    {
+      "id": "gate.E3D_Gram_monotonicity.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3D_Gram_monotonicity/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3D_Gram_monotonicity"
+    },
+    {
+      "id": "gate.E3D_Gram_monotonicity.measured",
+      "value": 1.1361266990499718e-16,
+      "rendered": "1.14e-16",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3D_Gram_monotonicity/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3D_Gram_monotonicity"
+    },
+    {
+      "id": "gate.E3D_class_nesting.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3D_class_nesting/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3D_class_nesting"
+    },
+    {
+      "id": "gate.E3D_class_nesting.measured",
+      "value": 2.7304547511874947e-14,
+      "rendered": "2.73e-14",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3D_class_nesting/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3D_class_nesting"
+    },
+    {
+      "id": "gate.E3D_enrichment_does_not_lose_rank.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3D_enrichment_does_not_lose_rank/status",
+        "format": "{}"
+      },
+      "prose": "status of gate E3D_enrichment_does_not_lose_rank"
+    },
+    {
+      "id": "gate.E3D_enrichment_does_not_lose_rank.measured",
+      "value": 0.0,
+      "rendered": "0",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/E3D_enrichment_does_not_lose_rank/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate E3D_enrichment_does_not_lose_rank"
+    },
+    {
+      "id": "gate.G10q_continuum_noise_quadrature_invariance.status",
+      "value": "PASS",
+      "rendered": "PASS",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/G10q_continuum_noise_quadrature_invariance/status",
+        "format": "{}"
+      },
+      "prose": "status of gate G10q_continuum_noise_quadrature_invariance"
+    },
+    {
+      "id": "gate.G10q_continuum_noise_quadrature_invariance.measured",
+      "value": 5.401254977883461e-15,
+      "rendered": "5.4e-15",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/G10q_continuum_noise_quadrature_invariance/measured",
+        "format": "{:.3g}"
+      },
+      "prose": "measured value of gate G10q_continuum_noise_quadrature_invariance"
+    },
+    {
+      "id": "gate.G10q.measured.copy",
+      "value": 5.401254977883461e-15,
+      "rendered": "5.4e-15",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/G10q_continuum_noise_quadrature_invariance/measured",
+        "format": "{:.1e}"
+      },
+      "prose": "split/merge quadrature invariance, corrected convention"
+    },
+    {
+      "id": "gate.G10q_retired.measured",
+      "value": 6.999999999999998,
+      "rendered": "7",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/gates/correctness_gates.json",
+        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "pointer": "/gates/G10q_retired_flat_sigma_convention/measured",
+        "format": "{:.0f}"
+      },
+      "prose": "split/merge invariance under the retired convention"
+    },
+    {
+      "id": "gates.pass",
+      "value": 121,
+      "rendered": "121",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/gates/correctness_gates.json"
+      },
+      "prose": "gates passing"
+    },
+    {
+      "id": "gates.active",
+      "value": 0,
+      "rendered": "0",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/gates/correctness_gates.json"
+      },
+      "prose": "active blocking failures"
+    },
+    {
+      "id": "gates.preserved",
+      "value": 7,
+      "rendered": "7",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/gates/correctness_gates.json"
+      },
+      "prose": "preserved literal failures"
+    },
+    {
+      "id": "gates.not_run",
+      "value": 11,
+      "rendered": "11",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/gates/correctness_gates.json"
+      },
+      "prose": "gates registered but not yet in scope"
+    },
+    {
+      "id": "H1.T_resolved_gt_direct",
+      "value": 12,
+      "rendered": "12",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H1_historical_extension",
+          "snr0": 100.0,
+          "T_resolved_gt_T_direct": true
+        },
+        "format": "{:d}"
+      },
+      "prose": "geometries where resolved depth exceeds direct depth at the reference SNR"
+    },
+    {
+      "id": "H1.J_old_positive",
+      "value": 12,
+      "rendered": "12",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H1_historical_extension",
+          "snr0": 100.0,
+          "J_old_resolved_positive": true
+        },
+        "format": "{:d}"
+      },
+      "prose": "geometries with strictly positive resolved historical innovation"
+    },
+    {
+      "id": "depth.right_censored",
+      "value": 0,
+      "rendered": "0",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3c_depth_curves.parquet",
+        "sha256": "3136407c24540ab5d98c743dbf9773e6ae08895a401d4360fcbc08083d3d5d49",
+        "where": {
+          "right_censored": true
+        },
+        "format": "{:d}"
+      },
+      "prose": "right-censored depth entries"
+    },
+    {
+      "id": "depth.rows",
+      "value": 1152,
+      "rendered": "1152",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3c_depth_curves.parquet",
+        "sha256": "3136407c24540ab5d98c743dbf9773e6ae08895a401d4360fcbc08083d3d5d49",
+        "where": {},
+        "format": "{:d}"
+      },
+      "prose": "depth entries in total"
+    },
+    {
+      "id": "H1.T_resolved.i020",
+      "value": 60.0,
+      "rendered": "60",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "RESOLVED_PHYSICAL",
+          "inclination_deg": 20
+        },
+        "column": "T_rec_at_reference_snr",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median resolved depth at i = 20 deg"
+    },
+    {
+      "id": "H1.T_direct.i020",
+      "value": 20.0,
+      "rendered": "20",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "DIRECT_PHYSICAL",
+          "inclination_deg": 20
+        },
+        "column": "T_rec_at_reference_snr",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median direct depth at i = 20 deg"
+    },
+    {
+      "id": "H1.T_resolved.distinct_spins.i020",
+      "value": 1,
+      "rendered": "1",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "RESOLVED_PHYSICAL",
+          "inclination_deg": 20
+        },
+        "column": "T_rec_at_reference_snr",
+        "aggregation": "nunique",
+        "format": "{:d}"
+      },
+      "prose": "distinct resolved depths across the four spins at i = 20 deg"
+    },
+    {
+      "id": "H1.T_resolved.i050",
+      "value": 84.0,
+      "rendered": "84",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "RESOLVED_PHYSICAL",
+          "inclination_deg": 50
+        },
+        "column": "T_rec_at_reference_snr",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median resolved depth at i = 50 deg"
+    },
+    {
+      "id": "H1.T_direct.i050",
+      "value": 60.0,
+      "rendered": "60",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "DIRECT_PHYSICAL",
+          "inclination_deg": 50
+        },
+        "column": "T_rec_at_reference_snr",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median direct depth at i = 50 deg"
+    },
+    {
+      "id": "H1.T_resolved.distinct_spins.i050",
+      "value": 1,
+      "rendered": "1",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "RESOLVED_PHYSICAL",
+          "inclination_deg": 50
+        },
+        "column": "T_rec_at_reference_snr",
+        "aggregation": "nunique",
+        "format": "{:d}"
+      },
+      "prose": "distinct resolved depths across the four spins at i = 50 deg"
+    },
+    {
+      "id": "H1.T_resolved.i075",
+      "value": 144.0,
+      "rendered": "144",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "RESOLVED_PHYSICAL",
+          "inclination_deg": 75
+        },
+        "column": "T_rec_at_reference_snr",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median resolved depth at i = 75 deg"
+    },
+    {
+      "id": "H1.T_direct.i075",
+      "value": 140.0,
+      "rendered": "140",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "DIRECT_PHYSICAL",
+          "inclination_deg": 75
+        },
+        "column": "T_rec_at_reference_snr",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median direct depth at i = 75 deg"
+    },
+    {
+      "id": "H1.T_resolved.distinct_spins.i075",
+      "value": 1,
+      "rendered": "1",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "RESOLVED_PHYSICAL",
+          "inclination_deg": 75
+        },
+        "column": "T_rec_at_reference_snr",
+        "aggregation": "nunique",
+        "format": "{:d}"
+      },
+      "prose": "distinct resolved depths across the four spins at i = 75 deg"
+    },
+    {
+      "id": "H1.T_resolved.spin_flat",
+      "value": true,
+      "rendered": "a single value",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "H1.T_resolved.distinct_spins.i020",
+          "H1.T_resolved.distinct_spins.i050",
+          "H1.T_resolved.distinct_spins.i075"
+        ],
+        "expression": "the four spins give one distinct depth at every inclination"
+      },
+      "prose": "whether recoverable depth depends on spin at fixed inclination"
+    },
+    {
+      "id": "H2.registered.max",
+      "value": 0.0,
+      "rendered": "0.0e+00",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H2_delay_mechanism"
+        },
+        "column": "D_delay",
+        "aggregation": "max",
+        "format": "{:.1e}"
+      },
+      "prose": "largest value of the registered scalar H2 statistic anywhere on the grid"
+    },
+    {
+      "id": "H2m.D_delay.median",
+      "value": 0.16520359570918317,
+      "rendered": "0.165",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H2m_delay_mechanism_localized_class"
+        },
+        "column": "D_delay",
+        "aggregation": "median",
+        "format": "{:.3f}"
+      },
+      "prose": "median delay-only discrepancy on the localized class"
+    },
+    {
+      "id": "H3m.D_spatial.median",
+      "value": 0.31032427148177594,
+      "rendered": "0.310",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H3m_spatial_mechanism_localized_class"
+        },
+        "column": "D_spatial",
+        "aggregation": "median",
+        "format": "{:.3f}"
+      },
+      "prose": "median spatial-only discrepancy on the localized class"
+    },
+    {
+      "id": "H3m.D_direct.median",
+      "value": 0.3028811098151818,
+      "rendered": "0.303",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H3m_spatial_mechanism_localized_class"
+        },
+        "column": "D_direct_reference",
+        "aggregation": "median",
+        "format": "{:.3f}"
+      },
+      "prose": "median direct-arm discrepancy, the reference scale"
+    },
+    {
+      "id": "H3m.delay_closer",
+      "value": 12,
+      "rendered": "12",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H3m_spatial_mechanism_localized_class",
+          "delay_closer_than_spatial": true
+        },
+        "format": "{:d}"
+      },
+      "prose": "geometries where delay-only is closer to the full operator than spatial-only"
+    },
+    {
+      "id": "H2m.ratio.median",
+      "value": 0.5687097361888649,
+      "rendered": "0.57",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H2m_delay_mechanism_localized_class"
+        },
+        "column": "D_delay_over_D_direct",
+        "aggregation": "median",
+        "format": "{:.2f}"
+      },
+      "prose": "median D_delay / D_direct"
+    },
+    {
+      "id": "H3m.ratio.median",
+      "value": 0.9846012283559471,
+      "rendered": "0.98",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H3m_spatial_mechanism_localized_class"
+        },
+        "column": "D_spatial_over_D_direct",
+        "aggregation": "median",
+        "format": "{:.2f}"
+      },
+      "prose": "median D_spatial / D_direct"
+    },
+    {
+      "id": "H4.R_unres_T.min",
+      "value": 0.3333333333333333,
+      "rendered": "0.33",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H4_order_label_value",
+          "snr0": 100.0
+        },
+        "column": "R_unres_T",
+        "aggregation": "min",
+        "format": "{:.2f}"
+      },
+      "prose": "min of R_unres_T at the reference SNR"
+    },
+    {
+      "id": "H4.R_unres_T.max",
+      "value": 0.9722222222222222,
+      "rendered": "0.97",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H4_order_label_value",
+          "snr0": 100.0
+        },
+        "column": "R_unres_T",
+        "aggregation": "max",
+        "format": "{:.2f}"
+      },
+      "prose": "max of R_unres_T at the reference SNR"
+    },
+    {
+      "id": "H4.R_unres_T.median",
+      "value": 0.7142857142857143,
+      "rendered": "0.71",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H4_order_label_value",
+          "snr0": 100.0
+        },
+        "column": "R_unres_T",
+        "aggregation": "median",
+        "format": "{:.2f}"
+      },
+      "prose": "median of R_unres_T at the reference SNR"
+    },
+    {
+      "id": "H4.R_unres_J.min",
+      "value": 0.23306435234412126,
+      "rendered": "0.23",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H4_order_label_value",
+          "snr0": 100.0
+        },
+        "column": "R_unres_J",
+        "aggregation": "min",
+        "format": "{:.2f}"
+      },
+      "prose": "min of R_unres_J at the reference SNR"
+    },
+    {
+      "id": "H4.R_unres_J.max",
+      "value": 0.439046333877104,
+      "rendered": "0.44",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H4_order_label_value",
+          "snr0": 100.0
+        },
+        "column": "R_unres_J",
+        "aggregation": "max",
+        "format": "{:.2f}"
+      },
+      "prose": "max of R_unres_J at the reference SNR"
+    },
+    {
+      "id": "H4.R_unres_J.median",
+      "value": 0.24346729881629842,
+      "rendered": "0.24",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
+        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "where": {
+          "hypothesis": "H4_order_label_value",
+          "snr0": 100.0
+        },
+        "column": "R_unres_J",
+        "aggregation": "median",
+        "format": "{:.2f}"
+      },
+      "prose": "median of R_unres_J at the reference SNR"
+    },
+    {
+      "id": "H5.cells.total",
+      "value": 24,
+      "rendered": "24",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "where": {},
+        "format": "{:d}"
+      },
+      "prose": "matched-support cells"
+    },
+    {
+      "id": "H5.cells.supported",
+      "value": 19,
+      "rendered": "19",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "where": {
+          "disposition": "SUPPORTED"
+        },
+        "format": "{:d}"
+      },
+      "prose": "matched-support cells with common support"
+    },
+    {
+      "id": "H5.cells.undefined",
+      "value": 5,
+      "rendered": "5",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "where": {
+          "disposition": "UNDEFINED_NO_COMMON_MATCHED_SUPPORT"
+        },
+        "format": "{:d}"
+      },
+      "prose": "matched-support cells marked undefined"
+    },
+    {
+      "id": "H5.difference.median",
+      "value": 1.6998943607959083,
+      "rendered": "1.700",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "where": {
+          "disposition": "SUPPORTED"
+        },
+        "column": "exponent_difference_amp_minus_sensitivity",
+        "aggregation": "median",
+        "format": "{:.3f}"
+      },
+      "prose": "median throughput-minus-sensitivity exponent difference, supported cells"
+    },
+    {
+      "id": "H5.difference.min",
+      "value": 1.2616569075325388,
+      "rendered": "1.262",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "where": {
+          "disposition": "SUPPORTED"
+        },
+        "column": "exponent_difference_amp_minus_sensitivity",
+        "aggregation": "min",
+        "format": "{:.3f}"
+      },
+      "prose": "min throughput-minus-sensitivity exponent difference, supported cells"
+    },
+    {
+      "id": "H5.difference.max",
+      "value": 1.9976998125108296,
+      "rendered": "1.998",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "where": {
+          "disposition": "SUPPORTED"
+        },
+        "column": "exponent_difference_amp_minus_sensitivity",
+        "aggregation": "max",
+        "format": "{:.3f}"
+      },
+      "prose": "max throughput-minus-sensitivity exponent difference, supported cells"
+    },
+    {
+      "id": "H5.difference.positive_cells",
+      "value": 19,
+      "rendered": "19",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "H5.cells.supported"
+        ],
+        "expression": "count of supported cells with Gamma_amp - Gamma_sensitivity > 0"
+      },
+      "prose": "supported cells where the sensitivity exponent is below the throughput exponent"
+    },
+    {
+      "id": "canary.Gamma_sens.0to1",
+      "value": 2.4864491340968184,
+      "rendered": "2.486",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "where": {
+          "geometry": "a050_i050",
+          "order_pair": "0->1"
+        },
+        "column": "median",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "median matched sensitivity exponent 0 to 1 at the canary geometry, corrected convention"
+    },
+    {
+      "id": "canary.Gamma_sens.1to2",
+      "value": 2.120181076593587,
+      "rendered": "2.120",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "where": {
+          "geometry": "a050_i050",
+          "order_pair": "1->2"
+        },
+        "column": "median",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "median matched sensitivity exponent 1 to 2 at the canary geometry, corrected convention"
+    },
+    {
+      "id": "canary.Gamma_amp.0to1",
+      "value": 4.272045747772266,
+      "rendered": "4.27",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "where": {
+          "geometry": "a050_i050",
+          "order_pair": "0->1"
+        },
+        "column": "Gamma_amp",
+        "aggregation": "first",
+        "format": "{:.2f}"
+      },
+      "prose": "throughput exponent 0 to 1 at the canary geometry"
+    },
+    {
+      "id": "canary.Gamma_amp.1to2",
+      "value": 3.7842769468545074,
+      "rendered": "3.78",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "where": {
+          "geometry": "a050_i050",
+          "order_pair": "1->2"
+        },
+        "column": "Gamma_amp",
+        "aggregation": "first",
+        "format": "{:.2f}"
+      },
+      "prose": "throughput exponent 1 to 2 at the canary geometry"
+    },
+    {
+      "id": "canary.e3b.Gamma_sens.0to1",
+      "value": 2.4864491340968184,
+      "rendered": "2.486",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3b_matched_support_attenuation.parquet",
+        "sha256": "0968157eb091bea5b5c020e58a58dd369b9bab1f448e5a20afe43bd8470c2520",
+        "where": {},
+        "column": "Gamma_sensitivity_matched_0_to_1",
+        "aggregation": "median",
+        "format": "{:.3f}"
+      },
+      "prose": "independent corrected-convention value of the same exponent from the E3B canary table"
+    },
+    {
+      "id": "canary.e3b.Gamma_sens.1to2",
+      "value": 2.120181076593587,
+      "rendered": "2.120",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3b_matched_support_attenuation.parquet",
+        "sha256": "0968157eb091bea5b5c020e58a58dd369b9bab1f448e5a20afe43bd8470c2520",
+        "where": {},
+        "column": "Gamma_sensitivity_matched_1_to_2",
+        "aggregation": "median",
+        "format": "{:.3f}"
+      },
+      "prose": "independent corrected-convention value of the 1 to 2 exponent from the E3B canary table"
+    },
+    {
+      "id": "surface.oprank.trend",
+      "value": "constant at i = 20, nondecreasing at i = 50, nonmonotone at i = 75; nonincreasing at a* = 0.00, nonincreasing at a* = 0.50, nonincreasing at a* = 0.90, nonmonotone at a* = 0.98",
+      "rendered": "constant at i = 20, nondecreasing at i = 50, nonmonotone at i = 75; nonincreasing at a* = 0.00, nonincreasing at a* = 0.50, nonincreasing at a* = 0.90, nonmonotone at a* = 0.98",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/tables/e3c_geometry_surface.parquet"
+      },
+      "prose": "monotonicity of the resolved operational rank in spin at each inclination and in inclination at each spin"
+    },
+    {
+      "id": "arm.DIRECT_PHYSICAL.oprank.median",
+      "value": 153.0,
+      "rendered": "153",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "operational_rank",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median operational rank of DIRECT_PHYSICAL"
+    },
+    {
+      "id": "arm.RESOLVED_PHYSICAL.oprank.median",
+      "value": 202.0,
+      "rendered": "202",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "operational_rank",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median operational rank of RESOLVED_PHYSICAL"
+    },
+    {
+      "id": "arm.TOTAL_FLUX.oprank.median",
+      "value": 13.0,
+      "rendered": "13",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "TOTAL_FLUX"
+        },
+        "column": "operational_rank",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median operational rank of TOTAL_FLUX"
+    },
+    {
+      "id": "dG.rank.min",
+      "value": 195,
+      "rendered": "195",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "DELTA_G_INDIRECT"
+        },
+        "column": "numerical_rank",
+        "aggregation": "min",
+        "format": "{:d}"
+      },
+      "prose": "smallest rank of G_resolved - G_direct"
+    },
+    {
+      "id": "dG.rank.max",
+      "value": 224,
+      "rendered": "224",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "DELTA_G_INDIRECT"
+        },
+        "column": "numerical_rank",
+        "aggregation": "max",
+        "format": "{:d}"
+      },
+      "prose": "largest rank of G_resolved - G_direct"
+    },
+    {
+      "id": "canary.trace.resolved",
+      "value": 894430760.8557628,
+      "rendered": "8.944e+08",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3b_singular_spectra.parquet",
+        "sha256": "e11e2f395bb22e489e17e9947f39df38e5451caba19dfb4311e2a924c46c672f",
+        "where": {
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "trace_information",
+        "aggregation": "first",
+        "format": "{:.4g}"
+      },
+      "prose": "resolved trace information, canary geometry"
+    },
+    {
+      "id": "canary.trace.direct",
+      "value": 884488467.3936057,
+      "rendered": "8.845e+08",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3b_singular_spectra.parquet",
+        "sha256": "e11e2f395bb22e489e17e9947f39df38e5451caba19dfb4311e2a924c46c672f",
+        "where": {
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "trace_information",
+        "aggregation": "first",
+        "format": "{:.4g}"
+      },
+      "prose": "direct trace information, canary geometry"
+    },
+    {
+      "id": "canary.trace.gain_percent",
+      "value": 1.124072707409618,
+      "rendered": "1.12",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "canary.trace.resolved",
+          "canary.trace.direct"
+        ],
+        "expression": "100 * (resolved / direct - 1)"
+      },
+      "prose": "trace-information gain of the resolved stack over the direct image, corrected convention, per cent"
+    },
+    {
+      "id": "canary.oprank.resolved",
+      "value": 201,
+      "rendered": "201",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3b_singular_spectra.parquet",
+        "sha256": "e11e2f395bb22e489e17e9947f39df38e5451caba19dfb4311e2a924c46c672f",
+        "where": {
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "operational_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "resolved operational rank, canary geometry"
+    },
+    {
+      "id": "canary.oprank.direct",
+      "value": 153,
+      "rendered": "153",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3b_singular_spectra.parquet",
+        "sha256": "e11e2f395bb22e489e17e9947f39df38e5451caba19dfb4311e2a924c46c672f",
+        "where": {
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "operational_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "direct operational rank, canary geometry"
+    },
+    {
+      "id": "E3D.anchors",
+      "value": 3,
+      "rendered": "3",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C224",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "format": "{:d}"
+      },
+      "prose": "anchor geometries in the source-class stress"
+    },
+    {
+      "id": "E3D.C224.rows",
+      "value": 21,
+      "rendered": "21",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C224"
+        },
+        "format": "{:d}"
+      },
+      "prose": "arm-anchor combinations evaluated on C224"
+    },
+    {
+      "id": "E3D.C224.full_rank",
+      "value": 21,
+      "rendered": "21",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C224",
+          "full_column_rank": true
+        },
+        "format": "{:d}"
+      },
+      "prose": "arm-anchor combinations with full column rank on C224"
+    },
+    {
+      "id": "E3D.C448_T.deficient",
+      "value": 9,
+      "rendered": "9",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C448_T",
+          "full_column_rank": false
+        },
+        "format": "{:d}"
+      },
+      "prose": "rank-deficient arm-anchor combinations on C448_T"
+    },
+    {
+      "id": "E3D.C528_S.deficient",
+      "value": 1,
+      "rendered": "1",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C528_S",
+          "full_column_rank": false
+        },
+        "format": "{:d}"
+      },
+      "prose": "rank-deficient arm-anchor combinations on C528_S"
+    },
+    {
+      "id": "E3D.C1056_ST.deficient",
+      "value": 15,
+      "rendered": "15",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C1056_ST",
+          "full_column_rank": false
+        },
+        "format": "{:d}"
+      },
+      "prose": "rank-deficient arm-anchor combinations on C1056_ST"
+    },
+    {
+      "id": "E3D.C448.direct.max_nullity",
+      "value": 100,
+      "rendered": "100",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C448_T",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "nullity",
+        "aggregation": "max",
+        "format": "{:d}"
+      },
+      "prose": "largest direct-channel nullity on C448_T"
+    },
+    {
+      "id": "E3D.C528.direct.max_nullity",
+      "value": 6,
+      "rendered": "6",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C528_S",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "nullity",
+        "aggregation": "max",
+        "format": "{:d}"
+      },
+      "prose": "largest direct-channel nullity on C528_S"
+    },
+    {
+      "id": "E3D.C1056.resolved.max_nullity",
+      "value": 35,
+      "rendered": "35",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C1056_ST",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "nullity",
+        "aggregation": "max",
+        "format": "{:d}"
+      },
+      "prose": "largest resolved nullity on C1056_ST"
+    },
+    {
+      "id": "E3D.C1056.direct.max_nullity",
+      "value": 265,
+      "rendered": "265",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C1056_ST",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "nullity",
+        "aggregation": "max",
+        "format": "{:d}"
+      },
+      "prose": "largest direct-channel nullity on C1056_ST"
+    },
+    {
+      "id": "E3D.nesting.max_residual",
+      "value": 2.7304547511874947e-14,
+      "rendered": "2.7e-14",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_nesting.parquet",
+        "sha256": "55381beabbea57c70bde6c2bb8c0ceb842010279b9da970b9e8141f258907f28",
+        "where": {},
+        "column": "projection_residual",
+        "aggregation": "max",
+        "format": "{:.1e}"
+      },
+      "prose": "largest residual of projecting a parent class design onto its child's span"
+    },
+    {
+      "id": "E3D.smoke.max",
+      "value": 0.0,
+      "rendered": "0.0e+00",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_operator_smoke.parquet",
+        "sha256": "e66f6e866838dfd2197117eb147941f0c2ec7b655ba3df0e9c3b32b94731ff2e",
+        "where": {},
+        "column": "relative_difference",
+        "aggregation": "max",
+        "format": "{:.1e}"
+      },
+      "prose": "largest dense-versus-matrix-free discrepancy across all classes"
+    },
+    {
+      "id": "E3D.dim.C224",
+      "value": 224,
+      "rendered": "224",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C224"
+        },
+        "column": "source_dimension",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "dimension of C224"
+    },
+    {
+      "id": "E3D.oprank.C224",
+      "value": 201.0,
+      "rendered": "201",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C224",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "operational_rank",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median resolved operational rank on C224"
+    },
+    {
+      "id": "E3D.sigma_min.C224",
+      "value": 0.016348267016151895,
+      "rendered": "1.63e-02",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C224",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "sigma_min_positive",
+        "aggregation": "median",
+        "format": "{:.2e}"
+      },
+      "prose": "median resolved smallest positive singular value on C224"
+    },
+    {
+      "id": "E3D.dim.C448_T",
+      "value": 448,
+      "rendered": "448",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C448_T"
+        },
+        "column": "source_dimension",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "dimension of C448_T"
+    },
+    {
+      "id": "E3D.oprank.C448_T",
+      "value": 365.0,
+      "rendered": "365",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C448_T",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "operational_rank",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median resolved operational rank on C448_T"
+    },
+    {
+      "id": "E3D.sigma_min.C448_T",
+      "value": 7.163813189163822e-05,
+      "rendered": "7.16e-05",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C448_T",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "sigma_min_positive",
+        "aggregation": "median",
+        "format": "{:.2e}"
+      },
+      "prose": "median resolved smallest positive singular value on C448_T"
+    },
+    {
+      "id": "E3D.dim.C528_S",
+      "value": 528,
+      "rendered": "528",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C528_S"
+        },
+        "column": "source_dimension",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "dimension of C528_S"
+    },
+    {
+      "id": "E3D.oprank.C528_S",
+      "value": 441.0,
+      "rendered": "441",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C528_S",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "operational_rank",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median resolved operational rank on C528_S"
+    },
+    {
+      "id": "E3D.sigma_min.C528_S",
+      "value": 0.0002871157807326984,
+      "rendered": "2.87e-04",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C528_S",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "sigma_min_positive",
+        "aggregation": "median",
+        "format": "{:.2e}"
+      },
+      "prose": "median resolved smallest positive singular value on C528_S"
+    },
+    {
+      "id": "E3D.dim.C1056_ST",
+      "value": 1056,
+      "rendered": "1056",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C1056_ST"
+        },
+        "column": "source_dimension",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "dimension of C1056_ST"
+    },
+    {
+      "id": "E3D.oprank.C1056_ST",
+      "value": 770.0,
+      "rendered": "770",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C1056_ST",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "operational_rank",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median resolved operational rank on C1056_ST"
+    },
+    {
+      "id": "E3D.sigma_min.C1056_ST",
+      "value": 1.3319752850018307e-07,
+      "rendered": "1.33e-07",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3d_class_spectra.parquet",
+        "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+        "where": {
+          "source_class": "C1056_ST",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "sigma_min_positive",
+        "aggregation": "median",
+        "format": "{:.2e}"
+      },
+      "prose": "median resolved smallest positive singular value on C1056_ST"
+    },
+    {
+      "id": "E3D.rank_fraction.fall",
+      "value": 16.815476190476197,
+      "rendered": "16.8",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "E3D.oprank.C224",
+          "E3D.oprank.C1056_ST",
+          "E3D.dim.C224",
+          "E3D.dim.C1056_ST"
+        ],
+        "expression": "100 * (oprank/dim at C224 - oprank/dim at C1056_ST), resolved arm, median over anchors"
+      },
+      "prose": "fall in the resolved operational-rank fraction across the class ladder, percentage points"
+    },
+    {
+      "id": "E3D.depth.max_move_steps",
+      "value": 1.0,
+      "rendered": "1",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "grid.age_step"
+        ],
+        "expression": "max over physical and mechanism arms of (max_class T_rec - min_class T_rec) / age_step"
+      },
+      "prose": "largest depth change across the class ladder, in grid steps, excluding the nonphysical control"
+    },
+    {
+      "id": "E3D.depth.rows_moved",
+      "value": 7,
+      "rendered": "7",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "E3D.depth.max_move_steps"
+        ],
+        "expression": "count of physical anchor-arm rows whose depth differs across the class ladder"
+      },
+      "prose": "physical anchor-arm rows whose depth moves across the ladder"
+    },
+    {
+      "id": "E3D.depth.rows",
+      "value": 18,
+      "rendered": "18",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "E3D.depth.rows_moved"
+        ],
+        "expression": "physical anchor-arm rows in the depth table"
+      },
+      "prose": "physical anchor-arm rows compared across the ladder"
+    },
+    {
+      "id": "control.pairing.beats_physical",
+      "value": 12,
+      "rendered": "12",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "grid.n_geometries",
+          "control.seeds"
+        ],
+        "expression": "geometries where the worst of the frozen seeds has smaller kappa+ than RESOLVED_PHYSICAL"
+      },
+      "prose": "geometries where even the worst permutation seed is better conditioned than the physical operator"
+    },
+    {
+      "id": "control.pairing.oprank.median",
+      "value": 220.0,
+      "rendered": "220",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_pairing_destroyed_distribution.parquet",
+        "sha256": "33057d801a714847dfc5b882d7791592d184bcd7ba0572cfad86b4d6a4068db1",
+        "where": {},
+        "column": "operational_rank",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "median operational rank of the destroyed-pairing control over all seeds and geometries"
+    },
+    {
+      "id": "control.pairing.kappa.max",
+      "value": 58052.83697829724,
+      "rendered": "5.81e+04",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_pairing_destroyed_distribution.parquet",
+        "sha256": "33057d801a714847dfc5b882d7791592d184bcd7ba0572cfad86b4d6a4068db1",
+        "where": {},
+        "column": "kappa_positive",
+        "aggregation": "max",
+        "format": "{:.2e}"
+      },
+      "prose": "worst conditioning of the destroyed-pairing control over all seeds and geometries"
+    },
+    {
+      "id": "arm.resolved.kappa.median",
+      "value": 783629.2002103227,
+      "rendered": "7.84e+05",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
+        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "where": {
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "kappa_positive",
+        "aggregation": "median",
+        "format": "{:.2e}"
+      },
+      "prose": "median conditioning of the physical resolved operator"
+    },
+    {
+      "id": "control.support.rank_moved",
+      "value": 12,
+      "rendered": "12",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "grid.n_geometries"
+        ],
+        "expression": "anchor-arm combinations whose operational rank differs between the two supports"
+      },
+      "prose": "anchor-arm combinations whose rank moves under the common-support control"
+    },
+    {
+      "id": "control.support.max_move",
+      "value": 5,
+      "rendered": "5",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "control.support.rank_moved"
+        ],
+        "expression": "max |oprank(common) - oprank(primary)|"
+      },
+      "prose": "largest rank move under the common-support control"
+    },
+    {
+      "id": "control.support.depth_same",
+      "value": 23,
+      "rendered": "23",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "control.support.rank_moved"
+        ],
+        "expression": "anchor-arm combinations with identical T_rec under both supports"
+      },
+      "prose": "anchor-arm combinations whose depth is unchanged under the common-support control"
+    },
+    {
+      "id": "control.support.rows",
+      "value": 24,
+      "rendered": "24",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "control.support.rank_moved"
+        ],
+        "expression": "anchor-arm combinations in the control"
+      },
+      "prose": "anchor-arm combinations in the control"
+    },
+    {
+      "id": "governance.superseded",
+      "value": 33,
+      "rendered": "33",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/SUPERSEDED_PRE_G10Q.json",
+        "sha256": "a5be7aa6aec874f4bd32bb7d2186696a0fc382e65c0931740b79f180b724671e",
+        "pointer": "/counts/superseded",
+        "format": "{:d}"
+      },
+      "prose": "artifacts marked SUPERSEDED_MEASUREMENT_MODEL_DEFECT"
+    },
+    {
+      "id": "governance.canonical",
+      "value": 265,
+      "rendered": "265",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/CANONICAL_ARTIFACT_FREEZE.json"
+      },
+      "prose": "artifacts in the canonical freeze"
+    },
+    {
+      "id": "governance.tag",
+      "value": "paper-I-campaign-final",
+      "rendered": "paper-I-campaign-final",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/CANONICAL_ARTIFACT_FREEZE.json"
+      },
+      "prose": "campaign tag"
+    },
+    {
+      "id": "governance.commit",
+      "value": "03b0d1c9c63131aa553904df0c09849d641dee8f",
+      "rendered": "03b0d1c9c63131aa553904df0c09849d641dee8f",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/CANONICAL_ARTIFACT_FREEZE.json"
+      },
+      "prose": "campaign commit"
+    },
+    {
+      "id": "governance.registry_sha256",
+      "value": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+      "rendered": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+      "source": {
+        "kind": "literal",
+        "source": "configs/paper1_experiment_registry_v0.2.yaml"
+      },
+      "prose": "registry digest"
+    },
+    {
+      "id": "quantile.deepest.geometry",
+      "value": "a098_i075",
+      "rendered": "a098_i075",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/tables/e3c_weighted_delay_quantiles.parquet"
+      },
+      "prose": "geometry carrying the deepest throughput-weighted delay quantile"
+    },
+    {
+      "id": "quantile.deepest.value",
+      "value": 178.88065009886833,
+      "rendered": "178.9",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_weighted_delay_quantiles.parquet",
+        "sha256": "943985f43e34919bb92534fe05de45b43395f6b5ed8b7769200af608d7bf670f",
+        "where": {},
+        "column": "Q_0.999_I",
+        "aggregation": "max",
+        "format": "{:.1f}"
+      },
+      "prose": "deepest 99.9% throughput-weighted delay quantile on the grid, M"
+    },
+    {
+      "id": "quantile.deepest.raw_max",
+      "value": 191.5339600433582,
+      "rendered": "191.5",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/e3c_weighted_delay_quantiles.parquet",
+        "sha256": "943985f43e34919bb92534fe05de45b43395f6b5ed8b7769200af608d7bf670f",
+        "where": {},
+        "column": "delay_max_M",
+        "aggregation": "max",
+        "format": "{:.1f}"
+      },
+      "prose": "largest sampled maximum ray delay on the grid, M"
+    }
+  ]
+}

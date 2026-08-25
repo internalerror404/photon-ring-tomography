@@ -1,7 +1,7 @@
 # E3D — NESTED SOURCE-CLASS STRESS
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `e766cfcd9c9340c40e969f90c322e04de01c8ba3`
+- branch `claude/experiment-review-mac-rthiz1`, commit `03b0d1c9c63131aa553904df0c09849d641dee8f`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - freeze `artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json` sha256 `818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2`
 - anchor geometries `a000_i020`, `a050_i050`, `a098_i075`
@@ -226,8 +226,10 @@ Every move appears at the spatial enrichment (C224 to C528_S, C448_T to C1056_ST
 
 **Identifiability and historical reach are different questions, and this is the
 cleanest demonstration of it in the program.** Over the same ladder the resolved
-operator's rank fraction falls by up to 25.1% and
-`sigma_min+` by five orders of magnitude, while depth moves by at most
+operator's *numerical*-rank fraction falls by up to
+3.3%, the largest fall over any arm is
+25.1% (`DIRECT_PHYSICAL` at `a000_i020`), and
+`sigma_min+` falls by five orders of magnitude — while depth moves by at most
 1 grid step. Enriching the model exposes directions the
 operator cannot determine; it barely changes how far back in retarded time the
 operator can see. A rank statement is therefore not a depth statement, in either

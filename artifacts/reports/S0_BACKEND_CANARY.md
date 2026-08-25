@@ -99,7 +99,7 @@ one geometry by another is not recoverable from the artifacts alone.
 | `S0_1_numerical_integrator_cross_check` | **PASS** | 1.841e-05 | 0.001 |
 | `S0_6_operator_convergence` | **PASS** | 0.007364 | 0.05 |
 | `S0_8_G2_physical_dense_matrix_free` | **PASS** | 0 | 1e-10 |
-| `S0_8_G3_physical_adjoint` | **PASS** | 3.636e-14 | 1e-08 |
+| `S0_8_G3_physical_adjoint` | **PASS** | 1.366e-14 | 1e-08 |
 | `S0_8_G4_resolved_unresolved_mixing` | **PASS** | 0 | 1e-10 |
 | `S0_8_G6_Gram_monotonicity` | **PASS** | 0 | 1e-10 |
 | `S0_8_G9w_weight_semantics` | **PASS** | 1.264e-16 | 1e-10 |

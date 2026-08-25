@@ -1,0 +1,472 @@
+{
+  "schema": "phrt-supersession/1",
+  "created_utc": "2026-08-25T15:27:43Z",
+  "git_commit": "03b0d1c9c63131aa553904df0c09849d641dee8f",
+  "defect": "D-H_flat_sigma_measurement_convention",
+  "pre_correction_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+  "correcting_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
+  "rule": "no manuscript-facing table may be built from any artifact marked SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+  "counts": {
+    "superseded": 33,
+    "preserved_model_independent": 10
+  },
+  "misclassified_model_independent": [],
+  "operator_outputs_unchanged_across_the_correction": [],
+  "supersession_scope": "the disposition marks the pre-correction bytes of each path. The regenerated file now on disk is canonical and citable; the version at the pre-correction commit is not.",
+  "byte_vs_content": "a markdown report regenerated at a later commit differs in bytes because it stamps its own commit; the classification uses the content comparison with that line removed",
+  "artifacts": [
+    {
+      "path": "artifacts/tables/e3b_age_information.csv",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "079bfa3b48481a304fa4e0914392e31c12a43a09e0cf5ca0921a2dacfa3471d7",
+      "sha256_post_correction": "7a76481a25c70f0b0f1302a11f393b92d2ccd35ecb7036cb2dab25e38fa7f6c5",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_age_information.parquet",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "02d7c876d095a92cc1e61a966579c6757329e59e31cb0dbeddf3337e9d2871fa",
+      "sha256_post_correction": "19feda63675bddd7416b45161abfbea616804e1cdffadc9ca1389c841ffbe3b9",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_attenuation_decomposition.csv",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "42277e3786736352605dcc131b45e81866a4eaa1c29ea9fca4a557f66705d88b",
+      "sha256_post_correction": "4a0106363dfdfcacda6416090f5d212dc08a4d52e9a8d4547ec084ea596d86c5",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_attenuation_decomposition.parquet",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "3c4d6f33409b7497244691fac8a2c5151dd821f47a55f91e30afcad04f492379",
+      "sha256_post_correction": "2072142aae42411e9d24991282b2b8c1efa5e2689141fa7dcce7380f72cfab33",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_gamma_info.csv",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "86e344af02703a59b7108cef370fa1ec55531b9df03ca2b50188af8991f77a7c",
+      "sha256_post_correction": "8a70dab49cb90f63337a26c1fd06ff32a82b0d1257dfb6782e6d260cadcbdf95",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_gamma_info.parquet",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "403c21f9627e1cf3442106abac5f2400f2f8488d3f452a82f6649cf8723cab69",
+      "sha256_post_correction": "e2ef5d05042a72712664e3e015476392f886e8b41f1a602e9e989dc7533f768b",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_matched_support_attenuation.csv",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "42b9c5cafef780023a6252d69ec82c06143e9a5ef4f259010a1b6d9e674db460",
+      "sha256_post_correction": "6d2e4c66ee56ffb52eef1e22f5043119c23fb4e0dedc5fc7afbec21ed0b7e934",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_matched_support_attenuation.parquet",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "959ac29416d8beeee81098def7fe326f54ee3a0dfd33120c16ea296f8bdd8e16",
+      "sha256_post_correction": "0968157eb091bea5b5c020e58a58dd369b9bab1f448e5a20afe43bd8470c2520",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_near_null_scaling.csv",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "958fc3f4c9cf4357a5aea30f8f3e2bde7b52e1db27715dbcc1e97284ca423c22",
+      "sha256_post_correction": "377bf800256a669fbe42179572a1c1d3701efdbc426ed203433a071a6c26646b",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_near_null_scaling.parquet",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "2eb60fe4b7cd68fbea24e51cca17257efc3e2c42a72fbe6ccb9965bf9bf37d6e",
+      "sha256_post_correction": "b1440976a6913a2d3a22eb5d7aeb16fc69736410ee9e2250329773dd782eeeaa",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_singular_spectra.csv",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "551b025d23405bc5e917e71b45a24a1aa3eb626bcfd64cae4e01102c220d5116",
+      "sha256_post_correction": "4485ad2721164f9d7711928b133417f7ca0ac6b1d860dbd16524910362528665",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_singular_spectra.parquet",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "04ab09bbd6eccd626953044af267803841f7337ac16c74f150cb9fe6f1fd7131",
+      "sha256_post_correction": "e11e2f395bb22e489e17e9947f39df38e5451caba19dfb4311e2a924c46c672f",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_temporal_depth_curve.csv",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "905d822bec14f2fe3719288f00210f918872d46d81dfa23aefadef72f48b69a8",
+      "sha256_post_correction": "002cc45255c84c4fa7a350d5b9ab5828b0f6ce3c62a868039120a5fbeb01ec4f",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_temporal_depth_curve.parquet",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "0388022c87886c626c80cdb867657dc5a8f12a1480bf5a9536d93eaea1e848b7",
+      "sha256_post_correction": "9d155c6308b19036d89e05cfd066766b570325da2f67b70a32d45ac41075f2cf",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_weight_semantics.csv",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "06bdd4f41e262f13cf36bf644086d29c5c44e30fd6267b99895d348f18b614af",
+      "sha256_post_correction": "783b775b3e61b352dc92b75efc77dc40afb9ebad3a40b049e58de8b1453dd841",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_weight_semantics.parquet",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "a8be1f2de0a54f3f44dfb27621436602577976be89537703f3de8af2257ace19",
+      "sha256_post_correction": "0369b21fe00e78a5445b480d77c9f4f13ad188b292ebe0f6db1ac999ca052527",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/s0_operator_comparison.csv",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "2b8ecddeb3365591c068d3d0ca63017791a16a603960edcab78b644cbe76b7b9",
+      "sha256_post_correction": "4df2ed12a1b57b531151609af5aa6a8ec2bf846c0e74fcacf9dc60686bcce1e2",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/s0_operator_comparison.parquet",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "e95b14aec83c99fae09de74f8290f1668e7f0e517b907c60b0f10f5f5ac87bb0",
+      "sha256_post_correction": "012a15993e61875f855ac58dbf89d0a9b1a15410acb323df850d767c7e48006e",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/gates/e3b_correctness_gates.json",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "3ce34c058c2741947933b9f24d1c4fb2d628953c18b4596ead2d0e48dae37840",
+      "sha256_post_correction": "341a8788ab5440e420cff312fb586d447c1177303469fe813bc5464d8ec79134",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/provenance/E3B_ARTIFACT_MANIFEST.json",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "d9b12d67ec50683a9a1b1010f45a6e98ce236af0565d2caadf589d10753e982f",
+      "sha256_post_correction": "68f69c3740bb26e3027959ea46ba6a43ec4fe917d0a0a05d4807a558308b8e59",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/reports/E3B_PHYSICAL_OPERATOR_CANARY.md",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "0028b98604886ee6da62d9e447ff5a423f579742f1753a7a04929593f052261b",
+      "sha256_post_correction": "4d972a96a5381549152819deff2d0cfb11b584933827785e6ef43154d84ac60c",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/reports/E3B_TRANSFER_WEIGHT_AUDIT.md",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "8b450015f04844029a01cfdedea9f068999108a86ffc8b7cc77d28c70a494a93",
+      "sha256_post_correction": "47c4e0284f73254149e285dc45e0c946d8594e1f0f83a0418c66371fb7550632",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/reports/S0_BACKEND_CANARY.md",
+      "class": "operator_output",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "applies_to": "the bytes at 0ef341dae3b2",
+      "current_disk_state": "REGENERATED_POST_CORRECTION",
+      "sha256_pre_correction": "3ce84c0761a428cc2975b08bf4a044ed227f647a131433150b2650108df7c6ea",
+      "sha256_post_correction": "91ac4ac4cee7e0f7ffc684eb29fdbcd19cf22032a20a428d388599569183642c",
+      "bytes_changed": true,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_field_convergence.csv",
+      "class": "measurement_model_independent",
+      "disposition": "PRESERVED_MEASUREMENT_MODEL_INDEPENDENT",
+      "sha256_pre_correction": "4f22b6e6e2efad237c93f389bccb6608e1bd5adb41c0142f227d5dd860fd9bd2",
+      "sha256_post_correction": "4f22b6e6e2efad237c93f389bccb6608e1bd5adb41c0142f227d5dd860fd9bd2",
+      "bytes_changed": false,
+      "content_changed_excluding_provenance_stamp": false,
+      "note": null,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_field_convergence.parquet",
+      "class": "measurement_model_independent",
+      "disposition": "PRESERVED_MEASUREMENT_MODEL_INDEPENDENT",
+      "sha256_pre_correction": "ca83b47035793a9197aed0f4195449005fc8f392caf395e8adcfbc68e21559d3",
+      "sha256_post_correction": "ca83b47035793a9197aed0f4195449005fc8f392caf395e8adcfbc68e21559d3",
+      "bytes_changed": false,
+      "content_changed_excluding_provenance_stamp": false,
+      "note": null,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_field_convergence_a098_i075.csv",
+      "class": "measurement_model_independent",
+      "disposition": "PRESERVED_MEASUREMENT_MODEL_INDEPENDENT",
+      "sha256_pre_correction": "bc7cf531b7647d30184810fa160a1b9ba11d706aa26d4809fe64bf9247e87e0f",
+      "sha256_post_correction": "bc7cf531b7647d30184810fa160a1b9ba11d706aa26d4809fe64bf9247e87e0f",
+      "bytes_changed": false,
+      "content_changed_excluding_provenance_stamp": false,
+      "note": null,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_field_convergence_a098_i075.parquet",
+      "class": "measurement_model_independent",
+      "disposition": "PRESERVED_MEASUREMENT_MODEL_INDEPENDENT",
+      "sha256_pre_correction": "b1559909582af088d5a722a7ee4127a5145bd083fdf113705203be25327a7d6c",
+      "sha256_post_correction": "b1559909582af088d5a722a7ee4127a5145bd083fdf113705203be25327a7d6c",
+      "bytes_changed": false,
+      "content_changed_excluding_provenance_stamp": false,
+      "note": null,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_per_order_ray_count.csv",
+      "class": "measurement_model_independent",
+      "disposition": "PRESERVED_MEASUREMENT_MODEL_INDEPENDENT",
+      "sha256_pre_correction": "80ff91c5d7a5ca3c2f548a81844c36a8da34fe3eb2fc40bd3388cada3774bfbe",
+      "sha256_post_correction": "80ff91c5d7a5ca3c2f548a81844c36a8da34fe3eb2fc40bd3388cada3774bfbe",
+      "bytes_changed": false,
+      "content_changed_excluding_provenance_stamp": false,
+      "note": null,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_per_order_ray_count.parquet",
+      "class": "measurement_model_independent",
+      "disposition": "PRESERVED_MEASUREMENT_MODEL_INDEPENDENT",
+      "sha256_pre_correction": "6291b81b572b4a47a83b3c77d28a084a3b490ec612670f8b0cae0e4610a3b28e",
+      "sha256_post_correction": "6291b81b572b4a47a83b3c77d28a084a3b490ec612670f8b0cae0e4610a3b28e",
+      "bytes_changed": false,
+      "content_changed_excluding_provenance_stamp": false,
+      "note": null,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_age_support_bookkeeping.csv",
+      "class": "measurement_model_independent",
+      "disposition": "PRESERVED_MEASUREMENT_MODEL_INDEPENDENT",
+      "sha256_pre_correction": "9c4c9c81f24d14187200d61fdf4f6eb0292c8d12ebfbef8ba0a5c8eddc1e46aa",
+      "sha256_post_correction": "9c4c9c81f24d14187200d61fdf4f6eb0292c8d12ebfbef8ba0a5c8eddc1e46aa",
+      "bytes_changed": false,
+      "content_changed_excluding_provenance_stamp": false,
+      "note": null,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/tables/e3b_age_support_bookkeeping.parquet",
+      "class": "measurement_model_independent",
+      "disposition": "PRESERVED_MEASUREMENT_MODEL_INDEPENDENT",
+      "sha256_pre_correction": "101addb37fdcb279bc8df1d3d39d076813f2bcf6ccb9965e70de47b06c86456c",
+      "sha256_post_correction": "101addb37fdcb279bc8df1d3d39d076813f2bcf6ccb9965e70de47b06c86456c",
+      "bytes_changed": false,
+      "content_changed_excluding_provenance_stamp": false,
+      "note": null,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/configs/E3B_FREEZE.json",
+      "class": "measurement_model_independent",
+      "disposition": "PRESERVED_MEASUREMENT_MODEL_INDEPENDENT",
+      "sha256_pre_correction": "de48377a2f507fca374a3178cfaf16c2818e77cce585bade5edc83107512f1d3",
+      "sha256_post_correction": "de48377a2f507fca374a3178cfaf16c2818e77cce585bade5edc83107512f1d3",
+      "bytes_changed": false,
+      "content_changed_excluding_provenance_stamp": false,
+      "note": null,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/reports/E3B_RETARDED_TIME_VALIDATION.md",
+      "class": "measurement_model_independent",
+      "disposition": "PRESERVED_MEASUREMENT_MODEL_INDEPENDENT",
+      "sha256_pre_correction": "0c0ea69b5812fe05c1a9a0b97ac9b7f3ec04664e7908b789d604899c0236273d",
+      "sha256_post_correction": "8e7d7d50e60b6d8c3b5a799d612e497afc5248613f3194564243c5fb030ebbfd",
+      "bytes_changed": true,
+      "content_changed_excluding_provenance_stamp": false,
+      "note": "regenerated at a later commit; only the provenance identity line differs",
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/manifests/E3BPRE_20260825T053650Z_2ba66f02.json",
+      "class": "run_manifest_pre_correction",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "sha256_pre_correction": "e924addb64f926663efd5ab13e492b9a2a2e1d00bba85bc11ac7c5f91e5ac1fd",
+      "sha256_post_correction": "e924addb64f926663efd5ab13e492b9a2a2e1d00bba85bc11ac7c5f91e5ac1fd",
+      "bytes_changed": false,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/manifests/E3B_20260825T054126Z_2ba66f02.json",
+      "class": "run_manifest_pre_correction",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "sha256_pre_correction": "44b32329393667dc7fb218434228575a690f6abf1e5f6f419f77ba6938037a8c",
+      "sha256_post_correction": "44b32329393667dc7fb218434228575a690f6abf1e5f6f419f77ba6938037a8c",
+      "bytes_changed": false,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/manifests/E3B_20260825T054225Z_2ba66f02.json",
+      "class": "run_manifest_pre_correction",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "sha256_pre_correction": "0d5a28187b4e93f368ee20aac50e9ebfb73400ebcd19f555f3bf7a0dcc9b82d2",
+      "sha256_post_correction": "0d5a28187b4e93f368ee20aac50e9ebfb73400ebcd19f555f3bf7a0dcc9b82d2",
+      "bytes_changed": false,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/manifests/E3B_20260825T054600Z_2ba66f02.json",
+      "class": "run_manifest_pre_correction",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "sha256_pre_correction": "016aefe33dfa4864d23b4f053469408159e60b8c2bf64d2f438f69425579e78e",
+      "sha256_post_correction": "016aefe33dfa4864d23b4f053469408159e60b8c2bf64d2f438f69425579e78e",
+      "bytes_changed": false,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/manifests/E3B_20260825T054957Z_2ba66f02.json",
+      "class": "run_manifest_pre_correction",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "sha256_pre_correction": "b74b78dcae9e19b7a6d0395f024a14e23d1ac6c6c94b3d56c477e0e7513a4e9f",
+      "sha256_post_correction": "b74b78dcae9e19b7a6d0395f024a14e23d1ac6c6c94b3d56c477e0e7513a4e9f",
+      "bytes_changed": false,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/manifests/E3B_20260825T063023Z_2ba66f02.json",
+      "class": "run_manifest_pre_correction",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "sha256_pre_correction": "567a95d3f82639a9d6756f42d5fdc15746314c02cef2e4d8983a54380615030c",
+      "sha256_post_correction": "567a95d3f82639a9d6756f42d5fdc15746314c02cef2e4d8983a54380615030c",
+      "bytes_changed": false,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/manifests/G5AB_20260825T062756Z_2ba66f02.json",
+      "class": "run_manifest_pre_correction",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "sha256_pre_correction": "fbc61821e049e184d1efdc212ece83ffdac76fd68d82439ccb7ed5391efd9eb9",
+      "sha256_post_correction": "fbc61821e049e184d1efdc212ece83ffdac76fd68d82439ccb7ed5391efd9eb9",
+      "bytes_changed": false,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/manifests/G5AB_20260825T062909Z_2ba66f02.json",
+      "class": "run_manifest_pre_correction",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "sha256_pre_correction": "4b72dfaf9fa45fc5eabb05a65291d8647c2d5662f210a885c2ed9042fd50cf2a",
+      "sha256_post_correction": "4b72dfaf9fa45fc5eabb05a65291d8647c2d5662f210a885c2ed9042fd50cf2a",
+      "bytes_changed": false,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/manifests/S0_20260825T073118Z_2ba66f02.json",
+      "class": "run_manifest_pre_correction",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "sha256_pre_correction": "3ca87ddf6c873880e0d8c4e216d4f6fdae816eb5a025a8e605ffd54e8f0db4ea",
+      "sha256_post_correction": "3ca87ddf6c873880e0d8c4e216d4f6fdae816eb5a025a8e605ffd54e8f0db4ea",
+      "bytes_changed": false,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    },
+    {
+      "path": "artifacts/manifests/S0_20260825T073619Z_2ba66f02.json",
+      "class": "run_manifest_pre_correction",
+      "disposition": "SUPERSEDED_MEASUREMENT_MODEL_DEFECT",
+      "sha256_pre_correction": "f7fee3de22a8c50f9903c5a18b95956f1350f93224bb53f2d8d02c1f4f717beb",
+      "sha256_post_correction": "f7fee3de22a8c50f9903c5a18b95956f1350f93224bb53f2d8d02c1f4f717beb",
+      "bytes_changed": false,
+      "superseded_by_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f"
+    }
+  ]
+}

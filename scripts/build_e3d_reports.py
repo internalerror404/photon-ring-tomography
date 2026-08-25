@@ -189,9 +189,17 @@ def main() -> int:
     spatial_only_moves = bool(
         (dpiv["C224"] == dpiv["C448_T"]).all()
         and (dpiv["C528_S"] == dpiv["C1056_ST"]).all())
-    rank_spread = (spec[spec.arm.isin(ARMS)]
-                   .assign(frac=lambda x: x.numerical_rank / x.source_dimension)
-                   .groupby(["geometry", "arm"]).frac.agg(lambda v: v.max() - v.min()))
+    # Numerical-rank fraction, resolved arm only. Taking the max over all arms
+    # would report the direct channel's collapse as the resolved operator's, and
+    # the numerical and operational fractions are different quantities that must
+    # not be quoted interchangeably.
+    res_frac = (spec[spec.arm == "RESOLVED_PHYSICAL"]
+                .assign(frac=lambda x: x.numerical_rank / x.source_dimension)
+                .groupby("geometry").frac.agg(lambda v: v.max() - v.min()))
+    all_frac = (spec[spec.arm.isin(ARMS)]
+                .assign(frac=lambda x: x.numerical_rank / x.source_dimension)
+                .groupby(["geometry", "arm"]).frac.agg(lambda v: v.max() - v.min()))
+    worst_arm = all_frac.idxmax()
 
     nest_md = ["| geometry | parent | child | projection residual | radial columns preserved |",
                "|---|---|---|---:|---|"]
@@ -329,8 +337,10 @@ operational threshold at SNR_0 = {REF:.0f}.
 
 **Identifiability and historical reach are different questions, and this is the
 cleanest demonstration of it in the program.** Over the same ladder the resolved
-operator's rank fraction falls by up to {float(rank_spread.max()):.1%} and
-`sigma_min+` by five orders of magnitude, while depth moves by at most
+operator's *numerical*-rank fraction falls by up to
+{float(res_frac.max()):.1%}, the largest fall over any arm is
+{float(all_frac.max()):.1%} (`{worst_arm[1]}` at `{worst_arm[0]}`), and
+`sigma_min+` falls by five orders of magnitude — while depth moves by at most
 {max_phys_steps:.0f} grid step. Enriching the model exposes directions the
 operator cannot determine; it barely changes how far back in retarded time the
 operator can see. A rank statement is therefore not a depth statement, in either

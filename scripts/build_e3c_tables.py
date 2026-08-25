@@ -308,6 +308,21 @@ def main() -> int:
                                and not any(x < 0.0 for x in vals)
                                and overlap > 0.0),
             })
+            # Carry the adjudicated disposition in the table itself, so a cell
+            # cannot be dropped from a denominator on the way to a figure. Every
+            # H5 statement must report n_cells_total alongside n_cells_reported.
+            last = msummary[-1]
+            reasons = []
+            if last["windows_disjoint"]:
+                reasons.append("windows_disjoint")
+            if last["n_fractions_defined"] < last["n_fractions_total"]:
+                reasons.append("fractions_without_information")
+            if last["n_fractions_negative"]:
+                reasons.append("negative_exponent_fractions")
+            last["disposition"] = ("SUPPORTED" if last["usable"]
+                                   else "UNDEFINED_NO_COMMON_MATCHED_SUPPORT")
+            last["undefined_reasons"] = ";".join(reasons)
+            last["counts_toward_denominator"] = True
     man.add_output(write_table(mrows, "e3c_matched_sensitivity_exponents"))
     man.add_output(write_table(msummary, "e3c_matched_sensitivity_summary"))
 

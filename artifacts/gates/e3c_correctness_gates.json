@@ -1,6 +1,6 @@
 {
   "experiment": "E3C",
-  "run_id": "E3C_20260825T093413Z_2ba66f02",
+  "run_id": "E3C_20260825T151334Z_2ba66f02",
   "gates": {
     "E3C_G2_physical_dense_matrix_free": {
       "status": "PASS",
