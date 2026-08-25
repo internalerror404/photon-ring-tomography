@@ -1,0 +1,88 @@
+{
+  "geometry_id": "a000_i075",
+  "spin": 0.0,
+  "inclination_deg": 75.0,
+  "profile": "core",
+  "t_reference": -919.8375404617026,
+  "runtime_seconds": 3.2579262256622314,
+  "maps": [
+    {
+      "path": "artifacts/raymaps/a000_i075_n0_core.h5",
+      "sha256": "11948b1bff742f7e3607979b9841d6826e3df9cf73858eea03443fe20806081c",
+      "geometry_id": "a000_i075",
+      "order": 0,
+      "spin": 0.0,
+      "inclination_deg": 75.0,
+      "profile": "core",
+      "n_rays": 15625,
+      "n_valid": 9732,
+      "valid_fraction": 0.622848,
+      "source_r_range": [
+        2.0489291382085444,
+        49.96417008194478
+      ],
+      "delay_range": [
+        39.063449534827555,
+        140.03216644620068
+      ],
+      "redshift_range": [
+        0.012845311865420334,
+        1.3778380304521165
+      ],
+      "pixel_area": 0.16000000000000003,
+      "total_quadrature_area": 1557.1200000000008
+    },
+    {
+      "path": "artifacts/raymaps/a000_i075_n1_core.h5",
+      "sha256": "23f7936e3ae6dce6d1edea7f871c046f7b907249eff74b8e55768e074621c3c1",
+      "geometry_id": "a000_i075",
+      "order": 1,
+      "spin": 0.0,
+      "inclination_deg": 75.0,
+      "profile": "core",
+      "n_rays": 40000,
+      "n_valid": 13774,
+      "valid_fraction": 0.34435,
+      "source_r_range": [
+        2.0023563001368,
+        49.97693659137778
+      ],
+      "delay_range": [
+        102.91661728824488,
+        162.60629039967705
+      ],
+      "redshift_range": [
+        0.0006249573559735418,
+        1.1892962110506415
+      ],
+      "pixel_area": 0.0064,
+      "total_quadrature_area": 88.15360000000003
+    },
+    {
+      "path": "artifacts/raymaps/a000_i075_n2_core.h5",
+      "sha256": "21d5af60fbbf094f1e094b6c766d4c723fc1a855f6a649f9a675f3e7cd391a25",
+      "geometry_id": "a000_i075",
+      "order": 2,
+      "spin": 0.0,
+      "inclination_deg": 75.0,
+      "profile": "core",
+      "n_rays": 360000,
+      "n_valid": 5202,
+      "valid_fraction": 0.01445,
+      "source_r_range": [
+        2.000486420211182,
+        49.91050663697808
+      ],
+      "delay_range": [
+        119.28905857482266,
+        182.08248459350773
+      ],
+      "redshift_range": [
+        0.00012902629282497558,
+        1.1245707136937304
+      ],
+      "pixel_area": 0.0004,
+      "total_quadrature_area": 2.080800000000001
+    }
+  ]
+}

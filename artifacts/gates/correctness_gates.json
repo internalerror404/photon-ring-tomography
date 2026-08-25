@@ -1445,11 +1445,50 @@
         "run_id": "S0_20260825T073118Z_2ba66f02",
         "recorded_at": "2026-08-25T07:31:39+00:00"
       }
+    },
+    "GRID_all_registered_geometries": {
+      "status": "PASS",
+      "measured": 12,
+      "threshold": 12,
+      "note": "12 of 12 registered geometries generated and integrity-checked",
+      "run_id": "GRID_20260825T074141Z_2ba66f02",
+      "recorded_at": "2026-08-25T07:41:43+00:00"
+    },
+    "GRID_min_rays_per_order": {
+      "status": "PASS",
+      "measured": 3090,
+      "threshold": 1536,
+      "note": "smallest per-order valid ray count across every generated geometry",
+      "run_id": "GRID_20260825T074141Z_2ba66f02",
+      "recorded_at": "2026-08-25T07:41:43+00:00"
+    },
+    "GRID_delay_windows_ordered": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "each higher order's retarded window starts further into the past",
+      "run_id": "GRID_20260825T074141Z_2ba66f02",
+      "recorded_at": "2026-08-25T07:41:43+00:00"
+    },
+    "GRID_shared_time_reference": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "one reference time per geometry; per-order references would subtract away the delay ladder between orders",
+      "run_id": "GRID_20260825T074141Z_2ba66f02",
+      "recorded_at": "2026-08-25T07:41:43+00:00"
+    },
+    "GRID_no_ray_inside_horizon": {
+      "status": "PASS",
+      "measured": 1.3248921660213853e-05,
+      "threshold": 0.0,
+      "run_id": "GRID_20260825T074141Z_2ba66f02",
+      "recorded_at": "2026-08-25T07:41:43+00:00"
     }
   },
-  "updated_at": "2026-08-25T07:36:52+00:00",
+  "updated_at": "2026-08-25T07:41:43+00:00",
   "summary": {
-    "PASS": 99,
+    "PASS": 104,
     "FAIL": 6,
     "NOT_RUN": 11
   }
