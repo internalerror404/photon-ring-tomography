@@ -1,0 +1,121 @@
+{
+  "run_id": "R0A_20260825T203741Z_2ba66f02",
+  "experiment_id": "R0A_CORRECTNESS_SMOKE",
+  "git_commit": "a74426d1c236cc461108af9b2fd87e9d32b5991a",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "smoke": 4242
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/R0_CANARY_RECONSTRUCTION_PILOT_FREEZE.json",
+      "sha256": "b87971a77ad5806655a92ad9e2ea5b126f433676462bed4845a4353142fdbe46"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0_smoke_gate_values.parquet",
+      "sha256": "e46ded2c5ad17e5b588af74729810fdcf9bc9ca71898899dabc3dc0f587a7a6a"
+    }
+  ],
+  "gate_status": {
+    "R0_G1_dense_matrix_free_parity": {
+      "status": "PASS",
+      "measured": 2.1731844154456152e-15,
+      "threshold": 1e-10,
+      "note": "forward, adjoint and Gram action, every arm"
+    },
+    "R0_G2_physical_adjoint": {
+      "status": "PASS",
+      "measured": 6.394884621840902e-14,
+      "threshold": 1e-08
+    },
+    "R0_G3_G10q_quadrature_noise_invariance": {
+      "status": "PASS",
+      "measured": 7.2572437971255e-16,
+      "threshold": 1e-10,
+      "note": "pixel split into k equal-area children carrying the same transfer value"
+    },
+    "R0_G4_mixing_covariance": {
+      "status": "PASS",
+      "measured": 5.422652948973214e-16,
+      "threshold": 1e-10,
+      "note": "A_L = L A_R and C_L = L C_R L^T, dense and matrix-free"
+    },
+    "R0_G5_basis_round_trip": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "R0_G6_age_probe_normalization": {
+      "status": "PASS",
+      "measured": 5.551223562028085e-05,
+      "threshold": 0.005,
+      "note": "analytic probe norm against an independent 4001-point quadrature; the declared unit normalisation is exact by construction (deviation 0.0e+00), so the quadrature agreement is the real check"
+    },
+    "R0_G7_right_censoring": {
+      "status": "PASS",
+      "measured": 3,
+      "threshold": 3,
+      "note": "contiguous_interior: oldest=12 contig=12 censored=False; island_beyond_gap: oldest=36 contig=8 censored=True; runs_to_boundary: oldest=36 contig=36 censored=True. A boundary endpoint is emitted as a lower bound, never as exact"
+    },
+    "R0_G8_estimator_closed_form": {
+      "status": "PASS",
+      "measured": 2.168632796018628e-15,
+      "threshold": 1e-09,
+      "note": "TSVD=4.70e-16; RIDGE_IDENTITY=2.17e-15; TIKHONOV_TEMPORAL=2.17e-15; WIENER_GAUSSIAN=2.04e-15; LINEAR_STATE_SPACE=2.48e-16; STATE_SPACE_PRECISION_CONSTRUCTION=0.00e+00"
+    },
+    "R0_G12_reduced_statistic_equivalence": {
+      "status": "PASS",
+      "measured": 0.024560531363674858,
+      "threshold": 0.08,
+      "note": "Monte-Carlo covariance of A^T eta (0.025) and of the reduced sampler (0.024) against G, 20000 draws. Added beyond the launch list because the pilot's reduced simulation would otherwise be an unchecked assumption"
+    }
+  },
+  "started_at": "2026-08-25T20:37:41+00:00",
+  "finished_at": "2026-08-25T20:37:43+00:00",
+  "peak_rss_mb": 195.81640625,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 1.9023103713989258,
+  "profile": "R0_SMOKE",
+  "freeze_sha256": "b87971a77ad5806655a92ad9e2ea5b126f433676462bed4845a4353142fdbe46"
+}

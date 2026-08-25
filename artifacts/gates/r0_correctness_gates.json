@@ -1,0 +1,83 @@
+{
+  "experiment": "R0A_CORRECTNESS_SMOKE",
+  "run_id": "R0A_20260825T203839Z_2ba66f02",
+  "freeze_sha256": "07f5e28c2f02642d56ec27233869d6f440b7626b1f53107d874e4458cc7572fb",
+  "profile": "R0_SMOKE",
+  "gates": {
+    "R0_G1_dense_matrix_free_parity": {
+      "status": "PASS",
+      "measured": 2.1731844154456152e-15,
+      "threshold": 1e-10,
+      "note": "forward, adjoint and Gram action, every arm"
+    },
+    "R0_G2_physical_adjoint": {
+      "status": "PASS",
+      "measured": 6.394884621840902e-14,
+      "threshold": 1e-08
+    },
+    "R0_G3_G10q_quadrature_noise_invariance": {
+      "status": "PASS",
+      "measured": 7.2572437971255e-16,
+      "threshold": 1e-10,
+      "note": "pixel split into k equal-area children carrying the same transfer value"
+    },
+    "R0_G4_mixing_covariance": {
+      "status": "PASS",
+      "measured": 5.422652948973214e-16,
+      "threshold": 1e-10,
+      "note": "A_L = L A_R and C_L = L C_R L^T, dense and matrix-free"
+    },
+    "R0_G5_basis_round_trip": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "R0_G6_age_probe_normalization": {
+      "status": "PASS",
+      "measured": 5.551223562028085e-05,
+      "threshold": 0.005,
+      "note": "analytic probe norm against an independent 4001-point quadrature; the declared unit normalisation is exact by construction (deviation 0.0e+00), so the quadrature agreement is the real check"
+    },
+    "R0_G7_right_censoring": {
+      "status": "PASS",
+      "measured": 3,
+      "threshold": 3,
+      "note": "contiguous_interior: oldest=12 contig=12 censored=False; island_beyond_gap: oldest=36 contig=8 censored=True; runs_to_boundary: oldest=36 contig=36 censored=True. A boundary endpoint is emitted as a lower bound, never as exact"
+    },
+    "R0_G8_estimator_closed_form": {
+      "status": "PASS",
+      "measured": 2.168632796018628e-15,
+      "threshold": 1e-09,
+      "note": "TSVD=4.70e-16; RIDGE_IDENTITY=2.17e-15; TIKHONOV_TEMPORAL=2.17e-15; WIENER_GAUSSIAN=2.04e-15; LINEAR_STATE_SPACE=2.48e-16; STATE_SPACE_PRECISION_CONSTRUCTION=0.00e+00"
+    },
+    "R0_G12_reduced_statistic_equivalence": {
+      "status": "PASS",
+      "measured": 0.024560531363674858,
+      "threshold": 0.08,
+      "note": "Monte-Carlo covariance of A^T eta (0.025) and of the reduced sampler (0.024) against G, 20000 draws. Added beyond the launch list because the pilot's reduced simulation would otherwise be an unchecked assumption"
+    },
+    "R0_G9_noise_replay": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "content hashes, rendered truths, noise draws and a reconstruction all compared with array_equal, not allclose"
+    },
+    "R0_G10_null_pair_calibration": {
+      "status": "PASS",
+      "measured": 2.220446049250313e-16,
+      "threshold": 0.02,
+      "note": "realized whitened Mahalanobis separation against target, all deltas"
+    },
+    "R0_G11_split_hash_disjointness": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "pairwise content-hash overlap across prior-fit, validation, off-grid, OOD and future-test splits: {\"future_main_test|prior_fit_train\": 0, \"future_main_test|validation_in_class\": 0, \"future_main_test|validation_off_grid\": 0, \"future_main_test|validation_ood\": 0, \"prior_fit_train|validation_in_class\": 0, \"prior_fit_train|validation_off_grid\": 0, \"prior_fit_train|validation_ood\": 0, \"validation_in_class|validation_off_grid\": 0, \"validation_in_class|validation_ood\": 0, \"validation_off_grid|validation_ood\": 0}"
+    }
+  },
+  "summary": {
+    "PASS": 12,
+    "FAIL": 0,
+    "NOT_RUN": 0
+  }
+}

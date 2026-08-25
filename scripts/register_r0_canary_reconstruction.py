@@ -32,6 +32,10 @@ from phrt.geometry.sampling import common_count, stratified_subsample
 
 OUT = ROOT / "artifacts" / "configs" / "R0_CANARY_RECONSTRUCTION_PILOT_FREEZE.json"
 ACCEPTED_BASE = "0ef341dae3b21bc2bdd0e54a18971cff208af783"
+# The tree state the pilot started from, pinned rather than read from HEAD:
+# re-running the registration after the freeze commit would otherwise move
+# the recorded start commit forward and misdescribe where the work began.
+START_COMMIT = "7d610121adc95fb641ab5692d37d2b761b082039"
 GEOMETRY = "a050_i050"
 SPIN, INCL = 0.5, 50.0
 ORDERS = (0, 1, 2)
@@ -111,7 +115,8 @@ def main() -> int:
 
         "provenance": {
             "accepted_scientific_base": ACCEPTED_BASE,
-            "start_commit": git("rev-parse", "HEAD"),
+            "start_commit": START_COMMIT,
+            "head_at_registration": git("rev-parse", "HEAD"),
             "branch": git("rev-parse", "--abbrev-ref", "HEAD"),
             "base_is_ancestor_of_start": True,
             "start_commit_is_documentation_only_descendant": False,
@@ -185,6 +190,13 @@ def main() -> int:
         "smoke_profile": {
             "profile": "R0_SMOKE", "rays_per_order": 192, "observer_times": 6,
             "source_class": "C48", "snr0": [100, 1000000],
+            "source_class_factorization": {
+                "n_radial": 4, "n_azimuthal": 3, "n_temporal": 4, "dimension": 48,
+                "constraint": "the radial factor is a cubic B-spline basis, so "
+                              "n_radial >= 4 is required; a 2 x 3 x 8 "
+                              "factorization of the same dimension is not "
+                              "constructible and raises rather than silently "
+                              "degrading the basis"},
             "movies_per_non_null_family": 4, "null_pairs_per_delta": 4,
             "noise_draws_per_movie": 2,
             "isolation": "smoke tables are written under the r0_smoke_ prefix "
@@ -265,6 +277,10 @@ def main() -> int:
                                     "realise a target whitened Mahalanobis "
                                     "distance under the declared arm"},
             },
+            "resolved_ranges_note":
+                "the block below is the fully expanded form the runner reads; "
+                "no range is resolved at run time from a 'same_ranges_as' "
+                "reference, so what was frozen is exactly what is used",
             "off_grid": {
                 "rule": "off-grid truths are rendered analytically and are NOT "
                         "in the span of C224; they are evaluated directly at the "
@@ -405,6 +421,34 @@ def main() -> int:
         "note_on_weak_result": "a weak or absent validation gain is a scientific "
                                "pilot result, not an implementation defect",
     }
+
+    # Expand every family to explicit numeric ranges. A reference like
+    # "same_ranges_as" would have to be resolved at run time, and a freeze whose
+    # meaning depends on run-time resolution is not frozen.
+    fam = freeze["source_families"]["families"]
+    spot = {"r_centre_M": fam["single_orbiting_hotspot"]["r_centre_M"],
+            "sigma_r_M": fam["single_orbiting_hotspot"]["sigma_r_M"],
+            "sigma_phi_rad": fam["single_orbiting_hotspot"]["sigma_phi_rad"]}
+    resolved = {
+        "single_orbiting_hotspot": dict(spot),
+        "two_independent_hotspots": dict(spot),
+        "rotating_asymmetric_crescent": {
+            "r_peak_M": fam["rotating_asymmetric_crescent"]["r_peak_M"],
+            "width_M": fam["rotating_asymmetric_crescent"]["width_M"],
+            "asymmetry_modes": fam["rotating_asymmetric_crescent"]["asymmetry_modes"]},
+        "correlated_extended_field": {
+            "radial_correlation_M":
+                fam["correlated_extended_field"]["radial_correlation_M"],
+            "azimuthal_modes": fam["correlated_extended_field"]["azimuthal_modes"]},
+        "moving_flare_birth_decay": {
+            **spot,
+            "rise_M": fam["moving_flare_birth_decay"]["rise_M"],
+            "decay_M": fam["moving_flare_birth_decay"]["decay_M"]},
+    }
+    resolved["off_grid_refinement"] = float(
+        freeze["source_families"]["off_grid"]["refinement_factor"])
+    freeze["source_families"]["resolved_ranges"] = resolved
+    freeze["source_families"]["baseline_intensity"] = 1.0
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(freeze, indent=2, default=float) + "\n")

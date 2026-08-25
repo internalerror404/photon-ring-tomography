@@ -1,10 +1,11 @@
 {
   "schema": "phrt-r0-reconstruction-freeze/1",
   "experiment_id": "R0_CANARY_RECONSTRUCTION_PILOT",
-  "created_utc": "2026-08-25T20:28:00Z",
+  "created_utc": "2026-08-25T20:38:39Z",
   "provenance": {
     "accepted_scientific_base": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
     "start_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
+    "head_at_registration": "a74426d1c236cc461108af9b2fd87e9d32b5991a",
     "branch": "research/paper1_r0_canary_reconstruction_v0",
     "base_is_ancestor_of_start": true,
     "start_commit_is_documentation_only_descendant": false,
@@ -178,6 +179,13 @@
       100,
       1000000
     ],
+    "source_class_factorization": {
+      "n_radial": 4,
+      "n_azimuthal": 3,
+      "n_temporal": 4,
+      "dimension": 48,
+      "constraint": "the radial factor is a cubic B-spline basis, so n_radial >= 4 is required; a 2 x 3 x 8 factorization of the same dimension is not constructible and raises rather than silently degrading the basis"
+    },
     "movies_per_non_null_family": 4,
     "null_pairs_per_delta": 4,
     "noise_draws_per_movie": 2,
@@ -276,11 +284,90 @@
         "construction": "pairs separated along directions chosen to realise a target whitened Mahalanobis distance under the declared arm"
       }
     },
+    "resolved_ranges_note": "the block below is the fully expanded form the runner reads; no range is resolved at run time from a 'same_ranges_as' reference, so what was frozen is exactly what is used",
     "off_grid": {
       "rule": "off-grid truths are rendered analytically and are NOT in the span of C224; they are evaluated directly at the ray coordinates",
       "refinement_factor": 4,
       "meaning": "feature scales a factor of 4 finer than the finest scale C224 can represent"
-    }
+    },
+    "resolved_ranges": {
+      "single_orbiting_hotspot": {
+        "r_centre_M": [
+          3.0,
+          29.989231533549642
+        ],
+        "sigma_r_M": [
+          2.3791207100279617,
+          12.495513138979017
+        ],
+        "sigma_phi_rad": [
+          0.5235987755982988,
+          1.5707963267948966
+        ]
+      },
+      "two_independent_hotspots": {
+        "r_centre_M": [
+          3.0,
+          29.989231533549642
+        ],
+        "sigma_r_M": [
+          2.3791207100279617,
+          12.495513138979017
+        ],
+        "sigma_phi_rad": [
+          0.5235987755982988,
+          1.5707963267948966
+        ]
+      },
+      "rotating_asymmetric_crescent": {
+        "r_peak_M": [
+          3.0,
+          24.991026277958035
+        ],
+        "width_M": [
+          4.758241420055923,
+          14.994615766774821
+        ],
+        "asymmetry_modes": [
+          1,
+          3
+        ]
+      },
+      "correlated_extended_field": {
+        "radial_correlation_M": [
+          4.758241420055923,
+          24.991026277958035
+        ],
+        "azimuthal_modes": [
+          0,
+          3
+        ]
+      },
+      "moving_flare_birth_decay": {
+        "r_centre_M": [
+          3.0,
+          29.989231533549642
+        ],
+        "sigma_r_M": [
+          2.3791207100279617,
+          12.495513138979017
+        ],
+        "sigma_phi_rad": [
+          0.5235987755982988,
+          1.5707963267948966
+        ],
+        "rise_M": [
+          9.86389665574766,
+          39.45558662299064
+        ],
+        "decay_M": [
+          19.72779331149532,
+          78.91117324598127
+        ]
+      },
+      "off_grid_refinement": 4.0
+    },
+    "baseline_intensity": 1.0
   },
   "split": {
     "prior_fit_families": [
