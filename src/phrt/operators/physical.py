@@ -17,14 +17,37 @@ with the forward coefficient c fixed by the declared measurement model. The
 distinction matters: a distributed delay kernel and a delay ladder have
 different null spaces.
 
-Measurement models
-------------------
-``specific_intensity``  c = g^3.  Pixel area belongs to the likelihood, not the
-                        forward row. This is the primary Paper I oracle.
-``photon_count``        c = dOmega * g^3, with the area in the row.
-``total_flux``          each order is collapsed to one number per observer time
-                        by summing dOmega * g^3 over its rays. The deliberately
-                        information-poor control.
+Measurement model
+-----------------
+One model, one noise scale, everything else derived by linear propagation.
+
+The datum is the pixel-integrated flux
+
+    z_p = dOmega_p * g_p^3 * j(r_p, phi_p, t_p) + eta_p,
+    Var(eta_p) = sigma_Omega^2 * dOmega_p,
+
+i.e. white noise of density ``sigma_Omega`` per unit solid angle. Whitening
+gives the row that the audits actually consume:
+
+    Atilde_p = sqrt(dOmega_p) / sigma_Omega * g_p^3 * B(r_p, phi_p, t_p).
+
+**The square root is load-bearing.** An earlier revision used ``c = g^3`` with a
+flat per-row sigma, which makes the information matrix scale with the number of
+rows: splitting one pixel into k children carrying the same transfer value
+multiplied G by k (measured: relative error 1.0, 3.0, 7.0 at k = 2, 4, 8). Under
+that convention an adaptive grid manufactures Fisher information out of
+pixelization, and since ray counts differ by orders of magnitude between
+lensing bands, it silently reweighted the bands against each other. With
+sqrt(dOmega) the same test returns 4e-16. Gate
+``G10q_continuum_noise_quadrature_invariance`` locks it.
+
+Derived arms are linear maps of the resolved data, never separate models with
+their own sigma:
+
+    unresolved image   y_U = L y_R,  C_U = L C_R L^T
+    total flux         y_F = S y_R,  C_F = S C_R S^T
+
+with C_R = sigma_Omega^2 diag(dOmega).
 """
 from __future__ import annotations
 
@@ -34,7 +57,7 @@ from typing import Callable, Literal, Sequence
 import numpy as np
 from scipy.sparse.linalg import LinearOperator
 
-MeasurementModel = Literal["specific_intensity", "photon_count", "total_flux"]
+MeasurementModel = Literal["pixel_integrated"]
 CHUNK = 4096
 
 
@@ -54,32 +77,38 @@ class OrderRays:
     def n_rays(self) -> int:
         return int(self.source_r.size)
 
-    def coefficient(self, model: MeasurementModel) -> np.ndarray:
-        g3 = np.power(np.abs(self.redshift), 3.0)
-        if model == "specific_intensity":
-            c = g3
-        elif model in ("photon_count", "total_flux"):
-            c = self.quadrature * g3
-        else:
-            raise ValueError(f"unknown measurement model {model!r}")
-        return self.amplitude * c
+    def coefficient(self, model: MeasurementModel = "pixel_integrated") -> np.ndarray:
+        """Unwhitened pixel-integrated forward coefficient, dOmega * g^3."""
+        return self.amplitude * self.quadrature * np.power(np.abs(self.redshift), 3.0)
+
+    def row_variance(self, sigma_omega: float = 1.0) -> np.ndarray:
+        """Var(eta_p) = sigma_Omega^2 * dOmega_p."""
+        return sigma_omega ** 2 * self.quadrature
+
+    def whitened_coefficient(self, sigma_omega: float = 1.0) -> np.ndarray:
+        """sqrt(dOmega) * g^3 / sigma_Omega -- the row the audits consume."""
+        return self.coefficient() / np.sqrt(self.row_variance(sigma_omega))
 
 
 @dataclass
 class PhysicalOperator(LinearOperator):
-    """Matrix-free forward map from source coefficients to observations.
+    """Whitened forward map from source coefficients to observations.
 
-    Row layout is (order, observer time, ray), order-major. The unresolved arm
-    is expressed by a channel mixer over orders, exactly as in the toy, so the
-    same collapse identity is testable here.
+    Rows are already whitened under the single declared noise model, so the
+    audits see C = I and no arm can quietly choose its own sigma. Every derived
+    arm is a linear map of the resolved data with its covariance propagated:
+    the unresolved image sums orders, the total-flux control sums pixels, and
+    both carry the variance that summation implies.
     """
 
     orders: Sequence[OrderRays]
     observer_times: np.ndarray
     design: Callable[[np.ndarray, np.ndarray, np.ndarray], np.ndarray]
     dimension: int
-    model: MeasurementModel = "specific_intensity"
+    sigma_omega: float = 1.0
     mixer: np.ndarray | None = None
+    collapse: str | None = None          # None or "total_flux"
+    model: MeasurementModel = "pixel_integrated"
     metadata: dict = field(default_factory=dict)
 
     def __post_init__(self) -> None:
@@ -90,58 +119,82 @@ class PhysicalOperator(LinearOperator):
         if self.L.shape[1] != n_orders:
             raise ValueError("mixer column count must equal the number of orders")
         self.n_channels = int(self.L.shape[0])
-        if self.model == "total_flux":
-            self._rows_per_order = [1] * n_orders
-        else:
-            self._rows_per_order = [o.n_rays for o in self.orders]
-        if len(set(self._rows_per_order)) != 1 and self.n_channels != n_orders:
+        counts = {o.n_rays for o in self.orders}
+        if self.n_channels != n_orders and len(counts) != 1:
             raise ValueError(
-                "mixing orders together requires them to share a row layout; "
-                "orders have different ray counts, so mix only after collapsing "
-                "or subsample to a common count")
-        self._rows_per_channel = self._rows_per_order[0] * self.observer_times.size
+                "mixing orders together requires a common ray count so that the "
+                "same screen pixel is being summed across orders")
+        rows_per_channel = 1 if self.collapse == "total_flux" else self.orders[0].n_rays
+        self._rows_per_channel = rows_per_channel * self.observer_times.size
         super().__init__(dtype=np.float64,
                          shape=(self.n_channels * self._rows_per_channel, self.dimension))
 
-    # -- per-order block ----------------------------------------------------
-    def _order_design(self, o: OrderRays, t_obs: float) -> np.ndarray:
-        t_source = t_obs - o.delay
-        D = self.design(o.source_r, o.source_phi, t_source)
-        return D * o.coefficient(self.model)[:, None]
+    # -- unwhitened building blocks ----------------------------------------
+    def _order_rows(self, o: OrderRays, t_obs: float) -> np.ndarray:
+        """Unwhitened pixel-integrated rows dOmega * g^3 * B for one order."""
+        D = self.design(o.source_r, o.source_phi, float(t_obs) - o.delay)
+        return D * o.coefficient()[:, None]
+
+    def channel_variance(self) -> np.ndarray:
+        """Per-row variance after the arm's linear map, one value per row."""
+        s2 = self.sigma_omega ** 2
+        if self.collapse == "total_flux":
+            # summing every pixel of an order: Var = sigma^2 * sum(dOmega)
+            per_order = np.array([s2 * float(o.quadrature.sum()) for o in self.orders])
+        else:
+            per_order = None
+        out = []
+        for c in range(self.n_channels):
+            w = self.L[c] ** 2
+            if self.collapse == "total_flux":
+                v = float(np.dot(w, per_order))
+                out.append(np.full(self.observer_times.size, v))
+            else:
+                v = s2 * sum(w[n] * self.orders[n].quadrature for n in range(len(self.orders)))
+                out.append(np.tile(v, self.observer_times.size))
+        return np.concatenate(out)
+
+    def unwhitened_dense(self) -> np.ndarray:
+        per_order = []
+        for o in self.orders:
+            blocks = []
+            for t in self.observer_times:
+                R = self._order_rows(o, float(t))
+                blocks.append(R.sum(axis=0, keepdims=True)
+                              if self.collapse == "total_flux" else R)
+            per_order.append(np.vstack(blocks))
+        return np.vstack([sum(self.L[c, n] * per_order[n] for n in range(len(self.orders)))
+                          for c in range(self.n_channels)])
+
+    def to_dense(self) -> np.ndarray:
+        """The whitened operator."""
+        return self.unwhitened_dense() / np.sqrt(self.channel_variance())[:, None]
 
     def order_block(self, index: int) -> np.ndarray:
-        """Dense (rows, dimension) block for one order, all observer times."""
+        """Unwhitened rows of one order, for the collapse identity."""
         o = self.orders[index]
         blocks = []
         for t in self.observer_times:
-            D = self._order_design(o, float(t))
-            if self.model == "total_flux":
-                D = D.sum(axis=0, keepdims=True)
-            blocks.append(D)
+            R = self._order_rows(o, float(t))
+            blocks.append(R.sum(axis=0, keepdims=True)
+                          if self.collapse == "total_flux" else R)
         return np.vstack(blocks)
-
-    def to_dense(self) -> np.ndarray:
-        per_order = [self.order_block(i) for i in range(len(self.orders))]
-        rows = [sum(self.L[c, n] * per_order[n] for n in range(len(self.orders)))
-                for c in range(self.n_channels)]
-        return np.vstack(rows)
 
     def _matvec(self, x: np.ndarray) -> np.ndarray:
         x = np.asarray(x, dtype=float).ravel()
         per_order = []
-        for i, o in enumerate(self.orders):
+        for o in self.orders:
             acc = []
             for t in self.observer_times:
-                D = self._order_design(o, float(t))
-                v = D @ x
-                acc.append(np.array([v.sum()]) if self.model == "total_flux" else v)
+                v = self._order_rows(o, float(t)) @ x
+                acc.append(np.array([v.sum()]) if self.collapse == "total_flux" else v)
             per_order.append(np.concatenate(acc))
-        out = [sum(self.L[c, n] * per_order[n] for n in range(len(self.orders)))
-               for c in range(self.n_channels)]
-        return np.concatenate(out)
+        mixed = [sum(self.L[c, n] * per_order[n] for n in range(len(self.orders)))
+                 for c in range(self.n_channels)]
+        return np.concatenate(mixed) / np.sqrt(self.channel_variance())
 
     def _rmatvec(self, y: np.ndarray) -> np.ndarray:
-        y = np.asarray(y, dtype=float).ravel()
+        y = np.asarray(y, dtype=float).ravel() / np.sqrt(self.channel_variance())
         chan = y.reshape(self.n_channels, -1)
         out = np.zeros(self.dimension)
         for i, o in enumerate(self.orders):
@@ -151,31 +204,23 @@ class PhysicalOperator(LinearOperator):
                     w = w + self.L[c, i] * chan[c]
             per_t = w.reshape(self.observer_times.size, -1)
             for k, t in enumerate(self.observer_times):
-                D = self._order_design(o, float(t))
-                if self.model == "total_flux":
-                    out += float(per_t[k, 0]) * D.sum(axis=0)
+                R = self._order_rows(o, float(t))
+                if self.collapse == "total_flux":
+                    out += float(per_t[k, 0]) * R.sum(axis=0)
                 else:
-                    out += D.T @ per_t[k]
+                    out += R.T @ per_t[k]
         return out
 
-    def gram(self, sigma: np.ndarray | float = 1.0) -> np.ndarray:
-        """Streamed G = A^T C^{-1} A, symmetrised.
-
-        Never materialises A. With d = 224 this is both cheaper and better
-        conditioned than storing every row, and the right singular vectors are
-        recoverable from eigh(G).
-        """
+    def gram(self) -> np.ndarray:
         A = self.to_dense()
-        s = np.broadcast_to(np.asarray(sigma, dtype=float), (A.shape[0],))
-        B = A / s[:, None]
-        G = B.T @ B
+        G = A.T @ A
         return 0.5 * (G + G.T)
 
 
 # ---------------------------------------------------------------------------
 # arm construction
 # ---------------------------------------------------------------------------
-def equalize(orders: Sequence[OrderRays], model: MeasurementModel) -> list[OrderRays]:
+def equalize(orders: Sequence[OrderRays], model: MeasurementModel = "pixel_integrated") -> list[OrderRays]:
     """Normalise each order's total sensitivity, leaving everything else alone.
 
     Only the declared per-order amplitude changes. Coordinates, delays, masks
@@ -188,7 +233,7 @@ def equalize(orders: Sequence[OrderRays], model: MeasurementModel) -> list[Order
            for o in orders]
     ref = None
     for o in out:
-        scale = float(np.linalg.norm(o.coefficient(model)))
+        scale = float(np.linalg.norm(o.whitened_coefficient()))
         ref = scale if ref is None else ref
         o.amplitude = o.amplitude * (ref / max(scale, 1e-300))
     return out

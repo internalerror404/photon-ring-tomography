@@ -760,56 +760,56 @@
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G3_physical_adjoint": {
       "status": "PASS",
-      "measured": 5.2573729688035534e-14,
+      "measured": 7.172906863508169e-14,
       "threshold": 1e-08,
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 5.2573729688035534e-14,
+        "measured": 7.172906863508169e-14,
         "threshold": 1e-08,
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G4_physical_resolved_unresolved_mixing": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
-        "status": "PASS",
-        "measured": 0.0,
+        "status": "FAIL",
+        "measured": 0.3653519910994384,
         "threshold": 1e-10,
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G6_physical_Gram_monotonicity": {
       "status": "PASS",
-      "measured": 0.0,
+      "measured": 6.562745738215744e-17,
       "threshold": 1e-10,
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 0.0,
+        "measured": 6.562745738215744e-17,
         "threshold": 1e-10,
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G6b_resolved_dominates_direct": {
@@ -817,43 +817,43 @@
       "measured": 0.0,
       "threshold": 1e-10,
       "note": "G_resolved - G_direct must be positive semidefinite",
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
         "note": "G_resolved - G_direct must be positive semidefinite",
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G5_physical_injected_null": {
       "status": "NOT_RUN",
       "note": "the registered global class has trivial numerical null space under this arm",
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
         "status": "NOT_RUN",
         "note": "the registered global class has trivial numerical null space under this arm",
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G9w_weight_semantics": {
       "status": "PASS",
-      "measured": 0.0,
+      "measured": 1.6921312011308915e-16,
       "threshold": 1e-10,
       "note": "operator output for a unit source j=1, against sum(dOmega * g^3) computed outside the operator, per order",
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
-        "status": "PASS",
-        "measured": 0.0,
+        "status": "FAIL",
+        "measured": 0.9799820558794974,
         "threshold": 1e-10,
         "note": "operator output for a unit source j=1, against sum(dOmega * g^3) computed outside the operator, per order",
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G7b_transfer_field_convergence": {
@@ -909,105 +909,113 @@
       "measured": 224,
       "threshold": 224,
       "note": "the physical operator has rank 224 of 224 columns, so ker(A_physical | C_224) = {0} and there is no natural null direction to inject. Full column rank on a 224-dimensional discretised class is NOT a statement of continuum injectivity.",
-      "run_id": "G5AB_20260825T062909Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:29:37+00:00",
+      "run_id": "G5AB_20260825T085102Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:51:28+00:00",
       "superseded": {
         "status": "NOT_RUN",
         "disposition": "NOT_APPLICABLE_FULL_COLUMN_RANK",
         "measured": 224,
         "threshold": 224,
         "note": "the physical operator has rank 224 of 224 columns, so ker(A_physical | C_224) = {0} and there is no natural null direction to inject. Full column rank on a 224-dimensional discretised class is NOT a statement of continuum injectivity.",
-        "run_id": "G5AB_20260825T062756Z_2ba66f02",
-        "recorded_at": "2026-08-25T06:28:28+00:00"
+        "run_id": "G5AB_20260825T062909Z_2ba66f02",
+        "recorded_at": "2026-08-25T06:29:37+00:00"
       }
     },
     "G5a_manufactured_exact_null": {
       "status": "PASS",
-      "measured": 1.115293929055989e-18,
+      "measured": 0.0,
       "threshold": 1e-10,
-      "note": "a duplicated column makes (+1, -1) an exact null vector known in closed form. Normalized data residual 1.115e-18; the numerical detector recovers it with overlap 1.000000 and reports nullity 1. Instrumentation only: this null direction was constructed, not discovered.",
-      "run_id": "G5AB_20260825T062909Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:29:37+00:00",
+      "note": "a duplicated column makes (+1, -1) an exact null vector known in closed form. Normalized data residual 0.000e+00; the numerical detector recovers it with overlap 1.000000 and reports nullity 1. Instrumentation only: this null direction was constructed, not discovered.",
+      "run_id": "G5AB_20260825T085102Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:51:28+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 1.115293929055989e-18,
         "threshold": 1e-10,
         "note": "a duplicated column makes (+1, -1) an exact null vector known in closed form. Normalized data residual 1.115e-18; the numerical detector recovers it with overlap 1.000000 and reports nullity 1. Instrumentation only: this null direction was constructed, not discovered.",
-        "run_id": "G5AB_20260825T062756Z_2ba66f02",
-        "recorded_at": "2026-08-25T06:28:28+00:00"
+        "run_id": "G5AB_20260825T062909Z_2ba66f02",
+        "recorded_at": "2026-08-25T06:29:37+00:00"
       }
     },
     "G5a_detector_recovers_the_known_vector": {
       "status": "PASS",
-      "measured": 0.9999999999999999,
+      "measured": 1.0,
       "threshold": 1.0,
       "note": "overlap between the closed-form null vector and the span the numerical detector returns",
-      "run_id": "G5AB_20260825T062909Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:29:37+00:00",
+      "run_id": "G5AB_20260825T085102Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:51:28+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.9999999999999999,
         "threshold": 1.0,
         "note": "overlap between the closed-form null vector and the span the numerical detector returns",
-        "run_id": "G5AB_20260825T062756Z_2ba66f02",
-        "recorded_at": "2026-08-25T06:28:28+00:00"
+        "run_id": "G5AB_20260825T062909Z_2ba66f02",
+        "recorded_at": "2026-08-25T06:29:37+00:00"
       }
     },
     "G5b_near_null_is_monotone_in_epsilon": {
       "status": "PASS",
       "measured": 1,
       "threshold": 1,
-      "note": "smallest singular value across epsilon = [0.01, 0.001, 0.0001, 1e-05, 1e-06, 1e-07]: ['1.984e-03', '1.984e-03', '6.079e-04', '6.091e-05', '6.091e-06', '6.091e-07']",
-      "run_id": "G5AB_20260825T062909Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:29:37+00:00",
+      "note": "smallest singular value across epsilon = [0.01, 0.001, 0.0001, 1e-05, 1e-06, 1e-07]: ['3.201e-04', '3.201e-04', '3.200e-04', '5.578e-05', '5.579e-06', '5.579e-07']",
+      "run_id": "G5AB_20260825T085102Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:51:28+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 1,
         "threshold": 1,
         "note": "smallest singular value across epsilon = [0.01, 0.001, 0.0001, 1e-05, 1e-06, 1e-07]: ['1.984e-03', '1.984e-03', '6.079e-04', '6.091e-05', '6.091e-06', '6.091e-07']",
-        "run_id": "G5AB_20260825T062756Z_2ba66f02",
-        "recorded_at": "2026-08-25T06:28:28+00:00"
+        "run_id": "G5AB_20260825T062909Z_2ba66f02",
+        "recorded_at": "2026-08-25T06:29:37+00:00"
       }
     },
     "G5b_near_null_scaling_exponent": {
       "status": "PASS",
-      "measured": 0.00026145400531518703,
+      "measured": 3.982781372724453e-05,
       "threshold": 0.05,
-      "note": "log-log slope of sigma_min against epsilon on the asymptotic branch (4 of 6 points, epsilon <= 1e-04) is 0.9997; a near-duplicate column should give exactly 1. Fitted across all points including the crossover it would read 0.7458, which measures where the manufactured direction overtakes the operator's own smallest singular value, not the scaling. Instrumentation only.",
-      "run_id": "G5AB_20260825T062909Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:29:37+00:00",
+      "note": "log-log slope of sigma_min against epsilon on the asymptotic branch (3 of 6 points, epsilon <= 1e-05) is 1.0000; a near-duplicate column should give exactly 1. Fitted across all points including the crossover it would read 0.5665, which measures where the manufactured direction overtakes the operator's own smallest singular value, not the scaling. Instrumentation only.",
+      "run_id": "G5AB_20260825T085102Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:51:28+00:00",
       "superseded": {
-        "status": "FAIL",
-        "measured": 0.2542405463136366,
-        "threshold": 0.15,
-        "note": "log-log slope of sigma_min against epsilon is 0.7458; a near-duplicate column should give slope 1. Instrumentation only.",
-        "run_id": "G5AB_20260825T062756Z_2ba66f02",
-        "recorded_at": "2026-08-25T06:28:28+00:00"
+        "status": "PASS",
+        "measured": 0.00026145400531518703,
+        "threshold": 0.05,
+        "note": "log-log slope of sigma_min against epsilon on the asymptotic branch (4 of 6 points, epsilon <= 1e-04) is 0.9997; a near-duplicate column should give exactly 1. Fitted across all points including the crossover it would read 0.7458, which measures where the manufactured direction overtakes the operator's own smallest singular value, not the scaling. Instrumentation only.",
+        "run_id": "G5AB_20260825T062909Z_2ba66f02",
+        "recorded_at": "2026-08-25T06:29:37+00:00"
       }
     },
     "G5b_baseline_unperturbed_sigma_min": {
       "status": "PASS",
-      "measured": 0.0019840526557513023,
-      "threshold": 0.0019840526557513023,
+      "measured": 0.0003200836706504193,
+      "threshold": 0.0003200836706504193,
       "note": "smallest singular value of the unaugmented physical operator, for reference: every G5b value must sit below it",
-      "run_id": "G5AB_20260825T062909Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:29:37+00:00",
+      "run_id": "G5AB_20260825T085102Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:51:28+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0019840526557513023,
         "threshold": 0.0019840526557513023,
         "note": "smallest singular value of the unaugmented physical operator, for reference: every G5b value must sit below it",
-        "run_id": "G5AB_20260825T062756Z_2ba66f02",
-        "recorded_at": "2026-08-25T06:28:28+00:00"
+        "run_id": "G5AB_20260825T062909Z_2ba66f02",
+        "recorded_at": "2026-08-25T06:29:37+00:00"
       }
     },
     "G5b_piecewise_model_residual": {
       "status": "PASS",
-      "measured": 0.0006125414365260041,
+      "measured": 0.0004009689040924639,
       "threshold": 0.001,
-      "note": "largest deviation from sigma_min = min(baseline, C*epsilon) with baseline 1.9841e-03 and C = 6.0912, relative to the baseline, over every epsilon. This is the full expected behaviour, floor included, rather than a slope on a hand-picked branch.",
-      "run_id": "G5AB_20260825T062909Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:29:37+00:00"
+      "note": "largest deviation from sigma_min = min(baseline, C*epsilon) with baseline 3.2008e-04 and C = 5.5789, relative to the baseline, over every epsilon. This is the full expected behaviour, floor included, rather than a slope on a hand-picked branch.",
+      "run_id": "G5AB_20260825T085102Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:51:28+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0.0006125414365260041,
+        "threshold": 0.001,
+        "note": "largest deviation from sigma_min = min(baseline, C*epsilon) with baseline 1.9841e-03 and C = 6.0912, relative to the baseline, over every epsilon. This is the full expected behaviour, floor included, rather than a slope on a hand-picked branch.",
+        "run_id": "G5AB_20260825T062909Z_2ba66f02",
+        "recorded_at": "2026-08-25T06:29:37+00:00"
+      }
     },
     "G8r_source_radius_no_adjustment": {
       "status": "PASS",
@@ -1191,29 +1199,29 @@
       "measured": 1.8484384687544875e-05,
       "threshold": 0.005,
       "note": "minimum valid source radius 2.000037 M against the exact Schwarzschild horizon 2.0 M; no valid ray lands inside",
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 9.311374654830118e-05,
+        "measured": 1.8484384687544875e-05,
         "threshold": 0.005,
-        "note": "minimum valid source radius 2.000186 M against the exact Schwarzschild horizon 2.0 M; no valid ray lands inside",
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "note": "minimum valid source radius 2.000037 M against the exact Schwarzschild horizon 2.0 M; no valid ray lands inside",
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_4_no_ray_inside_horizon": {
       "status": "PASS",
       "measured": 2.000036968769375,
       "threshold": 2.0,
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 2.0001862274930966,
+        "measured": 2.000036968769375,
         "threshold": 2.0,
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_2_photon_sphere_double_root": {
@@ -1221,15 +1229,15 @@
       "measured": 0.0,
       "threshold": 1e-12,
       "note": "R(3M) and R'(3M) both vanish at b = 3*sqrt(3): R = 0.000e+00, R' = 0.000e+00",
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-12,
         "note": "R(3M) and R'(3M) both vanish at b = 3*sqrt(3): R = 0.000e+00, R' = 0.000e+00",
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_3_critical_impact_parameter": {
@@ -1237,15 +1245,15 @@
       "measured": 2.0,
       "threshold": 0.0,
       "note": "equatorial crossings as b -> 3*sqrt(3) = 5.196152 from outside: [0.0, 1.0, 1.0, 1.0, 2.0, 2.0] at b/b_crit - 1 = ['3e-01', '1e-01', '3e-02', '1e-02', '3e-03', '1e-03']. Crossings must increase without bound at the critical curve.",
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 2.0,
         "threshold": 0.0,
         "note": "equatorial crossings as b -> 3*sqrt(3) = 5.196152 from outside: [0.0, 1.0, 1.0, 1.0, 2.0, 2.0] at b/b_crit - 1 = ['3e-01', '1e-01', '3e-02', '1e-02', '3e-03', '1e-03']. Crossings must increase without bound at the critical curve.",
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_7_four_velocity_normalisation": {
@@ -1253,15 +1261,15 @@
       "measured": 2.220446049250313e-16,
       "threshold": 1e-12,
       "note": "u.u + 1 computed from the Schwarzschild metric, inside and outside the ISCO, so it checks the branch rather than restating it",
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 2.220446049250313e-16,
         "threshold": 1e-12,
         "note": "u.u + 1 computed from the Schwarzschild metric, inside and outside the ISCO, so it checks the branch rather than restating it",
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_7_keplerian_closed_form": {
@@ -1269,29 +1277,29 @@
       "measured": 2.220446049250313e-16,
       "threshold": 1e-12,
       "note": "u^t = (1-3/r)^-1/2 and u^phi = r^-3/2 u^t outside the ISCO",
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 2.220446049250313e-16,
         "threshold": 1e-12,
         "note": "u^t = (1-3/r)^-1/2 and u^phi = r^-3/2 u^t outside the ISCO",
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_7_finite_positive_weights": {
       "status": "PASS",
       "measured": 1,
       "threshold": 1,
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 1,
         "threshold": 1,
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_7_quadrature_order0": {
@@ -1299,15 +1307,15 @@
       "measured": 2465.760000000001,
       "threshold": 0.16000000000000003,
       "note": "dOmega = dx^2 = 0.16 M^2 per ray, uniform within the band; total band solid angle 2465.8 M^2",
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 2488.3200000000015,
+        "measured": 2465.760000000001,
         "threshold": 0.16000000000000003,
-        "note": "dOmega = dx^2 = 0.16 M^2 per ray, uniform within the band; total band solid angle 2488.3 M^2",
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "note": "dOmega = dx^2 = 0.16 M^2 per ray, uniform within the band; total band solid angle 2465.8 M^2",
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_7_quadrature_order1": {
@@ -1315,15 +1323,15 @@
       "measured": 36.72320000000001,
       "threshold": 0.0064,
       "note": "dOmega = dx^2 = 0.0064 M^2 per ray, uniform within the band; total band solid angle 36.723 M^2",
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 32.531200000000005,
+        "measured": 36.72320000000001,
         "threshold": 0.0064,
-        "note": "dOmega = dx^2 = 0.0064 M^2 per ray, uniform within the band; total band solid angle 32.531 M^2",
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "note": "dOmega = dx^2 = 0.0064 M^2 per ray, uniform within the band; total band solid angle 36.723 M^2",
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_7_quadrature_order2": {
@@ -1331,15 +1339,15 @@
       "measured": 1.2360000000000002,
       "threshold": 0.0004,
       "note": "dOmega = dx^2 = 0.0004 M^2 per ray, uniform within the band; total band solid angle 1.236 M^2",
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 1.1692000000000005,
+        "measured": 1.2360000000000002,
         "threshold": 0.0004,
-        "note": "dOmega = dx^2 = 0.0004 M^2 per ray, uniform within the band; total band solid angle 1.1692 M^2",
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "note": "dOmega = dx^2 = 0.0004 M^2 per ray, uniform within the band; total band solid angle 1.236 M^2",
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_5_aart_low_spin_sequence": {
@@ -1347,15 +1355,15 @@
       "measured": 3,
       "threshold": 3,
       "note": "AART generated 3 of 4 registered low-spin points. a = 1e-6 fails: the critical-curve arclength goes complex and numpy.interp refuses the cast. AART's usable floor therefore lies between 1e-5 and 1e-6, and it is singular at 0. Recorded, not worked around.",
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 4,
+        "measured": 3,
         "threshold": 3,
-        "note": "AART generated 4 of 4 registered low-spin points. a = 1e-6 fails: the critical-curve arclength goes complex and numpy.interp refuses the cast. AART's usable floor therefore lies between 1e-5 and 1e-6, and it is singular at 0. Recorded, not worked around.",
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "note": "AART generated 3 of 4 registered low-spin points. a = 1e-6 fails: the critical-curve arclength goes complex and numpy.interp refuses the cast. AART's usable floor therefore lies between 1e-5 and 1e-6, and it is singular at 0. Recorded, not worked around.",
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_5_low_spin_area_approaches_schwarzschild": {
@@ -1363,15 +1371,15 @@
       "measured": 0.011744857569268713,
       "threshold": 0.05,
       "note": "n=0 band solid angle from AART at low spin against the Schwarzschild backend: [(0.001, 0.01174), (0.0001, 0.01174), (1e-05, 0.00915)]",
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 0.0,
+        "measured": 0.011744857569268713,
         "threshold": 0.05,
-        "note": "n=0 band solid angle from AART at low spin against the Schwarzschild backend: [(0.001, 0.0), (0.0001, 0.0), (1e-05, 0.0), (1e-06, 0.0)]",
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "note": "n=0 band solid angle from AART at low spin against the Schwarzschild backend: [(0.001, 0.01174), (0.0001, 0.01174), (1e-05, 0.00915)]",
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_1_numerical_integrator_cross_check": {
@@ -1379,13 +1387,15 @@
       "measured": 1.8411100320238665e-05,
       "threshold": 0.001,
       "note": "kgeo's ODE integrator against the analytic solution on 10 of 10 sampled rays; a numerical integrator at finite step size is not expected to match to machine precision",
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
-        "status": "NOT_RUN",
-        "note": "integrate_geo_single returned no usable equatorial crossing for any sampled ray: TypeError: bad operand type for unary -: 'NoneType'",
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "status": "PASS",
+        "measured": 1.8411100320238665e-05,
+        "threshold": 0.001,
+        "note": "kgeo's ODE integrator against the analytic solution on 10 of 10 sampled rays; a numerical integrator at finite step size is not expected to match to machine precision",
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_6_operator_convergence": {
@@ -1393,85 +1403,85 @@
       "measured": 0.007363812790717675,
       "threshold": 0.05,
       "note": "quadrature-weighted information matrix, core against fine, same gate definition as G7b at the other geometries",
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
-        "status": "FAIL",
-        "measured": 0.5208062030310062,
+        "status": "PASS",
+        "measured": 0.007363812790717675,
         "threshold": 0.05,
         "note": "quadrature-weighted information matrix, core against fine, same gate definition as G7b at the other geometries",
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_8_G2_physical_dense_matrix_free": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_8_G3_physical_adjoint": {
       "status": "PASS",
-      "measured": 3.6362371416569504e-14,
+      "measured": 1.3656866525333244e-14,
       "threshold": 1e-08,
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 5.235517175388767e-14,
+        "measured": 3.6362371416569504e-14,
         "threshold": 1e-08,
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_8_G4_resolved_unresolved_mixing": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_8_G6_Gram_monotonicity": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "S0_8_G9w_weight_semantics": {
       "status": "PASS",
       "measured": 1.2644190770854794e-16,
       "threshold": 1e-10,
-      "run_id": "S0_20260825T073619Z_2ba66f02",
-      "recorded_at": "2026-08-25T07:36:52+00:00",
+      "run_id": "S0_20260825T085012Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:50:53+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 1.252946223731538e-16,
+        "measured": 1.2644190770854794e-16,
         "threshold": 1e-10,
-        "run_id": "S0_20260825T073118Z_2ba66f02",
-        "recorded_at": "2026-08-25T07:31:39+00:00"
+        "run_id": "S0_20260825T073619Z_2ba66f02",
+        "recorded_at": "2026-08-25T07:36:52+00:00"
       }
     },
     "GRID_all_registered_geometries": {
@@ -1512,12 +1522,54 @@
       "threshold": 0.0,
       "run_id": "GRID_20260825T074141Z_2ba66f02",
       "recorded_at": "2026-08-25T07:41:43+00:00"
+    },
+    "G10q_continuum_noise_quadrature_invariance": {
+      "status": "PASS",
+      "measured": 5.401254977883461e-15,
+      "threshold": 1e-10,
+      "note": "worst relative change in G under pixel split and merge at k = (2, 3, 4, 8), across the resolved, unresolved-image and total-flux arms. Whitened row is sqrt(dOmega) g^3 B / sigma_Omega.",
+      "run_id": "G10Q_20260825T085132Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:51:32+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 5.223431007480394e-15,
+        "threshold": 1e-10,
+        "note": "worst relative change in G under pixel split and merge at k = (2, 3, 4, 8), across the resolved, unresolved-image and total-flux arms. Whitened row is sqrt(dOmega) g^3 B / sigma_Omega.",
+        "run_id": "G10Q_20260825T083249Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:33:49+00:00"
+      }
+    },
+    "G10q_retired_flat_sigma_convention": {
+      "status": "FAIL",
+      "disposition": "RETIRED_PIXELIZATION_DEPENDENT",
+      "measured": 6.999999999999998,
+      "threshold": 1e-10,
+      "note": "the superseded convention (c = g^3, flat per-row sigma) measured on the same rays: worst 7.000e+00, growing as k - 1. It manufactures Fisher information out of pixel count, and since ray counts differ by orders of magnitude between lensing bands it silently reweighted the bands against each other. Preserved as the reason the convention changed, not as a live failure.",
+      "run_id": "G10Q_20260825T085132Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:51:32+00:00",
+      "superseded": {
+        "status": "FAIL",
+        "disposition": "RETIRED_PIXELIZATION_DEPENDENT",
+        "measured": 6.999999999999997,
+        "threshold": 1e-10,
+        "note": "the superseded convention (c = g^3, flat per-row sigma) measured on the same rays: worst 7.000e+00, growing as k - 1. It manufactures Fisher information out of pixel count, and since ray counts differ by orders of magnitude between lensing bands it silently reweighted the bands against each other. Preserved as the reason the convention changed, not as a live failure.",
+        "run_id": "G10Q_20260825T083249Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:33:49+00:00"
+      }
+    },
+    "G4b_linear_collapse_covariance_propagation": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-12,
+      "note": "channel variance against an independently formed L C_R L^T",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00"
     }
   },
-  "updated_at": "2026-08-25T07:43:11+00:00",
+  "updated_at": "2026-08-25T08:51:32+00:00",
   "summary": {
-    "PASS": 104,
-    "FAIL": 6,
+    "PASS": 106,
+    "FAIL": 7,
     "NOT_RUN": 11
   }
 }

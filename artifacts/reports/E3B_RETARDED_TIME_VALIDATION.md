@@ -1,7 +1,7 @@
 # E3B — RETARDED-TIME AND AZIMUTH VALIDATION (G8t, G7b)
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `92d183aa9ab46f9f73097deba9e6ce66a4e0ea69`
+- branch `claude/experiment-review-mac-rthiz1`, commit `0ef341dae3b21bc2bdd0e54a18971cff208af783`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - geometry a* = 0.5, i = 50 deg, orders n = 0, 1, 2 (the single authorized pilot geometry)
 - kgeo commit `dc347060c5fb24e2c360c8aaffbfe25482a83805`

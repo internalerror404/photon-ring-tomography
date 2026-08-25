@@ -258,7 +258,8 @@ def main() -> int:
         wadj = max(wadj, abs(p_ - q_) / max(abs(p_), abs(q_), 1e-300))
     man.add_gate(gate_from_tolerance("S0_8_G3_physical_adjoint", wadj, 1e-8))
     mixed = PhysicalOperator(orders=sub, observer_times=t_obs, design=basis.design,
-                             dimension=basis.dimension, mixer=np.ones((1, 3))).to_dense()
+                             dimension=basis.dimension,
+                             mixer=np.ones((1, 3))).unwhitened_dense()
     direct = sum(op.order_block(i) for i in range(3))
     man.add_gate(gate_from_tolerance(
         "S0_8_G4_resolved_unresolved_mixing",
@@ -277,9 +278,10 @@ def main() -> int:
     worst_w = 0.0
     for o in sub:
         indep = float(np.sum(o.quadrature * np.power(np.abs(o.redshift), 3.0)))
-        got = float(PhysicalOperator(orders=[o], observer_times=np.array([0.0]),
-                                     design=basis.design, dimension=basis.dimension,
-                                     model="total_flux").matvec(unit)[0])
+        flux_op = PhysicalOperator(orders=[o], observer_times=np.array([0.0]),
+                                   design=basis.design, dimension=basis.dimension,
+                                   collapse="total_flux")
+        got = float(flux_op.matvec(unit)[0] * np.sqrt(flux_op.channel_variance()[0]))
         worst_w = max(worst_w, abs(got - indep) / max(abs(indep), 1e-300))
         op_rows.append({"order": o.order, "unit_source_throughput": got,
                         "independent_sum": indep, "relative": worst_w})

@@ -101,55 +101,42 @@ def common_count(order_rays: list[OrderRays], rng) -> list[OrderRays]:
     return out
 
 
-def build_arms(base: list[OrderRays], model: str) -> dict:
-    n = len(base)
-    ones = np.ones((1, n))
+def build_arms(base: list[OrderRays]) -> dict:
+    """Every arm is the same measurement model; only the linear map differs."""
+    ones = np.ones((1, len(base)))
     return {
-        "DIRECT_PHYSICAL": dict(orders=[base[0]], mixer=None, model=model),
-        "RESOLVED_PHYSICAL": dict(orders=base, mixer=None, model=model),
-        "RESOLVED_EQUALIZED": dict(orders=equalize(base, model), mixer=None, model=model),
-        "DELAY_ONLY_PHYSICAL": dict(orders=substitute_spatial(base, base[0]),
-                                    mixer=None, model=model),
-        "SPATIAL_ONLY_PHYSICAL": dict(orders=substitute_delay(base, base[0]),
-                                      mixer=None, model=model),
-        "PAIRING_DESTROYED": dict(orders=destroy_pairing(base, SEED),
-                                  mixer=None, model=model),
-        "UNRESOLVED_PHYSICAL": dict(orders=base, mixer=ones, model=model),
-        "TOTAL_FLUX": dict(orders=base, mixer=None, model="total_flux"),
+        "DIRECT_PHYSICAL": dict(orders=[base[0]]),
+        "RESOLVED_PHYSICAL": dict(orders=base),
+        "RESOLVED_EQUALIZED": dict(orders=equalize(base)),
+        "DELAY_ONLY_PHYSICAL": dict(orders=substitute_spatial(base, base[0])),
+        "SPATIAL_ONLY_PHYSICAL": dict(orders=substitute_delay(base, base[0])),
+        "PAIRING_DESTROYED": dict(orders=destroy_pairing(base, SEED)),
+        "UNRESOLVED_PHYSICAL": dict(orders=base, mixer=ones),
+        "TOTAL_FLUX": dict(orders=base, collapse="total_flux"),
     }
 
 
-def detector_sigma(direct_op: PhysicalOperator, snr0: float,
-                   reference: np.ndarray) -> float:
-    """One physical per-pixel detector noise, defined once from the direct arm.
+def snr_scale(direct_op: PhysicalOperator, reference: np.ndarray) -> float:
+    """The one noise density, fixed from the direct arm and shared by all arms.
+
+    Operators are built at sigma_Omega = 1, so their rows are
+    sqrt(dOmega) * g^3 * B. Choosing a physical noise density sigma_Omega
+    rescales every whitened row by 1/sigma_Omega. This returns the RMS
+    whitened response of order 0 alone to the declared reference source; a
+    sweep point at SNR0 is then obtained by multiplying any sigma=1 whitened
+    quantity by ``snr0 / s_ref``, i.e. sigma_Omega = s_ref / snr0.
 
     The registered definition is a *leading-order* effective SNR, so the noise
-    is fixed by order 0's clean response to the declared reference source and
-    then held constant across every arm. Letting each arm set its own sigma
-    from its own data would give an arm with more rows a quieter detector, and
-    the arm comparison -- the entire point of the canary -- would be measuring
-    row counts rather than physics.
+    is fixed by order 0 and then held constant across every arm. Letting each
+    arm set its own sigma from its own data would give an arm with more rows a
+    quieter detector, and the arm comparison -- the entire point of the canary
+    -- would be measuring row counts rather than physics. The derived arms
+    (mixed image, total flux) do not get a sigma at all: their covariance is
+    propagated by the operator as C_U = L C_R L^T, so summation costs them the
+    noise that summation implies.
     """
     clean = direct_op.matvec(reference)
-    return max(float(np.sqrt(np.mean(clean ** 2))), 1e-300) / snr0
-
-
-def row_sigma(op: PhysicalOperator, sigma: float) -> np.ndarray:
-    """Per-row noise for one arm.
-
-    Two independent propagations, both forced by the model rather than chosen:
-    a mixed channel sums orders, so C_U = L C_R L^T gives channel c a noise
-    sigma * ||L[c,:]||_2; and a total-flux row sums N pixels with independent
-    per-pixel noise, so it carries sigma * sqrt(N). Omitting the second would
-    hand the spatially collapsed control the per-pixel noise of a single pixel
-    while giving it the summed signal of all of them, making the deliberately
-    information-poor arm look competitive.
-    """
-    per_channel = sigma * np.linalg.norm(op.L, axis=1)
-    if op.model == "total_flux":
-        per_channel = per_channel * np.sqrt(float(op.orders[0].n_rays))
-    rows = op.shape[0] // op.n_channels
-    return np.repeat(per_channel, rows)
+    return max(float(np.sqrt(np.mean(clean ** 2))), 1e-300)
 
 
 def age_grid(base: list[OrderRays]) -> np.ndarray:
@@ -174,21 +161,22 @@ def age_direction(op: PhysicalOperator, age: float, norm: float) -> np.ndarray:
     """A q_a for the unit-L2-norm source localized at one retarded age."""
     blocks = []
     for o in op.orders:
-        c = o.coefficient(op.model)
+        c = o.coefficient()                       # unwhitened dOmega * g^3
         for t in op.observer_times:
             ts = float(t) - o.delay
             bump = np.exp(-0.5 * ((ts + age) / BUMP_WIDTH) ** 2)
             row = c * bump
-            blocks.append(np.array([row.sum()]) if op.model == "total_flux" else row)
+            blocks.append(np.array([row.sum()]) if op.collapse == "total_flux" else row)
     per_order = np.split(np.concatenate(blocks), len(op.orders))
     out = [sum(op.L[ch, k] * per_order[k] for k in range(len(op.orders)))
            for ch in range(op.n_channels)]
-    return np.concatenate(out) / norm
+    # whiten with the arm's own propagated covariance, exactly as the operator does
+    return np.concatenate(out) / np.sqrt(op.channel_variance()) / norm
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--model", default="specific_intensity")
+    ap.add_argument("--model", default="pixel_integrated")
     ap.add_argument("--rays", type=int, default=RAYS_PER_ORDER)
     args = ap.parse_args()
 
@@ -211,7 +199,7 @@ def main() -> int:
     print(f"registered global class dimension {basis.dimension}; "
           f"ages {ages[0]:.1f}..{ages[-1]:.1f} M in {ages.size} steps")
 
-    arms = build_arms(base, args.model)
+    arms = build_arms(base)
     ops = {name: PhysicalOperator(design=basis.design, dimension=basis.dimension,
                                   observer_times=t_obs, **cfg)
            for name, cfg in arms.items()}
@@ -251,18 +239,45 @@ def main() -> int:
     # G4: mixing the resolved stack down reproduces the unresolved operator
     blocks = [ref.order_block(i) for i in range(len(ref.orders))]
     direct_sum = sum(blocks)
-    mixed = ops["UNRESOLVED_PHYSICAL"].to_dense()
+    mixed = ops["UNRESOLVED_PHYSICAL"].unwhitened_dense()
     man.add_gate(gate_from_tolerance(
         "G4_physical_resolved_unresolved_mixing",
         float(np.abs(direct_sum - mixed).max()) / max(float(np.abs(direct_sum).max()), 1e-300),
         reg.data["correctness_gates"]["G4_order_collapse_relative"]))
 
+    # G4b: the covariance the derived arms carry is the propagated one,
+    # C_U = L C_R L^T with C_R = sigma^2 diag(dOmega). Checking the collapse
+    # identity on unwhitened rows alone would let a wrong noise propagation
+    # through, which is exactly how a summed arm can be made to look free.
+    worst_cov = 0.0
+    cov_rows = []
+    for name in ("UNRESOLVED_PHYSICAL", "TOTAL_FLUX"):
+        op = ops[name]
+        s2 = op.sigma_omega ** 2
+        if op.collapse == "total_flux":
+            cr = np.array([s2 * float(o.quadrature.sum()) for o in op.orders])
+            expect = np.concatenate([np.full(t_obs.size, float(op.L[c] ** 2 @ cr))
+                                     for c in range(op.n_channels)])
+        else:
+            expect = np.concatenate([
+                np.tile(s2 * sum((op.L[c, n] ** 2) * op.orders[n].quadrature
+                                 for n in range(len(op.orders))), t_obs.size)
+                for c in range(op.n_channels)])
+        got = op.channel_variance()
+        rel = float(np.abs(got - expect).max()) / max(float(np.abs(expect).max()), 1e-300)
+        worst_cov = max(worst_cov, rel)
+        cov_rows.append({"arm": name, "relative_difference": rel,
+                         "min_row_variance": float(got.min()),
+                         "max_row_variance": float(got.max())})
+    man.add_gate(gate_from_tolerance(
+        "G4b_linear_collapse_covariance_propagation", worst_cov, 1e-12,
+        note="channel variance against an independently formed L C_R L^T"))
+
     # G6: information monotonicity in retained order, resolved readout
-    grams, cum = [], []
+    cum = []
     for k in range(1, len(base) + 1):
         sub = PhysicalOperator(orders=base[:k], observer_times=t_obs,
-                               design=basis.design, dimension=basis.dimension,
-                               model=args.model)
+                               design=basis.design, dimension=basis.dimension)
         cum.append(sub.gram())
     worst_mono = 0.0
     for i in range(1, len(cum)):
@@ -303,8 +318,9 @@ def main() -> int:
         independent = float(np.sum(o.quadrature * np.power(np.abs(o.redshift), 3.0)))
         flux_op = PhysicalOperator(orders=[o], observer_times=np.array([0.0]),
                                    design=basis.design, dimension=basis.dimension,
-                                   model="total_flux")
-        through = float(flux_op.matvec(unit)[0])
+                                   collapse="total_flux")
+        through = float(flux_op.matvec(unit)[0]
+                        * np.sqrt(flux_op.channel_variance()[0]))
         rel = abs(through - independent) / max(abs(independent), 1e-300)
         worst_g9w = max(worst_g9w, rel)
         g9w_rows.append({"order": o.order, "operator_unit_source_throughput": through,
@@ -333,16 +349,15 @@ def main() -> int:
     # ---- age information, per arm -----------------------------------------
     info_rows, depth_rows, spec_rows = [], [], []
     qnorm = age_norm(r_in, r_out)
+    s_ref = snr_scale(ops["DIRECT_PHYSICAL"], unit)
     for name, op in ops.items():
         Aq = {float(a): age_direction(op, float(a), qnorm) for a in ages}
         for snr in SNR_GRID:
-            sigma = row_sigma(op, detector_sigma(ops["DIRECT_PHYSICAL"], snr, unit))
+            gain = snr / s_ref
             detectable = []
             for a in ages:
-                fisher = float(np.sum((Aq[float(a)] / sigma) ** 2))
+                fisher = float(np.sum((Aq[float(a)] * gain) ** 2))
                 sd = np.sqrt(fisher)
-                if snr == SNR_GRID[-1]:
-                    pass
                 if sd >= OPERATIONAL_THRESHOLD:
                     detectable.append(float(a))
                 if snr in (1.0, 100.0, 1e4, 1e6):
@@ -367,8 +382,7 @@ def main() -> int:
                 "depth_report": ("none" if not detectable else
                                  (f">={deepest:.1f}" if censored else f"{deepest:.1f}"))})
         # restricted spectra on the registered global class
-        B = op.to_dense() / row_sigma(
-            op, detector_sigma(ops["DIRECT_PHYSICAL"], 100.0, unit))[:, None]
+        B = op.to_dense() * (100.0 / s_ref)
         sp = spectrum_of(B, basis.dimension, operational_threshold=OPERATIONAL_THRESHOLD)
         s = sp.summary()
         spec_rows.append({"arm": name, "snr0_reference": 100.0,
@@ -386,13 +400,13 @@ def main() -> int:
     # Gamma_info between consecutive orders, resolved arm, per age
     ginfo = []
     per_order_ops = [PhysicalOperator(orders=[o], observer_times=t_obs,
-                                      design=basis.design, dimension=basis.dimension,
-                                      model=args.model) for o in base]
+                                      design=basis.design, dimension=basis.dimension)
+                     for o in base]
     for a in ages:
         vals = []
         for op in per_order_ops:
-            sg = row_sigma(op, detector_sigma(ops["DIRECT_PHYSICAL"], 100.0, unit))
-            vals.append(float(np.sum((age_direction(op, float(a), qnorm) / sg) ** 2)))
+            vals.append(float(np.sum((age_direction(op, float(a), qnorm)
+                                      * (100.0 / s_ref)) ** 2)))
         row = {"retarded_age": float(a)}
         for k, v in enumerate(vals):
             row[f"I_order{k}"] = v
@@ -430,8 +444,8 @@ def main() -> int:
         for op, (lo, hi) in zip(per_order_ops, windows):
             a_u = lo + u * (hi - lo)
             agesu.append(a_u)
-            sg = row_sigma(op, detector_sigma(ops["DIRECT_PHYSICAL"], 100.0, unit))
-            vals.append(float(np.sum((age_direction(op, a_u, qnorm) / sg) ** 2)))
+            vals.append(float(np.sum((age_direction(op, a_u, qnorm)
+                                      * (100.0 / s_ref)) ** 2)))
         row = {"window_fraction": float(u)}
         for k, (v, a_u) in enumerate(zip(vals, agesu)):
             row[f"age_order{k}"] = float(a_u)
@@ -469,7 +483,8 @@ def main() -> int:
                        ("e3b_singular_spectra", spec_rows),
                        ("e3b_attenuation_decomposition", decomp),
                        ("e3b_gamma_info", ginfo),
-                       ("e3b_weight_semantics", g9w_rows)):
+                       ("e3b_weight_semantics", g9w_rows),
+                       ("e3b_covariance_propagation", cov_rows)):
         man.add_output(write_table(rows, name))
 
     mp = man.write(reg.path, reg.sha256, runtime_seconds=time.time() - t0)

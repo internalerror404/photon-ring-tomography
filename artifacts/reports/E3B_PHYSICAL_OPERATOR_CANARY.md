@@ -1,22 +1,27 @@
 # E3B — PHYSICAL HISTORICAL-OPERATOR CANARY
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `92d183aa9ab46f9f73097deba9e6ce66a4e0ea69`
+- branch `claude/experiment-review-mac-rthiz1`, commit `0ef341dae3b21bc2bdd0e54a18971cff208af783`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - geometry a* = 0.5, i = 50 deg, orders n = 0, 1, 2 (the single authorized pilot geometry)
 - kgeo commit `dc347060c5fb24e2c360c8aaffbfe25482a83805`
 
 ## Mechanical gate result
-**PASS.** All fourteen E3B gates pass. Scope restriction observed: one geometry,
-no production grid, no ML.
+**PASS.** Every E3B gate passes under the corrected measurement convention.
+The one FAIL row below is `G10q_retired_flat_sigma_convention`, preserved
+literally with disposition `RETIRED_PIXELIZATION_DEPENDENT`: it is the retired
+convention failing on purpose, kept in the ledger so the convention change is
+auditable rather than silent. It is not an active blocking failure.
+Scope restriction observed: one geometry, no production grid, no ML.
 
 | gate | status | measured | threshold |
 |---|---|---:|---:|
 | `G2_physical_dense_matrix_free` | **PASS** | 0 | 1e-10 |
-| `G3_physical_adjoint` | **PASS** | 5.257e-14 | 1e-08 |
+| `G3_physical_adjoint` | **PASS** | 7.173e-14 | 1e-08 |
 | `G4_physical_resolved_unresolved_mixing` | **PASS** | 0 | 1e-10 |
+| `G4b_linear_collapse_covariance_propagation` | **PASS** | 0 | 1e-12 |
 | `G5_physical_injected_null` | **NOT_RUN** | – | – |
-| `G6_physical_Gram_monotonicity` | **PASS** | 0 | 1e-10 |
+| `G6_physical_Gram_monotonicity` | **PASS** | 6.563e-17 | 1e-10 |
 | `G6b_resolved_dominates_direct` | **PASS** | 0 | 1e-10 |
 | `G7b_transfer_field_convergence` | **PASS** | 0.02192 | 0.05 |
 | `G7b_fields_are_analytic_not_discretised` | **PASS** | 2.2e-12 | 1e-09 |
@@ -24,34 +29,54 @@ no production grid, no ML.
 | `G8t_azimuth_after_rigid_offset` | **PASS** | 6.329e-12 | 1e-08 |
 | `G8t_azimuth_offset_is_order_independent` | **PASS** | 1.303e-13 | 1e-09 |
 | `G8t_radius_control` | **PASS** | 8.963e-13 | 1e-09 |
-| `G9w_weight_semantics` | **PASS** | 0 | 1e-10 |
+| `G9w_weight_semantics` | **PASS** | 1.692e-16 | 1e-10 |
 | `G9c_per_order_ray_count` | **PASS** | 4179 | 1536 |
+| `G10q_continuum_noise_quadrature_invariance` | **PASS** | 5.401e-15 | 1e-10 |
+| `G10q_retired_flat_sigma_convention` | **FAIL** | 7 | 1e-10 |
 
 ## The operator
 
 Built row by row from the per-ray Kerr transfer maps, never from an order-wide
 delay:
 
-    y_{n,p}(t_o) = g_{n,p}^3 · j(r_{n,p}, phi_{n,p}, t_o − Delta t_{n,p})
+    z_{n,p}(t_o) = dOmega_{n,p} · g_{n,p}^3 · j(r_{n,p}, phi_{n,p}, t_o − Delta t_{n,p}) + eta,
+    Var(eta) = sigma_Omega^2 · dOmega_{n,p}
 
 The pilot measured overlapping retarded windows — n=0 spans ages 0–58 M, n=1
 spans 46–103 M, n=2 spans 62–120 M — so an order does not correspond to one
-source age and `a_n j(t_o − n tau)` is only an asymptotic summary. Pixel area
-enters the likelihood, not the forward row, under the primary specific-intensity
-model.
+source age and `a_n j(t_o − n tau)` is only an asymptotic summary.
+
+**The measurement convention changed, and the numbers below changed with it.**
+The datum is a pixel-integrated flux against white noise of density
+`sigma_Omega` per unit solid angle, so the whitened row is
+
+    sqrt(dOmega) / sigma_Omega · g^3 · B(r, phi, t)
+
+The earlier revision of this experiment used `c = g^3` with a flat per-row
+sigma. That convention makes Fisher information scale with the *number of rows*:
+splitting one pixel into k identical children multiplied the Gram by k
+(measured relative error 1.0, 3.0, 7.0 at k = 2, 4, 8). The lensing bands
+differ enormously in solid angle — n=0 covers 2496 M^2, n=1
+54.6 M^2, n=2 1.67 M^2 — so giving every order the same
+1536-row budget silently handed n=1 a detector 46x quieter per unit
+sky than the direct image, and n=2 one 1493x quieter. Gate
+`G10q_continuum_noise_quadrature_invariance` now locks the corrected
+convention at 5.4e-15; the retired convention is recorded as a literal FAIL
+with disposition `RETIRED_PIXELIZATION_DEPENDENT`. Every quantity in this
+report is the corrected one, and where a conclusion moved, it is stated.
 
 ## Arms
 
 | arm | rows | rank /224 | operational rank | kappa+ |
 |---|---:|---:|---:|---:|
 | `DIRECT_PHYSICAL` | 12288 | 224 | 153 | 1.134e+09 |
-| `RESOLVED_PHYSICAL` | 36864 | 224 | 215 | 6.036e+04 |
-| `RESOLVED_EQUALIZED` | 36864 | 224 | 216 | 4.700e+04 |
-| `DELAY_ONLY_PHYSICAL` | 36864 | 224 | 222 | 2.435e+04 |
-| `SPATIAL_ONLY_PHYSICAL` | 36864 | 224 | 192 | 1.715e+06 |
-| `UNRESOLVED_PHYSICAL` | 12288 | 224 | 213 | 8.024e+04 |
-| `TOTAL_FLUX` | 24 | 24 | 12 | 4.023e+10 |
-| `PAIRING_DESTROYED` | 36864 | 224 | 224 | 1.894e+03 |
+| `RESOLVED_PHYSICAL` | 36864 | 224 | 201 | 7.036e+05 |
+| `RESOLVED_EQUALIZED` | 36864 | 224 | 216 | 4.705e+04 |
+| `DELAY_ONLY_PHYSICAL` | 36864 | 224 | 214 | 7.831e+04 |
+| `SPATIAL_ONLY_PHYSICAL` | 36864 | 224 | 177 | 1.195e+07 |
+| `UNRESOLVED_PHYSICAL` | 12288 | 224 | 181 | 7.069e+06 |
+| `TOTAL_FLUX` | 24 | 24 | 13 | 1.042e+09 |
+| `PAIRING_DESTROYED` | 36864 | 224 | 221 | 2.098e+04 |
 
 Every arm reaches full algebraic rank on the registered 224-dimensional global
 class, so rank does not discriminate here. Conditioning and reach do.
@@ -74,16 +99,16 @@ reach.
 |---:|---:|---:|---:|---:|---:|---:|---:|---:|
 | 1 | – | – | – | – | – | – | – | – |
 | 3 | – | – | – | – | – | – | – | – |
-| 10 | 48 | 84 | 96 | 84 | 52 | 64 | 40 | 72 |
-| 30 | 56 | 104 | 112 | 104 | 56 | 96 | 52 | 96 |
-| 100 | 60 | 116 | ≥120 | 116 | 60 | 112 | 56 | 112 |
-| 300 | 60 | ≥120 | ≥120 | ≥120 | 60 | ≥120 | 60 | ≥120 |
-| 1000 | 64 | ≥120 | ≥120 | ≥120 | 64 | ≥120 | 68 | ≥120 |
-| 3000 | 64 | ≥120 | ≥120 | ≥120 | 64 | ≥120 | 88 | ≥120 |
-| 10000 | 64 | ≥120 | ≥120 | ≥120 | 64 | ≥120 | 96 | ≥120 |
-| 30000 | 68 | ≥120 | ≥120 | ≥120 | 68 | ≥120 | 96 | ≥120 |
-| 100000 | 68 | ≥120 | ≥120 | ≥120 | 68 | ≥120 | 100 | ≥120 |
-| 1e+06 | 68 | ≥120 | ≥120 | ≥120 | 68 | ≥120 | 112 | ≥120 |
+| 10 | 48 | 48 | 96 | 48 | 48 | 48 | – | 48 |
+| 30 | 56 | 56 | 112 | 56 | 56 | 56 | 52 | 56 |
+| 100 | 60 | 84 | ≥120 | 84 | 60 | 60 | 56 | 72 |
+| 300 | 60 | 96 | ≥120 | 96 | 60 | 64 | 76 | 92 |
+| 1000 | 64 | 104 | ≥120 | 104 | 64 | 92 | 92 | 100 |
+| 3000 | 64 | 112 | ≥120 | 112 | 64 | 96 | 96 | 108 |
+| 10000 | 64 | ≥120 | ≥120 | ≥120 | 64 | 100 | 108 | ≥120 |
+| 30000 | 68 | ≥120 | ≥120 | ≥120 | 68 | 104 | 112 | ≥120 |
+| 100000 | 68 | ≥120 | ≥120 | ≥120 | 68 | 112 | 116 | ≥120 |
+| 1e+06 | 68 | ≥120 | ≥120 | ≥120 | 68 | ≥120 | ≥120 | ≥120 |
 
 Three readings, and the middle one is the paper's result.
 
@@ -95,17 +120,32 @@ structural limit, not a noise limit.
 `DELAY_ONLY_PHYSICAL` — physical per-ray delays, direct-order spatial map —
 tracks `RESOLVED_PHYSICAL` exactly at every SNR. `SPATIAL_ONLY_PHYSICAL` —
 physical spatial maps, delays flattened onto the direct field — tracks
-`DIRECT_PHYSICAL` exactly. **This reverses E1.** In the toy, a common sampler
+`DIRECT_PHYSICAL` exactly (both tracking relations hold at every SNR in the sweep). **This reverses E1.** In the toy, a common sampler
 made the delay ladder worth nothing and spatial diversity did all the work. On
 physical Kerr maps the opposite holds. E1's mechanism conclusion does not
 survive contact with the real transfer maps, and should not be carried into the
 manuscript as a physical statement.
 
-**Attenuation costs less depth than the throughput ratio suggests.**
-`RESOLVED_EQUALIZED` reaches 120 M where `RESOLVED_PHYSICAL` reaches 116 M at
-SNR 100 — four samples out of sixty. A throughput suppression of ~3000x between
-orders 0 and 2 costs remarkably little historical reach, because the faint deep
-orders are the *only* channels that see those epochs at all.
+**Attenuation costs real depth. This reverses the earlier reading.** Under the
+retired flat-sigma convention `RESOLVED_EQUALIZED` beat `RESOLVED_PHYSICAL` by
+one grid step at SNR 100, and the experiment reported that a ~3154x
+throughput suppression cost almost no historical reach. Under the corrected
+convention the same comparison gives at least 36 M at SNR 100 and
+at least 56 M across the sweep — lower bounds, because
+`RESOLVED_EQUALIZED` is right-censored at the 120 M grid
+ceiling wherever the gap is largest. The earlier statement was an artefact of
+the flat-sigma row budget, which had already given the faint deep orders most
+of the equalization for free. Removing physical attenuation is worth tens of M of
+reach, not a rounding step, and the corrected finding is the opposite of the
+one previously recorded.
+
+**Total information barely moves; distinguishable directions do.** The resolved
+stack carries trace information 8.944e+08 against the direct image's
+8.845e+08 — a gain of 1.12%, because
+orders 1 and 2 collect almost no photons. Its operational rank nonetheless rises
+from 153 to 201 of 224. That gap is the whole point: the deep
+orders add structure, not signal, and any figure of merit built on total
+information will miss what they contribute.
 
 ## Attenuation decomposition
 
@@ -124,51 +164,79 @@ identified with it anywhere in this repository.
 
 | retarded age (M) | I(order 0) | I(order 1) | I(order 2) | dominance 0→1 | dominance 1→2 |
 |---:|---:|---:|---:|---:|---:|
-| 0 | 232 | 5.01e-35 | 1.03e-88 | – | – |
-| 20 | 272 | 0.0158 | 8.69e-26 | 5.8e-05x | – |
-| 40 | 245 | 151 | 1.79 | 0.617x | 0.0118x |
-| 60 | 4.3 | 152 | 148 | 35.4x | 0.971x |
-| 80 | 1.95e-24 | 64 | 71.9 | – | 1.12x |
-| 100 | 1.13e-86 | 1.05 | 24.6 | – | 23.4x |
-| 116 | 3.19e-164 | 1.36e-12 | 1.03 | – | – |
+| 0 | 230 | 1.13e-36 | 7.12e-92 | – | – |
+| 20 | 273 | 0.000347 | 6.02e-29 | 1.27e-06x | – |
+| 40 | 247 | 3.36 | 0.0012 | 0.0136x | 0.000359x |
+| 60 | 4.39 | 3.33 | 0.0985 | 0.758x | 0.0296x |
+| 80 | 1.99e-24 | 1.41 | 0.049 | – | 0.0347x |
+| 100 | 1.15e-86 | 0.0236 | 0.0169 | – | 0.716x |
+| 116 | 3.26e-164 | 3.07e-14 | 0.000716 | – | – |
 
 This is the **age_specific_order_dominance_ratio**: a pointwise comparison at a
 fixed absolute age between orders whose temporal supports barely overlap. It is
 deliberately *not* called Gamma_info, because it does not measure a decay along
-matched support. At age 60 M order 1 carries about 35x more information about
-the localized mode than order 0; at 100 M order 2 carries about 23x more than
-order 1. Entries appear only where both orders clear an information floor — a
-ratio of two vanishing informations is neither a ratio nor an exponent.
+matched support. Order 1 overtakes order 0 between 60 M and 64 M; order 2 overtakes
+order 1 between 100 M and 104 M. Under the retired convention those crossovers sat at
+44–48 M and 60–64 M, so correcting the whitening pushes each of them ~16 to
+40 M deeper: the deep orders take over later than previously reported. The
+ordering survives; the depths and the ratios do not. Entries appear only where both orders clear an
+information floor — a ratio of two vanishing informations is neither a ratio nor
+an exponent.
 
-## Information attenuation on matched support
+## Sensitivity attenuation on matched support
 
 Each order is sampled at the same fractional position within its **own** retarded
-window, so the orders are compared on matched temporal support and the resulting
-exponent is a genuine Gamma_info.
+window, so the orders are compared on matched temporal support:
 
-| window fraction | age n=0 | age n=1 | age n=2 | Gamma_info 0→1 | Gamma_info 1→2 |
+    Gamma_sensitivity_matched = -0.5 * log(I_next_matched / I_current_matched)
+
+All 19 window fractions are retained; the full distribution is in
+`artifacts/tables/e3b_matched_support_attenuation.parquet`.
+
+| window fraction | age n=0 | age n=1 | age n=2 | Gamma_sens 0→1 | Gamma_sens 1→2 |
 |---:|---:|---:|---:|---:|---:|
-| 0.05 | 2.9 | 49.0 | 65.3 | 0.079 | 0.138 |
-| 0.25 | 14.5 | 59.9 | 76.7 | 0.253 | 0.296 |
-| 0.45 | 26.0 | 70.8 | 88.2 | 0.513 | 0.374 |
-| 0.65 | 37.6 | 81.7 | 99.7 | 0.794 | 0.404 |
-| 0.85 | 49.1 | 92.5 | 111.2 | 0.991 | 0.572 |
+| 0.05 | 2.9 | 49.0 | 65.3 | 1.980 | 1.887 |
+| 0.25 | 14.5 | 59.9 | 76.7 | 2.159 | 2.035 |
+| 0.45 | 26.0 | 70.8 | 88.2 | 2.426 | 2.106 |
+| 0.65 | 37.6 | 81.7 | 99.7 | 2.704 | 2.138 |
+| 0.85 | 49.1 | 92.5 | 111.2 | 2.899 | 2.305 |
 
-Median Gamma_info is **0.576** from order 0 to 1 and **0.387** from 1 to 2,
-defined at all 19 window fractions. Against Gamma_amp of 4.27 and 4.03,
-**information decays roughly seven to ten times more slowly than amplitude**.
+Median Gamma_sensitivity_matched is **2.486** from order 0 to 1 and
+**2.120** from 1 to 2, defined at all 19 window fractions. Against
+Gamma_amp of 4.27 and 4.03, sensitivity decays more slowly than
+throughput by **1.79 and 1.91 in the exponent** —
+a factor of about 1.7x and 1.9x in the rate,
+not the order of magnitude reported under the retired convention.
 
-That is the paper's sharpest quantitative statement, and it needed matched
-support to state: a single scalar attenuation exponent describes the throughput
-and badly misdescribes the information. Higher orders are three thousand times
+**This is the largest single change from the corrected convention, and the
+earlier number should not be quoted.** The retired flat-sigma run gave 0.576
+and 0.387, which read as "information decays seven to ten times more slowly
+than amplitude". That gap was manufactured: a flat per-row sigma across bands
+of wildly different solid angle inflates the thin deep bands, and it inflates
+precisely the quantity the claim rested on.
+
+The corrected gap is not a fitted result but a convention-level identity, which
+is why it is worth stating. A whitened row carries sqrt(dOmega) where the flux
+carries dOmega, so information scales linearly in solid angle where throughput
+scales quadratically, and
+
+    Gamma_sensitivity_matched ≈ Gamma_amp − 0.5 · log(dOmega_0 / dOmega_1)
+                              = 4.27 − 1.91
+                              = 2.36
+
+against a measured 2.49. The surviving statement is therefore weaker,
+better founded, and still the operative one: a single scalar attenuation
+exponent describes the throughput and misdescribes the information, by about
+half the log solid-angle demagnification. Higher orders are ~3154x
 fainter and remain the sole carriers of everything older than about 60 M.
 
 ## Claim effect
 Permits, for this one geometry: reporting that the physical historical channel
 is a distributed, overlapping retarded-time kernel; that its reach is supplied
 by delay diversity rather than spatial remapping; and that throughput
-suppression and information suppression are different quantities with different
-signs.
+suppression and information suppression are different quantities with
+different magnitudes, separated by about half the log solid-angle
+demagnification.
 Demotes: E1's mechanism finding, which is a property of the toy's common
 sampler and not of Kerr.
 Forbids: any 12-geometry or spin/inclination-dependent statement; any

@@ -5,68 +5,76 @@
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G3_physical_adjoint": {
       "status": "PASS",
-      "measured": 5.2573729688035534e-14,
+      "measured": 7.172906863508169e-14,
       "threshold": 1e-08,
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 5.2573729688035534e-14,
+        "measured": 7.172906863508169e-14,
         "threshold": 1e-08,
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G4_physical_resolved_unresolved_mixing": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
-        "status": "PASS",
-        "measured": 0.0,
+        "status": "FAIL",
+        "measured": 0.3653519910994384,
         "threshold": 1e-10,
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
+    },
+    "G4b_linear_collapse_covariance_propagation": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-12,
+      "note": "channel variance against an independently formed L C_R L^T",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00"
     },
     "G5_physical_injected_null": {
       "status": "NOT_RUN",
       "note": "the registered global class has trivial numerical null space under this arm",
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
         "status": "NOT_RUN",
         "note": "the registered global class has trivial numerical null space under this arm",
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G6_physical_Gram_monotonicity": {
       "status": "PASS",
-      "measured": 0.0,
+      "measured": 6.562745738215744e-17,
       "threshold": 1e-10,
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 0.0,
+        "measured": 6.562745738215744e-17,
         "threshold": 1e-10,
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G6b_resolved_dominates_direct": {
@@ -74,15 +82,15 @@
       "measured": 0.0,
       "threshold": 1e-10,
       "note": "G_resolved - G_direct must be positive semidefinite",
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
         "note": "G_resolved - G_direct must be positive semidefinite",
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G7b_transfer_field_convergence": {
@@ -151,18 +159,18 @@
     },
     "G9w_weight_semantics": {
       "status": "PASS",
-      "measured": 0.0,
+      "measured": 1.6921312011308915e-16,
       "threshold": 1e-10,
       "note": "operator output for a unit source j=1, against sum(dOmega * g^3) computed outside the operator, per order",
-      "run_id": "E3B_20260825T063023Z_2ba66f02",
-      "recorded_at": "2026-08-25T06:33:17+00:00",
+      "run_id": "E3B_20260825T084443Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:47:24+00:00",
       "superseded": {
-        "status": "PASS",
-        "measured": 0.0,
+        "status": "FAIL",
+        "measured": 0.9799820558794974,
         "threshold": 1e-10,
         "note": "operator output for a unit source j=1, against sum(dOmega * g^3) computed outside the operator, per order",
-        "run_id": "E3B_20260825T054957Z_2ba66f02",
-        "recorded_at": "2026-08-25T05:52:34+00:00"
+        "run_id": "E3B_20260825T084121Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:44:03+00:00"
       }
     },
     "G9c_per_order_ray_count": {
@@ -172,11 +180,45 @@
       "note": "n0_valid=15597, n1_valid=8531, n2_valid=4179, minimum_per_order=4179, total_valid=28307. The reported 4179 was the per-order minimum (n=2), not the combined total; every order independently exceeds 1536.",
       "run_id": "E3BPRE_20260825T053650Z_2ba66f02",
       "recorded_at": "2026-08-25T05:36:56+00:00"
+    },
+    "G10q_continuum_noise_quadrature_invariance": {
+      "status": "PASS",
+      "measured": 5.401254977883461e-15,
+      "threshold": 1e-10,
+      "note": "worst relative change in G under pixel split and merge at k = (2, 3, 4, 8), across the resolved, unresolved-image and total-flux arms. Whitened row is sqrt(dOmega) g^3 B / sigma_Omega.",
+      "run_id": "G10Q_20260825T085132Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:51:32+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 5.223431007480394e-15,
+        "threshold": 1e-10,
+        "note": "worst relative change in G under pixel split and merge at k = (2, 3, 4, 8), across the resolved, unresolved-image and total-flux arms. Whitened row is sqrt(dOmega) g^3 B / sigma_Omega.",
+        "run_id": "G10Q_20260825T083249Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:33:49+00:00"
+      }
+    },
+    "G10q_retired_flat_sigma_convention": {
+      "status": "FAIL",
+      "disposition": "RETIRED_PIXELIZATION_DEPENDENT",
+      "measured": 6.999999999999998,
+      "threshold": 1e-10,
+      "note": "the superseded convention (c = g^3, flat per-row sigma) measured on the same rays: worst 7.000e+00, growing as k - 1. It manufactures Fisher information out of pixel count, and since ray counts differ by orders of magnitude between lensing bands it silently reweighted the bands against each other. Preserved as the reason the convention changed, not as a live failure.",
+      "run_id": "G10Q_20260825T085132Z_2ba66f02",
+      "recorded_at": "2026-08-25T08:51:32+00:00",
+      "superseded": {
+        "status": "FAIL",
+        "disposition": "RETIRED_PIXELIZATION_DEPENDENT",
+        "measured": 6.999999999999997,
+        "threshold": 1e-10,
+        "note": "the superseded convention (c = g^3, flat per-row sigma) measured on the same rays: worst 7.000e+00, growing as k - 1. It manufactures Fisher information out of pixel count, and since ray counts differ by orders of magnitude between lensing bands it silently reweighted the bands against each other. Preserved as the reason the convention changed, not as a live failure.",
+        "run_id": "G10Q_20260825T083249Z_2ba66f02",
+        "recorded_at": "2026-08-25T08:33:49+00:00"
+      }
     }
   },
   "summary": {
-    "PASS": 13,
-    "FAIL": 0,
+    "PASS": 15,
+    "FAIL": 1,
     "NOT_RUN": 1
   }
 }

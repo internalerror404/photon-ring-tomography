@@ -1,7 +1,7 @@
 {
   "experiment": "E3B",
-  "generated_at": "2026-08-25T06:39:56Z",
-  "git_commit": "92d183aa9ab46f9f73097deba9e6ce66a4e0ea69",
+  "generated_at": "2026-08-25T08:55:25Z",
+  "git_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
   "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
   "kgeo_commit": "dc347060c5fb24e2c360c8aaffbfe25482a83805",
   "physics_environment": "pinned venv: numpy 1.26.4, scipy 1.11.4, aart 2.1.10",
@@ -12,7 +12,7 @@
     },
     {
       "path": "artifacts/gates/e3b_correctness_gates.json",
-      "sha256": "3ce34c058c2741947933b9f24d1c4fb2d628953c18b4596ead2d0e48dae37840"
+      "sha256": "8c296adc39be7f898faa0448115b495c18f7d25e7c76ce4455ab5d4d5167bc47"
     },
     {
       "path": "artifacts/provenance/kgeo_commit.txt",
@@ -32,19 +32,19 @@
     },
     {
       "path": "artifacts/reports/E3B_PHYSICAL_OPERATOR_CANARY.md",
-      "sha256": "0028b98604886ee6da62d9e447ff5a423f579742f1753a7a04929593f052261b"
+      "sha256": "1d37fdc3a2e7d9c449a81b1c763766f924b7107d4722c952ef1883377cc7e58c"
     },
     {
       "path": "artifacts/reports/E3B_RETARDED_TIME_VALIDATION.md",
-      "sha256": "0c0ea69b5812fe05c1a9a0b97ac9b7f3ec04664e7908b789d604899c0236273d"
+      "sha256": "4237a643591357bc98fbd487f5e13d6f19e229eae7f626d4bbc9b31f60151e72"
     },
     {
       "path": "artifacts/reports/E3B_TRANSFER_WEIGHT_AUDIT.md",
-      "sha256": "8b450015f04844029a01cfdedea9f068999108a86ffc8b7cc77d28c70a494a93"
+      "sha256": "230a661bf27be9ebfc30e6ca62f4da7cb45d89bafe3bbe18c5e8f78e7be5161a"
     },
     {
       "path": "artifacts/tables/e3b_age_information.parquet",
-      "sha256": "02d7c876d095a92cc1e61a966579c6757329e59e31cb0dbeddf3337e9d2871fa"
+      "sha256": "19feda63675bddd7416b45161abfbea616804e1cdffadc9ca1389c841ffbe3b9"
     },
     {
       "path": "artifacts/tables/e3b_age_support_bookkeeping.parquet",
@@ -52,7 +52,11 @@
     },
     {
       "path": "artifacts/tables/e3b_attenuation_decomposition.parquet",
-      "sha256": "3c4d6f33409b7497244691fac8a2c5151dd821f47a55f91e30afcad04f492379"
+      "sha256": "2072142aae42411e9d24991282b2b8c1efa5e2689141fa7dcce7380f72cfab33"
+    },
+    {
+      "path": "artifacts/tables/e3b_covariance_propagation.parquet",
+      "sha256": "06c2406054ae427e951fe50131cdcc2c768c202ee96067c1a42b43095ada5e76"
     },
     {
       "path": "artifacts/tables/e3b_field_convergence.parquet",
@@ -64,31 +68,35 @@
     },
     {
       "path": "artifacts/tables/e3b_gamma_info.parquet",
-      "sha256": "403c21f9627e1cf3442106abac5f2400f2f8488d3f452a82f6649cf8723cab69"
+      "sha256": "e2ef5d05042a72712664e3e015476392f886e8b41f1a602e9e989dc7533f768b"
     },
     {
       "path": "artifacts/tables/e3b_matched_support_attenuation.parquet",
-      "sha256": "959ac29416d8beeee81098def7fe326f54ee3a0dfd33120c16ea296f8bdd8e16"
+      "sha256": "0968157eb091bea5b5c020e58a58dd369b9bab1f448e5a20afe43bd8470c2520"
     },
     {
       "path": "artifacts/tables/e3b_near_null_scaling.parquet",
-      "sha256": "2eb60fe4b7cd68fbea24e51cca17257efc3e2c42a72fbe6ccb9965bf9bf37d6e"
+      "sha256": "b1440976a6913a2d3a22eb5d7aeb16fc69736410ee9e2250329773dd782eeeaa"
     },
     {
       "path": "artifacts/tables/e3b_per_order_ray_count.parquet",
       "sha256": "6291b81b572b4a47a83b3c77d28a084a3b490ec612670f8b0cae0e4610a3b28e"
     },
     {
+      "path": "artifacts/tables/e3b_quadrature_invariance.parquet",
+      "sha256": "5b2abc84f6d1225e32c67ea50c6049397a4dd502aa9e2a28e6e552b7d0aa96a2"
+    },
+    {
       "path": "artifacts/tables/e3b_singular_spectra.parquet",
-      "sha256": "04ab09bbd6eccd626953044af267803841f7337ac16c74f150cb9fe6f1fd7131"
+      "sha256": "e11e2f395bb22e489e17e9947f39df38e5451caba19dfb4311e2a924c46c672f"
     },
     {
       "path": "artifacts/tables/e3b_temporal_depth_curve.parquet",
-      "sha256": "0388022c87886c626c80cdb867657dc5a8f12a1480bf5a9536d93eaea1e848b7"
+      "sha256": "9d155c6308b19036d89e05cfd066766b570325da2f67b70a32d45ac41075f2cf"
     },
     {
       "path": "artifacts/tables/e3b_weight_semantics.parquet",
-      "sha256": "a8be1f2de0a54f3f44dfb27621436602577976be89537703f3de8af2257ace19"
+      "sha256": "0369b21fe00e78a5445b480d77c9f4f13ad188b292ebe0f6db1ac999ca052527"
     }
   ]
 }

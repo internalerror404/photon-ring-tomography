@@ -1,7 +1,7 @@
 # E3B — TRANSFER-WEIGHT SEMANTICS AUDIT (G9w)
 
 ## Identity
-- branch `claude/experiment-review-mac-rthiz1`, commit `92d183aa9ab46f9f73097deba9e6ce66a4e0ea69`
+- branch `claude/experiment-review-mac-rthiz1`, commit `0ef341dae3b21bc2bdd0e54a18971cff208af783`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - geometry a* = 0.5, i = 50 deg, orders n = 0, 1, 2 (the single authorized pilot geometry)
 - kgeo commit `dc347060c5fb24e2c360c8aaffbfe25482a83805`
@@ -32,8 +32,8 @@ A source `j(r, phi, t) = 1` is pushed through the operator and compared against
 | order | operator unit-source throughput | independent sum dOmega·g^3 | relative |
 |---:|---:|---:|---:|
 | 0 | 2069.153391 | 2069.153391 | 0.000e+00 |
-| 1 | 28.87133011 | 28.87133011 | 0.000e+00 |
-| 2 | 0.656109304 | 0.656109304 | 0.000e+00 |
+| 1 | 28.87133011 | 28.87133011 | 1.231e-16 |
+| 2 | 0.656109304 | 0.656109304 | 1.692e-16 |
 
 Exact agreement, per order. The operator's weighting is what the audit says it
 is.
@@ -49,7 +49,7 @@ against the resolved arm's 84 M.
 ## Gates
 | gate | status | measured | threshold |
 |---|---|---:|---:|
-| `G9w_weight_semantics` | **PASS** | 0 | 1e-10 |
+| `G9w_weight_semantics` | **PASS** | 1.692e-16 | 1e-10 |
 | `G9c_per_order_ray_count` | **PASS** | 4179 | 1536 |
 
 `G9c` answers the reviewer's challenge directly: n0 = 15597, n1 = 8531,

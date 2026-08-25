@@ -1,6 +1,29 @@
 {
-  "experiment": "S0",
-  "gates": {
+  "run_id": "S0_20260825T085012Z_2ba66f02",
+  "experiment_id": "S0_BACKEND_CANARY",
+  "git_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {},
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    }
+  ],
+  "outputs": [],
+  "gate_status": {
     "S0_4_exact_horizon": {
       "status": "PASS",
       "measured": 1.8484384687544875e-05,
@@ -109,17 +132,37 @@
       "threshold": 1e-10
     }
   },
-  "summary": {
-    "PASS": 19,
-    "FAIL": 0,
-    "NOT_RUN": 0
+  "started_at": "2026-08-25T08:50:12+00:00",
+  "finished_at": "2026-08-25T08:50:53+00:00",
+  "peak_rss_mb": 515.421875,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
   },
-  "exact_invariants": {
-    "horizon_radius": 2.0,
-    "photon_sphere_radius": 3.0,
-    "isco_radius": 6.0,
-    "critical_impact_parameter": 5.196152422706632,
-    "E_isco": 0.9428090415820634,
-    "L_isco": 3.4641016151377544
-  }
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 40.893773317337036,
+  "geometry": "a000_i020"
 }

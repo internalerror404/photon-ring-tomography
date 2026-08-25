@@ -2,11 +2,11 @@
 
 ## Identity
 - branch: `claude/experiment-review-mac-rthiz1`
-- commit: `a5f31a30bf96a7f5040f4adca711f32620e7d426`  (source tree dirty: False)
+- commit: `0ef341dae3b21bc2bdd0e54a18971cff208af783`  (source tree dirty: False)
 - config: `paper1_experiment_registry_v0.2.yaml`  sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
-- environment sha256: `2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd`
+- environment sha256: `00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1`
 - hardware: Linux x86_64, 4 cores, 15.7 GiB
-- python 3.11.15; numpy 2.4.6, scipy 1.17.1, torch 2.13.0, aart 2.1.10
+- python 3.11.15; numpy 1.26.4, scipy 1.11.4, torch ABSENT, aart 2.1.10
 - run_id: `E0_20260825T013040Z_2ba66f02`
 
 ## Mechanical gate result

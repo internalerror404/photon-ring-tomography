@@ -102,6 +102,37 @@ DEFECTS = [
         "corrected_in": "PENDING_COMMIT",
         "invalidates": ["e0_*", "e1_*", "e2_*"],
     },
+    {
+        "id": "D-H_flat_sigma_measurement_convention",
+        "summary": "The physical operator used the forward coefficient c = g^3 "
+                   "with a flat per-row sigma, so Fisher information scaled with "
+                   "the number of rows rather than with solid angle. Splitting "
+                   "one pixel into k identical children multiplied the Gram by "
+                   "k (relative error 1.0, 3.0, 7.0 at k = 2, 4, 8). The "
+                   "corrected pixel-integrated model gives every row "
+                   "sqrt(dOmega) * g^3 / sigma_Omega and is invariant to "
+                   "5.4e-15 under the same split/merge test.",
+        "consequence": "MATERIAL for every E3B information statement. Because "
+                       "the lensing bands differ in solid angle by a factor of "
+                       "~1500, an equal 1536-row budget per order handed the "
+                       "thin deep bands a far quieter detector per unit sky. "
+                       "Corrected: median Gamma_sensitivity_matched moves from "
+                       "0.576 / 0.387 to 2.486 / 2.120, so 'information decays "
+                       "seven to ten times more slowly than amplitude' becomes "
+                       "'about twice as slowly'; the equalized-arm depth "
+                       "advantage moves from one grid step to tens of M, "
+                       "reversing the claim that attenuation costs little "
+                       "reach; and the resolved stack's trace-information gain "
+                       "over the direct image falls from 82% to 1.1% while its "
+                       "operational rank still rises 153 -> 201. UNCHANGED: "
+                       "delay diversity supplies the reach and spatial "
+                       "remapping supplies none (DELAY_ONLY tracks RESOLVED and "
+                       "SPATIAL_ONLY tracks DIRECT at every SNR), "
+                       "PAIRING_DESTROYED remains the best-conditioned arm, and "
+                       "every arm still reaches full algebraic rank on C224.",
+        "corrected_in": "PENDING_COMMIT",
+        "invalidates": ["e3b_*", "s0_operator_comparison*"],
+    },
 ]
 
 

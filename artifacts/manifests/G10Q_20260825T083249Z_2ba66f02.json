@@ -1,0 +1,80 @@
+{
+  "run_id": "G10Q_20260825T083249Z_2ba66f02",
+  "experiment_id": "G10Q",
+  "git_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "seed": 20260825
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3b_quadrature_invariance.parquet",
+      "sha256": "357b1a3fd1f7bdba3f27ab2407678f1ff5430115eb2b23ac2e00867f33ee7eba"
+    }
+  ],
+  "gate_status": {
+    "G10q_continuum_noise_quadrature_invariance": {
+      "status": "PASS",
+      "measured": 5.223431007480394e-15,
+      "threshold": 1e-10,
+      "note": "worst relative change in G under pixel split and merge at k = (2, 3, 4, 8), across the resolved, unresolved-image and total-flux arms. Whitened row is sqrt(dOmega) g^3 B / sigma_Omega."
+    },
+    "G10q_retired_flat_sigma_convention": {
+      "status": "FAIL",
+      "disposition": "RETIRED_PIXELIZATION_DEPENDENT",
+      "measured": 6.999999999999997,
+      "threshold": 1e-10,
+      "note": "the superseded convention (c = g^3, flat per-row sigma) measured on the same rays: worst 7.000e+00, growing as k - 1. It manufactures Fisher information out of pixel count, and since ray counts differ by orders of magnitude between lensing bands it silently reweighted the bands against each other. Preserved as the reason the convention changed, not as a live failure."
+    }
+  },
+  "started_at": "2026-08-25T08:32:49+00:00",
+  "finished_at": "2026-08-25T08:33:48+00:00",
+  "peak_rss_mb": 631.36328125,
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.11.1",
+    "scikit-learn": "1.9.0",
+    "scikit-image": "0.26.0",
+    "pyyaml": "6.0.1",
+    "torch": "2.13.0",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 5.050720691680908
+}
