@@ -1,0 +1,35 @@
+{
+  "amendment": "002",
+  "title": "Age-resolved information matrix on the registered localized class",
+  "experiment": "E3C",
+  "status": "ADOPTED_WITH_LITERAL_RESULT_PRESERVED",
+  "trigger": "The registered hypotheses H2 and H3 compare the full and substituted age-information curves through D = ||log(1+I_full) - log(1+I_sub)||_2 / max(1, ||log(1+I_full)||_2). Under the registered localized probe -- Gaussian in retarded age, flat in the emission annulus -- this comparison is degenerate for the delay-only substitution.",
+  "why_it_is_degenerate": "substitute_spatial replaces only source_r and source_phi, keeping delay, redshift and quadrature. The flat probe has no spatial structure, so the scalar curve I(a) = q_a^T A^T C^-1 A q_a cannot depend on where the rays land. D_delay is therefore identically zero as an algebraic identity of the diagnostic, not as evidence for the delay mechanism. Reporting it as support for the delay mechanism would have been a circular claim.",
+  "verification": {
+    "check": "RESOLVED_PHYSICAL and DELAY_ONLY age-information curves compared elementwise on all 12 geometries under the first E3C pass",
+    "result": "bitwise identical at every geometry and every age; D_delay = 0.000e+00 in all 12 cells"
+  },
+  "literal_result_preserved": "D_delay and D_spatial on the scalar probe remain in artifacts/tables/e3c_hypothesis_tests.parquet under hypothesis ids H2_delay_mechanism and H3_spatial_mechanism, and are reported as identities rather than deleted or reinterpreted.",
+  "what_is_added": {
+    "object": "M(a) = P(a)^T P(a), where P(a) is the whitened operator applied to the 28 unit-L2 probes of the registered localized class -- the same radial B-spline and real-Fourier factors as C224, crossed with one compact temporal bump at retarded age a",
+    "why_this_class": "It is not a new class. src/phrt/sources/physical_basis.py already registers the localized class as radial x azimuthal x one bump, and the flat scalar probe is its m=0 partition-of-unity contraction. The amendment stops contracting it before the mechanism comparison.",
+    "normalization": "each probe divided by its analytic L2 norm over the emission region, int R_a^2 Phi_b^2 r dr dphi times w sqrt(pi), so the eigenvalues of M(a) are Fisher informations per unit source amplitude and no basis normalisation can masquerade as an information difference",
+    "derived_quantities": [
+      "log_information_volume(a) = sum_k log(1 + SNR^2 lambda_k(a)), which reduces to log(1 + SNR^2 I(a)) when the localized class is scalar",
+      "lambda_max(a) and lambda_min(a), the best- and worst-determined localized modes at epoch a",
+      "H2m / H3m: the registered D statistic recomputed on log_information_volume instead of the scalar curve",
+      "T_rec_best_mode: the depth of the best-determined localized mode",
+      "J_old_best_mode and J_old_log_volume"
+    ]
+  },
+  "no_change_to": [
+    "the registered primary source class C224",
+    "the scalar localized probe, its half width, or its normalization",
+    "the common age grid, the SNR grid, the operational threshold, the censoring rule",
+    "T_rec and J_old as registered, which continue to be computed on the scalar probe",
+    "the measurement and noise convention",
+    "the eight registered arms or the sixteen permutation seeds",
+    "the ray maps, whose sha256 remain those pinned in E3C_OPERATOR_GRID_FREEZE.json"
+  ],
+  "scope_limit": "This is a diagnostic amendment. It adds a way to see a mechanism difference that the registered statistic cannot see; it does not change any registered measurement, gate or threshold, and it is not evidence for either mechanism by itself."
+}

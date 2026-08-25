@@ -1,0 +1,187 @@
+{
+  "run_id": "E3C_20260825T091742Z_2ba66f02",
+  "experiment_id": "E3C",
+  "git_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "subsample_seed": 20260825,
+    "permutation_seeds": [
+      20260825,
+      20261825,
+      20262825,
+      20263825,
+      20264825,
+      20265825,
+      20266825,
+      20267825,
+      20268825,
+      20269825,
+      20270825,
+      20271825,
+      20272825,
+      20273825,
+      20274825,
+      20275825
+    ]
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+      "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_geometry_metrics.parquet",
+      "sha256": "f57b4a0f7d528a5c2310465ac17c2cf76ea7948a611a4a0e85b9c7a3dc963584"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_age_information.parquet",
+      "sha256": "3bb1ca3c0bbec9a00bd228469a9ec566c6573e28c35a5bfeec960c0c5b68ba92"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_depth_curves.parquet",
+      "sha256": "1f51312776726a9899bd18b0506c9724688156a211cb64f90bd48365f6ad2407"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_historical_innovation.parquet",
+      "sha256": "1a797c175a5a3105783bde5af4ae8e316b369ba115dbbc48156660e8ebb63abb"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_matched_sensitivity_exponents.parquet",
+      "sha256": "f3a8d80f76cb3fc8efc2578aa59eedcf41be619107adabd35d46f9058917a3cb"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_matched_sensitivity_summary.parquet",
+      "sha256": "bfb5b2a2301e1804ee1947adfd1653caa98e87b68a87d0473546125f407b10be"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_pairing_destroyed_distribution.parquet",
+      "sha256": "33057d801a714847dfc5b882d7791592d184bcd7ba0572cfad86b4d6a4068db1"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_common_radial_support_control.parquet",
+      "sha256": "40ecb49d19a070b3540495065b5cd6d7fc94e18b469e716ef3313d497af5e6ca"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_hypothesis_tests.parquet",
+      "sha256": "069ce4053c92e43d4a4b73568ebd3a3558418ad72bd62bbc28bed6ddb6aed9e9"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_geometry_surface.parquet",
+      "sha256": "447ae62d637033d60965466bf7a11db92eda2ad7128edd90e48427dd678e4216"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3c_gate_detail.parquet",
+      "sha256": "47c89d28c04583e14783b9439aaca373e8d654effe315e031cdc36bccc8a1a91"
+    }
+  ],
+  "gate_status": {
+    "E3C_G2_physical_dense_matrix_free": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "worst over 12 geometries (at a000_i020)"
+    },
+    "E3C_G3_physical_adjoint": {
+      "status": "PASS",
+      "measured": 2.674323598055886e-13,
+      "threshold": 1e-08,
+      "note": "worst over 12 geometries (at a098_i050)"
+    },
+    "E3C_G4_physical_resolved_unresolved_mixing": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "worst over 12 geometries (at a000_i020)"
+    },
+    "E3C_G4b_linear_collapse_covariance_propagation": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-12,
+      "note": "worst over 12 geometries (at a000_i020)"
+    },
+    "E3C_G6_physical_Gram_monotonicity": {
+      "status": "PASS",
+      "measured": 1.8611783301799085e-16,
+      "threshold": 1e-10,
+      "note": "worst over 12 geometries (at a090_i075)"
+    },
+    "E3C_G6b_resolved_dominates_direct": {
+      "status": "PASS",
+      "measured": 1.573861179619174e-16,
+      "threshold": 1e-10,
+      "note": "worst over 12 geometries (at a090_i075)"
+    },
+    "E3C_G9w_weight_semantics": {
+      "status": "PASS",
+      "measured": 4.3778502867990174e-16,
+      "threshold": 1e-10,
+      "note": "worst over 12 geometries (at a090_i050)"
+    },
+    "E3C_freeze_raymap_hashes": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "ray maps evaluated match the sha256 pinned in the freeze"
+    },
+    "E3C_frozen_grid_invariance": {
+      "status": "PASS",
+      "measured": "dims=[224] n_ages=[64]",
+      "threshold": "dims=[224] n_ages=[64]",
+      "note": "no basis, support, SNR grid, age grid or threshold changed across the grid"
+    }
+  },
+  "started_at": "2026-08-25T09:17:42+00:00",
+  "finished_at": "2026-08-25T09:17:42+00:00",
+  "peak_rss_mb": 139.37890625,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 0.31458067893981934,
+  "n_geometries": 12,
+  "A_max_M": 252.0,
+  "reference_snr": 100.0,
+  "source_class": "C224"
+}

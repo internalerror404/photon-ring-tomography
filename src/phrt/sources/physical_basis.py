@@ -151,3 +151,45 @@ def orthonormalise_design(D: np.ndarray, tol: float = 1e-10) -> tuple[np.ndarray
     d = np.abs(np.diag(R))
     keep = d > tol * max(d.max(), 1e-300)
     return np.ascontiguousarray(Q[:, keep]), keep
+
+
+def age_probe_norms(r_inner: float, r_outer: float, width: float,
+                    n_radial: int = DEFAULT_N_RADIAL,
+                    n_azimuthal: int = DEFAULT_N_AZIMUTHAL,
+                    n_quad: int = 512) -> np.ndarray:
+    """L2 norms of the localized age-probe functions over the emission region.
+
+    Each probe is R_a(r) Phi_b(phi) exp(-(t-c)^2 / 2 w^2), and its squared norm
+    factorises as
+
+        int R_a^2 Phi_b^2 r dr dphi  *  int bump^2 dt = ... * w sqrt(pi).
+
+    Dividing by these makes every probe a unit-L2 source function, so the
+    eigenvalues of the age-resolved information matrix are Fisher informations
+    per unit source amplitude and are comparable to the flat-probe scalar --
+    and, more importantly, comparable between arms and geometries. Reporting a
+    matrix of un-normalised probes would let the basis normalisation masquerade
+    as an information difference.
+    """
+    r = np.linspace(r_inner, r_outer, n_quad)
+    phi = np.linspace(0.0, 2.0 * np.pi, n_quad, endpoint=False)
+    R = radial_design(r, r_inner, r_outer, n_radial)          # (n_quad, n_radial)
+    P = azimuthal_design(phi, n_azimuthal)                    # (n_quad, n_azimuthal)
+    wr = np.trapezoid(R ** 2 * r[:, None], r, axis=0) if hasattr(np, "trapezoid") \
+        else np.trapz(R ** 2 * r[:, None], r, axis=0)         # (n_radial,)
+    wp = (2.0 * np.pi / n_quad) * np.sum(P ** 2, axis=0)      # (n_azimuthal,)
+    wt = width * np.sqrt(np.pi)
+    return np.sqrt(np.outer(wr, wp).ravel() * wt)
+
+
+def age_probe_spatial(r: np.ndarray, phi: np.ndarray, r_inner: float,
+                      r_outer: float, n_radial: int = DEFAULT_N_RADIAL,
+                      n_azimuthal: int = DEFAULT_N_AZIMUTHAL) -> np.ndarray:
+    """The (r, phi) factor of the localized class, shape (len(r), n_radial * n_azimuthal).
+
+    Split out from the temporal bump because it depends only on where the rays
+    land, so it is evaluated once per order and reused across every age.
+    """
+    R = radial_design(r, r_inner, r_outer, n_radial)
+    P = azimuthal_design(phi, n_azimuthal)
+    return (R[:, :, None] * P[:, None, :]).reshape(np.asarray(r).size, -1)
