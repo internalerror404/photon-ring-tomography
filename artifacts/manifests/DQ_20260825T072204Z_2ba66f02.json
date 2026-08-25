@@ -1,0 +1,91 @@
+{
+  "run_id": "DQ_20260825T072204Z_2ba66f02",
+  "experiment_id": "DELAY_QUANTILES",
+  "git_commit": "4f04caf151e573ea54df869cd22d23a1c5abb3ce",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {},
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/delay_quantiles_a098_i075.parquet",
+      "sha256": "3ce66440bbaa7de5ad51639f3418034ce1781e87a8e1681fdf73842b2408b577"
+    }
+  ],
+  "gate_status": {
+    "DQ_solid_angle_quantile_convergence": {
+      "status": "PASS",
+      "measured": 0.014901487965584817,
+      "threshold": 0.02,
+      "note": "worst core-to-fine relative change across q = (0.5, 0.9, 0.99, 0.999), all three orders, solid_angle-weighted"
+    },
+    "DQ_throughput_quantile_convergence": {
+      "status": "PASS",
+      "measured": 0.01071211321192325,
+      "threshold": 0.02,
+      "note": "worst core-to-fine relative change across q = (0.5, 0.9, 0.99, 0.999), all three orders, throughput-weighted"
+    },
+    "DQ_fisher_quantile_convergence": {
+      "status": "PASS",
+      "measured": 0.019035459208447663,
+      "threshold": 0.02,
+      "note": "worst core-to-fine relative change across q = (0.5, 0.9, 0.99, 0.999), all three orders, fisher-weighted"
+    },
+    "G7_grid_convergence_raw_max": {
+      "status": "FAIL",
+      "disposition": "RETIRED_NONCONVERGENT_EXTREME_STATISTIC",
+      "measured": 0.06472237062797255,
+      "threshold": 0.02,
+      "note": "the sampled maximum ray delay, retained as a resolution-tagged diagnostic only. It is no longer a convergence gate and must not be used as a recoverable depth. Core-to-fine change 6.472e-02 against the weighted quantiles' 1.904e-02."
+    }
+  },
+  "started_at": "2026-08-25T07:22:04+00:00",
+  "finished_at": "2026-08-25T07:23:02+00:00",
+  "peak_rss_mb": 756.98828125,
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.11.1",
+    "scikit-learn": "1.9.0",
+    "scikit-image": "0.26.0",
+    "pyyaml": "6.0.1",
+    "torch": "2.13.0",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 6.438297986984253,
+  "geometry": "a098_i075"
+}

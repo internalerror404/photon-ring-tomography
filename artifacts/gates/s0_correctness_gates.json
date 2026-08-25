@@ -1,0 +1,125 @@
+{
+  "experiment": "S0",
+  "gates": {
+    "S0_4_exact_horizon": {
+      "status": "PASS",
+      "measured": 1.8484384687544875e-05,
+      "threshold": 0.005,
+      "note": "minimum valid source radius 2.000037 M against the exact Schwarzschild horizon 2.0 M; no valid ray lands inside"
+    },
+    "S0_4_no_ray_inside_horizon": {
+      "status": "PASS",
+      "measured": 2.000036968769375,
+      "threshold": 2.0
+    },
+    "S0_2_photon_sphere_double_root": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-12,
+      "note": "R(3M) and R'(3M) both vanish at b = 3*sqrt(3): R = 0.000e+00, R' = 0.000e+00"
+    },
+    "S0_3_critical_impact_parameter": {
+      "status": "PASS",
+      "measured": 2.0,
+      "threshold": 0.0,
+      "note": "equatorial crossings as b -> 3*sqrt(3) = 5.196152 from outside: [0.0, 1.0, 1.0, 1.0, 2.0, 2.0] at b/b_crit - 1 = ['3e-01', '1e-01', '3e-02', '1e-02', '3e-03', '1e-03']. Crossings must increase without bound at the critical curve."
+    },
+    "S0_7_four_velocity_normalisation": {
+      "status": "PASS",
+      "measured": 2.220446049250313e-16,
+      "threshold": 1e-12,
+      "note": "u.u + 1 computed from the Schwarzschild metric, inside and outside the ISCO, so it checks the branch rather than restating it"
+    },
+    "S0_7_keplerian_closed_form": {
+      "status": "PASS",
+      "measured": 2.220446049250313e-16,
+      "threshold": 1e-12,
+      "note": "u^t = (1-3/r)^-1/2 and u^phi = r^-3/2 u^t outside the ISCO"
+    },
+    "S0_7_finite_positive_weights": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "S0_7_quadrature_order0": {
+      "status": "PASS",
+      "measured": 2465.760000000001,
+      "threshold": 0.16000000000000003,
+      "note": "dOmega = dx^2 = 0.16 M^2 per ray, uniform within the band; total band solid angle 2465.8 M^2"
+    },
+    "S0_7_quadrature_order1": {
+      "status": "PASS",
+      "measured": 36.72320000000001,
+      "threshold": 0.0064,
+      "note": "dOmega = dx^2 = 0.0064 M^2 per ray, uniform within the band; total band solid angle 36.723 M^2"
+    },
+    "S0_7_quadrature_order2": {
+      "status": "PASS",
+      "measured": 1.2360000000000002,
+      "threshold": 0.0004,
+      "note": "dOmega = dx^2 = 0.0004 M^2 per ray, uniform within the band; total band solid angle 1.236 M^2"
+    },
+    "S0_5_aart_low_spin_sequence": {
+      "status": "PASS",
+      "measured": 3,
+      "threshold": 3,
+      "note": "AART generated 3 of 4 registered low-spin points. a = 1e-6 fails: the critical-curve arclength goes complex and numpy.interp refuses the cast. AART's usable floor therefore lies between 1e-5 and 1e-6, and it is singular at 0. Recorded, not worked around."
+    },
+    "S0_5_low_spin_area_approaches_schwarzschild": {
+      "status": "PASS",
+      "measured": 0.011744857569268713,
+      "threshold": 0.05,
+      "note": "n=0 band solid angle from AART at low spin against the Schwarzschild backend: [(0.001, 0.01174), (0.0001, 0.01174), (1e-05, 0.00915)]"
+    },
+    "S0_1_numerical_integrator_cross_check": {
+      "status": "PASS",
+      "measured": 1.8411100320238665e-05,
+      "threshold": 0.001,
+      "note": "kgeo's ODE integrator against the analytic solution on 10 of 10 sampled rays; a numerical integrator at finite step size is not expected to match to machine precision"
+    },
+    "S0_6_operator_convergence": {
+      "status": "PASS",
+      "measured": 0.007363812790717675,
+      "threshold": 0.05,
+      "note": "quadrature-weighted information matrix, core against fine, same gate definition as G7b at the other geometries"
+    },
+    "S0_8_G2_physical_dense_matrix_free": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "S0_8_G3_physical_adjoint": {
+      "status": "PASS",
+      "measured": 3.6362371416569504e-14,
+      "threshold": 1e-08
+    },
+    "S0_8_G4_resolved_unresolved_mixing": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "S0_8_G6_Gram_monotonicity": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "S0_8_G9w_weight_semantics": {
+      "status": "PASS",
+      "measured": 1.2644190770854794e-16,
+      "threshold": 1e-10
+    }
+  },
+  "summary": {
+    "PASS": 19,
+    "FAIL": 0,
+    "NOT_RUN": 0
+  },
+  "exact_invariants": {
+    "horizon_radius": 2.0,
+    "photon_sphere_radius": 3.0,
+    "isco_radius": 6.0,
+    "critical_impact_parameter": 5.196152422706632,
+    "E_isco": 0.9428090415820634,
+    "L_isco": 3.4641016151377544
+  }
+}

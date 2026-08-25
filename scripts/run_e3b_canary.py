@@ -414,10 +414,15 @@ def main() -> int:
                 row[f"age_specific_order_dominance_ratio_{k-1}_to_{k}_status"] = "ok"
         ginfo.append(row)
 
-    # Matched-order information attenuation, in delay-aligned coordinates.
+    # Matched-order sensitivity attenuation, in delay-aligned coordinates.
     # Each order is sampled at the same FRACTIONAL position u within its own
-    # retarded window, so the orders are compared on matched temporal support
-    # and the resulting exponent is a genuine Gamma_info.
+    # retarded window, so the orders are compared on matched temporal support:
+    #
+    #     Gamma_sensitivity_matched = -0.5 * log(I_next / I_current)
+    #
+    # Named for sensitivity rather than information because the quantity being
+    # compared is the Fisher sensitivity to a localized amplitude at matched
+    # window position, not a decay of total information content.
     matched = []
     windows = [(float(o.delay.min()), float(o.delay.max())) for o in base]
     for u in np.linspace(0.05, 0.95, 19):
@@ -435,9 +440,9 @@ def main() -> int:
         for k in range(1, len(vals)):
             lo_, hi_ = vals[k - 1], vals[k]
             ok = lo_ > floor and hi_ > floor
-            row[f"Gamma_info_matched_{k-1}_to_{k}"] = (
+            row[f"Gamma_sensitivity_matched_{k-1}_to_{k}"] = (
                 float(-0.5 * np.log(hi_ / lo_)) if ok else float("nan"))
-            row[f"Gamma_info_matched_{k-1}_to_{k}_status"] = "ok" if ok else "undefined"
+            row[f"Gamma_sensitivity_matched_{k-1}_to_{k}_status"] = "ok" if ok else "undefined"
         matched.append(row)
 
     # Age-support bookkeeping, exact.

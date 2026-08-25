@@ -1,0 +1,32 @@
+{
+  "experiment": "S0",
+  "git_commit": "4f04caf151e573ea54df869cd22d23a1c5abb3ce",
+  "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "backend": "kgeo geodesics + phrt Schwarzschild velocity + kgeo redshift",
+  "artifacts": [
+    {
+      "path": "artifacts/tables/s0_low_spin_limit.parquet",
+      "sha256": "d6291fece34bcbfbd98c4b86426640d345f2412dddff558fe598fa596a1baa22"
+    },
+    {
+      "path": "artifacts/tables/s0_operator_comparison.parquet",
+      "sha256": "e95b14aec83c99fae09de74f8290f1668e7f0e517b907c60b0f10f5f5ac87bb0"
+    },
+    {
+      "path": "artifacts/gates/s0_correctness_gates.json",
+      "sha256": "72bfd2f71f07026bdd654e3da5459769c2d1c3c5f32b9a054fc180413d48e7c8"
+    },
+    {
+      "path": "artifacts/raymaps/a000_i020_n0_core.h5",
+      "sha256": "43bfb4fe1a2e6312f0bd514fbba5b327c607f64fe5c43d196b9466dc264a8357"
+    },
+    {
+      "path": "artifacts/raymaps/a000_i020_n1_core.h5",
+      "sha256": "e39f4d9e18ce9b59eb5eb578f81eeb0ac18ae2fd13cfa9e661b4f634ec4dabc2"
+    },
+    {
+      "path": "artifacts/raymaps/a000_i020_n2_core.h5",
+      "sha256": "c13bd9eeeb1d3371a3d705520bf5cb8db3b3bb763f5bebc085132c84f531de7b"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "run_id": "S0_20260825T073619Z_2ba66f02",
+  "experiment_id": "S0_BACKEND_CANARY",
+  "git_commit": "4f04caf151e573ea54df869cd22d23a1c5abb3ce",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {},
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    }
+  ],
+  "outputs": [],
+  "gate_status": {
+    "S0_4_exact_horizon": {
+      "status": "PASS",
+      "measured": 1.8484384687544875e-05,
+      "threshold": 0.005,
+      "note": "minimum valid source radius 2.000037 M against the exact Schwarzschild horizon 2.0 M; no valid ray lands inside"
+    },
+    "S0_4_no_ray_inside_horizon": {
+      "status": "PASS",
+      "measured": 2.000036968769375,
+      "threshold": 2.0
+    },
+    "S0_2_photon_sphere_double_root": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-12,
+      "note": "R(3M) and R'(3M) both vanish at b = 3*sqrt(3): R = 0.000e+00, R' = 0.000e+00"
+    },
+    "S0_3_critical_impact_parameter": {
+      "status": "PASS",
+      "measured": 2.0,
+      "threshold": 0.0,
+      "note": "equatorial crossings as b -> 3*sqrt(3) = 5.196152 from outside: [0.0, 1.0, 1.0, 1.0, 2.0, 2.0] at b/b_crit - 1 = ['3e-01', '1e-01', '3e-02', '1e-02', '3e-03', '1e-03']. Crossings must increase without bound at the critical curve."
+    },
+    "S0_7_four_velocity_normalisation": {
+      "status": "PASS",
+      "measured": 2.220446049250313e-16,
+      "threshold": 1e-12,
+      "note": "u.u + 1 computed from the Schwarzschild metric, inside and outside the ISCO, so it checks the branch rather than restating it"
+    },
+    "S0_7_keplerian_closed_form": {
+      "status": "PASS",
+      "measured": 2.220446049250313e-16,
+      "threshold": 1e-12,
+      "note": "u^t = (1-3/r)^-1/2 and u^phi = r^-3/2 u^t outside the ISCO"
+    },
+    "S0_7_finite_positive_weights": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "S0_7_quadrature_order0": {
+      "status": "PASS",
+      "measured": 2465.760000000001,
+      "threshold": 0.16000000000000003,
+      "note": "dOmega = dx^2 = 0.16 M^2 per ray, uniform within the band; total band solid angle 2465.8 M^2"
+    },
+    "S0_7_quadrature_order1": {
+      "status": "PASS",
+      "measured": 36.72320000000001,
+      "threshold": 0.0064,
+      "note": "dOmega = dx^2 = 0.0064 M^2 per ray, uniform within the band; total band solid angle 36.723 M^2"
+    },
+    "S0_7_quadrature_order2": {
+      "status": "PASS",
+      "measured": 1.2360000000000002,
+      "threshold": 0.0004,
+      "note": "dOmega = dx^2 = 0.0004 M^2 per ray, uniform within the band; total band solid angle 1.236 M^2"
+    },
+    "S0_5_aart_low_spin_sequence": {
+      "status": "PASS",
+      "measured": 3,
+      "threshold": 3,
+      "note": "AART generated 3 of 4 registered low-spin points. a = 1e-6 fails: the critical-curve arclength goes complex and numpy.interp refuses the cast. AART's usable floor therefore lies between 1e-5 and 1e-6, and it is singular at 0. Recorded, not worked around."
+    },
+    "S0_5_low_spin_area_approaches_schwarzschild": {
+      "status": "PASS",
+      "measured": 0.011744857569268713,
+      "threshold": 0.05,
+      "note": "n=0 band solid angle from AART at low spin against the Schwarzschild backend: [(0.001, 0.01174), (0.0001, 0.01174), (1e-05, 0.00915)]"
+    },
+    "S0_1_numerical_integrator_cross_check": {
+      "status": "PASS",
+      "measured": 1.8411100320238665e-05,
+      "threshold": 0.001,
+      "note": "kgeo's ODE integrator against the analytic solution on 10 of 10 sampled rays; a numerical integrator at finite step size is not expected to match to machine precision"
+    },
+    "S0_6_operator_convergence": {
+      "status": "PASS",
+      "measured": 0.007363812790717675,
+      "threshold": 0.05,
+      "note": "quadrature-weighted information matrix, core against fine, same gate definition as G7b at the other geometries"
+    },
+    "S0_8_G2_physical_dense_matrix_free": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "S0_8_G3_physical_adjoint": {
+      "status": "PASS",
+      "measured": 3.6362371416569504e-14,
+      "threshold": 1e-08
+    },
+    "S0_8_G4_resolved_unresolved_mixing": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "S0_8_G6_Gram_monotonicity": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "S0_8_G9w_weight_semantics": {
+      "status": "PASS",
+      "measured": 1.2644190770854794e-16,
+      "threshold": 1e-10
+    }
+  },
+  "started_at": "2026-08-25T07:36:19+00:00",
+  "finished_at": "2026-08-25T07:36:52+00:00",
+  "peak_rss_mb": 515.296875,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 32.39048719406128,
+  "geometry": "a000_i020"
+}

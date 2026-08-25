@@ -51,8 +51,26 @@ PROFILES = {
 }
 
 
-def geometry_id(spin: float, inc: float) -> str:
-    return f"a{int(round(spin * 100)):03d}_i{int(round(inc)):03d}"
+from phrt.config import geometry_id  # noqa: E402  (single source of truth)
+
+
+def _guard_overwrite(path: Path, spin: float) -> None:
+    """Refuse to overwrite a map that was generated for a different spin.
+
+    The id collision that made this necessary is described in
+    phrt.config.geometry_id. A silent overwrite of one geometry's maps by
+    another's is not recoverable from the artifacts alone.
+    """
+    if not path.exists():
+        return
+    import h5py
+
+    with h5py.File(path, "r") as f:
+        existing = float(f["meta"].attrs["spin"])
+    if abs(existing - spin) > 1e-15:
+        raise SystemExit(
+            f"refusing to overwrite {path.name}: it holds spin {existing!r} and "
+            f"this run has spin {spin!r}. The geometry ids collide.")
 
 
 def run_aart(spin: float, inc: float, profile: str, out_dir: Path) -> dict:
@@ -160,7 +178,9 @@ def main() -> int:
     written = []
     for n in (0, 1, 2):
         rm = to_raymap(raw, n, args.spin, args.inclination, args.profile, t_reference)
-        p = write(rm, args.out / f"{gid}_n{n}_{args.profile}.h5")
+        target = args.out / f"{gid}_n{n}_{args.profile}.h5"
+        _guard_overwrite(target, args.spin)
+        p = write(rm, target)
         written.append({"path": str(p.relative_to(ROOT)), "sha256": sha256(p),
                         **rm.summary()})
         s = rm.summary()

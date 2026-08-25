@@ -118,14 +118,14 @@ def main() -> int:
                      f"{f(r.age_specific_order_dominance_ratio_1_to_2)} |")
 
     ms = pd.read_parquet(T / "e3b_matched_support_attenuation.parquet")
-    ms_md = ["| window fraction | age n=0 | age n=1 | age n=2 | Gamma_info 0→1 | Gamma_info 1→2 |",
+    ms_md = ["| window fraction | age n=0 | age n=1 | age n=2 | Gamma_sens 0→1 | Gamma_sens 1→2 |",
              "|---:|---:|---:|---:|---:|---:|"]
     for _, r in ms.iloc[::4].iterrows():
         ms_md.append(f"| {r.window_fraction:.2f} | {r.age_order0:.1f} | {r.age_order1:.1f} | "
-                     f"{r.age_order2:.1f} | {r.Gamma_info_matched_0_to_1:.3f} | "
-                     f"{r.Gamma_info_matched_1_to_2:.3f} |")
-    med01 = float(ms.Gamma_info_matched_0_to_1.median())
-    med12 = float(ms.Gamma_info_matched_1_to_2.median())
+                     f"{r.age_order2:.1f} | {r.Gamma_sensitivity_matched_0_to_1:.3f} | "
+                     f"{r.Gamma_sensitivity_matched_1_to_2:.3f} |")
+    med01 = float(ms.Gamma_sensitivity_matched_0_to_1.median())
+    med12 = float(ms.Gamma_sensitivity_matched_1_to_2.median())
 
     d = "\n"
     # ---------------- canary report ---------------------------------------
@@ -219,15 +219,19 @@ the localized mode than order 0; at 100 M order 2 carries about 23x more than
 order 1. Entries appear only where both orders clear an information floor — a
 ratio of two vanishing informations is neither a ratio nor an exponent.
 
-## Information attenuation on matched support
+## Sensitivity attenuation on matched support
 
 Each order is sampled at the same fractional position within its **own** retarded
-window, so the orders are compared on matched temporal support and the resulting
-exponent is a genuine Gamma_info.
+window, so the orders are compared on matched temporal support:
+
+    Gamma_sensitivity_matched = -0.5 * log(I_next_matched / I_current_matched)
+
+All 19 window fractions are retained; the full distribution is in
+`artifacts/tables/e3b_matched_support_attenuation.parquet`.
 
 {d.join(ms_md)}
 
-Median Gamma_info is **{med01:.3f}** from order 0 to 1 and **{med12:.3f}** from 1 to 2,
+Median Gamma_sensitivity_matched is **{med01:.3f}** from order 0 to 1 and **{med12:.3f}** from 1 to 2,
 defined at all 19 window fractions. Against Gamma_amp of 4.27 and 4.03,
 **information decays roughly seven to ten times more slowly than amplitude**.
 
