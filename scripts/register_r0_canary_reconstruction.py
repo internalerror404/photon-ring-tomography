@@ -50,7 +50,7 @@ E3C_REGISTRY_SHA256 = ("2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a"
 TEMPLATE = ("schemas/R0_CANARY_RECONSTRUCTION_PILOT_FREEZE_TEMPLATE_v1.0.json")
 # Null until the amendment commit exists; then pinned literally. See the note
 # recorded next to the field in the freeze.
-AGE_AMENDMENT_COMMIT = None
+AGE_AMENDMENT_COMMIT = "f034f19829623efa1f29bdcf27f95e10bd2de62e"
 # The tree state the pilot started from, pinned rather than read from HEAD:
 # re-running the registration after the freeze commit would otherwise move
 # the recorded start commit forward and misdescribe where the work began.
@@ -229,7 +229,9 @@ def main() -> int:
                 "own hash: it is null in that commit and pinned literally in the "
                 "single-file commit immediately after, which changes nothing "
                 "else.",
-            "head_before_amendment_commit": git("rev-parse", "HEAD"),
+            "head_before_amendment_commit": (
+                git("rev-parse", f"{AGE_AMENDMENT_COMMIT}^")
+                if AGE_AMENDMENT_COMMIT else git("rev-parse", "HEAD")),
             "e3c_freeze_sha256": E3C_FREEZE_SHA256,
             "e3c_registry_sha256": E3C_REGISTRY_SHA256,
             "ray_map_manifest_sha256": None,   # filled below, over the digests
