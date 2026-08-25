@@ -1,0 +1,129 @@
+{
+  "run_id": "E3B_20260825T054225Z_2ba66f02",
+  "experiment_id": "E3B",
+  "git_commit": "29d147b5cbb0b8cc1cc7a299e91c35ce65d9bdaa",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "2a20e241e1761eea7769c0c2d6d1b2c0a47388deba3f9875fe68cba909b1c9dd",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "seed": 20260825,
+    "rays_per_order": 1536,
+    "observer_times": 8
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3b_age_information.parquet",
+      "sha256": "0803844bad422355c02989ec99acd50236c1f5701c2f03416fa9a6eb46f4758e"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3b_temporal_depth_curve.parquet",
+      "sha256": "fb29e5a7dd9634575c5604839bce3409081c3c747612893702e206ca91cc27a6"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3b_singular_spectra.parquet",
+      "sha256": "7a2f04d9446885d6e3fae4282175cdc9c268a11a8f826f4c3126884e377cefe9"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3b_attenuation_decomposition.parquet",
+      "sha256": "3c4d6f33409b7497244691fac8a2c5151dd821f47a55f91e30afcad04f492379"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3b_gamma_info.parquet",
+      "sha256": "f05f05a9c57920bde2edab11df88a23b287c5ac9051b0aba29ddf64e33a2a596"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/e3b_weight_semantics.parquet",
+      "sha256": "a8be1f2de0a54f3f44dfb27621436602577976be89537703f3de8af2257ace19"
+    }
+  ],
+  "gate_status": {
+    "G2_physical_dense_matrix_free": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "G3_physical_adjoint": {
+      "status": "PASS",
+      "measured": 5.2573729688035534e-14,
+      "threshold": 1e-08
+    },
+    "G4_physical_resolved_unresolved_mixing": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "G6_physical_Gram_monotonicity": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "G6b_resolved_dominates_direct": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "G_resolved - G_direct must be positive semidefinite"
+    },
+    "G5_physical_injected_null": {
+      "status": "NOT_RUN",
+      "note": "the registered global class has trivial numerical null space under this arm"
+    },
+    "G9w_weight_semantics": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "operator output for a unit source j=1, against sum(dOmega * g^3) computed outside the operator, per order"
+    }
+  },
+  "started_at": "2026-08-25T05:42:25+00:00",
+  "finished_at": "2026-08-25T05:45:06+00:00",
+  "peak_rss_mb": 10848.25,
+  "packages": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.11.1",
+    "scikit-learn": "1.9.0",
+    "scikit-image": "0.26.0",
+    "pyyaml": "6.0.1",
+    "torch": "2.13.0",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 159.84686851501465,
+  "geometry": "a050_i050",
+  "measurement_model": "specific_intensity",
+  "bump_width_M": 3.0,
+  "operational_threshold": 1.0
+}

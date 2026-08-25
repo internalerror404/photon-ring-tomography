@@ -1,0 +1,182 @@
+{
+  "experiment": "E3B",
+  "gates": {
+    "G2_physical_dense_matrix_free": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "run_id": "E3B_20260825T054957Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0.0,
+        "threshold": 1e-10,
+        "run_id": "E3B_20260825T054600Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:48:37+00:00"
+      }
+    },
+    "G3_physical_adjoint": {
+      "status": "PASS",
+      "measured": 5.2573729688035534e-14,
+      "threshold": 1e-08,
+      "run_id": "E3B_20260825T054957Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 5.2573729688035534e-14,
+        "threshold": 1e-08,
+        "run_id": "E3B_20260825T054600Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:48:37+00:00"
+      }
+    },
+    "G4_physical_resolved_unresolved_mixing": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "run_id": "E3B_20260825T054957Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0.0,
+        "threshold": 1e-10,
+        "run_id": "E3B_20260825T054600Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:48:37+00:00"
+      }
+    },
+    "G5_physical_injected_null": {
+      "status": "NOT_RUN",
+      "note": "the registered global class has trivial numerical null space under this arm",
+      "run_id": "E3B_20260825T054957Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "superseded": {
+        "status": "NOT_RUN",
+        "note": "the registered global class has trivial numerical null space under this arm",
+        "run_id": "E3B_20260825T054600Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:48:37+00:00"
+      }
+    },
+    "G6_physical_Gram_monotonicity": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "run_id": "E3B_20260825T054957Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0.0,
+        "threshold": 1e-10,
+        "run_id": "E3B_20260825T054600Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:48:37+00:00"
+      }
+    },
+    "G6b_resolved_dominates_direct": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "G_resolved - G_direct must be positive semidefinite",
+      "run_id": "E3B_20260825T054957Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0.0,
+        "threshold": 1e-10,
+        "note": "G_resolved - G_direct must be positive semidefinite",
+        "run_id": "E3B_20260825T054600Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:48:37+00:00"
+      }
+    },
+    "G7b_transfer_field_convergence": {
+      "status": "PASS",
+      "measured": 0.021915075762718932,
+      "threshold": 0.05,
+      "note": "|| G_fine - G_core ||_2 / || G_fine ||_2 on the registered 224-dimensional global class, with G the quadrature-weighted information matrix accumulated over every valid ray of each profile. This is the quantity the inverse problem consumes and the only one that depends on dx: AART's per-ray fields are analytic and carry no discretisation error. The coarse-to-core step is 4.408e-02, so refinement is reducing the change.",
+      "run_id": "G7B_20260825T055653Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:56:55+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0.021915075762718932,
+        "threshold": 0.05,
+        "note": "|| G_fine - G_core ||_2 / || G_fine ||_2 on the registered 224-dimensional global class, with G the quadrature-weighted information matrix accumulated over every valid ray of each profile. This is the quantity the inverse problem consumes and the only one that depends on dx: AART's per-ray fields are analytic and carry no discretisation error. The coarse-to-core step is 4.408e-02, so refinement is reducing the change.",
+        "run_id": "G7B_20260825T055629Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:56:32+00:00"
+      }
+    },
+    "G7b_fields_are_analytic_not_discretised": {
+      "status": "PASS",
+      "measured": 2.2e-12,
+      "threshold": 1e-09,
+      "note": "AART's landing coordinates agree with the grid-free analytic kgeo to 2.6e-15 (n=0), 1.1e-13 (n=1) and 2.2e-12 (n=2), identically at the core and fine profiles. The per-ray transfer fields therefore carry no resolution dependence, which is why field-value comparison between profiles measures band steepness rather than convergence. Recorded so the reasoning behind this gate's definition is auditable.",
+      "run_id": "G7B_20260825T055653Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:56:55+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 2.2e-12,
+        "threshold": 1e-09,
+        "note": "AART's landing coordinates agree with the grid-free analytic kgeo to 2.6e-15 (n=0), 1.1e-13 (n=1) and 2.2e-12 (n=2), identically at the core and fine profiles. The per-ray transfer fields therefore carry no resolution dependence, which is why field-value comparison between profiles measures band steepness rather than convergence. Recorded so the reasoning behind this gate's definition is auditable.",
+        "run_id": "G7B_20260825T055629Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:56:32+00:00"
+      }
+    },
+    "G8t_retarded_time_validation": {
+      "status": "PASS",
+      "measured": 2.763106976999552e-06,
+      "threshold": 0.001,
+      "note": "largest disagreement in a PAIRWISE emission-time difference between AART and kgeo's independent analytic solution, over 25200 pairs from 225 stratified rays, 16875 of them spanning different orders. Differences are compared so that a common time origin cancels; here the measured common offset is -2.274e-13, i.e. the two codes already share an origin. Tolerance frozen at 1e-03 M, far below any temporal structure the source model resolves.",
+      "run_id": "E3BPRE_20260825T053650Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:36:56+00:00"
+    },
+    "G8t_azimuth_after_rigid_offset": {
+      "status": "PASS",
+      "measured": 6.328715329573242e-12,
+      "threshold": 1e-08,
+      "note": "AART and kgeo place phi = 0 on different axes. The offset is 1.570796326795 rad, exactly +1 quarter turns to 1.377e-14. A rigid rotation is a convention, as a common time origin is; what is gated is the residual once one global constant is removed.",
+      "run_id": "E3BPRE_20260825T053650Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:36:56+00:00"
+    },
+    "G8t_azimuth_offset_is_order_independent": {
+      "status": "PASS",
+      "measured": 1.3034018309099338e-13,
+      "threshold": 1e-09,
+      "note": "spread of the fitted azimuth offset across orders: {'0': 1.5707963267948932, '1': 1.570796326794984, '2': 1.5707963267948537}. This is the gate that matters. A single global rotation only relabels the azimuth axis; an order-dependent or screen-dependent one would corrupt every non-axisymmetric source model, and would not be a convention.",
+      "run_id": "E3BPRE_20260825T053650Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:36:56+00:00"
+    },
+    "G8t_radius_control": {
+      "status": "PASS",
+      "measured": 8.962695637776152e-13,
+      "threshold": 1e-09,
+      "note": "source radius on the same stratified sample, confirming the coordinate identification used to extract t and phi is correct",
+      "run_id": "E3BPRE_20260825T053650Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:36:56+00:00"
+    },
+    "G9w_weight_semantics": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "operator output for a unit source j=1, against sum(dOmega * g^3) computed outside the operator, per order",
+      "run_id": "E3B_20260825T054957Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:52:34+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0.0,
+        "threshold": 1e-10,
+        "note": "operator output for a unit source j=1, against sum(dOmega * g^3) computed outside the operator, per order",
+        "run_id": "E3B_20260825T054600Z_2ba66f02",
+        "recorded_at": "2026-08-25T05:48:37+00:00"
+      }
+    },
+    "G9c_per_order_ray_count": {
+      "status": "PASS",
+      "measured": 4179,
+      "threshold": 1536,
+      "note": "n0_valid=15597, n1_valid=8531, n2_valid=4179, minimum_per_order=4179, total_valid=28307. The reported 4179 was the per-order minimum (n=2), not the combined total; every order independently exceeds 1536.",
+      "run_id": "E3BPRE_20260825T053650Z_2ba66f02",
+      "recorded_at": "2026-08-25T05:36:56+00:00"
+    }
+  },
+  "summary": {
+    "PASS": 13,
+    "FAIL": 0,
+    "NOT_RUN": 1
+  }
+}

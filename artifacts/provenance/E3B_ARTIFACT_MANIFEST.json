@@ -1,0 +1,78 @@
+{
+  "experiment": "E3B",
+  "generated_at": "2026-08-25T05:58:34Z",
+  "git_commit": "29d147b5cbb0b8cc1cc7a299e91c35ce65d9bdaa",
+  "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "kgeo_commit": "dc347060c5fb24e2c360c8aaffbfe25482a83805",
+  "physics_environment": "pinned venv: numpy 1.26.4, scipy 1.11.4, aart 2.1.10",
+  "artifacts": [
+    {
+      "path": "artifacts/configs/E3B_FREEZE.json",
+      "sha256": "de48377a2f507fca374a3178cfaf16c2818e77cce585bade5edc83107512f1d3"
+    },
+    {
+      "path": "artifacts/gates/e3b_correctness_gates.json",
+      "sha256": "3a4ff69a5b72233d1c2a061a2954180aec4894a95487fb0b8fb7f6b16222ac67"
+    },
+    {
+      "path": "artifacts/provenance/kgeo_commit.txt",
+      "sha256": "ed1d5a87e0912b0a7f379f247a1ebdcb7b77e860d026081ac4b67a45f3490dac"
+    },
+    {
+      "path": "artifacts/raymaps/a050_i050_n0_core.h5",
+      "sha256": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499"
+    },
+    {
+      "path": "artifacts/raymaps/a050_i050_n1_core.h5",
+      "sha256": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e"
+    },
+    {
+      "path": "artifacts/raymaps/a050_i050_n2_core.h5",
+      "sha256": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39"
+    },
+    {
+      "path": "artifacts/reports/E3B_PHYSICAL_OPERATOR_CANARY.md",
+      "sha256": "0d49668efd98ef7f6dba36808f93e6d370ae2131d9391c557a949142d94c2f3c"
+    },
+    {
+      "path": "artifacts/reports/E3B_RETARDED_TIME_VALIDATION.md",
+      "sha256": "1b2ffb1fbb341b16302d7e3bc947772e8102b7198bfde98acd6786d8c159bc82"
+    },
+    {
+      "path": "artifacts/reports/E3B_TRANSFER_WEIGHT_AUDIT.md",
+      "sha256": "04cd8d104d2ac74a2e2da722abc462f6ee68415192cdc0534b33e9c98fdd410b"
+    },
+    {
+      "path": "artifacts/tables/e3b_age_information.parquet",
+      "sha256": "02d7c876d095a92cc1e61a966579c6757329e59e31cb0dbeddf3337e9d2871fa"
+    },
+    {
+      "path": "artifacts/tables/e3b_attenuation_decomposition.parquet",
+      "sha256": "3c4d6f33409b7497244691fac8a2c5151dd821f47a55f91e30afcad04f492379"
+    },
+    {
+      "path": "artifacts/tables/e3b_field_convergence.parquet",
+      "sha256": "ca83b47035793a9197aed0f4195449005fc8f392caf395e8adcfbc68e21559d3"
+    },
+    {
+      "path": "artifacts/tables/e3b_gamma_info.parquet",
+      "sha256": "a656735eafee708b89e42a84ae9c0b15d3186e4bb5753375a276afa26f2b0f7d"
+    },
+    {
+      "path": "artifacts/tables/e3b_per_order_ray_count.parquet",
+      "sha256": "6291b81b572b4a47a83b3c77d28a084a3b490ec612670f8b0cae0e4610a3b28e"
+    },
+    {
+      "path": "artifacts/tables/e3b_singular_spectra.parquet",
+      "sha256": "04ab09bbd6eccd626953044af267803841f7337ac16c74f150cb9fe6f1fd7131"
+    },
+    {
+      "path": "artifacts/tables/e3b_temporal_depth_curve.parquet",
+      "sha256": "53e55eaed3da7aa4b0be6f7967e57885b229fc9b39bea79fc8e0e729539695c8"
+    },
+    {
+      "path": "artifacts/tables/e3b_weight_semantics.parquet",
+      "sha256": "a8be1f2de0a54f3f44dfb27621436602577976be89537703f3de8af2257ace19"
+    }
+  ]
+}
