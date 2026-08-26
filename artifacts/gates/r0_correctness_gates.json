@@ -1,9 +1,15 @@
 {
   "experiment": "R0A_CORRECTNESS_SMOKE",
-  "run_id": "R0A_20260825T214234Z_2ba66f02",
-  "freeze_sha256": "60c5fce0c502be3e162ecf445f29977aab093138f603937c7b864447166692f4",
+  "run_id": "R0A_20260826T003453Z_2ba66f02",
+  "freeze_sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
   "profile": "R0_SMOKE",
   "gates": {
+    "R0_G13_freeze_commit_attestation": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "execution commit 797772df365548a911a0e34a8f64a0b51a0a9f1b, head tree 508901a24302209d6920949937b37896c34070a3, freeze blob 9f8641889e1d24e6b7c3570464e0b5a13283d8d2 committed=True, freeze sha256 e9c3a2d32a8bc24f..., tracked changes 0, untracked 0, porcelain sha256 e3b0c44298fc1c14..."
+    },
     "R0_G1_dense_matrix_free_parity": {
       "status": "PASS",
       "measured": 2.1731844154456152e-15,
@@ -32,11 +38,16 @@
       "measured": 0.0,
       "threshold": 1e-10
     },
-    "R0_G6_age_probe_normalization": {
+    "R0_G6a_declared_probe_unit_norm": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-12
+    },
+    "R0_G6b_independent_quadrature_crosscheck": {
       "status": "PASS",
       "measured": 5.551223562028085e-05,
       "threshold": 0.005,
-      "note": "analytic probe norm against an independent 4001-point quadrature; the declared unit normalisation is exact by construction (deviation 0.0e+00), so the quadrature agreement is the real check"
+      "note": "analytic probe norm against an independent 4001-point quadrature. This is a discretisation agreement, not the declared normalisation, and it carries its own threshold frozen before R0C"
     },
     "R0_G7_right_censoring": {
       "status": "PASS",
@@ -76,7 +87,7 @@
     }
   },
   "summary": {
-    "PASS": 12,
+    "PASS": 14,
     "FAIL": 0,
     "NOT_RUN": 0
   }

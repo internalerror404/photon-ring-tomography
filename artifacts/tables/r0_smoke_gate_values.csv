@@ -1,10 +1,12 @@
 gate,measured
+R0_G13_freeze_commit_attestation,1.0
 R0_G1_dense_matrix_free_parity,2.1731844154456152e-15
 R0_G2_physical_adjoint,6.394884621840902e-14
 R0_G3_G10q_quadrature_noise_invariance,7.2572437971255e-16
 R0_G4_mixing_covariance,5.422652948973214e-16
 R0_G5_basis_round_trip,0.0
-R0_G6_age_probe_normalization,5.551223562028085e-05
+R0_G6a_declared_probe_unit_norm,0.0
+R0_G6b_independent_quadrature_crosscheck,5.551223562028085e-05
 R0_G7_right_censoring,1.0
 R0_G8_estimator_closed_form::TSVD,4.700556486947324e-16
 R0_G8_estimator_closed_form::RIDGE_IDENTITY,2.166100796415928e-15

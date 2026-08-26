@@ -178,7 +178,8 @@ def main() -> int:
     pf_norms = np.sqrt(np.einsum("ap,np->na", Wn ** 2, pf ** 2))
     eta = freeze_eta(pf_norms.ravel())
     _, s_pf, m_pf = scorer.truth_terms(pf)
-    tn = np.sqrt(np.maximum(s_pf - m_pf ** 2 / max(scorer.h, 1e-300), 0.0))
+    tn = np.sqrt(np.maximum(s_pf - m_pf ** 2
+                            / np.maximum(scorer.h, 1e-300), 0.0))
     pos = tn[tn > 0]
     eta_struct = float(0.05 * np.median(pos)) if pos.size else 1e-12
     print(f"refit on the repaired bank: eta {eta:.6g}, eta_struct {eta_struct:.6g}")
