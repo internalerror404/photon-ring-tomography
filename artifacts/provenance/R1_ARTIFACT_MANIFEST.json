@@ -1,0 +1,74 @@
+{
+  "schema": "phrt-r1-artifacts/1",
+  "created_utc": "2026-08-26T02:32:35Z",
+  "execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+  "r1_freeze_sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+  "sealed_bank_commitment": "93608e7a7578fe892269ac20297af5d3f22bc1f860bbdba71b9aa0a833aa3f1e",
+  "null_pair_control_bank": "57ee7fef85da0ff05b0a36df75331607eca9ea76b575067b02bda8ae98002806",
+  "stop_token": "R1_PASS_WITH_SCOPE_RESTRICTION",
+  "uncertainty_disposition": "WITHDRAWN",
+  "attestation": {
+    "available": true,
+    "execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+    "head_tree_sha": "0e3370106cd614bc5755c381f993c8f133dc7ea4",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/build_r1_report.py\n",
+    "porcelain_registered_sha256": "c9e02524b1be6eee626020cdc51187ad343689151b6a51741ce5589e68c36825",
+    "porcelain_whole_tree_sha256": "d4096bbb1094e50779a46a86d714f6652eed7dff8650025238cf7517c1a53280",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "provenance": {
+    "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+    "measurement_correction_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
+    "e3c_execution_code_commit": "546763ed29e2be3fb129ec707cb07ee37a4f7db8",
+    "e3c_artifact_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
+    "e3c_age_interval_amendment_commit": "f034f19829623efa1f29bdcf27f95e10bd2de62e",
+    "e3c_freeze_sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
+    "e3c_registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+    "ray_map_manifest_sha256": "d163a630842ddec4b2143f9268bc70125857e78b84aa8fa122c5ef1bfc7b3638",
+    "r0_config_sha256": "dfc8d35eb2b7cb201409295698e9c623a10a0fa5ce730c7050e67c55f0ddb31e",
+    "r0_freeze_file_sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
+    "a_anchor_M": 0.0,
+    "age_interval_amendment": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003"
+  },
+  "artifacts": {
+    "artifacts/configs/R1_MAIN_FREEZE.json": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "artifacts/configs/REVIEWER_RULING_R0C_005.json": "858aa9b4cd2c29c5b6d04693b02e77bf60b2db3cc91ce581fa6efe082cd4c570",
+    "artifacts/manifests/r0c_future_test_hash_commitment.json": "b6bfbd00b03b3153372c4912f439a1e689bb36bdc11abf92a61aa14f5583b7d1",
+    "artifacts/manifests/r1_null_pair_control_bank.json": "6f28c9593dfc3c7b64d55b7f31af9a4db0f8d9e0bdc1047164efffbf1fa78ab7",
+    "artifacts/tables/r1_stable_depth.parquet": "4d7a275bd698a2b1be9b8bdd7963bd78e76b98de8e6c0b9a7059863f806c88fe",
+    "artifacts/tables/r1_age_errors.parquet": "a9c288791923356c21879476c5ba416d2e49361c864dd7524586d5b96ab3029c",
+    "artifacts/tables/r1_family_depth.parquet": "44fd05e04e1c37e65949f04370a81b36ff5ecda481a6c07f3a16e9733651942d",
+    "artifacts/tables/r1_data_weak_errors.parquet": "dc617e74b91b68ef08580460279a997ea296758aa660fb5aa78e79ddc39179c4",
+    "artifacts/tables/r1_level_structure.parquet": "72aa18bb559b09474a1f8efcc8a32fd6247720ee14f5a7df43787c331e973388",
+    "artifacts/tables/r1_bootstrap.parquet": "f18db08de5748c1b88d3bf4da63f4402df6315f7d7a9d709d109ff9383c7b8d8",
+    "artifacts/tables/r1_null_pairs.parquet": "5bc5e7bcf2da03aab95ab1fe21b098ca480c677fa1a72ce52e4dc4a071df1585",
+    "artifacts/tables/r1_runtime.parquet": "34a30b3938e0d50f6ba6e044e6411bc0e5286bd7fc35a3e62aae91833843a7a3",
+    "artifacts/gates/correctness_gates.json": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+    "artifacts/reports/R1_HELD_OUT_MAIN.md": "0bf9c331cca1e2366098ba6a1f03b5d796573b7c01ec548a829d3965bf1c1fac"
+  }
+}

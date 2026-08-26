@@ -1,0 +1,213 @@
+{
+  "run_id": "R1_20260826T022951Z_2ba66f02",
+  "experiment_id": "R1_HELD_OUT_MAIN",
+  "execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+  "manifest_build_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+  "git_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+  "git_commit_deprecated": "ambiguous: this is the manifest build commit, not the execution commit. Read execution_commit instead",
+  "dirty_tree": true,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "master": 20260901,
+    "streams": {
+      "prior_fit_train": 11000,
+      "uncertainty_calibration": 12000,
+      "repair_validation": 13000,
+      "null_pairs": 14000,
+      "noise_draws": 15000,
+      "bootstrap": 16000,
+      "future_main_test": 19000
+    },
+    "bootstrap_seed": 20260901
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/R1_MAIN_FREEZE.json",
+      "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1_stable_depth.parquet",
+      "sha256": "4d7a275bd698a2b1be9b8bdd7963bd78e76b98de8e6c0b9a7059863f806c88fe"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1_age_errors.parquet",
+      "sha256": "a9c288791923356c21879476c5ba416d2e49361c864dd7524586d5b96ab3029c"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1_family_depth.parquet",
+      "sha256": "44fd05e04e1c37e65949f04370a81b36ff5ecda481a6c07f3a16e9733651942d"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1_data_weak_errors.parquet",
+      "sha256": "dc617e74b91b68ef08580460279a997ea296758aa660fb5aa78e79ddc39179c4"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1_level_structure.parquet",
+      "sha256": "72aa18bb559b09474a1f8efcc8a32fd6247720ee14f5a7df43787c331e973388"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1_bootstrap.parquet",
+      "sha256": "f18db08de5748c1b88d3bf4da63f4402df6315f7d7a9d709d109ff9383c7b8d8"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1_null_pairs.parquet",
+      "sha256": "5bc5e7bcf2da03aab95ab1fe21b098ca480c677fa1a72ce52e4dc4a071df1585"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1_runtime.parquet",
+      "sha256": "34a30b3938e0d50f6ba6e044e6411bc0e5286bd7fc35a3e62aae91833843a7a3"
+    }
+  ],
+  "gate_status": {
+    "R1_G1_sealed_bank_matches_commitment": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "640 regenerated records checked against commitment 93608e7a7578fe89..., parameter hashes and, where the regime is in-span, coefficient hashes"
+    },
+    "R1_G2_in_span_membership": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "measured on coordinates other than the projection grid"
+    },
+    "R1_G3_split_isolation": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "content-hash overlap between the sealed main bank and every R0C split"
+    },
+    "R1_G4_hyperparameters_frozen_from_validation": {
+      "status": "PASS",
+      "measured": 240,
+      "threshold": 240,
+      "note": "every (arm, estimator, SNR) hyperparameter is read from the R0C repair-validation selection; nothing is selected on a main-test truth"
+    },
+    "R1_G5_null_pair_control_bank": {
+      "status": "PASS",
+      "measured": 78,
+      "threshold": 91.0,
+      "note": "4000 committed pairs scored against the equal-prior Gaussian Bayes bound; binomial p for the excess 0.927; 0 direction hash mismatches. a defect requires an excess beyond binomial multiplicity, not a single two-sigma excursion"
+    }
+  },
+  "started_at": "2026-08-26T02:16:35+00:00",
+  "finished_at": "2026-08-26T02:29:52+00:00",
+  "attestation": {
+    "available": true,
+    "execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+    "head_tree_sha": "0e3370106cd614bc5755c381f993c8f133dc7ea4",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/R0C_REPAIRED_SOURCE_AND_CALIBRATION_FREEZE.json",
+        "sha256": "5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51",
+        "working_blob_sha": "95ed268aff339e7bdaf54a4d4b10acd3d3c7913d",
+        "committed_blob_sha": "95ed268aff339e7bdaf54a4d4b10acd3d3c7913d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/manifests/r0c_future_test_hash_commitment.json",
+        "sha256": "b6bfbd00b03b3153372c4912f439a1e689bb36bdc11abf92a61aa14f5583b7d1",
+        "working_blob_sha": "284b8110ac226baf68dcae7570ec7485c99f16c1",
+        "committed_blob_sha": "284b8110ac226baf68dcae7570ec7485c99f16c1",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/manifests/r1_null_pair_control_bank.json",
+        "sha256": "6f28c9593dfc3c7b64d55b7f31af9a4db0f8d9e0bdc1047164efffbf1fa78ab7",
+        "working_blob_sha": "34bc1129dded8e96a84b82befcf67d7ae74abcca",
+        "committed_blob_sha": "34bc1129dded8e96a84b82befcf67d7ae74abcca",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "peak_rss_mb": 687.390625,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 797.0880825519562,
+  "freeze_sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+  "ruling": "REVIEWER_RULING_R0C_005",
+  "sealed_bank_commitment": "93608e7a7578fe892269ac20297af5d3f22bc1f860bbdba71b9aa0a833aa3f1e",
+  "null_pair_control_bank": "57ee7fef85da0ff05b0a36df75331607eca9ea76b575067b02bda8ae98002806",
+  "uncertainty_disposition": "WITHDRAWN",
+  "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+  "measurement_correction_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
+  "e3c_execution_code_commit": "546763ed29e2be3fb129ec707cb07ee37a4f7db8",
+  "e3c_artifact_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
+  "e3c_age_interval_amendment_commit": "f034f19829623efa1f29bdcf27f95e10bd2de62e",
+  "e3c_freeze_sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
+  "e3c_registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "ray_map_manifest_sha256": "d163a630842ddec4b2143f9268bc70125857e78b84aa8fa122c5ef1bfc7b3638",
+  "r0_config_sha256": "dfc8d35eb2b7cb201409295698e9c623a10a0fa5ce730c7050e67c55f0ddb31e",
+  "r0_freeze_file_sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
+  "a_anchor_M": 0.0,
+  "age_interval_amendment": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003"
+}

@@ -2135,11 +2135,51 @@
         "run_id": "R0C_20260826T005826Z_2ba66f02",
         "recorded_at": "2026-08-26T00:58:27+00:00"
       }
+    },
+    "R1_G1_sealed_bank_matches_commitment": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "640 regenerated records checked against commitment 93608e7a7578fe89..., parameter hashes and, where the regime is in-span, coefficient hashes",
+      "run_id": "R1_20260826T022951Z_2ba66f02",
+      "recorded_at": "2026-08-26T02:29:52+00:00"
+    },
+    "R1_G2_in_span_membership": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "measured on coordinates other than the projection grid",
+      "run_id": "R1_20260826T022951Z_2ba66f02",
+      "recorded_at": "2026-08-26T02:29:52+00:00"
+    },
+    "R1_G3_split_isolation": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "content-hash overlap between the sealed main bank and every R0C split",
+      "run_id": "R1_20260826T022951Z_2ba66f02",
+      "recorded_at": "2026-08-26T02:29:52+00:00"
+    },
+    "R1_G4_hyperparameters_frozen_from_validation": {
+      "status": "PASS",
+      "measured": 240,
+      "threshold": 240,
+      "note": "every (arm, estimator, SNR) hyperparameter is read from the R0C repair-validation selection; nothing is selected on a main-test truth",
+      "run_id": "R1_20260826T022951Z_2ba66f02",
+      "recorded_at": "2026-08-26T02:29:52+00:00"
+    },
+    "R1_G5_null_pair_control_bank": {
+      "status": "PASS",
+      "measured": 78,
+      "threshold": 91.0,
+      "note": "4000 committed pairs scored against the equal-prior Gaussian Bayes bound; binomial p for the excess 0.927; 0 direction hash mismatches. a defect requires an excess beyond binomial multiplicity, not a single two-sigma excursion",
+      "run_id": "R1_20260826T022951Z_2ba66f02",
+      "recorded_at": "2026-08-26T02:29:52+00:00"
     }
   },
-  "updated_at": "2026-08-26T01:16:22+00:00",
+  "updated_at": "2026-08-26T02:29:52+00:00",
   "summary": {
-    "PASS": 141,
+    "PASS": 146,
     "FAIL": 8,
     "NOT_RUN": 11
   }
