@@ -146,59 +146,31 @@ def run(P: dict) -> int:
     print("representation floor, structure-normalized: "
           + ", ".join(f"{r}={lo:.3f}-{hi:.3f}" for r, (lo, hi) in fl.items()))
 
-    # ---- covariance scaling, on its own split ------------------------------
-    cal_coef, cal_vals = P["cal_coef"], P["cal_vals"]
-    scale_rows, scales = [], {}
-    for est in estimators:
-        if est not in PROBABILISTIC:
-            continue
-        hp = P["calibration_hyperparameter"][est]
-        samples = []
-        for arm in ARMS:
-            op = red[arm]
-            for snr in snr_grid:
-                nrng = np.random.default_rng(
-                    [master, streams["uncertainty_calibration"], int(snr),
-                     ARMS.index(arm)])
-                b = statistics_for(op, cal_coef, snr,
-                                   op.noise_statistic(nrng, cal_coef.shape[0]))
-                xr, cov = _apply(est, op, b, hp, ctx)
-                if cov is not None:
-                    samples.append((cal_coef, xr / snr, cov))
-        rec = fit_covariance_scale(est, samples)
-        scales[est] = rec["scale"]
-        scale_rows.append({**rec, "hyperparameter": hp,
-                           "fitted_over": "every arm and SNR on the "
-                                          "uncertainty_calibration split",
-                           "freeze_sha256": fh})
-        print(f"covariance scale {est}: s = {rec['scale']:.4g} over "
-              f"{rec['n_operating_points']} operating points, raw ratio spans "
-              f"{rec.get('unscaled_ratio_spread_decades', float('nan')):.1f} "
-              f"decades")
-
-    P["scales"] = scales
     P["floor_rows"], P["floor_depth"] = floor_rows, floor_depth
-    P["scale_rows"] = scale_rows
     P["estimators"], P["strength"], P["ctx"] = estimators, strength, ctx
     P["old_mask"], P["a_anchor"], P["a_max"] = old_mask, a_anchor, a_max
+
+    # Selection first, then calibration, then scoring. The posterior's
+    # calibration depends on how hard the estimator regularises, so a scalar
+    # fitted at some other hyperparameter than the one the estimator will
+    # actually use is fitted to a different posterior. The hyperparameter comes
+    # from validation selection, which is where it is supposed to come from; the
+    # scalar itself still sees only the uncertainty_calibration split, and that
+    # split is never scored.
+    P["sel_rows"], P["selected"] = _select_all(P)
+    P["scales"], P["scale_rows"] = _fit_scales(P)
     return _score_all(P)
 
 
-def _score_all(P: dict) -> int:
-    fz, fh = P["freeze"], P["freeze_hash"]
+def _select_all(P: dict) -> tuple[list[dict], dict]:
+    """The frozen lexicographic rule, on the repair-validation bank."""
     ages, eta, eta_struct = P["ages"], P["eta"], P["eta_struct"]
-    red, snr_grid, rho = P["red"], P["snr_grid"], P["rho"]
-    scorer, terms = P["scorer"], P["terms"]
+    red, scorer, terms = P["red"], P["scorer"], P["terms"]
     truth_coef = P["truth_coef"]
-    regimes = list(P["regimes"])
     estimators, strength, ctx = P["estimators"], P["strength"], P["ctx"]
     old_mask, a_anchor, a_max = P["old_mask"], P["a_anchor"], P["a_max"]
-    master, streams = P["master"], P["streams"]
-    d, t0 = P["dimension"], P["t0"]
-    n_draws = int(P["n_draws"])
-
-    sel_rows, age_rows, depth_rows, dw_rows, cov_rows, rt_rows = \
-        [], [], [], [], [], []
+    master, streams, fh = P["master"], P["streams"], P["freeze_hash"]
+    rows, selected = [], {}
     for arm in ARMS:
         op = red[arm]
         for snr in P["snr_grid"]:
@@ -207,8 +179,8 @@ def _score_all(P: dict) -> int:
             for est, grid in estimators.items():
                 sel_t = time.time()
                 Xs = truth_coef[SELECTION_REGIME]
-                noise = op.noise_statistic(nrng, Xs.shape[0])
-                b = statistics_for(op, Xs, snr, noise)
+                b = statistics_for(op, Xs, snr,
+                                   op.noise_statistic(nrng, Xs.shape[0]))
                 cands = []
                 for hp in grid:
                     xr, _ = _apply(est, op, b, hp, ctx)
@@ -226,7 +198,8 @@ def _score_all(P: dict) -> int:
                         "strength": float(strength[est](hp))})
                 best = lexicographic_best(cands)
                 oracle = sorted(cands, key=lambda c: c["old_norm"])[0]
-                sel_rows.append({
+                selected[(arm, est, float(snr))] = best["hp"]
+                rows.append({
                     "arm": arm, "estimator": est, "snr0": snr,
                     "selection_regime": SELECTION_REGIME,
                     "selected_hyperparameter": best["hp"],
@@ -236,12 +209,70 @@ def _score_all(P: dict) -> int:
                     "selected_old_band_normalized_error": best["old_norm"],
                     "oracle_hyperparameter": oracle["hp"],
                     "oracle_old_band_normalized_error": oracle["old_norm"],
-                    "oracle_label": "ORACLE_UPPER_BOUND",
-                    "n_grid": len(grid),
+                    "oracle_label": "ORACLE_UPPER_BOUND", "n_grid": len(grid),
                     "selection_seconds": time.time() - sel_t,
                     "freeze_sha256": fh})
-                hp = best["hp"]
+    print(f"selection: {len(rows)} (arm, estimator, SNR) cells")
+    return rows, selected
 
+
+def _fit_scales(P: dict) -> tuple[dict, list[dict]]:
+    """One scalar per estimator family, on the calibration split only."""
+    red, ctx, fh = P["red"], P["ctx"], P["freeze_hash"]
+    master, streams = P["master"], P["streams"]
+    cal_coef = P["cal_coef"]
+    scales, rows = {}, []
+    for est in P["estimators"]:
+        if est not in PROBABILISTIC:
+            continue
+        samples = []
+        for arm in ARMS:
+            op = red[arm]
+            for snr in P["snr_grid"]:
+                hp = P["selected"][(arm, est, float(snr))]
+                nrng = np.random.default_rng(
+                    [master, streams["uncertainty_calibration"], int(snr),
+                     ARMS.index(arm)])
+                b = statistics_for(op, cal_coef, snr,
+                                   op.noise_statistic(nrng, cal_coef.shape[0]))
+                xr, cov = _apply(est, op, b, hp, ctx)
+                if cov is not None:
+                    samples.append((cal_coef, xr / snr, cov))
+        rec = fit_covariance_scale(est, samples)
+        scales[est] = rec["scale"]
+        rows.append({**rec,
+                     "hyperparameter": "the selected one at each (arm, SNR)",
+                     "fitted_over": "every arm and SNR on the "
+                                    "uncertainty_calibration split, at the "
+                                    "hyperparameter selection chose there",
+                     "freeze_sha256": fh})
+        print(f"covariance scale {est}: s = {rec['scale']:.4g} over "
+              f"{rec['n_operating_points']} operating points, raw ratio spans "
+              f"{rec.get('unscaled_ratio_spread_decades', float('nan')):.1f} "
+              f"decades")
+    return scales, rows
+
+
+def _score_all(P: dict) -> int:
+    fz, fh = P["freeze"], P["freeze_hash"]
+    ages, eta, eta_struct = P["ages"], P["eta"], P["eta_struct"]
+    red, snr_grid, rho = P["red"], P["snr_grid"], P["rho"]
+    scorer, terms = P["scorer"], P["terms"]
+    truth_coef = P["truth_coef"]
+    regimes = list(P["regimes"])
+    estimators, strength, ctx = P["estimators"], P["strength"], P["ctx"]
+    old_mask, a_anchor, a_max = P["old_mask"], P["a_anchor"], P["a_max"]
+    master, streams = P["master"], P["streams"]
+    d, t0 = P["dimension"], P["t0"]
+    n_draws = int(P["n_draws"])
+
+    age_rows, depth_rows, dw_rows, cov_rows, rt_rows = [], [], [], [], []
+    sel_rows = P["sel_rows"]
+    for arm in ARMS:
+        op = red[arm]
+        for snr in P["snr_grid"]:
+            for est in estimators:
+                hp = P["selected"][(arm, est, float(snr))]
                 for regime in regimes:
                     Xr = truth_coef[regime]
                     acc_nrm, acc_abs, acc_ns = [], [], []
