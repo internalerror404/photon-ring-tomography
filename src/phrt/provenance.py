@@ -54,26 +54,41 @@ def _git(*args: str) -> str:
         return "UNKNOWN"
 
 
+ROOT_DIR = Path(__file__).resolve().parents[2]
+
+
 def git_commit() -> str:
     return _git("rev-parse", "HEAD")
 
 
 # Top-level-relative pathspecs (":/" prefix) so the answer does not depend on
 # which subdirectory git happens to be invoked from.
-SOURCE_PATHSPECS = (":/photon-ring/src", ":/photon-ring/scripts",
-                    ":/photon-ring/configs", ":/photon-ring/tests")
+#
+# R0_REPAIR_AMENDMENT_004. These previously read ":/photon-ring/src" and so on,
+# from a layout in which the package sat one directory down. git status returns
+# nothing for a pathspec that matches nothing, so the check was vacuous and
+# every manifest in the campaign reported a clean tree whatever the state of the
+# working copy. artifacts/configs is included now: a freeze is a registered
+# configuration, not a generated artifact, and a run against an uncommitted
+# freeze is not a preregistered run.
+SOURCE_PATHSPECS = (":/src", ":/scripts", ":/configs", ":/tests", ":/schemas",
+                    ":/artifacts/configs")
 
 
 def git_dirty(paths: tuple[str, ...] = SOURCE_PATHSPECS) -> bool:
-    """Dirty status scoped to *source*, not to generated artifacts.
+    """Dirty status scoped to registered paths, not to generated artifacts.
 
     Hashing the whole tree makes every emitter after the first report a dirty
     run purely because an earlier emitter wrote its own output.  Untracked
-    source files count as dirty; untracked artifacts do not.
+    source files count as dirty; untracked artifacts outside the registered
+    paths do not.  ``phrt.attestation`` records the full evidence; this stays a
+    single boolean for the manifest header.
     """
     if _git("rev-parse", "--show-toplevel") == "UNKNOWN":
         return True
-    return bool(_git("status", "--porcelain", "--", *paths).strip())
+    if not any(Path(ROOT_DIR, spec[2:]).exists() for spec in paths):
+        return True   # the pathspecs do not describe this tree; do not claim clean
+    return bool(_git("status", "--porcelain=v1", "-uall", "--", *paths).strip())
 
 
 def torch_device_report() -> dict[str, Any]:

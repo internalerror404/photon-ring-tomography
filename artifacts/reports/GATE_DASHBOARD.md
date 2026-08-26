@@ -1,7 +1,7 @@
 # GATE DASHBOARD
 
-- commit `546763ed29e2be3fb129ec707cb07ee37a4f7db8`
-- 148 gates, 130 passing
+- commit `8345068676b15ce8f96a76da9d92b159db215f1d`
+- 157 gates, 139 passing
 
 ```
     active_blocking_failures:   0
@@ -38,6 +38,12 @@ A preserved literal failure is a FAIL that has been adjudicated and kept on the 
 | `E2_near_null_is_not_null` | PASS | – | -6.909e-08 | 0 |
 | `E2_null_injection_invisible` | PASS | – | 3.615e-16 | 1e-08 |
 | `E2_null_injection_moves_source` | PASS | – | -2 | -1e-06 |
+| `E3C_AMD003_anchor_frozen_from_support` | PASS | – | 32 | – |
+| `E3C_AMD003_anchor_windows_are_the_operator_windows` | PASS | – | 0 | 1e-09 |
+| `E3C_AMD003_longest_run_span_rederived_from_masks` | PASS | – | 0 | 0 |
+| `E3C_AMD003_noncontiguous_detectable_sets` | PASS | – | 2 | – |
+| `E3C_AMD003_reach_rederived_from_masks` | PASS | – | 0 | 0 |
+| `E3C_AMD003_rows_where_anchored_span_differs` | PASS | – | 316 | – |
 | `E3C_G2_physical_dense_matrix_free` | PASS | – | 0 | 1e-10 |
 | `E3C_G3_physical_adjoint` | PASS | – | 5.523e-14 | 1e-08 |
 | `E3C_G4_physical_resolved_unresolved_mixing` | PASS | – | 0 | 1e-10 |
@@ -49,14 +55,17 @@ A preserved literal failure is a FAIL that has been adjudicated and kept on the 
 | `E3C_H2_registered_statistic_is_an_identity` | PASS | – | 12 | 12 |
 | `E3C_freeze_raymap_hashes` | PASS | – | 0 | 0 |
 | `E3C_frozen_grid_invariance` | PASS | – | dims=[224] n_ages=[64] | dims=[224] n_ages=[64] |
+| `E3C_v2_anchor_frozen_from_reachable_support` | PASS | – | 32 | – |
+| `E3C_v2_anchored_span_differs_from_longest_run` | PASS | – | 316 | – |
 | `E3C_v2_canonical_e3c_incremental_indirect_gram` | PASS | – | 1 | 1 |
 | `E3C_v2_canonical_e3c_pairing_destroyed_distribution` | PASS | – | 1 | 1 |
 | `E3C_v2_canonical_e3c_weighted_delay_quantiles_long` | PASS | – | 1 | 1 |
-| `E3C_v2_depth_contract_complete` | PASS | – | 4 | 4 |
+| `E3C_v2_depth_contract_complete` | PASS | – | 9 | 9 |
 | `E3C_v2_dispositions_are_registered` | PASS | – | 0 | 0 |
 | `E3C_v2_exact_rank_not_applicable` | PASS | – | 0 | 0 |
 | `E3C_v2_no_reserved_e3d_fields` | PASS | – | 0 | 0 |
 | `E3C_v2_noncontiguous_detectable_sets` | PASS | – | 2 | – |
+| `E3C_v2_retired_age_interval_names_absent` | PASS | – | 0 | 0 |
 | `E3D_Gram_monotonicity` | PASS | – | 1.136e-16 | 1e-10 |
 | `E3D_adjoint` | PASS | – | 4.89e-13 | 1e-08 |
 | `E3D_class_nesting` | PASS | – | 2.73e-14 | 1e-10 |

@@ -84,7 +84,12 @@ class RunManifest:
     inputs: list[dict[str, str]] = field(default_factory=list)
     outputs: list[dict[str, str]] = field(default_factory=list)
     gates: list[Gate] = field(default_factory=list)
+    # The real start of the run, not the moment the manifest object happened
+    # to be constructed. Several runners build the manifest at the end, which
+    # made started_at and finished_at identical while runtime_seconds said the
+    # run took ten minutes. Pass the run's own t0.
     started_at: str = field(default_factory=utcnow)
+    attestation: dict[str, Any] | None = None
     extra: dict[str, Any] = field(default_factory=dict)
 
     def add_input(self, path: str | Path) -> None:
@@ -119,6 +124,7 @@ class RunManifest:
             "gate_status": {g.name: g.to_dict() for g in self.gates},
             "started_at": self.started_at,
             "finished_at": utcnow(),
+            "attestation": self.attestation,
             "peak_rss_mb": peak_rss_mb(),
             "packages": prov.packages,
             "protocol_deviations": prov.deviations,

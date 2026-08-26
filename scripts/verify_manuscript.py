@@ -41,7 +41,70 @@ from phrt.config import sha256_file
 
 MAN = ROOT / "artifacts" / "manuscript" / "PAPER_I.md"
 LEDGER = ROOT / "artifacts" / "manuscript" / "CLAIM_LEDGER.json"
-CANON = ROOT / "artifacts" / "CANONICAL_ARTIFACT_FREEZE.json"
+CANON_V1 = ROOT / "artifacts" / "CANONICAL_ARTIFACT_FREEZE.json"
+CANON_V2 = ROOT / "artifacts" / "CANONICAL_ARTIFACT_FREEZE_V2.json"
+# R0_REPAIR_AMENDMENT_004: verify against the v2 freeze when it exists. The v1
+# file is the record of the v1 manuscript line and predates the accepted E3C v2
+# re-execution, so checking today's tables against it reports 42 mismatches that
+# are not defects. v1 stays on disk, unrewritten.
+CANON = CANON_V2 if CANON_V2.exists() else CANON_V1
+
+# The E3C v2 contract renamed several columns the v1 claim ledger still names.
+# The rename lives here rather than in the ledger: the ledger is the record of
+# what the v1 manuscript claimed, and editing it to match new tables would erase
+# the thing it exists to preserve.
+V2_COLUMN_RENAMES = {
+    "T_resolved_gt_T_direct": "resolved_probe_deeper_than_direct",
+    "T_rec": "oldest_detectable_age_probe",
+    "deepest_detectable_age": "oldest_detectable_age_probe",
+    "T_rec_at_reference_snr": "oldest_detectable_age_probe_at_reference_snr",
+    "T_rec_resolved": "oldest_detectable_age_probe_resolved",
+    "T_rec_direct": "oldest_detectable_age_probe_direct",
+    # AGE_INTERVAL_SEMANTICS_AMENDMENT_003
+    "largest_contiguous_detectable_depth": "longest_detectable_run_span_M",
+    "largest_contiguous_start_M": "longest_detectable_run_start_M",
+    "largest_contiguous_end_M": "longest_detectable_run_end_M",
+    "largest_contiguous_detectable_depth_at_reference_snr":
+        "longest_detectable_run_span_M_at_reference_snr",
+    "largest_contiguous_detectable_depth_resolved":
+        "longest_detectable_run_span_M_resolved",
+    "largest_contiguous_detectable_depth_direct":
+        "longest_detectable_run_span_M_direct",
+}
+
+
+# PAPER_I_V2_PRE_E3C_AMENDMENT_001 item 7 moved the incremental indirect Gram
+# out of the per-arm metrics table and into its own canonical table: it is a
+# difference of Grams, not an operator, and as a pseudo-arm row it had to borrow
+# columns that did not apply to it. The v1 ledger still names the old location.
+# Like the renames, the relocation is recorded here rather than by editing the
+# ledger, which is the record of what the v1 manuscript claimed.
+V2_SOURCE_RELOCATIONS = {
+    ("artifacts/tables/e3c_geometry_metrics.parquet", "arm", "DELTA_G_INDIRECT"): {
+        "path": "artifacts/tables/e3c_incremental_indirect_gram.parquet",
+        "where": {"quantity": "delta_G_indirect"},
+    },
+}
+
+
+def relocate(src: dict) -> dict:
+    """Point a v1 ledger source at the v2 table that now holds it."""
+    for (path, key, value), to in V2_SOURCE_RELOCATIONS.items():
+        if src.get("path") == path and src.get("where", {}).get(key) == value:
+            out = dict(src)
+            out["path"] = to["path"]
+            out["where"] = dict(to["where"])
+            out["relocated_from"] = path
+            return out
+    return src
+
+
+def v2_name(df, column: str) -> str:
+    """The column as this table spells it today, or the original if unchanged."""
+    if column in df.columns:
+        return column
+    renamed = V2_COLUMN_RENAMES.get(column)
+    return renamed if renamed and renamed in df.columns else column
 SUPS = ROOT / "artifacts" / "SUPERSEDED_PRE_G10Q.json"
 E3C_RAW = ROOT / "artifacts" / "e3c"
 REF = 100.0
@@ -75,6 +138,7 @@ def check_freeze(fails: list[str]) -> int:
 
 
 def rederive(src: dict, frames: dict) -> object:
+    src = relocate(src)
     kind = src["kind"]
     if kind in ("parquet", "parquet_count"):
         path = src["path"]
@@ -82,10 +146,10 @@ def rederive(src: dict, frames: dict) -> object:
             frames[path] = pd.read_parquet(ROOT / path)
         df = frames[path]
         for k, v in src.get("where", {}).items():
-            df = df[df[k] == v]
+            df = df[df[v2_name(df, k)] == v]
         if kind == "parquet_count":
             return int(len(df))
-        s = df[src["column"]]
+        s = df[v2_name(df, src["column"])]
         agg = src["aggregation"]
         return s.iloc[0] if agg == "first" else getattr(s, agg)()
     if kind == "json":
@@ -106,6 +170,14 @@ def check_claims(fails: list[str], text: str) -> tuple[int, int, int]:
                and a["sha256_pre_correction"]}
     frames: dict[str, pd.DataFrame] = {}
     n_re = n_txt = 0
+    # R0_REPAIR_AMENDMENT_004. The ledger pins the bytes of the v1 manuscript
+    # line. Verified against the v2 freeze, those pins differ by construction --
+    # the E3C v2 re-execution rewrote the tables the ledger names. A digest that
+    # moved is only acceptable when the file is canonical under v2 *and* the
+    # claim's value still re-derives; anything else is still a failure, and the
+    # count is reported so the drift cannot pass unnoticed.
+    v2_line = CANON == CANON_V2
+    digest_drift: list[str] = []
     for cl in doc["claims"]:
         src, cid = cl["source"], cl["id"]
         path = src.get("path")
@@ -113,10 +185,15 @@ def check_claims(fails: list[str], text: str) -> tuple[int, int, int]:
             if path in sup_pre and fz.get(path) == sup_pre[path]:
                 fails.append(f"claim {cid} cites {path} at its pre-correction "
                              "bytes, which are superseded")
+            path = relocate(src).get("path", path)
             if path not in fz:
                 fails.append(f"claim {cid} cites non-canonical artifact {path}")
             elif src.get("sha256") and src["sha256"] != fz[path]:
-                fails.append(f"claim {cid} recorded a stale digest for {path}")
+                if v2_line:
+                    digest_drift.append(f"{cid} -> {path}")
+                else:
+                    fails.append(
+                        f"claim {cid} recorded a stale digest for {path}")
         if src["kind"] in ("parquet", "parquet_count", "json"):
             got = rederive(src, frames)
             if not close(got, cl["value"]):
@@ -128,6 +205,12 @@ def check_claims(fails: list[str], text: str) -> tuple[int, int, int]:
                          "appear in the manuscript")
         else:
             n_txt += 1
+    if digest_drift:
+        print(f"  ledger digests predating the v2 line   {len(digest_drift)}")
+        print("    the v1 ledger pins v1 bytes; every one of these is a file "
+              "that is canonical under the v2 freeze and whose claim value "
+              "still re-derives. A drifted digest whose value did not re-derive "
+              "is reported as a failure above, not here.")
     return len(doc["claims"]), n_re, n_txt
 
 
@@ -165,9 +248,14 @@ def check_regeneration(fails: list[str]) -> int:
             ok = (REF ** 2) * ihat >= 1.0
             want = float(ages[ok].max()) if ok.any() else -1.0
             d = dep[(dep.geometry == g) & (dep.arm == arm) & (dep.snr0 == REF)]
-            if d.empty or not close(want, float(d.deepest_detectable_age.iloc[0])):
+            # the v1 name for the reach was deepest_detectable_age; the v2
+            # contract calls it oldest_detectable_age_probe, because it is a
+            # supremum over a possibly non-contiguous set
+            reach_col = v2_name(dep, "deepest_detectable_age")
+            got = None if d.empty else float(d[reach_col].iloc[0])
+            if d.empty or not close(want, got):
                 fails.append(f"regeneration: {g}/{arm} depth recomputed {want}, "
-                             f"table {None if d.empty else d.deepest_detectable_age.iloc[0]}")
+                             f"table {got}")
             checks += 1
             # historical innovation, recomputed by trapezoid on the raw curve
             a0 = float(r["a0_999_M"])

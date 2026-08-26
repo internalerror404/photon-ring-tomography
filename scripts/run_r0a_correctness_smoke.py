@@ -33,6 +33,7 @@ from phrt.inverse.state_space import (random_walk_precision, state_space_dense,
                                       state_space_from_statistic)
 from phrt.inverse.tsvd import tsvd_dense, tsvd_from_statistic
 from phrt.inverse.wiener import fit_gaussian_prior, wiener_dense, wiener_from_statistic
+from phrt.attestation import attest
 from phrt.governance import r0_provenance
 from phrt.io.manifests import Gate, RunManifest, gate_from_tolerance, make_run_id
 from phrt.io.tables import write_table
@@ -91,6 +92,10 @@ def smoke_operators(fz: dict):
 
 def main() -> int:
     t0 = time.time()
+    started = time.strftime("%Y-%m-%dT%H:%M:%S+00:00", time.gmtime())
+    # Captured before anything is written. A run creates its own outputs, so an
+    # attestation taken at the end cannot tell a dirty start from its own work.
+    att = attest([FREEZE])
     fz = json.loads(FREEZE.read_text())
     freeze_hash = hashlib.sha256(FREEZE.read_bytes()).hexdigest()
     reg = load_registry()
@@ -99,11 +104,32 @@ def main() -> int:
 
     run_id = make_run_id("R0A", reg.sha256)
     man = RunManifest(run_id=run_id, experiment_id="R0A_CORRECTNESS_SMOKE",
-                      seeds={"smoke": 4242},
+                      seeds={"smoke": 4242}, started_at=started,
+                      attestation=att,
                       extra={"profile": "R0_SMOKE", "freeze_sha256": freeze_hash,
                              **r0_provenance()})
     man.add_input(FREEZE)
     rows = []
+
+    # ---- R0_G13 freeze commit attestation ----------------------------------
+    # R0_REPAIR_AMENDMENT_004. The pilot's manifest asserted a clean tree while
+    # the freeze it ran against was uncommitted; the check behind that assertion
+    # matched no path in this layout and so could only ever say clean. This gate
+    # states the evidence instead of the conclusion.
+    f0 = att["files"][0]
+    man.add_gate(Gate("R0_G13_freeze_commit_attestation",
+                      "PASS" if att.get("preregistered") else "FAIL",
+                      measured=int(bool(att.get("preregistered"))), threshold=1,
+                      note=f"execution commit {att.get('execution_commit')}, "
+                           f"head tree {att.get('head_tree_sha')}, freeze blob "
+                           f"{f0['committed_blob_sha']} committed="
+                           f"{f0['committed_at_execution_commit']}, freeze "
+                           f"sha256 {f0['sha256'][:16]}..., tracked changes "
+                           f"{att.get('n_tracked_changes')}, untracked "
+                           f"{att.get('n_untracked')}, porcelain sha256 "
+                           f"{att.get('porcelain_registered_sha256', '')[:16]}..."))
+    rows.append({"gate": "R0_G13_freeze_commit_attestation",
+                 "measured": int(bool(att.get("preregistered")))})
 
     base, basis, t_obs, ops = smoke_operators(fz)
     d = basis.dimension
@@ -233,14 +259,25 @@ def main() -> int:
     wp = (2 * np.pi / pq.size) * np.sum(P ** 2, axis=0)
     want = np.sqrt(np.outer(wr, wp).ravel() * 3.0 * np.sqrt(np.pi))
     probe_dev = float(np.abs(norms / want - 1.0).max())
-    man.add_gate(Gate("R0_G6_age_probe_normalization",
-                      "PASS" if probe_dev < 5e-3 else "FAIL",
-                      measured=probe_dev, threshold=5e-3,
-                      note="analytic probe norm against an independent 4001-point "
-                           "quadrature; the declared unit normalisation is exact "
-                           f"by construction (deviation {unit_dev:.1e}), so the "
-                           "quadrature agreement is the real check"))
-    rows.append({"gate": "R0_G6_age_probe_normalization", "measured": probe_dev})
+    # R0_REPAIR_AMENDMENT_004 splits this. One gate previously carried the
+    # declared-normalisation name and the freeze's 1e-12 threshold while
+    # actually reporting a 4001-point quadrature cross-check at 5e-3, so the
+    # canonical table read as though 5.55e-5 < 1e-12. Two checks, two records.
+    g6a = tol.get("R0_G6a_declared_probe_unit_norm",
+                  tol.get("R0_G6_age_probe_normalization", 1e-12))
+    man.add_gate(gate_from_tolerance("R0_G6a_declared_probe_unit_norm",
+                                     unit_dev, g6a))
+    rows.append({"gate": "R0_G6a_declared_probe_unit_norm", "measured": unit_dev})
+    g6b = tol.get("R0_G6b_independent_quadrature_crosscheck", 5e-3)
+    man.add_gate(Gate("R0_G6b_independent_quadrature_crosscheck",
+                      "PASS" if probe_dev < g6b else "FAIL",
+                      measured=probe_dev, threshold=g6b,
+                      note="analytic probe norm against an independent "
+                           "4001-point quadrature. This is a discretisation "
+                           "agreement, not the declared normalisation, and it "
+                           "carries its own threshold frozen before R0C"))
+    rows.append({"gate": "R0_G6b_independent_quadrature_crosscheck",
+                 "measured": probe_dev})
 
     # ---- R0_G7 right censoring and anchored interval semantics -------------
     # Synthetic masks on a synthetic grid: this gate tests the reporting logic,
