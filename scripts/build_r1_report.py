@@ -82,7 +82,16 @@ def main() -> int:
     fz = json.loads(FREEZE.read_text())
     fh = hashlib.sha256(FREEZE.read_bytes()).hexdigest()
     reg, prov = load_registry(), provenance.collect()
-    att = attest([FREEZE])
+    # R1_RECORD_AMENDMENT_006. Two attestations, and only one of them says
+    # anything about the science. The execution attestation was captured at the
+    # start of the run, before an operator existed, and it is authoritative for
+    # the result. This one covers report assembly: it is taken now, long after
+    # the numbers were computed, and an untracked report builder makes it read
+    # false while changing nothing about what was measured.
+    assembly = attest([FREEZE])
+    run_man = sorted((MANS).glob("R1_*.json"))[-1]
+    run_doc = json.loads(run_man.read_text())
+    att = run_doc["attestation"]
     ruling = json.loads((CFG / "REVIEWER_RULING_R0C_005.json").read_text())
     REPORTS.mkdir(parents=True, exist_ok=True)
 
@@ -317,9 +326,16 @@ the bootstrap count and seed were fixed before a main truth was rendered.
 | `r0c_artifact_commit` | `{fz['provenance']['r0c_artifact_commit']}` |
 
 - R1 freeze sha256 `{fh}`
-- execution commit `{att.get('execution_commit')}`, head tree `{att.get('head_tree_sha')}`
-- freeze committed at that commit: **{att['files'][0]['committed_at_execution_commit']}**;
-  tracked changes {att.get('n_tracked_changes')}, untracked {att.get('n_untracked')}
+- **execution** attestation, captured at the start of the run and authoritative
+  for the result: commit `{att.get('execution_commit')}`, head tree
+  `{att.get('head_tree_sha')}`, freeze committed at that commit
+  **{att['files'][0]['committed_at_execution_commit']}**, tracked changes
+  {att.get('n_tracked_changes')}, untracked {att.get('n_untracked')},
+  preregistered **{att.get('preregistered')}**
+- **report assembly** attestation, taken when this document was written and
+  covering nothing that was measured: commit `{assembly.get('execution_commit')}`,
+  tracked {assembly.get('n_tracked_changes')}, untracked
+  {assembly.get('n_untracked')}, preregistered {assembly.get('preregistered')}
 - sealed bank commitment `{fz['sealed_bank']['commitment_sha256']}`
 - null-pair control bank `{fz['null_pair_control_bank']['sha256']}`
 - registry `{reg.sha256}`, environment `{prov.environment_sha256}`
@@ -478,6 +494,7 @@ recovery. One geometry, a* = 0.5 and i = 50 degrees; one source class, C224.
                     "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ",
                                                  time.gmtime()),
                     "execution_commit": att.get("execution_commit"),
+                    "authoritative_attestation": "execution",
                     "r1_freeze_sha256": fh,
                     "sealed_bank_commitment":
                         fz["sealed_bank"]["commitment_sha256"],
@@ -485,7 +502,14 @@ recovery. One geometry, a* = 0.5 and i = 50 degrees; one source class, C224.
                         fz["null_pair_control_bank"]["sha256"],
                     "stop_token": token,
                     "uncertainty_disposition": fz["uncertainty"]["disposition"],
-                    "attestation": att,
+                    "execution_attestation": att,
+                    "report_assembly_attestation": assembly,
+                    "attestation_rule":
+                        "R1_RECORD_AMENDMENT_006: the execution attestation is "
+                        "authoritative for the result. The assembly attestation "
+                        "describes only when this manifest was written; a "
+                        "preregistered=false there is a statement about the "
+                        "report builder's tracking state, not about the run",
                     "provenance": r0_provenance(),
                     "artifacts": {p: sha256_file(ROOT / p) for p in files}},
                    indent=2, default=str) + "\n")

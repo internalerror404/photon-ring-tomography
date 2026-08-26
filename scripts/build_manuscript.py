@@ -31,7 +31,12 @@ from phrt.manuscript.ledger import ClaimLedger
 from phrt.manuscript.render import page
 
 OUT = ROOT / "artifacts" / "manuscript"
-FREEZE_PATH = ROOT / "artifacts" / "CANONICAL_ARTIFACT_FREEZE.json"
+# The v2 freeze is the accepted post-E3C-v2 line and is the only one that
+# contains the R1 tables. v1 is preserved as the record of the v1 manuscript and
+# is used only if v2 is absent.
+FREEZE_V2 = ROOT / "artifacts" / "CANONICAL_ARTIFACT_FREEZE_V2.json"
+FREEZE_V1 = ROOT / "artifacts" / "CANONICAL_ARTIFACT_FREEZE.json"
+FREEZE_PATH = FREEZE_V2 if FREEZE_V2.exists() else FREEZE_V1
 
 MET = "artifacts/tables/e3c_geometry_metrics.parquet"
 SURF = "artifacts/tables/e3c_geometry_surface.parquet"
@@ -41,6 +46,7 @@ MS = "artifacts/tables/e3c_matched_sensitivity_summary.parquet"
 PDS = "artifacts/tables/e3c_pairing_destroyed_distribution.parquet"
 CTL = "artifacts/tables/e3c_common_radial_support_control.parquet"
 QNT = "artifacts/tables/e3c_weighted_delay_quantiles.parquet"
+DGR = "artifacts/tables/e3c_incremental_indirect_gram.parquet"
 DSP = "artifacts/tables/e3d_class_spectra.parquet"
 DDP = "artifacts/tables/e3d_depth_by_class.parquet"
 DNS = "artifacts/tables/e3d_class_nesting.parquet"
@@ -50,7 +56,17 @@ BMS = "artifacts/tables/e3b_matched_support_attenuation.parquet"
 GATES = "artifacts/gates/correctness_gates.json"
 E3CFZ = "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
 SUPS = "artifacts/SUPERSEDED_PRE_G10Q.json"
-CANON = "artifacts/CANONICAL_ARTIFACT_FREEZE.json"
+CANON = ("artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json" if FREEZE_V2.exists()
+         else "artifacts/CANONICAL_ARTIFACT_FREEZE.json")
+
+# R1 held-out main
+R1D = "artifacts/tables/r1_stable_depth.parquet"
+R1F = "artifacts/tables/r1_family_depth.parquet"
+R1B = "artifacts/tables/r1_bootstrap.parquet"
+R1L = "artifacts/tables/r1_level_structure.parquet"
+R1W = "artifacts/tables/r1_data_weak_errors.parquet"
+R1N = "artifacts/tables/r1_null_pairs.parquet"
+R1FZ = "artifacts/configs/R1_MAIN_FREEZE.json"
 
 REF = 100.0
 CANARY = "a050_i050"
@@ -62,8 +78,9 @@ ARMS = ["DIRECT_PHYSICAL", "RESOLVED_PHYSICAL", "UNRESOLVED_IMAGE", "TOTAL_FLUX"
         "PAIRING_DESTROYED"]
 D = "\n"
 
-TITLE = ("Photon-Ring Retarded-Time Tomography I: Class-Dependent Identifiability "
-         "and the Separation of Historical Reach from Algebraic Rank in "
+TITLE = ("Photon-Ring Retarded-Time Tomography I: Class-Dependent "
+         "Identifiability, the Separation of Historical Reach from Algebraic "
+         "Rank, and Held-Out Reconstruction of Age-Local Emissivity Level in "
          "Near-Critical Null Geodesics")
 
 
@@ -178,7 +195,7 @@ def main() -> int:
     # ---- H1 -----------------------------------------------------------------
     c["h1_depth"] = L.count("H1.T_resolved_gt_direct", HYP, where={
         "hypothesis": "H1_historical_extension", "snr0": REF,
-        "T_resolved_gt_T_direct": True},
+        "resolved_probe_deeper_than_direct": True},
         prose="geometries where resolved depth exceeds direct depth at the "
               "reference SNR")
     c["h1_j"] = L.count("H1.J_old_positive", HYP, where={
@@ -190,32 +207,32 @@ def main() -> int:
     c["ndepth"] = L.count("depth.rows", DEP, prose="depth entries in total")
     for i in INCS:
         c[f"trec{i}"] = L.table(f"H1.T_resolved.i{i:03d}", MET,
-                                "T_rec_at_reference_snr", agg="median", fmt="{:.0f}",
+                                "oldest_detectable_age_probe_at_reference_snr", agg="median", fmt="{:.0f}",
                                 where={"arm": "RESOLVED_PHYSICAL",
                                        "inclination_deg": i},
                                 prose=f"median resolved depth at i = {i} deg")
         c[f"tdir{i}"] = L.table(f"H1.T_direct.i{i:03d}", MET,
-                                "T_rec_at_reference_snr", agg="median", fmt="{:.0f}",
+                                "oldest_detectable_age_probe_at_reference_snr", agg="median", fmt="{:.0f}",
                                 where={"arm": "DIRECT_PHYSICAL",
                                        "inclination_deg": i},
                                 prose=f"median direct depth at i = {i} deg")
         c[f"nspin{i}"] = L.table(f"H1.T_resolved.distinct_spins.i{i:03d}", MET,
-                                 "T_rec_at_reference_snr", agg="nunique", fmt="{:d}",
+                                 "oldest_detectable_age_probe_at_reference_snr", agg="nunique", fmt="{:d}",
                                  where={"arm": "RESOLVED_PHYSICAL",
                                         "inclination_deg": i},
                                  prose=f"distinct resolved depths across the four "
                                        f"spins at i = {i} deg")
     _nspin = sorted({int(met[(met.arm == "RESOLVED_PHYSICAL")
                              & (met.inclination_deg == i)]
-                         .T_rec_at_reference_snr.nunique()) for i in INCS})
+                         .oldest_detectable_age_probe_at_reference_snr.nunique()) for i in INCS})
     c["spin_flat"] = L.derived(
         "H1.T_resolved.spin_flat", _nspin == [1], "a single value" if _nspin == [1]
         else "more than one value",
         inputs=[f"H1.T_resolved.distinct_spins.i{i:03d}" for i in INCS],
         expression="the four spins give one distinct depth at every inclination",
         prose="whether recoverable depth depends on spin at fixed inclination")
-    c["surf_trec_res"] = surface_table(surf, "T_rec_resolved")
-    c["surf_trec_dir"] = surface_table(surf, "T_rec_direct")
+    c["surf_trec_res"] = surface_table(surf, "oldest_detectable_age_probe_resolved")
+    c["surf_trec_dir"] = surface_table(surf, "oldest_detectable_age_probe_direct")
     c["surf_jold_res"] = surface_table(surf, "J_old_resolved", "{:.2f}")
     c["surf_jold_dir"] = surface_table(surf, "J_old_direct", "{:.2f}")
 
@@ -364,17 +381,20 @@ def main() -> int:
                         f"{int(s.operational_rank.min())}–{int(s.operational_rank.max())} | "
                         f"{s.kappa_positive.median():.2e} | "
                         f"{s.J_old_at_reference_snr.median():.2f} | "
-                        f"{s.T_rec_at_reference_snr.median():.0f} |")
+                        f"{s.oldest_detectable_age_probe_at_reference_snr.median():.0f} |")
     c["arm_table"] = D.join(arm_rows)
     for a in ("DIRECT_PHYSICAL", "RESOLVED_PHYSICAL", "TOTAL_FLUX"):
         c[f"op_{a}"] = L.table(f"arm.{a}.oprank.median", MET, "operational_rank",
                                agg="median", fmt="{:.0f}", where={"arm": a},
                                prose=f"median operational rank of {a}")
-    c["dg_rank_min"] = L.table("dG.rank.min", MET, "numerical_rank", agg="min",
-                               fmt="{:d}", where={"arm": "DELTA_G_INDIRECT"},
+    # Amendment 001 item 7 moved the incremental indirect Gram out of the
+    # per-arm metrics table into its own: it is a difference of Grams, not an
+    # operator, and as a pseudo-arm row it borrowed columns that did not apply.
+    c["dg_rank_min"] = L.table("dG.rank.min", DGR, "numerical_rank", agg="min",
+                               fmt="{:d}", where={"quantity": "delta_G_indirect"},
                                prose="smallest rank of G_resolved - G_direct")
-    c["dg_rank_max"] = L.table("dG.rank.max", MET, "numerical_rank", agg="max",
-                               fmt="{:d}", where={"arm": "DELTA_G_INDIRECT"},
+    c["dg_rank_max"] = L.table("dG.rank.max", DGR, "numerical_rank", agg="max",
+                               fmt="{:d}", where={"quantity": "delta_G_indirect"},
                                prose="largest rank of G_resolved - G_direct")
 
     # ---- corrected canary numbers -------------------------------------------
@@ -556,7 +576,7 @@ def main() -> int:
     cpiv = ctl.pivot_table(index=["geometry", "arm"], columns="support",
                            values="operational_rank")
     tpiv = ctl.pivot_table(index=["geometry", "arm"], columns="support",
-                           values="T_rec_at_reference_snr")
+                           values="oldest_detectable_age_probe_at_reference_snr")
     nmv = int((cpiv["COMMON_RADIAL_SUPPORT"] != cpiv["PRIMARY_GEOMETRY_DEPENDENT"]).sum())
     mmv = int((cpiv["COMMON_RADIAL_SUPPORT"] - cpiv["PRIMARY_GEOMETRY_DEPENDENT"]).abs().max())
     tsame = int((tpiv["COMMON_RADIAL_SUPPORT"] == tpiv["PRIMARY_GEOMETRY_DEPENDENT"]).sum())
@@ -610,6 +630,140 @@ def main() -> int:
     c["qraw"] = L.table("quantile.deepest.raw_max", QNT, "delay_max_M", agg="max",
                         fmt="{:.1f}",
                         prose="largest sampled maximum ray delay on the grid, M")
+
+    # ---- R1 held-out main --------------------------------------------------
+    # Every one of these is read from a sealed-bank table. The bank was hashed
+    # before the operator existed and scored once.
+    r1fz = json.loads((ROOT / R1FZ).read_text())
+    IC, RES, DIR = "IN_CLASS_ID", "RESOLVED_PHYSICAL", "DIRECT_PHYSICAL"
+    prim_w = {"primary": True, "snr0": REF, "estimator": "TSVD"}
+    c["ref"] = L.literal("r1.reference_snr", REF, f"{REF:.0f}", source=R1FZ,
+                         prose="reference SNR_0")
+    c["r1_eps"] = L.literal("r1.epsilon", r1fz["primary"]["epsilon"],
+                            f"{r1fz['primary']['epsilon']:.2f}", source=R1FZ,
+                            prose="R1 primary tolerance")
+    c["r1_q"] = L.literal("r1.quantile", r1fz["primary"]["quantile"],
+                          f"{r1fz['primary']['quantile']:.2f}", source=R1FZ,
+                          prose="R1 primary quantile")
+    c["r1_thresh"] = L.literal("r1.threshold", r1fz["primary"]["threshold_M"],
+                               f"{r1fz['primary']['threshold_M']:.0f}",
+                               source=R1FZ, prose="R1 primary threshold, M")
+    for tag, regime in (("ic", IC), ("ood", "IN_CLASS_OOD"),
+                        ("ogid", "OFF_GRID_ID"), ("ogood", "OFF_GRID_OOD")):
+        for arm_tag, arm in (("dir", DIR), ("res", RES)):
+            c[f"r1_{tag}_{arm_tag}"] = L.table(
+                f"r1.{tag}.{arm_tag}", R1D, "L_stable_anchor", fmt="{:.0f}",
+                where={**prim_w, "regime": regime, "arm": arm},
+                prose=f"anchored span, {regime}, {arm}, M")
+    c["r1_delta"] = L.table("r1.delta.tsvd", R1B, "delta_L_level_M", fmt="{:.0f}",
+                            where={"estimator": "TSVD", "regime": IC},
+                            prose="resolved minus direct anchored span, TSVD, M")
+    c["r1_delta_ridge"] = L.table("r1.delta.ridge", R1B, "delta_L_level_M",
+                                  fmt="{:.0f}",
+                                  where={"estimator": "RIDGE_IDENTITY", "regime": IC},
+                                  prose="the same under ridge, M")
+    c["r1_on_lo"] = L.table("r1.oldband.norm.ci_low", R1B,
+                            "old_band_normalized_ci_low", fmt="{:.3f}",
+                            where={"estimator": "TSVD", "regime": IC},
+                            prose="lower bound of the old-band normalized "
+                                  "error reduction")
+    c["r1_on"] = L.table("r1.oldband.norm", R1B, "old_band_normalized_reduction",
+                         fmt="{:.3f}", where={"estimator": "TSVD", "regime": IC},
+                         prose="old-band normalized error reduction")
+    c["r1_oa"] = L.table("r1.oldband.abs", R1B, "old_band_absolute_reduction",
+                         fmt="{:.3f}", where={"estimator": "TSVD", "regime": IC},
+                         prose="old-band absolute error reduction")
+    c["r1_oa_lo"] = L.table("r1.oldband.abs.ci_low", R1B,
+                            "old_band_absolute_ci_low", fmt="{:.3f}",
+                            where={"estimator": "TSVD", "regime": IC},
+                            prose="its lower bound")
+    c["r1_nboot"] = L.literal("r1.bootstrap.n", r1fz["bootstrap"]["n_resamples"],
+                              f"{r1fz['bootstrap']['n_resamples']:d}",
+                              source=R1FZ, prose="bootstrap resamples")
+    r1f = L.frame(R1F)
+    r1fs = r1f[(r1f.estimator == "TSVD") & (r1f.snr0 == REF) & (r1f.regime == IC)]
+    piv = r1fs.pivot_table(index="family", columns="arm", values="L_stable_anchor")
+    n_meet = int(((piv[RES] - piv[DIR]) >= r1fz["primary"]["threshold_M"]).sum())
+    c["r1_nfam"] = L.literal("r1.families.meeting", n_meet, str(n_meet),
+                             source=R1F,
+                             prose="prior-fit families reaching the threshold")
+    c["r1_nfam_tot"] = L.literal("r1.families.total", len(piv), str(len(piv)),
+                                 source=R1F, prose="prior-fit families")
+    lw = {"regime": IC, "snr0": REF, "estimator": "TSVD"}
+    c["r1_levfrac"] = L.table("r1.level.fraction", R1L, "level_fraction_of_truth",
+                              fmt="{:.1%}", where={**lw, "arm": DIR},
+                              prose="fraction of a truth's age-window norm that "
+                                    "is its spatially constant part")
+    for tag, arm in (("dir", DIR), ("res", RES)):
+        c[f"r1_lev_{tag}"] = L.table(f"r1.level.error.{tag}", R1L,
+                                     "error_level_normalized", fmt="{:.3f}",
+                                     where={**lw, "arm": arm},
+                                     prose=f"level error, {arm}")
+        c[f"r1_str_{tag}"] = L.table(f"r1.structure.error.{tag}", R1L,
+                                     "error_structure_normalized", fmt="{:.3f}",
+                                     where={**lw, "arm": arm},
+                                     prose=f"structure error, {arm}")
+        c[f"r1_ostr_{tag}"] = L.table(f"r1.oldband.structure.{tag}", R1L,
+                                      "old_band_error_structure_normalized",
+                                      fmt="{:.3f}", where={**lw, "arm": arm},
+                                      prose=f"old-band structure error, {arm}")
+        c[f"r1_sub_{tag}"] = L.table(f"r1.subspace.{tag}", R1W,
+                                     "error_in_reference_data_subspace",
+                                     agg="median", fmt="{:.3f}",
+                                     where={"regime": IC, "snr0": REF,
+                                            "estimator": "TSVD", "arm": arm},
+                                     prose=f"error inside the direct channel's "
+                                           f"own data subspace, {arm}")
+    r1dep = L.frame(R1D)
+    stw = r1dep[r1dep.primary & (r1dep.regime == IC) & (r1dep.estimator == "TSVD")]
+
+    def _onset(arm):
+        q = stw[stw.arm == arm].sort_values("snr0")
+        pos = q[q.L_stable_anchor_structure > 0]
+        return ((float(pos.snr0.iloc[0]),
+                 float(pos.L_stable_anchor_structure.iloc[0]))
+                if len(pos) else (float("nan"), 0.0))
+
+    on_d, sp_d = _onset(DIR)
+    on_r, sp_r = _onset(RES)
+    c["r1_onset"] = L.literal("r1.structure.onset", on_r, f"{on_r:.0f}",
+                              source=R1D,
+                              prose="SNR_0 at which nonzero age-local structure "
+                                    "recovery first appears, both arms")
+    c["r1_span_str_dir"] = L.literal("r1.structure.span.direct", sp_d,
+                                     f"{sp_d:.0f}", source=R1D,
+                                     prose="structural span at onset, direct, M")
+    c["r1_span_str_res"] = L.literal("r1.structure.span.resolved", sp_r,
+                                     f"{sp_r:.0f}", source=R1D,
+                                     prose="structural span at onset, resolved, M")
+    c["r1_ndir_dir"] = L.table("r1.subspace.dim.direct", R1W,
+                               "n_data_directions", agg="median", fmt="{:.0f}",
+                               where={"regime": IC, "snr0": REF,
+                                      "estimator": "TSVD", "arm": DIR},
+                               prose="dimension of the direct channel's data "
+                                     "subspace")
+    c["r1_ndir_res"] = L.table("r1.subspace.dim.resolved", R1W,
+                               "n_data_directions", agg="median", fmt="{:.0f}",
+                               where={"regime": IC, "snr0": REF,
+                                      "estimator": "TSVD", "arm": RES},
+                               prose="dimension of the resolved stack's data "
+                                     "subspace")
+    r1n = L.frame(R1N)
+    sup = r1n[r1n.disposition == "SUPPORTED"]
+    c["r1_nnull"] = L.count("r1.null.tested", R1N,
+                            where={"disposition": "SUPPORTED"},
+                            prose="null-pair controls scored")
+    c["r1_nnull_over"] = L.literal("r1.null.exceeding",
+                                   int(sup.exceeds_bayes.sum()),
+                                   str(int(sup.exceeds_bayes.sum())), source=R1N,
+                                   prose="null pairs above the Bayes bound")
+    c["r1_sealed"] = L.literal("r1.sealed.commitment",
+                               r1fz["sealed_bank"]["commitment_sha256"],
+                               r1fz["sealed_bank"]["commitment_sha256"][:16],
+                               source=R1FZ, prose="sealed-bank commitment digest")
+    c["r1_nsealed"] = L.literal("r1.sealed.n", r1fz["sealed_bank"]["n_records"],
+                                str(r1fz["sealed_bank"]["n_records"]),
+                                source=R1FZ, prose="sealed main-test truths")
 
     body = manuscript(c, prov)
     (OUT / "PAPER_I.md").write_text(body)

@@ -1,0 +1,94 @@
+{
+  "schema": "phrt-record-amendment/1",
+  "id": "R1_RECORD_AMENDMENT_006",
+  "created_utc": "2026-08-26T04:08:08Z",
+  "kind": "RECORD_ONLY",
+  "recomputation": "none. The sealed R1 bank is not rerun and not rescored. No operator, estimator, gate or score is recomputed. Only the report and the artifact manifest are re-emitted, from the same committed builder against the same tables",
+  "accepted": {
+    "execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+    "artifact_commit": "93e713c2639ffc2650b019003b58a4b893a53bf8",
+    "disposition": "R1_PASS_WITH_SCOPE_RESTRICTION"
+  },
+  "freeze_preserved": {
+    "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+    "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "verified_unchanged_at_amendment": true,
+    "rule": "preserved byte for byte. Nothing in this amendment edits it, including the stale string documented below: a freeze that is corrected after the run it governed is no longer a freeze"
+  },
+  "authoritative_attestation": {
+    "which": "execution",
+    "captured": "at the start of the run, before any operator existed",
+    "execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+    "head_tree_sha": "0e3370106cd614bc5755c381f993c8f133dc7ea4",
+    "freeze_committed_at_execution_commit": true,
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "clean": true,
+    "preregistered": true,
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "run_manifest": "artifacts/manifests/R1_20260826T022951Z_2ba66f02.json",
+    "rule": "this is the record that decides whether the result was preregistered. It is clean"
+  },
+  "report_assembly_recorded_separately": {
+    "which": "report assembly",
+    "captured": "when the report and artifact manifest were written, after the numbers existed",
+    "covers": "nothing that was measured",
+    "prior_value": {
+      "preregistered": false,
+      "n_untracked": 1,
+      "sole_cause": "?? scripts/build_r1_report.py"
+    },
+    "classification": "REPORT_ASSEMBLY_UNTRACKED_BUILDER",
+    "is_execution_defect": false,
+    "reason": "the report builder was untracked when it first ran, so the assembly attestation reported an unclean tree. The builder reads canonical tables and writes prose; it cannot change a score. The execution attestation, taken before the run, was clean",
+    "remedy": "the builder is committed and the report and manifest are re-emitted from it; the manifest now carries execution_attestation and report_assembly_attestation as separate fields with the execution one marked authoritative"
+  },
+  "rebuilt_from_the_committed_builder": {
+    "builder": "scripts/build_r1_report.py",
+    "outputs": [
+      "artifacts/reports/R1_HELD_OUT_MAIN.md",
+      "artifacts/provenance/R1_ARTIFACT_MANIFEST.json"
+    ],
+    "sha256_before": {
+      "artifacts/reports/R1_HELD_OUT_MAIN.md": "0bf9c331cca1e2366098ba6a1f03b5d796573b7c01ec548a829d3965bf1c1fac",
+      "artifacts/provenance/R1_ARTIFACT_MANIFEST.json": "83d5fefd46797685dbaa2ef42969baeb27003bf522e13ded5802cd8f115930b0"
+    },
+    "note": "digests after the rebuild are recorded in the artifact manifest itself and in the canonical freeze"
+  },
+  "stale_selection_metadata": {
+    "where": "R1_MAIN_FREEZE.json -> hyperparameter_grids.selection.objective_lexicographic[0]",
+    "text": "maximize T_stable_anchor(epsilon=0.50, q=0.90)",
+    "history": "copied verbatim from the R0 canary pilot freeze into the R0C freeze and from there into the R1 freeze, together with the rest of the hyperparameter_grids block. It names the endpoint that was retired by R0C",
+    "is_it_what_ran": false,
+    "what_actually_ran": {
+      "selection_rule_recorded_on_every_row": "lexicographic on the repair-validation bank, primary cell (0.25, 0.95)",
+      "selection_regime": "IN_CLASS_ID",
+      "n_selection_rows": 240,
+      "artifact": "artifacts/tables/r0c_estimator_selection.parquet",
+      "epsilon": 0.25,
+      "quantile": 0.95
+    },
+    "corroboration_inside_the_same_freeze": {
+      "primary.epsilon": 0.25,
+      "primary.quantile": 0.95,
+      "metrics.primary_point": "L_stable_anchor(epsilon=0.25, q=0.95)",
+      "note": "the freeze's own operative fields name (0.25, 0.95); only the copied narrative string is stale"
+    },
+    "retired_endpoint": {
+      "epsilon": 0.5,
+      "quantile": 0.9,
+      "disposition": "NONDISCRIMINATING_RIGHT_CENSORED_ENDPOINT"
+    },
+    "effect_on_the_result": "none. The R1 runner reads hyperparameters from r0c_estimator_selection.parquet by (arm, estimator, SNR) and never parses this string",
+    "disposition": "STALE_COPIED_NARRATIVE_STRING_DOCUMENTED_NOT_EDITED"
+  },
+  "instructions_discharged": [
+    "3a preserve the freeze byte for byte",
+    "3b preserve its sha256",
+    "3c make the execution attestation authoritative",
+    "3d record report assembly separately",
+    "3e rebuild the report and artifact manifest from the committed builder",
+    "3f classify preregistered=false as REPORT_ASSEMBLY_UNTRACKED_BUILDER",
+    "3g document the stale selection metadata and the actual provenance"
+  ]
+}

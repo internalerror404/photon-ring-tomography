@@ -49,7 +49,7 @@ of fixed density per unit solid angle, so the whitened row carries
 made Fisher information scale with pixel count and is retired, with the
 correction and everything it moved recorded rather than absorbed.
 
-Three results. First, **historical extension is real but modest and set by
+Four results. First, **historical extension is real but modest and set by
 inclination, not spin**: the resolved stack sees deeper than the direct image at
 {h1_depth} of {ngeom} geometries, with median recoverable depth
 {trec20}, {trec50} and {trec75} M at i = 20, 50 and 75 degrees, and the four
@@ -67,6 +67,23 @@ recoverable epoch moves by at most {dsteps} grid step of {astep} M. Full column
 rank on the registered class is therefore a statement about that class and not
 about the continuum: temporal enrichment alone exposes a direct-channel null
 space of up to {nul448dir} dimensions.
+
+Fourth, and the only inversion in this paper, **a sealed held-out test shows
+that the extra reach is usable**. On one geometry and inside the declared class,
+scoring {r1_nsealed} truths committed by hash before any operator existed for
+them, stacking orders `n = 0, 1, 2` extends the anchored stable span of
+reconstruction from {r1_ic_dir} to {r1_ic_res} M at `SNR_0 = {ref}`, a gain of
+{r1_delta} M against a threshold of {r1_thresh} M declared in advance. Two
+prior-free estimators agree, {r1_nfam} of {r1_nfam_tot} source families show it,
+and it survives a held-out dynamical family. It is a gain in the **age-local
+emissivity level**: {r1_levfrac} of the field norm is its spatially constant
+part, and under an explicit level/structure projector the old-band structure
+error is {r1_ostr_dir} against {r1_ostr_res}, above one for both arms. Detailed
+old-age morphology is not recovered at this SNR. Separately and at
+`SNR_0 = {r1_onset}`, three orders of magnitude higher, the structural span is
+{r1_span_str_dir} M direct against {r1_span_str_res} M resolved. Reconstruction
+of histories outside the declared class fails, and posterior uncertainty is
+withdrawn after a calibration gate frozen in advance was missed.
 
 We report a negative control throughout. Permuting each order's delays,
 positions and weights independently — preserving all three marginals and
@@ -111,7 +128,7 @@ otherwise have reported were artefacts of it.
 No statement here concerns a real observation. The source model is a declared
 finite-dimensional class, and no result is extrapolated from full rank on such a
 class to injectivity on a continuum of source functions — that inference is
-exactly what section 7 shows to be invalid. No machine-learned reconstruction is
+exactly what section 8 shows to be invalid. No machine-learned reconstruction is
 performed. No geometry-mismatch or order-leakage study is included. The
 recoverable depth reported everywhere is a detection statement about a localized
 unit-norm historical mode, never the largest delay any ray happens to carry.
@@ -157,7 +174,7 @@ quieter detector per unit sky than the direct image.
 The corrected convention is invariant under the same split-and-merge test to
 {g10q}, against {g10q_bad} for the retired one, and the check is a registered
 gate. Every result in this manuscript is computed under the corrected
-convention; section 9 lists what the correction moved.
+convention; section 10 lists what the correction moved.
 
 Derived arms are linear maps of the same resolved data with their covariance
 propagated, never separate models with their own noise level:
@@ -241,7 +258,7 @@ class–anchor combinations (E3D).
 `E3C_freeze_raymap_hashes` re-checks every ray map against the digest pinned
 before evaluation; `E3C_frozen_grid_invariance` checks that the class dimension
 and age grid were identical at every geometry. `E3D_class_nesting` is discussed
-in section 7.
+in section 8.
 
 ---
 
@@ -421,7 +438,7 @@ anywhere in this paper; the surface is reported cell by cell.
 {surf_kappa}
 
 Read off the cells rather than summarised: the resolved operational rank is
-{oprank_trend}. There is no clean monotone spin trend, and section 6.2 shows
+{oprank_trend}. There is no clean monotone spin trend, and section 7.2 shows
 that what trend there is in rank is partly confounded with the source domain and
 must not be read as a pure spacetime effect. The inclination dependence is the
 robust one, and it runs opposite to depth: higher inclination buys reach and
@@ -435,16 +452,148 @@ Two rows in that table are not measurement architectures and must not be read
 as ones. `EQUALIZED_ORDER_SENSITIVITY` removes the physical attenuation between
 orders by fiat; its large `J_old` and depth are an oracle bound on what
 attenuation costs, not an achievable configuration. `PAIRING_DESTROYED` is the
-nonphysical negative control of section 6.1. `TOTAL_FLUX` is a genuine but
+nonphysical negative control of section 7.1. `TOTAL_FLUX` is a genuine but
 deliberately impoverished readout: it collapses all spatial information and
 reaches a median operational rank of {op_TOTAL_FLUX} against the resolved
 stack's {op_RESOLVED_PHYSICAL}, and is included as a floor.
 
 ---
 
-## 6. Controls
+## 6. Held-out reconstruction of age-local emissivity level
 
-### 6.1 A physically meaningless operator is better conditioned than the real one
+Sections 2 to 5 are an observability audit: they ask what a measurement can
+distinguish, and they invert nothing. This section is the only place in the
+paper where a source history is actually reconstructed, and it is deliberately
+narrow. One geometry, `a* = 0.5` and `i = 50` degrees. One source class, C224.
+A single sealed bank of {r1_nsealed} truths, hashed before an operator existed
+for them, scored once.
+
+### 6.1 What was sealed, and when
+
+The main-test truths were generated, projected into the class and hashed at
+registration, under commitment `{r1_sealed}`. That commitment records the
+generator version, the projection rule, the coefficient hash of every
+exact-in-class truth, the analytic rendering rule for off-grid truths, the
+regime label and the positivity rule. At the moment it was written no operator
+had been applied to any of those records, no sufficient statistic had been
+formed, and no score existed.
+
+Before the main run touched a truth, each record was regenerated from its
+committed seed stream and checked hash by hash; the bank was checked for overlap
+against every validation split; membership of the class was measured on
+coordinates other than the ones the truths were projected on; and every
+hyperparameter was read from the validation selection rather than chosen. Any of
+those failing stops the run before a score exists.
+
+### 6.2 Four regimes, because family shift and representation mismatch are
+different questions
+
+An earlier pilot called a bank "in class" when its parameters sat near the
+resolvable scale of C224. They did not sit *in* C224: the exact projection of
+those truths onto the class still left a structure-normalized residual of
+roughly four tenths, so an experiment on that bank measured basis mismatch and
+reconstruction quality together. Membership is now a property of the truth. An
+in-span truth is defined as `Q_C x` — sample an analytic family, project it,
+keep the coefficient vector, and treat the synthesised movie as the truth — so
+it is in the class at every coordinate rather than on the grid it was projected
+on. Positivity survives because a constant is itself in the class.
+
+Crossing that against family shift gives four regimes: prior-fit families in and
+out of the span, and the held-out flare family in and out of the span.
+
+### 6.3 The result
+
+At the reference `SNR_0 = {ref}`, tolerance `epsilon = {r1_eps}` and quantile
+`q = {r1_q}`, the anchored stable span in M under the prior-free truncated SVD:
+
+| regime | direct | resolved | difference |
+|---|---:|---:|---:|
+| `IN_CLASS_ID` | {r1_ic_dir} | {r1_ic_res} | **+{r1_delta}** |
+| `IN_CLASS_OOD` | {r1_ood_dir} | {r1_ood_res} | +{r1_delta} |
+| `OFF_GRID_OOD` | {r1_ogood_dir} | {r1_ogood_res} | +{r1_delta} |
+| `OFF_GRID_ID` | {r1_ogid_dir} | {r1_ogid_res} | 0 |
+
+against a threshold of {r1_thresh} M declared before the bank was scored. Ridge,
+the prior-free confirmatory estimator, gives {r1_delta_ridge} M independently.
+{r1_nfam} of {r1_nfam_tot} prior-fit families reach the threshold. A paired
+bootstrap over {r1_nboot} resamples whose unit is the truth — every noise draw
+of a resampled truth travels with it, because draws sharpen one history and do
+not add histories — puts the old-band normalized error reduction at {r1_on}
+with a lower bound of {r1_on_lo}, and the absolute reduction at {r1_oa} with a
+lower bound of {r1_oa_lo}.
+
+### 6.4 This is level fidelity, not morphology
+
+The registered metric normalises by the whole age-window norm, and
+**{r1_levfrac}** of that norm is the spatially constant part of the field. An
+error under it is therefore not a statement about morphology. Splitting the
+field with an orthogonal projector, `x = P_level x + P_structure x`, where
+`P_level` projects onto fields constant in space at each source time and is
+spanned by the class's own temporal modes:
+
+| quantity | direct | resolved |
+|---|---:|---:|
+| level error | {r1_lev_dir} | {r1_lev_res} |
+| structure error, all ages | {r1_str_dir} | {r1_str_res} |
+| structure error, old band | {r1_ostr_dir} | {r1_ostr_res} |
+
+The level is recovered and the resolved stack recovers it far better. Structure
+improves across all ages but remains above one in the old band for both arms,
+which is to say that neither arm recovers old-age morphology at all. The
+headline is reconstruction of the age-local emissivity **level** under a
+baseline-inclusive field metric. It is not detailed old-age movie morphology and
+nothing in this paper should be read as claiming otherwise.
+
+### 6.5 The gain is in directions the direct image already sees
+
+Each arm supports its own data-supported subspace, and they are not the same
+size: {r1_ndir_dir} directions for the direct channel against {r1_ndir_res} for
+the resolved stack, the extra ones being precisely the weakly determined
+directions the direct image cannot see. Comparing each arm's error on its own
+subspace therefore penalises the arm that sees more. Judged like for like on the
+direct channel's own subspace, the error falls from {r1_sub_dir} to
+{r1_sub_res}. The gain is not an artefact of adding hard directions to a norm,
+and it is not a prior effect: both estimators here are prior-free.
+
+### 6.6 Structure recovery is a separate, much-higher-SNR result
+
+Reported apart from the above because it concerns a different quantity at a
+different operating point. The onset of nonzero age-local structure recovery is
+**unchanged** between the arms, at `SNR_0 = {r1_onset}`, roughly three orders of
+magnitude above the reference. What differs is the span at that point:
+{r1_span_str_dir} M for the direct image against {r1_span_str_res} M for the
+resolved stack. Resolved higher orders extend the structural historical span
+once that regime is reached; on this bank they do not lower the SNR at which it
+begins.
+
+### 6.7 What the sealed bank does not establish
+
+`OFF_GRID_ID` is a negative result and is preserved as one. The exact projection
+of those truths clears the tolerance, so the tolerance is reachable there and
+the reconstructions simply do not reach it: recovery of histories outside the
+declared class is not established by this campaign.
+
+`OFF_GRID_OOD` passes, and its passing is a mild-mismatch diagnostic rather than
+evidence of off-grid robustness. Its representation floor is far smaller than
+`OFF_GRID_ID`'s, so it is a weaker test of leaving the class, and it is reported
+as one.
+
+Uncertainty is withdrawn. The joint calibration of the two probabilistic
+estimators failed a gate whose acceptance band was frozen in advance, and the
+declared fallback applies: they are retained as point estimators only. No
+credible interval, posterior movie or coverage statement appears anywhere in
+this paper.
+
+Integrity controls: {r1_nnull} null-pair controls drawn from a bank hashed
+before scoring, of which {r1_nnull_over} exceed the equal-prior Gaussian Bayes
+bound, consistent with multiplicity and with no evidence that the pipeline reads
+information the likelihood does not contain.
+
+---
+
+## 7. Controls
+
+### 7.1 A physically meaningless operator is better conditioned than the real one
 
 `PAIRING_DESTROYED` permutes delay, spatial position and quadrature weight
 independently within each order. All three marginals survive; only their pairing
@@ -460,7 +609,7 @@ reads good conditioning, high operational rank or a large stable rank as
 evidence that an operator is capturing physical structure is refuted by these
 rows.
 
-### 6.2 The source domain moves with spin, and we measured how much
+### 7.2 The source domain moves with spin, and we measured how much
 
 The registered radial support is geometry-dependent — the knots follow the rays,
 and a higher-spin geometry's rays reach closer to the horizon. A spin trend in
@@ -480,7 +629,7 @@ different objects and are kept apart throughout.
 
 ---
 
-## 7. Full rank on a declared class is a statement about that class
+## 8. Full rank on a declared class is a statement about that class
 
 The registered class C224 reaches full column rank under
 {n224full} of {n224rows} arm–anchor combinations. That fact is often where such
@@ -530,7 +679,7 @@ including the resolved stack itself (up to {nul1056res} dimensions of
 column rank at every class and every anchor, including the
 {dim_C1056_ST}-dimensional one, where the physical resolved operator does not.
 An operator with no physical content is the only one on the table that stays
-identifiable under enrichment. This is the same lesson as section 6.1 arriving
+identifiable under enrichment. This is the same lesson as section 7.1 arriving
 from the rank side: identifiability is not a measure of physical fidelity.
 
 **The delay-only equivalence does not survive enrichment.** Indistinguishable
@@ -540,7 +689,7 @@ substituting the direct order's well-sampled spatial map onto every order is not
 a strict impoverishment. `DELAY_ONLY` is a mechanism probe, not a measurement
 architecture.
 
-### 7.1 Identifiability and reach move independently
+### 8.1 Identifiability and reach move independently
 
 Over the same ladder the resolved *operational*-rank fraction falls by
 {fracfall} percentage points and the smallest determined singular value falls
@@ -557,7 +706,7 @@ different physics, and a result in one does not transfer to the other.
 
 ---
 
-## 8. Discussion
+## 9. Discussion
 
 The picture that survives all of the above is narrower than the one a
 single-geometry study would support, and we think it is the useful one.
@@ -579,7 +728,7 @@ distinctive about near-critical geodesics.
 Recoverable history is controlled by an information-weighted temporal kernel. It
 is not controlled by the oldest ray, which is an extreme-value statistic that
 does not converge; not by total photon-ring flux, which the equalized-sensitivity
-arm shows to be a poor proxy; and not by algebraic rank, which section 7 shows
+arm shows to be a poor proxy; and not by algebraic rank, which section 8 shows
 can move by hundreds of dimensions while depth moves by one grid step.
 
 The most transferable methodological point is negative. Three of the quantities
@@ -591,7 +740,7 @@ and conditioning is optimised by a permutation with no physical content at all.
 
 ---
 
-## 9. What the measurement-model correction changed
+## 10. What the measurement-model correction changed
 
 The defect and its consequences are recorded in the invalidation ledger as
 `D-H_flat_sigma_measurement_convention`, and {nsup} artifacts produced under the
@@ -634,10 +783,10 @@ in the direction of a smaller claim.
 
 ---
 
-## 10. Limitations
+## 11. Limitations
 
 1. **Declared classes, not the continuum.** Every rank and nullity is relative
-   to a finite-dimensional class. Section 7 is a demonstration that this
+   to a finite-dimensional class. Section 8 is a demonstration that this
    qualification is load-bearing, not a formality.
 2. **Three image orders.** Orders above n = 2 are not computed. No asymptotic
    exponent in n is fitted, and none should be read off the three points here.
@@ -646,20 +795,40 @@ in the direction of a smaller claim.
    is not the geometric Kerr critical exponent and is not identified with it
    anywhere.
 4. **A source domain that moves with spin.** The primary radial support follows
-   the rays. Section 6.2 measures the confound on three anchors; it does not
+   the rays. Section 7.2 measures the confound on three anchors; it does not
    remove it from the primary surface.
 5. **{ms_undef} matched-support cells are undefined.** At low inclination the
    n = 0 and n = 1 retarded windows are disjoint. Those cells are reported and
    retained in every denominator, but they carry no exponent.
-6. **No real data, no reconstruction, no learning.** The operator is analysed;
-   nothing is inverted against an observation, and no estimator is trained.
+6. **No real data and no learning.** Section 6 inverts synthetic histories
+   only. Nothing is inverted against an observation, and no learned prior,
+   neural estimator or trained model appears anywhere in this campaign.
 7. **Single-instrument idealisation.** One monochromatic, spatially resolved
    intensity observation with white noise of fixed density per unit solid angle.
    No interferometric sampling, calibration, or polarisation.
+8. **The reconstruction result is one geometry and one class.** Section 6 covers
+   `a* = 0.5`, `i = 50` degrees and C224. It is not geometry-wide reconstruction
+   and it is not arbitrary movie recovery.
+9. **Level, not morphology, at the reference SNR.** {r1_levfrac} of a truth's
+   age-window norm is its spatially constant part, and the old-band structure
+   error is {r1_ostr_dir} against {r1_ostr_res} — above one for both arms. The
+   reconstruction claim is about the age-local emissivity level. The structural
+   result at `SNR_0 = {r1_onset}` is stated separately and must not be merged
+   with it.
+10. **Outside the declared class, reconstruction fails.** The off-grid prior-fit
+    regime returns no stable span for any arm, and the tolerance is reachable
+    there for the exact projection, so this is a negative result rather than a
+    non-measurement. The off-grid held-out regime passes but has a much smaller
+    representation floor and is a mild-mismatch diagnostic, not evidence of
+    off-grid robustness.
+11. **Uncertainty is withdrawn.** The joint calibration of the probabilistic
+    estimators missed a band frozen in advance, so they are retained as point
+    estimators. No credible interval, posterior movie or coverage statement is
+    available from this line, and none appears in this paper.
 
 ---
 
-## 11. Reproducibility and governance
+## 12. Reproducibility and governance
 
 The campaign is gate-driven. Gates carry a mechanical status that is never
 edited to match a later adjudication, so a defect that was real stays visible:
