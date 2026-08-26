@@ -1,11 +1,11 @@
 # GATE DASHBOARD
 
-- commit `8345068676b15ce8f96a76da9d92b159db215f1d`
-- 157 gates, 139 passing
+- commit `d9664abd71724b2d21ca43a9bda2dbb8ef32a4ff`
+- 160 gates, 141 passing
 
 ```
     active_blocking_failures:   0
-    preserved_literal_failures: 7
+    preserved_literal_failures: 8
     future_phase_not_run:       11
 ```
 
@@ -20,6 +20,7 @@ A preserved literal failure is a FAIL that has been adjudicated and kept on the 
 | `G7_grid_convergence_raw_max` | `RETIRED_NONCONVERGENT_EXTREME_STATISTIC` |
 | `G7b_weighted_operator_discrepancy` | `WITHDRAWN_INVALID_CONVERGENCE_METRIC` |
 | `GRID_AUTHORIZATION` | `SUPERSEDED_GRID_COMPLETE` |
+| `R0_G15_uncertainty_calibration_band` | `UNCERTAINTY_WITHDRAWN` |
 
 ## Full roll
 
@@ -163,6 +164,9 @@ A preserved literal failure is a FAIL that has been adjudicated and kept on the 
 | `GRID_min_rays_per_order` | PASS | – | 3090 | 1536 |
 | `GRID_no_ray_inside_horizon` | PASS | – | 1.325e-05 | 0 |
 | `GRID_shared_time_reference` | PASS | – | 1 | 1 |
+| `R0_G11_split_hash_disjointness` | PASS | – | 0 | 0 |
+| `R0_G14_in_span_membership` | PASS | – | 0 | 1e-10 |
+| `R0_G15_uncertainty_calibration_band` | FAIL | `UNCERTAINTY_WITHDRAWN` | 0.9945 | 2 |
 | `S0_1_numerical_integrator_cross_check` | PASS | – | 1.841e-05 | 0.001 |
 | `S0_2_photon_sphere_double_root` | PASS | – | 0 | 1e-12 |
 | `S0_3_critical_impact_parameter` | PASS | – | 2 | 0 |

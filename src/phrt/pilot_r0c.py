@@ -446,8 +446,14 @@ def _finish(P: dict) -> int:
     # missed; the disposition says the miss was ruled on before it happened.
     man.add_gate(Gate("R0_G15_uncertainty_calibration_band",
                       "PASS" if calibrated else "FAIL",
-                      measured=float(worst.max()) if len(worst) else float("nan"),
-                      threshold=band[1],
+                      # the ratio furthest from one in log terms, because the
+                      # band is two-sided and reporting the maximum hides a
+                      # posterior that is too wide
+                      measured=(float(worst.iloc[
+                          int(np.argmax(np.abs(np.log(
+                              np.maximum(worst.to_numpy(float), 1e-300)))))])
+                          if len(worst) else float("nan")),
+                      threshold=band,
                       disposition=None if calibrated else uncertainty,
                       note=f"one scalar per estimator family fitted on the "
                            f"uncertainty_calibration split at the selected "

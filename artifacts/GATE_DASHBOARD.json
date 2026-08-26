@@ -1,11 +1,11 @@
 {
   "schema": "phrt-gate-dashboard/1",
-  "created_utc": "2026-08-26T00:28:18Z",
-  "git_commit": "8345068676b15ce8f96a76da9d92b159db215f1d",
-  "total_gates": 157,
-  "passing": 139,
+  "created_utc": "2026-08-26T00:45:18Z",
+  "git_commit": "d9664abd71724b2d21ca43a9bda2dbb8ef32a4ff",
+  "total_gates": 160,
+  "passing": 141,
   "active_blocking_failures": 0,
-  "preserved_literal_failures": 7,
+  "preserved_literal_failures": 8,
   "future_phase_not_run": 11,
   "active_blocking_failure_names": [],
   "preserved_literal_failure_dispositions": {
@@ -15,7 +15,8 @@
     "G7_grid_convergence_a098_i075": "RETIRED_NONCONVERGENT_EXTREME_STATISTIC",
     "G7_grid_convergence_raw_max": "RETIRED_NONCONVERGENT_EXTREME_STATISTIC",
     "G7b_weighted_operator_discrepancy": "WITHDRAWN_INVALID_CONVERGENCE_METRIC",
-    "GRID_AUTHORIZATION": "SUPERSEDED_GRID_COMPLETE"
+    "GRID_AUTHORIZATION": "SUPERSEDED_GRID_COMPLETE",
+    "R0_G15_uncertainty_calibration_band": "UNCERTAINTY_WITHDRAWN"
   },
   "future_phase_not_run_names": [
     "E3_pilot_no_convention_adjustment",
