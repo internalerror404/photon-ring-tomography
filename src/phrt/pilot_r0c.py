@@ -413,14 +413,24 @@ def _finish(P: dict) -> int:
                       note=f"worst relative residual over "
                            f"{P['n_in_span']} IN_CLASS truths, measured on "
                            f"coordinates other than the projection grid"))
+    # A mechanical FAIL here is a registered branch, not a defect: the freeze
+    # declares in advance that a posterior outside the band is withdrawn rather
+    # than repaired after the fact. The status stays FAIL because the band was
+    # missed; the disposition says the miss was ruled on before it happened.
     man.add_gate(Gate("R0_G15_uncertainty_calibration_band",
                       "PASS" if calibrated else "FAIL",
                       measured=float(worst.max()) if len(worst) else float("nan"),
                       threshold=band[1],
+                      disposition=None if calibrated else uncertainty,
                       note=f"one scalar per estimator family fitted on the "
-                           f"uncertainty_calibration split and evaluated here: "
+                           f"uncertainty_calibration split at the selected "
+                           f"hyperparameter and evaluated here: "
                            + ", ".join(f"{e}={v:.4g}" for e, v in worst.items())
-                           + f". Band {band}. Outcome {uncertainty}"))
+                           + f". Band {band}. Outcome {uncertainty}"
+                           + ("" if calibrated else
+                              ". The estimators are retained as point "
+                              "estimators; no credible interval, posterior "
+                              "movie or coverage statement follows from them")))
     man.add_gate(Gate("R0_G11_split_hash_disjointness",
                       "PASS" if P["disj"]["disjoint"] else "FAIL",
                       measured=P["disj"]["worst_overlap"], threshold=0,

@@ -1,0 +1,181 @@
+{
+  "run_id": "R0C_20260826T004144Z_2ba66f02",
+  "experiment_id": "R0C_REPAIRED_VALIDATION",
+  "git_commit": "e3089ac5a46543ea75f50f373debeba9c78ac1e5",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "master": 20260901,
+    "streams": {
+      "prior_fit_train": 11000,
+      "uncertainty_calibration": 12000,
+      "repair_validation": 13000,
+      "null_pairs": 14000,
+      "noise_draws": 15000,
+      "bootstrap": 16000,
+      "future_main_test": 19000
+    }
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/R0C_REPAIRED_SOURCE_AND_CALIBRATION_FREEZE.json",
+      "sha256": "5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0c_age_errors.parquet",
+      "sha256": "9fbb59ab40d23ff67894cbc07181e6ccaaa9ad8f664e92a21da29647194906b4"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0c_stable_depth.parquet",
+      "sha256": "f254d9c40914acaa222eb8f2262eb43e80c0df37cdc6c7b5da85909113378e90"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0c_estimator_selection.parquet",
+      "sha256": "baaad7cca9e078ebead6a553c31bcc52bfea990fe0723ee93f31a849e8990384"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0c_data_weak_errors.parquet",
+      "sha256": "8f6bb3429dd2f6760f082afe1e08d23bd5d86d81e4df9b89c3437e59b8840324"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0c_calibration.parquet",
+      "sha256": "2ef0f174d9a5e4cd8b6891d807def44ade0a29b26b477276c156cdd5ef41e16a"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0c_covariance_scales.parquet",
+      "sha256": "39d0395d7dcd640fbe0204c8887925fa3f8465798c8cead934ebe3bbe98fe3fb"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0c_runtime.parquet",
+      "sha256": "4edd748c4bfbf1e9a09b7f7d562f1fa361574c2d5291c9b009610341dcf72552"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0c_representation_floor.parquet",
+      "sha256": "d5cc9706ac562a23151f7d2e03b24d07beb4312118e2b750ea1f9041d20c42cf"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r0c_representation_floor_depth.parquet",
+      "sha256": "4a7bb76a04842d205ed3afe6611f44531a358d2a39f8fffe034fed7ba4d3849e"
+    }
+  ],
+  "gate_status": {
+    "R0_G14_in_span_membership": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "worst relative residual over 189 IN_CLASS truths, measured on coordinates other than the projection grid"
+    },
+    "R0_G15_uncertainty_calibration_band": {
+      "status": "FAIL",
+      "measured": 0.9944507274988401,
+      "threshold": 2.0,
+      "note": "one scalar per estimator family fitted on the uncertainty_calibration split and evaluated here: LINEAR_STATE_SPACE=0.4942, WIENER_GAUSSIAN=0.9945. Band [0.5, 2.0]. Outcome UNCERTAINTY_WITHDRAWN"
+    },
+    "R0_G11_split_hash_disjointness": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "content-hash overlap across 9 splits"
+    }
+  },
+  "started_at": "2026-08-26T00:40:39+00:00",
+  "finished_at": "2026-08-26T00:41:45+00:00",
+  "attestation": {
+    "available": true,
+    "execution_commit": "e3089ac5a46543ea75f50f373debeba9c78ac1e5",
+    "head_tree_sha": "f604afa8617b3465d9b439657a5bd1a9e16c0942",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R0C_REPAIRED_SOURCE_AND_CALIBRATION_FREEZE.json",
+        "sha256": "5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51",
+        "working_blob_sha": "95ed268aff339e7bdaf54a4d4b10acd3d3c7913d",
+        "committed_blob_sha": "95ed268aff339e7bdaf54a4d4b10acd3d3c7913d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "peak_rss_mb": 421.75390625,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 66.45046806335449,
+  "freeze_sha256": "5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51",
+  "amendment": "R0_REPAIR_AMENDMENT_004",
+  "uncertainty_disposition": "UNCERTAINTY_WITHDRAWN",
+  "regimes": [
+    "IN_CLASS_ID",
+    "IN_CLASS_OOD",
+    "OFF_GRID_ID",
+    "OFF_GRID_OOD"
+  ],
+  "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+  "measurement_correction_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
+  "e3c_execution_code_commit": "546763ed29e2be3fb129ec707cb07ee37a4f7db8",
+  "e3c_artifact_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
+  "e3c_age_interval_amendment_commit": "f034f19829623efa1f29bdcf27f95e10bd2de62e",
+  "e3c_freeze_sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
+  "e3c_registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "ray_map_manifest_sha256": "d163a630842ddec4b2143f9268bc70125857e78b84aa8fa122c5ef1bfc7b3638",
+  "r0_config_sha256": "dfc8d35eb2b7cb201409295698e9c623a10a0fa5ce730c7050e67c55f0ddb31e",
+  "r0_freeze_file_sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
+  "a_anchor_M": 0.0,
+  "age_interval_amendment": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003"
+}
