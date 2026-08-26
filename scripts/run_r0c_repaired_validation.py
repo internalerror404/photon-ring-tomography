@@ -194,11 +194,13 @@ def main() -> int:
                for q in fz["hyperparameter_grids"]["LINEAR_STATE_SPACE"]
                ["process_noise"]}
 
-    truth_vals, truth_coef, terms = {}, {}, {}
+    truth_vals, truth_coef, terms, truth_family = {}, {}, {}, {}
     for r in regimes:
         v = rendered[("repair_validation", r)]
         truth_vals[r] = v
         truth_coef[r] = coefficients_for(bank[("repair_validation", r)], v, design)
+        truth_family[r] = np.array([m.family
+                                    for m in bank[("repair_validation", r)]])
         p_, s_, m_ = scorer.truth_terms(v)
         terms[r] = (p_, s_, m_, np.sqrt(np.maximum(s_, 0.0)))
     cal_vals = np.concatenate([rendered[("uncertainty_calibration", r)]
@@ -224,7 +226,8 @@ def main() -> int:
          "snr_grid": [float(s) for s in fz["physical_model"]["snr0_grid"]],
          "eta": eta, "eta_struct": eta_struct, "priors": priors, "LtL": LtL,
          "ss_prec": ss_prec, "truth_vals": truth_vals, "truth_coef": truth_coef,
-         "terms": terms, "regimes": list(regimes), "master": master,
+         "terms": terms, "truth_family": truth_family,
+         "regimes": list(regimes), "master": master,
          "streams": streams, "dimension": basis.dimension,
          "cal_coef": cal_coef, "cal_vals": cal_vals,
          "calibration_hyperparameter": cal_hp,

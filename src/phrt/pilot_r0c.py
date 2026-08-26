@@ -266,7 +266,8 @@ def _score_all(P: dict) -> int:
     d, t0 = P["dimension"], P["t0"]
     n_draws = int(P["n_draws"])
 
-    age_rows, depth_rows, dw_rows, cov_rows, rt_rows = [], [], [], [], []
+    age_rows, depth_rows, dw_rows, cov_rows, rt_rows, fam_rows = \
+        [], [], [], [], [], []
     sel_rows = P["sel_rows"]
     for arm in ARMS:
         op = red[arm]
@@ -351,6 +352,32 @@ def _score_all(P: dict) -> int:
                             "structure_metric_saturated":
                                 bool(st["T_stable_anchor"] >= a_max),
                             "freeze_sha256": fh})
+                    # per prior-fit family at the primary cell. The main-test
+                    # criterion asks for improvement in at least three of the
+                    # four, so it has to be measurable, not merely stated.
+                    fams = P["truth_family"].get(regime)
+                    if fams is not None and n_draws:
+                        rep = np.concatenate([fams] * n_draws)
+                        for fam in sorted(set(fams)):
+                            sel = rep == fam
+                            if not sel.any():
+                                continue
+                            fs = anchored_depth_surface(
+                                ages, nrm_all[sel], [PRIMARY_EPS], [PRIMARY_Q],
+                                a_anchor, a_max)[0]
+                            fam_rows.append({
+                                "arm": arm, "estimator": est, "snr0": snr,
+                                "regime": regime, "family": fam,
+                                "hyperparameter": hp,
+                                "n_truths": int(sel.sum()),
+                                "L_stable_anchor": fs["L_stable_anchor"],
+                                "T_stable_anchor": fs["T_stable_anchor"],
+                                "old_band_normalized_error":
+                                    float(np.mean(nrm_all[sel][:, old_mask])),
+                                "old_band_absolute_error": float(np.mean(
+                                    (np.concatenate(acc_abs[:-1])
+                                     if n_draws else acc_abs[0])[sel][:, old_mask])),
+                                "freeze_sha256": fh})
                     med, med_s = np.median(nrm_all, axis=0), np.median(ns_all, axis=0)
                     meda = np.median(np.concatenate(acc_abs[:-1]) if n_draws
                                      else acc_abs[0], axis=0)
@@ -375,7 +402,7 @@ def _score_all(P: dict) -> int:
     P["out"] = dict(sel_rows=sel_rows, age_rows=age_rows, depth_rows=depth_rows,
                     dw_rows=dw_rows, cov_rows=cov_rows, rt_rows=rt_rows,
                     floor_rows=P["floor_rows"], floor_depth=P["floor_depth"],
-                    scale_rows=P["scale_rows"])
+                    scale_rows=P["scale_rows"], fam_rows=fam_rows)
     return _finish(P)
 
 
@@ -445,7 +472,8 @@ def _finish(P: dict) -> int:
                        ("r0c_covariance_scales", out["scale_rows"]),
                        ("r0c_runtime", out["rt_rows"]),
                        ("r0c_representation_floor", out["floor_rows"]),
-                       ("r0c_representation_floor_depth", out["floor_depth"])):
+                       ("r0c_representation_floor_depth", out["floor_depth"]),
+                       ("r0c_family_depth", out["fam_rows"])):
         if rows:
             man.add_output(write_table(rows, name))
 
