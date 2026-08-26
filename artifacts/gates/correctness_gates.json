@@ -2085,15 +2085,15 @@
       "measured": 0.0,
       "threshold": 1e-10,
       "note": "worst relative residual over 3136 IN_CLASS truths, measured on coordinates other than the projection grid",
-      "run_id": "R0C_20260826T005826Z_2ba66f02",
-      "recorded_at": "2026-08-26T00:58:27+00:00",
+      "run_id": "R0C_20260826T011621Z_2ba66f02",
+      "recorded_at": "2026-08-26T01:16:22+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
-        "note": "worst relative residual over 189 IN_CLASS truths, measured on coordinates other than the projection grid",
-        "run_id": "R0C_20260826T004503Z_2ba66f02",
-        "recorded_at": "2026-08-26T00:45:04+00:00"
+        "note": "worst relative residual over 3136 IN_CLASS truths, measured on coordinates other than the projection grid",
+        "run_id": "R0C_20260826T005826Z_2ba66f02",
+        "recorded_at": "2026-08-26T00:58:27+00:00"
       }
     },
     "R0_G15_uncertainty_calibration_band": {
@@ -2105,16 +2105,19 @@
         2.0
       ],
       "note": "one scalar per estimator family fitted on the uncertainty_calibration split at the selected hyperparameter and evaluated here: LINEAR_STATE_SPACE=0.4966, WIENER_GAUSSIAN=0.6023. Band [0.5, 2.0]. Outcome UNCERTAINTY_WITHDRAWN. The estimators are retained as point estimators; no credible interval, posterior movie or coverage statement follows from them",
-      "run_id": "R0C_20260826T005826Z_2ba66f02",
-      "recorded_at": "2026-08-26T00:58:27+00:00",
+      "run_id": "R0C_20260826T011621Z_2ba66f02",
+      "recorded_at": "2026-08-26T01:16:22+00:00",
       "superseded": {
         "status": "FAIL",
         "disposition": "UNCERTAINTY_WITHDRAWN",
-        "measured": 0.9944507274988401,
-        "threshold": 2.0,
-        "note": "one scalar per estimator family fitted on the uncertainty_calibration split at the selected hyperparameter and evaluated here: LINEAR_STATE_SPACE=0.4942, WIENER_GAUSSIAN=0.9945. Band [0.5, 2.0]. Outcome UNCERTAINTY_WITHDRAWN. The estimators are retained as point estimators; no credible interval, posterior movie or coverage statement follows from them",
-        "run_id": "R0C_20260826T004503Z_2ba66f02",
-        "recorded_at": "2026-08-26T00:45:04+00:00"
+        "measured": 0.4965504477678433,
+        "threshold": [
+          0.5,
+          2.0
+        ],
+        "note": "one scalar per estimator family fitted on the uncertainty_calibration split at the selected hyperparameter and evaluated here: LINEAR_STATE_SPACE=0.4966, WIENER_GAUSSIAN=0.6023. Band [0.5, 2.0]. Outcome UNCERTAINTY_WITHDRAWN. The estimators are retained as point estimators; no credible interval, posterior movie or coverage statement follows from them",
+        "run_id": "R0C_20260826T005826Z_2ba66f02",
+        "recorded_at": "2026-08-26T00:58:27+00:00"
       }
     },
     "R0_G11_split_hash_disjointness": {
@@ -2122,19 +2125,19 @@
       "measured": 0,
       "threshold": 0,
       "note": "content-hash overlap across 9 splits",
-      "run_id": "R0C_20260826T005826Z_2ba66f02",
-      "recorded_at": "2026-08-26T00:58:27+00:00",
+      "run_id": "R0C_20260826T011621Z_2ba66f02",
+      "recorded_at": "2026-08-26T01:16:22+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0,
         "threshold": 0,
         "note": "content-hash overlap across 9 splits",
-        "run_id": "R0C_20260826T004503Z_2ba66f02",
-        "recorded_at": "2026-08-26T00:45:04+00:00"
+        "run_id": "R0C_20260826T005826Z_2ba66f02",
+        "recorded_at": "2026-08-26T00:58:27+00:00"
       }
     }
   },
-  "updated_at": "2026-08-26T00:58:27+00:00",
+  "updated_at": "2026-08-26T01:16:22+00:00",
   "summary": {
     "PASS": 141,
     "FAIL": 8,

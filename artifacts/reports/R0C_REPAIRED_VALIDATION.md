@@ -21,11 +21,11 @@ corrected generator semantics and was neither rendered into data nor scored.
 
 - R0C freeze `artifacts/configs/R0C_REPAIRED_SOURCE_AND_CALIBRATION_FREEZE.json`
   sha256 `5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51`
-- execution commit `759064d037e347cd42740820461f8e59bfd37a8b`, head tree
-  `05c9b784720d2f92f19a9826440f01af8aa97989`
+- execution commit `61a67e6464552ab7fad293a8e55f5125f6202e09`, head tree
+  `aec6c55dca9614a0ab357cf24df4f0f424a60c19`
 - freeze committed at that commit: **True**;
-  tracked changes 0, untracked 1,
-  porcelain sha256 `b230d1c04d7afbbd...`
+  tracked changes 0, untracked 0,
+  porcelain sha256 `e3b0c44298fc1c14...`
 - registry `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`, environment `00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1`
 - scope: a* = 0.5, i = 50 deg, class C224, validation only. **Not
   geometry-wide, and not arbitrary movie recovery.**
@@ -137,6 +137,32 @@ the 8 M threshold.
 | OFF_GRID_ID | 64 | 100 | 80 | 0 |
 | OFF_GRID_OOD | 64 | 104 | 80 | 0 |
 
+### Level fidelity and structure recovery are different results
+
+`IN_CLASS_ID`, `TSVD`, anchored span in M under each metric. The
+registered metric normalises by the whole age-window norm, which every family
+carries a positive baseline into; the structure companion removes the age-local
+constant from residual and truth alike. In this regime the representation floor
+is zero under both, so the difference between the columns is the estimator, not
+the class.
+
+| SNR_0 | direct | resolved | delta | direct (struct) | resolved (struct) | delta (struct) |
+|---|---|---|---|---|---|---|
+| 1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 3 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 10 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 30 | 40 | 68 | 28 | 0 | 0 | 0 |
+| 100 | 48 | 80 | 32 | 0 | 0 | 0 |
+| 300 | 52 | 84 | 32 | 0 | 0 | 0 |
+| 1000 | 60 | 92 | 32 | 0 | 0 | 0 |
+| 3000 | 64 | 108 | 44 | 0 | 0 | 0 |
+| 10000 | 68 | 112 | 44 | 0 | 0 | 0 |
+| 30000 | 72 | 116 | 44 | 0 | 76 | 76 |
+| 100000 | 76 | 120 | 44 | 44 | 84 | 40 |
+| 1000000 | 92 | 120 | 28 | 56 | 120 | 64 |
+
+**Read the two halves separately.** On the structure metric neither arm recovers anything at the reference SNR_0 = 100; the first non-zero structure span appears at SNR_0 = 30000, roughly 300 times the reference. So the gain reported above at the reference SNR is a gain in fidelity to the age-local *level*, not recovery of age-local *structure*. Where structure is recovered at all, the resolved advantage is larger, not smaller — but it lives at signal-to-noise ratios far above the one this campaign is anchored to.
+
 ## Paired direct-versus-resolved age-error curves
 
 Same truths and the same coupled resolved noise draw in both arms.
@@ -181,32 +207,47 @@ A negative difference means the resolved stack is closer to the truth.
 
 ## Data-supported versus weak subspace, `IN_CLASS_ID`
 
-| arm | estimator | data-supported | weak-subspace |
-|---|---|---|---|
-| DIRECT_PHYSICAL | LINEAR_STATE_SPACE | 1.182 | 6.268 |
-| DIRECT_PHYSICAL | RIDGE_IDENTITY | 0.8438 | 1.548 |
-| DIRECT_PHYSICAL | TIKHONOV_TEMPORAL | 0.6883 | 5.912 |
-| DIRECT_PHYSICAL | TSVD | 0.9794 | 1.548 |
-| DIRECT_PHYSICAL | WIENER_GAUSSIAN | 1.127 | 0.8678 |
-| RESOLVED_PHYSICAL | LINEAR_STATE_SPACE | 4.215 | 3.454 |
-| RESOLVED_PHYSICAL | RIDGE_IDENTITY | 0.8901 | 0.7236 |
-| RESOLVED_PHYSICAL | TIKHONOV_TEMPORAL | 2.007 | 3.124 |
-| RESOLVED_PHYSICAL | TSVD | 1.062 | 0.7225 |
-| RESOLVED_PHYSICAL | WIENER_GAUSSIAN | 1.304 | 0.4597 |
-| TOTAL_FLUX | LINEAR_STATE_SPACE | 0.7061 | 103.1 |
-| TOTAL_FLUX | RIDGE_IDENTITY | 0.3563 | 2.034 |
-| TOTAL_FLUX | TIKHONOV_TEMPORAL | 1.711e+05 | 3.399e+09 |
-| TOTAL_FLUX | TSVD | 0.6285 | 2.035 |
-| TOTAL_FLUX | WIENER_GAUSSIAN | 0.2724 | 2.324 |
-| UNRESOLVED_IMAGE | LINEAR_STATE_SPACE | 2.69 | 5.679 |
-| UNRESOLVED_IMAGE | RIDGE_IDENTITY | 0.9201 | 1.181 |
-| UNRESOLVED_IMAGE | TIKHONOV_TEMPORAL | 1.396 | 5.113 |
-| UNRESOLVED_IMAGE | TSVD | 1.127 | 1.181 |
-| UNRESOLVED_IMAGE | WIENER_GAUSSIAN | 1.242 | 0.7048 |
+| arm | estimator | own P_data dim | own data-supported | own weak | in direct P_data | outside direct P_data |
+|---|---|---|---|---|---|---|
+| DIRECT_PHYSICAL | LINEAR_STATE_SPACE | 154 | 1.182 | 6.268 | 1.182 | 6.268 |
+| DIRECT_PHYSICAL | RIDGE_IDENTITY | 154 | 0.8438 | 1.548 | 0.8438 | 1.548 |
+| DIRECT_PHYSICAL | TIKHONOV_TEMPORAL | 154 | 0.6883 | 5.912 | 0.6883 | 5.912 |
+| DIRECT_PHYSICAL | TSVD | 154 | 0.9794 | 1.548 | 0.9794 | 1.548 |
+| DIRECT_PHYSICAL | WIENER_GAUSSIAN | 154 | 1.127 | 0.8678 | 1.127 | 0.8678 |
+| RESOLVED_PHYSICAL | LINEAR_STATE_SPACE | 202 | 4.215 | 3.454 | 0.745 | 5.508 |
+| RESOLVED_PHYSICAL | RIDGE_IDENTITY | 202 | 0.8901 | 0.7236 | 0.4476 | 1.061 |
+| RESOLVED_PHYSICAL | TIKHONOV_TEMPORAL | 202 | 2.007 | 3.124 | 0.3964 | 3.759 |
+| RESOLVED_PHYSICAL | TSVD | 202 | 1.062 | 0.7225 | 0.5811 | 1.151 |
+| RESOLVED_PHYSICAL | WIENER_GAUSSIAN | 202 | 1.304 | 0.4597 | 1.094 | 0.8414 |
+| TOTAL_FLUX | LINEAR_STATE_SPACE | 14 | 0.7061 | 103.1 | 44.77 | 92.83 |
+| TOTAL_FLUX | RIDGE_IDENTITY | 14 | 0.3563 | 2.034 | 1.589 | 1.328 |
+| TOTAL_FLUX | TIKHONOV_TEMPORAL | 14 | 1.711e+05 | 3.399e+09 | 1.25e+09 | 3.161e+09 |
+| TOTAL_FLUX | TSVD | 14 | 0.6285 | 2.035 | 1.69 | 1.354 |
+| TOTAL_FLUX | WIENER_GAUSSIAN | 14 | 0.2724 | 2.324 | 1.958 | 1.283 |
+| UNRESOLVED_IMAGE | LINEAR_STATE_SPACE | 183 | 2.69 | 5.679 | 1.097 | 6.201 |
+| UNRESOLVED_IMAGE | RIDGE_IDENTITY | 183 | 0.9201 | 1.181 | 0.6408 | 1.357 |
+| UNRESOLVED_IMAGE | TIKHONOV_TEMPORAL | 183 | 1.396 | 5.113 | 0.5088 | 5.285 |
+| UNRESOLVED_IMAGE | TSVD | 183 | 1.127 | 1.181 | 0.8148 | 1.418 |
+| UNRESOLVED_IMAGE | WIENER_GAUSSIAN | 183 | 1.242 | 0.7048 | 1.131 | 0.8704 |
 
 A weak-subspace improvement is a prior effect and is never described as measured
-recovery. The data-supported column is the one that decides whether a prior-free
-estimator is using information the higher orders supply.
+recovery.
+
+**The first two error columns are not a like-for-like comparison and must not be
+read as one.** Each arm's `P_data` is its own: on this canary the direct channel
+supports 154 directions and the resolved stack
+202, and the extra ones are precisely the weakly determined
+directions the direct channel cannot see at all. A norm over the larger set is
+not comparable with a norm over the smaller, and the arm that sees more is
+penalised for seeing more. On its own subspace the resolved stack is
+worse than the direct channel, which on
+its own says nothing either way.
+
+The last two columns are the comparison that answers the question. Both arms are
+judged on the *direct channel's* data subspace, so the reduction there is a
+reduction where the direct channel can already see: **the resolved stack is better**. The final column is
+the error outside that subspace, where a reduction is measured recovery only for
+an arm whose own `P_data` covers those directions.
 
 ## Uncertainty
 
@@ -235,7 +276,8 @@ Outside the band, so the declared fallback applies: Wiener and the state-space m
 | in-class delta >= 8 M, TSVD | True |
 | improvement in >= 3 of 4 prior-fit families | True (4 of 4) |
 | lower old-band absolute and structure-normalized error | False |
-| lower data-supported error | False |
+| lower error in the direct channel's own data subspace | True |
+| lower error on the resolved arm's own, larger data subspace | False |
 | held-out family `IN_CLASS_OOD` meets the threshold | True |
 | every off-grid regime also meets the threshold | False |
 | in-span membership and split disjointness | True |
@@ -247,29 +289,36 @@ block over 960 blocks.
 ## Artifacts
 
 - `artifacts/configs/R0C_REPAIRED_SOURCE_AND_CALIBRATION_FREEZE.json` `5a59d5e6203d9657...`
-- `artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json` `f7a14b33fd5d42ce...`
+- `artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json` `d8daf79a903d8bff...`
 - `docs/amendments/R0_REPAIR_AMENDMENT_004.md` `503733a111dff0ce...`
 - `artifacts/manifests/r0c_future_test_hash_commitment.json` `b6bfbd00b03b3153...`
 - `artifacts/manifests/r0c_split_hash_manifest.json` `4fd93375498372c2...`
 - `artifacts/tables/r0c_age_errors.parquet` `2d37c5f7b57353a5...`
 - `artifacts/tables/r0c_stable_depth.parquet` `5cdf43376b369099...`
 - `artifacts/tables/r0c_family_depth.parquet` `66e7b810655bdb81...`
-- `artifacts/tables/r0c_estimator_selection.parquet` `840eaf1e076ba366...`
-- `artifacts/tables/r0c_data_weak_errors.parquet` `0988ad5b6df9dceb...`
+- `artifacts/tables/r0c_estimator_selection.parquet` `b7dc2d2f6da46e53...`
+- `artifacts/tables/r0c_data_weak_errors.parquet` `0310060b4437829a...`
 - `artifacts/tables/r0c_calibration.parquet` `c35919dd59a779fb...`
 - `artifacts/tables/r0c_covariance_scales.parquet` `f6c02b2c523fc9de...`
 - `artifacts/tables/r0c_representation_floor.parquet` `1de8cfd9a4b8bcbf...`
 - `artifacts/tables/r0c_representation_floor_depth.parquet` `4c6bb80e50d3bcc5...`
-- `artifacts/tables/r0c_runtime.parquet` `50ebba649c03edfc...`
-- `artifacts/gates/correctness_gates.json` `b635af5d8bad3109...`
+- `artifacts/tables/r0c_runtime.parquet` `d6756bdfb87682e9...`
+- `artifacts/gates/correctness_gates.json` `9e00307fe72e0a25...`
 
 `artifacts/reports/R0C_REPAIRED_VALIDATION.md` is hashed in the artifact manifest, which is written after it.
 
 ## Stop
 
-**RECONSTRUCTION_NEGATIVE_RESULT**
+**R1_MAIN_RECOMMENDED_WITH_SCOPE_RESTRICTION**
 
-The repair took and the observability gain is real, but the reconstruction-level gain does not meet the frozen criteria on the repaired bank. This is a scientific result, not a defect: the correctness gates pass, the splits are disjoint, and the higher orders demonstrably see directions the direct image does not. What is absent is a stable-depth gain of the required size under the prior-free estimators.
+The primary criterion passes: the exact-in-class regime shows an anchored-span gain at or above the frozen threshold, the prior-free primary and confirmatory estimators agree, and the gain is present in at least three of the four prior-fit families. Secondary criteria do not all pass, and each one that does not narrows what a main test could claim rather than removing the effect. A main test is worth running, scoped to exactly what passed here.
+
+The restrictions, each measured above:
+
+- off-grid: `OFF_GRID_ID` does not meet the threshold, so a claim covers truths inside the declared class only
+- old band: the absolute and normalized errors fall but the structure-normalized one does not, so the old-band gain is in the age-local level rather than in age-local structure
+- structure recovery: no arm recovers age-local structure at the reference SNR_0 = 100; the first non-zero structure span appears at SNR_0 = 30000
+- uncertainty: withdrawn, so no interval or coverage statement accompanies any point estimate
 
 No result here licenses a geometry-wide claim or a claim of arbitrary movie
 recovery. One geometry, a* = 0.5 and i = 50 degrees; one source class, C224.

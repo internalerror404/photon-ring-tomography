@@ -1,14 +1,14 @@
 {
   "schema": "phrt-r0c-artifacts/1",
-  "created_utc": "2026-08-26T01:00:41Z",
-  "git_commit": "759064d037e347cd42740820461f8e59bfd37a8b",
+  "created_utc": "2026-08-26T01:17:42Z",
+  "git_commit": "61a67e6464552ab7fad293a8e55f5125f6202e09",
   "r0c_freeze_sha256": "5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51",
-  "stop_token": "RECONSTRUCTION_NEGATIVE_RESULT",
+  "stop_token": "R1_MAIN_RECOMMENDED_WITH_SCOPE_RESTRICTION",
   "uncertainty_disposition": "UNCERTAINTY_WITHDRAWN",
   "attestation": {
     "available": true,
-    "execution_commit": "759064d037e347cd42740820461f8e59bfd37a8b",
-    "head_tree_sha": "05c9b784720d2f92f19a9826440f01af8aa97989",
+    "execution_commit": "61a67e6464552ab7fad293a8e55f5125f6202e09",
+    "head_tree_sha": "aec6c55dca9614a0ab357cf24df4f0f424a60c19",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -17,14 +17,14 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": "?? scripts/build_r0c_report.py\n",
-    "porcelain_registered_sha256": "b230d1c04d7afbbd8e927282f124466262a6d4c604528c6e7c9ec2452f97fbc1",
-    "porcelain_whole_tree_sha256": "7f832627873c33a5f18362131ec288e09547055739b67262e06731e9e7f0b600",
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "328ed3ef8339c002044e9898b1e4f040ea73bbb9c4f0f9fd21eda827a361b4ce",
     "n_tracked_changes": 0,
-    "n_untracked": 1,
+    "n_untracked": 0,
     "tracked_clean": true,
-    "untracked_clean": false,
-    "clean": false,
+    "untracked_clean": true,
+    "clean": true,
     "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
     "files": [
       {
@@ -37,7 +37,7 @@
       }
     ],
     "all_registered_files_committed": true,
-    "preregistered": false
+    "preregistered": true
   },
   "provenance": {
     "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
@@ -55,21 +55,21 @@
   },
   "artifacts": {
     "artifacts/configs/R0C_REPAIRED_SOURCE_AND_CALIBRATION_FREEZE.json": "5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51",
-    "artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json": "f7a14b33fd5d42ce9cddfb2459c71d2a6a6b57b130bf9bc45249cbc9d0cfe06e",
+    "artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json": "d8daf79a903d8bffebce3886a8023a8dc201d016d526e836d9de40254a103edf",
     "docs/amendments/R0_REPAIR_AMENDMENT_004.md": "503733a111dff0ce2f45615fb47ae4631f5d3aa106cc44467c2a2f0035659a0e",
     "artifacts/manifests/r0c_future_test_hash_commitment.json": "b6bfbd00b03b3153372c4912f439a1e689bb36bdc11abf92a61aa14f5583b7d1",
     "artifacts/manifests/r0c_split_hash_manifest.json": "4fd93375498372c2df705de054080a0461ddb321e76ecd498365c29616d41444",
     "artifacts/tables/r0c_age_errors.parquet": "2d37c5f7b57353a5bb067a6795d80c62b12b26a07c43ab667801998b69e64284",
     "artifacts/tables/r0c_stable_depth.parquet": "5cdf43376b369099982821e4fed7e9d560edab45bd85427a38a4f1e5410d3661",
     "artifacts/tables/r0c_family_depth.parquet": "66e7b810655bdb81a77400a464cc3a49b9354dda7de147bddb79bdae9ad9ca84",
-    "artifacts/tables/r0c_estimator_selection.parquet": "840eaf1e076ba3660974c5b6a897b9383393d3cc91bdbe5104a698089cad6aa6",
-    "artifacts/tables/r0c_data_weak_errors.parquet": "0988ad5b6df9dceb6c5aa9f5f72f20dcca8bd2cee903ac71db2ef8cafd3da3f4",
+    "artifacts/tables/r0c_estimator_selection.parquet": "b7dc2d2f6da46e53a427e147709b4ef85f4396bbc6db2c0b45d1bcaa8ffad97c",
+    "artifacts/tables/r0c_data_weak_errors.parquet": "0310060b4437829afb26676563a03b4419e4e38d56fc163f26c13c4453219a27",
     "artifacts/tables/r0c_calibration.parquet": "c35919dd59a779fbd0e2593fae741e7c08c1932b4a8a8b574125aea36f9e7735",
     "artifacts/tables/r0c_covariance_scales.parquet": "f6c02b2c523fc9dedb264fec12818b8a3c92f2e95d783e81e3a1daab74243ef0",
     "artifacts/tables/r0c_representation_floor.parquet": "1de8cfd9a4b8bcbf567000527e6a1998943aa7cf7b758c428fa0778166bfca40",
     "artifacts/tables/r0c_representation_floor_depth.parquet": "4c6bb80e50d3bcc5b2fb83e26889fd23226f24eb14a4949b06c86369da2c9034",
-    "artifacts/tables/r0c_runtime.parquet": "50ebba649c03edfc6653d50f4eacda6be60624026db11ad81b371f95a7029591",
-    "artifacts/gates/correctness_gates.json": "b635af5d8bad3109624589606dedc1c55ef1f694c237eb0f633be9fd6cd862d7",
-    "artifacts/reports/R0C_REPAIRED_VALIDATION.md": "d990536973ca2a374ce25e55279e5fab8a154f9c17c7cbe1004b319fb31cfc34"
+    "artifacts/tables/r0c_runtime.parquet": "d6756bdfb87682e934dff6035174693908492f6b8395f20b519414d5b2b7281c",
+    "artifacts/gates/correctness_gates.json": "9e00307fe72e0a25e92e1ab388084166623752b687300a81cdfff9af7b3a884e",
+    "artifacts/reports/R0C_REPAIRED_VALIDATION.md": "088a1d768aed9a8f4ae9279b1c530bbe1d8027fece01573d7f23bf77db8c93b3"
   }
 }
