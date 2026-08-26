@@ -49,22 +49,42 @@ def coefficients_for(movies, values, design) -> np.ndarray:
     return coefficients_of(design, values)
 
 
-def fit_covariance_scale(est: str, truth_coef: np.ndarray, est_coef: np.ndarray,
-                         cov: np.ndarray) -> dict:
+def fit_covariance_scale(est: str, samples) -> dict:
     """One scalar per estimator family, from the calibration split alone.
 
-    ``cov -> s * cov`` with ``s`` the factor that puts the mean squared
-    Mahalanobis distance on its expectation. One number, fitted once, applied
-    everywhere: a scale per arm and SNR and family would let the uncertainty
-    layer absorb any miscalibration rather than report it.
+    ``cov -> s * cov`` with ``s`` chosen to put the mean squared Mahalanobis
+    distance on its expectation. The single scalar is fitted across every arm
+    and every SNR on the calibration split, because the raw ratio varies by
+    orders of magnitude over the sweep and a scalar fitted at one operating
+    point would be a scalar fitted to nothing. The geometric mean is the right
+    centre for a quantity that is judged by its ratio to one.
+
+    One number per family, applied everywhere. A scale per arm, per SNR and per
+    family would let the uncertainty layer absorb any miscalibration rather than
+    report it, which is what the amendment forbids.
     """
-    raw = mahalanobis_calibration(truth_coef, est_coef, cov)
-    ratio = float(raw["ratio"])
-    s = ratio if ratio > 0 else 1.0
-    return {"estimator": est, "scale": s, "unscaled_ratio": ratio,
-            "rule": "cov -> s * cov, s fitted on the uncertainty_calibration "
-                    "split only, one scalar per estimator family",
-            "n_truths": int(np.atleast_2d(truth_coef).shape[0])}
+    ratios = []
+    for truth_coef, est_coef, cov in samples:
+        r = float(mahalanobis_calibration(truth_coef, est_coef, cov)["ratio"])
+        if np.isfinite(r) and r > 0:
+            ratios.append(r)
+    if not ratios:
+        return {"estimator": est, "scale": 1.0, "unscaled_ratio": float("nan"),
+                "n_operating_points": 0,
+                "rule": "no finite ratio on the calibration split"}
+    logs = np.log(np.asarray(ratios))
+    s = float(np.exp(logs.mean()))
+    return {"estimator": est, "scale": s,
+            "unscaled_ratio": s,
+            "unscaled_ratio_min": float(min(ratios)),
+            "unscaled_ratio_max": float(max(ratios)),
+            "unscaled_ratio_spread_decades":
+                float((logs.max() - logs.min()) / np.log(10.0)),
+            "n_operating_points": len(ratios),
+            "rule": "cov -> s * cov, s the geometric mean of the raw joint "
+                    "ratios over every arm and SNR on the "
+                    "uncertainty_calibration split; one scalar per estimator "
+                    "family"}
 
 
 def run(P: dict) -> int:
@@ -128,24 +148,33 @@ def run(P: dict) -> int:
 
     # ---- covariance scaling, on its own split ------------------------------
     cal_coef, cal_vals = P["cal_coef"], P["cal_vals"]
-    cal_snr = float(fz["endpoint"]["reference_snr"])
     scale_rows, scales = [], {}
     for est in estimators:
         if est not in PROBABILISTIC:
             continue
-        op = red["RESOLVED_PHYSICAL"]
         hp = P["calibration_hyperparameter"][est]
-        nrng = np.random.default_rng([master, streams["uncertainty_calibration"],
-                                      int(cal_snr)])
-        b = statistics_for(op, cal_coef, cal_snr,
-                           op.noise_statistic(nrng, cal_coef.shape[0]))
-        xr, cov = _apply(est, op, b, hp, ctx)
-        rec = fit_covariance_scale(est, cal_coef, xr / cal_snr, cov)
+        samples = []
+        for arm in ARMS:
+            op = red[arm]
+            for snr in snr_grid:
+                nrng = np.random.default_rng(
+                    [master, streams["uncertainty_calibration"], int(snr),
+                     ARMS.index(arm)])
+                b = statistics_for(op, cal_coef, snr,
+                                   op.noise_statistic(nrng, cal_coef.shape[0]))
+                xr, cov = _apply(est, op, b, hp, ctx)
+                if cov is not None:
+                    samples.append((cal_coef, xr / snr, cov))
+        rec = fit_covariance_scale(est, samples)
         scales[est] = rec["scale"]
         scale_rows.append({**rec, "hyperparameter": hp,
-                           "calibration_snr": cal_snr, "freeze_sha256": fh})
-        print(f"covariance scale {est}: s = {rec['scale']:.4g} "
-              f"(unscaled joint ratio {rec['unscaled_ratio']:.4g})")
+                           "fitted_over": "every arm and SNR on the "
+                                          "uncertainty_calibration split",
+                           "freeze_sha256": fh})
+        print(f"covariance scale {est}: s = {rec['scale']:.4g} over "
+              f"{rec['n_operating_points']} operating points, raw ratio spans "
+              f"{rec.get('unscaled_ratio_spread_decades', float('nan')):.1f} "
+              f"decades")
 
     P["scales"] = scales
     P["floor_rows"], P["floor_depth"] = floor_rows, floor_depth

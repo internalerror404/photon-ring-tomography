@@ -2079,12 +2079,36 @@
         "run_id": "E3CAMD_20260825T212822Z_2ba66f02",
         "recorded_at": "2026-08-25T21:28:22+00:00"
       }
+    },
+    "R0_G14_in_span_membership": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10,
+      "note": "worst relative residual over 189 IN_CLASS truths, measured on coordinates other than the projection grid",
+      "run_id": "R0C_20260826T003719Z_2ba66f02",
+      "recorded_at": "2026-08-26T00:37:20+00:00"
+    },
+    "R0_G15_uncertainty_calibration_band": {
+      "status": "FAIL",
+      "measured": 0.09259915524998749,
+      "threshold": 2.0,
+      "note": "one scalar per estimator family fitted on the uncertainty_calibration split and evaluated here: LINEAR_STATE_SPACE=0.0006765, WIENER_GAUSSIAN=0.0926. Band [0.5, 2.0]. Outcome UNCERTAINTY_WITHDRAWN",
+      "run_id": "R0C_20260826T003719Z_2ba66f02",
+      "recorded_at": "2026-08-26T00:37:20+00:00"
+    },
+    "R0_G11_split_hash_disjointness": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "content-hash overlap across 9 splits",
+      "run_id": "R0C_20260826T003719Z_2ba66f02",
+      "recorded_at": "2026-08-26T00:37:20+00:00"
     }
   },
-  "updated_at": "2026-08-25T21:32:14+00:00",
+  "updated_at": "2026-08-26T00:37:20+00:00",
   "summary": {
-    "PASS": 139,
-    "FAIL": 7,
+    "PASS": 141,
+    "FAIL": 8,
     "NOT_RUN": 11
   }
 }
