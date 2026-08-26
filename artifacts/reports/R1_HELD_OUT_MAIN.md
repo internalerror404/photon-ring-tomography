@@ -22,9 +22,16 @@ the bootstrap count and seed were fixed before a main truth was rendered.
 | `r0c_artifact_commit` | `446fa00d0fadece4648118f29871bc615a16d9d7` |
 
 - R1 freeze sha256 `4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069`
-- execution commit `5f557fb606b76a95093cbf8e98d89d6f1dab9664`, head tree `0e3370106cd614bc5755c381f993c8f133dc7ea4`
-- freeze committed at that commit: **True**;
-  tracked changes 0, untracked 1
+- **execution** attestation, captured at the start of the run and authoritative
+  for the result: commit `5f557fb606b76a95093cbf8e98d89d6f1dab9664`, head tree
+  `0e3370106cd614bc5755c381f993c8f133dc7ea4`, freeze committed at that commit
+  **True**, tracked changes
+  0, untracked 0,
+  preregistered **True**
+- **report assembly** attestation, taken when this document was written and
+  covering nothing that was measured: commit `cff486956e67d8b41d8c82bbbb8aa92807311df6`,
+  tracked 0, untracked
+  0, preregistered True
 - sealed bank commitment `93608e7a7578fe892269ac20297af5d3f22bc1f860bbdba71b9aa0a833aa3f1e`
 - null-pair control bank `57ee7fef85da0ff05b0a36df75331607eca9ea76b575067b02bda8ae98002806`
 - registry `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`, environment `00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1`

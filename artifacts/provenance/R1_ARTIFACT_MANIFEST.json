@@ -1,13 +1,14 @@
 {
   "schema": "phrt-r1-artifacts/1",
-  "created_utc": "2026-08-26T02:32:35Z",
+  "created_utc": "2026-08-26T04:22:24Z",
   "execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+  "authoritative_attestation": "execution",
   "r1_freeze_sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
   "sealed_bank_commitment": "93608e7a7578fe892269ac20297af5d3f22bc1f860bbdba71b9aa0a833aa3f1e",
   "null_pair_control_bank": "57ee7fef85da0ff05b0a36df75331607eca9ea76b575067b02bda8ae98002806",
   "stop_token": "R1_PASS_WITH_SCOPE_RESTRICTION",
   "uncertainty_disposition": "WITHDRAWN",
-  "attestation": {
+  "execution_attestation": {
     "available": true,
     "execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
     "head_tree_sha": "0e3370106cd614bc5755c381f993c8f133dc7ea4",
@@ -19,14 +20,72 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": "?? scripts/build_r1_report.py\n",
-    "porcelain_registered_sha256": "c9e02524b1be6eee626020cdc51187ad343689151b6a51741ce5589e68c36825",
-    "porcelain_whole_tree_sha256": "d4096bbb1094e50779a46a86d714f6652eed7dff8650025238cf7517c1a53280",
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "n_tracked_changes": 0,
-    "n_untracked": 1,
+    "n_untracked": 0,
     "tracked_clean": true,
-    "untracked_clean": false,
-    "clean": false,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/R0C_REPAIRED_SOURCE_AND_CALIBRATION_FREEZE.json",
+        "sha256": "5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51",
+        "working_blob_sha": "95ed268aff339e7bdaf54a4d4b10acd3d3c7913d",
+        "committed_blob_sha": "95ed268aff339e7bdaf54a4d4b10acd3d3c7913d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/manifests/r0c_future_test_hash_commitment.json",
+        "sha256": "b6bfbd00b03b3153372c4912f439a1e689bb36bdc11abf92a61aa14f5583b7d1",
+        "working_blob_sha": "284b8110ac226baf68dcae7570ec7485c99f16c1",
+        "committed_blob_sha": "284b8110ac226baf68dcae7570ec7485c99f16c1",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/manifests/r1_null_pair_control_bank.json",
+        "sha256": "6f28c9593dfc3c7b64d55b7f31af9a4db0f8d9e0bdc1047164efffbf1fa78ab7",
+        "working_blob_sha": "34bc1129dded8e96a84b82befcf67d7ae74abcca",
+        "committed_blob_sha": "34bc1129dded8e96a84b82befcf67d7ae74abcca",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "report_assembly_attestation": {
+    "available": true,
+    "execution_commit": "cff486956e67d8b41d8c82bbbb8aa92807311df6",
+    "head_tree_sha": "f157eb3bda6a389fe0b9325da660f3cc46ba00a3",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "74aa2275033804f0dd3d796c65f9d0d915e90e00f5e7f2ac6e6b560a85813ad0",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
     "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
     "files": [
       {
@@ -39,8 +98,9 @@
       }
     ],
     "all_registered_files_committed": true,
-    "preregistered": false
+    "preregistered": true
   },
+  "attestation_rule": "R1_RECORD_AMENDMENT_006: the execution attestation is authoritative for the result. The assembly attestation describes only when this manifest was written; a preregistered=false there is a statement about the report builder's tracking state, not about the run",
   "provenance": {
     "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
     "measurement_correction_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
@@ -69,6 +129,6 @@
     "artifacts/tables/r1_null_pairs.parquet": "5bc5e7bcf2da03aab95ab1fe21b098ca480c677fa1a72ce52e4dc4a071df1585",
     "artifacts/tables/r1_runtime.parquet": "34a30b3938e0d50f6ba6e044e6411bc0e5286bd7fc35a3e62aae91833843a7a3",
     "artifacts/gates/correctness_gates.json": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
-    "artifacts/reports/R1_HELD_OUT_MAIN.md": "0bf9c331cca1e2366098ba6a1f03b5d796573b7c01ec548a829d3965bf1c1fac"
+    "artifacts/reports/R1_HELD_OUT_MAIN.md": "dde24b52d62eeaf3f0cd0db17013eda08cad7a08068cf485c98b7823bba2d413"
   }
 }

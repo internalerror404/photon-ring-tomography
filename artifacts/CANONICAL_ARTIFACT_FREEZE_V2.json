@@ -1,6 +1,6 @@
 {
   "schema": "phrt-canonical-freeze/2",
-  "created_utc": "2026-08-26T02:32:37Z",
+  "created_utc": "2026-08-26T04:22:56Z",
   "campaign_tag": "paper-I-campaign-final",
   "campaign_commit": "8345068676b15ce8f96a76da9d92b159db215f1d",
   "campaign_commit_source": "pinned to the accepted R0 pilot artifact commit",
@@ -25,7 +25,7 @@
     "GRID_AUTHORIZATION": "SUPERSEDED_GRID_COMPLETE",
     "R0_G15_uncertainty_calibration_band": "UNCERTAINTY_WITHDRAWN"
   },
-  "n_canonical_artifacts": 368,
+  "n_canonical_artifacts": 369,
   "n_excluded_superseded_runs": 10,
   "excluded_superseded_runs": [
     "artifacts/manifests/E3BPRE_20260825T053650Z_2ba66f02.json",
@@ -54,6 +54,7 @@
     "artifacts/configs/R0_CANARY_RECONSTRUCTION_PILOT_FREEZE.json": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
     "artifacts/configs/R0_PROPOSED_R1_MAIN_FREEZE.json": "f87d14ad883c9cfb2f289db6e60e48cd61149a2cca3606444a31a8ea12d63459",
     "artifacts/configs/R1_MAIN_FREEZE.json": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "artifacts/configs/R1_RECORD_AMENDMENT_006.json": "499ccf5f865341d0b5befdbafe0c92cd59aa1a3ce8212872151492c61881e3df",
     "artifacts/configs/REVIEWER_RULING_R0C_005.json": "858aa9b4cd2c29c5b6d04693b02e77bf60b2db3cc91ce581fa6efe082cd4c570",
     "artifacts/e0_reproduction/e0_metrics.json": "bcbca1ab256eb9350517bb9143a60776b73a6917c220f1185a1831cc9b20a5ac",
     "artifacts/e3_pilot/aart_out/LensingBands_a_0.5_i_50_dx0_0.4_dx1_0.08_dx2_0.02.h5": "cf004cee02e784c5124c31e2ffc7fad070b516d660c8a376aab086edd040cc86",
@@ -142,7 +143,7 @@
     "artifacts/provenance/E3D_ARTIFACT_MANIFEST.json": "5dcc4248715a08c8b34fa1d758048ee392cc07e404839820de665e5bbb870ae0",
     "artifacts/provenance/R0C_ARTIFACT_MANIFEST.json": "a016348d41e4b7d77365effcb1347dc7cdf4987f0833d10691ac4c062b99ece1",
     "artifacts/provenance/R0_CANARY_RECONSTRUCTION_ARTIFACT_MANIFEST.json": "1a7eb05c65f9c5701fc2cba8eb746a9bbcfe95a559049f8b1979a0ccd7ad28d8",
-    "artifacts/provenance/R1_ARTIFACT_MANIFEST.json": "83d5fefd46797685dbaa2ef42969baeb27003bf522e13ded5802cd8f115930b0",
+    "artifacts/provenance/R1_ARTIFACT_MANIFEST.json": "006bc55735254158b8242b452a43b31104ed3556e870d689a48ed99e3dd1c85f",
     "artifacts/provenance/kgeo_commit.txt": "ed1d5a87e0912b0a7f379f247a1ebdcb7b77e860d026081ac4b67a45f3490dac",
     "artifacts/provenance/s0_artifact_manifest.json": "acc91707529480a9b3dce57511d20544b8db5892110ddaa163717bdff5968665",
     "artifacts/reports/AMENDMENT_001_LOCALIZED_SUPPORT.md": "00164ecd1fe1609369f502af0443a488307250db2ef70013cdaba5da498bc496",
@@ -161,7 +162,7 @@
     "artifacts/reports/P1_E1_E2_STRUCTURED_OPERATOR.md": "68e361fefa279a618fd6d3bb41c77d9c39a6290480d876b8b228d6c6c60e99cb",
     "artifacts/reports/R0C_REPAIRED_VALIDATION.md": "2499f5691930f2b37bd33fd6ea959998a50ce003bca32dbca1c5f82068e8e86c",
     "artifacts/reports/R0_CANARY_RECONSTRUCTION_PILOT.md": "b43103b0202ccbdc4cd7ecce4ee60e27fb23b948b4ab9d23e9ee3dde1c340988",
-    "artifacts/reports/R1_HELD_OUT_MAIN.md": "0bf9c331cca1e2366098ba6a1f03b5d796573b7c01ec548a829d3965bf1c1fac",
+    "artifacts/reports/R1_HELD_OUT_MAIN.md": "dde24b52d62eeaf3f0cd0db17013eda08cad7a08068cf485c98b7823bba2d413",
     "artifacts/reports/S0_BACKEND_CANARY.md": "91ac4ac4cee7e0f7ffc684eb29fdbcd19cf22032a20a428d388599569183642c",
     "artifacts/reports/TASK0_ENVIRONMENT.md": "54a187fa7e2381f60579f5c0a48539636637dd2e13447e72a4dd76a1878f7093",
     "artifacts/tables/amd001_localized_support.csv": "6700593b1f2a068006457a4a09c8ce5f2c66a230b60b43fef23ab4d0f8cdc8fa",

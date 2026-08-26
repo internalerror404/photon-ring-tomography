@@ -1,11 +1,11 @@
 {
   "schema": "phrt-claim-ledger/1",
-  "n_claims": 143,
+  "n_claims": 182,
   "claims_by_kind": {
-    "literal": 11,
+    "literal": 24,
     "json": 43,
-    "parquet_count": 15,
-    "parquet": 62,
+    "parquet_count": 16,
+    "parquet": 87,
     "derived": 12
   },
   "artifacts_cited": [
@@ -17,17 +17,23 @@
     "artifacts/tables/e3c_depth_curves.parquet",
     "artifacts/tables/e3c_geometry_metrics.parquet",
     "artifacts/tables/e3c_hypothesis_tests.parquet",
+    "artifacts/tables/e3c_incremental_indirect_gram.parquet",
     "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
     "artifacts/tables/e3c_pairing_destroyed_distribution.parquet",
     "artifacts/tables/e3c_weighted_delay_quantiles.parquet",
     "artifacts/tables/e3d_class_nesting.parquet",
     "artifacts/tables/e3d_class_spectra.parquet",
-    "artifacts/tables/e3d_operator_smoke.parquet"
+    "artifacts/tables/e3d_operator_smoke.parquet",
+    "artifacts/tables/r1_bootstrap.parquet",
+    "artifacts/tables/r1_data_weak_errors.parquet",
+    "artifacts/tables/r1_level_structure.parquet",
+    "artifacts/tables/r1_null_pairs.parquet",
+    "artifacts/tables/r1_stable_depth.parquet"
   ],
-  "created_utc": "2026-08-25T15:45:20Z",
-  "git_commit": "2310bac5db2713aadfacb0e262b9b424afd7e28b",
+  "created_utc": "2026-08-26T04:23:04Z",
+  "git_commit": "cff486956e67d8b41d8c82bbbb8aa92807311df6",
   "campaign_tag": "paper-I-campaign-final",
-  "campaign_commit": "03b0d1c9c63131aa553904df0c09849d641dee8f",
+  "campaign_commit": "8345068676b15ce8f96a76da9d92b159db215f1d",
   "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
   "manuscript": "artifacts/manuscript/PAPER_I.md",
   "rule": "every number in the manuscript is registered here; the verifier re-derives each one from the frozen bytes and checks that the rendered string appears in the manuscript",
@@ -49,7 +55,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
-        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
         "pointer": "/source_class/dimension",
         "format": "{:d}"
       },
@@ -62,7 +68,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
-        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
         "pointer": "/common_age_grid/A_max_M",
         "format": "{:.0f}"
       },
@@ -75,7 +81,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
-        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
         "pointer": "/common_age_grid/step_M",
         "format": "{:.0f}"
       },
@@ -88,7 +94,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
-        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
         "pointer": "/common_age_grid/max_Q_0999_over_grid_M",
         "format": "{:.1f}"
       },
@@ -101,7 +107,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
-        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
         "pointer": "/common_age_grid/raw_before_rounding_M",
         "format": "{:.1f}"
       },
@@ -114,7 +120,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
-        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
         "pointer": "/localized_probe/half_width_h_M",
         "format": "{:.0f}"
       },
@@ -127,7 +133,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
-        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
         "pointer": "/observation/rays_per_order",
         "format": "{:d}"
       },
@@ -140,7 +146,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
-        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
         "pointer": "/observation/n_observer_times",
         "format": "{:d}"
       },
@@ -153,7 +159,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
-        "sha256": "818199a7ac4f3f90cf592f568d2a550dfd575aba1d539b0966a3a5c6521473d2",
+        "sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
         "pointer": "/observation/observer_span_M",
         "format": "{:.0f}"
       },
@@ -166,7 +172,7 @@
       "source": {
         "kind": "parquet_count",
         "path": "artifacts/tables/e3c_pairing_destroyed_distribution.parquet",
-        "sha256": "33057d801a714847dfc5b882d7791592d184bcd7ba0572cfad86b4d6a4068db1",
+        "sha256": "786c989280a0b14d79755d5190e0994b461d2f0b9fe97a34933dd72ae3e97101",
         "where": {
           "geometry": "a050_i050"
         },
@@ -181,7 +187,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G2_physical_dense_matrix_free/status",
         "format": "{}"
       },
@@ -194,7 +200,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G2_physical_dense_matrix_free/measured",
         "format": "{:.3g}"
       },
@@ -207,7 +213,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G3_physical_adjoint/status",
         "format": "{}"
       },
@@ -215,12 +221,12 @@
     },
     {
       "id": "gate.E3C_G3_physical_adjoint.measured",
-      "value": 2.674323598055886e-13,
-      "rendered": "2.67e-13",
+      "value": 5.523079531068608e-14,
+      "rendered": "5.52e-14",
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G3_physical_adjoint/measured",
         "format": "{:.3g}"
       },
@@ -233,7 +239,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G4_physical_resolved_unresolved_mixing/status",
         "format": "{}"
       },
@@ -246,7 +252,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G4_physical_resolved_unresolved_mixing/measured",
         "format": "{:.3g}"
       },
@@ -259,7 +265,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G4b_linear_collapse_covariance_propagation/status",
         "format": "{}"
       },
@@ -272,7 +278,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G4b_linear_collapse_covariance_propagation/measured",
         "format": "{:.3g}"
       },
@@ -285,7 +291,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G6_physical_Gram_monotonicity/status",
         "format": "{}"
       },
@@ -293,12 +299,12 @@
     },
     {
       "id": "gate.E3C_G6_physical_Gram_monotonicity.measured",
-      "value": 1.8611783301799085e-16,
-      "rendered": "1.86e-16",
+      "value": 9.378373831178594e-17,
+      "rendered": "9.38e-17",
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G6_physical_Gram_monotonicity/measured",
         "format": "{:.3g}"
       },
@@ -311,7 +317,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G6b_resolved_dominates_direct/status",
         "format": "{}"
       },
@@ -319,12 +325,12 @@
     },
     {
       "id": "gate.E3C_G6b_resolved_dominates_direct.measured",
-      "value": 1.573861179619174e-16,
-      "rendered": "1.57e-16",
+      "value": 7.25047495155196e-17,
+      "rendered": "7.25e-17",
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G6b_resolved_dominates_direct/measured",
         "format": "{:.3g}"
       },
@@ -337,7 +343,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G9w_weight_semantics/status",
         "format": "{}"
       },
@@ -350,7 +356,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_G9w_weight_semantics/measured",
         "format": "{:.3g}"
       },
@@ -363,7 +369,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_freeze_raymap_hashes/status",
         "format": "{}"
       },
@@ -376,7 +382,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_freeze_raymap_hashes/measured",
         "format": "{:.3g}"
       },
@@ -389,7 +395,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_frozen_grid_invariance/status",
         "format": "{}"
       },
@@ -402,7 +408,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_H2_registered_statistic_is_an_identity/status",
         "format": "{}"
       },
@@ -415,7 +421,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3C_H2_registered_statistic_is_an_identity/measured",
         "format": "{:.3g}"
       },
@@ -428,7 +434,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3D_adjoint/status",
         "format": "{}"
       },
@@ -441,7 +447,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3D_adjoint/measured",
         "format": "{:.3g}"
       },
@@ -454,7 +460,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3D_dense_smoke_comparison/status",
         "format": "{}"
       },
@@ -467,7 +473,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3D_dense_smoke_comparison/measured",
         "format": "{:.3g}"
       },
@@ -480,7 +486,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3D_Gram_monotonicity/status",
         "format": "{}"
       },
@@ -493,7 +499,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3D_Gram_monotonicity/measured",
         "format": "{:.3g}"
       },
@@ -506,7 +512,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3D_class_nesting/status",
         "format": "{}"
       },
@@ -519,7 +525,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3D_class_nesting/measured",
         "format": "{:.3g}"
       },
@@ -532,7 +538,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3D_enrichment_does_not_lose_rank/status",
         "format": "{}"
       },
@@ -545,7 +551,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/E3D_enrichment_does_not_lose_rank/measured",
         "format": "{:.3g}"
       },
@@ -558,7 +564,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/G10q_continuum_noise_quadrature_invariance/status",
         "format": "{}"
       },
@@ -571,7 +577,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/G10q_continuum_noise_quadrature_invariance/measured",
         "format": "{:.3g}"
       },
@@ -584,7 +590,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/G10q_continuum_noise_quadrature_invariance/measured",
         "format": "{:.1e}"
       },
@@ -597,7 +603,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "dbd6d86c540bc7b414993af06c4a351bedcc17ac2ed892c7984cf3ac2331a969",
+        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
         "pointer": "/gates/G10q_retired_flat_sigma_convention/measured",
         "format": "{:.0f}"
       },
@@ -605,8 +611,8 @@
     },
     {
       "id": "gates.pass",
-      "value": 121,
-      "rendered": "121",
+      "value": 146,
+      "rendered": "146",
       "source": {
         "kind": "literal",
         "source": "artifacts/gates/correctness_gates.json"
@@ -625,8 +631,8 @@
     },
     {
       "id": "gates.preserved",
-      "value": 7,
-      "rendered": "7",
+      "value": 8,
+      "rendered": "8",
       "source": {
         "kind": "literal",
         "source": "artifacts/gates/correctness_gates.json"
@@ -650,11 +656,11 @@
       "source": {
         "kind": "parquet_count",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H1_historical_extension",
           "snr0": 100.0,
-          "T_resolved_gt_T_direct": true
+          "resolved_probe_deeper_than_direct": true
         },
         "format": "{:d}"
       },
@@ -667,7 +673,7 @@
       "source": {
         "kind": "parquet_count",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H1_historical_extension",
           "snr0": 100.0,
@@ -684,7 +690,7 @@
       "source": {
         "kind": "parquet_count",
         "path": "artifacts/tables/e3c_depth_curves.parquet",
-        "sha256": "3136407c24540ab5d98c743dbf9773e6ae08895a401d4360fcbc08083d3d5d49",
+        "sha256": "90fe0b235cbaf0fa92d39b678d814575ab9e325ebaa440acd625f272b2416ebd",
         "where": {
           "right_censored": true
         },
@@ -699,7 +705,7 @@
       "source": {
         "kind": "parquet_count",
         "path": "artifacts/tables/e3c_depth_curves.parquet",
-        "sha256": "3136407c24540ab5d98c743dbf9773e6ae08895a401d4360fcbc08083d3d5d49",
+        "sha256": "90fe0b235cbaf0fa92d39b678d814575ab9e325ebaa440acd625f272b2416ebd",
         "where": {},
         "format": "{:d}"
       },
@@ -712,12 +718,12 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "RESOLVED_PHYSICAL",
           "inclination_deg": 20
         },
-        "column": "T_rec_at_reference_snr",
+        "column": "oldest_detectable_age_probe_at_reference_snr",
         "aggregation": "median",
         "format": "{:.0f}"
       },
@@ -730,12 +736,12 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "DIRECT_PHYSICAL",
           "inclination_deg": 20
         },
-        "column": "T_rec_at_reference_snr",
+        "column": "oldest_detectable_age_probe_at_reference_snr",
         "aggregation": "median",
         "format": "{:.0f}"
       },
@@ -748,12 +754,12 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "RESOLVED_PHYSICAL",
           "inclination_deg": 20
         },
-        "column": "T_rec_at_reference_snr",
+        "column": "oldest_detectable_age_probe_at_reference_snr",
         "aggregation": "nunique",
         "format": "{:d}"
       },
@@ -766,12 +772,12 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "RESOLVED_PHYSICAL",
           "inclination_deg": 50
         },
-        "column": "T_rec_at_reference_snr",
+        "column": "oldest_detectable_age_probe_at_reference_snr",
         "aggregation": "median",
         "format": "{:.0f}"
       },
@@ -784,12 +790,12 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "DIRECT_PHYSICAL",
           "inclination_deg": 50
         },
-        "column": "T_rec_at_reference_snr",
+        "column": "oldest_detectable_age_probe_at_reference_snr",
         "aggregation": "median",
         "format": "{:.0f}"
       },
@@ -802,12 +808,12 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "RESOLVED_PHYSICAL",
           "inclination_deg": 50
         },
-        "column": "T_rec_at_reference_snr",
+        "column": "oldest_detectable_age_probe_at_reference_snr",
         "aggregation": "nunique",
         "format": "{:d}"
       },
@@ -820,12 +826,12 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "RESOLVED_PHYSICAL",
           "inclination_deg": 75
         },
-        "column": "T_rec_at_reference_snr",
+        "column": "oldest_detectable_age_probe_at_reference_snr",
         "aggregation": "median",
         "format": "{:.0f}"
       },
@@ -838,12 +844,12 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "DIRECT_PHYSICAL",
           "inclination_deg": 75
         },
-        "column": "T_rec_at_reference_snr",
+        "column": "oldest_detectable_age_probe_at_reference_snr",
         "aggregation": "median",
         "format": "{:.0f}"
       },
@@ -856,12 +862,12 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "RESOLVED_PHYSICAL",
           "inclination_deg": 75
         },
-        "column": "T_rec_at_reference_snr",
+        "column": "oldest_detectable_age_probe_at_reference_snr",
         "aggregation": "nunique",
         "format": "{:d}"
       },
@@ -889,7 +895,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H2_delay_mechanism"
         },
@@ -901,12 +907,12 @@
     },
     {
       "id": "H2m.D_delay.median",
-      "value": 0.16520359570918317,
+      "value": 0.16520359570918375,
       "rendered": "0.165",
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H2m_delay_mechanism_localized_class"
         },
@@ -918,12 +924,12 @@
     },
     {
       "id": "H3m.D_spatial.median",
-      "value": 0.31032427148177594,
+      "value": 0.3103242714817769,
       "rendered": "0.310",
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H3m_spatial_mechanism_localized_class"
         },
@@ -935,12 +941,12 @@
     },
     {
       "id": "H3m.D_direct.median",
-      "value": 0.3028811098151818,
+      "value": 0.3028811098151809,
       "rendered": "0.303",
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H3m_spatial_mechanism_localized_class"
         },
@@ -957,7 +963,7 @@
       "source": {
         "kind": "parquet_count",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H3m_spatial_mechanism_localized_class",
           "delay_closer_than_spatial": true
@@ -968,12 +974,12 @@
     },
     {
       "id": "H2m.ratio.median",
-      "value": 0.5687097361888649,
+      "value": 0.5687097361888637,
       "rendered": "0.57",
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H2m_delay_mechanism_localized_class"
         },
@@ -985,12 +991,12 @@
     },
     {
       "id": "H3m.ratio.median",
-      "value": 0.9846012283559471,
+      "value": 0.9846012283559467,
       "rendered": "0.98",
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H3m_spatial_mechanism_localized_class"
         },
@@ -1007,7 +1013,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H4_order_label_value",
           "snr0": 100.0
@@ -1025,7 +1031,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H4_order_label_value",
           "snr0": 100.0
@@ -1043,7 +1049,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H4_order_label_value",
           "snr0": 100.0
@@ -1061,7 +1067,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H4_order_label_value",
           "snr0": 100.0
@@ -1079,7 +1085,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H4_order_label_value",
           "snr0": 100.0
@@ -1097,7 +1103,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_hypothesis_tests.parquet",
-        "sha256": "46846c69e408155e7b9d2f70650d768d2a059b259ddf98e27c1c422eb5b03666",
+        "sha256": "dcfb79ad6724aa9f0ecb5c759d706d57277ebab9ee0c60d91746717ddccfe97c",
         "where": {
           "hypothesis": "H4_order_label_value",
           "snr0": 100.0
@@ -1115,7 +1121,7 @@
       "source": {
         "kind": "parquet_count",
         "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
-        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "sha256": "b7bd80cc8679f0d8b5b9ab72309bc0373cef871195e4c1da7b7a77a194bd046e",
         "where": {},
         "format": "{:d}"
       },
@@ -1128,7 +1134,7 @@
       "source": {
         "kind": "parquet_count",
         "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
-        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "sha256": "b7bd80cc8679f0d8b5b9ab72309bc0373cef871195e4c1da7b7a77a194bd046e",
         "where": {
           "disposition": "SUPPORTED"
         },
@@ -1143,7 +1149,7 @@
       "source": {
         "kind": "parquet_count",
         "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
-        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "sha256": "b7bd80cc8679f0d8b5b9ab72309bc0373cef871195e4c1da7b7a77a194bd046e",
         "where": {
           "disposition": "UNDEFINED_NO_COMMON_MATCHED_SUPPORT"
         },
@@ -1158,7 +1164,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
-        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "sha256": "b7bd80cc8679f0d8b5b9ab72309bc0373cef871195e4c1da7b7a77a194bd046e",
         "where": {
           "disposition": "SUPPORTED"
         },
@@ -1175,7 +1181,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
-        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "sha256": "b7bd80cc8679f0d8b5b9ab72309bc0373cef871195e4c1da7b7a77a194bd046e",
         "where": {
           "disposition": "SUPPORTED"
         },
@@ -1192,7 +1198,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
-        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "sha256": "b7bd80cc8679f0d8b5b9ab72309bc0373cef871195e4c1da7b7a77a194bd046e",
         "where": {
           "disposition": "SUPPORTED"
         },
@@ -1222,7 +1228,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
-        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "sha256": "b7bd80cc8679f0d8b5b9ab72309bc0373cef871195e4c1da7b7a77a194bd046e",
         "where": {
           "geometry": "a050_i050",
           "order_pair": "0->1"
@@ -1240,7 +1246,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
-        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "sha256": "b7bd80cc8679f0d8b5b9ab72309bc0373cef871195e4c1da7b7a77a194bd046e",
         "where": {
           "geometry": "a050_i050",
           "order_pair": "1->2"
@@ -1258,7 +1264,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
-        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "sha256": "b7bd80cc8679f0d8b5b9ab72309bc0373cef871195e4c1da7b7a77a194bd046e",
         "where": {
           "geometry": "a050_i050",
           "order_pair": "0->1"
@@ -1276,7 +1282,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_matched_sensitivity_summary.parquet",
-        "sha256": "b9f56758d886bc532a29252c265912eb6f271e159314f61ab5645a6e096e18c3",
+        "sha256": "b7bd80cc8679f0d8b5b9ab72309bc0373cef871195e4c1da7b7a77a194bd046e",
         "where": {
           "geometry": "a050_i050",
           "order_pair": "1->2"
@@ -1334,7 +1340,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "DIRECT_PHYSICAL"
         },
@@ -1351,7 +1357,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "RESOLVED_PHYSICAL"
         },
@@ -1368,7 +1374,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "TOTAL_FLUX"
         },
@@ -1384,10 +1390,10 @@
       "rendered": "195",
       "source": {
         "kind": "parquet",
-        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "path": "artifacts/tables/e3c_incremental_indirect_gram.parquet",
+        "sha256": "090fee09d5fc741c07f2fe302054248bbf76f5051f72c3ce4b9f5475a6210438",
         "where": {
-          "arm": "DELTA_G_INDIRECT"
+          "quantity": "delta_G_indirect"
         },
         "column": "numerical_rank",
         "aggregation": "min",
@@ -1401,10 +1407,10 @@
       "rendered": "224",
       "source": {
         "kind": "parquet",
-        "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "path": "artifacts/tables/e3c_incremental_indirect_gram.parquet",
+        "sha256": "090fee09d5fc741c07f2fe302054248bbf76f5051f72c3ce4b9f5475a6210438",
         "where": {
-          "arm": "DELTA_G_INDIRECT"
+          "quantity": "delta_G_indirect"
         },
         "column": "numerical_rank",
         "aggregation": "max",
@@ -1979,7 +1985,7 @@
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_pairing_destroyed_distribution.parquet",
-        "sha256": "33057d801a714847dfc5b882d7791592d184bcd7ba0572cfad86b4d6a4068db1",
+        "sha256": "786c989280a0b14d79755d5190e0994b461d2f0b9fe97a34933dd72ae3e97101",
         "where": {},
         "column": "operational_rank",
         "aggregation": "median",
@@ -1989,12 +1995,12 @@
     },
     {
       "id": "control.pairing.kappa.max",
-      "value": 58052.83697829724,
+      "value": 58052.8369783058,
       "rendered": "5.81e+04",
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_pairing_destroyed_distribution.parquet",
-        "sha256": "33057d801a714847dfc5b882d7791592d184bcd7ba0572cfad86b4d6a4068db1",
+        "sha256": "786c989280a0b14d79755d5190e0994b461d2f0b9fe97a34933dd72ae3e97101",
         "where": {},
         "column": "kappa_positive",
         "aggregation": "max",
@@ -2004,12 +2010,12 @@
     },
     {
       "id": "arm.resolved.kappa.median",
-      "value": 783629.2002103227,
+      "value": 783629.2002089762,
       "rendered": "7.84e+05",
       "source": {
         "kind": "parquet",
         "path": "artifacts/tables/e3c_geometry_metrics.parquet",
-        "sha256": "174329407d35f12430cc1b8930dbefcc63fa4a5c19e5abec66137cbc86f0b8de",
+        "sha256": "ab316dafcba6b858891041203bd14c02d7e87775df1e4ae375e217b759d7e323",
         "where": {
           "arm": "RESOLVED_PHYSICAL"
         },
@@ -2086,11 +2092,11 @@
     },
     {
       "id": "governance.canonical",
-      "value": 265,
-      "rendered": "265",
+      "value": 369,
+      "rendered": "369",
       "source": {
         "kind": "literal",
-        "source": "artifacts/CANONICAL_ARTIFACT_FREEZE.json"
+        "source": "artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json"
       },
       "prose": "artifacts in the canonical freeze"
     },
@@ -2100,17 +2106,17 @@
       "rendered": "paper-I-campaign-final",
       "source": {
         "kind": "literal",
-        "source": "artifacts/CANONICAL_ARTIFACT_FREEZE.json"
+        "source": "artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json"
       },
       "prose": "campaign tag"
     },
     {
       "id": "governance.commit",
-      "value": "03b0d1c9c63131aa553904df0c09849d641dee8f",
-      "rendered": "03b0d1c9c63131aa553904df0c09849d641dee8f",
+      "value": "8345068676b15ce8f96a76da9d92b159db215f1d",
+      "rendered": "8345068676b15ce8f96a76da9d92b159db215f1d",
       "source": {
         "kind": "literal",
-        "source": "artifacts/CANONICAL_ARTIFACT_FREEZE.json"
+        "source": "artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json"
       },
       "prose": "campaign commit"
     },
@@ -2163,6 +2169,647 @@
         "format": "{:.1f}"
       },
       "prose": "largest sampled maximum ray delay on the grid, M"
+    },
+    {
+      "id": "r1.reference_snr",
+      "value": 100.0,
+      "rendered": "100",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/configs/R1_MAIN_FREEZE.json"
+      },
+      "prose": "reference SNR_0"
+    },
+    {
+      "id": "r1.epsilon",
+      "value": 0.25,
+      "rendered": "0.25",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/configs/R1_MAIN_FREEZE.json"
+      },
+      "prose": "R1 primary tolerance"
+    },
+    {
+      "id": "r1.quantile",
+      "value": 0.95,
+      "rendered": "0.95",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/configs/R1_MAIN_FREEZE.json"
+      },
+      "prose": "R1 primary quantile"
+    },
+    {
+      "id": "r1.threshold",
+      "value": 8.0,
+      "rendered": "8",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/configs/R1_MAIN_FREEZE.json"
+      },
+      "prose": "R1 primary threshold, M"
+    },
+    {
+      "id": "r1.ic.dir",
+      "value": 48.0,
+      "rendered": "48",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_stable_depth.parquet",
+        "sha256": "4d7a275bd698a2b1be9b8bdd7963bd78e76b98de8e6c0b9a7059863f806c88fe",
+        "where": {
+          "primary": true,
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "regime": "IN_CLASS_ID",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "L_stable_anchor",
+        "aggregation": "first",
+        "format": "{:.0f}"
+      },
+      "prose": "anchored span, IN_CLASS_ID, DIRECT_PHYSICAL, M"
+    },
+    {
+      "id": "r1.ic.res",
+      "value": 80.0,
+      "rendered": "80",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_stable_depth.parquet",
+        "sha256": "4d7a275bd698a2b1be9b8bdd7963bd78e76b98de8e6c0b9a7059863f806c88fe",
+        "where": {
+          "primary": true,
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "regime": "IN_CLASS_ID",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "L_stable_anchor",
+        "aggregation": "first",
+        "format": "{:.0f}"
+      },
+      "prose": "anchored span, IN_CLASS_ID, RESOLVED_PHYSICAL, M"
+    },
+    {
+      "id": "r1.ood.dir",
+      "value": 48.0,
+      "rendered": "48",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_stable_depth.parquet",
+        "sha256": "4d7a275bd698a2b1be9b8bdd7963bd78e76b98de8e6c0b9a7059863f806c88fe",
+        "where": {
+          "primary": true,
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "regime": "IN_CLASS_OOD",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "L_stable_anchor",
+        "aggregation": "first",
+        "format": "{:.0f}"
+      },
+      "prose": "anchored span, IN_CLASS_OOD, DIRECT_PHYSICAL, M"
+    },
+    {
+      "id": "r1.ood.res",
+      "value": 80.0,
+      "rendered": "80",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_stable_depth.parquet",
+        "sha256": "4d7a275bd698a2b1be9b8bdd7963bd78e76b98de8e6c0b9a7059863f806c88fe",
+        "where": {
+          "primary": true,
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "regime": "IN_CLASS_OOD",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "L_stable_anchor",
+        "aggregation": "first",
+        "format": "{:.0f}"
+      },
+      "prose": "anchored span, IN_CLASS_OOD, RESOLVED_PHYSICAL, M"
+    },
+    {
+      "id": "r1.ogid.dir",
+      "value": 0.0,
+      "rendered": "0",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_stable_depth.parquet",
+        "sha256": "4d7a275bd698a2b1be9b8bdd7963bd78e76b98de8e6c0b9a7059863f806c88fe",
+        "where": {
+          "primary": true,
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "regime": "OFF_GRID_ID",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "L_stable_anchor",
+        "aggregation": "first",
+        "format": "{:.0f}"
+      },
+      "prose": "anchored span, OFF_GRID_ID, DIRECT_PHYSICAL, M"
+    },
+    {
+      "id": "r1.ogid.res",
+      "value": 0.0,
+      "rendered": "0",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_stable_depth.parquet",
+        "sha256": "4d7a275bd698a2b1be9b8bdd7963bd78e76b98de8e6c0b9a7059863f806c88fe",
+        "where": {
+          "primary": true,
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "regime": "OFF_GRID_ID",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "L_stable_anchor",
+        "aggregation": "first",
+        "format": "{:.0f}"
+      },
+      "prose": "anchored span, OFF_GRID_ID, RESOLVED_PHYSICAL, M"
+    },
+    {
+      "id": "r1.ogood.dir",
+      "value": 48.0,
+      "rendered": "48",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_stable_depth.parquet",
+        "sha256": "4d7a275bd698a2b1be9b8bdd7963bd78e76b98de8e6c0b9a7059863f806c88fe",
+        "where": {
+          "primary": true,
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "regime": "OFF_GRID_OOD",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "L_stable_anchor",
+        "aggregation": "first",
+        "format": "{:.0f}"
+      },
+      "prose": "anchored span, OFF_GRID_OOD, DIRECT_PHYSICAL, M"
+    },
+    {
+      "id": "r1.ogood.res",
+      "value": 80.0,
+      "rendered": "80",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_stable_depth.parquet",
+        "sha256": "4d7a275bd698a2b1be9b8bdd7963bd78e76b98de8e6c0b9a7059863f806c88fe",
+        "where": {
+          "primary": true,
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "regime": "OFF_GRID_OOD",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "L_stable_anchor",
+        "aggregation": "first",
+        "format": "{:.0f}"
+      },
+      "prose": "anchored span, OFF_GRID_OOD, RESOLVED_PHYSICAL, M"
+    },
+    {
+      "id": "r1.delta.tsvd",
+      "value": 32.0,
+      "rendered": "32",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_bootstrap.parquet",
+        "sha256": "f18db08de5748c1b88d3bf4da63f4402df6315f7d7a9d709d109ff9383c7b8d8",
+        "where": {
+          "estimator": "TSVD",
+          "regime": "IN_CLASS_ID"
+        },
+        "column": "delta_L_level_M",
+        "aggregation": "first",
+        "format": "{:.0f}"
+      },
+      "prose": "resolved minus direct anchored span, TSVD, M"
+    },
+    {
+      "id": "r1.delta.ridge",
+      "value": 32.0,
+      "rendered": "32",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_bootstrap.parquet",
+        "sha256": "f18db08de5748c1b88d3bf4da63f4402df6315f7d7a9d709d109ff9383c7b8d8",
+        "where": {
+          "estimator": "RIDGE_IDENTITY",
+          "regime": "IN_CLASS_ID"
+        },
+        "column": "delta_L_level_M",
+        "aggregation": "first",
+        "format": "{:.0f}"
+      },
+      "prose": "the same under ridge, M"
+    },
+    {
+      "id": "r1.oldband.norm.ci_low",
+      "value": 0.3296749229905344,
+      "rendered": "0.330",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_bootstrap.parquet",
+        "sha256": "f18db08de5748c1b88d3bf4da63f4402df6315f7d7a9d709d109ff9383c7b8d8",
+        "where": {
+          "estimator": "TSVD",
+          "regime": "IN_CLASS_ID"
+        },
+        "column": "old_band_normalized_ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "lower bound of the old-band normalized error reduction"
+    },
+    {
+      "id": "r1.oldband.norm",
+      "value": 0.3320569493412268,
+      "rendered": "0.332",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_bootstrap.parquet",
+        "sha256": "f18db08de5748c1b88d3bf4da63f4402df6315f7d7a9d709d109ff9383c7b8d8",
+        "where": {
+          "estimator": "TSVD",
+          "regime": "IN_CLASS_ID"
+        },
+        "column": "old_band_normalized_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "old-band normalized error reduction"
+    },
+    {
+      "id": "r1.oldband.abs",
+      "value": 0.4294458109570002,
+      "rendered": "0.429",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_bootstrap.parquet",
+        "sha256": "f18db08de5748c1b88d3bf4da63f4402df6315f7d7a9d709d109ff9383c7b8d8",
+        "where": {
+          "estimator": "TSVD",
+          "regime": "IN_CLASS_ID"
+        },
+        "column": "old_band_absolute_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "old-band absolute error reduction"
+    },
+    {
+      "id": "r1.oldband.abs.ci_low",
+      "value": 0.41853362650131803,
+      "rendered": "0.419",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_bootstrap.parquet",
+        "sha256": "f18db08de5748c1b88d3bf4da63f4402df6315f7d7a9d709d109ff9383c7b8d8",
+        "where": {
+          "estimator": "TSVD",
+          "regime": "IN_CLASS_ID"
+        },
+        "column": "old_band_absolute_ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "its lower bound"
+    },
+    {
+      "id": "r1.bootstrap.n",
+      "value": 10000,
+      "rendered": "10000",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/configs/R1_MAIN_FREEZE.json"
+      },
+      "prose": "bootstrap resamples"
+    },
+    {
+      "id": "r1.families.meeting",
+      "value": 4,
+      "rendered": "4",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/tables/r1_family_depth.parquet"
+      },
+      "prose": "prior-fit families reaching the threshold"
+    },
+    {
+      "id": "r1.families.total",
+      "value": 4,
+      "rendered": "4",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/tables/r1_family_depth.parquet"
+      },
+      "prose": "prior-fit families"
+    },
+    {
+      "id": "r1.level.fraction",
+      "value": 0.9838218863433618,
+      "rendered": "98.4%",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_level_structure.parquet",
+        "sha256": "72aa18bb559b09474a1f8efcc8a32fd6247720ee14f5a7df43787c331e973388",
+        "where": {
+          "regime": "IN_CLASS_ID",
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "level_fraction_of_truth",
+        "aggregation": "first",
+        "format": "{:.1%}"
+      },
+      "prose": "fraction of a truth's age-window norm that is its spatially constant part"
+    },
+    {
+      "id": "r1.level.error.dir",
+      "value": 0.26617801542864755,
+      "rendered": "0.266",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_level_structure.parquet",
+        "sha256": "72aa18bb559b09474a1f8efcc8a32fd6247720ee14f5a7df43787c331e973388",
+        "where": {
+          "regime": "IN_CLASS_ID",
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "error_level_normalized",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "level error, DIRECT_PHYSICAL"
+    },
+    {
+      "id": "r1.structure.error.dir",
+      "value": 0.9271608385464857,
+      "rendered": "0.927",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_level_structure.parquet",
+        "sha256": "72aa18bb559b09474a1f8efcc8a32fd6247720ee14f5a7df43787c331e973388",
+        "where": {
+          "regime": "IN_CLASS_ID",
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "error_structure_normalized",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "structure error, DIRECT_PHYSICAL"
+    },
+    {
+      "id": "r1.oldband.structure.dir",
+      "value": 1.1693511604217406,
+      "rendered": "1.169",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_level_structure.parquet",
+        "sha256": "72aa18bb559b09474a1f8efcc8a32fd6247720ee14f5a7df43787c331e973388",
+        "where": {
+          "regime": "IN_CLASS_ID",
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "old_band_error_structure_normalized",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "old-band structure error, DIRECT_PHYSICAL"
+    },
+    {
+      "id": "r1.subspace.dir",
+      "value": 0.9860161962804311,
+      "rendered": "0.986",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_data_weak_errors.parquet",
+        "sha256": "dc617e74b91b68ef08580460279a997ea296758aa660fb5aa78e79ddc39179c4",
+        "where": {
+          "regime": "IN_CLASS_ID",
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "error_in_reference_data_subspace",
+        "aggregation": "median",
+        "format": "{:.3f}"
+      },
+      "prose": "error inside the direct channel's own data subspace, DIRECT_PHYSICAL"
+    },
+    {
+      "id": "r1.level.error.res",
+      "value": 0.02824038834819255,
+      "rendered": "0.028",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_level_structure.parquet",
+        "sha256": "72aa18bb559b09474a1f8efcc8a32fd6247720ee14f5a7df43787c331e973388",
+        "where": {
+          "regime": "IN_CLASS_ID",
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "error_level_normalized",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "level error, RESOLVED_PHYSICAL"
+    },
+    {
+      "id": "r1.structure.error.res",
+      "value": 0.46643904584678286,
+      "rendered": "0.466",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_level_structure.parquet",
+        "sha256": "72aa18bb559b09474a1f8efcc8a32fd6247720ee14f5a7df43787c331e973388",
+        "where": {
+          "regime": "IN_CLASS_ID",
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "error_structure_normalized",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "structure error, RESOLVED_PHYSICAL"
+    },
+    {
+      "id": "r1.oldband.structure.res",
+      "value": 1.1407665470294939,
+      "rendered": "1.141",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_level_structure.parquet",
+        "sha256": "72aa18bb559b09474a1f8efcc8a32fd6247720ee14f5a7df43787c331e973388",
+        "where": {
+          "regime": "IN_CLASS_ID",
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "old_band_error_structure_normalized",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "old-band structure error, RESOLVED_PHYSICAL"
+    },
+    {
+      "id": "r1.subspace.res",
+      "value": 0.5791048105032878,
+      "rendered": "0.579",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_data_weak_errors.parquet",
+        "sha256": "dc617e74b91b68ef08580460279a997ea296758aa660fb5aa78e79ddc39179c4",
+        "where": {
+          "regime": "IN_CLASS_ID",
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "error_in_reference_data_subspace",
+        "aggregation": "median",
+        "format": "{:.3f}"
+      },
+      "prose": "error inside the direct channel's own data subspace, RESOLVED_PHYSICAL"
+    },
+    {
+      "id": "r1.structure.onset",
+      "value": 30000.0,
+      "rendered": "30000",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/tables/r1_stable_depth.parquet"
+      },
+      "prose": "SNR_0 at which nonzero age-local structure recovery first appears, both arms"
+    },
+    {
+      "id": "r1.structure.span.direct",
+      "value": 40.0,
+      "rendered": "40",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/tables/r1_stable_depth.parquet"
+      },
+      "prose": "structural span at onset, direct, M"
+    },
+    {
+      "id": "r1.structure.span.resolved",
+      "value": 76.0,
+      "rendered": "76",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/tables/r1_stable_depth.parquet"
+      },
+      "prose": "structural span at onset, resolved, M"
+    },
+    {
+      "id": "r1.subspace.dim.direct",
+      "value": 154.0,
+      "rendered": "154",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_data_weak_errors.parquet",
+        "sha256": "dc617e74b91b68ef08580460279a997ea296758aa660fb5aa78e79ddc39179c4",
+        "where": {
+          "regime": "IN_CLASS_ID",
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "n_data_directions",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "dimension of the direct channel's data subspace"
+    },
+    {
+      "id": "r1.subspace.dim.resolved",
+      "value": 202.0,
+      "rendered": "202",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_data_weak_errors.parquet",
+        "sha256": "dc617e74b91b68ef08580460279a997ea296758aa660fb5aa78e79ddc39179c4",
+        "where": {
+          "regime": "IN_CLASS_ID",
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "n_data_directions",
+        "aggregation": "median",
+        "format": "{:.0f}"
+      },
+      "prose": "dimension of the resolved stack's data subspace"
+    },
+    {
+      "id": "r1.null.tested",
+      "value": 4000,
+      "rendered": "4000",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/r1_null_pairs.parquet",
+        "sha256": "5bc5e7bcf2da03aab95ab1fe21b098ca480c677fa1a72ce52e4dc4a071df1585",
+        "where": {
+          "disposition": "SUPPORTED"
+        },
+        "format": "{:d}"
+      },
+      "prose": "null-pair controls scored"
+    },
+    {
+      "id": "r1.null.exceeding",
+      "value": 78,
+      "rendered": "78",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/tables/r1_null_pairs.parquet"
+      },
+      "prose": "null pairs above the Bayes bound"
+    },
+    {
+      "id": "r1.sealed.commitment",
+      "value": "93608e7a7578fe892269ac20297af5d3f22bc1f860bbdba71b9aa0a833aa3f1e",
+      "rendered": "93608e7a7578fe89",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/configs/R1_MAIN_FREEZE.json"
+      },
+      "prose": "sealed-bank commitment digest"
+    },
+    {
+      "id": "r1.sealed.n",
+      "value": 640,
+      "rendered": "640",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/configs/R1_MAIN_FREEZE.json"
+      },
+      "prose": "sealed main-test truths"
     }
   ]
 }
