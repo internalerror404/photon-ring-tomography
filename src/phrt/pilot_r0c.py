@@ -21,7 +21,8 @@ from phrt.inverse.reduced import ReducedOperator
 from phrt.io.manifests import Gate, RunManifest, make_run_id, merge_gate_file
 from phrt.io.tables import write_table
 from phrt.metrics.calibration import PROBABILISTIC
-from phrt.metrics.data_prior_split import subspace_errors
+from phrt.metrics.data_prior_split import (reference_subspace_errors,
+                                           subspace_errors)
 from phrt.metrics.stable_depth import anchored_depth_surface
 from phrt.inverse.uncertainty import mahalanobis_calibration
 from phrt.pilot_r0 import (_apply, coefficients_of, lexicographic_best, score,
@@ -294,7 +295,17 @@ def _score_all(P: dict) -> int:
                         if noiseless:
                             continue
                         sub = subspace_errors(op, Xr, xr / snr, snr, rho)
+                        ref = reference_subspace_errors(
+                            red["DIRECT_PHYSICAL"], Xr, xr / snr, snr, rho)
                         dw_rows.append({
+                            "error_in_reference_data_subspace": float(np.mean(
+                                ref["error_in_reference_data_subspace"])),
+                            "error_outside_reference_data_subspace": float(
+                                np.mean(ref[
+                                    "error_outside_reference_data_subspace"])),
+                            "n_reference_data_directions":
+                                ref["n_reference_data_directions"],
+                            "reference_arm": ref["reference_arm"],
                             "arm": arm, "estimator": est, "snr0": snr,
                             "regime": regime, "draw": draw,
                             "error_data_supported": float(np.mean(

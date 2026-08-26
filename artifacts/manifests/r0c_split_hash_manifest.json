@@ -1,26 +1,26 @@
 {
   "schema": "phrt-r0c-splits/1",
   "sizes": {
-    "prior_fit_train:IN_CLASS_ID": 104,
-    "uncertainty_calibration:IN_CLASS_ID": 32,
-    "repair_validation:IN_CLASS_ID": 32,
-    "uncertainty_calibration:IN_CLASS_OOD": 8,
-    "repair_validation:IN_CLASS_OOD": 13,
-    "uncertainty_calibration:OFF_GRID_ID": 32,
-    "repair_validation:OFF_GRID_ID": 32,
-    "uncertainty_calibration:OFF_GRID_OOD": 8,
-    "repair_validation:OFF_GRID_OOD": 13
+    "prior_fit_train:IN_CLASS_ID": 2048,
+    "uncertainty_calibration:IN_CLASS_ID": 256,
+    "repair_validation:IN_CLASS_ID": 512,
+    "uncertainty_calibration:IN_CLASS_OOD": 64,
+    "repair_validation:IN_CLASS_OOD": 256,
+    "uncertainty_calibration:OFF_GRID_ID": 256,
+    "repair_validation:OFF_GRID_ID": 256,
+    "uncertainty_calibration:OFF_GRID_OOD": 64,
+    "repair_validation:OFF_GRID_OOD": 256
   },
   "unique_sizes": {
-    "prior_fit_train:IN_CLASS_ID": 104,
-    "uncertainty_calibration:IN_CLASS_ID": 32,
-    "repair_validation:IN_CLASS_ID": 32,
-    "uncertainty_calibration:IN_CLASS_OOD": 8,
-    "repair_validation:IN_CLASS_OOD": 13,
-    "uncertainty_calibration:OFF_GRID_ID": 32,
-    "repair_validation:OFF_GRID_ID": 32,
-    "uncertainty_calibration:OFF_GRID_OOD": 8,
-    "repair_validation:OFF_GRID_OOD": 13
+    "prior_fit_train:IN_CLASS_ID": 2048,
+    "uncertainty_calibration:IN_CLASS_ID": 256,
+    "repair_validation:IN_CLASS_ID": 512,
+    "uncertainty_calibration:IN_CLASS_OOD": 64,
+    "repair_validation:IN_CLASS_OOD": 256,
+    "uncertainty_calibration:OFF_GRID_ID": 256,
+    "repair_validation:OFF_GRID_ID": 256,
+    "uncertainty_calibration:OFF_GRID_OOD": 64,
+    "repair_validation:OFF_GRID_OOD": 256
   },
   "pairwise_overlap": {
     "prior_fit_train:IN_CLASS_ID|repair_validation:IN_CLASS_ID": 0,
@@ -63,14 +63,14 @@
   "worst_overlap": 0,
   "disjoint": true,
   "regimes": {
-    "prior_fit_train:IN_CLASS_ID": 104,
-    "uncertainty_calibration:IN_CLASS_ID": 32,
-    "repair_validation:IN_CLASS_ID": 32,
-    "uncertainty_calibration:IN_CLASS_OOD": 8,
-    "repair_validation:IN_CLASS_OOD": 13,
-    "uncertainty_calibration:OFF_GRID_ID": 32,
-    "repair_validation:OFF_GRID_ID": 32,
-    "uncertainty_calibration:OFF_GRID_OOD": 8,
-    "repair_validation:OFF_GRID_OOD": 13
+    "prior_fit_train:IN_CLASS_ID": 2048,
+    "uncertainty_calibration:IN_CLASS_ID": 256,
+    "repair_validation:IN_CLASS_ID": 512,
+    "uncertainty_calibration:IN_CLASS_OOD": 64,
+    "repair_validation:IN_CLASS_OOD": 256,
+    "uncertainty_calibration:OFF_GRID_ID": 256,
+    "repair_validation:OFF_GRID_ID": 256,
+    "uncertainty_calibration:OFF_GRID_OOD": 64,
+    "repair_validation:OFF_GRID_OOD": 256
   }
 }
