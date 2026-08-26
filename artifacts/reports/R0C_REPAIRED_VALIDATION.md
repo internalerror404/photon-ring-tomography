@@ -21,11 +21,21 @@ corrected generator semantics and was neither rendered into data nor scored.
 
 - R0C freeze `artifacts/configs/R0C_REPAIRED_SOURCE_AND_CALIBRATION_FREEZE.json`
   sha256 `5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51`
-- execution commit `61a67e6464552ab7fad293a8e55f5125f6202e09`, head tree
-  `aec6c55dca9614a0ab357cf24df4f0f424a60c19`
+| commit | value | meaning |
+|---|---|---|
+| `execution_commit` | `b6e481ab133015e9d7089fcbe6cfd81496200057` | where the code was when the run started |
+| `manifest_build_commit` | `61a67e6464552ab7fad293a8e55f5125f6202e09` | HEAD when the manifest was built, after the run |
+| `artifact_commit` | `446fa00d0fadece4648118f29871bc615a16d9d7` | the tree the outputs were committed in |
+
+Three different things, named separately under `REVIEWER_RULING_R0C_005`. The
+old single `git_commit` field reported the middle one while calling it the
+first, which for an 804 s run is a commit that never described the executing
+code.
+
+- head tree `fd34366026d0e184b4a2909d1daa88592ef8cf79`
 - freeze committed at that commit: **True**;
-  tracked changes 0, untracked 0,
-  porcelain sha256 `e3b0c44298fc1c14...`
+  tracked changes 2, untracked 1,
+  porcelain sha256 `b93dbfd02f225ef4...`
 - registry `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`, environment `00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1`
 - scope: a* = 0.5, i = 50 deg, class C224, validation only. **Not
   geometry-wide, and not arbitrary movie recovery.**
@@ -38,20 +48,20 @@ could only ever say clean.
 
 | gate | status | measured | threshold | disposition |
 |---|---|---:|---:|---|
-| `R0_G13_freeze_commit_attestation` | ABSENT | – | – | – |
-| `R0_G1_dense_matrix_free_parity` | ABSENT | – | – | – |
-| `R0_G2_physical_adjoint` | ABSENT | – | – | – |
-| `R0_G3_G10q_quadrature_noise_invariance` | ABSENT | – | – | – |
-| `R0_G4_mixing_covariance` | ABSENT | – | – | – |
-| `R0_G5_basis_round_trip` | ABSENT | – | – | – |
-| `R0_G6a_declared_probe_unit_norm` | ABSENT | – | – | – |
-| `R0_G6b_independent_quadrature_crosscheck` | ABSENT | – | – | – |
-| `R0_G7_right_censoring` | ABSENT | – | – | – |
-| `R0_G8_estimator_closed_form` | ABSENT | – | – | – |
-| `R0_G9_noise_replay` | ABSENT | – | – | – |
-| `R0_G10_null_pair_calibration` | ABSENT | – | – | – |
+| `R0_G13_freeze_commit_attestation` | **PASS** | 1 | 1 | – |
+| `R0_G1_dense_matrix_free_parity` | **PASS** | 2.173e-15 | 1e-10 | – |
+| `R0_G2_physical_adjoint` | **PASS** | 6.395e-14 | 1e-08 | – |
+| `R0_G3_G10q_quadrature_noise_invariance` | **PASS** | 7.257e-16 | 1e-10 | – |
+| `R0_G4_mixing_covariance` | **PASS** | 5.423e-16 | 1e-10 | – |
+| `R0_G5_basis_round_trip` | **PASS** | 0 | 1e-10 | – |
+| `R0_G6a_declared_probe_unit_norm` | **PASS** | 0 | 1e-12 | – |
+| `R0_G6b_independent_quadrature_crosscheck` | **PASS** | 5.551e-05 | 0.005 | – |
+| `R0_G7_right_censoring` | **PASS** | 4 | 4 | – |
+| `R0_G8_estimator_closed_form` | **PASS** | 2.169e-15 | 1e-09 | – |
+| `R0_G9_noise_replay` | **PASS** | 1 | 1 | – |
+| `R0_G10_null_pair_calibration` | **PASS** | 2.22e-16 | 0.02 | – |
 | `R0_G11_split_hash_disjointness` | **PASS** | 0 | 0 | – |
-| `R0_G12_reduced_statistic_equivalence` | ABSENT | – | – | – |
+| `R0_G12_reduced_statistic_equivalence` | **PASS** | 0.02456 | 0.08 | – |
 | `R0_G14_in_span_membership` | **PASS** | 0 | 1e-10 | – |
 | `R0_G15_uncertainty_calibration_band` | **FAIL** | 0.4966 | [0.5, 2.0] | UNCERTAINTY_WITHDRAWN |
 
@@ -289,7 +299,7 @@ block over 960 blocks.
 ## Artifacts
 
 - `artifacts/configs/R0C_REPAIRED_SOURCE_AND_CALIBRATION_FREEZE.json` `5a59d5e6203d9657...`
-- `artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json` `d8daf79a903d8bff...`
+- `artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json` `1b4e6f2230c1e877...`
 - `docs/amendments/R0_REPAIR_AMENDMENT_004.md` `503733a111dff0ce...`
 - `artifacts/manifests/r0c_future_test_hash_commitment.json` `b6bfbd00b03b3153...`
 - `artifacts/manifests/r0c_split_hash_manifest.json` `4fd93375498372c2...`

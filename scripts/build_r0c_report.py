@@ -59,8 +59,24 @@ def md(df, cols, fmts=None, header=None) -> str:
     return D.join(out)
 
 
+def all_gates() -> dict:
+    """The canonical ledger, plus the R0A artifact it is assembled from.
+
+    REVIEWER_RULING_R0C_005: the R0C report showed most R0A gates as ABSENT
+    because it read only the merged ledger as it stood after the R0C run. The
+    R0A artifact is canonical and carries all fourteen; the three R0C-specific
+    gates are joined onto it rather than replacing it.
+    """
+    g = dict(json.loads(GATES.read_text())["gates"])
+    r0a = ROOT / "artifacts" / "gates" / "r0_correctness_gates.json"
+    if r0a.exists():
+        for k, v in json.loads(r0a.read_text())["gates"].items():
+            g.setdefault(k, v)
+    return g
+
+
 def gate_table(names) -> str:
-    g = json.loads(GATES.read_text())["gates"]
+    g = all_gates()
     out = ["| gate | status | measured | threshold | disposition |",
            "|---|---|---:|---:|---|"]
     for k in names:
@@ -83,6 +99,7 @@ def main() -> int:
     reg = load_registry()
     prov = provenance.collect()
     att = attest([FREEZE])
+    ruling = json.loads((CFG / "REVIEWER_RULING_R0C_005.json").read_text())
     REPORTS.mkdir(parents=True, exist_ok=True)
 
     depth = pd.read_parquet(T / "r0c_stable_depth.parquet")
@@ -272,7 +289,7 @@ def main() -> int:
     uncertainty = "CALIBRATED" if calibrated else "UNCERTAINTY_WITHDRAWN"
 
     # ---- stop token --------------------------------------------------------
-    g = json.loads(GATES.read_text())["gates"]
+    g = all_gates()
     g14 = g.get("R0_G14_in_span_membership", {}).get("status")
     g11 = g.get("R0_G11_split_hash_disjointness", {}).get("status")
     repair_ok = (g14 == "PASS" and g11 == "PASS" and in_class_floor_zero
@@ -321,6 +338,7 @@ def main() -> int:
     else:
         token = "R1_MAIN_RECOMMENDED_WITH_SCOPE_RESTRICTION"
 
+    # the fourteen R0A gates plus the three R0C ones, in one table
     gate_names = ["R0_G13_freeze_commit_attestation",
                   "R0_G1_dense_matrix_free_parity", "R0_G2_physical_adjoint",
                   "R0_G3_G10q_quadrature_noise_invariance",
@@ -349,8 +367,18 @@ corrected generator semantics and was neither rendered into data nor scored.
 
 - R0C freeze `artifacts/configs/R0C_REPAIRED_SOURCE_AND_CALIBRATION_FREEZE.json`
   sha256 `{fh}`
-- execution commit `{att.get('execution_commit')}`, head tree
-  `{att.get('head_tree_sha')}`
+| commit | value | meaning |
+|---|---|---|
+| `execution_commit` | `{ruling['three_commits']['execution_commit']}` | where the code was when the run started |
+| `manifest_build_commit` | `{ruling['three_commits']['manifest_build_commit']}` | HEAD when the manifest was built, after the run |
+| `artifact_commit` | `{ruling['three_commits']['artifact_commit']}` | the tree the outputs were committed in |
+
+Three different things, named separately under `REVIEWER_RULING_R0C_005`. The
+old single `git_commit` field reported the middle one while calling it the
+first, which for an 804 s run is a commit that never described the executing
+code.
+
+- head tree `{att.get('head_tree_sha')}`
 - freeze committed at that commit: **{att['files'][0]['committed_at_execution_commit']}**;
   tracked changes {att.get('n_tracked_changes')}, untracked {att.get('n_untracked')},
   porcelain sha256 `{att.get('porcelain_registered_sha256', '')[:16]}...`

@@ -1,14 +1,14 @@
 {
   "schema": "phrt-r0c-artifacts/1",
-  "created_utc": "2026-08-26T01:17:42Z",
-  "git_commit": "61a67e6464552ab7fad293a8e55f5125f6202e09",
+  "created_utc": "2026-08-26T02:08:13Z",
+  "git_commit": "446fa00d0fadece4648118f29871bc615a16d9d7",
   "r0c_freeze_sha256": "5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51",
   "stop_token": "R1_MAIN_RECOMMENDED_WITH_SCOPE_RESTRICTION",
   "uncertainty_disposition": "UNCERTAINTY_WITHDRAWN",
   "attestation": {
     "available": true,
-    "execution_commit": "61a67e6464552ab7fad293a8e55f5125f6202e09",
-    "head_tree_sha": "aec6c55dca9614a0ab357cf24df4f0f424a60c19",
+    "execution_commit": "446fa00d0fadece4648118f29871bc615a16d9d7",
+    "head_tree_sha": "fd34366026d0e184b4a2909d1daa88592ef8cf79",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -17,14 +17,14 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": "",
-    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "porcelain_whole_tree_sha256": "328ed3ef8339c002044e9898b1e4f040ea73bbb9c4f0f9fd21eda827a361b4ce",
-    "n_tracked_changes": 0,
-    "n_untracked": 0,
-    "tracked_clean": true,
-    "untracked_clean": true,
-    "clean": true,
+    "porcelain_registered": " M scripts/build_r0c_report.py\n M src/phrt/io/manifests.py\n?? artifacts/configs/REVIEWER_RULING_R0C_005.json\n",
+    "porcelain_registered_sha256": "b93dbfd02f225ef42fa11987e8882a8995b0eef3d9279f1a64b814a6cc495d7a",
+    "porcelain_whole_tree_sha256": "b93dbfd02f225ef42fa11987e8882a8995b0eef3d9279f1a64b814a6cc495d7a",
+    "n_tracked_changes": 2,
+    "n_untracked": 1,
+    "tracked_clean": false,
+    "untracked_clean": false,
+    "clean": false,
     "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
     "files": [
       {
@@ -37,7 +37,7 @@
       }
     ],
     "all_registered_files_committed": true,
-    "preregistered": true
+    "preregistered": false
   },
   "provenance": {
     "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
@@ -55,7 +55,7 @@
   },
   "artifacts": {
     "artifacts/configs/R0C_REPAIRED_SOURCE_AND_CALIBRATION_FREEZE.json": "5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51",
-    "artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json": "d8daf79a903d8bffebce3886a8023a8dc201d016d526e836d9de40254a103edf",
+    "artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json": "1b4e6f2230c1e8773f7cadd56e94b5b51e8e51f64e7898c21a0243fd90bd916f",
     "docs/amendments/R0_REPAIR_AMENDMENT_004.md": "503733a111dff0ce2f45615fb47ae4631f5d3aa106cc44467c2a2f0035659a0e",
     "artifacts/manifests/r0c_future_test_hash_commitment.json": "b6bfbd00b03b3153372c4912f439a1e689bb36bdc11abf92a61aa14f5583b7d1",
     "artifacts/manifests/r0c_split_hash_manifest.json": "4fd93375498372c2df705de054080a0461ddb321e76ecd498365c29616d41444",
@@ -70,6 +70,6 @@
     "artifacts/tables/r0c_representation_floor_depth.parquet": "4c6bb80e50d3bcc5b2fb83e26889fd23226f24eb14a4949b06c86369da2c9034",
     "artifacts/tables/r0c_runtime.parquet": "d6756bdfb87682e934dff6035174693908492f6b8395f20b519414d5b2b7281c",
     "artifacts/gates/correctness_gates.json": "9e00307fe72e0a25e92e1ab388084166623752b687300a81cdfff9af7b3a884e",
-    "artifacts/reports/R0C_REPAIRED_VALIDATION.md": "088a1d768aed9a8f4ae9279b1c530bbe1d8027fece01573d7f23bf77db8c93b3"
+    "artifacts/reports/R0C_REPAIRED_VALIDATION.md": "2499f5691930f2b37bd33fd6ea959998a50ce003bca32dbca1c5f82068e8e86c"
   }
 }

@@ -1,0 +1,46 @@
+{
+  "schema": "phrt-record-amendment/1",
+  "id": "REVIEWER_RULING_R0C_005",
+  "created_utc": "2026-08-26T02:07:48Z",
+  "kind": "RECORD_ONLY",
+  "recomputation": "none. No reconstruction, operator, gate or table is recomputed by this amendment",
+  "scientific_disposition": "R0C accepted at the artifact commit below",
+  "three_commits": {
+    "execution_commit": "b6e481ab133015e9d7089fcbe6cfd81496200057",
+    "execution_commit_meaning": "where the code was when the run started, captured by the start-of-run attestation before anything was written",
+    "manifest_build_commit": "61a67e6464552ab7fad293a8e55f5125f6202e09",
+    "manifest_build_commit_meaning": "HEAD when the manifest object was built, which for an 804 s run is after it. In R0C this was a commit made while the run was still going, so it never described the executing code",
+    "artifact_commit": "446fa00d0fadece4648118f29871bc615a16d9d7",
+    "artifact_commit_meaning": "the tree the outputs were committed in"
+  },
+  "deprecated_field": {
+    "name": "git_commit",
+    "was_reported_as": "the execution commit",
+    "actually_was": "the manifest build commit",
+    "replacement": "execution_commit, inherited from the start-of-run attestation; manifest_build_commit keeps the old value under a name that says what it is",
+    "applies_from": "RunManifest.build after this amendment"
+  },
+  "why_the_numbers_stand": {
+    "rule": "the execution attestation is the stronger record and it is clean",
+    "execution_commit": "b6e481ab133015e9d7089fcbe6cfd81496200057",
+    "head_tree_sha": "951ee378f1cabc0e70477dd5692854f7ceaa490e",
+    "freeze_committed_at_execution_commit": true,
+    "freeze_sha256": "5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "clean": true,
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "affected_run": {
+    "manifest": "artifacts/manifests/R0C_20260826T011621Z_2ba66f02.json",
+    "run_id": "R0C_20260826T011621Z_2ba66f02",
+    "started_at": "2026-08-26T01:02:58+00:00",
+    "finished_at": "2026-08-26T01:16:22+00:00",
+    "runtime_seconds": 803.833466053009
+  },
+  "also_corrected": [
+    "the R0C report labelled the manifest build commit as the execution commit; it now reports all three separately",
+    "the R0C report gate table showed most R0A gates ABSENT because it read only the R0C run manifest; it now joins the canonical R0A gate artifact with the R0C-specific gates G11, G14 and G15"
+  ]
+}

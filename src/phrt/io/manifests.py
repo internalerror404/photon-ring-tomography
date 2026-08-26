@@ -112,7 +112,20 @@ class RunManifest:
         doc: dict[str, Any] = {
             "run_id": self.run_id,
             "experiment_id": self.experiment_id,
+            # REVIEWER_RULING_R0C_005. Three different commits were being
+            # conflated under one field. provenance.collect() runs when the
+            # manifest is *built*, which for a long run is after it, so
+            # git_commit named whatever HEAD had become -- in R0C, a commit made
+            # while the run was still going. The identity of a run is where its
+            # code was when it started, and the attestation captured that before
+            # anything was written.
+            "execution_commit": (self.attestation or {}).get("execution_commit")
+                                or prov.git_commit,
+            "manifest_build_commit": prov.git_commit,
             "git_commit": prov.git_commit,
+            "git_commit_deprecated":
+                "ambiguous: this is the manifest build commit, not the "
+                "execution commit. Read execution_commit instead",
             "dirty_tree": prov.dirty_tree,
             "config_path": str(config_path),
             "config_sha256": config_sha256,

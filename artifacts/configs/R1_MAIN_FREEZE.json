@@ -1,0 +1,758 @@
+{
+  "schema": "phrt-r1-main-freeze/1",
+  "experiment_id": "R1_HELD_OUT_MAIN",
+  "created_utc": "2026-08-26T02:12:21Z",
+  "ruling": "REVIEWER_RULING_R0C_005",
+  "status": "FROZEN_BEFORE_ANY_MAIN_TRUTH_IS_SCORED",
+  "provenance": {
+    "accepted_base_commit": "0ef341dae3b21bc2bdd0e54a18971cff208af783",
+    "measurement_correction_commit": "d6869f8d1c08889fee34e91d392c2bbc1bc9a62f",
+    "e3c_execution_code_commit": "546763ed29e2be3fb129ec707cb07ee37a4f7db8",
+    "e3c_artifact_commit": "7d610121adc95fb641ab5692d37d2b761b082039",
+    "e3c_age_interval_amendment_commit": "f034f19829623efa1f29bdcf27f95e10bd2de62e",
+    "e3c_freeze_sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
+    "e3c_registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+    "ray_map_manifest_sha256": "d163a630842ddec4b2143f9268bc70125857e78b84aa8fa122c5ef1bfc7b3638",
+    "r0_config_sha256": "dfc8d35eb2b7cb201409295698e9c623a10a0fa5ce730c7050e67c55f0ddb31e",
+    "r0_freeze_file_sha256": "e9c3a2d32a8bc24f638b0cb6e8fb573a72334b5e577afad9ed2b0aab5d009381",
+    "a_anchor_M": 0.0,
+    "age_interval_amendment": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003",
+    "r0c_freeze_sha256": "5a59d5e6203d965723777be41180d81bdb39d6dd1c26867b8a59aa94e91e6e51",
+    "r0c_config_sha256": "7a35b76f42127509cb672986dcba865e03ab41042a97ac1551aba876a8898557",
+    "r0c_execution_commit": "b6e481ab133015e9d7089fcbe6cfd81496200057",
+    "r0c_artifact_commit": "446fa00d0fadece4648118f29871bc615a16d9d7",
+    "r1_registration_head": "446fa00d0fadece4648118f29871bc615a16d9d7",
+    "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+    "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+    "commit_field_rule": "a run's identity is execution_commit, taken from the start-of-run attestation. manifest_build_commit is recorded separately and git_commit is deprecated",
+    "r1_config_sha256": "ba766497f91aed4d689e48a4ca187698f6d542bc2b24b989d86fd5c7167060d7"
+  },
+  "scope": {
+    "authorized": [
+      "R1_HELD_OUT_MAIN"
+    ],
+    "not_authorized": [
+      "R2",
+      "R3",
+      "R4",
+      "R5",
+      "E3D_rerun",
+      "ML",
+      "geometry_mismatch",
+      "order_leakage",
+      "VLBI"
+    ],
+    "geometry": "a050_i050",
+    "spin": 0.5,
+    "inclination_deg": 50.0,
+    "source_class": "C224",
+    "forbidden_language": "no result may be described as geometry-wide or as arbitrary movie recovery"
+  },
+  "sealed_bank": {
+    "commitment_sha256": "93608e7a7578fe892269ac20297af5d3f22bc1f860bbdba71b9aa0a833aa3f1e",
+    "n_records": 640,
+    "n_per_regime": {
+      "IN_CLASS_ID": 256,
+      "IN_CLASS_OOD": 64,
+      "OFF_GRID_ID": 256,
+      "OFF_GRID_OOD": 64
+    },
+    "rule": "preserved from R0C registration. Not regenerated, not hardened, not inspected through the operator and not scored before this freeze was committed",
+    "off_grid_ood_caveat": "the OFF_GRID_OOD bank has a smaller representation floor than OFF_GRID_ID -- 0.016 to 0.115 against 0.803 to 0.814 structure-normalized in R0C. It is a mild-mismatch diagnostic. Its passing is not evidence of broad off-grid robustness and is not to be reported as such, and it is not replaced with a harder bank after the fact"
+  },
+  "null_pair_control_bank": {
+    "sha256": "57ee7fef85da0ff05b0a36df75331607eca9ea76b575067b02bda8ae98002806",
+    "n_pairs": 1000,
+    "targets": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "pairs_per_target": 200,
+    "committed_before_scoring": true
+  },
+  "primary": {
+    "regime": "IN_CLASS_ID",
+    "reference_snr": 100.0,
+    "epsilon": 0.25,
+    "quantile": 0.95,
+    "statistic": "delta_L_level = L_stable_anchor(resolved) - L_stable_anchor(direct) under the registered baseline-inclusive metric",
+    "metric_name": "baseline-inclusive historical field fidelity",
+    "naming_rule": "at the reference SNR this is stable reconstruction of the age-local emissivity level under the registered baseline-inclusive field metric. It is not detailed movie morphology recovery and must not be described as such",
+    "threshold_M": 8.0,
+    "primary_estimator": "TSVD",
+    "confirmatory_estimator": "RIDGE_IDENTITY",
+    "family_rule": "at least three of the four IN_CLASS_ID prior-fit families improve by at least 8 M",
+    "success_requires": [
+      "delta_L_level >= 8 M for TSVD",
+      "delta_L_level >= 8 M in the same direction for ridge",
+      "at least three of four prior-fit families improve by >= 8 M",
+      "95% interval for aggregate delta_L_level with lower bound above zero",
+      "95% interval for the direct-minus-resolved old-band normalized error reduction with lower bound above zero",
+      "the same for the old-band absolute error",
+      "lower error for resolved than direct inside the direct channel's own data subspace"
+    ]
+  },
+  "bootstrap": {
+    "kind": "paired truth-cluster",
+    "unit": "truth; every noise draw belonging to a resampled truth travels with it, because draws sharpen one history and do not add histories",
+    "n_resamples": 10000,
+    "seed": 20260901,
+    "level": 0.95,
+    "frozen_before_scoring": true
+  },
+  "noise": {
+    "draws_per_truth": 8,
+    "noiseless_control": 1,
+    "coupling": "the direct, unresolved and total-flux arms are derived from the same resolved draw through the declared linear readouts, so every arm comparison is paired at the level of the draw",
+    "independent_unit": "the truth, not the truth-noise pair"
+  },
+  "diagnostics": {
+    "level_structure_projector": {
+      "definition": "x = P_level x + P_structure x with P_level the orthogonal projection onto fields constant in space at each source time",
+      "spanned_by": "the class's own temporal modes rendered spatially uniform, so the subspace lies inside C224",
+      "reported": [
+        "error_level_absolute",
+        "error_level_normalized",
+        "error_structure_absolute",
+        "error_structure_normalized"
+      ],
+      "status": "deterministic diagnostic; no threshold, no tolerance and nothing to select on"
+    },
+    "common_direct_subspace": {
+      "definition": "every arm's coefficient error projected onto the direct channel's own P_data",
+      "why": "each arm's P_data has its own dimension -- 154 for direct and 202 for resolved in R0C -- so comparing each arm on its own subspace penalises the arm that sees more",
+      "status": "deterministic diagnostic"
+    },
+    "structural_recovery_onset": {
+      "definition": "the smallest SNR_0 on the frozen grid at which L_stable_anchor under the structure metric exceeds zero, reported for direct and resolved",
+      "rule": "reported over the already frozen SNR grid; no new SNR may be chosen after scoring"
+    }
+  },
+  "secondary_outcomes": [
+    "held-out family generalization on IN_CLASS_OOD",
+    "structural recovery onset for direct and resolved",
+    "both off-grid regimes preserved; a failure narrows the claim and does not invalidate an exact-in-class result",
+    "null-pair controls against the equal-prior Gaussian Bayes bound under the multiplicity rule",
+    "the full nine-cell endpoint surface, with the retired (0.50, 0.90) cell and its censoring disposition"
+  ],
+  "estimators": {
+    "TSVD": "primary",
+    "RIDGE_IDENTITY": "confirmatory",
+    "TIKHONOV_TEMPORAL": "secondary",
+    "WIENER_GAUSSIAN": "point estimate only",
+    "LINEAR_STATE_SPACE": "point estimate only",
+    "ML": "NOT_AUTHORIZED",
+    "hyperparameters": "selected on the R0C repair-validation bank and frozen; no re-tuning on any main-test truth"
+  },
+  "hyperparameter_grids": {
+    "frozen_before_first_validation_score": true,
+    "TSVD": {
+      "cut_on": "sigma_i / sigma_max",
+      "grid": [
+        1e-08,
+        3.162277660168379e-08,
+        1e-07,
+        3.162277660168379e-07,
+        1e-06,
+        3.162277660168379e-06,
+        9.999999999999999e-06,
+        3.1622776601683795e-05,
+        9.999999999999999e-05,
+        0.00031622776601683794,
+        0.001,
+        0.0031622776601683794,
+        0.01,
+        0.03162277660168379,
+        0.09999999999999999
+      ]
+    },
+    "RIDGE_IDENTITY": {
+      "cut_on": "lambda / lambda_max(G)",
+      "grid": [
+        9.999999999999999e-11,
+        3.162277660168379e-10,
+        9.999999999999999e-10,
+        3.162277660168379e-09,
+        1e-08,
+        3.162277660168379e-08,
+        1e-07,
+        3.162277660168379e-07,
+        1e-06,
+        3.162277660168379e-06,
+        9.999999999999999e-06,
+        3.1622776601683795e-05,
+        9.999999999999999e-05,
+        0.00031622776601683794,
+        0.001,
+        0.0031622776601683794,
+        0.01,
+        0.03162277660168379,
+        0.09999999999999999,
+        0.31622776601683794,
+        1.0
+      ]
+    },
+    "TIKHONOV_TEMPORAL": {
+      "cut_on": "lambda / lambda_max(A^T C^-1 A)",
+      "grid": [
+        9.999999999999999e-11,
+        3.162277660168379e-10,
+        9.999999999999999e-10,
+        3.162277660168379e-09,
+        1e-08,
+        3.162277660168379e-08,
+        1e-07,
+        3.162277660168379e-07,
+        1e-06,
+        3.162277660168379e-06,
+        9.999999999999999e-06,
+        3.1622776601683795e-05,
+        9.999999999999999e-05,
+        0.00031622776601683794,
+        0.001,
+        0.0031622776601683794,
+        0.01,
+        0.03162277660168379,
+        0.09999999999999999,
+        0.31622776601683794,
+        1.0
+      ]
+    },
+    "WIENER_GAUSSIAN": {
+      "cut_on": "covariance shrinkage",
+      "grid": [
+        1e-06,
+        3.162277660168379e-06,
+        9.999999999999999e-06,
+        3.1622776601683795e-05,
+        9.999999999999999e-05,
+        0.00031622776601683794,
+        0.001,
+        0.0031622776601683794,
+        0.01,
+        0.03162277660168379,
+        0.09999999999999999,
+        0.31622776601683794,
+        1.0
+      ]
+    },
+    "LINEAR_STATE_SPACE": {
+      "process_noise": [
+        1e-06,
+        9.999999999999999e-06,
+        9.999999999999999e-05,
+        0.001,
+        0.01,
+        0.09999999999999999,
+        1.0
+      ],
+      "observation_noise": [
+        1.0
+      ],
+      "note": "observation noise is fixed at the declared whitened scale; the arm may not choose its own sigma"
+    },
+    "selection": {
+      "data": "validation only, separately per arm, estimator and SNR",
+      "objective_lexicographic": [
+        "maximize T_stable_anchor(epsilon=0.50, q=0.90)",
+        "minimize old-band normalized error",
+        "minimize old-band absolute error",
+        "prefer the stronger regularizer or simpler model on an exact tie"
+      ],
+      "oracle": "truth-selected tuning is emitted only as ORACLE_UPPER_BOUND and never as a method result"
+    }
+  },
+  "uncertainty": {
+    "disposition": "WITHDRAWN",
+    "reason": "the R0C joint calibration gate failed literally: the state-space posterior sits at 0.497 against a frozen lower bound of 0.5 and Wiener within the band. The rule was one scalar per estimator family and the branch was frozen in advance",
+    "forbidden": [
+      "credible intervals",
+      "posterior movies",
+      "coverage statements",
+      "adjusting the band to rescue the result",
+      "fitting another scale after seeing validation",
+      "rescuing Wiener alone"
+    ],
+    "retained_as": "point estimators"
+  },
+  "endpoint_surface": {
+    "epsilon": [
+      0.25,
+      0.35,
+      0.5
+    ],
+    "q": [
+      0.8,
+      0.9,
+      0.95
+    ],
+    "reported_in_full": true
+  },
+  "retired_endpoint": {
+    "epsilon": 0.5,
+    "quantile": 0.9,
+    "disposition": "NONDISCRIMINATING_RIGHT_CENSORED_ENDPOINT",
+    "reason": "the best reconstruction for every arm reached the 120 M physical ceiling at every SNR, so the arm comparison was between censored values. Retained in every table; never described as a failed comparison",
+    "retained_in_tables": true
+  },
+  "retired_gates": {
+    "R0_G6_age_probe_normalization": "split by R0_REPAIR_AMENDMENT_004. One record carried the declared-normalisation name and the 1e-12 threshold while measuring a 4001-point quadrature cross-check, so the canonical table read as though 5.551e-5 < 1e-12. The probe itself was correct; the record was not",
+    "dropped_from_the_active_list_here": [
+      "R0_G6_age_probe_normalization"
+    ]
+  },
+  "gates": {
+    "R0_G1_dense_matrix_free_parity": 1e-10,
+    "R0_G2_physical_adjoint": 1e-08,
+    "R0_G3_G10q_quadrature_noise_invariance": 1e-10,
+    "R0_G4_mixing_covariance": 1e-10,
+    "R0_G5_basis_round_trip": 1e-10,
+    "R0_G7_right_censoring": "structural",
+    "R0_G8_estimator_closed_form": 1e-09,
+    "R0_G9_noise_replay": "bitwise",
+    "R0_G10_null_pair_calibration": 0.02,
+    "R0_G11_split_hash_disjointness": "structural",
+    "R0_G6a_declared_probe_unit_norm": 1e-12,
+    "R0_G6b_independent_quadrature_crosscheck": 0.005,
+    "R0_G13_freeze_commit_attestation": "structural",
+    "R0_G14_in_span_membership": 1e-10,
+    "R0_G15_uncertainty_calibration_band": [
+      0.5,
+      2.0
+    ]
+  },
+  "metrics": {
+    "age_window": "compact window W_a on the common age grid, half width 3.0 M, step 4.0 M",
+    "age_grid_step_M": 4.0,
+    "age_grid_max_M": 120.0,
+    "age_grid_rule": "the oldest age any ray in the frozen set carries, max(delay) - min(t_obs), rounded up to the age step. Ages beyond it are unreachable by construction, so a depth sitting on the ceiling is right-censored and reported as a lower bound",
+    "E_of_a": "||W_a(xhat - x)||_2 / max(||W_a x||_2, eta)",
+    "E_abs_of_a": "||W_a(xhat - x)||_2",
+    "eta_rule": "0.05 * median over prior-fit truths and ages with ||W_a x|| > 0 of ||W_a x||_2, frozen before scoring",
+    "eta_value": null,
+    "stable_depth_surface": {
+      "epsilon": [
+        0.25,
+        0.35,
+        0.5
+      ],
+      "q": [
+        0.8,
+        0.9,
+        0.95
+      ]
+    },
+    "age_interval_amendment": "AGE_INTERVAL_SEMANTICS_AMENDMENT_003",
+    "a_anchor_M": 0.0,
+    "anchor_rule": "youngest age whose probe support lies inside the reachable source-time window; frozen before any reconstruction result",
+    "anchor_derivation": {
+      "probe_centre": "a probe at age a occupies source time -a within 3 half widths",
+      "reachable_source_time_M": [
+        -119.82234649196255,
+        19.99961781448451
+      ],
+      "delay_min_M": 0.0003821855154910736,
+      "delay_max_M": 119.82234649196255,
+      "frozen_before": "any movie is rendered or any error curve exists"
+    },
+    "primary_point": "L_stable_anchor(epsilon=0.25, q=0.95)",
+    "T_stable_anchor": "sup { T >= a_anchor : Pr[ sup_{a_anchor <= a <= T} E(a) <= epsilon ] >= q }. The supremum over the age window is inside the probability and is taken per truth: a truth counts only if the whole window from the anchor out to T is good for that truth. Thresholding the per-age passing fraction instead asks a weaker question and is not what is reported.",
+    "L_stable_anchor": "T_stable_anchor - a_anchor",
+    "secondary_unanchored_interval": "a longest stable interval anywhere on the grid may be reported with both endpoints; it must not be called depth from the present",
+    "also_reported": [
+      "oldest_detectable_age_probe",
+      "longest_detectable_run_span_M with both endpoints",
+      "contiguous_detectable_span_from_anchor_M",
+      "recent/middle/old band errors",
+      "data-supported and weak-subspace errors",
+      "calibration and coverage",
+      "runtime",
+      "iterations",
+      "peak memory"
+    ],
+    "withheld_from_the_launch_list": {
+      "fields": [
+        "D_hist(T)",
+        "d_eff(T)"
+      ],
+      "reason": "PAPER_I_V2_PRE_E3C_AMENDMENT_001 item 6 reserves D_hist, d_eff and the retired alias effective_rank for E3D, and the activation ruling restates that they are E3D quantities. E3D is deferred and not started, so R0 does not emit them under any name. The interval statistics above replace them in the R0 return."
+    },
+    "old_band_boundary_M": 57.666382656487954,
+    "old_band_rule": "the frozen direct-order 99.9% throughput-weighted age boundary; never selected from reconstruction curves",
+    "age_bands": {
+      "recent": [
+        0.0,
+        19.22212755216265
+      ],
+      "middle": [
+        19.22212755216265,
+        57.666382656487954
+      ],
+      "old": [
+        57.666382656487954,
+        null
+      ]
+    },
+    "primary_epsilon": 0.25,
+    "primary_q": 0.95
+  },
+  "physical_model": {
+    "geometry": "a050_i050",
+    "spin": 0.5,
+    "inclination_deg": 50.0,
+    "orders": [
+      0,
+      1,
+      2
+    ],
+    "source_class": "C224",
+    "snr0_grid": [
+      1,
+      3,
+      10,
+      30,
+      100,
+      300,
+      1000,
+      3000,
+      10000,
+      30000,
+      100000,
+      1000000
+    ],
+    "operator_notation": {
+      "physical_operator": "mathcal A : mathcal X -> mathcal Y",
+      "restricted": "A_C = mathcal A Q_C",
+      "warning": "Q_C is applied exactly once; an estimator returning coefficients must not be synthesised twice"
+    },
+    "whitened_row": "sqrt(dOmega_p)/sigma_Omega * g_p^3 * B(r_p,phi_p,t_p)",
+    "noise": "one sigma_Omega for the whole pilot; no arm-specific scale",
+    "raymap_sha256": {
+      "a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+      "a050_i050_n1_core.h5": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+      "a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39"
+    },
+    "r_inner_M": 1.8660386527060988,
+    "r_outer_M": 49.98205255591607,
+    "delay_windows_M": {
+      "0": [
+        0.0003821855154910736,
+        57.80751574810631
+      ],
+      "1": [
+        46.31999187683857,
+        100.68969682830846
+      ],
+      "2": [
+        62.389356693789864,
+        119.82234649196255
+      ]
+    },
+    "solid_angle_by_order": {
+      "0": 2495.5200000000013,
+      "1": 54.59840000000003,
+      "2": 1.6716000000000006
+    },
+    "rays_per_order_after_common_count": {
+      "0": 1536,
+      "1": 1536,
+      "2": 1536
+    }
+  },
+  "observation": {
+    "rays_per_order": 1536,
+    "n_observer_times": 8,
+    "observer_span_M": 20.0,
+    "observer_times_M": [
+      0.0,
+      2.857142857142857,
+      5.714285714285714,
+      8.571428571428571,
+      11.428571428571429,
+      14.285714285714286,
+      17.142857142857142,
+      20.0
+    ],
+    "subsample_seed": 20260825,
+    "basis_t_min": -128.82234649196255,
+    "basis_t_max": 29.0,
+    "arms_primary": [
+      "DIRECT_PHYSICAL",
+      "RESOLVED_PHYSICAL",
+      "UNRESOLVED_IMAGE",
+      "TOTAL_FLUX"
+    ],
+    "arms_diagnostic": [
+      "DELAY_ONLY",
+      "EQUALIZED_ORDER_SENSITIVITY"
+    ],
+    "noise_construction": "one resolved Gaussian draw per (truth, SNR, draw index); the direct, unresolved and total-flux observations are the declared linear selections and readouts of that same draw, so arms are paired and covariance propagation is exact rather than resampled"
+  },
+  "source_class": {
+    "id": "C224",
+    "dimension": 224,
+    "n_radial": 4,
+    "n_azimuthal": 7,
+    "n_temporal": 8,
+    "factorization": "4 cubic B-splines in log r x 7 real Fourier modes (|m| <= 3) x 8 DCT modes in source time",
+    "column_order": "radial-major, then azimuthal, then temporal",
+    "radial_support_M": [
+      1.8660386527060988,
+      49.98205255591607
+    ],
+    "temporal_support_M": [
+      -128.82234649196255,
+      29.0
+    ],
+    "basis_sha256": "52549b36f35703afb65d7e30185919d8aef6135134e8df355210ee5ba0377820",
+    "synthesis_rule": "Q_C is applied exactly once; the class is the same object in every arm"
+  },
+  "source_families": {
+    "derivation": "ranges come from the declared physical support r in [1.866, 49.982] M and from the C224 resolution; no range was chosen from a reconstruction score",
+    "resolution_bounds": {
+      "probe_half_width_M": 3.0,
+      "finest_radial_feature_M": 2.3791207100279617,
+      "finest_temporal_feature_M": 19.72779331149532,
+      "highest_azimuthal_mode": 3,
+      "radial_log_span": 3.2878461756935122,
+      "temporal_span_M": 157.82234649196255
+    },
+    "positivity_construction": "every physical family is rendered as a strictly positive intensity: a positive baseline plus non-negative components. Signed near-null perturbations are added to that baseline and the admissible amplitude that keeps the rendered movie non-negative is recorded per pair",
+    "families": {
+      "single_orbiting_hotspot": {
+        "role": "prior_fit",
+        "r_centre_M": [
+          3.0,
+          29.989231533549642
+        ],
+        "sigma_r_M": [
+          2.3791207100279617,
+          12.495513138979017
+        ],
+        "sigma_phi_rad": [
+          0.5235987755982988,
+          1.5707963267948966
+        ],
+        "orbit": "Keplerian angular velocity at r_centre, Omega = r^{-3/2} in M units",
+        "amplitude": "unit peak over the positive baseline"
+      },
+      "two_independent_hotspots": {
+        "role": "prior_fit",
+        "same_ranges_as": "single_orbiting_hotspot",
+        "separation_rule": "independent radii and phases; amplitudes drawn independently"
+      },
+      "rotating_asymmetric_crescent": {
+        "role": "prior_fit",
+        "r_peak_M": [
+          3.0,
+          24.991026277958035
+        ],
+        "width_M": [
+          4.758241420055923,
+          14.994615766774821
+        ],
+        "asymmetry_modes": [
+          1,
+          3
+        ],
+        "pattern_speed": "rigid rotation at the Keplerian rate of r_peak"
+      },
+      "correlated_extended_field": {
+        "role": "prior_fit",
+        "radial_correlation_M": [
+          4.758241420055923,
+          24.991026277958035
+        ],
+        "azimuthal_modes": [
+          0,
+          3
+        ],
+        "temporal_spectrum": "power law in DCT index, exponent in [1, 3]",
+        "construction": "exponentiated Gaussian field, positive by construction"
+      },
+      "moving_flare_birth_decay": {
+        "role": "held_out_ood",
+        "why_ood": "birth and decay give a temporal profile that is compactly supported in time and not represented in the prior-fit families' stationary or smoothly-varying temporal structure",
+        "rise_M": [
+          9.86389665574766,
+          39.45558662299064
+        ],
+        "decay_M": [
+          19.72779331149532,
+          78.91117324598127
+        ],
+        "drift": "radial drift plus Keplerian azimuthal motion"
+      },
+      "near_null_combinations": {
+        "role": "control",
+        "construction": "pairs separated along directions chosen to realise a target whitened Mahalanobis distance under the declared arm"
+      }
+    },
+    "resolved_ranges_note": "the block below is the fully expanded form the runner reads; no range is resolved at run time from a 'same_ranges_as' reference, so what was frozen is exactly what is used",
+    "off_grid": {
+      "rule": "off-grid truths are rendered analytically and are NOT in the span of C224; they are evaluated directly at the ray coordinates",
+      "refinement_factor": 4,
+      "meaning": "feature scales a factor of 4 finer than the finest scale C224 can represent"
+    },
+    "resolved_ranges": {
+      "single_orbiting_hotspot": {
+        "r_centre_M": [
+          3.0,
+          29.989231533549642
+        ],
+        "sigma_r_M": [
+          2.3791207100279617,
+          12.495513138979017
+        ],
+        "sigma_phi_rad": [
+          0.5235987755982988,
+          1.5707963267948966
+        ]
+      },
+      "two_independent_hotspots": {
+        "r_centre_M": [
+          3.0,
+          29.989231533549642
+        ],
+        "sigma_r_M": [
+          2.3791207100279617,
+          12.495513138979017
+        ],
+        "sigma_phi_rad": [
+          0.5235987755982988,
+          1.5707963267948966
+        ]
+      },
+      "rotating_asymmetric_crescent": {
+        "r_peak_M": [
+          3.0,
+          24.991026277958035
+        ],
+        "width_M": [
+          4.758241420055923,
+          14.994615766774821
+        ],
+        "asymmetry_modes": [
+          1,
+          3
+        ]
+      },
+      "correlated_extended_field": {
+        "radial_correlation_M": [
+          4.758241420055923,
+          24.991026277958035
+        ],
+        "azimuthal_modes": [
+          0,
+          3
+        ]
+      },
+      "moving_flare_birth_decay": {
+        "r_centre_M": [
+          3.0,
+          29.989231533549642
+        ],
+        "sigma_r_M": [
+          2.3791207100279617,
+          12.495513138979017
+        ],
+        "sigma_phi_rad": [
+          0.5235987755982988,
+          1.5707963267948966
+        ],
+        "rise_M": [
+          9.86389665574766,
+          39.45558662299064
+        ],
+        "decay_M": [
+          19.72779331149532,
+          78.91117324598127
+        ]
+      },
+      "off_grid_refinement": 4.0
+    },
+    "baseline_intensity": 1.0
+  },
+  "source_regimes": {
+    "IN_CLASS_ID": {
+      "families": [
+        "single_orbiting_hotspot",
+        "two_independent_hotspots",
+        "rotating_asymmetric_crescent",
+        "correlated_extended_field"
+      ],
+      "in_span": true,
+      "off_grid": false,
+      "per_family": 128,
+      "meaning": "exactly in the span of C224",
+      "family_axis": "prior-fit families"
+    },
+    "IN_CLASS_OOD": {
+      "families": [
+        "moving_flare_birth_decay"
+      ],
+      "in_span": true,
+      "off_grid": false,
+      "per_family": 256,
+      "meaning": "exactly in the span of C224",
+      "family_axis": "held-out flare family"
+    },
+    "OFF_GRID_ID": {
+      "families": [
+        "single_orbiting_hotspot",
+        "two_independent_hotspots",
+        "rotating_asymmetric_crescent",
+        "correlated_extended_field"
+      ],
+      "in_span": false,
+      "off_grid": true,
+      "per_family": 64,
+      "meaning": "analytic, outside the span of C224",
+      "family_axis": "prior-fit families"
+    },
+    "OFF_GRID_OOD": {
+      "families": [
+        "moving_flare_birth_decay"
+      ],
+      "in_span": false,
+      "off_grid": true,
+      "per_family": 256,
+      "meaning": "analytic, outside the span of C224",
+      "family_axis": "held-out flare family"
+    }
+  },
+  "in_span_construction": {
+    "rule": "an in-span truth is Q_C x: the analytic family is projected onto C224 on the declared evaluation grid, the coefficient vector is kept, and the synthesised movie is the truth at every coordinate",
+    "positivity": "a constant is in the class to 1e-15, so a negative excursion after projection is lifted by a multiple of the constant's coefficient vector; the lift is recorded per truth",
+    "constant_in_class_relative_residual": 1.4595263565445738e-15,
+    "gate": "R0_G14_in_span_membership",
+    "tolerance": 1e-10,
+    "applies_to": [
+      "IN_CLASS_ID",
+      "IN_CLASS_OOD"
+    ]
+  },
+  "subspaces": {
+    "P_data": "sum over i with SNR_0 * sigma_i >= rho of v_i v_i^T",
+    "P_weak": "I - P_data",
+    "rho": 1.0,
+    "reporting_rule": "errors reported separately; a weak-subspace improvement is never described as measured recovery"
+  },
+  "artifact_policy": {
+    "figures_from_canonical_tables_only": true,
+    "test_truth_hyperparameter_tuning_forbidden": true,
+    "posthoc_threshold_change_forbidden": true,
+    "failed_artifacts_preserved": true,
+    "sha256_manifest_required": true
+  },
+  "dispositions": {
+    "R1_PASS_WITH_SCOPE_RESTRICTION": "the exact-in-class aggregate primary passes, TSVD and ridge agree, at least three of four prior-fit families pass, common-subspace and old-band level errors improve, and every integrity control passes. Expected to be the strongest defensible outcome: one geometry, one source class, no detailed structure at the reference SNR, off-grid recovery failing, and uncertainty withdrawn",
+    "R1_PASS": "reserved for a result that also supports the broader registered secondary claims",
+    "R1_NEGATIVE_RESULT": "the sealed exact-in-class main bank fails the primary criterion",
+    "R1_IMPLEMENTATION_OR_LEAKAGE_DEFECT": "commitment hashes, clean-tree attestation, source membership, paired noise, null controls or split isolation fail. No scientific interpretation is drawn"
+  },
+  "stop_after": "R1 main only. No R2 to R5, no E3D rerun, no ML, no geometry mismatch, no order leakage, no VLBI"
+}
