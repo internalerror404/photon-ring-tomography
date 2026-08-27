@@ -14,6 +14,17 @@ property of the geometry and the basis alone.
   (was 4.0 M), probe half width
   3.0 M
 - stop token **`R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED`**
+- amendment `R1L_STAGE1_DIRTY_EXECUTION_G8_MASK_FIX`
+  (`artifacts/configs/R1L_STAGE1_DIRTY_EXECUTION_AMENDMENT_008.json`)
+
+> **Execution provenance.** Two runs precede the one reported here and both are
+> preserved. `R1L_20260827T044412Z_2ba66f02` was clean and preregistered and failed
+> `R1L_G8` at 2.8e2 because the reached-mode mask was built from a single
+> observer time. `R1L_20260827T044757Z_2ba66f02` fixed the mask, passed all ten gates, and ran
+> against a working tree carrying that uncommitted fix, so it recorded
+> `preregistered = false`. Under ruling item 5 stage 1 was then rerun from a
+> completely clean tree with no code edits, and every canonical number was
+> required to match. See section 9.
 
 ## 1. The question C224 could not be asked
 
@@ -30,13 +41,19 @@ directly comparable.
 | `L448` | 448 | 252 | 196 | 7 | 405 | 21 | `C448_T` | 411 | 0 |
 | `L1056` | 1056 | 523 | 517 | 7 | 836 | 154 | `C1056_ST` | 911 | 0 |
 
-`C224` reports **full column rank 224
-of 224 for the direct image with
-zero nullity**. `L224`, the same dimension over the same rays, reports rank
-140 with
-84 columns that are
-identically zero. The full rank was a property of global support, not of the
-measurement.
+`C224` is full rank on its own global temporal subspace: the direct arm reaches
+224 of
+224 with zero nullity. That
+establishes identifiability of the 224 **global** coefficients. It does **not**
+establish epoch-local identifiability, and it is not evidence either way about
+it: C224 cannot pose the epoch-local question, because none of its coefficients
+is confined to an epoch.
+
+`L224`, the same dimension over the same rays, poses it. The direct arm there
+reaches rank 140 with
+84 identically zero
+columns. The two rank numbers are answers to different questions and neither
+contradicts the other.
 
 ## 2. Old-epoch structural support, by arm
 
@@ -55,9 +72,16 @@ The direct image sees **nothing at all** in this subspace: its largest singular
 value there is 1.75e-14 at
 `L224`, which is numerical zero, against
 297.5 for the resolved
-stack. `SPATIAL_ONLY` matches the direct image exactly and `DELAY_ONLY` exceeds
-the full resolved stack, so the old-epoch information the higher orders carry is
-in their **delay structure**, not in their spatial imprint.
+stack.
+
+Under the **registered counterfactual**, delay diversity is necessary and
+dominant here: `SPATIAL_ONLY` matches the direct image at operational rank 0 and
+`DELAY_ONLY` exceeds the full resolved stack. Those two arms are specific
+substitutions — `SPATIAL_ONLY` gives every order order 0's spatial map while
+keeping its own delays, `DELAY_ONLY` gives every order order 0's delays while
+keeping its own spatial map — so they license a statement about those
+substitutions. This is **not** a universal claim that spatial remapping has no
+effect.
 
 ## 3. Where the higher orders actually contribute
 
@@ -74,9 +98,11 @@ in their **delay structure**, not in their spatial imprint.
 | 6 | -9.3 – 30.2 | no | 28 | 28 | 28 |
 | 7 | -29.0 – 10.5 | no | 22 | 22 | 22 |
 
-The higher orders contribute **exactly where the direct image is blind and
-nowhere else**. On modes 4 to 7 the three arms are identical to the digit. On
-modes 0 to 2 the direct image is at zero.
+Higher-order gains occur where the direct image is **blind or incomplete**, and
+the two are different. Modes 5 to 7 agree across all three arms. Modes 3 and 4
+are incomplete for the direct image and receive incremental directions — 9 to 28
+and 25 to 28 — so the gain there is a completion, not a rescue. Modes 0 to 2 are
+where the direct image is at zero and the gain is the whole of what is seen.
 
 ## 4. Reach on the refined age grid
 
@@ -163,7 +189,8 @@ numerical tolerance and is labelled as one.
 Established, on one geometry and with no estimator involved:
 
 1. The direct image has **exact** old-epoch null directions once the temporal
-   basis is compact. This is not a conditioning statement.
+   basis is compact — on modes 0 to 2 — and is **incomplete but not blind** on
+   modes 3 and 4. This is not a conditioning statement.
 2. Orders 1 and 2 genuinely remove them, though not all of them at every class.
    The direct blindness is *whole-epoch*: at `L224` and `L448` its exactly-zero
    columns are precisely 3 and
@@ -201,7 +228,11 @@ Not established, and not to be described as established:
 - One geometry. The high-inclination question that motivated the finer age grid
   is untouched.
 
-## 8. Stop
+## 8. Clean reproduction
+
+Pending. The clean rerun required by ruling item 5 has not been executed, so every number above still rests on a run that was not preregistered.
+
+## 9. Stop
 
 Stage 1 is complete and the freeze authorizes stage 1 only. Under the sequential
 rule the validation pilot is unlocked but **not** entered here.

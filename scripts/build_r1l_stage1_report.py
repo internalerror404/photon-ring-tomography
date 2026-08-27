@@ -22,6 +22,10 @@ from phrt.attestation import attest
 from phrt.config import load_registry, sha256_file
 
 FREEZE = ROOT / "artifacts" / "configs" / "R1L_LOCALIZED_AUDIT_FREEZE.json"
+AMENDMENT = (ROOT / "artifacts" / "configs"
+             / "R1L_STAGE1_DIRTY_EXECUTION_AMENDMENT_008.json")
+CLEAN_FAILED = "R1L_20260827T044412Z_2ba66f02"
+DIRTY_CORRECT = "R1L_20260827T044757Z_2ba66f02"
 E3C = ROOT / "artifacts" / "configs" / "E3C_OPERATOR_GRID_FREEZE.json"
 TAB = ROOT / "artifacts" / "tables"
 MANS = ROOT / "artifacts" / "manifests"
@@ -146,6 +150,37 @@ def main() -> int:
                   f"{fmt(gv.get('threshold'))} |"
                   for k, gv in gates["gates"].items())
 
+    rp = ROOT / "artifacts" / "provenance" / "R1L_STAGE1_REPRODUCTION.json"
+    if rp.exists():
+        rd = json.loads(rp.read_text())
+        ca = rd["clean_run_attestation"]
+        rows = D.join(f"| `{k}` | {v['n_rows']} | {v['n_columns']} | "
+                      f"{'**equal**' if v['equal'] else '**DIFFERS**'} |"
+                      for k, v in rd["tables"].items())
+        repro = f"""Ruling item 5. Stage 1 was rerun from a completely clean tree with no code
+edits between the runs, and every canonical numeric cell was required to match
+exactly — no tolerance, since the seeds, the rays and the committed code are
+identical and any difference would be a defect rather than rounding.
+
+- preserved run `{rd['preserved_run']}` — correct, dirty
+- clean run `{rd['clean_run']}` — execution commit
+  `{ca['execution_commit'][:12]}`, clean {ca['clean']}, preregistered
+  {ca['preregistered']}, tracked changes {ca['n_tracked_changes']}, untracked
+  {ca['n_untracked']}
+- gates failing on the clean run: {rd['gates_failing_on_clean_run'] or 'none'}
+
+| table | rows | columns | numeric equality |
+|---|---:|---:|---|
+{rows}
+
+Verdict: **`{rd['verdict']}`**. Every number in sections 1 to 7 is therefore
+carried by a clean preregistered execution, and the two earlier runs are
+preserved as record rather than replaced."""
+    else:
+        repro = ("Pending. The clean rerun required by ruling item 5 has not been "
+                 "executed, so every number above still rests on a run that was "
+                 "not preregistered.")
+
     body = f"""# R1L stage 1 — localized operator and rank audit
 
 Stage one of three under `R1L_LOCALIZED_AUDIT_FREEZE.json`. No truth was drawn,
@@ -162,6 +197,17 @@ property of the geometry and the basis alone.
   (was {fz['F_age_resolution']['previous_step_M']} M), probe half width
   {fz['F_age_resolution']['probe_half_width_M']} M
 - stop token **`{token}`**
+- amendment `R1L_STAGE1_DIRTY_EXECUTION_G8_MASK_FIX`
+  (`artifacts/configs/R1L_STAGE1_DIRTY_EXECUTION_AMENDMENT_008.json`)
+
+> **Execution provenance.** Two runs precede the one reported here and both are
+> preserved. `{CLEAN_FAILED}` was clean and preregistered and failed
+> `R1L_G8` at 2.8e2 because the reached-mode mask was built from a single
+> observer time. `{DIRTY_CORRECT}` fixed the mask, passed all ten gates, and ran
+> against a working tree carrying that uncommitted fix, so it recorded
+> `preregistered = false`. Under ruling item 5 stage 1 was then rerun from a
+> completely clean tree with no code edits, and every canonical number was
+> required to match. See section 9.
 
 ## 1. The question C224 could not be asked
 
@@ -176,13 +222,19 @@ directly comparable.
 |---|---:|---:|---:|---:|---:|---:|---|---:|---:|
 {ladder}
 
-`C224` reports **full column rank {sp('C224','DIRECT_PHYSICAL','numerical_rank')}
-of {sp('C224','DIRECT_PHYSICAL','source_dimension')} for the direct image with
-zero nullity**. `L224`, the same dimension over the same rays, reports rank
-{sp('L224','DIRECT_PHYSICAL','numerical_rank')} with
-{sp('L224','DIRECT_PHYSICAL','n_exactly_zero_columns')} columns that are
-identically zero. The full rank was a property of global support, not of the
-measurement.
+`C224` is full rank on its own global temporal subspace: the direct arm reaches
+{sp('C224','DIRECT_PHYSICAL','numerical_rank')} of
+{sp('C224','DIRECT_PHYSICAL','source_dimension')} with zero nullity. That
+establishes identifiability of the 224 **global** coefficients. It does **not**
+establish epoch-local identifiability, and it is not evidence either way about
+it: C224 cannot pose the epoch-local question, because none of its coefficients
+is confined to an epoch.
+
+`L224`, the same dimension over the same rays, poses it. The direct arm there
+reaches rank {sp('L224','DIRECT_PHYSICAL','numerical_rank')} with
+{sp('L224','DIRECT_PHYSICAL','n_exactly_zero_columns')} identically zero
+columns. The two rank numbers are answers to different questions and neither
+contradicts the other.
 
 ## 2. Old-epoch structural support, by arm
 
@@ -199,9 +251,16 @@ The direct image sees **nothing at all** in this subspace: its largest singular
 value there is {og('L224','DIRECT_PHYSICAL','old_structural_sigma_max'):.2e} at
 `L224`, which is numerical zero, against
 {og('L224','RESOLVED_PHYSICAL','old_structural_sigma_max'):.1f} for the resolved
-stack. `SPATIAL_ONLY` matches the direct image exactly and `DELAY_ONLY` exceeds
-the full resolved stack, so the old-epoch information the higher orders carry is
-in their **delay structure**, not in their spatial imprint.
+stack.
+
+Under the **registered counterfactual**, delay diversity is necessary and
+dominant here: `SPATIAL_ONLY` matches the direct image at operational rank 0 and
+`DELAY_ONLY` exceeds the full resolved stack. Those two arms are specific
+substitutions — `SPATIAL_ONLY` gives every order order 0's spatial map while
+keeping its own delays, `DELAY_ONLY` gives every order order 0's delays while
+keeping its own spatial map — so they license a statement about those
+substitutions. This is **not** a universal claim that spatial remapping has no
+effect.
 
 ## 3. Where the higher orders actually contribute
 
@@ -211,9 +270,11 @@ in their **delay structure**, not in their spatial imprint.
 |---:|---|---|---:|---:|---:|
 {epochs}
 
-The higher orders contribute **exactly where the direct image is blind and
-nowhere else**. On modes 4 to 7 the three arms are identical to the digit. On
-modes 0 to 2 the direct image is at zero.
+Higher-order gains occur where the direct image is **blind or incomplete**, and
+the two are different. Modes 5 to 7 agree across all three arms. Modes 3 and 4
+are incomplete for the direct image and receive incremental directions — 9 to 28
+and 25 to 28 — so the gain there is a completion, not a rescue. Modes 0 to 2 are
+where the direct image is at zero and the gain is the whole of what is seen.
 
 ## 4. Reach on the refined age grid
 
@@ -286,7 +347,8 @@ numerical tolerance and is labelled as one.
 Established, on one geometry and with no estimator involved:
 
 1. The direct image has **exact** old-epoch null directions once the temporal
-   basis is compact. This is not a conditioning statement.
+   basis is compact — on modes 0 to 2 — and is **incomplete but not blind** on
+   modes 3 and 4. This is not a conditioning statement.
 2. Orders 1 and 2 genuinely remove them, though not all of them at every class.
    The direct blindness is *whole-epoch*: at `L224` and `L448` its exactly-zero
    columns are precisely {zero['L224']['DIRECT_PHYSICAL'][1]} and
@@ -322,7 +384,11 @@ Not established, and not to be described as established:
 - One geometry. The high-inclination question that motivated the finer age grid
   is untouched.
 
-## 8. Stop
+## 8. Clean reproduction
+
+{repro}
+
+## 9. Stop
 
 Stage 1 is complete and the freeze authorizes stage 1 only. Under the sequential
 rule the validation pilot is unlocked but **not** entered here.
