@@ -1,7 +1,7 @@
 # GATE DASHBOARD
 
-- commit `922ab9c686f83f08caa09c5aa61a56af28106923`
-- 191 gates, 172 passing
+- commit `b83cdf4706eed942bcef2c7a057f1a0d34f2e807`
+- 205 gates, 186 passing
 
 ```
     active_blocking_failures:   0
@@ -167,6 +167,20 @@ A preserved literal failure is a FAIL that has been adjudicated and kept on the 
 | `R0_G11_split_hash_disjointness` | PASS | – | 0 | 0 |
 | `R0_G14_in_span_membership` | PASS | – | 0 | 1e-10 |
 | `R0_G15_uncertainty_calibration_band` | FAIL | `UNCERTAINTY_WITHDRAWN` | 0.4966 | [0.5, 2.0] |
+| `R1L_2RA_G1_no_new_truths` | PASS | – | 0 | 0 |
+| `R1L_2RA_G2_truth_content_hashes_match` | PASS | – | 1 | 1 |
+| `R1L_2RA_G3_secondary_bank_excluded` | PASS | – | 0 | 0 |
+| `R1L_2RA_G4_pinned_numerical_environment` | PASS | – | 1 | 1 |
+| `R1L_2RA_G5_null_controls` | PASS | – | 2.442e-15 | 0.05 |
+| `R1L_2RB_G11_resource_limits` | PASS | – | 1210 | 7200 |
+| `R1L_2RB_G1_pinned_numerical_environment` | PASS | – | 1 | 1 |
+| `R1L_2RB_G2_split_commitments_reproduce` | PASS | – | 1 | 1 |
+| `R1L_2RB_G3_split_disjointness` | PASS | – | 1 | 1 |
+| `R1L_2RB_G4_truths_are_exactly_in_class` | PASS | – | 0 | 1e-10 |
+| `R1L_2RB_G5_representation_floor_is_zero` | PASS | – | 4.013e-15 | 1e-10 |
+| `R1L_2RB_G6_secondary_bank_absent` | PASS | – | 0 | 0 |
+| `R1L_2RB_G7_adjoint` | PASS | – | 5.478e-14 | 1e-08 |
+| `R1L_2RB_G9_null_controls` | PASS | – | 2.442e-15 | 0.05 |
 | `R1L_G10_circular_centres_outside_isco` | PASS | – | 1 | 1 |
 | `R1L_G11_pinned_numerical_environment` | PASS | – | 1 | 1 |
 | `R1L_G12_deterministic_reproduction` | PASS | – | 0 | 0 |
