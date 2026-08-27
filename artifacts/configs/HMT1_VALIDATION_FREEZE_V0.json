@@ -1,0 +1,484 @@
+{
+  "schema": "phrt-hmt1-freeze/1",
+  "id": "HMT_1_HISTORICAL_FEATURE_AND_CONTRAST_TOMOGRAPHY_V0",
+  "created_utc": "2026-08-27T20:21:43Z",
+  "ruling": "Reviewer authorization of HMT-1",
+  "status": "FROZEN_BEFORE_ANY_NEW_TRUTH_OR_OPERATOR_SCORE",
+  "branch": "research/hmt1_historical_feature_contrast_tomography_v0",
+  "relation_to_r1l": {
+    "r1l_stop_preserved": true,
+    "r1l_dispositions": [
+      "R1L_STAGE2R_GATE_COMPLETION_REPRODUCTION_PASS",
+      "R1L_STAGE2R_PHYSICAL_SOURCE_MATERIALITY_NOT_MET",
+      "R1L_STAGE2R_SIGNED_DIAGNOSTIC_MATERIAL_EFFECT",
+      "R1L_STAGE2R_HIGH_SNR_PHYSICAL_VALIDATION_PASS",
+      "R1L_STAGE2R_STABLE_SPAN_NEGATIVE_RESULT",
+      "R1L_STAGE2R_SCIENTIFIC_STOP"
+    ],
+    "sealed_commitments": "preserved unscored. HMT-1 neither reopens nor scores them",
+    "not_a_rescue": "HMT-1 does not re-run, re-scope or re-tune the R1L endpoint. It is a different question with new banks, a new source model and new endpoints",
+    "signed_bank_status": "the R1L signed constant-flux diagnostic motivates the contrast hypothesis and counts as no evidence for it. Its truths are not reused"
+  },
+  "claim_taxonomy": {
+    "not_attempted_arbitrary_movie": "for an unconstrained field, any v with A v = 0 makes j and j + v indistinguishable, so no estimator of any kind can determine which occurred. This is a theorem about the operator, not a limitation of method",
+    "attempted_here": "bounded, model-conditioned recovery of feature trajectories and low-order mode histories within a declared family",
+    "not_attempted_real_astronomical": "order leakage, geometry uncertainty, sparse Fourier sampling, calibration, scattering, realistic transfer and real data are all out of scope and separately staged",
+    "forbidden_language": "no HMT-1 result may be described as recovering an arbitrary or pixel-by-pixel film of the past"
+  },
+  "geometry": {
+    "a_star": 0.5,
+    "inclination_deg": 50.0,
+    "geometry_id": "a050_i050",
+    "orders": [
+      0,
+      1,
+      2
+    ],
+    "raymap_sha256": {
+      "a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+      "a050_i050_n1_core.h5": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+      "a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39"
+    }
+  },
+  "source_model": {
+    "form": "j(r, phi, t) = b(r, t) + dj(r, phi, t)",
+    "background_positive": "b(r, t) > 0, axisymmetric",
+    "zero_spatial_mean": "<dj(., t)> over the evaluation grid = 0 at every age",
+    "total_nonnegative": "b + dj >= 0 everywhere",
+    "why_signed_dj_is_legitimate": "dj is a brightness fluctuation about a positive background, not an emissivity. The physical field that must stay non-negative is b + dj, and it does",
+    "multiplicative_form_note": "j = b(1 + delta) with <delta> = 0 is equivalent only when b is spatially constant at fixed t. Here b depends on r, so <b delta> = 0 and <delta> = 0 are different conditions. The additive form above is the operative one and the multiplicative form is not used",
+    "tolerances": {
+      "zero_mean_relative": 1e-10,
+      "positivity_floor": 0.0,
+      "background_positive_floor": 1e-06
+    }
+  },
+  "feature_families": {
+    "declared": [
+      "circular_hotspot_trajectory",
+      "two_hotspot_trajectories",
+      "m1_rotating_crescent",
+      "m2_structural_mode",
+      "flare_birth_motion_decay",
+      "plunging_feature"
+    ],
+    "n_families": 6,
+    "circular_hotspot_trajectory": {
+      "parameters": [
+        "r_h",
+        "phi_h_0",
+        "A_h",
+        "sigma_r",
+        "sigma_phi"
+      ],
+      "motion": "Kerr prograde circular geodesic outside the ISCO, phi_h(t) = phi_h_0 + Omega_K(r_h) t",
+      "r_centre_M": [
+        4.233002529530826,
+        29.989231533549642
+      ]
+    },
+    "two_hotspot_trajectories": {
+      "parameters": [
+        "r_h1",
+        "phi_h1_0",
+        "A_h1",
+        "r_h2",
+        "phi_h2_0",
+        "A_h2"
+      ],
+      "motion": "two independent circular trajectories"
+    },
+    "m1_rotating_crescent": {
+      "parameters": [
+        "r_peak",
+        "width",
+        "a_m1",
+        "pattern_phase"
+      ],
+      "motion": "rigid rotation at Omega_K(r_peak)"
+    },
+    "m2_structural_mode": {
+      "parameters": [
+        "r_peak",
+        "width",
+        "a_m2",
+        "pattern_phase"
+      ],
+      "motion": "rigid rotation at Omega_K(r_peak)"
+    },
+    "flare_birth_motion_decay": {
+      "parameters": [
+        "r_h",
+        "phi_h_0",
+        "A_peak",
+        "t_birth",
+        "tau_decay"
+      ],
+      "motion": "circular trajectory with a compactly supported birth-and-decay envelope"
+    },
+    "plunging_feature": {
+      "parameters": [
+        "r_h_start",
+        "phi_h_0",
+        "A_h"
+      ],
+      "motion": "radial plunge inside the ISCO on its conserved E and L, angular rate u^phi / u^t",
+      "r_centre_M": [
+        1.8660254037844386,
+        4.233002529530826
+      ]
+    },
+    "off_manifold_controls": {
+      "families": [
+        "three_hotspot_cluster",
+        "counter_rotating_pair",
+        "radially_drifting_arc"
+      ],
+      "role": "control only. These lie outside the declared manifold and may not contribute to any endpoint. They exist so the recovery claim is bounded by the manifold rather than assumed to generalise past it"
+    },
+    "velocity_field_for_g3": {
+      "metric": "Kerr, Boyer-Lindquist, equatorial, M = 1",
+      "spin": 0.5,
+      "sense": "prograde",
+      "outside_isco": "circular geodesic, Omega = 1 / (r^{3/2} + a)",
+      "inside_isco": "radial plunge on the ISCO's conserved E and L, Omega = u^phi / u^t",
+      "isco_radius_M": 4.233002529530826,
+      "horizon_radius_M": 1.8660254037844386,
+      "omega_isco": 0.10858835898027676,
+      "matches_raymap_fluid": true,
+      "raymap_fluid_note": "AART gfactorf called with betaphi = betar = sub_kep = 1, i.e. fully Keplerian outside the ISCO and plunging inside it, which is the same field",
+      "superseded_law": "Omega = r^{-3/2}, Newtonian, used by the R0/R1 families; retained there because those banks are sealed and reported"
+    }
+  },
+  "background_regimes": {
+    "declared": [
+      "oracle_known",
+      "estimated_from_data",
+      "joint_inversion"
+    ],
+    "oracle_known": {
+      "b": "supplied exactly",
+      "role": "upper-bound control. A result that exists only here is called background-assisted, not unconditional"
+    },
+    "estimated_from_data": {
+      "b": "estimated by a fixed low-order axisymmetric procedure from the arm's own data before dj is reconstructed",
+      "procedure": "azimuthal average of the direct-channel image back-projection, smoothed on the declared radial B-spline basis, positivity-clipped at the background floor",
+      "frozen_before_any_truth": true,
+      "role": "**the regime a paper-grade result must survive**"
+    },
+    "joint_inversion": {
+      "b": "inferred jointly with dj under separate smoothness and positivity constraints",
+      "role": "reported; may support but not substitute for the estimated regime"
+    }
+  },
+  "arms": [
+    "DIRECT_PHYSICAL",
+    "RESOLVED_PHYSICAL",
+    "UNRESOLVED_IMAGE",
+    "TOTAL_FLUX"
+  ],
+  "snr": {
+    "primary": 100.0,
+    "secondary": 1000.0,
+    "rule": "no other SNR may carry a claim"
+  },
+  "reconstruction_class": {
+    "id": "L448_contrast",
+    "basis": "4 radial cubic B-splines in log r x 7 real Fourier modes x 16 compact temporal hats, level directions projected out so the class represents dj and not b",
+    "dimension_before_level_removal": 448,
+    "why_reuse": "the localized compact-support class is already validated by the R1L stage-1 audit and its nesting, adjoint and zero-column properties are gated. HMT-1 changes the endpoint, not the basis"
+  },
+  "estimators": {
+    "TSVD": "classical linear, primary",
+    "RIDGE_IDENTITY": "classical linear, confirmatory",
+    "NONNEGATIVE_CONSTRAINED": {
+      "role": "constrained estimator required by the ruling",
+      "method": "projected gradient enforcing b + dj >= 0 on the evaluation grid",
+      "scope": "primary SNR and the estimated-background regime only, declared in advance because it is iterative and cannot reuse the cached spectral factorisation"
+    },
+    "ML": "NOT_AUTHORIZED"
+  },
+  "feature_extraction": {
+    "rule": "every recovered quantity is extracted from the reconstructed dj by a procedure fixed here, applied identically to truth and reconstruction",
+    "per_age_slice": "the age-windowed dj field on the evaluation grid, Gaussian window of half width 3.0 M",
+    "hotspot_position": "argmax of the windowed slice over (r, phi), giving r_hat(a) and phi_hat(a)",
+    "hotspot_amplitude": "the value at that argmax, A_hat(a)",
+    "mode_amplitudes": "a_m(a) = radially weighted projection of the slice onto cos(m phi) and sin(m phi), m = 1 and 2, reported as the complex modulus",
+    "event_times": {
+      "t_birth": "the earliest age at which A_hat(a) exceeds 0.25 of its maximum over ages",
+      "tau_decay": "the age difference between the maximum of A_hat(a) and the last age above 1/e of it"
+    },
+    "normalisation": {
+      "radial": "|r_hat - r| divided by the declared radial support width",
+      "angular": "wrapped |phi_hat - phi| divided by pi",
+      "amplitude": "|A_hat - A| divided by max over ages of |A|",
+      "mode": "|a_hat_m - a_m| divided by max over ages of |a_m|",
+      "event_time": "|t_hat - t| divided by the observation span"
+    },
+    "aggregate": "E_features(a) = root mean square over the family's declared normalised parameter errors at age a"
+  },
+  "primary_endpoints": {
+    "old_band_feature_error": {
+      "statistic": "delta_E_old_features = (E_old_features(direct) - E_old_features(arm)) / E_old_features(direct), per truth",
+      "aggregation": "equal weight over family cells",
+      "old_band_boundary_M": 57.666382656487954,
+      "bootstrap": {
+        "kind": "paired truth-cluster",
+        "unit": "truth",
+        "n_resamples": 10000,
+        "level": 0.95,
+        "seed": 20260911,
+        "intervals": "one for the per-truth median and one for the cell-balanced mean, each named where reported"
+      }
+    },
+    "stable_feature_interval": {
+      "statistic": "L_stable_features(epsilon, q) = sup{T >= 0 : Pr[sup_{0 <= a <= T} E_features(a) <= epsilon] >= q}, supremum inside the probability, over truth and noise jointly",
+      "epsilon": 0.25,
+      "quantile": 0.95,
+      "age_grid_step_M": 2.0,
+      "probe_half_width_M": 3.0,
+      "requirement": "strictly positive for the resolved arm, and greater than the direct arm's"
+    },
+    "event_time_error": "reported for flare_birth_motion_decay in M, with its own interval",
+    "trajectory_error": "angular and radial error reported separately in radians and M, not only as the normalised aggregate"
+  },
+  "secondary_endpoints": {
+    "rendered_frame_error": "relative error of the rendered dj frame",
+    "perceptual": "structural similarity of rendered frames",
+    "rule": "secondary. Neither may carry the primary claim, and a perceptually convincing frame is not evidence that the trajectory was measured"
+  },
+  "required_controls": {
+    "exact_and_near_null_feature_pairs": "pairs of feature histories whose difference lies in or near the operator's null space, with the realized separation in sigma checked against the frozen target",
+    "off_manifold_families": [
+      "three_hotspot_cluster",
+      "counter_rotating_pair",
+      "radially_drifting_arc"
+    ],
+    "background_estimation_error": "the error of the estimated background against the truth, reported per regime so a feature result can be attributed",
+    "order_summation": "the UNRESOLVED_IMAGE arm at the same standing as the resolved one",
+    "estimators": [
+      "TSVD",
+      "RIDGE_IDENTITY",
+      "NONNEGATIVE_CONSTRAINED"
+    ]
+  },
+  "pass_criteria": {
+    "material_benefit_under_both_classical_estimators": {
+      "median_relative_reduction": 0.1,
+      "median_bootstrap_lower_bound": 0.05,
+      "cell_balanced_mean": 0.1,
+      "mean_bootstrap_lower_bound": 0.05,
+      "note": "the same numeric standard R1L used, so the two studies are comparable"
+    },
+    "nonzero_stable_feature_interval": {
+      "resolved_L_stable_features_M": "> 0",
+      "and_greater_than_direct": true
+    },
+    "family_agreement": {
+      "declared_rule": "at least three quarters of the declared families, rounded up",
+      "n_families": 6,
+      "required_count": 5,
+      "ambiguity_recorded": "the authorizing ruling says 'at least 3/4 families'. Earlier rulings used 'three of the four' when there were exactly four families; here there are six. The fraction reading is taken as primary because it preserves the stringency of the earlier rule, and the literal count reading (3 of 6) is also reported so the reviewer can see both and overturn this choice"
+    },
+    "survives_estimated_background": {
+      "required_regime": "estimated_from_data",
+      "rule": "a result that exists only under the oracle background is reported as background-assisted and does not pass"
+    },
+    "null_controls_consistent": true,
+    "exactly_one_disposition": true
+  },
+  "dispositions": {
+    "HMT1_FEATURE_RECOVERY_PASS": "every pass criterion met, including the estimated-background regime",
+    "HMT1_BACKGROUND_ASSISTED_ONLY": "criteria met under the oracle background and not under the estimated one",
+    "HMT1_MATERIAL_ERROR_REDUCTION_NO_STABLE_INTERVAL": "the feature error improves materially and no positive stable feature interval exists",
+    "HMT1_NO_MATERIAL_EFFECT": "banks sound, materiality not met. A reportable result",
+    "HMT1_SOURCE_BANK_FAILURE": "a declared bank could not be built within the contrast-model tolerances",
+    "HMT1_IMPLEMENTATION_DEFECT": "a gate failed, a limit was exceeded, or a commitment did not reproduce"
+  },
+  "counts": {
+    "families": [
+      "circular_hotspot_trajectory",
+      "two_hotspot_trajectories",
+      "m1_rotating_crescent",
+      "m2_structural_mode",
+      "flare_birth_motion_decay",
+      "plunging_feature"
+    ],
+    "splits": [
+      "selection",
+      "pilot"
+    ],
+    "regimes": [
+      "oracle_known",
+      "estimated_from_data",
+      "joint_inversion"
+    ],
+    "truths_per_family_split_regime": 8,
+    "n_cells": 36,
+    "n_truths": 288,
+    "noise_draws_per_truth": 4,
+    "off_manifold_truths_per_family": 8
+  },
+  "split_rule": {
+    "selection": "hyperparameters chosen here and nowhere else",
+    "pilot": "the reported endpoint, on truths no hyperparameter saw",
+    "commitments": {
+      "circular_hotspot_trajectory|selection|oracle_known": "225fa1d5a11dbb046b6ea2161d38ec1e420c7403599836460c7ae35d2bf0b89c",
+      "circular_hotspot_trajectory|selection|estimated_from_data": "93efadc3c4c42bf85167314dfa32534fee2bd85d4010d21ebd2b92ba74605ee0",
+      "circular_hotspot_trajectory|selection|joint_inversion": "49f3ab36791ddf2fb26f9c661cf505ec4caa7a92d72474f4a61c23abab6606fe",
+      "circular_hotspot_trajectory|pilot|oracle_known": "8126a98dbe09ed7d474f81b357ee628ddd58cb35563b580116a7b787a3a5f578",
+      "circular_hotspot_trajectory|pilot|estimated_from_data": "a7de41edb4ab00db8f321292a79e6ccbc40daf0ec9d39714a1540fb4c5b6ba48",
+      "circular_hotspot_trajectory|pilot|joint_inversion": "80c4d216b737b673e051040d461d20e19719a09b27b0b37adc2b6b43ceb6058c",
+      "two_hotspot_trajectories|selection|oracle_known": "aed42871664b2a5b39e46bb5bd9b9b384d0567d6a453a3764ff2b26a07cd23fa",
+      "two_hotspot_trajectories|selection|estimated_from_data": "0de97f5fd904172f6c73ee798278ad7b3a038db51f55fdf53eea67146c8678e6",
+      "two_hotspot_trajectories|selection|joint_inversion": "f420c6d3ce7829e2d3ecef1b80bd89602013366bae458f985c331ce67631eebc",
+      "two_hotspot_trajectories|pilot|oracle_known": "2738a83bb2f5da3f2b62e93a7c3237e8ff542bbe5739b3a6d66beda07a478481",
+      "two_hotspot_trajectories|pilot|estimated_from_data": "1ec0ae11190cdd219609da25c4182218b3303b02f02a8edc7e620c37490ee376",
+      "two_hotspot_trajectories|pilot|joint_inversion": "99db4e6798b5e709103a88ee7166be969a95e73a57297453c246e43f94daf491",
+      "m1_rotating_crescent|selection|oracle_known": "18c9ae9d56d09d83e667a1741655409f1f5e1e2d8171d1db7c95fe80ca726c1b",
+      "m1_rotating_crescent|selection|estimated_from_data": "a42b224b1d30a58bcc4741a4a6ad0952c45bf75ebdd09e43e2fb2e3309665253",
+      "m1_rotating_crescent|selection|joint_inversion": "f47275851e722236d0561b04721f7ab5f888221377d45e997f23664c7edc7735",
+      "m1_rotating_crescent|pilot|oracle_known": "c6c5f34cc95f17ad37c4665d4b0e89fc3f671e24e33a9281b3e2ded5cd95541b",
+      "m1_rotating_crescent|pilot|estimated_from_data": "1cdf4f922983ef1e61133dae9519f1463c994c5eb23813d5f79c686457d49865",
+      "m1_rotating_crescent|pilot|joint_inversion": "040dcfafbdd19ffb0c784f3ea79fb30a04551b71cfd73ca7bef49da1392ceda2",
+      "m2_structural_mode|selection|oracle_known": "a8235efc5deec44f44efc563ca82e348629844ec7199a4d5fe470bc746f69238",
+      "m2_structural_mode|selection|estimated_from_data": "7b035ecd413ef3c73ea479d5fcba4ecb39d8b528609856792184d9c19bbb544f",
+      "m2_structural_mode|selection|joint_inversion": "894a3e08adc59f6b129d2b58c96e2422b0a6bee3286c6aa444bd9b56f3f266a7",
+      "m2_structural_mode|pilot|oracle_known": "3ce28d74c843cc205f9475805fbfa78406d6b5c47603024470790db46d2cb1ab",
+      "m2_structural_mode|pilot|estimated_from_data": "f6a47da242a98013f31272e96a36641781d44821d2c0a502bc44119ff10de0c8",
+      "m2_structural_mode|pilot|joint_inversion": "6f1770f5b743f38a8a0ccad49bd7100b205fac4221c906ddfaa564666033496e",
+      "flare_birth_motion_decay|selection|oracle_known": "2c2eea366d51d2684ba052da8001132224f434365cfe6603ea5d013720bad7ad",
+      "flare_birth_motion_decay|selection|estimated_from_data": "a11e0c96198798134f81a10710091407af97288e51991107927dbdd5266954ef",
+      "flare_birth_motion_decay|selection|joint_inversion": "ce6fa13ae6fc260f445a4070d3b9e520891f06d416b8247b6486732be350840f",
+      "flare_birth_motion_decay|pilot|oracle_known": "ffcf9adbd7031745e3b2e9680690bc3ab0c883fa1fd4aec07834d71fac95e42f",
+      "flare_birth_motion_decay|pilot|estimated_from_data": "0d84cc0b19c8215bbfdac541e62cfb5dd9302754a2aa0d02eca476dcf97a01c7",
+      "flare_birth_motion_decay|pilot|joint_inversion": "b297802e3ef4f668971c512e013d826196b96308d3015a838f2656fe7ae29d31",
+      "plunging_feature|selection|oracle_known": "41b87ac1a23374c098cc5f4a29dffd913245f42359545195f3ec1b419de71e39",
+      "plunging_feature|selection|estimated_from_data": "187773f56478e617e64dd0db1714f1e5df7e9451d4b6b3eddc3aacb044b187b3",
+      "plunging_feature|selection|joint_inversion": "72b8a29511203b82de3a116ab38d3fa32402b9f8222cafd762285e948df9bc33",
+      "plunging_feature|pilot|oracle_known": "fd49665c597fbaa445cdd26c988036b9fb5c4cd2439c0e7f1ca2e58f260c0281",
+      "plunging_feature|pilot|estimated_from_data": "e0d778efbb81753c5757b0bc2734a3dda60ce6f7d0eca4a0496940f883a635f9",
+      "plunging_feature|pilot|joint_inversion": "2297d3c40536559618cb7b06af0eead55b815011db3c805fa3e0bad71480d830"
+    },
+    "commitment_meaning": "sha256 over (family, split, regime, n, seed, model). The runner derives every truth seed from the same string and must reproduce the hash before scoring"
+  },
+  "seeds": {
+    "bank_seed": 20260910,
+    "noise_seed": 20260912,
+    "bootstrap_seed": 20260911,
+    "null_pair_seed": 20260913,
+    "subsample_seed": 20260825
+  },
+  "gates": {
+    "HMT1_G1_pinned_numerical_environment": "structural",
+    "HMT1_G2_split_commitments_reproduce": "structural",
+    "HMT1_G3_split_disjointness": "structural",
+    "HMT1_G4_contrast_zero_spatial_mean": 1e-10,
+    "HMT1_G5_total_emissivity_nonnegative": 0.0,
+    "HMT1_G6_background_strictly_positive": 1e-06,
+    "HMT1_G7_adjoint": 1e-08,
+    "HMT1_G8_operator_truth_identity": 1e-09,
+    "HMT1_G9_null_controls": 0.05,
+    "HMT1_G10_feature_extraction_idempotent": 1e-09,
+    "HMT1_G11_off_manifold_excluded_from_endpoints": "structural",
+    "HMT1_G12_no_maximal_regularization_collapse": "structural",
+    "HMT1_G13_declared_gate_coverage": "structural",
+    "HMT1_G14_resource_limits": "structural"
+  },
+  "resource_limits": {
+    "wall_clock_seconds": 10800,
+    "peak_rss_mb": 12000,
+    "on_exceeded": "HMT1_IMPLEMENTATION_DEFECT",
+    "no_silent_reduction": true
+  },
+  "numerical_environment": {
+    "pinned": true,
+    "variables": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "assertion": "every BLAS pool must report one thread, interrogated after import"
+  },
+  "scope": {
+    "authorized": [
+      "HMT1_VALIDATION"
+    ],
+    "not_authorized": [
+      "sealed main",
+      "geometry mismatch",
+      "order leakage beyond the declared unresolved arm",
+      "VLBI",
+      "ML",
+      "polarization or multi-frequency channels"
+    ],
+    "stop_after": "HMT1_VALIDATION",
+    "next_stages_named_but_unauthorized": [
+      "Stage C order summation and leakage",
+      "Stage D geometry mismatch",
+      "Stage E Fourier/VLBI projection",
+      "Stage F learned priors with null-pair audits"
+    ]
+  },
+  "provenance": {
+    "r1_freeze_sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "r1l_stage2r_freeze_sha256": "1e1bd1c25f5abe18d0aaaa2624c640cd08a888ea3dab555d876a721d04e47c84",
+    "r1l_disposition_amendment_sha256": "15ed0e47713ed3d190d266ef0fcf86720a331f52b1233301fdba417c8bafc1be",
+    "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+  },
+  "attestation": {
+    "available": true,
+    "execution_commit": "910b515ad76f0b70df803beec63e652cdeee585b",
+    "head_tree_sha": "dcbc173fe740978575275805782e2f2219d5976d",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/register_hmt1_freeze.py\n",
+    "porcelain_registered_sha256": "35f32383ba2f7461acaa9b4c84e151543cb82cc8b7b7395340206b806f605756",
+    "porcelain_whole_tree_sha256": "35f32383ba2f7461acaa9b4c84e151543cb82cc8b7b7395340206b806f605756",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/R1L_STAGE2R_VALIDATION_FREEZE_012.json",
+        "sha256": "1e1bd1c25f5abe18d0aaaa2624c640cd08a888ea3dab555d876a721d04e47c84",
+        "working_blob_sha": "becc447a8a6e13b81eb667b12946807cfefbcfa7",
+        "committed_blob_sha": "becc447a8a6e13b81eb667b12946807cfefbcfa7",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/R1L_STAGE2R_SCIENTIFIC_DISPOSITION_AMENDMENT_014.json",
+        "sha256": "15ed0e47713ed3d190d266ef0fcf86720a331f52b1233301fdba417c8bafc1be",
+        "working_blob_sha": "6e666795eec76f6e0b7cea88c103c1c5f8573aa2",
+        "committed_blob_sha": "6e666795eec76f6e0b7cea88c103c1c5f8573aa2",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}
