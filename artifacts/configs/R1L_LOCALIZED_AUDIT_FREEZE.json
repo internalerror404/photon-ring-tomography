@@ -1,0 +1,485 @@
+{
+  "schema": "phrt-r1l-localized-audit-freeze/1",
+  "experiment_id": "R1L_LOCALIZED_STRUCTURAL_AUDIT",
+  "created_utc": "2026-08-27T04:37:52Z",
+  "ruling": "REVIEWER_RECOMMENDATION_R1L",
+  "status": "FROZEN_BEFORE_ANY_LOCALIZED_OPERATOR_IS_BUILT",
+  "purpose": {
+    "tests": [
+      "baseline domination",
+      "global temporal extrapolation"
+    ],
+    "precedes": [
+      "geometry mismatch",
+      "VLBI"
+    ],
+    "one_variable_at_a_time": "A changes the temporal basis and holds the metric; B changes the metric and holds the basis; the audit reports both separately before any combined claim is made"
+  },
+  "provenance": {
+    "r1_freeze_sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "r1_execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+    "r1_artifact_commit": "93e713c2639ffc2650b019003b58a4b893a53bf8",
+    "r1_record_amendment": "R1_RECORD_AMENDMENT_006",
+    "e3c_freeze_sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
+    "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+    "raymap_sha256": {
+      "a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+      "a050_i050_n1_core.h5": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+      "a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39"
+    },
+    "geometry": "a050_i050",
+    "inherits": "the ray maps, the observation model, the noise model and the four observation arms are taken from the R1 freeze unchanged, so a difference in the result is attributable to the basis and the metric rather than to the detector"
+  },
+  "A_localized_temporal_bases": {
+    "why": "a global DCT coefficient fitted where rays land also determines the field where none land, so measured depth and cosine extrapolation are not separable in C224. A compactly supported coefficient whose support holds no ray is an exact null direction instead, which is a fact about the operator rather than a confidence about the fit",
+    "classes": {
+      "L224": {
+        "n_radial": 4,
+        "n_azimuthal": 7,
+        "n_temporal": 8,
+        "dimension": 224,
+        "factorization": "4 cubic B-splines in log r x 7 real Fourier modes x 8 compact temporal hats",
+        "temporal_family": "degree-one B-spline (hat) on the dyadic node set",
+        "temporal_degree": 1,
+        "temporal_node_spacing_M": 19.72779331149532,
+        "temporal_support_width_M": {
+          "boundary_function_at_t_min": 19.72779331149532,
+          "all_other_functions": 39.45558662299064
+        },
+        "temporal_supports_M": [
+          [
+            -128.82234649196255,
+            -109.09455318046723
+          ],
+          [
+            -128.82234649196255,
+            -89.36675986897191
+          ],
+          [
+            -109.09455318046723,
+            -69.63896655747659
+          ],
+          [
+            -89.36675986897191,
+            -49.911173245981274
+          ],
+          [
+            -69.63896655747659,
+            -30.183379934485956
+          ],
+          [
+            -49.911173245981274,
+            -10.455586622990637
+          ],
+          [
+            -30.183379934485956,
+            9.272206688504681
+          ],
+          [
+            -10.455586622990623,
+            29.0
+          ]
+        ],
+        "fraction_of_history_each_temporal_function_occupies": 0.25,
+        "mirrors_e3d_class": "C224"
+      },
+      "L448": {
+        "n_radial": 4,
+        "n_azimuthal": 7,
+        "n_temporal": 16,
+        "dimension": 448,
+        "factorization": "4 cubic B-splines in log r x 7 real Fourier modes x 16 compact temporal hats",
+        "temporal_family": "degree-one B-spline (hat) on the dyadic node set",
+        "temporal_degree": 1,
+        "temporal_node_spacing_M": 9.86389665574766,
+        "temporal_support_width_M": {
+          "boundary_function_at_t_min": 9.86389665574766,
+          "all_other_functions": 19.72779331149532
+        },
+        "temporal_supports_M": [
+          [
+            -128.82234649196255,
+            -118.9584498362149
+          ],
+          [
+            -128.82234649196255,
+            -109.09455318046724
+          ],
+          [
+            -118.9584498362149,
+            -99.23065652471956
+          ],
+          [
+            -109.09455318046722,
+            -89.36675986897191
+          ],
+          [
+            -99.23065652471956,
+            -79.50286321322426
+          ],
+          [
+            -89.36675986897191,
+            -69.6389665574766
+          ],
+          [
+            -79.50286321322426,
+            -59.77506990172893
+          ],
+          [
+            -69.63896655747658,
+            -49.91117324598127
+          ],
+          [
+            -59.77506990172893,
+            -40.047276590233615
+          ],
+          [
+            -49.91117324598128,
+            -30.183379934485963
+          ],
+          [
+            -40.047276590233615,
+            -20.319483278738296
+          ],
+          [
+            -30.18337993448595,
+            -10.45558662299063
+          ],
+          [
+            -20.319483278738296,
+            -0.5916899672429778
+          ],
+          [
+            -10.455586622990644,
+            9.272206688504674
+          ],
+          [
+            -0.5916899672429636,
+            19.136103344252355
+          ],
+          [
+            9.272206688504689,
+            29.0
+          ]
+        ],
+        "fraction_of_history_each_temporal_function_occupies": 0.125,
+        "mirrors_e3d_class": "C448_T"
+      },
+      "L1056": {
+        "n_radial": 6,
+        "n_azimuthal": 11,
+        "n_temporal": 16,
+        "dimension": 1056,
+        "factorization": "6 cubic B-splines in log r x 11 real Fourier modes x 16 compact temporal hats",
+        "temporal_family": "degree-one B-spline (hat) on the dyadic node set",
+        "temporal_degree": 1,
+        "temporal_node_spacing_M": 9.86389665574766,
+        "temporal_support_width_M": {
+          "boundary_function_at_t_min": 9.86389665574766,
+          "all_other_functions": 19.72779331149532
+        },
+        "temporal_supports_M": [
+          [
+            -128.82234649196255,
+            -118.9584498362149
+          ],
+          [
+            -128.82234649196255,
+            -109.09455318046724
+          ],
+          [
+            -118.9584498362149,
+            -99.23065652471956
+          ],
+          [
+            -109.09455318046722,
+            -89.36675986897191
+          ],
+          [
+            -99.23065652471956,
+            -79.50286321322426
+          ],
+          [
+            -89.36675986897191,
+            -69.6389665574766
+          ],
+          [
+            -79.50286321322426,
+            -59.77506990172893
+          ],
+          [
+            -69.63896655747658,
+            -49.91117324598127
+          ],
+          [
+            -59.77506990172893,
+            -40.047276590233615
+          ],
+          [
+            -49.91117324598128,
+            -30.183379934485963
+          ],
+          [
+            -40.047276590233615,
+            -20.319483278738296
+          ],
+          [
+            -30.18337993448595,
+            -10.45558662299063
+          ],
+          [
+            -20.319483278738296,
+            -0.5916899672429778
+          ],
+          [
+            -10.455586622990644,
+            9.272206688504674
+          ],
+          [
+            -0.5916899672429636,
+            19.136103344252355
+          ],
+          [
+            9.272206688504689,
+            29.0
+          ]
+        ],
+        "fraction_of_history_each_temporal_function_occupies": 0.125,
+        "mirrors_e3d_class": "C1056_ST"
+      }
+    },
+    "nesting_chain": [
+      "L224",
+      "L448",
+      "L1056"
+    ],
+    "parent_of": {
+      "L448": "L224",
+      "L1056": "L448"
+    },
+    "nesting_is_exact_by_construction": "the coarse dyadic node set is the even half of the fine one, so a function piecewise linear on the coarse nodes is piecewise linear on the fine nodes. Gate R1L_G2 requires literal zero to 1e-12, not a small residual",
+    "degree_choice": "degree one is the highest polynomial degree whose dyadic B-spline family on a bounded interval has dimension exactly 2^j and nests exactly. Degree two and above need 2^j + p functions to cover the boundary, which would break the dimension mirror against E3D. The mirror is what makes the localized result comparable to the global one",
+    "boundary_condition": "the space vanishes at t_max, which lies in the unreachable pad above max(t_obs) - min(delay); no ray samples the field there",
+    "declared_before_evaluation": true,
+    "questions": [
+      "does the direct image have exact old-epoch null directions",
+      "do orders 1 and 2 genuinely remove some of them",
+      "does the resolved advantage survive without global-cosine extrapolation",
+      "how does local support change historical rank, conditioning and stable reconstruction"
+    ]
+  },
+  "B_structure_first_source_banks": {
+    "why": "the R1 primary was baseline-inclusive and the level component carried 98.4% of the truth norm, so a structure fraction of 0.126 was doing all the morphological work. Recovering a scalar per age slice is a weaker claim than recovering a history and must not be reported as the same thing",
+    "primary_banks": {
+      "constant_flux_structural": {
+        "construction": "every age slice is renormalized so its spatial mean is a fixed constant, removing total-level variation while retaining moving morphology",
+        "level_component": "constant in time by construction, so the level channel carries no information and cannot inflate the endpoint",
+        "role": "primary"
+      },
+      "structure_balanced_positive": {
+        "construction": "j(r, phi, t) = b(t) + s(r, phi, t) with the structure fraction fixed before sampling",
+        "structure_fraction_definition": "||P_structure j|| / ||j||, with P_structure the complement of the level projector of REVIEWER_RULING_R0C_005",
+        "structure_fraction_grid": [
+          0.5,
+          0.8
+        ],
+        "baseline_rule": "b(t) is the minimum baseline that keeps the rendered movie non-negative at the target structure fraction; it is not free to grow to dominate the metric",
+        "role": "primary"
+      }
+    },
+    "secondary_bank": {
+      "baseline_one_positive": {
+        "construction": "the R1 families unchanged",
+        "measured_structure_fraction_in_r1": 0.126,
+        "role": "secondary replication only. It may not carry the primary endpoint"
+      }
+    },
+    "declared_before_sampling": true
+  },
+  "C_physically_consistent_source_motion": {
+    "defect_being_corrected": {
+      "orbit_law": "the R0/R1 families advected features at the Newtonian rate Omega = r^{-3/2}, while the ray maps compute g from the Kerr fluid",
+      "isco_violation": "circular hotspot centres were drawn from r = 3.0 M, inside the prograde ISCO at 4.233003 M, so circular features were placed where no circular orbit exists",
+      "why_it_survived": "the operator is linear in j and does not care whether j is physical, so no linear-algebra gate could catch it",
+      "affects_r1_result": "not retroactively. The R1 banks are sealed and reported under the old law; R1L supersedes the family definition going forward rather than editing the record"
+    },
+    "circular_family": {
+      "orbit_law": "Kerr prograde circular geodesic, Omega = 1 / (r^{3/2} + a)",
+      "r_centre_M": [
+        4.233002529530826,
+        29.989231533549642
+      ],
+      "restriction": "centres strictly outside the ISCO",
+      "isco_radius_M": 4.233002529530826
+    },
+    "plunging_family": {
+      "role": "separate family, not mixed into the circular one",
+      "orbit_law": "radial plunge on the ISCO's conserved E and L, Omega = u^phi / u^t",
+      "r_centre_M": [
+        1.8660254037844386,
+        4.233002529530826
+      ],
+      "why_separate": "the plunge is not a faster circular orbit: frame dragging locks Omega to a / (2 r_+) at the horizon, so the rate turns over rather than diverging. Averaging it with circular material would describe motion that does not occur"
+    },
+    "velocity_field_for_g3": {
+      "metric": "Kerr, Boyer-Lindquist, equatorial, M = 1",
+      "spin": 0.5,
+      "sense": "prograde",
+      "outside_isco": "circular geodesic, Omega = 1 / (r^{3/2} + a)",
+      "inside_isco": "radial plunge on the ISCO's conserved E and L, Omega = u^phi / u^t",
+      "isco_radius_M": 4.233002529530826,
+      "horizon_radius_M": 1.8660254037844386,
+      "omega_isco": 0.10858835898027676,
+      "matches_raymap_fluid": true,
+      "raymap_fluid_note": "AART gfactorf called with betaphi = betar = sub_kep = 1, i.e. fully Keplerian outside the ISCO and plunging inside it, which is the same field",
+      "superseded_law": "Omega = r^{-3/2}, Newtonian, used by the R0/R1 families; retained there because those banks are sealed and reported"
+    }
+  },
+  "D_primary_endpoint": {
+    "statistic": "delta_E_old_structure = E_old_structure(direct) - E_old_structure(resolved)",
+    "not": "baseline-inclusive stable span, which was the R1 primary and is retired as a primary here",
+    "bank": "sealed held-out structural bank",
+    "reference_snr": 100.0,
+    "old_band": "the old third of the reachable age range, as already defined by the R1 band split",
+    "success_requires": [
+      "a paired truth-cluster bootstrap interval excluding zero",
+      "lower old-band structure error in at least three of the four fitting families",
+      "confirmation by both TSVD and ridge",
+      "null-pair behaviour remaining likelihood-consistent"
+    ],
+    "coprimary_or_secondary": {
+      "statistic": "delta_L_stable_structure",
+      "paper_grade_positive": "delta_L_stable_structure >= 8 M at a prespecified moderate SNR_0, preferably 100 and no higher than 1000",
+      "prespecified_snr0": 100.0,
+      "permitted_snr0_ceiling": 1000.0,
+      "if_only_at_30000": "retained and reported as a negative practicality result, not as a positive structural result"
+    },
+    "estimators": {
+      "primary": "TSVD",
+      "confirmatory": "RIDGE_IDENTITY",
+      "ML": "NOT_AUTHORIZED"
+    },
+    "declared_before_scoring": true
+  },
+  "E_observation_arms": {
+    "arms": [
+      "DIRECT_PHYSICAL",
+      "RESOLVED_PHYSICAL",
+      "UNRESOLVED_IMAGE",
+      "TOTAL_FLUX"
+    ],
+    "why_all_four": "a resolved-only success is an ideal channel-separation result and nothing more. A structural gain that survives UNRESOLVED_IMAGE is the one that bears on observation, so the unresolved arm is reported at the same standing as the resolved one rather than as a diagnostic",
+    "diagnostic_arms": [
+      "DELAY_ONLY",
+      "SPATIAL_ONLY",
+      "EQUALIZED_ORDER_SENSITIVITY",
+      "PAIRING_DESTROYED"
+    ],
+    "noise_coupling": "unchanged from R1: one resolved draw per (truth, SNR, draw), the other arms are declared linear readouts of it"
+  },
+  "F_age_resolution": {
+    "age_grid_step_M": 2.0,
+    "previous_step_M": 4.0,
+    "probe_half_width_M": 3.0,
+    "half_width_unchanged": true,
+    "why": "a 4 M gain measured on a 4 M grid is one bin, and one bin is indistinguishable from threshold behaviour. On a 2 M grid a real 4 M gain must occupy two bins and the 8 M paper-grade threshold occupies four",
+    "quantization_of_delta_L_M": 2.0,
+    "declared_before_evaluation": true
+  },
+  "G_sequential_stop_rule": {
+    "order": [
+      "operator_rank_audit",
+      "validation_pilot",
+      "sealed_main"
+    ],
+    "current_stage": "operator_rank_audit",
+    "stop_conditions": {
+      "R1L_STOP_1_indistinguishable_old_support": "the localized direct and resolved operators have indistinguishable old structural support",
+      "R1L_STOP_2_no_old_band_improvement": "resolved old-band structure error does not improve",
+      "R1L_STOP_3_improvement_vanishes_after_order_summation": "all improvement vanishes once orders are summed, i.e. it does not survive UNRESOLVED_IMAGE",
+      "R1L_STOP_4_positivity_baseline_dominates": "the source bank cannot be represented without a dominant positivity baseline"
+    },
+    "evaluable_at_stage_1": [
+      "R1L_STOP_1",
+      "R1L_STOP_3"
+    ],
+    "evaluable_at_stage_2": [
+      "R1L_STOP_2",
+      "R1L_STOP_4"
+    ],
+    "rule": "the stop conditions are evaluated in the report of the stage that can see them, and a tripped condition ends the sequence there. No later stage may be entered on the strength of a condition that was not evaluated",
+    "valid_negative_result": "higher-order channels improve global-DCT conditioning and spatially averaged emissivity history, but do not enable stable recovery of localized old morphology under the tested physically constrained source families",
+    "a_negative_result_is_a_result": "the negative outcome above is reportable as stated and is not a reason to widen the design after seeing it"
+  },
+  "gates": {
+    "R1L_G1_dyadic_dimension_mirror": "structural",
+    "R1L_G2_exact_class_nesting": 1e-12,
+    "R1L_G3_temporal_support_compactness": 0.3,
+    "R1L_G4_adjoint": 1e-08,
+    "R1L_G5_dense_matrix_free_parity": 1e-10,
+    "R1L_G6_gram_monotonicity": 1e-10,
+    "R1L_G7_enrichment_does_not_lose_rank": 0,
+    "R1L_G8_unreached_columns_are_exactly_zero": 0.0,
+    "R1L_G9_orbit_law_matches_raymap_fluid": 1e-12,
+    "R1L_G10_circular_centres_outside_isco": "structural"
+  },
+  "scope": {
+    "authorized": [
+      "R1L_STAGE_1_OPERATOR_RANK_AUDIT"
+    ],
+    "not_authorized": [
+      "R1L validation pilot before stage 1 is reported",
+      "R1L sealed main before the pilot is reported",
+      "geometry mismatch",
+      "VLBI",
+      "order leakage",
+      "ML",
+      "any rescoring of the sealed R1 bank"
+    ],
+    "geometry": "a050_i050",
+    "forbidden_language": "no localized result may be described as morphology recovery until the structural endpoint of D has been scored on a sealed bank"
+  },
+  "stop_after": "R1L_STAGE_1_OPERATOR_RANK_AUDIT",
+  "attestation": {
+    "available": true,
+    "execution_commit": "83dadba0add3aca722483dc50aa1d197f1577556",
+    "head_tree_sha": "c6a4b1eccbf3f667fb3f52bc5a45194ce0d984e3",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/register_r1l_localized_audit.py\n?? src/phrt/sources/localized_basis.py\n?? src/phrt/sources/orbits.py\n?? tests/test_localized_basis.py\n?? tests/test_orbits.py\n",
+    "porcelain_registered_sha256": "2dcc8917802d3e0ab178a23f26cbbbb4b0e711a8516fb55f7c592c17e4ec1adb",
+    "porcelain_whole_tree_sha256": "2dcc8917802d3e0ab178a23f26cbbbb4b0e711a8516fb55f7c592c17e4ec1adb",
+    "n_tracked_changes": 0,
+    "n_untracked": 5,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+        "sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
+        "working_blob_sha": "529caca06502c38bf089409a3e9caaf2d0d20375",
+        "committed_blob_sha": "529caca06502c38bf089409a3e9caaf2d0d20375",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}
