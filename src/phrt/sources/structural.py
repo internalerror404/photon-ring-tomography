@@ -347,3 +347,52 @@ def shaped_renderer(bank: str, movie, level_values: np.ndarray,
         return movie(r, phi, t) - ell(t).ravel() + offset
 
     return render, {"kind": "structure_balanced", "level_fit_residual": resid}
+
+
+# --------------------------------------------------------------------------
+# exact-in-class construction
+
+
+def project_to_class(values: np.ndarray, design: np.ndarray) -> tuple:
+    """Least-squares coefficients and the synthesised in-class field.
+
+    The synthesis is the truth. Returning the coefficients as well matters
+    because the operator must be given *the same object* the scorer holds, and
+    with the coefficients in hand the data can be formed by the class-restricted
+    matvec rather than by sampling an analytic function -- which is what makes
+    the representation floor exactly zero instead of merely small.
+    """
+    D = np.asarray(design, float)
+    v = np.asarray(values, float).ravel()
+    coef, *_ = np.linalg.lstsq(D, v, rcond=None)
+    return coef, D @ coef
+
+
+def in_class_bank(bank: str, raw: np.ndarray, design: np.ndarray,
+                  level: np.ndarray, t_index: np.ndarray, n_t: int,
+                  target: float | None) -> tuple[np.ndarray, np.ndarray, dict]:
+    """Build one exact-in-class truth: project, shape, re-project.
+
+    Shaping a projected field can push it back out of the class -- dividing by a
+    per-slice mean is not a linear operation on the coefficients -- so the
+    result is projected once more and the residual of that second projection is
+    reported. If it is not at machine precision the truth is not in class and
+    the gate says so rather than the report claiming a floor of zero.
+    """
+    _, v0 = project_to_class(raw, design)
+    if bank == "constant_flux_structural":
+        shaped, diag = constant_flux(v0, t_index, n_t, target_mean=1.0)
+        diag["bank_kind"] = "constant_flux"
+    else:
+        shaped, diag = structure_balanced(v0, level, float(target))
+        diag["bank_kind"] = "structure_balanced"
+        diag["target"] = float(target)
+    coef, v = project_to_class(shaped, design)
+    resid = float(np.linalg.norm(v - shaped)
+                  / max(np.linalg.norm(shaped), 1e-300))
+    diag["reprojection_residual_relative"] = resid
+    diag["achieved_structure_fraction"] = structure_fraction(v, level)
+    diag["min_value"] = float(v.min())
+    diag["negative_mass_relative"] = float(
+        np.linalg.norm(np.minimum(v, 0.0)) / max(np.linalg.norm(v), 1e-300))
+    return coef, v, diag

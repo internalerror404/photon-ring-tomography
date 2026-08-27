@@ -1,0 +1,322 @@
+{
+  "schema": "phrt-r1l-stage2r-freeze/1",
+  "id": "R1L_STAGE2R_VALIDATION_FREEZE_012",
+  "created_utc": "2026-08-27T16:14:08Z",
+  "ruling": "REVIEWER_RULING_R1L_STAGE2_011 items 8 to 11",
+  "status": "FROZEN_BEFORE_ANY_NEW_TRUTH_IS_GENERATED",
+  "supersedes_for_the_endpoint": "R1L_STAGE2_VALIDATION_ACTIVATION_010",
+  "authorizing_evidence": {
+    "stage2r_a_disposition": "R1L_STAGE2R_A_NO_MATERIAL_EFFECT",
+    "why_exact_in_class": "stage 2R-A measured the structural representation floor age by age and found the epsilon = 0.25 criterion unreachable in more than 90 percent of age cells at L224 and more than 40 percent at L1056. It also showed the floor makes the null estimator score best, so the selection collapsed the direct arm at every class and every arm at L448. Both effects are properties of the floor, and an exact-in-class bank has none"
+  },
+  "source_banks": {
+    "construction": "exact-in-class. Each family render is projected onto the class by least squares on the evaluation grid, the coefficients are kept, and the truth is the synthesis of those coefficients. The truth is then in the span of the class to machine precision and the representation floor is zero by construction",
+    "shaping_applies_after_projection": "the bank shaping -- constant flux, or the structure-balanced offset -- is applied to the projected field, and the result is re-projected, so the shaped truth is in class as well. Both operations are checked, not assumed",
+    "banks": [
+      "constant_flux_structural",
+      "structure_balanced_050",
+      "structure_balanced_080"
+    ],
+    "excluded": "baseline_one_positive. It is a secondary control and may not carry the primary endpoint; stage 2 pooled it in and that is recorded as R1L_S2_PRIMARY_INCLUDED_SECONDARY_BANK",
+    "target_structure_fraction": {
+      "constant_flux_structural": null,
+      "structure_balanced_050": 0.5,
+      "structure_balanced_080": 0.8
+    },
+    "positivity_ceiling_rule": "unchanged from stage 2: a target above what a non-negative field of that shape allows is kept at the ceiling and flagged. Projection onto the class can also break strict positivity; the residual negativity is measured and reported rather than clipped away"
+  },
+  "classes": {
+    "primary": "L1056",
+    "controls": [
+      "L448",
+      "L224"
+    ],
+    "rule": "L1056 carries the endpoint. L448 and L224 are reported as controls and cannot supply a pass"
+  },
+  "families": [
+    "circular_single_hotspot",
+    "circular_two_hotspots",
+    "circular_crescent",
+    "plunging_hotspot"
+  ],
+  "source_motion": {
+    "circular": {
+      "orbit_law": "Kerr prograde circular geodesic, 1/(r^{3/2} + a)",
+      "r_centre_M": [
+        4.233002529530826,
+        29.989231533549642
+      ]
+    },
+    "plunging": {
+      "orbit_law": "radial plunge on the ISCO's conserved E and L",
+      "r_centre_M": [
+        1.8660254037844386,
+        4.233002529530826
+      ]
+    },
+    "velocity_field_for_g3": {
+      "metric": "Kerr, Boyer-Lindquist, equatorial, M = 1",
+      "spin": 0.5,
+      "sense": "prograde",
+      "outside_isco": "circular geodesic, Omega = 1 / (r^{3/2} + a)",
+      "inside_isco": "radial plunge on the ISCO's conserved E and L, Omega = u^phi / u^t",
+      "isco_radius_M": 4.233002529530826,
+      "horizon_radius_M": 1.8660254037844386,
+      "omega_isco": 0.10858835898027676,
+      "matches_raymap_fluid": true,
+      "raymap_fluid_note": "AART gfactorf called with betaphi = betar = sub_kep = 1, i.e. fully Keplerian outside the ISCO and plunging inside it, which is the same field",
+      "superseded_law": "Omega = r^{-3/2}, Newtonian, used by the R0/R1 families; retained there because those banks are sealed and reported"
+    }
+  },
+  "arms": [
+    "DIRECT_PHYSICAL",
+    "RESOLVED_PHYSICAL",
+    "UNRESOLVED_IMAGE",
+    "TOTAL_FLUX"
+  ],
+  "estimators": {
+    "TSVD": "primary",
+    "RIDGE_IDENTITY": "confirmatory",
+    "ML": "NOT_AUTHORIZED",
+    "grids": {
+      "TSVD": [
+        1.0,
+        0.31622776601683794,
+        0.1,
+        0.03162277660168379,
+        0.01,
+        0.0031622776601683794,
+        0.001,
+        0.00031622776601683794,
+        0.0001,
+        3.1622776601683795e-05,
+        1e-05,
+        3.162277660168379e-06,
+        1e-06,
+        3.162277660168379e-07,
+        1e-07
+      ],
+      "RIDGE_IDENTITY": [
+        1.0,
+        0.31622776601683794,
+        0.1,
+        0.03162277660168379,
+        0.01,
+        0.0031622776601683794,
+        0.001,
+        0.00031622776601683794,
+        0.0001,
+        3.1622776601683795e-05,
+        1e-05,
+        3.162277660168379e-06,
+        1e-06,
+        3.162277660168379e-07,
+        1e-07,
+        3.162277660168379e-08,
+        1e-08,
+        3.1622776601683795e-09,
+        1e-09,
+        3.1622776601683795e-10,
+        1e-10
+      ]
+    }
+  },
+  "snr": {
+    "primary": 100.0,
+    "secondary": 1000.0,
+    "rule": "no other SNR may carry a claim"
+  },
+  "counts": {
+    "banks": [
+      "constant_flux_structural",
+      "structure_balanced_050",
+      "structure_balanced_080"
+    ],
+    "families": [
+      "circular_single_hotspot",
+      "circular_two_hotspots",
+      "circular_crescent",
+      "plunging_hotspot"
+    ],
+    "splits": [
+      "selection",
+      "pilot"
+    ],
+    "truths_per_bank_family_split": 8,
+    "n_cells": 24,
+    "n_truths": 192,
+    "noise_draws_per_truth": 4
+  },
+  "seeds": {
+    "bank_seed": 20260906,
+    "noise_seed": 20260907,
+    "bootstrap_seed": 20260908,
+    "null_pair_seed": 20260909,
+    "subsample_seed": 20260825
+  },
+  "split_commitments": {
+    "constant_flux_structural|circular_single_hotspot|selection": "c5452dbdacf6166f4693150ffd723bdb985679e85999339fcd4c0298469bacdb",
+    "constant_flux_structural|circular_single_hotspot|pilot": "89cdac311fc8d87dcac4f7754841a7d1957d8e8c7fc6d865cc7c8ef4ebf31ab1",
+    "constant_flux_structural|circular_two_hotspots|selection": "fe733c52fea1cb1c52de4d2e8355397b984992b02f605fc73a8dc1da4540d10e",
+    "constant_flux_structural|circular_two_hotspots|pilot": "0f559daaf56eecb8396081758a733cd1c1a5c694fc1d5ef0a04a6c52168932ff",
+    "constant_flux_structural|circular_crescent|selection": "0006ed87f262c44a19ca3939cda9a742805165f94b4af1567c2d45e5e15d40b1",
+    "constant_flux_structural|circular_crescent|pilot": "fb8c1b02ae22e68102484826f9da2f741ff78d407904f337eee0bca08e9e0495",
+    "constant_flux_structural|plunging_hotspot|selection": "78ecb35896430aa19d90b1d0757598fcc8db0b82a42b91db4498ce26c4da2909",
+    "constant_flux_structural|plunging_hotspot|pilot": "b5fb1d006b195f2bef7749d4eff0ec808a65c8b5d3f93795423b81c872b3af99",
+    "structure_balanced_050|circular_single_hotspot|selection": "35f48745e38974243a912a4f8b3376b5ea70b92a5bf4da09471d792be3d1ccd8",
+    "structure_balanced_050|circular_single_hotspot|pilot": "0993894ec77d154b67649555dbce78a473ade6e94198c1929e161831ebc53cc2",
+    "structure_balanced_050|circular_two_hotspots|selection": "3bb08ee33db2332270f864a99773b7296f9436562d0b56ecaad76f3aafbfcecc",
+    "structure_balanced_050|circular_two_hotspots|pilot": "508fb483b32d39d852a8cb4e63e7c347f62f4cdec6d2b7ab4e59424c48eba090",
+    "structure_balanced_050|circular_crescent|selection": "27d1947c614a2e7489c650fe62ccd29e1a90b84d037d247ce53799a155afa84a",
+    "structure_balanced_050|circular_crescent|pilot": "5c61964ba846db115a82b2eacb36bb4cc8e0b0450857f2c4fa51c27160269d87",
+    "structure_balanced_050|plunging_hotspot|selection": "2aa80978b20cba84702f03b34232d994b8696fc4782a2cc6ddac27d0f6f50679",
+    "structure_balanced_050|plunging_hotspot|pilot": "97fd3b8bd0a8dadab33e15fd981e0556a8bc2ca2b64bd641ac74eb73c2243bb9",
+    "structure_balanced_080|circular_single_hotspot|selection": "2658c2ed7218c8ca4ed4a1e526928b63e7f9112bfb6575c2900ad83caf57dd4c",
+    "structure_balanced_080|circular_single_hotspot|pilot": "273f5440828be5b251f36b34033241bdf54f6c7726e85623268542f4eb68531c",
+    "structure_balanced_080|circular_two_hotspots|selection": "78d7fc52d29eb61bc6b40ffd5f28b6b86ac9a25c8855eedebc140e52955d5883",
+    "structure_balanced_080|circular_two_hotspots|pilot": "5ebe37d4720c006611ffa406b87774142872b49c2779730a31919ee39ab48ec5",
+    "structure_balanced_080|circular_crescent|selection": "11e889b7bb5caa78dddc94116fad534b0007d87d879d91b50a86d91d12e7e05c",
+    "structure_balanced_080|circular_crescent|pilot": "a1858ca55d1119d430455a40a6c48878b8ed691347057dc688e43b67c8934e20",
+    "structure_balanced_080|plunging_hotspot|selection": "58034b4e01e89d7b902e77a3cbd7a32169fa7816def231174f6dcb834abda4b6",
+    "structure_balanced_080|plunging_hotspot|pilot": "d686130987d17b48c5ab5c4585f9289addf7356371255cde4fdddc2c6a29c818"
+  },
+  "materiality": {
+    "median_paired_relative_reduction": 0.1,
+    "bootstrap_lower_bound": 0.05,
+    "min_families_improved": 3,
+    "positive_in_every_primary_bank": true,
+    "null_controls_pass": true,
+    "estimator_confirmation": "TSVD and ridge must both meet the standard on the same class",
+    "statistic": "(E_old_structure(direct) - E_old_structure(arm)) / E_old_structure(direct), per truth, aggregated with equal weight over bank-family cells",
+    "bootstrap": {
+      "kind": "paired truth-cluster",
+      "unit": "truth",
+      "n_resamples": 10000,
+      "level": 0.95,
+      "seed": 20260908
+    }
+  },
+  "stable_structure_span": {
+    "exact_in_class_only": true,
+    "epsilon": 0.25,
+    "quantile": 0.95,
+    "definition": "T_stable_anchor = sup{T >= a_anchor : Pr[sup_{a_anchor <= a <= T} E_structure(a) <= epsilon] >= q}, supremum inside the probability, per truth",
+    "a_anchor_M": 0.0,
+    "age_grid_step_M": 2.0,
+    "probe_half_width_M": 3.0,
+    "threshold_M": 8.0,
+    "statistic": "L_stable_structure(resolved) - L_stable_structure(direct) >= 8 M at the registered SNR",
+    "registered_snr": 100.0
+  },
+  "selection": {
+    "rule": "lexicographic on the selection split, minimizing old-band structure error at SNR0 = 100",
+    "degenerate_selection_diagnostic": "the selected hyperparameter is reported for every (class, arm, estimator) and a selection at the maximal-regularization end of its grid is flagged. Stage 2 collapsed to that end without anyone noticing, and a flag is cheaper than rediscovering it",
+    "no_retuning": "no hyperparameter may be revisited after any pilot truth is scored"
+  },
+  "gates": {
+    "R1L_2RB_G1_pinned_numerical_environment": "structural",
+    "R1L_2RB_G2_split_commitments_reproduce": "structural",
+    "R1L_2RB_G3_split_disjointness": "structural",
+    "R1L_2RB_G4_truths_are_exactly_in_class": 1e-10,
+    "R1L_2RB_G5_representation_floor_is_zero": 1e-10,
+    "R1L_2RB_G6_secondary_bank_absent": "structural",
+    "R1L_2RB_G7_adjoint": 1e-08,
+    "R1L_2RB_G8_analytic_shaping_matches_grid_truth": 1e-09,
+    "R1L_2RB_G9_null_controls": 0.05,
+    "R1L_2RB_G10_source_balance_within_tolerance": "structural",
+    "R1L_2RB_G11_resource_limits": "structural"
+  },
+  "resource_limits": {
+    "wall_clock_seconds": 7200,
+    "peak_rss_mb": 12000,
+    "on_exceeded": "R1L_STAGE2R_B_IMPLEMENTATION_DEFECT",
+    "no_silent_reduction": true
+  },
+  "numerical_environment": {
+    "pinned": true,
+    "variables": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    }
+  },
+  "dispositions": {
+    "R1L_STAGE2R_B_MATERIAL_RESOLVED_AND_UNRESOLVED": "materiality met for resolved and unresolved at L1056",
+    "R1L_STAGE2R_B_MATERIAL_RESOLVED_ONLY": "materiality met for resolved at L1056, not unresolved",
+    "R1L_STAGE2R_B_NO_MATERIAL_EFFECT": "banks sound, materiality not met. A reportable result",
+    "R1L_STAGE2R_B_SOURCE_BANK_FAILURE": "an exact-in-class bank could not be built within tolerance",
+    "R1L_STAGE2R_B_IMPLEMENTATION_DEFECT": "a gate failed, a limit was exceeded, or a commitment did not reproduce",
+    "exactly_one": true
+  },
+  "scope": {
+    "authorized": [
+      "R1L_STAGE_2R_B"
+    ],
+    "not_authorized": [
+      "sealed main",
+      "geometry mismatch",
+      "order leakage",
+      "VLBI",
+      "ML"
+    ],
+    "stop_after": "R1L_STAGE_2R_B",
+    "forbidden_language": "an exact-in-class result is an upper bound on what the operator can do for this class. It is not a claim about real source histories, which are not in anyone's basis"
+  },
+  "provenance": {
+    "stage2_freeze_sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e",
+    "r1_freeze_sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+    "raymap_sha256": {
+      "a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+      "a050_i050_n1_core.h5": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+      "a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39"
+    }
+  },
+  "attestation": {
+    "available": true,
+    "execution_commit": "2f7af9a6019cfb75b3642cac1cf87b3e58bd5081",
+    "head_tree_sha": "63ab02687c948a9f09f38795f57dc87dac006139",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/register_r1l_stage2r_freeze.py\n",
+    "porcelain_registered_sha256": "59108b79be61a8425507257053ed4b731fadd3fac0c915fd6bbc62a47225962d",
+    "porcelain_whole_tree_sha256": "59108b79be61a8425507257053ed4b731fadd3fac0c915fd6bbc62a47225962d",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_STAGE2_VALIDATION_ACTIVATION_010.json",
+        "sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e",
+        "working_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}
