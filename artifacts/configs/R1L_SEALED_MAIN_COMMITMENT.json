@@ -1,0 +1,89 @@
+{
+  "schema": "phrt-sealed-commitment/1",
+  "id": "R1L_SEALED_MAIN_COMMITMENT",
+  "created_utc": "2026-08-27T07:27:00Z",
+  "ruling": "REVIEWER_RULING_R1L_REPRODUCIBILITY_009 item 10",
+  "status": "COMMITTED_NOT_GENERATED_NOT_SCORED",
+  "scored": false,
+  "generated_through_an_operator": false,
+  "inspected": false,
+  "rule": "the commitment fixes which truths the sealed main will contain. No movie is rendered through an operator, no datum is formed and no error is computed here. Committing before the pilot is reported is what stops the sealed set from being chosen to flatter the pilot",
+  "seed": 20260905,
+  "truths_per_bank_family": 24,
+  "banks": [
+    "constant_flux_structural",
+    "structure_balanced_050",
+    "structure_balanced_080",
+    "baseline_one_positive"
+  ],
+  "families": [
+    "circular_single_hotspot",
+    "circular_two_hotspots",
+    "circular_crescent",
+    "plunging_hotspot"
+  ],
+  "n_cells": 16,
+  "n_truths": 384,
+  "cell_commitments": {
+    "constant_flux_structural|circular_single_hotspot": "9940c01584d86be40df1dc08cbe014b8d044c47775e9efc945587a9d86f1308c",
+    "constant_flux_structural|circular_two_hotspots": "45a33f927c1ab21793ee19929c7db9e4daa99d055d552a7408cbfbc85b53ff8a",
+    "constant_flux_structural|circular_crescent": "fd000e2582f1a7d159f60bcf92746afdac2b5781d540a751e06bb570ec241a7b",
+    "constant_flux_structural|plunging_hotspot": "d4be6179989324cb3be5eb914f8685098c0c5b57397468cdc0b3e51de51dd400",
+    "structure_balanced_050|circular_single_hotspot": "bbff6e3f89dc4207082aa2aaab50bd463ec8a90fb4aefa6285362a9e5f83d112",
+    "structure_balanced_050|circular_two_hotspots": "9072002231d99bd26fbe9a405d8db0bc6c82d2e62543d14a8124280812c4eabf",
+    "structure_balanced_050|circular_crescent": "d6c2d05dc895dcbd56ba1aa3305af46e07184a1020a1657c8b5ba992d776c692",
+    "structure_balanced_050|plunging_hotspot": "3d0777e9f79aadbade38e0cd82f91f78655afe708a71739aa62c8b9d632fdd46",
+    "structure_balanced_080|circular_single_hotspot": "9d8cdf2dc1adf0cdfb25fe8f965e204fd7f27216b0adf861c3acddae7b4b38ee",
+    "structure_balanced_080|circular_two_hotspots": "28d70a7e9b26aaeb982ffc7998f95571d47ea1d47ed851aa01a9995146abc4dc",
+    "structure_balanced_080|circular_crescent": "a8f5c3b73c167b67bcffb9fe8c83dc8cfef78dff7c0e1391c5e4f7de357b602b",
+    "structure_balanced_080|plunging_hotspot": "7e340b9e89aa882fd453e52c6ad9d71e201521c1b8edb5e2936e3f00fea97d55",
+    "baseline_one_positive|circular_single_hotspot": "7e9c6be52b88c3890be11f2ba24ab2794b6a969425e42b8d89bde5152dc3efe8",
+    "baseline_one_positive|circular_two_hotspots": "abd1a9c17714e9d0b7bfaa4b6f309101307b72e445645ee65a640bf74c22fc80",
+    "baseline_one_positive|circular_crescent": "4fca6a00abfc09ba72fec9eea7acf317076240f19822fd8ebb89531f0d00d29a",
+    "baseline_one_positive|plunging_hotspot": "8e5ce39ea99817cab4718733a5fd877a1aa974a0e68e2b72b314f8c61742f9ed"
+  },
+  "truth_seeds_sha256": "45bd9c89f2b215fa6e472284aa8cf2f3041f947a963f89992f3a71b4748fe36c",
+  "disjoint_from_validation": {
+    "checked": true,
+    "n_overlapping_cell_commitments": 0,
+    "why_disjoint": "the sealed cells use split 'sealed_main' and seed 20260905, both different from the validation commitments, so no truth seed can coincide"
+  },
+  "authorization": "the sealed main may not be executed under the present ruling. This document exists so that when it is authorized, the bank is already fixed",
+  "provenance": {
+    "stage2_freeze_sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e"
+  },
+  "attestation": {
+    "available": true,
+    "execution_commit": "e7f55bf388058986e5cea463b148c35734559d59",
+    "head_tree_sha": "86e9edc610ff7698982dfe7343765d12a6199d9b",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/propose_r1l_sealed_main.py\n",
+    "porcelain_registered_sha256": "61f6a4a743995a04b0c2258b530f3740c31fd5d921f44c38e4849a45912a3579",
+    "porcelain_whole_tree_sha256": "61f6a4a743995a04b0c2258b530f3740c31fd5d921f44c38e4849a45912a3579",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_STAGE2_VALIDATION_ACTIVATION_010.json",
+        "sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e",
+        "working_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}
