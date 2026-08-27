@@ -30,6 +30,9 @@ FAMILIES = ("circular_hotspot_trajectory", "two_hotspot_trajectories",
 OFF_MANIFOLD = ("three_hotspot_cluster", "counter_rotating_pair",
                 "radially_drifting_arc")
 POSITIVITY_MARGIN = 0.02          # keep b + dj strictly above zero
+# Peak fractional brightness fluctuation, drawn per truth. Declared as a range
+# rather than a single value so the endpoint is not read at one contrast.
+CONTRAST_AMPLITUDE = (0.30, 0.80)
 BACKGROUND_FLOOR = 1e-6
 
 
@@ -264,22 +267,59 @@ def build(rng, family: str, spin: float, r_inner: float, r_outer: float,
 
     bg = b(grid_r, grid_t)
     raw = np.asarray(shape(grid_r, grid_phi, grid_t), dtype=float)
-    # zero spatial mean at every age
-    for k in range(n_t):
-        m = t_index == k
-        if m.any():
-            raw[m] -= raw[m].mean()
-    neg = np.maximum(-raw / np.maximum(bg, BACKGROUND_FLOOR), 0.0).max()
+    # Zero AZIMUTHAL mean at every radius and age, which is stronger than the
+    # single zero spatial mean per age the ruling asks for and implies it.
+    #
+    # The strengthening removes an exact degeneracy rather than tightening a
+    # tolerance. A fluctuation with an axisymmetric part is indistinguishable
+    # from a background carrying that same part: no procedure, in any of the
+    # three regimes, can attribute it. Leaving it in would hand the
+    # estimated-background regime a systematic error that has nothing to do
+    # with the operator and would then be read as one. Measured on the first
+    # draft, an axisymmetric background model absorbed 29% of the fluctuation.
+    #
+    # It is also the physically right line: an axisymmetric, azimuthally flat
+    # component is background by any reasonable reading of "motion and
+    # morphology live in the contrast field".
+    raw = raw - _azimuthal_mean_on_grid(raw, grid_r, grid_t)
+    # Express the fluctuation as a fraction *of the local background*:
+    # dj = b * s with s of zero azimuthal mean. Because b is axisymmetric,
+    # <b s>_phi = b <s>_phi = 0, so the additive zero-mean constraint the ruling
+    # states holds exactly -- the azimuthal strengthening above is precisely
+    # what makes the additive and multiplicative forms coincide here.
+    #
+    # Scaling globally instead, as the first draft did, sets the amplitude from
+    # the single worst point in the domain -- where the background is thinnest
+    # and the fluctuation most negative -- and collapsed the achieved contrast
+    # to between 0.9% and 12%. That is not a weak-signal finding, it is an
+    # artefact of the parameterisation, and it would have made every family
+    # fail for a reason unrelated to the operator.
+    scale = np.abs(raw / np.maximum(bg, BACKGROUND_FLOOR)).max()
+    target = float(rng.uniform(*CONTRAST_AMPLITUDE))
+    s_pat = (raw / np.maximum(bg, BACKGROUND_FLOOR)) * (
+        target / max(scale, 1e-300))
+    raw = bg * s_pat
+    # s >= -1 is exactly b + dj >= 0, and the target amplitude is already
+    # below one, so alpha only ever binds in the degenerate case
+    neg = np.maximum(-s_pat, 0.0).max()
     alpha = 1.0 if neg <= 0 else min(1.0, (1.0 - POSITIVITY_MARGIN) / neg)
     dj = alpha * raw
 
+    r_axis = np.unique(grid_r)
+    t_axis = np.unique(grid_t)
+    mean_tab = _azimuthal_mean_table(shape, r_axis, t_axis, grid_phi)
+    gain = alpha * target / max(scale, 1e-300)
+
     def fluctuation(r, phi, t):
-        v = alpha * np.asarray(shape(r, phi, t), dtype=float)
-        return v - alpha * _mean_correction(shape, grid_r, grid_phi, grid_t,
-                                            t_index, n_t, t)
+        v = np.asarray(shape(r, phi, t), dtype=float)
+        m = _interp_mean(mean_tab, r_axis, t_axis, r, t)
+        return gain * (v - m)
 
     diag = {"background_params": bp, "feature_params": fp,
             "positivity_scale": float(alpha),
+            "target_contrast_amplitude": float(target),
+            "achieved_peak_fraction_of_background": float(
+                np.abs(dj / np.maximum(bg, BACKGROUND_FLOOR)).max()),
             "contrast_fraction": float(np.linalg.norm(dj)
                                        / max(np.linalg.norm(bg + dj), 1e-300)),
             "min_total": float((bg + dj).min()),
@@ -287,23 +327,46 @@ def build(rng, family: str, spin: float, r_inner: float, r_outer: float,
             "zero_mean_max_abs": float(max(
                 abs(dj[t_index == k].mean()) for k in range(n_t)
                 if (t_index == k).any())),
+            "azimuthal_mean_max_abs": float(
+                np.abs(_azimuthal_mean_on_grid(dj, grid_r, grid_t)).max()),
             "family": family}
     return b, fluctuation, traj, dj, bg, diag
 
 
-def _mean_correction(shape, grid_r, grid_phi, grid_t, t_index, n_t, t):
-    """The per-age spatial mean of the raw shape, evaluated at arbitrary times.
+def _azimuthal_mean_on_grid(values, grid_r, grid_t):
+    """Azimuthal average at each (r, t), broadcast back over the grid."""
+    v = np.asarray(values, float)
+    keys = np.stack([np.asarray(grid_r, float), np.asarray(grid_t, float)])
+    _, inv = np.unique(keys, axis=1, return_inverse=True)
+    sums = np.bincount(inv, weights=v)
+    counts = np.bincount(inv)
+    return (sums / np.maximum(counts, 1))[inv]
 
-    The zero-mean constraint is defined on the evaluation grid, so making it
-    hold at scattered ray times needs the same per-age mean evaluated there.
-    Tabulated on the grid's own age axis and interpolated, which is exact at the
-    grid and smooth between it.
+
+def _azimuthal_mean_table(shape, r_axis, t_axis, grid_phi):
+    """Tabulate the azimuthal mean of the raw shape on the (r, t) axes."""
+    phi = np.unique(grid_phi)
+    R, P = np.meshgrid(r_axis, phi, indexing="ij")
+    out = np.empty((r_axis.size, t_axis.size))
+    for j, tv in enumerate(t_axis):
+        out[:, j] = np.asarray(
+            shape(R.ravel(), P.ravel(), np.full(R.size, tv)), float
+        ).reshape(r_axis.size, phi.size).mean(axis=1)
+    return out
+
+
+def _interp_mean(table, r_axis, t_axis, r, t):
+    """Bilinear read of the tabulated azimuthal mean at scattered (r, t).
+
+    The constraint is defined on the evaluation grid while the operator samples
+    wherever the rays land, so the same correction has to be evaluable there.
+    Exact at the grid nodes and smooth between them.
     """
-    ages = np.array([grid_t[t_index == k][0] for k in range(n_t)
-                     if (t_index == k).any()])
-    means = np.array([np.asarray(shape(grid_r[t_index == k],
-                                       grid_phi[t_index == k],
-                                       grid_t[t_index == k]), float).mean()
-                      for k in range(n_t) if (t_index == k).any()])
-    order = np.argsort(ages)
-    return np.interp(np.asarray(t, float), ages[order], means[order])
+    rr = np.clip(np.asarray(r, float), r_axis[0], r_axis[-1])
+    tt = np.clip(np.asarray(t, float), t_axis[0], t_axis[-1])
+    i = np.clip(np.searchsorted(r_axis, rr) - 1, 0, r_axis.size - 2)
+    j = np.clip(np.searchsorted(t_axis, tt) - 1, 0, t_axis.size - 2)
+    dr = (rr - r_axis[i]) / np.maximum(r_axis[i + 1] - r_axis[i], 1e-300)
+    dt = (tt - t_axis[j]) / np.maximum(t_axis[j + 1] - t_axis[j], 1e-300)
+    return ((1 - dr) * (1 - dt) * table[i, j] + dr * (1 - dt) * table[i + 1, j]
+            + (1 - dr) * dt * table[i, j + 1] + dr * dt * table[i + 1, j + 1])

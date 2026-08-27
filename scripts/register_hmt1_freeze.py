@@ -136,13 +136,51 @@ def main() -> int:
                                            "emissivity. The physical field that "
                                            "must stay non-negative is b + dj, "
                                            "and it does",
+            "zero_mean_is_imposed_azimuthally": {
+                "constraint": "<dj(r, ., t)>_phi = 0 at every radius and age",
+                "implies_the_ruling": "an azimuthally zero-mean field also has "
+                                      "zero spatial mean at each age, so this "
+                                      "is a strengthening rather than a "
+                                      "substitution",
+                "why": "a fluctuation with an axisymmetric part is exactly "
+                       "indistinguishable from a background carrying that same "
+                       "part. No procedure in any of the three regimes can "
+                       "attribute it, so leaving it in would hand the "
+                       "estimated-background regime a systematic error "
+                       "unrelated to the operator and it would then be read as "
+                       "one. Measured before the strengthening, an "
+                       "axisymmetric background model absorbed 29 percent of "
+                       "the fluctuation; after it, 1e-16",
+                "also_the_physical_line": "an azimuthally flat component is "
+                                          "background by any reading of "
+                                          "'motion and morphology live in the "
+                                          "contrast field'"},
             "multiplicative_form_note": "j = b(1 + delta) with <delta> = 0 is "
-                                        "equivalent only when b is spatially "
-                                        "constant at fixed t. Here b depends on "
-                                        "r, so <b delta> = 0 and <delta> = 0 "
-                                        "are different conditions. The additive "
-                                        "form above is the operative one and "
-                                        "the multiplicative form is not used",
+                                        "equivalent to the additive form only "
+                                        "when the mean is taken azimuthally at "
+                                        "fixed r. Under the azimuthal "
+                                        "constraint above the two coincide "
+                                        "exactly, because b is axisymmetric and "
+                                        "<b s>_phi = b <s>_phi. Under the "
+                                        "weaker global spatial mean they do "
+                                        "not, and that is the reading the first "
+                                        "draft of this freeze warned about",
+            "amplitude_parameterisation": {
+                "form": "dj = b * s, with s of zero azimuthal mean and peak "
+                        "|s| drawn per truth",
+                "peak_fraction_of_background": [0.30, 0.80],
+                "why_local_not_global": "scaling the fluctuation against the "
+                                        "global worst point sets its amplitude "
+                                        "where the background is thinnest and "
+                                        "collapsed the achieved contrast to "
+                                        "between 0.9 and 12 percent. That is a "
+                                        "parameterisation artefact, not a "
+                                        "weak-signal finding, and every family "
+                                        "would have failed for a reason "
+                                        "unrelated to the operator",
+                "achieved_after_the_fix": "peak fluctuation of 0.5 to 0.8 of "
+                                          "the local background, with the total "
+                                          "emissivity strictly positive"},
             "tolerances": {"zero_mean_relative": 1e-10,
                            "positivity_floor": 0.0,
                            "background_positive_floor": 1e-6},

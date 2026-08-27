@@ -1,7 +1,7 @@
 {
   "schema": "phrt-hmt1-freeze/1",
   "id": "HMT_1_HISTORICAL_FEATURE_AND_CONTRAST_TOMOGRAPHY_V0",
-  "created_utc": "2026-08-27T20:38:51Z",
+  "created_utc": "2026-08-27T20:44:40Z",
   "ruling": "Reviewer authorization of HMT-1",
   "status": "FROZEN_BEFORE_ANY_NEW_TRUTH_OR_OPERATOR_SCORE",
   "branch": "research/hmt1_historical_feature_contrast_tomography_v0",
@@ -46,7 +46,22 @@
     "zero_spatial_mean": "<dj(., t)> over the evaluation grid = 0 at every age",
     "total_nonnegative": "b + dj >= 0 everywhere",
     "why_signed_dj_is_legitimate": "dj is a brightness fluctuation about a positive background, not an emissivity. The physical field that must stay non-negative is b + dj, and it does",
-    "multiplicative_form_note": "j = b(1 + delta) with <delta> = 0 is equivalent only when b is spatially constant at fixed t. Here b depends on r, so <b delta> = 0 and <delta> = 0 are different conditions. The additive form above is the operative one and the multiplicative form is not used",
+    "zero_mean_is_imposed_azimuthally": {
+      "constraint": "<dj(r, ., t)>_phi = 0 at every radius and age",
+      "implies_the_ruling": "an azimuthally zero-mean field also has zero spatial mean at each age, so this is a strengthening rather than a substitution",
+      "why": "a fluctuation with an axisymmetric part is exactly indistinguishable from a background carrying that same part. No procedure in any of the three regimes can attribute it, so leaving it in would hand the estimated-background regime a systematic error unrelated to the operator and it would then be read as one. Measured before the strengthening, an axisymmetric background model absorbed 29 percent of the fluctuation; after it, 1e-16",
+      "also_the_physical_line": "an azimuthally flat component is background by any reading of 'motion and morphology live in the contrast field'"
+    },
+    "multiplicative_form_note": "j = b(1 + delta) with <delta> = 0 is equivalent to the additive form only when the mean is taken azimuthally at fixed r. Under the azimuthal constraint above the two coincide exactly, because b is axisymmetric and <b s>_phi = b <s>_phi. Under the weaker global spatial mean they do not, and that is the reading the first draft of this freeze warned about",
+    "amplitude_parameterisation": {
+      "form": "dj = b * s, with s of zero azimuthal mean and peak |s| drawn per truth",
+      "peak_fraction_of_background": [
+        0.3,
+        0.8
+      ],
+      "why_local_not_global": "scaling the fluctuation against the global worst point sets its amplitude where the background is thinnest and collapsed the achieved contrast to between 0.9 and 12 percent. That is a parameterisation artefact, not a weak-signal finding, and every family would have failed for a reason unrelated to the operator",
+      "achieved_after_the_fix": "peak fluctuation of 0.5 to 0.8 of the local background, with the total emissivity strictly positive"
+    },
     "tolerances": {
       "zero_mean_relative": 1e-10,
       "positivity_floor": 0.0,
@@ -445,8 +460,8 @@
   },
   "attestation": {
     "available": true,
-    "execution_commit": "ec513315787c4cfd9c47afb2a760919f7cb84362",
-    "head_tree_sha": "f5396e93f8e1b736fb0be6df1ce6fa7b8acda2ce",
+    "execution_commit": "b632b1c0ef2b621781b6ec66d68344360f9c4782",
+    "head_tree_sha": "e37b456f5f32d7935abbfc589fa5b6188c582f9b",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -455,10 +470,10 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": " M artifacts/configs/HMT1_VALIDATION_FREEZE_V0.json\n M scripts/register_hmt1_freeze.py\n?? src/phrt/metrics/features.py\n?? src/phrt/sources/contrast.py\n?? tests/test_contrast_and_features.py\n",
-    "porcelain_registered_sha256": "9d239d48fb597eb8b981c0d6bd3f57bb561982987939a9b395d0f5995ac7649e",
-    "porcelain_whole_tree_sha256": "9d239d48fb597eb8b981c0d6bd3f57bb561982987939a9b395d0f5995ac7649e",
-    "n_tracked_changes": 2,
+    "porcelain_registered": " M scripts/register_hmt1_freeze.py\n M src/phrt/sources/contrast.py\n M tests/test_contrast_and_features.py\n?? src/phrt/inverse/background.py\n?? src/phrt/inverse/constrained.py\n?? tests/test_background_and_constrained.py\n",
+    "porcelain_registered_sha256": "3b54e71faff8728c4c212f6ea08248b907a552b3ad104053820a9d0e70cb628a",
+    "porcelain_whole_tree_sha256": "3b54e71faff8728c4c212f6ea08248b907a552b3ad104053820a9d0e70cb628a",
+    "n_tracked_changes": 3,
     "n_untracked": 3,
     "tracked_clean": false,
     "untracked_clean": false,

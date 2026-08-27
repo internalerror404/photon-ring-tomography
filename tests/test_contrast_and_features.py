@@ -145,3 +145,32 @@ def test_circular_families_stay_outside_the_isco(grid):
         assert diag["feature_params"]["r_h"] > isco_radius(SPIN)
         _, _, _, _, _, dp = _build(grid, "plunging_feature", seed)
         assert dp["feature_params"]["r_h_start"] < isco_radius(SPIN)
+
+
+@pytest.mark.parametrize("family", FAMILIES)
+def test_azimuthal_mean_is_zero_at_every_radius_and_age(grid, family):
+    # stronger than the ruling's single spatial mean per age, and it is what
+    # makes the background/contrast split identifiable at all
+    *_, diag = _build(grid, family, 37)
+    assert diag["azimuthal_mean_max_abs"] < 1e-12, family
+
+
+@pytest.mark.parametrize("family", FAMILIES)
+def test_local_contrast_is_order_unity_not_a_whisper(grid, family):
+    # scaling the fluctuation globally sets its amplitude from the single worst
+    # point in the domain and collapses the contrast to a few percent. Scaling
+    # against the local background keeps it physical.
+    *_, diag = _build(grid, family, 41)
+    peak = diag["achieved_peak_fraction_of_background"]
+    assert 0.25 < peak <= 0.85, (family, peak)
+
+
+@pytest.mark.parametrize("family", FAMILIES)
+def test_an_axisymmetric_model_cannot_absorb_the_fluctuation(grid, family):
+    from phrt.inverse.background import axisymmetric_design
+    r, phi, t, gr, gp, gt, ti = grid
+    _, _, _, dj, _, _ = _build(grid, family, 43)
+    des = axisymmetric_design(gr, gt, R_IN, R_OUT, t_min=TLO, t_max=THI)
+    coef, *_ = np.linalg.lstsq(des, dj, rcond=None)
+    absorbed = np.linalg.norm(des @ coef) / np.linalg.norm(dj)
+    assert absorbed < 1e-10, (family, absorbed)
