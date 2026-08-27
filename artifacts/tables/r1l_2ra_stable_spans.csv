@@ -1,0 +1,13 @@
+source_class,arm,epsilon,quantile,definition,T_stable_anchor_M,a_anchor_M,L_stable_anchor_M,n_truths,pass_fraction_at_youngest_age,slice
+L1056,DIRECT_PHYSICAL,0.25,0.95,"T_stable_anchor: sup{T : Pr[sup_{0<=a<=T} E(a) <= epsilon] >= q}, supremum inside the probability",0.0,0.0,0.0,96,0.0,"TSVD, SNR0=100, draw 0 -- the ensemble stored by stage 2"
+L1056,RESOLVED_PHYSICAL,0.25,0.95,"T_stable_anchor: sup{T : Pr[sup_{0<=a<=T} E(a) <= epsilon] >= q}, supremum inside the probability",0.0,0.0,0.0,96,0.0,"TSVD, SNR0=100, draw 0 -- the ensemble stored by stage 2"
+L1056,TOTAL_FLUX,0.25,0.95,"T_stable_anchor: sup{T : Pr[sup_{0<=a<=T} E(a) <= epsilon] >= q}, supremum inside the probability",0.0,0.0,0.0,96,0.0,"TSVD, SNR0=100, draw 0 -- the ensemble stored by stage 2"
+L1056,UNRESOLVED_IMAGE,0.25,0.95,"T_stable_anchor: sup{T : Pr[sup_{0<=a<=T} E(a) <= epsilon] >= q}, supremum inside the probability",0.0,0.0,0.0,96,0.0,"TSVD, SNR0=100, draw 0 -- the ensemble stored by stage 2"
+L224,DIRECT_PHYSICAL,0.25,0.95,"T_stable_anchor: sup{T : Pr[sup_{0<=a<=T} E(a) <= epsilon] >= q}, supremum inside the probability",0.0,0.0,0.0,96,0.0,"TSVD, SNR0=100, draw 0 -- the ensemble stored by stage 2"
+L224,RESOLVED_PHYSICAL,0.25,0.95,"T_stable_anchor: sup{T : Pr[sup_{0<=a<=T} E(a) <= epsilon] >= q}, supremum inside the probability",0.0,0.0,0.0,96,0.0,"TSVD, SNR0=100, draw 0 -- the ensemble stored by stage 2"
+L224,TOTAL_FLUX,0.25,0.95,"T_stable_anchor: sup{T : Pr[sup_{0<=a<=T} E(a) <= epsilon] >= q}, supremum inside the probability",0.0,0.0,0.0,96,0.0,"TSVD, SNR0=100, draw 0 -- the ensemble stored by stage 2"
+L224,UNRESOLVED_IMAGE,0.25,0.95,"T_stable_anchor: sup{T : Pr[sup_{0<=a<=T} E(a) <= epsilon] >= q}, supremum inside the probability",0.0,0.0,0.0,96,0.0,"TSVD, SNR0=100, draw 0 -- the ensemble stored by stage 2"
+L448,DIRECT_PHYSICAL,0.25,0.95,"T_stable_anchor: sup{T : Pr[sup_{0<=a<=T} E(a) <= epsilon] >= q}, supremum inside the probability",0.0,0.0,0.0,96,0.0,"TSVD, SNR0=100, draw 0 -- the ensemble stored by stage 2"
+L448,RESOLVED_PHYSICAL,0.25,0.95,"T_stable_anchor: sup{T : Pr[sup_{0<=a<=T} E(a) <= epsilon] >= q}, supremum inside the probability",0.0,0.0,0.0,96,0.0,"TSVD, SNR0=100, draw 0 -- the ensemble stored by stage 2"
+L448,TOTAL_FLUX,0.25,0.95,"T_stable_anchor: sup{T : Pr[sup_{0<=a<=T} E(a) <= epsilon] >= q}, supremum inside the probability",0.0,0.0,0.0,96,0.0,"TSVD, SNR0=100, draw 0 -- the ensemble stored by stage 2"
+L448,UNRESOLVED_IMAGE,0.25,0.95,"T_stable_anchor: sup{T : Pr[sup_{0<=a<=T} E(a) <= epsilon] >= q}, supremum inside the probability",0.0,0.0,0.0,96,0.0,"TSVD, SNR0=100, draw 0 -- the ensemble stored by stage 2"

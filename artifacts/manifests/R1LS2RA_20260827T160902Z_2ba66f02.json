@@ -1,0 +1,195 @@
+{
+  "run_id": "R1LS2RA_20260827T160902Z_2ba66f02",
+  "experiment_id": "R1L_STAGE_2R_A",
+  "execution_commit": "8ce513fd0f3dccccf9c1d497192984874fca2564",
+  "manifest_build_commit": "8ce513fd0f3dccccf9c1d497192984874fca2564",
+  "git_commit": "8ce513fd0f3dccccf9c1d497192984874fca2564",
+  "git_commit_deprecated": "ambiguous: this is the manifest build commit, not the execution commit. Read execution_commit instead",
+  "dirty_tree": true,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "bank_seed": 20260901,
+    "noise_seed": 20260902,
+    "bootstrap_seed": 20260903,
+    "null_pair_seed": 20260904,
+    "subsample_seed": 20260825
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/R1L_STAGE2_VALIDATION_ACTIVATION_010.json",
+      "sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1LS2RA_20260827T160902Z_2ba66f02/tables/r1l_2ra_endpoint.parquet",
+      "sha256": "f259872a0d5a2cbf64443cea40c80e0559f568ef1ad21cb2ed5c4815bf5b1d1a"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1LS2RA_20260827T160902Z_2ba66f02/tables/r1l_2ra_oracle_floor_curves.parquet",
+      "sha256": "5cdfc90f4ef9d2c2561024a3615aaceb57503b52deed78e7c9f39cbb0ed993b5"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1LS2RA_20260827T160902Z_2ba66f02/tables/r1l_2ra_stable_spans.parquet",
+      "sha256": "f441debe2f9fc86f3845835f707bcd8423b5d74e55c4dc2584f0ab6256d72c1f"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1LS2RA_20260827T160902Z_2ba66f02/tables/r1l_2ra_common_subspace.parquet",
+      "sha256": "1a0a1fa0d6830b0e0ac3a4cc36aaca353a2bb667c693bac8d65177ec1ceed2cd"
+    }
+  ],
+  "gate_status": {
+    "R1L_2RA_G1_no_new_truths": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "banks regenerated from frozen seeds only"
+    },
+    "R1L_2RA_G2_truth_content_hashes_match": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "every regenerated truth hashes to the value stage 2 recorded, so these are the same objects"
+    },
+    "R1L_2RA_G3_secondary_bank_excluded": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "baseline_one_positive contributes no truth to any endpoint row"
+    },
+    "R1L_2RA_G4_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "R1L_2RA_G5_null_controls": {
+      "status": "PASS",
+      "measured": 2.4424906541753444e-15,
+      "threshold": 0.05
+    }
+  },
+  "started_at": "2026-08-27T16:09:01Z",
+  "finished_at": "2026-08-27T16:09:10+00:00",
+  "attestation": {
+    "available": true,
+    "execution_commit": "8ce513fd0f3dccccf9c1d497192984874fca2564",
+    "head_tree_sha": "655a6229064764223a3e60e0d7c04efce2c4938c",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? artifacts/configs/R1L_SEALED_ANALYTIC_STRESS_COMMITMENT_UNSCORED.json\n?? artifacts/configs/R1L_STAGE2_RECORD_AMENDMENT_011.json\n?? scripts/register_r1l_stage2_amendment_011.py\n?? scripts/run_r1l_stage2r_a.py\n",
+    "porcelain_registered_sha256": "f6156c312c06903f09358edcb601ced352e05c54e24e43a625c68fb53b9521bc",
+    "porcelain_whole_tree_sha256": "f6156c312c06903f09358edcb601ced352e05c54e24e43a625c68fb53b9521bc",
+    "n_tracked_changes": 0,
+    "n_untracked": 4,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_STAGE2_VALIDATION_ACTIVATION_010.json",
+        "sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e",
+        "working_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "peak_rss_mb": 457.96484375,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 7.718433141708374,
+  "stage": "2R-A recomputation from existing artifacts",
+  "generates_new_truths": false,
+  "secondary_bank_excluded": "baseline_one_positive",
+  "run_dir": "artifacts/runs/R1LS2RA_20260827T160902Z_2ba66f02",
+  "numerics": {
+    "pinned_environment": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "declared_pin": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "threadpool_state": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.23.dev",
+        "threading_layer": "pthreads",
+        "architecture": "Prescott",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.21.dev",
+        "threading_layer": "pthreads",
+        "architecture": "Prescott",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/scipy.libs/libopenblasp-r0-23e5df77.3.21.dev.so"
+      }
+    ],
+    "all_pools_single_threaded": true
+  }
+}

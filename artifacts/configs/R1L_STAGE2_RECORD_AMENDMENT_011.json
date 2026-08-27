@@ -1,0 +1,117 @@
+{
+  "schema": "phrt-record-amendment/1",
+  "id": "R1L_STAGE2_RECORD_AMENDMENT_011",
+  "created_utc": "2026-08-27T16:07:24Z",
+  "ruling": "REVIEWER_RULING_R1L_STAGE2_011",
+  "kind": "RECORD_ONLY",
+  "recomputation": "none. No bank is rebuilt, no operator formed, no score recomputed and no gate re-evaluated by this amendment",
+  "stage1_canonical": {
+    "accepted": true,
+    "baseline_run": "R1L_20260827T063735Z_2ba66f02",
+    "reproduced_by": "R1L_20260827T064329Z_2ba66f02",
+    "verdict": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PASS",
+    "execution_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
+    "rule": "the stage-1 tables are canonical. Two pinned six-class runs in separate processes agreed on every normalized scientific cell, and every discrete conclusion agrees with both pre-pin executions"
+  },
+  "stage2_mechanical_acceptance": {
+    "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+    "gates_pass": 14,
+    "gates_total": 14,
+    "accepted": "mechanically. Every gate passed and the run was clean, preregistered and single-threaded. Mechanical acceptance is a statement about execution, not about what the numbers mean"
+  },
+  "emitted_token": {
+    "token": "R1L_STAGE2_RESOLVED_AND_UNRESOLVED_PASS",
+    "preserved": true,
+    "classification": "FORMAL_PROTOCOL_TOKEN_UNDER_NONMATERIAL_CRITERIA",
+    "is_a_scientific_reconstruction_pass": false,
+    "why": "the declared criteria required a bootstrap interval excluding zero and carried no effect-size threshold. With 128 paired pilot truths the bootstrap variance is small enough that a consistent sign passes at almost any magnitude. The unresolved arm's passing effect, the one thing separating this token from RESOLVED_ONLY_PASS, is a relative reduction of 9.5e-05",
+    "rule": "the token is preserved because it is what the frozen rule produced. Deleting it would hide that the rule was satisfiable without a material effect, which is the finding"
+  },
+  "R1L_S2_PRIMARY_INCLUDED_SECONDARY_BANK": {
+    "defect": "baseline_one_positive entered the pooled primary endpoint",
+    "freeze_said": "R1L_STAGE2_VALIDATION_ACTIVATION_010.json -> source_banks.baseline_one_positive: 'secondary control only', 'may not carry the primary endpoint'",
+    "what_happened": "the endpoint pooled every pilot truth by (class, arm, estimator, SNR) without filtering on bank, so a quarter of the paired sample came from the secondary control",
+    "why_it_matters": "baseline_one_positive has a median structure fraction of 0.219 against 0.50 to 0.82 for the primary banks, and the largest representation floor of the four. Pooling it in mixes the regime the endpoint was written to leave behind",
+    "detected_by": "the reviewer, not by a gate. No gate checked bank eligibility for the endpoint",
+    "remedy": "stage 2R-A recomputes the endpoint from the existing per-truth scores with the secondary bank excluded, every primary bank reported separately, and equal-weight bank-family aggregation",
+    "changes_the_final_tables": "the per-truth scores are unaffected. The pooled endpoint rows are superseded by stage 2R-A"
+  },
+  "SUPERSEDED_OPERATOR_SCORER_TRUTH_MISMATCH": {
+    "defect": "the bank shaping was defined on the evaluation grid while the data was formed from the raw family render, so the operator and the scorer were looking at different sources and the shaping was measured as reconstruction error",
+    "observed_effect": "L224 reported RESOLVED_ONLY_PASS before the fix and NEGATIVE_RESULT after it. The inflation was the whole apparent advantage",
+    "status": "SUPERSEDED",
+    "final_state": "the shaped truth exists as a callable and reproduces the grid-built truth to 1.46e-14 relative. Gate R1L_S2_G13_analytic_shaping_matches_grid_truth checks it at 1e-9 and passed",
+    "changes_the_final_tables": false
+  },
+  "R1L_S2_TOKEN_OMITTED_NULL_CONTROL": {
+    "defect": "the disposition gated on three of the four declared criteria, omitting null-pair likelihood consistency. A control failure could have passed silently",
+    "status": "REPAIRED",
+    "final_state": "the rule now requires the null control, and the corrected rule was re-derived against the committed tables. The control passed, so the token is unchanged",
+    "changes_the_final_tables": false,
+    "note": "the null-pair control itself had an earlier defect: it drew from the exact null space, asking directions that produce no separation at any amplitude to realize a one-sigma separation. It now draws from the smallest nonzero singular directions and passes at a worst relative error well inside tolerance"
+  },
+  "sealed_commitment": {
+    "preserved_as": "R1L_SEALED_ANALYTIC_STRESS_COMMITMENT_UNSCORED",
+    "path": "artifacts/configs/R1L_SEALED_ANALYTIC_STRESS_COMMITMENT_UNSCORED.json",
+    "original_preserved_at": "artifacts/configs/R1L_SEALED_MAIN_COMMITMENT.json",
+    "original_sha256": "770e72016c11abb4afcb110cef8669f3fe9d9c9ef0e8f1bf26ca426f07f75d07",
+    "n_truths": 384,
+    "scored": false,
+    "may_be_scored": false,
+    "why_not": "the analytic banks carry a structural representation floor above the span criterion, so scoring 384 more analytic truths would repeat an untestable endpoint"
+  },
+  "instructions_discharged": [
+    "1 accept deterministic stage 1 as canonical",
+    "2 accept the final stage-2 run mechanically, 14/14 gates",
+    "3 preserve the token and classify it FORMAL_PROTOCOL_TOKEN_UNDER_NONMATERIAL_CRITERIA",
+    "4 record R1L_S2_PRIMARY_INCLUDED_SECONDARY_BANK",
+    "5 record SUPERSEDED_OPERATOR_SCORER_TRUTH_MISMATCH and R1L_S2_TOKEN_OMITTED_NULL_CONTROL",
+    "6 preserve the sealed commitment unscored under its new name"
+  ],
+  "provenance": {
+    "stage2_freeze_sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e",
+    "stage1_baseline_sha256": "de0e0dc9763d96e6755c57fab79329ccb56f526d153fdccf0c0cf934e848c11a"
+  },
+  "attestation": {
+    "available": true,
+    "execution_commit": "8ce513fd0f3dccccf9c1d497192984874fca2564",
+    "head_tree_sha": "655a6229064764223a3e60e0d7c04efce2c4938c",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? artifacts/configs/R1L_SEALED_ANALYTIC_STRESS_COMMITMENT_UNSCORED.json\n?? scripts/register_r1l_stage2_amendment_011.py\n",
+    "porcelain_registered_sha256": "57e49a1894f99c39d315232ef7ec259462ace0c5cca253895e1d62b239fa8be4",
+    "porcelain_whole_tree_sha256": "57e49a1894f99c39d315232ef7ec259462ace0c5cca253895e1d62b239fa8be4",
+    "n_tracked_changes": 0,
+    "n_untracked": 2,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_STAGE2_VALIDATION_ACTIVATION_010.json",
+        "sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e",
+        "working_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/provenance/R1L_STAGE1_BASELINE.json",
+        "sha256": "de0e0dc9763d96e6755c57fab79329ccb56f526d153fdccf0c0cf934e848c11a",
+        "working_blob_sha": "7c0e04d4779c373efc848554b87ef72d127f47ac",
+        "committed_blob_sha": "7c0e04d4779c373efc848554b87ef72d127f47ac",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}

@@ -1,0 +1,25 @@
+source_class,arm,estimator,snr0,reference_subspace,reference_subspace_dimension,arm_subspace_dimension,error_in_reference_data_subspace,error_outside_reference_data_subspace,note
+L224,RESOLVED_PHYSICAL,TSVD,100.0,DIRECT_PHYSICAL P_data,140,208,8.2184098972706,6.667471639666196,
+L224,RESOLVED_PHYSICAL,RIDGE_IDENTITY,100.0,DIRECT_PHYSICAL P_data,140,208,9.829130339027234,6.522734244357217,
+L224,UNRESOLVED_IMAGE,TSVD,100.0,DIRECT_PHYSICAL P_data,140,208,8.006041931079547,6.66627608634776,
+L224,UNRESOLVED_IMAGE,RIDGE_IDENTITY,100.0,DIRECT_PHYSICAL P_data,140,208,8.347824229378553,6.667170317227839,
+L224,TOTAL_FLUX,TSVD,100.0,DIRECT_PHYSICAL P_data,140,8,8.297876872780659,6.666728591597048,
+L224,TOTAL_FLUX,RIDGE_IDENTITY,100.0,DIRECT_PHYSICAL P_data,140,8,8.404164004532792,6.667088046797548,
+L448,RESOLVED_PHYSICAL,TSVD,100.0,DIRECT_PHYSICAL P_data,252,405,12.082440834030674,10.534566662030267,
+L448,RESOLVED_PHYSICAL,RIDGE_IDENTITY,100.0,DIRECT_PHYSICAL P_data,252,405,11.80351852734573,10.532558870804381,
+L448,UNRESOLVED_IMAGE,TSVD,100.0,DIRECT_PHYSICAL P_data,252,405,12.070115195433532,10.53363397010532,
+L448,UNRESOLVED_IMAGE,RIDGE_IDENTITY,100.0,DIRECT_PHYSICAL P_data,252,405,11.803376814631687,10.53333258878522,
+L448,TOTAL_FLUX,TSVD,100.0,DIRECT_PHYSICAL P_data,252,8,11.750675379520095,10.531493113453084,
+L448,TOTAL_FLUX,RIDGE_IDENTITY,100.0,DIRECT_PHYSICAL P_data,252,8,11.860449097001165,10.532962689680465,
+L1056,RESOLVED_PHYSICAL,TSVD,100.0,DIRECT_PHYSICAL P_data,524,838,10.12677456501871,11.204111871783017,
+L1056,RESOLVED_PHYSICAL,RIDGE_IDENTITY,100.0,DIRECT_PHYSICAL P_data,524,838,14.615172739339695,10.200646782665888,
+L1056,UNRESOLVED_IMAGE,TSVD,100.0,DIRECT_PHYSICAL P_data,524,836,10.83283233395224,11.2033156632478,
+L1056,UNRESOLVED_IMAGE,RIDGE_IDENTITY,100.0,DIRECT_PHYSICAL P_data,524,836,10.47975530132532,11.202892336299112,
+L1056,TOTAL_FLUX,TSVD,100.0,DIRECT_PHYSICAL P_data,524,8,10.410067288421377,11.200759209222827,
+L1056,TOTAL_FLUX,RIDGE_IDENTITY,100.0,DIRECT_PHYSICAL P_data,524,8,10.555648067910548,11.202401012750538,
+L1056,DIRECT_PHYSICAL,RIDGE_IDENTITY,100.0,DIRECT_PHYSICAL P_data,524,524,,,"the direct arm is the reference subspace, so its own projection is the identity and the split is not informative. The row exists so the table cannot be read as if the direct arm had been omitted for a reason"
+L1056,DIRECT_PHYSICAL,TSVD,100.0,DIRECT_PHYSICAL P_data,524,524,,,"the direct arm is the reference subspace, so its own projection is the identity and the split is not informative. The row exists so the table cannot be read as if the direct arm had been omitted for a reason"
+L224,DIRECT_PHYSICAL,RIDGE_IDENTITY,100.0,DIRECT_PHYSICAL P_data,140,140,,,"the direct arm is the reference subspace, so its own projection is the identity and the split is not informative. The row exists so the table cannot be read as if the direct arm had been omitted for a reason"
+L224,DIRECT_PHYSICAL,TSVD,100.0,DIRECT_PHYSICAL P_data,140,140,,,"the direct arm is the reference subspace, so its own projection is the identity and the split is not informative. The row exists so the table cannot be read as if the direct arm had been omitted for a reason"
+L448,DIRECT_PHYSICAL,RIDGE_IDENTITY,100.0,DIRECT_PHYSICAL P_data,252,252,,,"the direct arm is the reference subspace, so its own projection is the identity and the split is not informative. The row exists so the table cannot be read as if the direct arm had been omitted for a reason"
+L448,DIRECT_PHYSICAL,TSVD,100.0,DIRECT_PHYSICAL P_data,252,252,,,"the direct arm is the reference subspace, so its own projection is the identity and the split is not informative. The row exists so the table cannot be read as if the direct arm had been omitted for a reason"

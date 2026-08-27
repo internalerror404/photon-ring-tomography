@@ -1,0 +1,76 @@
+{
+  "schema": "phrt-artifact-manifest/1",
+  "experiment_id": "R1L_STAGE_2R_A",
+  "created_utc": "2026-08-27T16:11:25Z",
+  "stop_token": "R1L_STAGE2R_A_NO_MATERIAL_EFFECT",
+  "supersedes": "the pooled endpoint rows of r1l_s2_primary_endpoint",
+  "authoritative_attestation": "execution",
+  "execution_attestation": {
+    "available": true,
+    "execution_commit": "8ce513fd0f3dccccf9c1d497192984874fca2564",
+    "head_tree_sha": "655a6229064764223a3e60e0d7c04efce2c4938c",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? artifacts/configs/R1L_SEALED_ANALYTIC_STRESS_COMMITMENT_UNSCORED.json\n?? artifacts/configs/R1L_STAGE2_RECORD_AMENDMENT_011.json\n?? scripts/register_r1l_stage2_amendment_011.py\n?? scripts/run_r1l_stage2r_a.py\n",
+    "porcelain_registered_sha256": "f6156c312c06903f09358edcb601ced352e05c54e24e43a625c68fb53b9521bc",
+    "porcelain_whole_tree_sha256": "f6156c312c06903f09358edcb601ced352e05c54e24e43a625c68fb53b9521bc",
+    "n_tracked_changes": 0,
+    "n_untracked": 4,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_STAGE2_VALIDATION_ACTIVATION_010.json",
+        "sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e",
+        "working_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "report_assembly_attestation": {
+    "available": true,
+    "execution_commit": "8ce513fd0f3dccccf9c1d497192984874fca2564",
+    "head_tree_sha": "655a6229064764223a3e60e0d7c04efce2c4938c",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? artifacts/configs/R1L_SEALED_ANALYTIC_STRESS_COMMITMENT_UNSCORED.json\n?? artifacts/configs/R1L_STAGE2_RECORD_AMENDMENT_011.json\n?? scripts/build_r1l_stage2r_a_report.py\n?? scripts/register_r1l_stage2_amendment_011.py\n?? scripts/run_r1l_stage2r_a.py\n",
+    "porcelain_registered_sha256": "7f5903b52e10276af67858233015449bc81c49fdb79c76ed7c916b5a2e048aa0",
+    "porcelain_whole_tree_sha256": "de0f0efad65b785563e64f6dab3469daf8c33ca9cd0fc8b546b4fe009cdadb96",
+    "n_tracked_changes": 0,
+    "n_untracked": 5,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "inputs": {
+    "artifacts/tables/r1l_2ra_common_subspace.parquet": "1a0a1fa0d6830b0e0ac3a4cc36aaca353a2bb667c693bac8d65177ec1ceed2cd",
+    "artifacts/tables/r1l_2ra_endpoint.parquet": "f259872a0d5a2cbf64443cea40c80e0559f568ef1ad21cb2ed5c4815bf5b1d1a",
+    "artifacts/tables/r1l_2ra_oracle_floor_curves.parquet": "5cdfc90f4ef9d2c2561024a3615aaceb57503b52deed78e7c9f39cbb0ed993b5",
+    "artifacts/tables/r1l_2ra_stable_spans.parquet": "f441debe2f9fc86f3845835f707bcd8423b5d74e55c4dc2584f0ab6256d72c1f"
+  },
+  "outputs": {
+    "artifacts/reports/R1L_STAGE2R_A.md": "dfdaa9c854787737ab28e4d06bd968c0ee7c54f6f147098805b01eb5428c8b96"
+  }
+}

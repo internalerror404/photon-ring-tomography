@@ -2453,11 +2453,49 @@
       "note": "a frozen separation in sigma must be realized by the operator to within 5 percent",
       "run_id": "R1LS2_20260827T072633Z_2ba66f02",
       "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_2RA_G1_no_new_truths": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "banks regenerated from frozen seeds only",
+      "run_id": "R1LS2RA_20260827T160902Z_2ba66f02",
+      "recorded_at": "2026-08-27T16:09:10+00:00"
+    },
+    "R1L_2RA_G2_truth_content_hashes_match": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "every regenerated truth hashes to the value stage 2 recorded, so these are the same objects",
+      "run_id": "R1LS2RA_20260827T160902Z_2ba66f02",
+      "recorded_at": "2026-08-27T16:09:10+00:00"
+    },
+    "R1L_2RA_G3_secondary_bank_excluded": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "baseline_one_positive contributes no truth to any endpoint row",
+      "run_id": "R1LS2RA_20260827T160902Z_2ba66f02",
+      "recorded_at": "2026-08-27T16:09:10+00:00"
+    },
+    "R1L_2RA_G4_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "R1LS2RA_20260827T160902Z_2ba66f02",
+      "recorded_at": "2026-08-27T16:09:10+00:00"
+    },
+    "R1L_2RA_G5_null_controls": {
+      "status": "PASS",
+      "measured": 2.4424906541753444e-15,
+      "threshold": 0.05,
+      "run_id": "R1LS2RA_20260827T160902Z_2ba66f02",
+      "recorded_at": "2026-08-27T16:09:10+00:00"
     }
   },
-  "updated_at": "2026-08-27T07:55:51+00:00",
+  "updated_at": "2026-08-27T16:09:10+00:00",
   "summary": {
-    "PASS": 172,
+    "PASS": 177,
     "FAIL": 8,
     "NOT_RUN": 11
   }

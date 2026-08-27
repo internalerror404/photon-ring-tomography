@@ -1,0 +1,220 @@
+{
+  "experiment": "R1L_STAGE_2R_A",
+  "run_id": "R1LS2RA_20260827T160902Z_2ba66f02",
+  "stop_token": "R1L_STAGE2R_A_NO_MATERIAL_EFFECT",
+  "materiality_standard": {
+    "median_relative_reduction": 0.1,
+    "ci_low_relative": 0.05,
+    "min_families": 3,
+    "all_primary_banks_positive": true
+  },
+  "verdicts": {
+    "RESOLVED_PHYSICAL|L1056": {
+      "material": false,
+      "detail": {
+        "TSVD": {
+          "median_relative_reduction": 0.00026465605217662467,
+          "ci_low": 0.0008590269996540722,
+          "n_families_improved": 3,
+          "all_primary_banks_positive": true,
+          "meets": false
+        },
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": 0.14171460419554188,
+          "ci_low": 0.09903556593147805,
+          "n_families_improved": 4,
+          "all_primary_banks_positive": true,
+          "meets": true
+        }
+      }
+    },
+    "RESOLVED_PHYSICAL|L224": {
+      "material": false,
+      "detail": {
+        "TSVD": {
+          "median_relative_reduction": -0.0009563004658181993,
+          "ci_low": -0.0038206634865488864,
+          "n_families_improved": 2,
+          "all_primary_banks_positive": false,
+          "meets": false
+        },
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": 0.09244244973491317,
+          "ci_low": 0.05457181388892886,
+          "n_families_improved": 3,
+          "all_primary_banks_positive": true,
+          "meets": false
+        }
+      }
+    },
+    "RESOLVED_PHYSICAL|L448": {
+      "material": false,
+      "detail": {
+        "TSVD": {
+          "median_relative_reduction": 2.2028668438783463e-06,
+          "ci_low": 7.98957847382534e-06,
+          "n_families_improved": 3,
+          "all_primary_banks_positive": true,
+          "meets": false
+        },
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": 0.00018670386122781644,
+          "ci_low": 0.00017609552749268218,
+          "n_families_improved": 3,
+          "all_primary_banks_positive": true,
+          "meets": false
+        }
+      }
+    },
+    "UNRESOLVED_IMAGE|L1056": {
+      "material": false,
+      "detail": {
+        "TSVD": {
+          "median_relative_reduction": -3.938123473372077e-08,
+          "ci_low": 5.962707583771208e-05,
+          "n_families_improved": 3,
+          "all_primary_banks_positive": true,
+          "meets": false
+        },
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": 5.0345046887478885e-05,
+          "ci_low": 7.204678835361155e-05,
+          "n_families_improved": 3,
+          "all_primary_banks_positive": true,
+          "meets": false
+        }
+      }
+    },
+    "UNRESOLVED_IMAGE|L224": {
+      "material": false,
+      "detail": {
+        "TSVD": {
+          "median_relative_reduction": -4.387439566273718e-06,
+          "ci_low": -0.0001954299145962109,
+          "n_families_improved": 3,
+          "all_primary_banks_positive": false,
+          "meets": false
+        },
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": -5.234498224103519e-06,
+          "ci_low": -2.528308618058968e-05,
+          "n_families_improved": 3,
+          "all_primary_banks_positive": false,
+          "meets": false
+        }
+      }
+    },
+    "UNRESOLVED_IMAGE|L448": {
+      "material": false,
+      "detail": {
+        "TSVD": {
+          "median_relative_reduction": -2.722032846534051e-05,
+          "ci_low": -1.3670654516544439e-05,
+          "n_families_improved": 3,
+          "all_primary_banks_positive": false,
+          "meets": false
+        },
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": -2.7012024786678376e-06,
+          "ci_low": -5.705086536894382e-06,
+          "n_families_improved": 3,
+          "all_primary_banks_positive": false,
+          "meets": false
+        }
+      }
+    },
+    "TOTAL_FLUX|L1056": {
+      "material": false,
+      "detail": {
+        "TSVD": {
+          "median_relative_reduction": -1.248481397281888e-09,
+          "ci_low": 0.00021250183547681352,
+          "n_families_improved": 3,
+          "all_primary_banks_positive": false,
+          "meets": false
+        },
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": -1.0631840735056687e-05,
+          "ci_low": -0.00011202673931046944,
+          "n_families_improved": 2,
+          "all_primary_banks_positive": false,
+          "meets": false
+        }
+      }
+    },
+    "TOTAL_FLUX|L224": {
+      "material": false,
+      "detail": {
+        "TSVD": {
+          "median_relative_reduction": -0.004567432079169887,
+          "ci_low": -0.008178815405010703,
+          "n_families_improved": 1,
+          "all_primary_banks_positive": false,
+          "meets": false
+        },
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": -0.0010170342974370077,
+          "ci_low": -0.0018694676269074807,
+          "n_families_improved": 0,
+          "all_primary_banks_positive": false,
+          "meets": false
+        }
+      }
+    },
+    "TOTAL_FLUX|L448": {
+      "material": false,
+      "detail": {
+        "TSVD": {
+          "median_relative_reduction": -0.0003070735399694116,
+          "ci_low": -0.0005134320292843928,
+          "n_families_improved": 3,
+          "all_primary_banks_positive": false,
+          "meets": false
+        },
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": -0.000146810032974196,
+          "ci_low": -0.0003811833517274761,
+          "n_families_improved": 1,
+          "all_primary_banks_positive": false,
+          "meets": false
+        }
+      }
+    }
+  },
+  "epsilon_reachable_fraction_of_age_cells": 0.30031876138433516,
+  "gates": {
+    "R1L_2RA_G1_no_new_truths": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "banks regenerated from frozen seeds only"
+    },
+    "R1L_2RA_G2_truth_content_hashes_match": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "every regenerated truth hashes to the value stage 2 recorded, so these are the same objects"
+    },
+    "R1L_2RA_G3_secondary_bank_excluded": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "baseline_one_positive contributes no truth to any endpoint row"
+    },
+    "R1L_2RA_G4_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "R1L_2RA_G5_null_controls": {
+      "status": "PASS",
+      "measured": 2.4424906541753444e-15,
+      "threshold": 0.05
+    }
+  },
+  "summary": {
+    "PASS": 5,
+    "FAIL": 0,
+    "NOT_RUN": 0
+  }
+}
