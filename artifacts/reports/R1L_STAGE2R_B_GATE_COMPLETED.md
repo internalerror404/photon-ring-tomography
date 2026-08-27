@@ -127,21 +127,55 @@ passed.
 Verdict: **`R1L_STAGE2R_GATE_COMPLETION_PASS`**.
 Every pre-existing scientific cell is identical; only new diagnostic columns and new tables appear. The gate completion describes the experiment rather than altering it.
 
-## 7. Disposition
+## 7. Dispositions
 
-`R1L_STAGE2R_B_NO_MATERIAL_EFFECT`
+The machine token is `R1L_STAGE2R_B_NO_MATERIAL_EFFECT`. In prose that reads
+**`PREREGISTERED_PHYSICAL_SOURCE_MATERIALITY_NOT_MET`** — a bar not cleared, not
+an effect shown to be zero. The physical banks give positive central estimates
+on both estimators at the reference SNR; what fails is the preregistered
+materiality standard.
 
-At SNR₀ = 100, on the primary compact-support class `L1056`, with truths
-exactly represented in that class and a representation floor of zero, the
-resolved n = 0, 1, 2 operator materially reduces old-band structural
-reconstruction error relative to the direct image, on both registered estimators
-and on the non-negative physical banks alone.
+Six findings, recorded separately because they are six different things:
 
-It does **not** produce a stable contiguous structural interval: ΔL = 0 M
-against 8 M under either noise semantics. Those are complementary findings and
-the manuscript must carry both.
+**`R1L_STAGE2R_GATE_COMPLETION_REPRODUCTION_PASS`** — every pre-existing
+scientific cell is bitwise identical to `151229d`, with
+12 of 12 declared gates emitted and all
+passing. This is **not** an implementation defect. The tables did not move; what
+moved is which bank scope the disposition reads, and that was directed.
 
-The scope is a representation-matched, zero-floor best-case benchmark at one
-known Kerr geometry. It isolates inversion error from representation error under
-an exactly matched localized model class, and establishes nothing about
-arbitrary or realistic accretion-flow histories.
+**`R1L_STAGE2R_PHYSICAL_SOURCE_MATERIALITY_NOT_MET`** — at SNR₀ = 100 on
+the two non-negative banks, the resolved arm gives per-truth medians of 16.8%
+(TSVD) and 17.8% (ridge), both clearing the 10% bar with their own lower bounds
+above 5%. The cell-balanced means are 11.6% and 9.8% with lower bounds of 3.9%
+and 0.03%, below the 5% floor, and both fall to three of four families. The
+failure is on the mean estimand.
+
+**`R1L_STAGE2R_SIGNED_DIAGNOSTIC_MATERIAL_EFFECT`** — the signed constant-flux
+bank alone shows 35.8% and 39.9%, the largest of the three, and it was carrying
+the pooled all-banks result that earlier read as material. That is a linear
+inverse-problem result and may not be reported as a physical-source claim.
+
+**`R1L_STAGE2R_HIGH_SNR_PHYSICAL_VALIDATION_PASS`** — at the secondary
+SNR₀ = 1000, on the same non-negative banks, the resolved arm meets every
+materiality criterion on both estimators and all four families: medians 27.5%
+and 30.4%, mean lower bounds 21.0% and 23.7%. The unresolved arm is material on
+ridge but not TSVD, so it fails the both-estimators requirement. This is
+secondary; a result at tenfold higher normalized SNR does not substitute for the
+registered point.
+
+**`R1L_STAGE2R_STABLE_SPAN_NEGATIVE_RESULT`** — ΔL = 0 M against 8 M under both
+noise semantics at both SNRs. With the representation floor at zero, nothing
+blocked the criterion except the reconstruction itself, and the stricter joint
+statistic agrees with the averaged one.
+
+**`R1L_STAGE2R_SCIENTIFIC_STOP`** — `sealed_main_authorized = false`. Every
+sealed commitment is preserved unscored. No source bank, endpoint, estimator,
+SNR or materiality threshold may be redesigned within Paper I, and the sealed
+main, order leakage, geometry mismatch, VLBI and ML are all unauthorized.
+
+## 8. Scope
+
+A representation-matched, zero-floor best-case benchmark at one known Kerr
+geometry. It isolates inversion error from representation error under an exactly
+matched localized model class and establishes nothing about arbitrary or
+realistic accretion-flow histories.

@@ -1,0 +1,305 @@
+{
+  "schema": "phrt-record-amendment/1",
+  "id": "R1L_STAGE2R_SCIENTIFIC_DISPOSITION_AMENDMENT_014",
+  "created_utc": "2026-08-27T19:47:12Z",
+  "ruling": "REVIEWER_RULING_R1L_GATE_COMPLETION_014",
+  "kind": "RECORD_ONLY",
+  "recomputation": "none",
+  "accepted_commit": "4cb9895a14cc5e870a77fd3a98a79ee82055c2ef",
+  "machine_token_preserved": "R1L_STAGE2R_B_NO_MATERIAL_EFFECT",
+  "machine_token_prose": "PREREGISTERED_PHYSICAL_SOURCE_MATERIALITY_NOT_MET",
+  "machine_token_is_not": "proof of an exactly zero effect. The physical banks show a positive central estimate at the reference SNR; what fails is the preregistered materiality bar, and the bar is what the token reports",
+  "sealed_main_authorized": false,
+  "dispositions": {
+    "R1L_STAGE2R_GATE_COMPLETION_REPRODUCTION_PASS": {
+      "finding": "the gate-completed rerun reproduced every pre-existing scientific cell bitwise against 151229d",
+      "gates": "12 of 12 PASS, coverage complete",
+      "verdict": "R1L_STAGE2R_GATE_COMPLETION_PASS",
+      "explicitly_not_an_implementation_defect": true,
+      "why": "the tables did not move. What moved was which bank scope the disposition reads, and that was directed by the ruling that required the physical claim to survive on the non-negative banks alone"
+    },
+    "R1L_STAGE2R_PHYSICAL_SOURCE_MATERIALITY_NOT_MET": {
+      "class": "L1056",
+      "snr0": 100.0,
+      "arm": "RESOLVED_PHYSICAL",
+      "scope": "physical_banks_only",
+      "measured": {
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": 0.17817659401176708,
+          "median_ci_low": 0.09570682316435282,
+          "cell_balanced_mean": 0.09774142603673076,
+          "mean_ci_low": 0.00027155600475331395,
+          "n_families_improved": 3,
+          "meets_materiality": false
+        },
+        "TSVD": {
+          "median_relative_reduction": 0.16819950229342667,
+          "median_ci_low": 0.09894080885580268,
+          "cell_balanced_mean": 0.11634226275435527,
+          "mean_ci_low": 0.0390712225778172,
+          "n_families_improved": 3,
+          "meets_materiality": false
+        }
+      },
+      "why_not_met": "both cell-balanced-mean lower bounds fall below the 5 percent floor and both drop to three of four families. The per-truth medians, 16.8 and 17.8 percent, clear the 10 percent bar and their own lower bounds clear 5 percent, so the failure is on the mean estimand rather than on the median",
+      "not_a_null_result": "the central estimates are positive on both estimators. This is a bar not cleared, not an effect shown to be zero"
+    },
+    "R1L_STAGE2R_SIGNED_DIAGNOSTIC_MATERIAL_EFFECT": {
+      "bank": "constant_flux_structural",
+      "role": "SIGNED_CONSTANT_FLUX_STRUCTURAL_DIAGNOSTIC",
+      "measured": {
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": 0.3986607228332125,
+          "median_ci_low": 0.22478364373323775,
+          "cell_balanced_mean": 0.3399410504744853,
+          "mean_ci_low": 0.2767888678574702,
+          "n_families_improved": 4,
+          "meets_materiality": true
+        },
+        "TSVD": {
+          "median_relative_reduction": 0.358040849109551,
+          "median_ci_low": 0.2132306139063035,
+          "cell_balanced_mean": 0.3124359137330414,
+          "mean_ci_low": 0.24942944890861854,
+          "n_families_improved": 4,
+          "meets_materiality": true
+        }
+      },
+      "finding": "the signed diagnostic bank alone shows the largest effect of the three, and it was carrying the pooled all-banks result that earlier read as material",
+      "status": "a linear inverse-problem result. It may not be reported as a physical-source claim, because the bank is not everywhere a non-negative emissivity field"
+    },
+    "R1L_STAGE2R_HIGH_SNR_PHYSICAL_VALIDATION_PASS": {
+      "class": "L1056",
+      "snr0": 1000.0,
+      "scope": "physical_banks_only",
+      "resolved": {
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": 0.30381252916003704,
+          "median_ci_low": 0.22531047528159662,
+          "cell_balanced_mean": 0.2859320115191307,
+          "mean_ci_low": 0.236841886156555,
+          "n_families_improved": 4,
+          "meets_materiality": true
+        },
+        "TSVD": {
+          "median_relative_reduction": 0.27526277929159104,
+          "median_ci_low": 0.19767933674554541,
+          "cell_balanced_mean": 0.2587740663308036,
+          "mean_ci_low": 0.2099559665456445,
+          "n_families_improved": 4,
+          "meets_materiality": true
+        }
+      },
+      "unresolved": {
+        "RIDGE_IDENTITY": {
+          "median_relative_reduction": 0.11633838887072054,
+          "median_ci_low": 0.030967996842006806,
+          "cell_balanced_mean": 0.10401099007262594,
+          "mean_ci_low": 0.06669770097199172,
+          "n_families_improved": 3,
+          "meets_materiality": true
+        },
+        "TSVD": {
+          "median_relative_reduction": 0.08530850154633118,
+          "median_ci_low": 0.019084165431847853,
+          "cell_balanced_mean": 0.07780764913099505,
+          "mean_ci_low": 0.04230003388930699,
+          "n_families_improved": 3,
+          "meets_materiality": false
+        }
+      },
+      "finding": "on the non-negative physical banks at the secondary SNR, the resolved arm meets every materiality criterion on both estimators and all four families",
+      "unresolved_status": "material on ridge and not on TSVD, so it fails the both-estimators requirement",
+      "status": "secondary. The registered point is SNR0 = 100 and a result at tenfold higher normalized SNR does not substitute for it"
+    },
+    "R1L_STAGE2R_STABLE_SPAN_NEGATIVE_RESULT": {
+      "measured": [
+        {
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "L_direct_M": 0.0,
+          "L_arm_M": 0.0,
+          "delta_L_stable_structure_M": 0.0,
+          "noise_semantics": "truth_mean_noise",
+          "meets_threshold": false
+        },
+        {
+          "arm": "UNRESOLVED_IMAGE",
+          "snr0": 100.0,
+          "L_direct_M": 0.0,
+          "L_arm_M": 0.0,
+          "delta_L_stable_structure_M": 0.0,
+          "noise_semantics": "truth_mean_noise",
+          "meets_threshold": false
+        },
+        {
+          "arm": "TOTAL_FLUX",
+          "snr0": 100.0,
+          "L_direct_M": 0.0,
+          "L_arm_M": 0.0,
+          "delta_L_stable_structure_M": 0.0,
+          "noise_semantics": "truth_mean_noise",
+          "meets_threshold": false
+        },
+        {
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 1000.0,
+          "L_direct_M": 0.0,
+          "L_arm_M": 0.0,
+          "delta_L_stable_structure_M": 0.0,
+          "noise_semantics": "truth_mean_noise",
+          "meets_threshold": false
+        },
+        {
+          "arm": "UNRESOLVED_IMAGE",
+          "snr0": 1000.0,
+          "L_direct_M": 0.0,
+          "L_arm_M": 0.0,
+          "delta_L_stable_structure_M": 0.0,
+          "noise_semantics": "truth_mean_noise",
+          "meets_threshold": false
+        },
+        {
+          "arm": "TOTAL_FLUX",
+          "snr0": 1000.0,
+          "L_direct_M": 0.0,
+          "L_arm_M": 0.0,
+          "delta_L_stable_structure_M": 0.0,
+          "noise_semantics": "truth_mean_noise",
+          "meets_threshold": false
+        },
+        {
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "L_direct_M": 0.0,
+          "L_arm_M": 0.0,
+          "delta_L_stable_structure_M": 0.0,
+          "noise_semantics": "joint_truth_noise",
+          "meets_threshold": false
+        },
+        {
+          "arm": "UNRESOLVED_IMAGE",
+          "snr0": 100.0,
+          "L_direct_M": 0.0,
+          "L_arm_M": 0.0,
+          "delta_L_stable_structure_M": 0.0,
+          "noise_semantics": "joint_truth_noise",
+          "meets_threshold": false
+        },
+        {
+          "arm": "TOTAL_FLUX",
+          "snr0": 100.0,
+          "L_direct_M": 0.0,
+          "L_arm_M": 0.0,
+          "delta_L_stable_structure_M": 0.0,
+          "noise_semantics": "joint_truth_noise",
+          "meets_threshold": false
+        },
+        {
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 1000.0,
+          "L_direct_M": 0.0,
+          "L_arm_M": 0.0,
+          "delta_L_stable_structure_M": 0.0,
+          "noise_semantics": "joint_truth_noise",
+          "meets_threshold": false
+        },
+        {
+          "arm": "UNRESOLVED_IMAGE",
+          "snr0": 1000.0,
+          "L_direct_M": 0.0,
+          "L_arm_M": 0.0,
+          "delta_L_stable_structure_M": 0.0,
+          "noise_semantics": "joint_truth_noise",
+          "meets_threshold": false
+        },
+        {
+          "arm": "TOTAL_FLUX",
+          "snr0": 1000.0,
+          "L_direct_M": 0.0,
+          "L_arm_M": 0.0,
+          "delta_L_stable_structure_M": 0.0,
+          "noise_semantics": "joint_truth_noise",
+          "meets_threshold": false
+        }
+      ],
+      "finding": "every stable structural span is zero under both noise semantics at both SNRs, so delta L is 0 M against the 8 M threshold",
+      "robustness": "the joint truth-and-noise statistic is the stricter of the two and agrees with the averaged one, so the negative cannot be an artefact of averaging over noise first",
+      "is_a_real_negative": "yes. The representation floor is zero, so nothing blocked the criterion except the reconstruction itself"
+    },
+    "R1L_STAGE2R_SCIENTIFIC_STOP": {
+      "finding": "the reconstruction campaign stops here",
+      "sealed_main_authorized": false,
+      "not_authorized": [
+        "sealed main",
+        "order leakage",
+        "geometry mismatch",
+        "VLBI",
+        "ML"
+      ],
+      "no_redesign_within_paper_i": [
+        "source bank",
+        "endpoint",
+        "estimator",
+        "SNR",
+        "materiality threshold"
+      ],
+      "next": "manuscript reframing, shortening and submission preparation from the canonical stage-1 and stage-2R records"
+    }
+  },
+  "sealed_commitments_preserved_unscored": [
+    {
+      "id": "R1L_SEALED_ANALYTIC_STRESS_COMMITMENT_UNSCORED",
+      "path": "artifacts/configs/R1L_SEALED_ANALYTIC_STRESS_COMMITMENT_UNSCORED.json",
+      "sha256": "5a4483efaa76d68ddf97eed98ca7d84c61ac3ad4fa5f925a9f5594000983f1c6",
+      "scored": false
+    },
+    {
+      "id": "R1L_SEALED_MAIN_COMMITMENT",
+      "path": "artifacts/configs/R1L_SEALED_MAIN_COMMITMENT.json",
+      "sha256": "770e72016c11abb4afcb110cef8669f3fe9d9c9ef0e8f1bf26ca426f07f75d07",
+      "scored": false,
+      "note": "the original document, preserved byte for byte"
+    }
+  ],
+  "report_correction_required": {
+    "file": "artifacts/reports/R1L_STAGE2R_B_GATE_COMPLETED.md",
+    "section": 7,
+    "defect": "section 7 was written before the physical-bank scope carried the disposition and still claimed a material reduction at the reference SNR",
+    "corrected_to": "materiality is not met on the physical banks at SNR0 = 100; it is met at SNR0 = 1000 as a secondary result; the all-banks effect is carried by the signed diagnostic bank"
+  },
+  "instructions_discharged": [
+    "1 accept 4cb9895",
+    "2 record the six dispositions separately",
+    "3 the clean reproduction is not an implementation defect",
+    "4 correct section 7 of the gate-completed report",
+    "5 preserve the machine token and explain it in prose",
+    "6 sealed_main_authorized = false",
+    "7 preserve every sealed commitment unscored"
+  ],
+  "attestation": {
+    "available": true,
+    "execution_commit": "4cb9895a14cc5e870a77fd3a98a79ee82055c2ef",
+    "head_tree_sha": "9aff653480014a532efe31305b8f918d2e80fbe9",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/register_r1l_stage2r_amendment_014.py\n",
+    "porcelain_registered_sha256": "413f07dc0a4e284132764cd030ba7abe9f25aad9b941ca291b3f9c9cfae742e9",
+    "porcelain_whole_tree_sha256": "413f07dc0a4e284132764cd030ba7abe9f25aad9b941ca291b3f9c9cfae742e9",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}

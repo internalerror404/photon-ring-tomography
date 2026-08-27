@@ -1,7 +1,7 @@
 {
   "schema": "phrt-artifact-manifest/1",
   "experiment_id": "R1L_STAGE_2R_B_GATE_COMPLETED",
-  "created_utc": "2026-08-27T18:47:07Z",
+  "created_utc": "2026-08-27T19:47:38Z",
   "stop_token": "R1L_STAGE2R_B_NO_MATERIAL_EFFECT",
   "gate_coverage": {
     "declared": [
@@ -82,8 +82,8 @@
   },
   "report_assembly_attestation": {
     "available": true,
-    "execution_commit": "36f4be5060fa9c26bb13a9dc23ec4c0603a9176a",
-    "head_tree_sha": "8e2aa5a1f952c3ff3a85d9d0e527de0d1d2a81f3",
+    "execution_commit": "4cb9895a14cc5e870a77fd3a98a79ee82055c2ef",
+    "head_tree_sha": "9aff653480014a532efe31305b8f918d2e80fbe9",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -92,13 +92,13 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": " M scripts/compare_r1l_2rb_bitwise.py\n",
-    "porcelain_registered_sha256": "942e70fc1597b916475428ff6169be3932ec89c707027a59e6e236cb3a4b6cdc",
-    "porcelain_whole_tree_sha256": "f1d51e259c6812b3c029cc53e1e91d8124ac9f08c7d35a34c565a8e9f3ae2625",
+    "porcelain_registered": " M scripts/build_r1l_2rb_gate_completion_report.py\n?? artifacts/configs/R1L_STAGE2R_SCIENTIFIC_DISPOSITION_AMENDMENT_014.json\n?? scripts/register_r1l_stage2r_amendment_014.py\n",
+    "porcelain_registered_sha256": "65405c1942582c2e709aa83db33b3eb0b3e16cbd46376a4865af46ca55b629ff",
+    "porcelain_whole_tree_sha256": "d04c2ea0b27dde6d3f1e745f0060156381bfeacd39f5dfe7d70ba09ed0ddd4a4",
     "n_tracked_changes": 1,
-    "n_untracked": 0,
+    "n_untracked": 2,
     "tracked_clean": false,
-    "untracked_clean": true,
+    "untracked_clean": false,
     "clean": false,
     "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
     "files": [
@@ -136,6 +136,6 @@
     "artifacts/tables/r1l_2rb_stable_spans.parquet": "f59f900a73dafbe1102e8d0891aea38c4835a8cdfe5d94f3c78ff44bced9037f"
   },
   "outputs": {
-    "artifacts/reports/R1L_STAGE2R_B_GATE_COMPLETED.md": "330c474c80ffcdb1151690f1269dfc839c323d962897196021637ce2539ef616"
+    "artifacts/reports/R1L_STAGE2R_B_GATE_COMPLETED.md": "0004cbc29faba73c56213c44b14cb5c5e1a8aa7887a76a2912f59639b3cd5f59"
   }
 }
