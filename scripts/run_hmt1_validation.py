@@ -206,6 +206,7 @@ def main() -> int:
           f"{time.time() - t0:.0f}s")
 
     bank_rows, sel_rows, score_rows, bgerr_rows, joint_rows = [], [], [], [], []
+    curve_rows = []
     grids = {"TSVD": [10 ** (-k / 2) for k in range(15)],
              "RIDGE_IDENTITY": [10 ** (-k / 2) for k in range(21)]}
 
@@ -264,7 +265,8 @@ def main() -> int:
                  span=span, seeds=seeds, worst=worst, numerics=numerics, lim=lim,
                  commitments_ok=commitments_ok, bank_rows=bank_rows,
                  sel_rows=sel_rows, score_rows=score_rows, bgerr_rows=bgerr_rows,
-                 joint_rows=joint_rows, n_draws=n_draws, keep=keep, basis=basis)
+                 joint_rows=joint_rows, curve_rows=curve_rows,
+                 n_draws=n_draws, keep=keep, basis=basis)
     from run_hmt1_score import score_and_finish
     return score_and_finish(state)
 

@@ -26,6 +26,56 @@ from phrt.metrics.features import aggregate, extract, normalized_errors
 
 PARAM_KEYS = ("radial", "angular", "amplitude", "mode_m1", "mode_m2")
 
+# Which measured error component each declared family parameter turns into.
+# Widths (sigma_r, sigma_phi, width) are not in the list because the declared
+# extraction procedure does not recover them: it reports a peak position, a
+# peak value and two mode moduli, and nothing in it estimates a width.
+PARAM_COMPONENT = {
+    "r_h": "radial", "r_h1": "radial", "r_h2": "radial",
+    "r_h_start": "radial", "r_peak": "radial",
+    "phi_h_0": "angular", "phi_h1_0": "angular", "phi_h2_0": "angular",
+    "pattern_phase": "angular",
+    "A_h": "amplitude", "A_h1": "amplitude", "A_h2": "amplitude",
+    "A_peak": "amplitude",
+    "a_m1": "mode_m1", "a_m2": "mode_m2",
+    # event times are reported separately with their own interval, and are
+    # scalars rather than per-age curves, so they are not in the RMS
+    "t_birth": None, "tau_decay": None,
+    "sigma_r": None, "sigma_phi": None, "width": None,
+}
+
+
+def family_param_keys(fz, family):
+    """The family's declared parameters, as error components.
+
+    The freeze defines the aggregate as "root mean square over *the family's
+    declared* normalised parameter errors at age a", and declares a different
+    parameter list for each family. The first implementation ignored that and
+    used one global five-component list for every family.
+
+    That is not a cosmetic difference. m2_structural_mode is a pure cos(2 phi)
+    pattern, so its m = 1 mode amplitude is zero by construction -- measured at
+    1.6e-17, which is round-off, not signal. Dividing by "max over ages of
+    |a_m1|" then divides by round-off, and the m = 1 term reaches 1e16 while
+    every honest term is of order one. The only way an estimator can shrink a
+    term like that is to drive its reconstruction to zero, so the selection
+    rule was pinned at maximal regularization for 22 of 24 arm-estimator
+    cells and every arm collapsed onto the same near-null estimator. The null
+    endpoint that came out of that was an artefact of dividing by zero, and
+    gate G12 is what caught it.
+
+    Using each family's declared parameters removes the term rather than
+    reweighting it, which is what the freeze specified in the first place.
+    """
+    declared = fz["feature_families"][family]["parameters"]
+    keys, seen = [], set()
+    for p in declared:
+        c = PARAM_COMPONENT.get(p, None)
+        if c is not None and c not in seen:
+            seen.add(c)
+            keys.append(c)
+    return tuple(keys)
+
 
 def spectral_filter(kind, s, scale, hyper):
     sc = s * scale
@@ -101,10 +151,19 @@ def score_and_finish(st) -> int:
     print(f"  backgrounds estimated, {time.time() - t0:.0f}s")
 
     # the background field expressed in each arm's whitened coefficients
+    # The oracle regime says "b supplied exactly", so what is removed there is
+    # the operator image of the true background and nothing else. Routing it
+    # through the same least-squares design fit as the estimated regime left a
+    # residual of 0.69 against a signal of 7.58 -- a 9% background error inside
+    # the regime whose whole job is to have none, which would have been read as
+    # the operator's limit rather than the fit's.
     proj = {a: {} for a in ops}
     for aname, op in ops.items():
         U, s, Vt = svd[aname]
         for k in keys:
+            if k[2] == "oracle_known":
+                proj[aname][k] = cache[aname][2][k]
+                continue
             bh = b_coef[k[2]][k]
             coef, *_ = np.linalg.lstsq(st["bdes"], bh, rcond=None)
             proj[aname][k] = U.T @ op.forward_analytic(
@@ -113,11 +172,13 @@ def score_and_finish(st) -> int:
                     t_min=float(gt.min()), t_max=float(gt.max())) @ _c)
     print(f"  background projections done, {time.time() - t0:.0f}s")
 
+    fkeys = {f: family_param_keys(st["fz"], f) for f in st["fams"]}
+
     def feature_error(k, xhat):
         recon = extract(D @ xhat, gt, ages, r_axis, phi_axis, half)
         errs = normalized_errors(truths[k]["features"], recon, st["r_span"],
                                  st["obs_span"])
-        return aggregate(errs, PARAM_KEYS), errs
+        return aggregate(errs, fkeys[k[0]]), errs
 
     # ---- selection ---------------------------------------------------------
     selected = {}
@@ -135,6 +196,14 @@ def score_and_finish(st) -> int:
                             e, _ = feature_error(k, xh)
                             tot.append(float(e[old_mask].mean()))
                     m = float(np.mean(tot))
+                    # Record the whole sweep, not only its argmin. A selection
+                    # pinned at an endpoint of its grid and a selection with a
+                    # real interior optimum produce the same single number, and
+                    # only the curve tells them apart.
+                    st["curve_rows"].append({
+                        "regime": regime, "arm": aname, "estimator": est,
+                        "snr0": st["snr_p"], "hyperparameter": hyper,
+                        "selection_error": m})
                     if best is None or m < best[1] - 1e-15:
                         best = (hyper, m)
                 selected[(regime, aname, est)] = best[0]
@@ -380,8 +449,20 @@ def finish(st, selected) -> int:
                             if missing or undeclared else "complete")))
     sub = {g.name: g.to_dict() for g in man.gates}
 
+    # The freeze defines HMT1_IMPLEMENTATION_DEFECT as "a gate failed, a limit
+    # was exceeded, or a commitment did not reproduce". The token above is
+    # selected from the science, and it was selected before any gate had been
+    # emitted, so a run whose gates failed could still report a scientific
+    # disposition. One did: the first full run failed two gates and reported
+    # HMT1_NO_MATERIAL_EFFECT. That is the worst way for this to break, because
+    # a null result is exactly what a broken run looks like from the outside.
+    failed_gates = sorted(n for n, v in sub.items() if v["status"] != "PASS")
+    if failed_gates:
+        token = "HMT1_IMPLEMENTATION_DEFECT"
+
     for name, rows in (("hmt1_source_banks", st["bank_rows"]),
                        ("hmt1_selection", st["sel_rows"]),
+                       ("hmt1_selection_curve", st["curve_rows"]),
                        ("hmt1_scores", st["score_rows"]),
                        ("hmt1_endpoint", end_rows),
                        ("hmt1_stable_feature_spans", span_rows),
@@ -392,7 +473,9 @@ def finish(st, selected) -> int:
             write_table(rows, name)
 
     doc = json.dumps({"experiment": "HMT1_VALIDATION", "run_id": st["run_id"],
-                      "stop_token": token, "gates": sub, "verdicts": verdicts,
+                      "stop_token": token, "failed_gates": failed_gates,
+                      "science_reading_withheld": bool(failed_gates),
+                      "gates": sub, "verdicts": verdicts,
                       "family_agreement_readings": {
                           "fraction_required": req_frac,
                           "count_required": req_count},

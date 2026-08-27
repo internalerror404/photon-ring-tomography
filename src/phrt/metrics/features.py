@@ -205,12 +205,13 @@ def generative_peak_error(traj, ages: np.ndarray, feats: dict,
     prefer one, and no reason to.
     """
     ages = np.asarray(ages, float)
-    gen_r, gen_phi, gen_a = [], [], []
+    gen_r, gen_phi, gen_a, cands = [], [], [], []
     for a in ages:
         tv = traj(float(a))
         gen_r.append(tv.get("r_h", tv.get("r_peak", np.nan)))
         gen_phi.append(tv.get("phi_h", tv.get("pattern_phase", np.nan)))
         gen_a.append(tv.get("A_h", tv.get("a_m1", tv.get("a_m2", 1.0))))
+        cands.append(tv.get("candidates"))
     gen_r = np.asarray(gen_r, float)
     gen_phi = np.asarray(gen_phi, float)
     gen_a = np.abs(np.asarray(gen_a, float))
@@ -226,9 +227,24 @@ def generative_peak_error(traj, ages: np.ndarray, feats: dict,
     d_phi = float(2.0 * np.pi / phi_axis.size)
     fold = 2.0 * np.pi / max(int(m_fold), 1)
 
-    er = np.abs(np.log(np.asarray(feats["r_h"], float)[live] / gen_r[live])) / d_logr
-    dphi = np.asarray(feats["phi_h"], float)[live] - gen_phi[live]
-    dphi = (dphi + 0.5 * fold) % fold - 0.5 * fold
-    ep = np.abs(dphi) / d_phi
-    return {"radial_cells": float(er.max()), "azimuthal_cells": float(ep.max()),
+    fr = np.asarray(feats["r_h"], float)
+    fp = np.asarray(feats["phi_h"], float)
+
+    def cells(idx, r_t, phi_t):
+        dp = (fp[idx] - phi_t + 0.5 * fold) % fold - 0.5 * fold
+        return abs(np.log(fr[idx] / r_t)) / d_logr, abs(dp) / d_phi
+
+    er, ep = [], []
+    for idx in np.flatnonzero(live):
+        opts = cands[idx] or [{"r_h": gen_r[idx], "phi_h": gen_phi[idx]}]
+        # A field with several features has no single peak position, so the
+        # comparison is against the nearest declared feature. With one feature
+        # this is that feature and the reading is unchanged; with several it
+        # asks whether the extractor found a feature that is really there
+        # rather than which of two near-equal ones it happened to pick.
+        best = min((cells(idx, c["r_h"], c["phi_h"]) for c in opts),
+                   key=lambda e: e[0] ** 2 + e[1] ** 2)
+        er.append(best[0])
+        ep.append(best[1])
+    return {"radial_cells": float(np.max(er)), "azimuthal_cells": float(np.max(ep)),
             "n_ages_scored": int(live.sum())}

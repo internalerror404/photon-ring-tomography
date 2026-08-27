@@ -315,6 +315,9 @@ def build(rng, family: str, spin: float, r_inner: float, r_outer: float,
         m = _interp_mean(mean_tab, r_axis, t_axis, r, t)
         return gain * (v - m)
 
+    if family == "two_hotspot_trajectories":
+        traj = _dominant_spot_trajectory(fp["spots"], fluctuation)
+
     diag = {"background_params": bp, "feature_params": fp,
             "positivity_scale": float(alpha),
             "target_contrast_amplitude": float(target),
@@ -331,6 +334,49 @@ def build(rng, family: str, spin: float, r_inner: float, r_outer: float,
                 np.abs(_azimuthal_mean_on_grid(dj, grid_r, grid_t)).max()),
             "family": family}
     return b, fluctuation, traj, dj, bg, diag
+
+
+def _dominant_spot_trajectory(spots, fluctuation):
+    """Which of two hotspots is *the* feature, decided from the field.
+
+    The honest answer is that when the two are close enough, nothing does --
+    and the label must say so rather than pick.
+
+    The first version answered with the larger drawn amplitude, which is not
+    the height a spot ends up with: the spots superpose, and the azimuthal mean
+    is removed at every radius and age, taking more from the broader one.
+    Evaluating the analytic fluctuation at each centre fixes that much. It is
+    not enough. On this bank the worst case has two spots 0.08 radial cells
+    apart at opposite azimuths whose peak heights differ by 1.5%, and the
+    broader one survives sampling onto a 16 x 32 grid better than the narrower
+    one. So the analytic field prefers one and the sampled field the other, and
+    a 16-azimuthal-cell disagreement is a coin landing the other way up, not an
+    extractor reading the wrong position.
+
+    A single peak position is simply not a well-defined summary of a
+    two-feature field. So the label carries *both* centres as candidates, and
+    G10b asks the question that does have an answer: is the extracted peak at
+    one of the features that are actually there, rather than somewhere no
+    feature is. That is still falsifiable -- a spurious peak between the spots,
+    or at the wrong radius, fails it -- and for the single-feature families
+    there is one candidate and nothing changes.
+
+    Everything here is generative: it reads the source model and never the
+    reconstruction or the sampled grid, so G10b stays a test of the extractor
+    rather than a comparison of the extractor with itself.
+    """
+    def traj(a):
+        t = np.array([-float(a)])
+        cands = []
+        for sp in spots:
+            phi = float(wrapped_angle(
+                np.array([sp["phi0"] + sp["omega"] * (-float(a))]))[0])
+            v = float(np.asarray(fluctuation(
+                np.array([sp["r"]]), np.array([phi]), t), dtype=float).ravel()[0])
+            cands.append({"r_h": sp["r"], "phi_h": phi, "A_h": v})
+        lead = max(cands, key=lambda c: c["A_h"])
+        return {**lead, "candidates": cands}
+    return traj
 
 
 def _azimuthal_mean_on_grid(values, grid_r, grid_t):

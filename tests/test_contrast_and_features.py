@@ -225,3 +225,30 @@ def test_generative_peak_error_skips_ages_where_the_feature_is_dead(grid):
     got = extract(dj, gt, ages, r, phi, 3.0)
     e = generative_peak_error(traj, ages, got, r, phi)
     assert 0 < e["n_ages_scored"] < ages.size
+
+
+def test_multi_candidate_reading_still_fails_on_a_spurious_peak(grid):
+    """Nearest-of-several must not become a free pass.
+
+    The two-hotspot label offers both centres as candidates, so the extractor
+    is not penalised for breaking a near-tie the other way. Displace *every*
+    candidate and the measure must still report the displacement -- otherwise
+    the reading would accept a peak sitting where no feature is.
+    """
+    r, phi, t, gr, gp, gt, ti = grid
+    _, _, traj, dj, _, _ = _build(grid, "two_hotspot_trajectories", 39)
+    ages = np.arange(0.0, 60.0 + 1e-9, 2.0)
+    got = extract(dj, gt, ages, r, phi, 3.0)
+    assert traj(0.0)["candidates"], "two-hotspot must offer both centres"
+    assert generative_peak_error(traj, ages, got, r, phi)["azimuthal_cells"] <= 1.0
+
+    d_phi = float(2.0 * np.pi / phi.size)
+
+    def displaced(a):
+        v = dict(traj(a))
+        v["candidates"] = [{**c, "phi_h": float(wrapped_angle(
+            np.array([c["phi_h"] + 5.0 * d_phi]))[0])} for c in v["candidates"]]
+        return v
+
+    e = generative_peak_error(displaced, ages, got, r, phi)
+    assert e["azimuthal_cells"] == pytest.approx(5.0, abs=0.6), e
