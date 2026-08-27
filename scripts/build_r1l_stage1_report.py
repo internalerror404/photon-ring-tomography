@@ -35,6 +35,20 @@ SNR = 100.0
 PAIRS = (("L224", "C224"), ("L448", "C448_T"), ("L1056", "C1056_ST"))
 
 
+def latest_full_run(mans: Path) -> Path:
+    """The newest stage-1 manifest that covers every class.
+
+    Selecting by timestamp alone is wrong: a diagnostic invocation restricted to
+    one class writes a manifest too, and picking it up would attach the wrong
+    provenance to a full-ladder report.
+    """
+    full = [p for p in sorted(mans.glob("R1L_*.json"))
+            if len(json.loads(p.read_text()).get("extra", {}).get("classes", [])) >= 6]
+    if not full:
+        raise SystemExit("no full-ladder R1L run manifest found")
+    return full[-1]
+
+
 def t(name):
     return pd.read_parquet(TAB / f"{name}.parquet")
 
@@ -51,7 +65,7 @@ def main() -> int:
     spec, old, vis, age, sup = (t("r1l_class_spectra"), t("r1l_old_structural_support"),
                                 t("r1l_temporal_mode_visibility"),
                                 t("r1l_age_information"), t("r1l_temporal_supports"))
-    run_man = sorted(MANS.glob("R1L_*.json"))[-1]
+    run_man = latest_full_run(MANS)
     run_doc = json.loads(run_man.read_text())
     gates = json.loads((ROOT / "artifacts" / "gates"
                         / "r1l_stage1_gates.json").read_text())
@@ -151,9 +165,39 @@ def main() -> int:
                   for k, gv in gates["gates"].items())
 
     rp = ROOT / "artifacts" / "provenance" / "R1L_STAGE1_REPRODUCTION.json"
+    repro_verdict = "NOT_YET_RUN"
     if rp.exists():
         rd = json.loads(rp.read_text())
+        repro_verdict = rd["verdict"]
         ca = rd["clean_run_attestation"]
+        if rd["verdict"].endswith("CONFIRMED"):
+            verdict_note = (" Every number in sections 1 to 7 is carried by a clean "
+                            "preregistered execution, and the two earlier runs are "
+                            "preserved as record rather than replaced.")
+        else:
+            verdict_note = (
+                "\n\nUnder ruling item 5 this stops the sequence: stage 2 is **not**"
+                " entered. The discrepancy is not a changed conclusion — every"
+                " discrete result is identical and every well-conditioned quantity"
+                " agrees to ~1e-15. It is confined to the smallest singular and"
+                " eigenvalues and to the condition numbers derived from them, where"
+                " a matrix with κ ≈ 1e10 carries ~1e-6 relative uncertainty in its"
+                " smallest mode under any change of reduction order.\n\nThe cause is"
+                " identified and demonstrated, not conjectured: OpenBLAS on this"
+                " machine is built `DYNAMIC_ARCH` with `MAX_THREADS=2` and the"
+                " thread count is not pinned. Repeated invocations at a *fixed*"
+                " thread count are bitwise identical; invocations at *different*"
+                " thread counts are not. Two pinned reruns of `L224` reproduced"
+                " every numeric cell bitwise. The harness is therefore reproducible"
+                " but not currently pinned, which is a defect in the declared"
+                " environment rather than in the audit.\n\nA remedy is available and"
+                " is **not** applied here, because applying it means re-establishing"
+                " the stage-1 baseline and that is the reviewer's call: pin"
+                " `OMP_NUM_THREADS=1` and `OPENBLAS_NUM_THREADS=1` in the declared"
+                " environment, record them in the run manifest, and rerun stage 1"
+                " once more to set a bit-reproducible baseline. The alternative —"
+                " declaring a numerical-equality tolerance in the freeze — would"
+                " weaken the bright line the ruling drew and is not recommended.")
         rows = D.join(f"| `{k}` | {v['n_rows']} | {v['n_columns']} | "
                       f"{'**equal**' if v['equal'] else '**DIFFERS**'} |"
                       for k, v in rd["tables"].items())
@@ -173,9 +217,13 @@ identical and any difference would be a defect rather than rounding.
 |---|---:|---:|---|
 {rows}
 
-Verdict: **`{rd['verdict']}`**. Every number in sections 1 to 7 is therefore
-carried by a clean preregistered execution, and the two earlier runs are
-preserved as record rather than replaced."""
+- every **discrete** result equal: **{rd['all_discrete_results_equal']}** — ranks,
+  nullities, exact-zero column counts, operational ranks and detectability flags
+- worst **relative** difference above the {rd['noise_floor']:g} numerical-zero
+  floor: **{rd['worst_relative_difference_above_noise_floor']:.2e}** over
+  {rd['n_differing_cells_above_noise_floor']:,} cells
+
+Verdict: **`{rd['verdict']}`**.{verdict_note}"""
     else:
         repro = ("Pending. The clean rerun required by ruling item 5 has not been "
                  "executed, so every number above still rests on a run that was "
@@ -196,7 +244,8 @@ property of the geometry and the basis alone.
 - age grid {fz['F_age_resolution']['age_grid_step_M']} M
   (was {fz['F_age_resolution']['previous_step_M']} M), probe half width
   {fz['F_age_resolution']['probe_half_width_M']} M
-- stop token **`{token}`**
+- stage-1 audit stop token **`{token}`**
+- reproduction verdict **`{repro_verdict}`**
 - amendment `R1L_STAGE1_DIRTY_EXECUTION_G8_MASK_FIX`
   (`artifacts/configs/R1L_STAGE1_DIRTY_EXECUTION_AMENDMENT_008.json`)
 

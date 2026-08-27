@@ -30,7 +30,22 @@ PRESERVED = ROOT / "artifacts" / "preserved" / "r1l_stage1_dirty_run"
 TAB = ROOT / "artifacts" / "tables"
 OUT = ROOT / "artifacts" / "provenance" / "R1L_STAGE1_REPRODUCTION.json"
 DIRTY_RUN = "R1L_20260827T044757Z_2ba66f02"
+NUMERICAL_ZERO = 1e-12          # the campaign's standard "is this zero" tolerance
 KEYS = ["source_class", "arm", "temporal_mode", "retarded_age", "parent", "child"]
+
+
+def latest_full_run(mans: Path) -> Path:
+    """The newest stage-1 manifest that covers every class.
+
+    Selecting by timestamp alone is wrong: a diagnostic invocation restricted to
+    one class writes a manifest too, and picking it up would attach the wrong
+    provenance to a full-ladder comparison.
+    """
+    full = [p for p in sorted(mans.glob("R1L_*.json"))
+            if len(json.loads(p.read_text()).get("extra", {}).get("classes", [])) >= 6]
+    if not full:
+        raise SystemExit("no full-ladder R1L run manifest found")
+    return full[-1]
 
 
 def canonical(df: pd.DataFrame) -> pd.DataFrame:
@@ -39,27 +54,74 @@ def canonical(df: pd.DataFrame) -> pd.DataFrame:
     return d[sorted(d.columns)]
 
 
+def is_discrete(x: pd.Series) -> bool:
+    """A rank, a count, a nullity or a flag: any of these differing is fatal.
+
+    Split out from the continuous spectral quantities because the two carry
+    completely different evidential weight. A rank that moved means the audit
+    reached a different conclusion. A singular value that moved in its last bits
+    means the reduction order changed.
+    """
+    return (pd.api.types.is_bool_dtype(x) or pd.api.types.is_integer_dtype(x)
+            or not pd.api.types.is_numeric_dtype(x))
+
+
 def compare(a: pd.DataFrame, b: pd.DataFrame) -> dict:
     a, b = canonical(a), canonical(b)
     if a.shape != b.shape:
         return {"equal": False, "reason": f"shape {a.shape} vs {b.shape}"}
     if list(a.columns) != list(b.columns):
         return {"equal": False, "reason": "column sets differ"}
-    diffs = {}
+    diffs, worst_rel, n_disc, n_cont = {}, 0.0, 0, 0
+    discrete_differ = []
     for c in a.columns:
         x, y = a[c], b[c]
+        disc = is_discrete(x)
+        n_disc += disc
+        n_cont += not disc
         if pd.api.types.is_numeric_dtype(x) and pd.api.types.is_numeric_dtype(y):
-            xv, yv = x.to_numpy(), y.to_numpy()
-            bad = ~((xv == yv) | (pd.isna(xv) & pd.isna(yv)))
+            xv = x.to_numpy(dtype=float)
+            yv = y.to_numpy(dtype=float)
+            bad = ~((xv == yv) | (np.isnan(xv) & np.isnan(yv)))
             if bad.any():
-                i = int(np.argmax(bad))
-                diffs[c] = {"n_differing": int(bad.sum()), "first_row": i,
-                            "preserved": float(xv[i]), "rerun": float(yv[i]),
+                scale = np.maximum(np.abs(xv), np.abs(yv))
+                rel = np.where(scale > 0, np.abs(xv - yv) / np.maximum(scale, 1e-300),
+                               0.0)
+                # A relative difference between two numerically-zero
+                # quantities is not a discrepancy, it is a ratio of noise. Null
+                # singular values and the class-nesting residual are exactly
+                # that: unfloored they dominate the summary with ratios near one
+                # while the quantities themselves are 1e-37 and 1e-107. The
+                # floor is the campaign's existing numerical-zero tolerance,
+                # not a value chosen after seeing these numbers.
+                floor = NUMERICAL_ZERO
+                sig = bad & (scale > floor)
+                i = int(np.argmax(np.where(sig if sig.any() else bad, rel, -1.0)))
+                srel = float(rel[sig].max()) if sig.any() else 0.0
+                worst_rel = max(worst_rel, srel)
+                diffs[c] = {"discrete": bool(disc),
+                            "n_differing": int(bad.sum()),
+                            "n_differing_above_noise_floor": int(sig.sum()),
+                            "noise_floor": floor,
+                            "worst_relative_difference_above_floor": srel,
+                            "worst_relative_difference_unfloored":
+                                float(rel[bad].max()),
+                            "at_row": i, "preserved": float(xv[i]),
+                            "rerun": float(yv[i]),
                             "abs_diff": float(abs(xv[i] - yv[i]))}
+                if disc:
+                    discrete_differ.append(c)
         elif not x.equals(y):
-            diffs[c] = {"n_differing": int((x != y).sum()), "kind": "non-numeric"}
-    return {"equal": not diffs, "n_rows": int(len(a)),
-            "n_columns": int(len(a.columns)), "differing_columns": diffs}
+            diffs[c] = {"discrete": True, "n_differing": int((x != y).sum()),
+                        "kind": "non-numeric"}
+            discrete_differ.append(c)
+    return {"equal": not diffs,
+            "discrete_results_equal": not discrete_differ,
+            "differing_discrete_columns": discrete_differ,
+            "worst_relative_difference": worst_rel,
+            "n_rows": int(len(a)), "n_columns": int(len(a.columns)),
+            "n_discrete_columns": int(n_disc), "n_continuous_columns": int(n_cont),
+            "differing_columns": diffs}
 
 
 def main() -> int:
@@ -81,14 +143,19 @@ def main() -> int:
         results[name] = r
         all_equal &= r["equal"]
 
-    mans = sorted((ROOT / "artifacts" / "manifests").glob("R1L_*.json"))
-    clean = json.loads(mans[-1].read_text())
+    clean = json.loads(latest_full_run(ROOT / "artifacts" / "manifests").read_text())
     a = clean["attestation"]
     clean_tree = bool(a.get("clean")) and bool(a.get("preregistered"))
     gates = json.loads((ROOT / "artifacts" / "gates"
                         / "r1l_stage1_gates.json").read_text())
     failing = [k for k, v in gates["gates"].items() if v["status"] != "PASS"]
 
+    discrete_equal = all(r.get("discrete_results_equal", False) for r in results.values())
+    worst_rel = max((r.get("worst_relative_difference", 0.0)
+                     for r in results.values()), default=0.0)
+    n_above = sum(d.get("n_differing_above_noise_floor", 0)
+                  for r in results.values()
+                  for d in r.get("differing_columns", {}).values())
     verdict = ("R1L_STAGE1_CLEAN_REPRODUCTION_CONFIRMED"
                if all_equal and clean_tree and not failing
                else "R1L_STAGE1_REPRODUCTION_DISCREPANCY_STOP")
@@ -109,6 +176,25 @@ def main() -> int:
         "code_edited_between_runs": False,
         "gates_failing_on_clean_run": failing,
         "all_canonical_tables_equal": bool(all_equal),
+        "all_discrete_results_equal": bool(discrete_equal),
+        "worst_relative_difference_above_noise_floor": worst_rel,
+        "n_differing_cells_above_noise_floor": int(n_above),
+        "noise_floor": NUMERICAL_ZERO,
+        "noise_floor_rule": f"a cell counts toward the relative-difference "
+                            f"summary only if max(|preserved|, |rerun|) exceeds "
+                            f"{NUMERICAL_ZERO:g}, the campaign's existing "
+                            f"numerical-zero tolerance. Cells below it are still "
+                            f"compared and recorded, but a ratio of two "
+                            f"numerically-zero quantities is not a discrepancy. "
+                            f"The floor was not chosen after seeing these numbers",
+        "discrete_vs_continuous": "ranks, nullities, exact-zero counts, "
+                                  "operational ranks and detectability flags are "
+                                  "discrete; singular values, condition numbers "
+                                  "and information volumes are continuous. A "
+                                  "discrete difference means the audit reached a "
+                                  "different conclusion; a continuous one at "
+                                  "last-bit magnitude means the reduction order "
+                                  "changed",
         "n_tables_compared": len(tables),
         "tables": results,
         "verdict": verdict,
@@ -120,6 +206,9 @@ def main() -> int:
         n = r.get("n_rows", "?")
         print(f"  {'EQUAL' if r['equal'] else 'DIFFER'}  {name:34s} rows {n}"
               + ("" if r["equal"] else f"  {r.get('reason', r.get('differing_columns'))}"))
+    print(f"  discrete results equal: {discrete_equal}   "
+          f"worst relative difference above floor: {worst_rel:.3e}   "
+          f"cells above floor: {n_above}")
     print(f"  clean tree: {clean_tree}   gates failing: {failing or 'none'}")
     print(f"  verdict: {verdict}")
     print(f"total {time.time() - t0:.0f}s")
