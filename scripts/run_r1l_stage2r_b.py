@@ -54,6 +54,13 @@ CLASSDEF = {"L1056": (6, 11, 16), "L448": (4, 7, 16), "L224": (4, 7, 8)}
 N_T = 40
 TARGETS = {"constant_flux_structural": None,
            "structure_balanced_050": 0.50, "structure_balanced_080": 0.80}
+# Reclassified by R1L_STAGE2R_GATE_COMPLETION_AMENDMENT_013. The realized
+# property, not the pre-projection intent, is what the operator saw.
+ROLE = {"constant_flux_structural": "SIGNED_CONSTANT_FLUX_STRUCTURAL_DIAGNOSTIC",
+        "structure_balanced_050": "STRUCTURE_BALANCED_050",
+        "structure_balanced_080": "HIGH_STRUCTURE_NOMINAL_080_REALIZED_066"}
+PHYSICAL_PRIMARY = {"structure_balanced_050", "structure_balanced_080"}
+NONNEGATIVE_TOL = 1e-3
 
 
 def truth_seed(bank, family, split, i, seed):
@@ -96,9 +103,17 @@ def paired_relative(d, a, cell, n_resamples, seed, level=0.95):
     w = _counts(rel.size, n_resamples, seed) / rel.size
     boot = ((w * rel) @ oh.T / n_per[None, :]).mean(axis=1) * rel.size
     lo, hi = np.percentile(boot, [100 * (1 - level) / 2, 100 * (1 + level) / 2])
+    # The median and the cell-balanced mean are different statistics of the same
+    # paired sample, so each gets its own interval. Attaching the mean's
+    # interval to the median, as the first 2R-B report did, describes neither.
+    w_idx = _counts(rel.size, n_resamples, seed + 1)
+    med_boot = np.array([np.median(np.repeat(rel, c)) for c in w_idx])
+    mlo, mhi = np.percentile(med_boot,
+                             [100 * (1 - level) / 2, 100 * (1 + level) / 2])
     return {"point_estimate": float(((oh @ rel) / n_per).mean()),
             "median_per_truth": float(np.median(rel)),
             "ci_low": float(lo), "ci_high": float(hi),
+            "median_ci_low": float(mlo), "median_ci_high": float(mhi),
             "n_truths": int(rel.size), "n_cells": int(uniq.size)}
 
 
@@ -192,7 +207,9 @@ def main() -> int:
                "TOTAL_FLUX": dict(orders=base, mixer=ones, collapse="total_flux")}
 
     bank_rows, sel_rows, pilot_rows, age_rows, null_rows = [], [], [], [], []
-    worst = {"in_class": 0.0, "floor": 0.0, "adjoint": 0.0, "shaping": 0.0}
+    joint_rows = []
+    worst = {"in_class": 0.0, "floor": 0.0, "adjoint": 0.0, "shaping": 0.0,
+             "identity": 0.0}
     struct = lambda v: v - level @ (level.T @ v)          # noqa: E731
 
     for cname, (nr, na, nt) in classes.items():
@@ -211,6 +228,9 @@ def main() -> int:
                           / max(np.linalg.norm(v), 1e-300))
             worst["floor"] = max(worst["floor"], floor)
             worst["in_class"] = max(worst["in_class"], recon)
+            worst["shaping"] = max(worst["shaping"],
+                                   float(np.abs(D @ coef - v).max())
+                                   / max(float(np.abs(v).max()), 1e-300))
             bank_rows.append({
                 "source_class": cname, "bank": bank, "family": fam,
                 "split": split, "index": i, "content_hash": hashes[k],
@@ -238,6 +258,19 @@ def main() -> int:
             worst["adjoint"] = max(worst["adjoint"],
                                    abs(float(y @ op.matvec(x)) - float(x @ op.rmatvec(y)))
                                    / max(abs(float(y @ op.matvec(x))), 1e-300))
+            # G8x. matvec forms design(...) @ c inside the operator;
+            # forward_analytic evaluates the same synthesized source through a
+            # separate code path and applies the identical weights. Agreement on
+            # the committed coefficient vectors is what says the operator and
+            # the truth are the same object -- the failure this whole line of
+            # rulings started from.
+            for k in list(keys)[:8]:
+                got = op.forward_analytic(
+                    lambda r, ph, tt, _c=coefs[k]: basis.design(r, ph, tt) @ _c)
+                want = op.matvec(coefs[k])
+                worst["identity"] = max(
+                    worst["identity"], float(np.abs(got - want).max())
+                    / max(float(np.abs(want).max()), 1e-300))
             cache[aname] = ({k: U.T @ op.matvec(coefs[k]) for k in keys},
                             {k: np.column_stack([U.T @ op.noise_from_standard(z)
                                                  for z in Z[k]]) for k in keys})
@@ -289,6 +322,24 @@ def main() -> int:
                             oe.append(float(pa[old_mask].mean()))
                             per_draw.append(pa / np.maximum(nrm, 1e-30))
                         rel = np.mean(per_draw, axis=0)
+                        # the canonical criterion is a probability over truth
+                        # *and* noise, so every realization is kept as its own
+                        # unit rather than averaged away first
+                        if est == "TSVD":
+                            for d, pd_ in enumerate(per_draw):
+                                joint_rows.append({
+                                    "source_class": cname, "arm": aname,
+                                    "snr0": snr, "bank": k[0], "family": k[1],
+                                    "index": k[3], "draw": d,
+                                    "max_rel_error_from_age0":
+                                        float(np.maximum.accumulate(pd_)[-1]),
+                                    "passes_epsilon_everywhere":
+                                        bool((np.maximum.accumulate(pd_)
+                                              <= span["epsilon"]).all()),
+                                    "pass_to_age_M": float(
+                                        ages[np.maximum.accumulate(pd_)
+                                             <= span["epsilon"]].max()
+                                        if (pd_[0] <= span["epsilon"]) else 0.0)})
                         pilot_rows.append({
                             "source_class": cname, "arm": aname, "estimator": est,
                             "snr0": snr, "bank": k[0], "family": k[1],
@@ -325,13 +376,74 @@ def main() -> int:
                         "relative_error": float(abs(real - target) / target)})
 
     return finish(man, run_dir, run_id, reg, t0, fz, bank_rows, sel_rows,
-                  pilot_rows, age_rows, null_rows, worst,
+                  pilot_rows, age_rows, null_rows, joint_rows, worst,
                   {"commitments_ok": commitments_ok, "disjoint": disjoint},
                   numerics, ages, boot, M, span)
 
 
+def _endpoint_rows(out, pilot, snr, scope_name, scope_banks, families, boot,
+                   M, null_ok):
+    """One endpoint row per (class, arm, estimator) for one bank scope.
+
+    Scopes are reported side by side rather than pooled: all declared banks, the
+    non-negative physical banks alone, and each bank on its own. The physical
+    scope is the one a source claim may rest on -- the signed constant-flux bank
+    is a linear stress control and cannot carry it.
+    """
+    p = pilot[(pilot.snr0 == snr) & (pilot.bank.isin(scope_banks))].copy()
+    if p.empty:
+        return
+    p["cell"] = p.bank + "|" + p.family
+    for cname in sorted(p.source_class.unique()):
+        for est in sorted(p.estimator.unique()):
+            g = p[(p.source_class == cname) & (p.estimator == est)]
+            d = g[g.arm == "DIRECT_PHYSICAL"].set_index(["bank", "family", "index"])
+            for arm in sorted(g.arm.unique()):
+                if arm == "DIRECT_PHYSICAL":
+                    continue
+                a = g[g.arm == arm].set_index(["bank", "family", "index"])
+                idx = d.index.intersection(a.index)
+                if not len(idx):
+                    continue
+                dv = d.loc[idx, "old_band_structure_error"].to_numpy()
+                av = a.loc[idx, "old_band_structure_error"].to_numpy()
+                cells = np.array([f"{b}|{f}" for b, f, _ in idx])
+                r = paired_relative(dv, av, cells, boot["n_resamples"],
+                                    boot["seed"], boot["level"])
+
+                def _pos(mask):
+                    return bool(mask.any() and np.mean(av[mask]) < np.mean(dv[mask]))
+
+                fam_ok = {f: _pos(np.array([c.endswith("|" + f) for c in cells]))
+                          for f in families}
+                bank_ok = {b: _pos(np.array([c.startswith(b + "|") for c in cells]))
+                           for b in scope_banks}
+                out.append({
+                    "source_class": cname, "arm": arm, "estimator": est,
+                    "snr0": snr, "scope": scope_name,
+                    "bank": scope_banks[0] if len(scope_banks) == 1 else "MULTI",
+                    "n_banks_in_scope": len(scope_banks),
+                    "mean_direct": float(dv.mean()), "mean_arm": float(av.mean()),
+                    "median_relative_reduction": r["median_per_truth"],
+                    "median_ci_low": r["median_ci_low"],
+                    "median_ci_high": r["median_ci_high"],
+                    "relative_reduction": r["point_estimate"],
+                    "ci_low": r["ci_low"], "ci_high": r["ci_high"],
+                    "n_families_improved": int(sum(fam_ok.values())),
+                    "all_primary_banks_positive": bool(all(bank_ok.values())),
+                    "n_truths": r["n_truths"], "n_cells": r["n_cells"],
+                    "meets_materiality": bool(
+                        r["median_per_truth"] >= M["median_paired_relative_reduction"]
+                        and r["ci_low"] >= M["bootstrap_lower_bound"]
+                        and sum(fam_ok.values()) >= M["min_families_improved"]
+                        and all(bank_ok.values()) and null_ok),
+                    **{f"improved_{f}": v for f, v in fam_ok.items()},
+                    **{f"positive_{b}": v for b, v in bank_ok.items()}})
+
+
 def finish(man, run_dir, run_id, reg, t0, fz, bank_rows, sel_rows, pilot_rows,
-           age_rows, null_rows, worst, pre, numerics, ages, boot, M, span) -> int:
+           age_rows, null_rows, joint_rows, worst, pre, numerics, ages, boot,
+           M, span) -> int:
     import pandas as pd
     pilot = pd.DataFrame(pilot_rows)
     nulls = pd.DataFrame(null_rows)
@@ -341,47 +453,15 @@ def finish(man, run_dir, run_id, reg, t0, fz, bank_rows, sel_rows, pilot_rows,
     primary_class = fz["classes"]["primary"]
     end_rows, span_rows = [], []
 
+    scopes = [("all_declared_banks", banks),
+              ("physical_banks_only", physical_banks)] + \
+             [("single_bank", [b]) for b in banks]
     for snr in (fz["snr"]["primary"], fz["snr"]["secondary"]):
-        p = pilot[pilot.snr0 == snr].copy()
-        p["cell"] = p.bank + "|" + p.family
-        for cname in sorted(p.source_class.unique()):
-            for est in sorted(p.estimator.unique()):
-                g = p[(p.source_class == cname) & (p.estimator == est)]
-                d = g[g.arm == "DIRECT_PHYSICAL"].set_index(["bank", "family", "index"])
-                for arm in sorted(g.arm.unique()):
-                    if arm == "DIRECT_PHYSICAL":
-                        continue
-                    a = g[g.arm == arm].set_index(["bank", "family", "index"])
-                    idx = d.index.intersection(a.index)
-                    dv = d.loc[idx, "old_band_structure_error"].to_numpy()
-                    av = a.loc[idx, "old_band_structure_error"].to_numpy()
-                    cells = np.array([f"{b}|{f}" for b, f, _ in idx])
-                    r = paired_relative(dv, av, cells, boot["n_resamples"],
-                                        boot["seed"], boot["level"])
-                    fam_ok = {f: bool(np.mean(av[[c.endswith("|" + f) for c in cells]])
-                                      < np.mean(dv[[c.endswith("|" + f) for c in cells]]))
-                              for f in families}
-                    bank_ok = {b: bool(np.mean(av[[c.startswith(b + "|") for c in cells]])
-                                       < np.mean(dv[[c.startswith(b + "|") for c in cells]]))
-                               for b in banks}
-                    end_rows.append({
-                        "source_class": cname, "arm": arm, "estimator": est,
-                        "snr0": snr, "mean_direct": float(dv.mean()),
-                        "mean_arm": float(av.mean()),
-                        "median_relative_reduction": r["median_per_truth"],
-                        "relative_reduction": r["point_estimate"],
-                        "ci_low": r["ci_low"], "ci_high": r["ci_high"],
-                        "n_families_improved": int(sum(fam_ok.values())),
-                        "all_primary_banks_positive": bool(all(bank_ok.values())),
-                        "n_truths": r["n_truths"], "n_cells": r["n_cells"],
-                        "meets_materiality": bool(
-                            r["median_per_truth"] >= M["median_paired_relative_reduction"]
-                            and r["ci_low"] >= M["bootstrap_lower_bound"]
-                            and sum(fam_ok.values()) >= M["min_families_improved"]
-                            and all(bank_ok.values()) and null_ok),
-                        **{f"improved_{f}": v for f, v in fam_ok.items()},
-                        **{f"positive_{b}": v for b, v in bank_ok.items()}})
+        for scope_name, scope_banks in scopes:
+            _endpoint_rows(end_rows, pilot, snr, scope_name, scope_banks,
+                           families, boot, M, null_ok)
 
+    end = pd.DataFrame(end_rows)
     at = pd.DataFrame(age_rows)
     for (cname, arm, snr), g in at.groupby(["source_class", "arm", "snr0"]):
         piv = g.pivot_table(index=["bank", "family", "index"],
@@ -397,7 +477,33 @@ def finish(man, run_dir, run_id, reg, t0, fz, bank_rows, sel_rows, pilot_rows,
                           "L_stable_structure_M": T,
                           "pass_fraction_at_age0": float(frac[0]),
                           "n_truths": int(E.shape[0])})
+    # The canonical criterion is a probability over truth *and* noise. Each
+    # realization carries the largest T for which its running-max error stays
+    # under epsilon, so the joint endpoint is the (1 - q) quantile of that
+    # across realizations -- no averaging over noise first.
+    jdf = pd.DataFrame(joint_rows)
+    if not jdf.empty:
+        for (cname, arm, snr), gj in jdf.groupby(["source_class", "arm", "snr0"]):
+            T = float(np.quantile(gj.pass_to_age_M.to_numpy(),
+                                  1.0 - span["quantile"]))
+            span_rows.append({
+                "source_class": cname, "arm": arm, "snr0": snr,
+                "epsilon": span["epsilon"], "quantile": span["quantile"],
+                "L_stable_structure_M": T,
+                "pass_fraction_at_age0": float(
+                    (gj.pass_to_age_M.to_numpy() >= 0.0).mean()
+                    * (gj.max_rel_error_from_age0.to_numpy()
+                       <= span["epsilon"]).mean()),
+                "n_truths": int(len(gj)),
+                "noise_semantics": "joint_truth_noise",
+                "controls_the_claim": True})
+    for r in span_rows:
+        r.setdefault("noise_semantics", "truth_mean_noise")
+        r.setdefault("controls_the_claim", False)
+
     sp = pd.DataFrame(span_rows)
+    sp_joint = sp[sp.noise_semantics == "joint_truth_noise"]
+    sp = sp[sp.noise_semantics == "truth_mean_noise"]
     delta_rows = []
     for (cname, snr), g in sp.groupby(["source_class", "snr0"]):
         gi = g.set_index("arm").L_stable_structure_M
@@ -409,15 +515,63 @@ def finish(man, run_dir, run_id, reg, t0, fz, bank_rows, sel_rows, pilot_rows,
                     "L_arm_M": float(gi[arm]),
                     "delta_L_stable_structure_M": float(gi[arm] - gi["DIRECT_PHYSICAL"]),
                     "threshold_M": span["threshold_M"],
+                    "noise_semantics": "truth_mean_noise",
+                    "meets_threshold": bool(gi[arm] - gi["DIRECT_PHYSICAL"]
+                                            >= span["threshold_M"])})
+    for (cname, snr), gq in sp_joint.groupby(["source_class", "snr0"]):
+        gi = gq.set_index("arm").L_stable_structure_M
+        for arm in ("RESOLVED_PHYSICAL", "UNRESOLVED_IMAGE", "TOTAL_FLUX"):
+            if arm in gi and "DIRECT_PHYSICAL" in gi:
+                delta_rows.append({
+                    "source_class": cname, "arm": arm, "snr0": snr,
+                    "L_direct_M": float(gi["DIRECT_PHYSICAL"]),
+                    "L_arm_M": float(gi[arm]),
+                    "delta_L_stable_structure_M": float(gi[arm] - gi["DIRECT_PHYSICAL"]),
+                    "threshold_M": span["threshold_M"],
+                    "noise_semantics": "joint_truth_noise",
                     "meets_threshold": bool(gi[arm] - gi["DIRECT_PHYSICAL"]
                                             >= span["threshold_M"])})
 
+    bdf = pd.DataFrame(bank_rows)
+    contract_rows = []
+    for (cname, bank), grp in bdf.groupby(["source_class", "bank"]):
+        nonneg = bool(grp.negative_mass_relative.max() <= NONNEGATIVE_TOL)
+        contract_rows.append({
+            "source_class": cname, "bank": bank, "role_id": ROLE[bank],
+            "exact_in_class": bool(grp.representation_floor.max() <= 1e-10),
+            "representation_floor_max": float(grp.representation_floor.max()),
+            "achieved_structure_fraction": float(
+                grp.achieved_structure_fraction.median()),
+            "nominal_structure_fraction": TARGETS[bank],
+            "nonnegative": nonneg,
+            "negative_mass_relative_median":
+                float(grp.negative_mass_relative.median()),
+            "negative_mass_relative_max":
+                float(grp.negative_mass_relative.max()),
+            "n_records_above_0_1_negative_mass":
+                int((grp.negative_mass_relative > 0.1).sum()),
+            "signed_diagnostic": not nonneg,
+            "reprojection_residual":
+                float(grp.reprojection_residual_relative.median()),
+            "physical_primary_eligible": bool(nonneg and bank in PHYSICAL_PRIMARY),
+            "n_truths": int(len(grp))})
+    contract_ok = all(
+        r["exact_in_class"] and (r["physical_primary_eligible"] == (
+            r["nonnegative"] and r["bank"] in PHYSICAL_PRIMARY))
+        for r in contract_rows)
+    n_physical = len({r["bank"] for r in contract_rows
+                      if r["physical_primary_eligible"]})
+
     end = pd.DataFrame(end_rows)
+    # the physical-source claim rests on the non-negative banks alone
+    physical_banks = sorted({r["bank"] for r in contract_rows
+                             if r["physical_primary_eligible"]})
     prim = end[(end.source_class == primary_class)
                & (end.snr0 == fz["snr"]["primary"])]
 
     def material(arm):
-        g = prim[prim.arm == arm]
+        """Materiality on the non-negative physical banks, both estimators."""
+        g = prim[(prim.arm == arm) & (prim.scope == "physical_banks_only")]
         return bool(len(g) == 2 and g.meets_materiality.all())
 
     res_ok, unres_ok = material("RESOLVED_PHYSICAL"), material("UNRESOLVED_IMAGE")
@@ -454,6 +608,22 @@ def finish(man, run_dir, run_id, reg, t0, fz, bank_rows, sel_rows, pilot_rows,
     man.add_gate(gate_from_tolerance("R1L_2RB_G7_adjoint", worst["adjoint"], 1e-8))
     man.add_gate(Gate("R1L_2RB_G9_null_controls", "PASS" if null_ok else "FAIL",
                       measured=float(nulls.relative_error.max()), threshold=0.05))
+    man.add_gate(gate_from_tolerance(
+        "R1L_2RB_G8_analytic_shaping_matches_grid_truth", worst["shaping"], 1e-9,
+        note="the shaped in-class truth against the grid-built truth"))
+    man.add_gate(gate_from_tolerance(
+        "R1L_2RB_G8x_operator_truth_identity", worst["identity"], 1e-9,
+        note="A c from the operator against an independent analytic evaluation "
+             "of the same synthesized source, on the committed coefficient "
+             "vectors"))
+    man.add_gate(Gate("R1L_2RB_G10_source_balance_within_tolerance",
+                      "PASS" if (contract_ok and n_physical == 2) else "FAIL",
+                      measured=n_physical, threshold=2,
+                      note="per-bank contract: exact_in_class, "
+                           "achieved/nominal structure fraction, nonnegative, "
+                           "signed_diagnostic, reprojection_residual, "
+                           "physical_primary_eligible. Two non-negative "
+                           "physical banks are required"))
     man.add_gate(Gate("R1L_2RB_G11_resource_limits", "PASS",
                       measured=round(time.time() - t0),
                       threshold=fz["resource_limits"]["wall_clock_seconds"]))
@@ -465,12 +635,29 @@ def finish(man, run_dir, run_id, reg, t0, fz, bank_rows, sel_rows, pilot_rows,
                        ("r1l_2rb_age_structure_errors", age_rows),
                        ("r1l_2rb_stable_spans", span_rows),
                        ("r1l_2rb_delta_spans", delta_rows),
-                       ("r1l_2rb_null_pairs", null_rows)):
+                       ("r1l_2rb_null_pairs", null_rows),
+                       ("r1l_2rb_bank_contract", contract_rows),
+                       ("r1l_2rb_joint_noise_spans", joint_rows)):
         man.add_output(write_table(rows, name, out_dir=run_dir / "tables"))
         write_table(rows, name)
 
     sub = {g.name: g.to_dict() for g in man.gates}
+    # The defect this repair exists for: a declared gate that is never emitted
+    # reads exactly like one that was emitted and passed. Counting is not left
+    # to a reader.
+    declared = set(fz["gates"]) | {"R1L_2RB_G8x_operator_truth_identity"}
+    missing = sorted(declared - set(sub))
+    extra = sorted(set(sub) - declared)
+    if missing:
+        raise SystemExit("R1L_STAGE2R_GATE_COMPLETION_FAIL_STOP: declared gates "
+                         f"never emitted: {missing}")
     doc = json.dumps({"experiment": "R1L_STAGE_2R_B", "run_id": run_id,
+                      "gate_coverage": {"declared": sorted(declared),
+                                        "emitted": sorted(sub),
+                                        "missing": missing, "extra": extra,
+                                        "complete": True},
+                      "bank_contract": contract_rows,
+                      "physical_primary_banks": physical_banks,
                       "stop_token": token, "gates": sub,
                       "materiality": M,
                       "primary_class": primary_class,
