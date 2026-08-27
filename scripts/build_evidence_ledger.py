@@ -96,6 +96,63 @@ def main() -> int:
     nullp = pd.read_parquet(T / "r1_null_pairs.parquet")
     nsup = nullp[nullp.disposition == "SUPPORTED"]
 
+    # ---- R1L: localized structural audit and validation ----------------
+    s1 = pd.read_parquet(T / "r1l_class_spectra.parquet")
+    s1o = pd.read_parquet(T / "r1l_old_structural_support.parquet")
+    rb = pd.read_parquet(T / "r1l_2rb_endpoint.parquet")
+    rbs = pd.read_parquet(T / "r1l_2rb_delta_spans.parquet")
+    rbc = pd.read_parquet(T / "r1l_2rb_bank_contract.parquet")
+    am14 = json.loads((CFG / "R1L_STAGE2R_SCIENTIFIC_DISPOSITION_AMENDMENT_014"
+                       ".json").read_text())
+
+    def s1cell(cl, arm, col):
+        return s1[(s1.source_class == cl) & (s1.arm == arm)][col].iloc[0]
+
+    def s1old(cl, arm):
+        return int(s1o[(s1o.source_class == cl) & (s1o.arm == arm)]
+                   ["old_structural_operational_rank"].iloc[0])
+
+    def rbrow(snr, arm, est, scope="physical_banks_only"):
+        q = rb[(rb.source_class == "L1056") & (rb.scope == scope)
+               & (rb.snr0 == snr) & (rb.arm == arm) & (rb.estimator == est)]
+        return q.iloc[0]
+
+    s1tab = D.join(
+        f"| `{lo}` | {int(s1cell(lo, 'DIRECT_PHYSICAL', 'numerical_rank'))} | "
+        f"{int(s1cell(lo, 'DIRECT_PHYSICAL', 'n_exactly_zero_columns'))} | "
+        f"{s1old(lo, 'DIRECT_PHYSICAL')} | {s1old(lo, 'RESOLVED_PHYSICAL')} | "
+        f"{s1old(lo, 'UNRESOLVED_IMAGE')} | `{gl}` | "
+        f"{int(s1cell(gl, 'DIRECT_PHYSICAL', 'numerical_rank'))} | "
+        f"{int(s1cell(gl, 'DIRECT_PHYSICAL', 'n_exactly_zero_columns'))} |"
+        for lo, gl in (("L224", "C224"), ("L448", "C448_T"),
+                       ("L1056", "C1056_ST")))
+
+    rbtab = D.join(
+        f"| {snr:.0f} | `{arm}` | {est} | "
+        f"{rbrow(snr, arm, est).median_relative_reduction:+.3f} | "
+        f"{rbrow(snr, arm, est).median_ci_low:+.3f} | "
+        f"{rbrow(snr, arm, est).relative_reduction:+.3f} | "
+        f"{rbrow(snr, arm, est).ci_low:+.3f} | "
+        f"{int(rbrow(snr, arm, est).n_families_improved)}/4 | "
+        f"{'**yes**' if rbrow(snr, arm, est).meets_materiality else 'no'} |"
+        for snr in (100.0, 1000.0)
+        for arm in ("RESOLVED_PHYSICAL", "UNRESOLVED_IMAGE")
+        for est in ("TSVD", "RIDGE_IDENTITY"))
+
+    sgn = {r.estimator: r for r in rb[(rb.source_class == "L1056")
+                                      & (rb.scope == "single_bank")
+                                      & (rb.bank == "constant_flux_structural")
+                                      & (rb.snr0 == 100.0)
+                                      & (rb.arm == "RESOLVED_PHYSICAL")].itertuples()}
+    ctab = D.join(
+        f"| `{r.bank}` | `{r.role_id}` | {r.achieved_structure_fraction:.3f} | "
+        f"{r.negative_mass_relative_max:.4f} | "
+        f"{'**yes**' if r.physical_primary_eligible else 'no'} |"
+        for r in rbc[rbc.source_class == "L1056"].sort_values("bank").itertuples())
+
+    dsp = rbs[(rbs.source_class == "L1056")
+              & (rbs.noise_semantics == "joint_truth_noise")]
+
     body = f"""# Paper I — current evidence ledger
 
 Regenerated from canonical artifacts by `scripts/build_evidence_ledger.py`.
@@ -236,6 +293,78 @@ before any main truth was scored; sealed-bank commitment
   arbitrary movies.
 
 ---
+
+## R1L stage 1 — localized operator and rank audit
+
+Established, with no estimator involved, at `a* = 0.5`, `i = 50` degrees.
+Canonical under two pinned six-class runs that agreed on every scientific cell.
+
+Compact temporal support turns "the direct image cannot see this epoch" from a
+condition number into a null-space fact. Old-epoch structural support is the
+subspace of old temporal functions orthogonal to the level projector; entries
+are operational ranks.
+
+| localized | direct rank | direct exact-zero cols | direct old-struct | resolved old-struct | unresolved old-struct | global | direct rank | direct exact-zero cols |
+|---|---:|---:|---:|---:|---:|---|---:|---:|
+{s1tab}
+
+The direct image has operational rank **0** in the old structural subspace at
+every class, with largest singular value 1.8e-14. C224 is full rank on its own
+global temporal subspace — that number is correct and says nothing about
+epoch-local identifiability, which C224 cannot pose because none of its
+coefficients is confined to an epoch.
+
+Does not license: any reconstruction claim. No truth was drawn and no estimator
+was fitted.
+
+## R1L stage 2R — exact-in-class structural validation
+
+Validation only. Truths are exactly in the class, so the representation floor is
+zero and the error measured is reconstruction error alone. `L1056` is primary;
+`L448` and `L224` are controls that cannot supply a pass. **No sealed main was
+run and none is authorized.**
+
+Endpoint on the two non-negative physical banks, resolved and unresolved against
+the direct image. Material requires median ≥ 10%, both bootstrap lower bounds ≥
+5%, ≥ 3/4 families, every bank in scope positive, null controls passing, and
+both estimators on the same class.
+
+| SNR₀ | arm | estimator | median | median CI low | cell mean | mean CI low | families | material |
+|---:|---|---|---:|---:|---:|---:|---|---|
+{rbtab}
+
+Source banks, after projection into the class:
+
+| bank | role | achieved f_struct | max negative mass | physical primary |
+|---|---|---:|---:|---|
+{ctab}
+
+Six dispositions, recorded separately:
+
+- **`R1L_STAGE2R_GATE_COMPLETION_REPRODUCTION_PASS`** — every pre-existing cell
+  bitwise identical across the gate-completed rerun, 12 of 12 declared gates.
+- **`R1L_STAGE2R_PHYSICAL_SOURCE_MATERIALITY_NOT_MET`** — at SNR₀ = 100 the
+  medians clear the bar and the cell-balanced means do not. Read as
+  `PREREGISTERED_PHYSICAL_SOURCE_MATERIALITY_NOT_MET`: a bar not cleared, not an
+  effect shown to be zero. The central estimates are positive.
+- **`R1L_STAGE2R_SIGNED_DIAGNOSTIC_MATERIAL_EFFECT`** — the signed constant-flux
+  bank alone shows {sgn['TSVD'].median_relative_reduction:.3f} (TSVD) and
+  {sgn['RIDGE_IDENTITY'].median_relative_reduction:.3f} (ridge) and was carrying
+  the pooled all-banks result. A linear inverse-problem finding; it is not a
+  non-negative emissivity history and may not carry a source claim.
+- **`R1L_STAGE2R_HIGH_SNR_PHYSICAL_VALIDATION_PASS`** — at SNR₀ = 1000 the
+  resolved arm meets every criterion on both estimators and 4/4 families.
+  Secondary: a result at tenfold higher normalized SNR does not substitute for
+  the registered point.
+- **`R1L_STAGE2R_STABLE_SPAN_NEGATIVE_RESULT`** — ΔL = {dsp.delta_L_stable_structure_M.abs().max():.0f} M
+  against 8 M under both noise semantics at both SNRs, with the stricter joint
+  truth-and-noise statistic agreeing with the averaged one.
+- **`R1L_STAGE2R_SCIENTIFIC_STOP`** — `sealed_main_authorized = {str(am14['sealed_main_authorized']).lower()}`.
+
+Does not license: a physical-source reconstruction claim at the reference SNR; a
+stable structural history interval at any SNR; any statement about arbitrary or
+realistic accretion-flow histories. The design is a representation-matched,
+zero-floor best-case benchmark.
 
 ## Preserved literal failures
 

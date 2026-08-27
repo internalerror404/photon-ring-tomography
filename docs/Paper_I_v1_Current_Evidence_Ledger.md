@@ -4,11 +4,11 @@ Regenerated from canonical artifacts by `scripts/build_evidence_ledger.py`.
 Nothing here is typed by hand; every number is read from a frozen table or
 freeze, and the ledger is rebuilt rather than edited.
 
-- generated 2026-08-26T04:23:26Z
+- generated 2026-08-27T19:49:27Z
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
 - canonical artifact freeze v2: **369 artifacts**,
   campaign commit `8345068676b15ce8f96a76da9d92b159db215f1d`
-- gates: **165** total, **146** passing,
+- gates: **208** total, **189** passing,
   **0** active blocking failures,
   **8** preserved literal failures,
   **11** belonging to phases not yet in scope
@@ -138,6 +138,89 @@ before any main truth was scored; sealed-bank commitment
   arbitrary movies.
 
 ---
+
+## R1L stage 1 — localized operator and rank audit
+
+Established, with no estimator involved, at `a* = 0.5`, `i = 50` degrees.
+Canonical under two pinned six-class runs that agreed on every scientific cell.
+
+Compact temporal support turns "the direct image cannot see this epoch" from a
+condition number into a null-space fact. Old-epoch structural support is the
+subspace of old temporal functions orthogonal to the level projector; entries
+are operational ranks.
+
+| localized | direct rank | direct exact-zero cols | direct old-struct | resolved old-struct | unresolved old-struct | global | direct rank | direct exact-zero cols |
+|---|---:|---:|---:|---:|---:|---|---:|---:|
+| `L224` | 140 | 84 | 0 | 38 | 21 | `C224` | 224 | 0 |
+| `L448` | 252 | 196 | 0 | 93 | 46 | `C448_T` | 411 | 0 |
+| `L1056` | 523 | 517 | 0 | 185 | 91 | `C1056_ST` | 911 | 0 |
+
+The direct image has operational rank **0** in the old structural subspace at
+every class, with largest singular value 1.8e-14. C224 is full rank on its own
+global temporal subspace — that number is correct and says nothing about
+epoch-local identifiability, which C224 cannot pose because none of its
+coefficients is confined to an epoch.
+
+Does not license: any reconstruction claim. No truth was drawn and no estimator
+was fitted.
+
+## R1L stage 2R — exact-in-class structural validation
+
+Validation only. Truths are exactly in the class, so the representation floor is
+zero and the error measured is reconstruction error alone. `L1056` is primary;
+`L448` and `L224` are controls that cannot supply a pass. **No sealed main was
+run and none is authorized.**
+
+Endpoint on the two non-negative physical banks, resolved and unresolved against
+the direct image. Material requires median ≥ 10%, both bootstrap lower bounds ≥
+5%, ≥ 3/4 families, every bank in scope positive, null controls passing, and
+both estimators on the same class.
+
+| SNR₀ | arm | estimator | median | median CI low | cell mean | mean CI low | families | material |
+|---:|---|---|---:|---:|---:|---:|---|---|
+| 100 | `RESOLVED_PHYSICAL` | TSVD | +0.168 | +0.099 | +0.116 | +0.039 | 3/4 | no |
+| 100 | `RESOLVED_PHYSICAL` | RIDGE_IDENTITY | +0.178 | +0.096 | +0.098 | +0.000 | 3/4 | no |
+| 100 | `UNRESOLVED_IMAGE` | TSVD | +0.009 | -0.084 | -0.024 | -0.079 | 3/4 | no |
+| 100 | `UNRESOLVED_IMAGE` | RIDGE_IDENTITY | +0.019 | -0.073 | -0.029 | -0.100 | 3/4 | no |
+| 1000 | `RESOLVED_PHYSICAL` | TSVD | +0.275 | +0.198 | +0.259 | +0.210 | 4/4 | **yes** |
+| 1000 | `RESOLVED_PHYSICAL` | RIDGE_IDENTITY | +0.304 | +0.225 | +0.286 | +0.237 | 4/4 | **yes** |
+| 1000 | `UNRESOLVED_IMAGE` | TSVD | +0.085 | +0.019 | +0.078 | +0.042 | 3/4 | no |
+| 1000 | `UNRESOLVED_IMAGE` | RIDGE_IDENTITY | +0.116 | +0.031 | +0.104 | +0.067 | 3/4 | **yes** |
+
+Source banks, after projection into the class:
+
+| bank | role | achieved f_struct | max negative mass | physical primary |
+|---|---|---:|---:|---|
+| `constant_flux_structural` | `SIGNED_CONSTANT_FLUX_STRUCTURAL_DIAGNOSTIC` | 0.807 | 0.1966 | no |
+| `structure_balanced_050` | `STRUCTURE_BALANCED_050` | 0.520 | 0.0001 | **yes** |
+| `structure_balanced_080` | `HIGH_STRUCTURE_NOMINAL_080_REALIZED_066` | 0.660 | 0.0007 | **yes** |
+
+Six dispositions, recorded separately:
+
+- **`R1L_STAGE2R_GATE_COMPLETION_REPRODUCTION_PASS`** — every pre-existing cell
+  bitwise identical across the gate-completed rerun, 12 of 12 declared gates.
+- **`R1L_STAGE2R_PHYSICAL_SOURCE_MATERIALITY_NOT_MET`** — at SNR₀ = 100 the
+  medians clear the bar and the cell-balanced means do not. Read as
+  `PREREGISTERED_PHYSICAL_SOURCE_MATERIALITY_NOT_MET`: a bar not cleared, not an
+  effect shown to be zero. The central estimates are positive.
+- **`R1L_STAGE2R_SIGNED_DIAGNOSTIC_MATERIAL_EFFECT`** — the signed constant-flux
+  bank alone shows 0.358 (TSVD) and
+  0.399 (ridge) and was carrying
+  the pooled all-banks result. A linear inverse-problem finding; it is not a
+  non-negative emissivity history and may not carry a source claim.
+- **`R1L_STAGE2R_HIGH_SNR_PHYSICAL_VALIDATION_PASS`** — at SNR₀ = 1000 the
+  resolved arm meets every criterion on both estimators and 4/4 families.
+  Secondary: a result at tenfold higher normalized SNR does not substitute for
+  the registered point.
+- **`R1L_STAGE2R_STABLE_SPAN_NEGATIVE_RESULT`** — ΔL = 0 M
+  against 8 M under both noise semantics at both SNRs, with the stricter joint
+  truth-and-noise statistic agreeing with the averaged one.
+- **`R1L_STAGE2R_SCIENTIFIC_STOP`** — `sealed_main_authorized = false`.
+
+Does not license: a physical-source reconstruction claim at the reference SNR; a
+stable structural history interval at any SNR; any statement about arbitrary or
+realistic accretion-flow histories. The design is a representation-matched,
+zero-floor best-case benchmark.
 
 ## Preserved literal failures
 
