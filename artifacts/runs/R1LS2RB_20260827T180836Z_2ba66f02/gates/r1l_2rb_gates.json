@@ -1,0 +1,181 @@
+{
+  "experiment": "R1L_STAGE_2R_B",
+  "run_id": "R1LS2RB_20260827T180836Z_2ba66f02",
+  "gate_coverage": {
+    "declared": [
+      "R1L_2RB_G10_source_balance_within_tolerance",
+      "R1L_2RB_G11_resource_limits",
+      "R1L_2RB_G1_pinned_numerical_environment",
+      "R1L_2RB_G2_split_commitments_reproduce",
+      "R1L_2RB_G3_split_disjointness",
+      "R1L_2RB_G4_truths_are_exactly_in_class",
+      "R1L_2RB_G5_representation_floor_is_zero",
+      "R1L_2RB_G6_secondary_bank_absent",
+      "R1L_2RB_G7_adjoint",
+      "R1L_2RB_G8_analytic_shaping_matches_grid_truth",
+      "R1L_2RB_G8x_operator_truth_identity",
+      "R1L_2RB_G9_null_controls"
+    ],
+    "emitted": [
+      "R1L_2RB_G10_source_balance_within_tolerance",
+      "R1L_2RB_G11_resource_limits",
+      "R1L_2RB_G1_pinned_numerical_environment",
+      "R1L_2RB_G2_split_commitments_reproduce",
+      "R1L_2RB_G3_split_disjointness",
+      "R1L_2RB_G4_truths_are_exactly_in_class",
+      "R1L_2RB_G5_representation_floor_is_zero",
+      "R1L_2RB_G6_secondary_bank_absent",
+      "R1L_2RB_G7_adjoint",
+      "R1L_2RB_G8_analytic_shaping_matches_grid_truth",
+      "R1L_2RB_G8x_operator_truth_identity",
+      "R1L_2RB_G9_null_controls"
+    ],
+    "missing": [],
+    "extra": [],
+    "complete": true
+  },
+  "bank_contract": [
+    {
+      "source_class": "L224",
+      "bank": "constant_flux_structural",
+      "role_id": "SIGNED_CONSTANT_FLUX_STRUCTURAL_DIAGNOSTIC",
+      "exact_in_class": true,
+      "representation_floor_max": 4.01339695972344e-15,
+      "achieved_structure_fraction": 0.7713315058462638,
+      "nominal_structure_fraction": null,
+      "nonnegative": false,
+      "negative_mass_relative_median": 0.08143915344239863,
+      "negative_mass_relative_max": 0.29650723615008245,
+      "n_records_above_0_1_negative_mass": 27,
+      "signed_diagnostic": true,
+      "reprojection_residual": 0.1563316766684552,
+      "physical_primary_eligible": false,
+      "n_truths": 64
+    },
+    {
+      "source_class": "L224",
+      "bank": "structure_balanced_050",
+      "role_id": "STRUCTURE_BALANCED_050",
+      "exact_in_class": true,
+      "representation_floor_max": 2.923922163007089e-15,
+      "achieved_structure_fraction": 0.48941295288878905,
+      "nominal_structure_fraction": 0.5,
+      "nonnegative": false,
+      "negative_mass_relative_median": 0.0,
+      "negative_mass_relative_max": 0.0012309857669781168,
+      "n_records_above_0_1_negative_mass": 0,
+      "signed_diagnostic": true,
+      "reprojection_residual": 0.18084494088936773,
+      "physical_primary_eligible": false,
+      "n_truths": 64
+    },
+    {
+      "source_class": "L224",
+      "bank": "structure_balanced_080",
+      "role_id": "HIGH_STRUCTURE_NOMINAL_080_REALIZED_066",
+      "exact_in_class": true,
+      "representation_floor_max": 2.88120117204204e-15,
+      "achieved_structure_fraction": 0.5056388330313438,
+      "nominal_structure_fraction": 0.8,
+      "nonnegative": false,
+      "negative_mass_relative_median": 0.0,
+      "negative_mass_relative_max": 0.001110418138840379,
+      "n_records_above_0_1_negative_mass": 0,
+      "signed_diagnostic": true,
+      "reprojection_residual": 0.17934487836265775,
+      "physical_primary_eligible": false,
+      "n_truths": 64
+    }
+  ],
+  "physical_primary_banks": [],
+  "stop_token": "R1L_STAGE2R_B_IMPLEMENTATION_DEFECT",
+  "gates": {
+    "R1L_2RB_G1_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "R1L_2RB_G2_split_commitments_reproduce": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "R1L_2RB_G3_split_disjointness": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "R1L_2RB_G4_truths_are_exactly_in_class": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "R1L_2RB_G5_representation_floor_is_zero": {
+      "status": "PASS",
+      "measured": 4.01339695972344e-15,
+      "threshold": 1e-10
+    },
+    "R1L_2RB_G6_secondary_bank_absent": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "baseline_one_positive is not in the declared banks"
+    },
+    "R1L_2RB_G7_adjoint": {
+      "status": "PASS",
+      "measured": 7.650464435382546e-16,
+      "threshold": 1e-08
+    },
+    "R1L_2RB_G9_null_controls": {
+      "status": "PASS",
+      "measured": 2.4424906541753444e-15,
+      "threshold": 0.05
+    },
+    "R1L_2RB_G8_analytic_shaping_matches_grid_truth": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-09,
+      "note": "the shaped in-class truth against the grid-built truth"
+    },
+    "R1L_2RB_G8x_operator_truth_identity": {
+      "status": "PASS",
+      "measured": 8.266580540053757e-16,
+      "threshold": 1e-09,
+      "note": "A c from the operator against an independent analytic evaluation of the same synthesized source, on the committed coefficient vectors"
+    },
+    "R1L_2RB_G10_source_balance_within_tolerance": {
+      "status": "FAIL",
+      "measured": 0,
+      "threshold": 2,
+      "note": "per-bank contract: exact_in_class, achieved/nominal structure fraction, nonnegative, signed_diagnostic, reprojection_residual, physical_primary_eligible. Two non-negative physical banks are required"
+    },
+    "R1L_2RB_G11_resource_limits": {
+      "status": "PASS",
+      "measured": 146,
+      "threshold": 7200
+    }
+  },
+  "materiality": {
+    "median_paired_relative_reduction": 0.1,
+    "bootstrap_lower_bound": 0.05,
+    "min_families_improved": 3,
+    "positive_in_every_primary_bank": true,
+    "null_controls_pass": true,
+    "estimator_confirmation": "TSVD and ridge must both meet the standard on the same class",
+    "statistic": "(E_old_structure(direct) - E_old_structure(arm)) / E_old_structure(direct), per truth, aggregated with equal weight over bank-family cells",
+    "bootstrap": {
+      "kind": "paired truth-cluster",
+      "unit": "truth",
+      "n_resamples": 10000,
+      "level": 0.95,
+      "seed": 20260908
+    }
+  },
+  "primary_class": "L1056",
+  "primary_class_present": false,
+  "summary": {
+    "PASS": 11,
+    "FAIL": 1,
+    "NOT_RUN": 0
+  }
+}
