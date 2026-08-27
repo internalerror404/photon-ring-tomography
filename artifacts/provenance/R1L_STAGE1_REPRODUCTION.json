@@ -1,12 +1,795 @@
 {
   "schema": "phrt-reproduction/2",
   "id": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION",
-  "created_utc": "2026-08-27T06:32:29Z",
+  "created_utc": "2026-08-27T06:49:13Z",
   "ruling": "REVIEWER_RULING_R1L_REPRODUCIBILITY_009 items 9, 10, 12",
   "noise_floor": 1e-12,
   "noise_floor_rule": "applies only to the preserved-run comparison of item 10. The pinned pair of item 9 is compared with no floor and no tolerance",
-  "verdict": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING",
   "pinned_pair": {
-    "status": "not yet executed"
-  }
+    "a": {
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "execution_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
+      "clean": true,
+      "preregistered": true,
+      "n_tracked_changes": 0,
+      "n_untracked": 0,
+      "classes": [
+        "L224",
+        "L448",
+        "L1056",
+        "C224",
+        "C448_T",
+        "C1056_ST"
+      ],
+      "pinned_environment": {
+        "PYTHONHASHSEED": "0",
+        "OMP_NUM_THREADS": "1",
+        "OMP_DYNAMIC": "FALSE",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1"
+      },
+      "threadpool_state": [
+        {
+          "user_api": "blas",
+          "internal_api": "openblas",
+          "num_threads": 1,
+          "version": "0.3.23.dev",
+          "threading_layer": "pthreads",
+          "architecture": "Prescott",
+          "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so"
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "openblas",
+          "num_threads": 1,
+          "version": "0.3.21.dev",
+          "threading_layer": "pthreads",
+          "architecture": "Prescott",
+          "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/scipy.libs/libopenblasp-r0-23e5df77.3.21.dev.so"
+        }
+      ],
+      "all_pools_single_threaded": true,
+      "gate_status": {
+        "R1L_G1_dyadic_dimension_mirror": {
+          "status": "PASS",
+          "measured": 1,
+          "threshold": 1,
+          "note": "the localized ladder has exactly the E3D dimensions"
+        },
+        "R1L_G2_exact_class_nesting": {
+          "status": "PASS",
+          "measured": 1.8405416080113926e-13,
+          "threshold": 1e-12,
+          "note": "dyadic nodes nest arithmetically, so this must be zero rather than small"
+        },
+        "R1L_G3_temporal_support_compactness": {
+          "status": "PASS",
+          "measured": 0.24968757810547362,
+          "threshold": 0.3,
+          "note": "largest fraction of the history any localized temporal function occupies"
+        },
+        "R1L_G4_adjoint": {
+          "status": "PASS",
+          "measured": 1.416888406462156e-13,
+          "threshold": 1e-08
+        },
+        "R1L_G5_dense_matrix_free_parity": {
+          "status": "PASS",
+          "measured": 0.0,
+          "threshold": 1e-10
+        },
+        "R1L_G6_gram_monotonicity": {
+          "status": "PASS",
+          "measured": 1.0727820533757666e-16,
+          "threshold": 1e-10
+        },
+        "R1L_G7_enrichment_does_not_lose_rank": {
+          "status": "PASS",
+          "measured": 0,
+          "threshold": 0
+        },
+        "R1L_G8_unreached_columns_are_exactly_zero": {
+          "status": "PASS",
+          "measured": 0.0,
+          "threshold": 0.0,
+          "note": "a temporal function whose support holds no ray must give a literally zero column, which is the property that makes an unseen epoch a null direction rather than a confident extrapolation"
+        },
+        "R1L_G9_orbit_law_matches_raymap_fluid": {
+          "status": "PASS",
+          "measured": 1.3877787807814457e-17,
+          "threshold": 1e-12,
+          "note": "pattern Omega against the Kerr fluid four-velocity the redshift was built from"
+        },
+        "R1L_G10_circular_centres_outside_isco": {
+          "status": "PASS",
+          "measured": 1,
+          "threshold": 1
+        },
+        "R1L_G11_pinned_numerical_environment": {
+          "status": "PASS",
+          "measured": 1,
+          "threshold": 1,
+          "note": "every loaded BLAS pool must report exactly one thread, interrogated after the import rather than inferred from the environment"
+        }
+      }
+    },
+    "b": {
+      "run_id": "R1L_20260827T064329Z_2ba66f02",
+      "execution_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
+      "clean": true,
+      "preregistered": true,
+      "n_tracked_changes": 0,
+      "n_untracked": 0,
+      "classes": [
+        "L224",
+        "L448",
+        "L1056",
+        "C224",
+        "C448_T",
+        "C1056_ST"
+      ],
+      "pinned_environment": {
+        "PYTHONHASHSEED": "0",
+        "OMP_NUM_THREADS": "1",
+        "OMP_DYNAMIC": "FALSE",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1"
+      },
+      "threadpool_state": [
+        {
+          "user_api": "blas",
+          "internal_api": "openblas",
+          "num_threads": 1,
+          "version": "0.3.23.dev",
+          "threading_layer": "pthreads",
+          "architecture": "Prescott",
+          "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so"
+        },
+        {
+          "user_api": "blas",
+          "internal_api": "openblas",
+          "num_threads": 1,
+          "version": "0.3.21.dev",
+          "threading_layer": "pthreads",
+          "architecture": "Prescott",
+          "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/scipy.libs/libopenblasp-r0-23e5df77.3.21.dev.so"
+        }
+      ],
+      "all_pools_single_threaded": true,
+      "gate_status": {
+        "R1L_G1_dyadic_dimension_mirror": {
+          "status": "PASS",
+          "measured": 1,
+          "threshold": 1,
+          "note": "the localized ladder has exactly the E3D dimensions"
+        },
+        "R1L_G2_exact_class_nesting": {
+          "status": "PASS",
+          "measured": 1.8405416080113926e-13,
+          "threshold": 1e-12,
+          "note": "dyadic nodes nest arithmetically, so this must be zero rather than small"
+        },
+        "R1L_G3_temporal_support_compactness": {
+          "status": "PASS",
+          "measured": 0.24968757810547362,
+          "threshold": 0.3,
+          "note": "largest fraction of the history any localized temporal function occupies"
+        },
+        "R1L_G4_adjoint": {
+          "status": "PASS",
+          "measured": 1.416888406462156e-13,
+          "threshold": 1e-08
+        },
+        "R1L_G5_dense_matrix_free_parity": {
+          "status": "PASS",
+          "measured": 0.0,
+          "threshold": 1e-10
+        },
+        "R1L_G6_gram_monotonicity": {
+          "status": "PASS",
+          "measured": 1.0727820533757666e-16,
+          "threshold": 1e-10
+        },
+        "R1L_G7_enrichment_does_not_lose_rank": {
+          "status": "PASS",
+          "measured": 0,
+          "threshold": 0
+        },
+        "R1L_G8_unreached_columns_are_exactly_zero": {
+          "status": "PASS",
+          "measured": 0.0,
+          "threshold": 0.0,
+          "note": "a temporal function whose support holds no ray must give a literally zero column, which is the property that makes an unseen epoch a null direction rather than a confident extrapolation"
+        },
+        "R1L_G9_orbit_law_matches_raymap_fluid": {
+          "status": "PASS",
+          "measured": 1.3877787807814457e-17,
+          "threshold": 1e-12,
+          "note": "pattern Omega against the Kerr fluid four-velocity the redshift was built from"
+        },
+        "R1L_G10_circular_centres_outside_isco": {
+          "status": "PASS",
+          "measured": 1,
+          "threshold": 1
+        },
+        "R1L_G11_pinned_numerical_environment": {
+          "status": "PASS",
+          "measured": 1,
+          "threshold": 1,
+          "note": "every loaded BLAS pool must report exactly one thread, interrogated after the import rather than inferred from the environment"
+        }
+      }
+    },
+    "tables": {
+      "r1l_class_spectra": {
+        "exactly_equal": true,
+        "discrete_equal": true,
+        "differing_discrete_columns": [],
+        "worst_relative_difference_above_floor": 0.0,
+        "n_differing_cells_above_noise_floor": 0,
+        "n_rows": 36,
+        "differing_columns": {}
+      },
+      "r1l_temporal_mode_visibility": {
+        "exactly_equal": true,
+        "discrete_equal": true,
+        "differing_discrete_columns": [],
+        "worst_relative_difference_above_floor": 0.0,
+        "n_differing_cells_above_noise_floor": 0,
+        "n_rows": 480,
+        "differing_columns": {}
+      },
+      "r1l_old_structural_support": {
+        "exactly_equal": true,
+        "discrete_equal": true,
+        "differing_discrete_columns": [],
+        "worst_relative_difference_above_floor": 0.0,
+        "n_differing_cells_above_noise_floor": 0,
+        "n_rows": 36,
+        "differing_columns": {}
+      },
+      "r1l_age_information": {
+        "exactly_equal": true,
+        "discrete_equal": true,
+        "differing_discrete_columns": [],
+        "worst_relative_difference_above_floor": 0.0,
+        "n_differing_cells_above_noise_floor": 0,
+        "n_rows": 2196,
+        "differing_columns": {}
+      },
+      "r1l_class_nesting": {
+        "exactly_equal": true,
+        "discrete_equal": true,
+        "differing_discrete_columns": [],
+        "worst_relative_difference_above_floor": 0.0,
+        "n_differing_cells_above_noise_floor": 0,
+        "n_rows": 4,
+        "differing_columns": {}
+      },
+      "r1l_temporal_supports": {
+        "exactly_equal": true,
+        "discrete_equal": true,
+        "differing_discrete_columns": [],
+        "worst_relative_difference_above_floor": 0.0,
+        "n_differing_cells_above_noise_floor": 0,
+        "n_rows": 80,
+        "differing_columns": {}
+      }
+    },
+    "all_exactly_equal": true,
+    "all_discrete_equal": true,
+    "worst_relative_difference_above_floor": 0.0,
+    "n_differing_cells_above_noise_floor": 0,
+    "same_execution_commit": true,
+    "equality_rule": "exact on every normalized scientific cell, no tolerance",
+    "passes": true
+  },
+  "preserved_runs": {
+    "rule": "exact agreement on all discrete scientific conclusions; continuous differences reported, bitwise equality not required because those runs used an unrecorded multithreaded reduction order",
+    "index": {
+      "schema": "phrt-preserved-runs/1",
+      "why": "Stage-1 tables from executions that predate the pinned numerical environment. Kept so the pinned baseline can be compared against them under REVIEWER_RULING_R1L_REPRODUCIBILITY_009 item 10, which requires exact agreement on discrete scientific conclusions and reporting rather than bitwise equality on continuous quantities.",
+      "runs": {
+        "r1l_stage1_dirty_run": {
+          "run_id": "R1L_20260827T044757Z_2ba66f02",
+          "attestation": "not clean, not preregistered: one tracked change, scripts/run_r1l_operator_audit.py",
+          "gates": "all ten PASS",
+          "numerics": "unpinned; effective BLAS thread count not recorded",
+          "disposition": "DIRTY_EXECUTION_OF_CORRECTED_HARNESS"
+        },
+        "r1l_stage1_unpinned_clean_run": {
+          "run_id": "R1L_20260827T054852Z_2ba66f02",
+          "also_reproduced_bitwise_by": "R1L_20260827T053853Z_2ba66f02",
+          "attestation": "clean and preregistered, zero tracked changes",
+          "gates": "all ten PASS",
+          "numerics": "unpinned; threadpool_info reports four OpenBLAS threads on this machine",
+          "disposition": "CLEAN_BUT_UNPINNED"
+        }
+      },
+      "not_preserved": {
+        "R1L_20260827T044412Z_2ba66f02": "clean and preregistered, FAILED R1L_G8 at 2.801e+02 on the observer-time mask defect. Its tables were overwritten before the preservation discipline existed; the manifest and its gates are kept.",
+        "R1L_20260827T054444Z_2ba66f02": "L224-only diagnostic probe, pinned threads. Not a stage-1 result.",
+        "R1L_20260827T054501Z_2ba66f02": "L224-only diagnostic probe, pinned threads. Not a stage-1 result."
+      }
+    },
+    "comparisons": {
+      "r1l_stage1_dirty_run": {
+        "tables": {
+          "r1l_class_spectra": {
+            "exactly_equal": false,
+            "discrete_equal": true,
+            "differing_discrete_columns": [],
+            "worst_relative_difference_above_floor": 6.921117676508584e-07,
+            "n_differing_cells_above_noise_floor": 157,
+            "n_rows": 36,
+            "differing_columns": {
+              "effective_rank": {
+                "discrete": false,
+                "n_differing": 18,
+                "n_differing_above_noise_floor": 18,
+                "worst_relative_difference_above_floor": 1.8223730763526763e-15,
+                "example": {
+                  "row": 35,
+                  "a": 70.18194797565495,
+                  "b": 70.18194797565508,
+                  "abs_diff": 1.2789769243681803e-13
+                }
+              },
+              "kappa_positive": {
+                "discrete": false,
+                "n_differing": 30,
+                "n_differing_above_noise_floor": 30,
+                "worst_relative_difference_above_floor": 6.921117676508584e-07,
+                "example": {
+                  "row": 1,
+                  "a": 320952160089.737,
+                  "b": 320952382224.6576,
+                  "abs_diff": 222134.92059326172
+                }
+              },
+              "sigma_max": {
+                "discrete": false,
+                "n_differing": 26,
+                "n_differing_above_noise_floor": 26,
+                "worst_relative_difference_above_floor": 9.421998698682248e-16,
+                "example": {
+                  "row": 24,
+                  "a": 4826.442514262549,
+                  "b": 4826.442514262544,
+                  "abs_diff": 4.547473508864641e-12
+                }
+              },
+              "sigma_min_positive": {
+                "discrete": false,
+                "n_differing": 30,
+                "n_differing_above_noise_floor": 30,
+                "worst_relative_difference_above_floor": 6.921117673870376e-07,
+                "example": {
+                  "row": 1,
+                  "a": 4.00486328584891e-08,
+                  "b": 4.004860514035903e-08,
+                  "abs_diff": 2.771813006912348e-14
+                }
+              },
+              "stable_rank": {
+                "discrete": false,
+                "n_differing": 28,
+                "n_differing_above_noise_floor": 28,
+                "worst_relative_difference_above_floor": 2.667075734127713e-15,
+                "example": {
+                  "row": 24,
+                  "a": 5.994284807900645,
+                  "b": 5.994284807900661,
+                  "abs_diff": 1.5987211554602254e-14
+                }
+              },
+              "trace_information": {
+                "discrete": false,
+                "n_differing": 25,
+                "n_differing_above_noise_floor": 25,
+                "worst_relative_difference_above_floor": 8.330447430877218e-16,
+                "example": {
+                  "row": 20,
+                  "a": 214651056.63279155,
+                  "b": 214651056.63279137,
+                  "abs_diff": 1.7881393432617188e-07
+                }
+              }
+            }
+          },
+          "r1l_temporal_mode_visibility": {
+            "exactly_equal": false,
+            "discrete_equal": true,
+            "differing_discrete_columns": [],
+            "worst_relative_difference_above_floor": 4.650804794538563e-08,
+            "n_differing_cells_above_noise_floor": 597,
+            "n_rows": 480,
+            "differing_columns": {
+              "sigma_max": {
+                "discrete": false,
+                "n_differing": 271,
+                "n_differing_above_noise_floor": 271,
+                "worst_relative_difference_above_floor": 1.7645576759876726e-15,
+                "example": {
+                  "row": 57,
+                  "a": 5154.236181392353,
+                  "b": 5154.236181392362,
+                  "abs_diff": 9.094947017729282e-12
+                }
+              },
+              "sigma_min": {
+                "discrete": false,
+                "n_differing": 342,
+                "n_differing_above_noise_floor": 326,
+                "worst_relative_difference_above_floor": 4.650804794538563e-08,
+                "example": {
+                  "row": 325,
+                  "a": 3.7952762669347436e-09,
+                  "b": 3.795276443445642e-09,
+                  "abs_diff": 1.765108987977626e-16
+                }
+              }
+            }
+          },
+          "r1l_old_structural_support": {
+            "exactly_equal": false,
+            "discrete_equal": true,
+            "differing_discrete_columns": [],
+            "worst_relative_difference_above_floor": 1.5551104112527636e-15,
+            "n_differing_cells_above_noise_floor": 12,
+            "n_rows": 36,
+            "differing_columns": {
+              "old_structural_information_volume": {
+                "discrete": false,
+                "n_differing": 4,
+                "n_differing_above_noise_floor": 4,
+                "worst_relative_difference_above_floor": 1.7009026357870644e-16,
+                "example": {
+                  "row": 30,
+                  "a": 668.3912137569786,
+                  "b": 668.3912137569787,
+                  "abs_diff": 1.1368683772161603e-13
+                }
+              },
+              "old_structural_sigma_max": {
+                "discrete": false,
+                "n_differing": 8,
+                "n_differing_above_noise_floor": 8,
+                "worst_relative_difference_above_floor": 1.5551104112527636e-15,
+                "example": {
+                  "row": 24,
+                  "a": 146.21063160400575,
+                  "b": 146.21063160400598,
+                  "abs_diff": 2.2737367544323206e-13
+                }
+              },
+              "old_structural_sigma_min": {
+                "discrete": false,
+                "n_differing": 9,
+                "n_differing_above_noise_floor": 0,
+                "worst_relative_difference_above_floor": 0.0,
+                "example": {
+                  "row": 24,
+                  "a": 9.52577570820017e-20,
+                  "b": 9.87392600642648e-18,
+                  "abs_diff": 9.778668249344479e-18
+                }
+              }
+            }
+          },
+          "r1l_age_information": {
+            "exactly_equal": true,
+            "discrete_equal": true,
+            "differing_discrete_columns": [],
+            "worst_relative_difference_above_floor": 0.0,
+            "n_differing_cells_above_noise_floor": 0,
+            "n_rows": 2196,
+            "differing_columns": {}
+          },
+          "r1l_class_nesting": {
+            "exactly_equal": false,
+            "discrete_equal": true,
+            "differing_discrete_columns": [],
+            "worst_relative_difference_above_floor": 0.0,
+            "n_differing_cells_above_noise_floor": 0,
+            "n_rows": 4,
+            "differing_columns": {
+              "projection_residual": {
+                "discrete": false,
+                "n_differing": 4,
+                "n_differing_above_noise_floor": 0,
+                "worst_relative_difference_above_floor": 0.0,
+                "example": {
+                  "row": 3,
+                  "a": 1.507780633324564e-14,
+                  "b": 1.672781073940917e-14,
+                  "abs_diff": 1.6500044061635284e-15
+                }
+              }
+            }
+          },
+          "r1l_temporal_supports": {
+            "exactly_equal": true,
+            "discrete_equal": true,
+            "differing_discrete_columns": [],
+            "worst_relative_difference_above_floor": 0.0,
+            "n_differing_cells_above_noise_floor": 0,
+            "n_rows": 80,
+            "differing_columns": {}
+          }
+        },
+        "all_exactly_equal": false,
+        "all_discrete_equal": true,
+        "worst_relative_difference_above_floor": 6.921117676508584e-07,
+        "n_differing_cells_above_noise_floor": 766
+      },
+      "r1l_stage1_unpinned_clean_run": {
+        "tables": {
+          "r1l_class_spectra": {
+            "exactly_equal": false,
+            "discrete_equal": true,
+            "differing_discrete_columns": [],
+            "worst_relative_difference_above_floor": 7.244232887249125e-07,
+            "n_differing_cells_above_noise_floor": 187,
+            "n_rows": 36,
+            "differing_columns": {
+              "effective_rank": {
+                "discrete": false,
+                "n_differing": 23,
+                "n_differing_above_noise_floor": 23,
+                "worst_relative_difference_above_floor": 2.671960855339514e-15,
+                "example": {
+                  "row": 3,
+                  "a": 180.82939327173366,
+                  "b": 180.82939327173415,
+                  "abs_diff": 4.831690603168681e-13
+                }
+              },
+              "kappa_positive": {
+                "discrete": false,
+                "n_differing": 36,
+                "n_differing_above_noise_floor": 36,
+                "worst_relative_difference_above_floor": 7.244232886906656e-07,
+                "example": {
+                  "row": 5,
+                  "a": 357878031257.13715,
+                  "b": 357878290512.5053,
+                  "abs_diff": 259255.3681640625
+                }
+              },
+              "sigma_max": {
+                "discrete": false,
+                "n_differing": 28,
+                "n_differing_above_noise_floor": 28,
+                "worst_relative_difference_above_floor": 9.308571186381224e-16,
+                "example": {
+                  "row": 32,
+                  "a": 3908.2032400570856,
+                  "b": 3908.203240057082,
+                  "abs_diff": 3.637978807091713e-12
+                }
+              },
+              "sigma_min_positive": {
+                "discrete": false,
+                "n_differing": 36,
+                "n_differing_above_noise_floor": 36,
+                "worst_relative_difference_above_floor": 7.244232887249125e-07,
+                "example": {
+                  "row": 5,
+                  "a": 3.556260687048796e-08,
+                  "b": 3.556258110810733e-08,
+                  "abs_diff": 2.5762380624750053e-14
+                }
+              },
+              "stable_rank": {
+                "discrete": false,
+                "n_differing": 32,
+                "n_differing_above_noise_floor": 32,
+                "worst_relative_difference_above_floor": 2.074392237654889e-15,
+                "example": {
+                  "row": 24,
+                  "a": 5.994284807900645,
+                  "b": 5.994284807900658,
+                  "abs_diff": 1.2434497875801753e-14
+                }
+              },
+              "trace_information": {
+                "discrete": false,
+                "n_differing": 32,
+                "n_differing_above_noise_floor": 32,
+                "worst_relative_difference_above_floor": 1.4940203012615721e-15,
+                "example": {
+                  "row": 24,
+                  "a": 139634151.24795046,
+                  "b": 139634151.24795067,
+                  "abs_diff": 2.086162567138672e-07
+                }
+              }
+            }
+          },
+          "r1l_temporal_mode_visibility": {
+            "exactly_equal": false,
+            "discrete_equal": true,
+            "differing_discrete_columns": [],
+            "worst_relative_difference_above_floor": 2.7302646590112872e-08,
+            "n_differing_cells_above_noise_floor": 689,
+            "n_rows": 480,
+            "differing_columns": {
+              "sigma_max": {
+                "discrete": false,
+                "n_differing": 331,
+                "n_differing_above_noise_floor": 331,
+                "worst_relative_difference_above_floor": 3.683919350785573e-15,
+                "example": {
+                  "row": 10,
+                  "a": 5184.529550886774,
+                  "b": 5184.529550886793,
+                  "abs_diff": 1.9099388737231493e-11
+                }
+              },
+              "sigma_min": {
+                "discrete": false,
+                "n_differing": 417,
+                "n_differing_above_noise_floor": 358,
+                "worst_relative_difference_above_floor": 2.7302646590112872e-08,
+                "example": {
+                  "row": 277,
+                  "a": 1.5901560866818626e-07,
+                  "b": 1.590156043266393e-07,
+                  "abs_diff": 4.341546965779179e-15
+                }
+              }
+            }
+          },
+          "r1l_old_structural_support": {
+            "exactly_equal": false,
+            "discrete_equal": true,
+            "differing_discrete_columns": [],
+            "worst_relative_difference_above_floor": 4.2923147878404724e-15,
+            "n_differing_cells_above_noise_floor": 41,
+            "n_rows": 36,
+            "differing_columns": {
+              "level_information_volume": {
+                "discrete": false,
+                "n_differing": 23,
+                "n_differing_above_noise_floor": 23,
+                "worst_relative_difference_above_floor": 4.2923147878404724e-15,
+                "example": {
+                  "row": 3,
+                  "a": 172.15989080854087,
+                  "b": 172.1598908085416,
+                  "abs_diff": 7.389644451905042e-13
+                }
+              },
+              "old_structural_information_volume": {
+                "discrete": false,
+                "n_differing": 13,
+                "n_differing_above_noise_floor": 7,
+                "worst_relative_difference_above_floor": 3.35443097022627e-16,
+                "example": {
+                  "row": 24,
+                  "a": 254.18656412375216,
+                  "b": 254.18656412375225,
+                  "abs_diff": 8.526512829121202e-14
+                }
+              },
+              "old_structural_sigma_max": {
+                "discrete": false,
+                "n_differing": 14,
+                "n_differing_above_noise_floor": 8,
+                "worst_relative_difference_above_floor": 3.4989984253187114e-15,
+                "example": {
+                  "row": 24,
+                  "a": 146.21063160400575,
+                  "b": 146.21063160400627,
+                  "abs_diff": 5.115907697472721e-13
+                }
+              },
+              "old_structural_sigma_min": {
+                "discrete": false,
+                "n_differing": 12,
+                "n_differing_above_noise_floor": 3,
+                "worst_relative_difference_above_floor": 3.237381341472263e-15,
+                "example": {
+                  "row": 28,
+                  "a": 0.004822574061260008,
+                  "b": 0.004822574061259992,
+                  "abs_diff": 1.5612511283791264e-17
+                }
+              }
+            }
+          },
+          "r1l_age_information": {
+            "exactly_equal": false,
+            "discrete_equal": true,
+            "differing_discrete_columns": [],
+            "worst_relative_difference_above_floor": 4.816480164371966e-06,
+            "n_differing_cells_above_noise_floor": 4270,
+            "n_rows": 2196,
+            "differing_columns": {
+              "lambda_max_per_snr2": {
+                "discrete": false,
+                "n_differing": 1652,
+                "n_differing_above_noise_floor": 1434,
+                "worst_relative_difference_above_floor": 1.759662674511319e-15,
+                "example": {
+                  "row": 384,
+                  "a": 0.5047435696428486,
+                  "b": 0.5047435696428477,
+                  "abs_diff": 8.881784197001252e-16
+                }
+              },
+              "lambda_min_per_snr2": {
+                "discrete": false,
+                "n_differing": 1552,
+                "n_differing_above_noise_floor": 1128,
+                "worst_relative_difference_above_floor": 4.816480164371966e-06,
+                "example": {
+                  "row": 450,
+                  "a": 4.00153054750823e-12,
+                  "b": 4.0015112742157204e-12,
+                  "abs_diff": 1.927329250920188e-17
+                }
+              },
+              "log_information_volume_at_reference_snr": {
+                "discrete": false,
+                "n_differing": 1948,
+                "n_differing_above_noise_floor": 1708,
+                "worst_relative_difference_above_floor": 3.353006962657764e-14,
+                "example": {
+                  "row": 266,
+                  "a": 11.125385077589165,
+                  "b": 11.125385077588792,
+                  "abs_diff": 3.730349362740526e-13
+                }
+              }
+            }
+          },
+          "r1l_class_nesting": {
+            "exactly_equal": false,
+            "discrete_equal": true,
+            "differing_discrete_columns": [],
+            "worst_relative_difference_above_floor": 0.0,
+            "n_differing_cells_above_noise_floor": 0,
+            "n_rows": 4,
+            "differing_columns": {
+              "projection_residual": {
+                "discrete": false,
+                "n_differing": 4,
+                "n_differing_above_noise_floor": 0,
+                "worst_relative_difference_above_floor": 0.0,
+                "example": {
+                  "row": 1,
+                  "a": 9.349682486559098e-14,
+                  "b": 1.9317880628477727e-14,
+                  "abs_diff": 7.417894423711325e-14
+                }
+              }
+            }
+          },
+          "r1l_temporal_supports": {
+            "exactly_equal": true,
+            "discrete_equal": true,
+            "differing_discrete_columns": [],
+            "worst_relative_difference_above_floor": 0.0,
+            "n_differing_cells_above_noise_floor": 0,
+            "n_rows": 80,
+            "differing_columns": {}
+          }
+        },
+        "all_exactly_equal": false,
+        "all_discrete_equal": true,
+        "worst_relative_difference_above_floor": 4.816480164371966e-06,
+        "n_differing_cells_above_noise_floor": 5187
+      }
+    },
+    "all_discrete_conclusions_agree": true
+  },
+  "verdict": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PASS"
 }

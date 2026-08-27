@@ -1,15 +1,13 @@
 {
   "schema": "phrt-gate-dashboard/1",
-  "created_utc": "2026-08-27T06:33:44Z",
-  "git_commit": "7cef3b0d1e1732356afeb3e8abda5114c18ada03",
-  "total_gates": 176,
-  "passing": 156,
-  "active_blocking_failures": 1,
+  "created_utc": "2026-08-27T06:49:50Z",
+  "git_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
+  "total_gates": 177,
+  "passing": 158,
+  "active_blocking_failures": 0,
   "preserved_literal_failures": 8,
   "future_phase_not_run": 11,
-  "active_blocking_failure_names": [
-    "R1L_G12_deterministic_reproduction"
-  ],
+  "active_blocking_failure_names": [],
   "preserved_literal_failure_dispositions": {
     "EDGE1_a000_i020_raymap_generation": "RESOLVED_BY_S0_BACKEND",
     "G10q_retired_flat_sigma_convention": "RETIRED_PIXELIZATION_DEPENDENT",

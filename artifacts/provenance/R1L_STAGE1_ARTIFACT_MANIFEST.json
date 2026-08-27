@@ -1,11 +1,11 @@
 {
   "schema": "phrt-artifact-manifest/1",
   "experiment_id": "R1L_STAGE_1_OPERATOR_RANK_AUDIT",
-  "created_utc": "2026-08-27T06:33:34Z",
-  "stop_token": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING",
-  "canonical_stage1_status": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING",
+  "created_utc": "2026-08-27T06:50:07Z",
+  "stop_token": "R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED",
+  "canonical_stage1_status": "R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED",
   "audit_finding": "R1L_STAGE_1_AUDIT_FINDINGS_COMPLETE",
-  "deterministic_reproduction": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING",
+  "deterministic_reproduction": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PASS",
   "blocking_gate": "R1L_G12_deterministic_reproduction",
   "stop_conditions_evaluated": {
     "R1L_STOP_1": false,
@@ -18,8 +18,8 @@
   "authoritative_attestation": "execution",
   "execution_attestation": {
     "available": true,
-    "execution_commit": "0ae6b80a08b0ecf8e337e73070d10f2b9146198b",
-    "head_tree_sha": "6ec56edc69a87d87e168aa87a4850f36a9273f50",
+    "execution_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
+    "head_tree_sha": "6bd887117523a93ede123a50e2c0bb9eb8f8a9f7",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -30,7 +30,7 @@
     ],
     "porcelain_registered": "",
     "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "8a4f2807cc7bc708da14e31765656b9a6b8c59ec2fcf2bd20869373b83412e9c",
     "n_tracked_changes": 0,
     "n_untracked": 0,
     "tracked_clean": true,
@@ -60,8 +60,8 @@
   },
   "report_assembly_attestation": {
     "available": true,
-    "execution_commit": "7cef3b0d1e1732356afeb3e8abda5114c18ada03",
-    "head_tree_sha": "c09eacaa2c7599f30f9e0fef03129b3d5dfc43fa",
+    "execution_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
+    "head_tree_sha": "6bd887117523a93ede123a50e2c0bb9eb8f8a9f7",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -70,11 +70,11 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": " M scripts/build_r1l_stage1_report.py\n M scripts/compare_r1l_stage1_reproduction.py\n M scripts/run_r1l_operator_audit.py\n?? src/phrt/numerics.py\n?? tests/test_numerics.py\n",
-    "porcelain_registered_sha256": "8e05992e0323131a6b413d00e74076994ead41493bc3c803898ab7237c1edcd0",
-    "porcelain_whole_tree_sha256": "4fa16dcbf31d56e166fcee51910f476dd27240419682d47b76ab2a988e7a13a0",
-    "n_tracked_changes": 3,
-    "n_untracked": 2,
+    "porcelain_registered": " M tests/test_gate_dashboard.py\n?? scripts/promote_r1l_stage1_baseline.py\n",
+    "porcelain_registered_sha256": "4cf97c9171fd01ea71a719b4e0f4b9c64f2c4c802207e9e59d6cd39340a6cc37",
+    "porcelain_whole_tree_sha256": "60ff233489d3dfd8eb5bc72cdc9ca294b34479598d39de2e1235caca893e9489",
+    "n_tracked_changes": 1,
+    "n_untracked": 1,
     "tracked_clean": false,
     "untracked_clean": false,
     "clean": false,
@@ -95,16 +95,16 @@
   "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
   "inputs": {
     "artifacts/configs/R1L_LOCALIZED_AUDIT_FREEZE.json": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0",
-    "artifacts/gates/r1l_stage1_gates.json": "864331a44cb4bb111d6318514e0daf948b7ce08a3598c30209151c36e8ef0f6b",
-    "artifacts/manifests/R1L_20260827T054852Z_2ba66f02.json": "139d68d53b573312c298db42791bf6dd750bdadacd8315bf6fda7ccf1ce34c92",
-    "artifacts/tables/r1l_age_information.parquet": "4052e268a9b22cb4dcc25286dd0693950bd3d6c8dfddb882cd9e8193cb2141b0",
-    "artifacts/tables/r1l_class_nesting.parquet": "28f3cb68f83548e0d99756d95b5f1f04619bda86eb34eadb86f7e2c9271f798e",
-    "artifacts/tables/r1l_class_spectra.parquet": "3dbea41b42af7a5a5e8c31f5c2d89379019057bccf4f01f349af2ecd97384ba9",
-    "artifacts/tables/r1l_old_structural_support.parquet": "20fc9acdea73e11b521611e9d5e8ae7fdca6b9521d0046e9a2508b808b3aea84",
-    "artifacts/tables/r1l_temporal_mode_visibility.parquet": "d3e28a7e0d53202d0f4b4ea7d32300a50b3d344c16cb595c9505dc20247c905b",
+    "artifacts/gates/r1l_stage1_gates.json": "bb662663a069b5a5a2e77a758667df3e004ad2ad96815a5115537d6edce65468",
+    "artifacts/manifests/R1L_20260827T064329Z_2ba66f02.json": "8a67ff0adebd40a4621ddddfc38b2519f8b030cbc96d137eaa1c148ea83c8c05",
+    "artifacts/tables/r1l_age_information.parquet": "b225912c05f15e72e6acdc62708148b9c18d9a236ea8bcdf063da01a6abcde5e",
+    "artifacts/tables/r1l_class_nesting.parquet": "a03305070503da16b5fa2e0c44a07d67c2bb41d4742fd326f0943d6f124c5b29",
+    "artifacts/tables/r1l_class_spectra.parquet": "067efc63d8559ab778a7d9ebb3f5f92668190732911fd991046f4357527bb26b",
+    "artifacts/tables/r1l_old_structural_support.parquet": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c",
+    "artifacts/tables/r1l_temporal_mode_visibility.parquet": "835ca1d6afe3fcb2957208ae11a737d8d00b6119a73da3c6d0266da0742cf62b",
     "artifacts/tables/r1l_temporal_supports.parquet": "8462705609ca71c0ede10f9aee3f5e7a89d4304fb2afcd0bfd3b628ed904513a"
   },
   "outputs": {
-    "artifacts/reports/R1L_STAGE1_OPERATOR_AUDIT.md": "250465828d37198d680296dd3525c3bc473558ca7a18f3341ff4110e7dc0698c"
+    "artifacts/reports/R1L_STAGE1_OPERATOR_AUDIT.md": "d0a44248fe0070bf5b2791d67e1e4fb4a51e0f7726853bb4b2466ef796dc65d8"
   }
 }

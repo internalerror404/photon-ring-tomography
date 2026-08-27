@@ -2181,31 +2181,31 @@
       "measured": 1,
       "threshold": 1,
       "note": "the localized ladder has exactly the E3D dimensions",
-      "run_id": "R1L_20260827T054852Z_2ba66f02",
-      "recorded_at": "2026-08-27T05:53:09+00:00",
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "recorded_at": "2026-08-27T06:49:50+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 1,
         "threshold": 1,
         "note": "the localized ladder has exactly the E3D dimensions",
-        "run_id": "R1L_20260827T044757Z_2ba66f02",
-        "recorded_at": "2026-08-27T04:51:44+00:00"
+        "run_id": "R1L_20260827T054852Z_2ba66f02",
+        "recorded_at": "2026-08-27T05:53:09+00:00"
       }
     },
     "R1L_G2_exact_class_nesting": {
       "status": "PASS",
-      "measured": 4.3758399681514965e-14,
+      "measured": 1.8405416080113926e-13,
       "threshold": 1e-12,
       "note": "dyadic nodes nest arithmetically, so this must be zero rather than small",
-      "run_id": "R1L_20260827T054852Z_2ba66f02",
-      "recorded_at": "2026-08-27T05:53:09+00:00",
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "recorded_at": "2026-08-27T06:49:50+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 1.8398130241514823e-13,
+        "measured": 4.3758399681514965e-14,
         "threshold": 1e-12,
         "note": "dyadic nodes nest arithmetically, so this must be zero rather than small",
-        "run_id": "R1L_20260827T044757Z_2ba66f02",
-        "recorded_at": "2026-08-27T04:51:44+00:00"
+        "run_id": "R1L_20260827T054852Z_2ba66f02",
+        "recorded_at": "2026-08-27T05:53:09+00:00"
       }
     },
     "R1L_G3_temporal_support_compactness": {
@@ -2213,71 +2213,71 @@
       "measured": 0.24968757810547362,
       "threshold": 0.3,
       "note": "largest fraction of the history any localized temporal function occupies",
-      "run_id": "R1L_20260827T054852Z_2ba66f02",
-      "recorded_at": "2026-08-27T05:53:09+00:00",
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "recorded_at": "2026-08-27T06:49:50+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.24968757810547362,
         "threshold": 0.3,
         "note": "largest fraction of the history any localized temporal function occupies",
-        "run_id": "R1L_20260827T044757Z_2ba66f02",
-        "recorded_at": "2026-08-27T04:51:44+00:00"
+        "run_id": "R1L_20260827T054852Z_2ba66f02",
+        "recorded_at": "2026-08-27T05:53:09+00:00"
       }
     },
     "R1L_G4_adjoint": {
       "status": "PASS",
-      "measured": 3.2124692276173804e-14,
+      "measured": 1.416888406462156e-13,
       "threshold": 1e-08,
-      "run_id": "R1L_20260827T054852Z_2ba66f02",
-      "recorded_at": "2026-08-27T05:53:09+00:00",
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "recorded_at": "2026-08-27T06:49:50+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 1.416888406462156e-13,
+        "measured": 3.2124692276173804e-14,
         "threshold": 1e-08,
-        "run_id": "R1L_20260827T044757Z_2ba66f02",
-        "recorded_at": "2026-08-27T04:51:44+00:00"
+        "run_id": "R1L_20260827T054852Z_2ba66f02",
+        "recorded_at": "2026-08-27T05:53:09+00:00"
       }
     },
     "R1L_G5_dense_matrix_free_parity": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-10,
-      "run_id": "R1L_20260827T054852Z_2ba66f02",
-      "recorded_at": "2026-08-27T05:53:09+00:00",
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "recorded_at": "2026-08-27T06:49:50+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 1e-10,
-        "run_id": "R1L_20260827T044757Z_2ba66f02",
-        "recorded_at": "2026-08-27T04:51:44+00:00"
+        "run_id": "R1L_20260827T054852Z_2ba66f02",
+        "recorded_at": "2026-08-27T05:53:09+00:00"
       }
     },
     "R1L_G6_gram_monotonicity": {
       "status": "PASS",
-      "measured": 7.918503626872172e-17,
+      "measured": 1.0727820533757666e-16,
       "threshold": 1e-10,
-      "run_id": "R1L_20260827T054852Z_2ba66f02",
-      "recorded_at": "2026-08-27T05:53:09+00:00",
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "recorded_at": "2026-08-27T06:49:50+00:00",
       "superseded": {
         "status": "PASS",
-        "measured": 1.0727792495617831e-16,
+        "measured": 7.918503626872172e-17,
         "threshold": 1e-10,
-        "run_id": "R1L_20260827T044757Z_2ba66f02",
-        "recorded_at": "2026-08-27T04:51:44+00:00"
+        "run_id": "R1L_20260827T054852Z_2ba66f02",
+        "recorded_at": "2026-08-27T05:53:09+00:00"
       }
     },
     "R1L_G7_enrichment_does_not_lose_rank": {
       "status": "PASS",
       "measured": 0,
       "threshold": 0,
-      "run_id": "R1L_20260827T054852Z_2ba66f02",
-      "recorded_at": "2026-08-27T05:53:09+00:00",
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "recorded_at": "2026-08-27T06:49:50+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0,
         "threshold": 0,
-        "run_id": "R1L_20260827T044757Z_2ba66f02",
-        "recorded_at": "2026-08-27T04:51:44+00:00"
+        "run_id": "R1L_20260827T054852Z_2ba66f02",
+        "recorded_at": "2026-08-27T05:53:09+00:00"
       }
     },
     "R1L_G8_unreached_columns_are_exactly_zero": {
@@ -2285,15 +2285,15 @@
       "measured": 0.0,
       "threshold": 0.0,
       "note": "a temporal function whose support holds no ray must give a literally zero column, which is the property that makes an unseen epoch a null direction rather than a confident extrapolation",
-      "run_id": "R1L_20260827T054852Z_2ba66f02",
-      "recorded_at": "2026-08-27T05:53:09+00:00",
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "recorded_at": "2026-08-27T06:49:50+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 0.0,
         "threshold": 0.0,
         "note": "a temporal function whose support holds no ray must give a literally zero column, which is the property that makes an unseen epoch a null direction rather than a confident extrapolation",
-        "run_id": "R1L_20260827T044757Z_2ba66f02",
-        "recorded_at": "2026-08-27T04:51:44+00:00"
+        "run_id": "R1L_20260827T054852Z_2ba66f02",
+        "recorded_at": "2026-08-27T05:53:09+00:00"
       }
     },
     "R1L_G9_orbit_law_matches_raymap_fluid": {
@@ -2301,44 +2301,60 @@
       "measured": 1.3877787807814457e-17,
       "threshold": 1e-12,
       "note": "pattern Omega against the Kerr fluid four-velocity the redshift was built from",
-      "run_id": "R1L_20260827T054852Z_2ba66f02",
-      "recorded_at": "2026-08-27T05:53:09+00:00",
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "recorded_at": "2026-08-27T06:49:50+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 1.3877787807814457e-17,
         "threshold": 1e-12,
         "note": "pattern Omega against the Kerr fluid four-velocity the redshift was built from",
-        "run_id": "R1L_20260827T044757Z_2ba66f02",
-        "recorded_at": "2026-08-27T04:51:44+00:00"
+        "run_id": "R1L_20260827T054852Z_2ba66f02",
+        "recorded_at": "2026-08-27T05:53:09+00:00"
       }
     },
     "R1L_G10_circular_centres_outside_isco": {
       "status": "PASS",
       "measured": 1,
       "threshold": 1,
-      "run_id": "R1L_20260827T054852Z_2ba66f02",
-      "recorded_at": "2026-08-27T05:53:09+00:00",
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "recorded_at": "2026-08-27T06:49:50+00:00",
       "superseded": {
         "status": "PASS",
         "measured": 1,
         "threshold": 1,
-        "run_id": "R1L_20260827T044757Z_2ba66f02",
-        "recorded_at": "2026-08-27T04:51:44+00:00"
+        "run_id": "R1L_20260827T054852Z_2ba66f02",
+        "recorded_at": "2026-08-27T05:53:09+00:00"
       }
     },
     "R1L_G12_deterministic_reproduction": {
-      "status": "FAIL",
+      "status": "PASS",
       "measured": 0,
       "threshold": 0,
-      "note": "no pinned pair has been executed, so deterministic reproduction is unproven. Blocking by default",
-      "run_id": "none",
-      "recorded_at": "2026-08-27T06:32:29+00:00"
+      "note": "two pinned six-class runs agree on every normalized scientific cell, and every discrete conclusion agrees with the preserved runs",
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "recorded_at": "2026-08-27T06:49:14+00:00",
+      "superseded": {
+        "status": "FAIL",
+        "measured": 0,
+        "threshold": 0,
+        "note": "no pinned pair has been executed, so deterministic reproduction is unproven. Blocking by default",
+        "run_id": "none",
+        "recorded_at": "2026-08-27T06:32:29+00:00"
+      }
+    },
+    "R1L_G11_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "every loaded BLAS pool must report exactly one thread, interrogated after the import rather than inferred from the environment",
+      "run_id": "R1L_20260827T063735Z_2ba66f02",
+      "recorded_at": "2026-08-27T06:49:50+00:00"
     }
   },
-  "updated_at": "2026-08-27T06:32:29+00:00",
+  "updated_at": "2026-08-27T06:49:50+00:00",
   "summary": {
-    "PASS": 156,
-    "FAIL": 9,
+    "PASS": 158,
+    "FAIL": 8,
     "NOT_RUN": 11
   }
 }

@@ -37,10 +37,10 @@ def test_summary_block_reports_all_three_counts():
 # needs a written adjudication, so the entry carries the document that rules on
 # it. This is not a mute list: an unlisted FAIL still breaks the build, and a
 # listed one has to point at a real file.
-DECLARED_BLOCKING = {
-    "R1L_G12_deterministic_reproduction":
-        "artifacts/configs/R1L_DETERMINISTIC_NUMERICS_AMENDMENT_009.json",
-}
+# Empty is the healthy state. R1L_G12_deterministic_reproduction was listed
+# here while deterministic reproduction was unproven and was removed when the
+# pinned pair passed, which is the lifecycle this list is meant to have.
+DECLARED_BLOCKING: dict[str, str] = {}
 
 
 def test_no_unadjudicated_blocking_failures():

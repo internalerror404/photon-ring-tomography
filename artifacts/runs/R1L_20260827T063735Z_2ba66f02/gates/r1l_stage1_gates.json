@@ -1,7 +1,7 @@
 {
   "experiment": "R1L_STAGE_1_OPERATOR_RANK_AUDIT",
   "run_id": "R1L_20260827T063735Z_2ba66f02",
-  "promoted": true,
+  "promoted": false,
   "gates": {
     "R1L_G1_dyadic_dimension_mirror": {
       "status": "PASS",
@@ -69,6 +69,5 @@
     "PASS": 11,
     "FAIL": 0,
     "NOT_RUN": 0
-  },
-  "promoted_at": "2026-08-27T06:49:50Z"
+  }
 }

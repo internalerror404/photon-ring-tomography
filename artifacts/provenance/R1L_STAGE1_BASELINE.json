@@ -1,0 +1,69 @@
+{
+  "schema": "phrt-stage-baseline/1",
+  "id": "R1L_STAGE1_PINNED_BASELINE",
+  "created_utc": "2026-08-27T06:49:50Z",
+  "ruling": "REVIEWER_RULING_R1L_REPRODUCIBILITY_009 item 11",
+  "baseline_run": "R1L_20260827T063735Z_2ba66f02",
+  "reproduced_by": "R1L_20260827T064329Z_2ba66f02",
+  "reproduction_verdict": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PASS",
+  "execution_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
+  "attestation": {
+    "clean": true,
+    "preregistered": true,
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "numerics": {
+    "pinned_environment": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "declared_pin": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "threadpool_state": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.23.dev",
+        "threading_layer": "pthreads",
+        "architecture": "Prescott",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.21.dev",
+        "threading_layer": "pthreads",
+        "architecture": "Prescott",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/scipy.libs/libopenblasp-r0-23e5df77.3.21.dev.so"
+      }
+    ],
+    "all_pools_single_threaded": true
+  },
+  "promoted_tables": {
+    "r1l_age_information.parquet": "b225912c05f15e72e6acdc62708148b9c18d9a236ea8bcdf063da01a6abcde5e",
+    "r1l_class_nesting.parquet": "a03305070503da16b5fa2e0c44a07d67c2bb41d4742fd326f0943d6f124c5b29",
+    "r1l_class_spectra.parquet": "067efc63d8559ab778a7d9ebb3f5f92668190732911fd991046f4357527bb26b",
+    "r1l_old_structural_support.parquet": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c",
+    "r1l_temporal_mode_visibility.parquet": "835ca1d6afe3fcb2957208ae11a737d8d00b6119a73da3c6d0266da0742cf62b",
+    "r1l_temporal_supports.parquet": "8462705609ca71c0ede10f9aee3f5e7a89d4304fb2afcd0bfd3b628ed904513a"
+  },
+  "rule": "the canonical tables are byte-identical to the baseline run's own outputs, and the baseline was reproduced cell for cell by an independent process under the same pinned environment"
+}

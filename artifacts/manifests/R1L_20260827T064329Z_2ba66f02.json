@@ -1,0 +1,256 @@
+{
+  "run_id": "R1L_20260827T064329Z_2ba66f02",
+  "experiment_id": "R1L_STAGE_1_OPERATOR_RANK_AUDIT",
+  "execution_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
+  "manifest_build_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
+  "git_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
+  "git_commit_deprecated": "ambiguous: this is the manifest build commit, not the execution commit. Read execution_commit instead",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "subsample_seed": 20260825
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/R1L_LOCALIZED_AUDIT_FREEZE.json",
+      "sha256": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1L_20260827T064329Z_2ba66f02/tables/r1l_class_spectra.parquet",
+      "sha256": "067efc63d8559ab778a7d9ebb3f5f92668190732911fd991046f4357527bb26b"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1L_20260827T064329Z_2ba66f02/tables/r1l_temporal_mode_visibility.parquet",
+      "sha256": "835ca1d6afe3fcb2957208ae11a737d8d00b6119a73da3c6d0266da0742cf62b"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1L_20260827T064329Z_2ba66f02/tables/r1l_old_structural_support.parquet",
+      "sha256": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1L_20260827T064329Z_2ba66f02/tables/r1l_age_information.parquet",
+      "sha256": "b225912c05f15e72e6acdc62708148b9c18d9a236ea8bcdf063da01a6abcde5e"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1L_20260827T064329Z_2ba66f02/tables/r1l_class_nesting.parquet",
+      "sha256": "a03305070503da16b5fa2e0c44a07d67c2bb41d4742fd326f0943d6f124c5b29"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1L_20260827T064329Z_2ba66f02/tables/r1l_temporal_supports.parquet",
+      "sha256": "8462705609ca71c0ede10f9aee3f5e7a89d4304fb2afcd0bfd3b628ed904513a"
+    }
+  ],
+  "gate_status": {
+    "R1L_G1_dyadic_dimension_mirror": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "the localized ladder has exactly the E3D dimensions"
+    },
+    "R1L_G2_exact_class_nesting": {
+      "status": "PASS",
+      "measured": 1.8405416080113926e-13,
+      "threshold": 1e-12,
+      "note": "dyadic nodes nest arithmetically, so this must be zero rather than small"
+    },
+    "R1L_G3_temporal_support_compactness": {
+      "status": "PASS",
+      "measured": 0.24968757810547362,
+      "threshold": 0.3,
+      "note": "largest fraction of the history any localized temporal function occupies"
+    },
+    "R1L_G4_adjoint": {
+      "status": "PASS",
+      "measured": 1.416888406462156e-13,
+      "threshold": 1e-08
+    },
+    "R1L_G5_dense_matrix_free_parity": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "R1L_G6_gram_monotonicity": {
+      "status": "PASS",
+      "measured": 1.0727820533757666e-16,
+      "threshold": 1e-10
+    },
+    "R1L_G7_enrichment_does_not_lose_rank": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "R1L_G8_unreached_columns_are_exactly_zero": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "note": "a temporal function whose support holds no ray must give a literally zero column, which is the property that makes an unseen epoch a null direction rather than a confident extrapolation"
+    },
+    "R1L_G9_orbit_law_matches_raymap_fluid": {
+      "status": "PASS",
+      "measured": 1.3877787807814457e-17,
+      "threshold": 1e-12,
+      "note": "pattern Omega against the Kerr fluid four-velocity the redshift was built from"
+    },
+    "R1L_G10_circular_centres_outside_isco": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "R1L_G11_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "every loaded BLAS pool must report exactly one thread, interrogated after the import rather than inferred from the environment"
+    }
+  },
+  "started_at": "2026-08-27T06:43:29Z",
+  "finished_at": "2026-08-27T06:49:04+00:00",
+  "attestation": {
+    "available": true,
+    "execution_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
+    "head_tree_sha": "6bd887117523a93ede123a50e2c0bb9eb8f8a9f7",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "8a4f2807cc7bc708da14e31765656b9a6b8c59ec2fcf2bd20869373b83412e9c",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_LOCALIZED_AUDIT_FREEZE.json",
+        "sha256": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0",
+        "working_blob_sha": "d811388c9ed3684d3762f939c84a6cf610e4d1e9",
+        "committed_blob_sha": "d811388c9ed3684d3762f939c84a6cf610e4d1e9",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "peak_rss_mb": 2245.76953125,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 335.5858414173126,
+  "stage": "operator_rank_audit",
+  "geometry": "a050_i050",
+  "reference_snr": 100.0,
+  "age_grid_step_M": 2.0,
+  "old_band_boundary_M": 57.666382656487954,
+  "classes": [
+    "L224",
+    "L448",
+    "L1056",
+    "C224",
+    "C448_T",
+    "C1056_ST"
+  ],
+  "full_ladder": true,
+  "promoted_to_canonical": false,
+  "run_dir": "artifacts/runs/R1L_20260827T064329Z_2ba66f02",
+  "numerics": {
+    "pinned_environment": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "declared_pin": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "threadpool_state": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.23.dev",
+        "threading_layer": "pthreads",
+        "architecture": "Prescott",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.21.dev",
+        "threading_layer": "pthreads",
+        "architecture": "Prescott",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/scipy.libs/libopenblasp-r0-23e5df77.3.21.dev.so"
+      }
+    ],
+    "all_pools_single_threaded": true
+  }
+}

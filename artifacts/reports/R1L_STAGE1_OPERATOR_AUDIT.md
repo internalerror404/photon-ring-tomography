@@ -5,18 +5,18 @@ no estimator was fitted and no reconstruction error exists in this document.
 This stage reports only what the operator can and cannot see, which is a
 property of the geometry and the basis alone.
 
-- run `R1L_20260827T054852Z_2ba66f02`
-- execution commit `0ae6b80a08b0ecf8e337e73070d10f2b9146198b`
+- run `R1L_20260827T064329Z_2ba66f02`
+- execution commit `dab6ae63e8ceca02849aa64912d6be72a47a2a6f`
 - freeze `24f6732a7be9025e...`
 - geometry `a050_i050`, orders 0–2, reference SNR₀ = 100
 - operational threshold ρ = 1.0
 - age grid 2.0 M
   (was 4.0 M), probe half width
   3.0 M
-- **canonical stage-1 status `R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING`**
+- **canonical stage-1 status `R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED`**
 - audit finding `R1L_STAGE_1_AUDIT_FINDINGS_COMPLETE` — a finding about the operator, which has no
   standing to unlock a stage until it is reproducible
-- deterministic reproduction `R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING`
+- deterministic reproduction `R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PASS`
 - blocking gate `R1L_G12_deterministic_reproduction`
 - amendment `R1L_STAGE1_DIRTY_EXECUTION_G8_MASK_FIX`
   (`artifacts/configs/R1L_STAGE1_DIRTY_EXECUTION_AMENDMENT_008.json`)
@@ -73,7 +73,7 @@ cannot be counted as recovered morphology. Entries are operational ranks.
 | `L1056` | 455 | 0 | 185 | 91 | 3 | 243 | 0 |
 
 The direct image sees **nothing at all** in this subspace: its largest singular
-value there is 2.33e-14 at
+value there is 1.75e-14 at
 `L224`, which is numerical zero, against
 297.5 for the resolved
 stack.
@@ -171,17 +171,18 @@ is the result most likely to decide whether this line reaches observation.
 | gate | status | measured | threshold |
 |---|---|---|---|
 | `R1L_G1_dyadic_dimension_mirror` | PASS | 1 | 1 |
-| `R1L_G2_exact_class_nesting` | PASS | 4.376e-14 | 1.000e-12 |
+| `R1L_G2_exact_class_nesting` | PASS | 1.841e-13 | 1.000e-12 |
 | `R1L_G3_temporal_support_compactness` | PASS | 2.497e-01 | 3.000e-01 |
-| `R1L_G4_adjoint` | PASS | 3.212e-14 | 1.000e-08 |
+| `R1L_G4_adjoint` | PASS | 1.417e-13 | 1.000e-08 |
 | `R1L_G5_dense_matrix_free_parity` | PASS | 0.000e+00 | 1.000e-10 |
-| `R1L_G6_gram_monotonicity` | PASS | 7.919e-17 | 1.000e-10 |
+| `R1L_G6_gram_monotonicity` | PASS | 1.073e-16 | 1.000e-10 |
 | `R1L_G7_enrichment_does_not_lose_rank` | PASS | 0 | 0 |
 | `R1L_G8_unreached_columns_are_exactly_zero` | PASS | 0.000e+00 | 0.000e+00 |
 | `R1L_G9_orbit_law_matches_raymap_fluid` | PASS | 1.388e-17 | 1.000e-12 |
 | `R1L_G10_circular_centres_outside_isco` | PASS | 1 | 1 |
+| `R1L_G11_pinned_numerical_environment` | PASS | 1 | 1 |
 
-`R1L_G2` measures 4.38e-14,
+`R1L_G2` measures 1.84e-13,
 which is QR round-off on a 36,864 x 1056
 design rather than a nesting defect. Exactness is a statement about the function
 spaces, and it is checked directly on the temporal factor alone in the unit
@@ -237,20 +238,48 @@ Not established, and not to be described as established:
 
 ## 8. Clean reproduction
 
-Ruling items 8 and 9 require two complete six-class stage-1 runs, executed in
-separate processes from one clean committed tree under the pinned numerical
-environment, agreeing on every normalized scientific cell. That pair has **not**
-been executed.
+Ruling items 8, 9 and 10.
 
-Verdict: **`R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING`**. Gate `R1L_G12_deterministic_reproduction` is
-**FAIL** and blocking. Stage 2 is not entered.
+**The pinned pair (item 9).** Two complete six-class runs, separate processes,
+one clean committed tree, no code edited between them. Exact equality on every
+normalized scientific cell, no tolerance — identical code, seeds and rays under
+a serial BLAS leave nothing that may legitimately differ.
+
+- `R1L_20260827T063735Z_2ba66f02` — execution commit `dab6ae63e8ce`,
+  clean True, preregistered True, all pools
+  single-threaded True
+- `R1L_20260827T064329Z_2ba66f02` — execution commit `dab6ae63e8ce`,
+  clean True, preregistered True, all pools
+  single-threaded True
+- same execution commit: True
+
+| table | rows | pinned-pair equality |
+|---|---:|---|
+| `r1l_class_spectra` | 36 | **equal** |
+| `r1l_temporal_mode_visibility` | 480 | **equal** |
+| `r1l_old_structural_support` | 36 | **equal** |
+| `r1l_age_information` | 2196 | **equal** |
+| `r1l_class_nesting` | 4 | **equal** |
+| `r1l_temporal_supports` | 80 | **equal** |
+
+**The preserved runs (item 10).** Compared against the pinned baseline. Exact
+agreement is required on discrete conclusions — ranks, nullities, exact-zero
+column counts, operational ranks, detectability flags. Continuous differences
+are reported, not required to vanish.
+
+| preserved run | discrete conclusions agree | worst relative difference | cells above the 1e-12 floor |
+|---|---|---:|---:|
+| `r1l_stage1_dirty_run` | **yes** | 6.92e-07 | 766 |
+| `r1l_stage1_unpinned_clean_run` | **yes** | 4.82e-06 | 5,187 |
+
+Verdict: **`R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PASS`**. Every number in sections 1 to 7 is carried by a pinned, clean, preregistered execution that a second independent process reproduced cell for cell. The pre-pin runs are preserved and agree on every discrete conclusion; their continuous differences are reported above and are not required to vanish, because the reduction order those runs used was never recorded and cannot be reconstructed.
 
 ## 9. Status
 
 The audit findings of sections 1 to 7 are complete: `R1L_STAGE_1_AUDIT_FINDINGS_COMPLETE`. That is a
 statement about the operator and it does not by itself authorize anything.
 
-The canonical status of stage 1 is `R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING`, which is the deterministic
+The canonical status of stage 1 is `R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED`, which is the deterministic
 reproduction disposition. Gate `R1L_G12_deterministic_reproduction` is blocking
 and carries it, so the status lives in the gate set rather than in this
 sentence. Stage 2 is entered only when that gate passes.

@@ -1,10 +1,10 @@
 # GATE DASHBOARD
 
-- commit `7cef3b0d1e1732356afeb3e8abda5114c18ada03`
-- 176 gates, 156 passing
+- commit `dab6ae63e8ceca02849aa64912d6be72a47a2a6f`
+- 177 gates, 158 passing
 
 ```
-    active_blocking_failures:   1
+    active_blocking_failures:   0
     preserved_literal_failures: 8
     future_phase_not_run:       11
 ```
@@ -21,8 +21,6 @@ A preserved literal failure is a FAIL that has been adjudicated and kept on the 
 | `G7b_weighted_operator_discrepancy` | `WITHDRAWN_INVALID_CONVERGENCE_METRIC` |
 | `GRID_AUTHORIZATION` | `SUPERSEDED_GRID_COMPLETE` |
 | `R0_G15_uncertainty_calibration_band` | `UNCERTAINTY_WITHDRAWN` |
-
-**Active blocking failures:** `R1L_G12_deterministic_reproduction`
 
 ## Full roll
 
@@ -170,13 +168,14 @@ A preserved literal failure is a FAIL that has been adjudicated and kept on the 
 | `R0_G14_in_span_membership` | PASS | – | 0 | 1e-10 |
 | `R0_G15_uncertainty_calibration_band` | FAIL | `UNCERTAINTY_WITHDRAWN` | 0.4966 | [0.5, 2.0] |
 | `R1L_G10_circular_centres_outside_isco` | PASS | – | 1 | 1 |
-| `R1L_G12_deterministic_reproduction` | FAIL | – | 0 | 0 |
+| `R1L_G11_pinned_numerical_environment` | PASS | – | 1 | 1 |
+| `R1L_G12_deterministic_reproduction` | PASS | – | 0 | 0 |
 | `R1L_G1_dyadic_dimension_mirror` | PASS | – | 1 | 1 |
-| `R1L_G2_exact_class_nesting` | PASS | – | 4.376e-14 | 1e-12 |
+| `R1L_G2_exact_class_nesting` | PASS | – | 1.841e-13 | 1e-12 |
 | `R1L_G3_temporal_support_compactness` | PASS | – | 0.2497 | 0.3 |
-| `R1L_G4_adjoint` | PASS | – | 3.212e-14 | 1e-08 |
+| `R1L_G4_adjoint` | PASS | – | 1.417e-13 | 1e-08 |
 | `R1L_G5_dense_matrix_free_parity` | PASS | – | 0 | 1e-10 |
-| `R1L_G6_gram_monotonicity` | PASS | – | 7.919e-17 | 1e-10 |
+| `R1L_G6_gram_monotonicity` | PASS | – | 1.073e-16 | 1e-10 |
 | `R1L_G7_enrichment_does_not_lose_rank` | PASS | – | 0 | 0 |
 | `R1L_G8_unreached_columns_are_exactly_zero` | PASS | – | 0 | 0 |
 | `R1L_G9_orbit_law_matches_raymap_fluid` | PASS | – | 1.388e-17 | 1e-12 |
