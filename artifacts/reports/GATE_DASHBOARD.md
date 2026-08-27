@@ -1,7 +1,7 @@
 # GATE DASHBOARD
 
-- commit `b83cdf4706eed942bcef2c7a057f1a0d34f2e807`
-- 205 gates, 186 passing
+- commit `36f4be5060fa9c26bb13a9dc23ec4c0603a9176a`
+- 208 gates, 189 passing
 
 ```
     active_blocking_failures:   0
@@ -172,7 +172,8 @@ A preserved literal failure is a FAIL that has been adjudicated and kept on the 
 | `R1L_2RA_G3_secondary_bank_excluded` | PASS | – | 0 | 0 |
 | `R1L_2RA_G4_pinned_numerical_environment` | PASS | – | 1 | 1 |
 | `R1L_2RA_G5_null_controls` | PASS | – | 2.442e-15 | 0.05 |
-| `R1L_2RB_G11_resource_limits` | PASS | – | 1210 | 7200 |
+| `R1L_2RB_G10_source_balance_within_tolerance` | PASS | – | 2 | 2 |
+| `R1L_2RB_G11_resource_limits` | PASS | – | 1243 | 7200 |
 | `R1L_2RB_G1_pinned_numerical_environment` | PASS | – | 1 | 1 |
 | `R1L_2RB_G2_split_commitments_reproduce` | PASS | – | 1 | 1 |
 | `R1L_2RB_G3_split_disjointness` | PASS | – | 1 | 1 |
@@ -180,6 +181,8 @@ A preserved literal failure is a FAIL that has been adjudicated and kept on the 
 | `R1L_2RB_G5_representation_floor_is_zero` | PASS | – | 4.013e-15 | 1e-10 |
 | `R1L_2RB_G6_secondary_bank_absent` | PASS | – | 0 | 0 |
 | `R1L_2RB_G7_adjoint` | PASS | – | 5.478e-14 | 1e-08 |
+| `R1L_2RB_G8_analytic_shaping_matches_grid_truth` | PASS | – | 0 | 1e-09 |
+| `R1L_2RB_G8x_operator_truth_identity` | PASS | – | 9.487e-16 | 1e-09 |
 | `R1L_2RB_G9_null_controls` | PASS | – | 2.442e-15 | 0.05 |
 | `R1L_G10_circular_centres_outside_isco` | PASS | – | 1 | 1 |
 | `R1L_G11_pinned_numerical_environment` | PASS | – | 1 | 1 |

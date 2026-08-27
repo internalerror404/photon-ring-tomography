@@ -45,6 +45,24 @@ def at_base(rel: str) -> pd.DataFrame | None:
     return df
 
 
+# The repair adds rows as well as columns: the endpoint is now reported under
+# several bank scopes and the spans under two noise semantics. The pre-existing
+# rows are the ones the old table held, so the comparison selects exactly those
+# and leaves the added rows to be reported as new.
+LIKE_FOR_LIKE = {
+    "r1l_2rb_endpoint": ("scope", "all_declared_banks"),
+    "r1l_2rb_stable_spans": ("noise_semantics", "truth_mean_noise"),
+    "r1l_2rb_delta_spans": ("noise_semantics", "truth_mean_noise"),
+}
+
+
+def restrict(name, df):
+    sel = LIKE_FOR_LIKE.get(name)
+    if sel and sel[0] in df.columns:
+        return df[df[sel[0]] == sel[1]].drop(columns=[sel[0]])
+    return df
+
+
 def normalize(df, cols):
     by = [c for c in KEYS if c in cols]
     d = df.sort_values(by).reset_index(drop=True) if by else df.reset_index(drop=True)
@@ -57,7 +75,7 @@ def main() -> int:
     for p in sorted(TAB.glob("r1l_2rb_*.parquet")):
         rel = str(p.relative_to(ROOT))
         old = at_base(rel)
-        new = pd.read_parquet(p)
+        new = restrict(p.stem, pd.read_parquet(p))
         if old is None:
             results[p.stem] = {"status": "NEW_TABLE", "n_rows": int(len(new)),
                                "columns": sorted(new.columns)}
@@ -85,6 +103,7 @@ def main() -> int:
                 diffs[c] = {"n_differing": int(bad.sum()), "row": i,
                             "before": str(a[c].iloc[i]), "after": str(b[c].iloc[i])}
         results[p.stem] = {
+            "restricted_to": LIKE_FOR_LIKE.get(p.stem),
             "status": "IDENTICAL" if not diffs else "CHANGED",
             "n_rows": int(len(b)), "n_shared_columns": len(shared),
             "added_columns": added, "dropped_columns": dropped,

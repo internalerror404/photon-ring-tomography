@@ -1,0 +1,136 @@
+{
+  "schema": "phrt-reproduction/3",
+  "id": "R1L_2RB_GATE_COMPLETION_REPRODUCTION",
+  "created_utc": "2026-08-27T18:46:55Z",
+  "baseline_commit": "151229d45c08012e8aa5197f389cce49784b6080",
+  "rule": "every pre-existing scientific cell must be bitwise identical. New diagnostic columns and new tables are permitted; a dropped column or a changed value is not",
+  "all_preexisting_cells_identical": true,
+  "tables": {
+    "r1l_2rb_age_structure_errors": {
+      "restricted_to": null,
+      "status": "IDENTICAL",
+      "n_rows": 140544,
+      "n_shared_columns": 9,
+      "added_columns": [],
+      "dropped_columns": [],
+      "differing_columns": {}
+    },
+    "r1l_2rb_bank_contract": {
+      "status": "NEW_TABLE",
+      "n_rows": 9,
+      "columns": [
+        "achieved_structure_fraction",
+        "bank",
+        "exact_in_class",
+        "n_records_above_0_1_negative_mass",
+        "n_truths",
+        "negative_mass_relative_max",
+        "negative_mass_relative_median",
+        "nominal_structure_fraction",
+        "nonnegative",
+        "physical_primary_eligible",
+        "representation_floor_max",
+        "reprojection_residual",
+        "role_id",
+        "signed_diagnostic",
+        "source_class"
+      ]
+    },
+    "r1l_2rb_delta_spans": {
+      "restricted_to": [
+        "noise_semantics",
+        "truth_mean_noise"
+      ],
+      "status": "IDENTICAL",
+      "n_rows": 18,
+      "n_shared_columns": 8,
+      "added_columns": [],
+      "dropped_columns": [],
+      "differing_columns": {}
+    },
+    "r1l_2rb_endpoint": {
+      "restricted_to": [
+        "scope",
+        "all_declared_banks"
+      ],
+      "status": "IDENTICAL",
+      "n_rows": 36,
+      "n_shared_columns": 22,
+      "added_columns": [
+        "bank",
+        "median_ci_high",
+        "median_ci_low",
+        "n_banks_in_scope"
+      ],
+      "dropped_columns": [],
+      "differing_columns": {}
+    },
+    "r1l_2rb_joint_noise_spans": {
+      "status": "NEW_TABLE",
+      "n_rows": 9216,
+      "columns": [
+        "arm",
+        "bank",
+        "draw",
+        "family",
+        "index",
+        "max_rel_error_from_age0",
+        "pass_to_age_M",
+        "passes_epsilon_everywhere",
+        "snr0",
+        "source_class"
+      ]
+    },
+    "r1l_2rb_null_pairs": {
+      "restricted_to": null,
+      "status": "IDENTICAL",
+      "n_rows": 288,
+      "n_shared_columns": 5,
+      "added_columns": [],
+      "dropped_columns": [],
+      "differing_columns": {}
+    },
+    "r1l_2rb_pilot_scores": {
+      "restricted_to": null,
+      "status": "IDENTICAL",
+      "n_rows": 4608,
+      "n_shared_columns": 10,
+      "added_columns": [],
+      "dropped_columns": [],
+      "differing_columns": {}
+    },
+    "r1l_2rb_selection": {
+      "restricted_to": null,
+      "status": "IDENTICAL",
+      "n_rows": 24,
+      "n_shared_columns": 10,
+      "added_columns": [],
+      "dropped_columns": [],
+      "differing_columns": {}
+    },
+    "r1l_2rb_source_banks": {
+      "restricted_to": null,
+      "status": "IDENTICAL",
+      "n_rows": 576,
+      "n_shared_columns": 15,
+      "added_columns": [],
+      "dropped_columns": [],
+      "differing_columns": {}
+    },
+    "r1l_2rb_stable_spans": {
+      "restricted_to": [
+        "noise_semantics",
+        "truth_mean_noise"
+      ],
+      "status": "IDENTICAL",
+      "n_rows": 24,
+      "n_shared_columns": 8,
+      "added_columns": [
+        "controls_the_claim"
+      ],
+      "dropped_columns": [],
+      "differing_columns": {}
+    }
+  },
+  "verdict": "R1L_STAGE2R_GATE_COMPLETION_PASS"
+}
