@@ -1,0 +1,147 @@
+"""The contrast model's two constraints, and what the extractor can recover."""
+import numpy as np
+import pytest
+
+from phrt.metrics.features import (aggregate, event_times, extract,
+                                   normalized_errors, peak_position)
+from phrt.sources.contrast import (FAMILIES, OFF_MANIFOLD, build,
+                                   background_field)
+from phrt.sources.movie import wrapped_angle
+from phrt.sources.orbits import isco_radius
+
+SPIN, R_IN, R_OUT = 0.5, 1.8660386527060988, 49.98205255591607
+TLO, THI = -128.82234649196255, 29.0
+NR, NP, NT = 16, 32, 40
+
+
+@pytest.fixture(scope="module")
+def grid():
+    r = np.exp(np.linspace(np.log(R_IN), np.log(R_OUT), NR))
+    phi = np.linspace(0.0, 2 * np.pi, NP, endpoint=False)
+    t = np.linspace(TLO, THI, NT)
+    R, P, T = np.meshgrid(r, phi, t, indexing="ij")
+    ti = np.tile(np.arange(NT), NR * NP)
+    return r, phi, t, R.ravel(), P.ravel(), T.ravel(), ti
+
+
+def _build(grid, family, seed=0):
+    r, phi, t, gr, gp, gt, ti = grid
+    return build(np.random.default_rng(seed), family, SPIN, R_IN, R_OUT,
+                 gr, gp, gt, ti, NT)
+
+
+@pytest.mark.parametrize("family", FAMILIES)
+def test_zero_spatial_mean_at_every_age(grid, family):
+    *_, diag = _build(grid, family, 3)
+    assert diag["zero_mean_max_abs"] < 1e-10, (family, diag["zero_mean_max_abs"])
+
+
+@pytest.mark.parametrize("family", FAMILIES)
+def test_total_emissivity_is_nonnegative(grid, family):
+    *_, diag = _build(grid, family, 5)
+    assert diag["min_total"] >= 0.0, (family, diag["min_total"])
+    assert diag["min_background"] > 0.0
+
+
+@pytest.mark.parametrize("family", FAMILIES)
+def test_the_fluctuation_is_genuinely_signed(grid, family):
+    # the whole point of the contrast model: dj changes sign while b + dj does
+    # not. A dj that never went negative would just be a positive bank again.
+    _, _, _, dj, _, _ = _build(grid, family, 7)
+    assert dj.min() < 0.0 and dj.max() > 0.0, family
+
+
+def test_background_is_positive_everywhere_without_clipping(grid):
+    r, phi, t, gr, gp, gt, ti = grid
+    b, _ = background_field(np.random.default_rng(11), R_IN, R_OUT)
+    assert b(gr, gt).min() > 0.0
+
+
+def test_analytic_fluctuation_matches_the_grid_construction(grid):
+    # the operator samples where the rays land, so the callable must reproduce
+    # the grid-built field it is scored against
+    r, phi, t, gr, gp, gt, ti = grid
+    _, fluct, _, dj, _, _ = _build(grid, "circular_hotspot_trajectory", 13)
+    got = np.asarray(fluct(gr, gp, gt), float)
+    assert np.abs(got - dj).max() / max(np.abs(dj).max(), 1e-300) < 1e-9
+
+
+def test_peak_refinement_beats_the_grid(grid):
+    r, phi, t, gr, gp, gt, ti = grid
+    # a blob centred between two azimuth cells: the unrefined argmax cannot
+    # find it, the parabolic refinement should get close
+    target = float(phi[5] + 0.5 * (phi[1] - phi[0]))
+    m = np.exp(-0.5 * ((r[:, None] - 12.0) / 3.0) ** 2) * np.exp(
+        -0.5 * (wrapped_angle(phi[None, :] - target) / 0.5) ** 2)
+    _, phi_hat, _ = peak_position(m, r, phi)
+    step = float(phi[1] - phi[0])
+    assert abs(float(wrapped_angle(np.array([phi_hat - target]))[0])) < 0.35 * step
+
+
+@pytest.mark.parametrize("family", ["circular_hotspot_trajectory",
+                                    "plunging_feature"])
+def test_extraction_recovers_the_generative_trajectory(grid, family):
+    r, phi, t, gr, gp, gt, ti = grid
+    _, _, traj, dj, _, _ = _build(grid, family, 17)
+    ages = np.arange(0.0, 60.0 + 1e-9, 2.0)
+    got = extract(dj, gt, ages, r, phi, 3.0)
+    want_r = np.array([traj(a)["r_h"] for a in ages])
+    want_p = np.array([traj(a)["phi_h"] for a in ages])
+    # radius to within a grid cell in log r, angle to within two azimuth cells
+    cell_r = float(np.exp(np.diff(np.log(r))[0])) - 1.0
+    assert np.median(np.abs(got["r_h"] - want_r) / want_r) < 2.0 * cell_r
+    dphi = np.abs(wrapped_angle(got["phi_h"] - want_p))
+    assert np.median(dphi) < 2.0 * float(phi[1] - phi[0]), np.median(dphi)
+
+
+def test_extraction_is_deterministic(grid):
+    r, phi, t, gr, gp, gt, ti = grid
+    _, _, _, dj, _, _ = _build(grid, "m1_rotating_crescent", 19)
+    ages = np.arange(0.0, 40.0 + 1e-9, 2.0)
+    a = extract(dj, gt, ages, r, phi, 3.0)
+    b = extract(dj, gt, ages, r, phi, 3.0)
+    for k, v in a.items():
+        assert np.array_equal(np.asarray(v), np.asarray(b[k])), k
+
+
+def test_flare_event_times_are_recovered(grid):
+    r, phi, t, gr, gp, gt, ti = grid
+    _, _, traj, dj, _, _ = _build(grid, "flare_birth_motion_decay", 23)
+    ages = np.arange(0.0, 120.0 + 1e-9, 2.0)
+    got = extract(dj, gt, ages, r, phi, 3.0)
+    want = traj(0.0)
+    assert np.isfinite(got["t_birth_age_M"]) and np.isfinite(got["tau_decay_M"])
+    # birth age within a quarter of the observation span of the generative one
+    assert abs(got["t_birth_age_M"] - want["t_birth_age_M"]) < 0.25 * 120.0
+
+
+def test_event_times_are_nan_rather_than_zero_on_a_dead_field():
+    # a silent field must not report a confident birth at age zero
+    e = event_times(np.arange(0.0, 20.0, 2.0), np.zeros(10))
+    assert np.isnan(e["t_birth_age_M"]) and np.isnan(e["tau_decay_M"])
+
+
+def test_normalized_errors_and_aggregate(grid):
+    r, phi, t, gr, gp, gt, ti = grid
+    _, _, _, dj, _, _ = _build(grid, "two_hotspot_trajectories", 29)
+    ages = np.arange(0.0, 40.0 + 1e-9, 2.0)
+    tr = extract(dj, gt, ages, r, phi, 3.0)
+    errs = normalized_errors(tr, tr, R_OUT - R_IN, 20.0)
+    agg = aggregate(errs, ("radial", "angular", "amplitude", "mode_m1", "mode_m2"))
+    assert agg.shape == ages.shape
+    assert float(agg.max()) == 0.0        # a field against itself
+
+
+@pytest.mark.parametrize("family", OFF_MANIFOLD)
+def test_off_manifold_families_build_and_obey_the_same_constraints(grid, family):
+    *_, diag = _build(grid, family, 31)
+    assert diag["zero_mean_max_abs"] < 1e-10
+    assert diag["min_total"] >= 0.0
+
+
+def test_circular_families_stay_outside_the_isco(grid):
+    for seed in range(20):
+        _, _, _, _, _, diag = _build(grid, "circular_hotspot_trajectory", seed)
+        assert diag["feature_params"]["r_h"] > isco_radius(SPIN)
+        _, _, _, _, _, dp = _build(grid, "plunging_feature", seed)
+        assert dp["feature_params"]["r_h_start"] < isco_radius(SPIN)

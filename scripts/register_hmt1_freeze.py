@@ -236,23 +236,57 @@ def main() -> int:
         },
 
         # ------------------------------------------------------------ item 9
+        "evaluation_grid": {
+            "n_radial": 16, "n_azimuthal": 32, "n_temporal": 40,
+            "spacing": "log-spaced in radius, uniform in azimuth and source "
+                       "time, equal weights. A scoring device, not a quadrature",
+            "angular_cell_rad": 0.19634954084936207,
+            "why_declared_here": "the grid was not pinned in the first draft of "
+                                 "this freeze, and it sets the floor on "
+                                 "angular and radial trajectory error -- a "
+                                 "12-point azimuth would put a 0.52 rad floor "
+                                 "under every angle this experiment reports. "
+                                 "Added before any truth was drawn, which is "
+                                 "the only time a preregistration gap can be "
+                                 "closed without it becoming a tuning",
+            "refinement": "the argmax is refined by parabolic interpolation on "
+                          "the three cells straddling the peak in each of r and "
+                          "phi, so the reported position is not quantised to "
+                          "the grid. Declared here, not chosen after seeing an "
+                          "error",
+        },
         "feature_extraction": {
             "rule": "every recovered quantity is extracted from the "
                     "reconstructed dj by a procedure fixed here, applied "
                     "identically to truth and reconstruction",
             "per_age_slice": "the age-windowed dj field on the evaluation grid, "
                              "Gaussian window of half width 3.0 M",
-            "hotspot_position": "argmax of the windowed slice over (r, phi), "
+            "spatial_map_at_age": "sum over source time of the window "
+                                  "weights times dj, normalised by the summed "
+                                  "weights, giving one (r, phi) map per age",
+            "hotspot_position": "argmax of that map over (r, phi), refined by "
+                                "parabolic interpolation in each coordinate, "
                                 "giving r_hat(a) and phi_hat(a)",
             "hotspot_amplitude": "the value at that argmax, A_hat(a)",
             "mode_amplitudes": "a_m(a) = radially weighted projection of the "
                                "slice onto cos(m phi) and sin(m phi), "
                                "m = 1 and 2, reported as the complex modulus",
             "event_times": {
-                "t_birth": "the earliest age at which A_hat(a) exceeds 0.25 of "
-                           "its maximum over ages",
-                "tau_decay": "the age difference between the maximum of "
-                             "A_hat(a) and the last age above 1/e of it"},
+                "age_runs_backwards": "a larger age is an earlier moment, so "
+                                      "the two definitions below read off the "
+                                      "high-age end and the low-age end "
+                                      "respectively. Stating this explicitly "
+                                      "because 'earliest age' is ambiguous and "
+                                      "reading it the wrong way returns a "
+                                      "finite plausible number for the wrong "
+                                      "event",
+                "t_birth": "the LARGEST age at which A_hat(a) exceeds 0.25 of "
+                           "its maximum over ages -- the earliest moment the "
+                           "feature is detectable",
+                "tau_decay": "the age difference between the age of the maximum "
+                             "of A_hat(a) and the SMALLEST age still above 1/e "
+                             "of it -- decay runs forward in time, toward "
+                             "smaller ages"},
             "normalisation": {
                 "radial": "|r_hat - r| divided by the declared radial support "
                           "width",
@@ -402,7 +436,11 @@ def main() -> int:
             "HMT1_G7_adjoint": 1e-8,
             "HMT1_G8_operator_truth_identity": 1e-9,
             "HMT1_G9_null_controls": 0.05,
-            "HMT1_G10_feature_extraction_idempotent": 1e-9,
+            "HMT1_G10_feature_extraction_deterministic": 1e-9,
+            "HMT1_G10b_truth_extraction_recovers_generative_parameters":
+                "reported at the evaluation-grid resolution rather than gated "
+                "at 1e-9, because extraction from a sampled field cannot beat "
+                "the grid it is sampled on",
             "HMT1_G11_off_manifold_excluded_from_endpoints": "structural",
             "HMT1_G12_no_maximal_regularization_collapse": "structural",
             "HMT1_G13_declared_gate_coverage": "structural",
