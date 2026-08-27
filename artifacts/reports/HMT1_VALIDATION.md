@@ -1,7 +1,7 @@
 # HMT-1 — historical feature and contrast tomography, validation
 
-Freeze `HMT_1_HISTORICAL_FEATURE_AND_CONTRAST_TOMOGRAPHY_V0`, run `HMT1_20260827T222531Z_2ba66f02`.
-Execution commit `1ecd067586c3`, tree clean:
+Freeze `HMT_1_HISTORICAL_FEATURE_AND_CONTRAST_TOMOGRAPHY_V0`, run `HMT1_20260827T224512Z_2ba66f02`.
+Execution commit `0467147d80bd`, tree clean:
 true, preregistered: true.
 
 
@@ -76,6 +76,13 @@ gates and still reported `HMT1_NO_MATERIAL_EFFECT`. A null result is exactly
 what a broken run looks like from the outside, and that one would have reported
 a null produced by a divide-by-zero. A failed gate now forces
 `HMT1_IMPLEMENTATION_DEFECT` and the science reading is withheld.
+
+**Run 3 and run 4** are the corrected protocol, executed twice. Their endpoint
+tables are bitwise identical and their gate sets differ only in
+`HMT1_G14_resource_limits`, which measures wall-clock seconds and therefore
+cannot be identical. The run reported here is the second of the two; the pair
+is the deterministic-reproduction check, under the same pinned single-threaded
+numerical environment R1L established.
 
 ## 2. Primary endpoint at SNR₀ = 100
 
@@ -198,7 +205,7 @@ gives the nicer answer after seeing them is how a preregistration gets spent.
 | `HMT1_G12_no_maximal_regularization_collapse` | PASS | 0 | 0 |
 | `HMT1_G4b_azimuthal_zero_mean` | PASS | 2.116e-16 | 1e-10 |
 | `HMT1_G10b_truth_extraction_recovers_generative_parameters` | PASS | 0.8489 | 1 |
-| `HMT1_G14_resource_limits` | PASS | 882 | 10800 |
+| `HMT1_G14_resource_limits` | PASS | 890 | 10800 |
 | `HMT1_G13_declared_gate_coverage` | PASS | 0 | 0 |
 
 - `HMT1_G3_split_disjointness` — selection and pilot derive from different commitment strings, so no truth seed can appear in both

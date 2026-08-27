@@ -1,13 +1,13 @@
 {
   "schema": "phrt-artifact-manifest/1",
   "experiment_id": "HMT1_VALIDATION",
-  "created_utc": "2026-08-27T22:43:58Z",
+  "created_utc": "2026-08-27T23:01:07Z",
   "stop_token": "HMT1_MATERIAL_ERROR_REDUCTION_NO_STABLE_INTERVAL",
   "authoritative_attestation": "execution",
   "execution_attestation": {
     "available": true,
-    "execution_commit": "1ecd067586c35f47abde12e6c62fe21839dc1790",
-    "head_tree_sha": "18216d3c046e690a60e2a209475603b835234061",
+    "execution_commit": "0467147d80bd2c834171acb4a74fbecbe1ae43c0",
+    "head_tree_sha": "e93a55aa91415c7c92f4b354ee417b6c03b0c800",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -18,7 +18,7 @@
     ],
     "porcelain_registered": "",
     "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "porcelain_whole_tree_sha256": "98335abcd1b48aeb79206fa19f68e371645151118e9fb8db95984a83a818d2ee",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "n_tracked_changes": 0,
     "n_untracked": 0,
     "tracked_clean": true,
@@ -48,8 +48,8 @@
   },
   "report_assembly_attestation": {
     "available": true,
-    "execution_commit": "1ecd067586c35f47abde12e6c62fe21839dc1790",
-    "head_tree_sha": "18216d3c046e690a60e2a209475603b835234061",
+    "execution_commit": "0467147d80bd2c834171acb4a74fbecbe1ae43c0",
+    "head_tree_sha": "e93a55aa91415c7c92f4b354ee417b6c03b0c800",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -60,7 +60,7 @@
     ],
     "porcelain_registered": " M scripts/build_hmt1_report.py\n",
     "porcelain_registered_sha256": "32998f029aae0f1a50c9bd8034253bb5460cade5128d5a4b3bc0d16315ca27da",
-    "porcelain_whole_tree_sha256": "42fe7c9bf5dd41d9e07ed5f1a72e3493b853b293ee86f98fdca5d08ac93764db",
+    "porcelain_whole_tree_sha256": "fc8a39685d00be064695171707c5391d61873a65bf3152dac802adeb07b69387",
     "n_tracked_changes": 1,
     "n_untracked": 0,
     "tracked_clean": false,
@@ -92,6 +92,6 @@
     "artifacts/tables/hmt1_stable_feature_spans.parquet": "0b0ea5e329a62a83d118cb37cf9fba30528575c5c73dc0767dacd364520274d9"
   },
   "outputs": {
-    "artifacts/reports/HMT1_VALIDATION.md": "df2753172bf188fd18d448f77137482c92bdc797c44e664ece714ae618de4c9a"
+    "artifacts/reports/HMT1_VALIDATION.md": "0fa66e7223525e58c1d875ae0269a39c75c35f862f66f856730dae2347b7373e"
   }
 }

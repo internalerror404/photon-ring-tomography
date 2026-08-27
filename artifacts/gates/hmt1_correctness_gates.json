@@ -1,0 +1,127 @@
+{
+  "gates": {
+    "HMT1_G1_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G2_split_commitments_reproduce": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G3_split_disjointness": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "selection and pilot derive from different commitment strings, so no truth seed can appear in both",
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G4_contrast_zero_spatial_mean": {
+      "status": "PASS",
+      "measured": 2.6503660919587058e-17,
+      "threshold": 1e-10,
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G5_total_emissivity_nonnegative": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G6_background_strictly_positive": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G7_adjoint": {
+      "status": "PASS",
+      "measured": 3.19268607040435e-15,
+      "threshold": 1e-08,
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G8_operator_truth_identity": {
+      "status": "PASS",
+      "measured": 6.405093933734753e-16,
+      "threshold": 1e-09,
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G9_null_controls": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.05,
+      "note": "feature-pair separation controls are reported in the null-pair table",
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G10_feature_extraction_deterministic": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-09,
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G11_off_manifold_excluded_from_endpoints": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "no off-manifold family contributes a row to the endpoint table",
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G12_no_maximal_regularization_collapse": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G4b_azimuthal_zero_mean": {
+      "status": "PASS",
+      "measured": 2.1163626406917047e-16,
+      "threshold": 1e-10,
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G10b_truth_extraction_recovers_generative_parameters": {
+      "status": "PASS",
+      "measured": 0.8489447224237923,
+      "threshold": 1.0,
+      "note": "worst peak displacement from the generating trajectory, in evaluation-grid cells: radial 0.523, azimuthal 0.849",
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G14_resource_limits": {
+      "status": "PASS",
+      "measured": 890,
+      "threshold": 10800,
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    },
+    "HMT1_G13_declared_gate_coverage": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "complete",
+      "run_id": "HMT1_20260827T224512Z_2ba66f02",
+      "recorded_at": "2026-08-27T23:00:01+00:00"
+    }
+  },
+  "updated_at": "2026-08-27T23:00:01+00:00",
+  "summary": {
+    "PASS": 16,
+    "FAIL": 0,
+    "NOT_RUN": 0
+  }
+}

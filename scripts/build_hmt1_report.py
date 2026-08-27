@@ -298,6 +298,13 @@ what a broken run looks like from the outside, and that one would have reported
 a null produced by a divide-by-zero. A failed gate now forces
 `HMT1_IMPLEMENTATION_DEFECT` and the science reading is withheld.
 
+**Run 3 and run 4** are the corrected protocol, executed twice. Their endpoint
+tables are bitwise identical and their gate sets differ only in
+`HMT1_G14_resource_limits`, which measures wall-clock seconds and therefore
+cannot be identical. The run reported here is the second of the two; the pair
+is the deterministic-reproduction check, under the same pinned single-threaded
+numerical environment R1L established.
+
 ## 2. Primary endpoint at SNR₀ = {snr_p:.0f}
 
 Median relative reduction in old-band feature error against the direct image,
