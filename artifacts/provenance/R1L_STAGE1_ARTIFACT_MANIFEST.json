@@ -1,8 +1,12 @@
 {
   "schema": "phrt-artifact-manifest/1",
   "experiment_id": "R1L_STAGE_1_OPERATOR_RANK_AUDIT",
-  "created_utc": "2026-08-27T05:55:16Z",
-  "stop_token": "R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED",
+  "created_utc": "2026-08-27T06:33:34Z",
+  "stop_token": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING",
+  "canonical_stage1_status": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING",
+  "audit_finding": "R1L_STAGE_1_AUDIT_FINDINGS_COMPLETE",
+  "deterministic_reproduction": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING",
+  "blocking_gate": "R1L_G12_deterministic_reproduction",
   "stop_conditions_evaluated": {
     "R1L_STOP_1": false,
     "R1L_STOP_3": false
@@ -56,8 +60,8 @@
   },
   "report_assembly_attestation": {
     "available": true,
-    "execution_commit": "0ae6b80a08b0ecf8e337e73070d10f2b9146198b",
-    "head_tree_sha": "6ec56edc69a87d87e168aa87a4850f36a9273f50",
+    "execution_commit": "7cef3b0d1e1732356afeb3e8abda5114c18ada03",
+    "head_tree_sha": "c09eacaa2c7599f30f9e0fef03129b3d5dfc43fa",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -66,13 +70,13 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": " M scripts/build_r1l_stage1_report.py\n M scripts/compare_r1l_stage1_reproduction.py\n",
-    "porcelain_registered_sha256": "ba8992b97db5ee1be728fe2c8399b77002f4df1d57a72d64362912e6b5ce7c7e",
-    "porcelain_whole_tree_sha256": "1e8878716c4cefb7f1f23f98dabd29be98eef874101fc4a3d84a72da63f517cc",
-    "n_tracked_changes": 2,
-    "n_untracked": 0,
+    "porcelain_registered": " M scripts/build_r1l_stage1_report.py\n M scripts/compare_r1l_stage1_reproduction.py\n M scripts/run_r1l_operator_audit.py\n?? src/phrt/numerics.py\n?? tests/test_numerics.py\n",
+    "porcelain_registered_sha256": "8e05992e0323131a6b413d00e74076994ead41493bc3c803898ab7237c1edcd0",
+    "porcelain_whole_tree_sha256": "4fa16dcbf31d56e166fcee51910f476dd27240419682d47b76ab2a988e7a13a0",
+    "n_tracked_changes": 3,
+    "n_untracked": 2,
     "tracked_clean": false,
-    "untracked_clean": true,
+    "untracked_clean": false,
     "clean": false,
     "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
     "files": [
@@ -101,6 +105,6 @@
     "artifacts/tables/r1l_temporal_supports.parquet": "8462705609ca71c0ede10f9aee3f5e7a89d4304fb2afcd0bfd3b628ed904513a"
   },
   "outputs": {
-    "artifacts/reports/R1L_STAGE1_OPERATOR_AUDIT.md": "b21f564e7f4e11a532165b90668c2c776d0b3a344bb95f6fb2413bc9c36898d2"
+    "artifacts/reports/R1L_STAGE1_OPERATOR_AUDIT.md": "250465828d37198d680296dd3525c3bc473558ca7a18f3341ff4110e7dc0698c"
   }
 }

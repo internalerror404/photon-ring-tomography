@@ -108,8 +108,8 @@ def main() -> int:
     tripped = [n for n, v in (("R1L_STOP_1_indistinguishable_old_support", stop1),
                               ("R1L_STOP_3_improvement_vanishes_after_order_summation",
                                stop3)) if v]
-    token = ("R1L_STAGE_1_STOP" if tripped else
-             "R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED")
+    audit_token = ("R1L_STAGE_1_AUDIT_STOP" if tripped else
+                   "R1L_STAGE_1_AUDIT_FINDINGS_COMPLETE")
 
     D = "\n"
     ladder = D.join(
@@ -172,80 +172,86 @@ def main() -> int:
 
     rp = ROOT / "artifacts" / "provenance" / "R1L_STAGE1_REPRODUCTION.json"
     repro_verdict = "NOT_YET_RUN"
+    repro = ("Pending. No deterministic-reproduction record exists, so every "
+             "number above rests on an execution whose numerical environment "
+             "was neither pinned nor recorded.")
     if rp.exists():
         rd = json.loads(rp.read_text())
         repro_verdict = rd["verdict"]
-        ca = rd["clean_run_attestation"]
-        if rd["verdict"].endswith("CONFIRMED"):
-            verdict_note = (" Every number in sections 1 to 7 is carried by a clean "
-                            "preregistered execution, and the two earlier runs are "
-                            "preserved as record rather than replaced.")
+        pp = rd.get("pinned_pair", {})
+        if not pp.get("tables"):
+            repro = f"""Ruling items 8 and 9 require two complete six-class stage-1 runs, executed in
+separate processes from one clean committed tree under the pinned numerical
+environment, agreeing on every normalized scientific cell. That pair has **not**
+been executed.
+
+Verdict: **`{rd['verdict']}`**. Gate `R1L_G12_deterministic_reproduction` is
+**FAIL** and blocking. Stage 2 is not entered."""
         else:
-            verdict_note = (
-                "\n\nUnder ruling item 5 this stops the sequence: stage 2 is **not**"
-                " entered.\n\n**What differs.** No conclusion. Every discrete result"
-                " is identical — every rank, nullity, exact-zero column count,"
-                " operational rank and detectability flag. Every well-conditioned"
-                " quantity agrees to about 1e-15. The differences are confined to"
-                " the smallest singular and eigenvalues and to the condition"
-                " numbers built from them, which is where a matrix with κ ≈ 1e10"
-                " carries roughly 1e-6 relative uncertainty in its smallest mode"
-                " under any change of floating-point reduction order.\n\n**What is"
-                " established about the cause, and what is not.** The *mechanism*"
-                " is demonstrated: OpenBLAS here is built `DYNAMIC_ARCH` with"
-                " `MAX_THREADS=2` and no pinned thread count, and a direct probe"
-                " shows repeated invocations at a fixed thread count are bitwise"
-                " identical while invocations at different thread counts are not."
-                " Two thread-pinned reruns of `L224` reproduced every numeric cell"
-                " bitwise. Two *unpinned* full reruns are also bitwise identical to"
-                " each other and both differ from the preserved run in the same"
-                " way.\n\nWhat is **not** established is why the preserved run"
-                " specifically diverged. Its effective BLAS thread count was never"
-                " recorded, so it cannot be recovered after the fact, and an"
-                " earlier draft of this section asserted the cause with more"
-                " confidence than the evidence carries. The mechanism fits the"
-                " signature exactly; it is not proof about that one execution."
-                "\n\n**Remedy, proposed and deliberately not applied.** Pin"
-                " `OMP_NUM_THREADS=1` and `OPENBLAS_NUM_THREADS=1`, record the"
-                " effective thread count in the run manifest alongside the"
-                " existing hardware block, and rerun stage 1 once to set a"
-                " bit-reproducible baseline. Applying it means re-establishing the"
-                " stage-1 baseline, which is the reviewer's call and not one to"
-                " take while stopped. The alternative — declaring a numerical"
-                " equality tolerance in the freeze — would weaken the bright line"
-                " the ruling drew, and is not recommended: an unrecorded"
-                " environment variable is a real reproducibility gap even when"
-                " the science it perturbs is invariant.")
-        rows = D.join(f"| `{k}` | {v['n_rows']} | {v['n_columns']} | "
-                      f"{'**equal**' if v['equal'] else '**DIFFERS**'} |"
-                      for k, v in rd["tables"].items())
-        repro = f"""Ruling item 5. Stage 1 was rerun from a completely clean tree with no code
-edits between the runs, and every canonical numeric cell was required to match
-exactly — no tolerance, since the seeds, the rays and the committed code are
-identical and any difference would be a defect rather than rounding.
+            a, b = pp["a"], pp["b"]
+            ptab = D.join(
+                f"| `{k}` | {v.get('n_rows', '—')} | "
+                f"{'**equal**' if v['exactly_equal'] else '**DIFFERS**'} |"
+                for k, v in pp["tables"].items())
+            prior = rd["preserved_runs"]
+            prows = D.join(
+                f"| `{k}` | {'**yes**' if v['all_discrete_equal'] else '**NO**'} | "
+                f"{v['worst_relative_difference_above_floor']:.2e} | "
+                f"{v['n_differing_cells_above_noise_floor']:,} |"
+                for k, v in prior["comparisons"].items())
+            if rd["verdict"].endswith("PASS"):
+                closing = (
+                    "Every number in sections 1 to 7 is carried by a pinned, "
+                    "clean, preregistered execution that a second independent "
+                    "process reproduced cell for cell. The pre-pin runs are "
+                    "preserved and agree on every discrete conclusion; their "
+                    "continuous differences are reported above and are not "
+                    "required to vanish, because the reduction order those runs "
+                    "used was never recorded and cannot be reconstructed.")
+            else:
+                closing = (
+                    "Under ruling item 12 this stops the sequence. Stage 2 is "
+                    "**not** entered and no stage-2 freeze is written.")
+            repro = f"""Ruling items 8, 9 and 10.
 
-- preserved run `{rd['preserved_run']}` — correct, dirty
-- clean run `{rd['clean_run']}` — execution commit
-  `{ca['execution_commit'][:12]}`, clean {ca['clean']}, preregistered
-  {ca['preregistered']}, tracked changes {ca['n_tracked_changes']}, untracked
-  {ca['n_untracked']}
-- gates failing on the clean run: {rd['gates_failing_on_clean_run'] or 'none'}
+**The pinned pair (item 9).** Two complete six-class runs, separate processes,
+one clean committed tree, no code edited between them. Exact equality on every
+normalized scientific cell, no tolerance — identical code, seeds and rays under
+a serial BLAS leave nothing that may legitimately differ.
 
-| table | rows | columns | numeric equality |
-|---|---:|---:|---|
-{rows}
+- `{a['run_id']}` — execution commit `{str(a.get('execution_commit'))[:12]}`,
+  clean {a.get('clean')}, preregistered {a.get('preregistered')}, all pools
+  single-threaded {a.get('all_pools_single_threaded')}
+- `{b['run_id']}` — execution commit `{str(b.get('execution_commit'))[:12]}`,
+  clean {b.get('clean')}, preregistered {b.get('preregistered')}, all pools
+  single-threaded {b.get('all_pools_single_threaded')}
+- same execution commit: {pp.get('same_execution_commit')}
 
-- every **discrete** result equal: **{rd['all_discrete_results_equal']}** — ranks,
-  nullities, exact-zero column counts, operational ranks and detectability flags
-- worst **relative** difference above the {rd['noise_floor']:g} numerical-zero
-  floor: **{rd['worst_relative_difference_above_noise_floor']:.2e}** over
-  {rd['n_differing_cells_above_noise_floor']:,} cells
+| table | rows | pinned-pair equality |
+|---|---:|---|
+{ptab}
 
-Verdict: **`{rd['verdict']}`**.{verdict_note}"""
+**The preserved runs (item 10).** Compared against the pinned baseline. Exact
+agreement is required on discrete conclusions — ranks, nullities, exact-zero
+column counts, operational ranks, detectability flags. Continuous differences
+are reported, not required to vanish.
+
+| preserved run | discrete conclusions agree | worst relative difference | cells above the {rd['noise_floor']:g} floor |
+|---|---|---:|---:|
+{prows}
+
+Verdict: **`{rd['verdict']}`**. {closing}"""
+
+    # Item 3. The canonical status of stage 1 is not the audit's own finding: an
+    # audit whose numbers are not yet reproducible has no standing to unlock
+    # anything. Until the deterministic reproduction passes, the reproduction
+    # disposition *is* the stage-1 status, and the audit finding is reported
+    # beside it rather than in place of it.
+    if repro_verdict.endswith("PASS"):
+        token = ("R1L_STAGE_1_STOP" if tripped else
+                 "R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED")
     else:
-        repro = ("Pending. The clean rerun required by ruling item 5 has not been "
-                 "executed, so every number above still rests on a run that was "
-                 "not preregistered.")
+        token = repro_verdict
 
     body = f"""# R1L stage 1 — localized operator and rank audit
 
@@ -262,8 +268,11 @@ property of the geometry and the basis alone.
 - age grid {fz['F_age_resolution']['age_grid_step_M']} M
   (was {fz['F_age_resolution']['previous_step_M']} M), probe half width
   {fz['F_age_resolution']['probe_half_width_M']} M
-- stage-1 audit stop token **`{token}`**
-- reproduction verdict **`{repro_verdict}`**
+- **canonical stage-1 status `{token}`**
+- audit finding `{audit_token}` — a finding about the operator, which has no
+  standing to unlock a stage until it is reproducible
+- deterministic reproduction `{repro_verdict}`
+- blocking gate `R1L_G12_deterministic_reproduction`
 - amendment `R1L_STAGE1_DIRTY_EXECUTION_G8_MASK_FIX`
   (`artifacts/configs/R1L_STAGE1_DIRTY_EXECUTION_AMENDMENT_008.json`)
 
@@ -430,8 +439,11 @@ Established, on one geometry and with no estimator involved:
 {zerotab}
 
 3. The resolved advantage is **not** an artifact of global-cosine
-   extrapolation. It is larger under the localized ladder than C224 implied,
-   because C224's direct arm reported full column rank it did not have.
+   extrapolation. C224's direct arm has the full column rank it reports — that
+   number is correct, and it is a statement about the 224 global coefficients.
+   What it does not carry is any claim about epoch-local identifiability, and
+   the localized ladder shows the direct arm is blind on three whole temporal
+   functions where C224 is silent on the question.
 4. Local support costs rank and conditioning, and at `L224` and `L448` the cost
    falls entirely on epochs the arm could not see. At `L1056` it does not: the
    direct arm loses {zero['L1056']['DIRECT_PHYSICAL'][0]} columns where whole
@@ -455,12 +467,15 @@ Not established, and not to be described as established:
 
 {repro}
 
-## 9. Stop
+## 9. Status
 
-Stage 1 is complete and the freeze authorizes stage 1 only. Under the sequential
-rule the validation pilot is unlocked but **not** entered here.
+The audit findings of sections 1 to 7 are complete: `{audit_token}`. That is a
+statement about the operator and it does not by itself authorize anything.
 
-Stop token: `{token}`
+The canonical status of stage 1 is `{token}`, which is the deterministic
+reproduction disposition. Gate `R1L_G12_deterministic_reproduction` is blocking
+and carries it, so the status lives in the gate set rather than in this
+sentence. Stage 2 is entered only when that gate passes.
 """
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(body)
@@ -475,6 +490,10 @@ Stop token: `{token}`
         "experiment_id": "R1L_STAGE_1_OPERATOR_RANK_AUDIT",
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "stop_token": token,
+        "canonical_stage1_status": token,
+        "audit_finding": audit_token,
+        "deterministic_reproduction": repro_verdict,
+        "blocking_gate": "R1L_G12_deterministic_reproduction",
         "stop_conditions_evaluated": {"R1L_STOP_1": bool(stop1),
                                       "R1L_STOP_3": bool(stop3)},
         "stop_conditions_deferred": ["R1L_STOP_2", "R1L_STOP_4"],
@@ -488,7 +507,9 @@ Stop token: `{token}`
 
     print(f"wrote {OUT.relative_to(ROOT)}")
     print(f"wrote {PROV.relative_to(ROOT)}")
-    print(f"  stop token: {token}")
+    print(f"  canonical status: {token}")
+    print(f"  audit finding   : {audit_token}")
+    print(f"  reproduction    : {repro_verdict}")
     print(f"  STOP_1 tripped: {stop1}   STOP_3 tripped: {stop3}")
     print(f"total {time.time() - t0:.0f}s")
     return 0

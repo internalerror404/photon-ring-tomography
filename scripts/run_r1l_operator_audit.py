@@ -25,10 +25,18 @@ import sys
 import time
 from pathlib import Path
 
-import numpy as np
-
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
+
+# REVIEWER_RULING_R1L_REPRODUCIBILITY_009 items 5 and 6. Thread-pool sizes are
+# read once, when the BLAS loads behind the first numeric import, so the pin has
+# to happen above that import and nowhere else. `pin()` raises rather than
+# silently no-opping if anything numeric is already loaded.
+from phrt.numerics import pin, record as numerics_record, require_single_threaded
+
+pin()
+
+import numpy as np  # noqa: E402  -- must follow the pin
 
 from phrt.attestation import attest
 from phrt.audits.rank import spectrum_of
@@ -140,9 +148,14 @@ def old_structural_subspace(basis, old_boundary_M: float) -> np.ndarray:
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--classes", default="")
+    ap.add_argument("--promote", action="store_true",
+                    help="also write the canonical artifacts/tables and the "
+                         "canonical gate files. Refused for a partial ladder")
     args = ap.parse_args()
 
     t0 = time.time()
+    # Item 6: measured, not assumed. Aborts unless every loaded pool is serial.
+    numerics = require_single_threaded()
     started = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     fz = json.loads(FREEZE.read_text())
     r1 = json.loads(R1_FREEZE.read_text())
@@ -169,6 +182,19 @@ def main() -> int:
         specs = {k: v for k, v in specs.items() if k in want}
 
     run_id = make_run_id("R1L", reg.sha256)
+    # Item 7: every run writes to its own directory. The canonical tables and
+    # gates are written only by an explicit --promote on a full six-class run,
+    # so a diagnostic invocation restricted to one class physically cannot
+    # overwrite them -- which is how the L224 probes corrupted the record last
+    # time. A convention would not have prevented that; a separate path does.
+    run_dir = ROOT / "artifacts" / "runs" / run_id
+    (run_dir / "tables").mkdir(parents=True, exist_ok=True)
+    (run_dir / "gates").mkdir(parents=True, exist_ok=True)
+    full_ladder = len(specs) >= 6
+    if args.promote and not full_ladder:
+        raise SystemExit(f"--promote refused: {len(specs)} classes selected, "
+                         "the canonical set is the full six-class ladder")
+
     man = RunManifest(run_id=run_id, experiment_id="R1L_STAGE_1_OPERATOR_RANK_AUDIT",
                       seeds={"subsample_seed": seed}, started_at=started,
                       attestation=attest([FREEZE, R1_FREEZE]),
@@ -176,7 +202,11 @@ def main() -> int:
                              "reference_snr": REFERENCE_SNR,
                              "age_grid_step_M": step,
                              "old_band_boundary_M": old_b,
-                             "classes": list(specs)})
+                             "classes": list(specs),
+                             "full_ladder": full_ladder,
+                             "promoted_to_canonical": bool(args.promote),
+                             "run_dir": str(run_dir.relative_to(ROOT)),
+                             "numerics": numerics_record()})
     man.add_input(reg.path)
     man.add_input(FREEZE)
 
@@ -447,30 +477,49 @@ def main() -> int:
                                           "four-velocity the redshift was built from"))
     man.add_gate(Gate("R1L_G10_circular_centres_outside_isco",
                       "PASS" if isco_ok else "FAIL", measured=int(isco_ok), threshold=1))
+    man.add_gate(Gate("R1L_G11_pinned_numerical_environment",
+                      "PASS" if numerics["all_single_threaded"] else "FAIL",
+                      measured=max((p.get("num_threads", 0)
+                                    for p in numerics["pools"]), default=0),
+                      threshold=1,
+                      note="every loaded BLAS pool must report exactly one "
+                           "thread, interrogated after the import rather than "
+                           "inferred from the environment"))
 
-    for name, rows in (("r1l_class_spectra", spec_rows),
-                       ("r1l_temporal_mode_visibility", null_rows),
-                       ("r1l_old_structural_support", old_rows),
-                       ("r1l_age_information", age_rows),
-                       ("r1l_class_nesting", nest_rows),
-                       ("r1l_temporal_supports", sup_rows)):
-        man.add_output(write_table(rows, name))
+    tables = (("r1l_class_spectra", spec_rows),
+              ("r1l_temporal_mode_visibility", null_rows),
+              ("r1l_old_structural_support", old_rows),
+              ("r1l_age_information", age_rows),
+              ("r1l_class_nesting", nest_rows),
+              ("r1l_temporal_supports", sup_rows))
+    for name, rows in tables:
+        man.add_output(write_table(rows, name, out_dir=run_dir / "tables"))
+        if args.promote:
+            write_table(rows, name)
 
-    mp = man.write(reg.path, reg.sha256, runtime_seconds=time.time() - t0)
-    merge_gate_file(man.gates, run_id)
     sub = {gt.name: gt.to_dict() for gt in man.gates}
-    (ROOT / "artifacts" / "gates" / "r1l_stage1_gates.json").write_text(
-        json.dumps({"experiment": "R1L_STAGE_1_OPERATOR_RANK_AUDIT", "run_id": run_id,
-                    "gates": sub,
-                    "summary": {s: sum(1 for v in sub.values() if v["status"] == s)
-                                for s in ("PASS", "FAIL", "NOT_RUN")}}, indent=2) + "\n")
+    gate_doc = json.dumps({"experiment": "R1L_STAGE_1_OPERATOR_RANK_AUDIT",
+                           "run_id": run_id, "promoted": bool(args.promote),
+                           "gates": sub,
+                           "summary": {s: sum(1 for v in sub.values()
+                                              if v["status"] == s)
+                                       for s in ("PASS", "FAIL", "NOT_RUN")}},
+                          indent=2) + "\n"
+    (run_dir / "gates" / "r1l_stage1_gates.json").write_text(gate_doc)
+    mp = man.write(reg.path, reg.sha256, runtime_seconds=time.time() - t0)
+    if args.promote:
+        merge_gate_file(man.gates, run_id)
+        (ROOT / "artifacts" / "gates" / "r1l_stage1_gates.json").write_text(gate_doc)
     print("\ngates")
     for gt in man.gates:
         m = gt.measured
         print(f"  {gt.name:46s} {gt.status:6s} "
               f"{m:.3e}" if isinstance(m, float) else
               f"  {gt.name:46s} {gt.status:6s} {m}")
-    print(f"\nmanifest {mp}\ntotal {time.time() - t0:.0f}s")
+    print(f"\nrun dir  {run_dir.relative_to(ROOT)}"
+          f"\nmanifest {mp}"
+          f"\npools    {[p.get('num_threads') for p in numerics['pools']]}"
+          f"\npromoted {bool(args.promote)}\ntotal {time.time() - t0:.0f}s")
     return 1 if man.failed_gates else 0
 
 

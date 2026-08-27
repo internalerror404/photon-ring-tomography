@@ -1,224 +1,242 @@
 #!/usr/bin/env python3
-"""Require the clean stage-1 rerun to reproduce the dirty run exactly.
+"""Deterministic-reproduction check for R1L stage 1.
 
-REVIEWER_RULING_R1L_STAGE1_008 item 5. The correct stage-1 numbers were produced
-by a run whose own runner was uncommitted. That is a governance defect and the
-remedy is not an argument that the edit was harmless -- it is a clean rerun that
-has to land on the same numbers.
+REVIEWER_RULING_R1L_REPRODUCIBILITY_009 items 9, 10 and 12. Two separate
+questions, held apart because they carry different evidential weight.
 
-Equality here is exact on every numeric cell, not a tolerance. The two runs use
-the same seeds, the same rays and the same committed code, so any difference at
-all is a defect rather than a rounding artefact, and the ruling says stop on
-one.
+Item 9 -- the pinned pair. Two complete six-class runs executed in separate
+processes from one clean committed tree under the pinned numerical environment.
+Every normalized scientific cell must be exactly equal. There is no tolerance
+here and there should not be: identical code, identical seeds, identical rays
+and a serial BLAS leave nothing that may legitimately differ. A mismatch is
+``R1L_STAGE1_DETERMINISTIC_REPRODUCTION_FAIL_STOP``.
+
+Item 10 -- the preserved runs. The pinned baseline is compared against every
+stage-1 run that predates the pin. Those ran with a multithreaded BLAS whose
+reduction order was never recorded, so their last bits are not reproducible and
+demanding bitwise equality of them would be demanding something the environment
+cannot deliver. What is demanded is exact agreement on every *discrete*
+scientific conclusion -- ranks, nullities, exact-zero column counts, operational
+ranks, detectability flags. Continuous differences are reported, with their
+magnitudes, and not treated as failures.
+
+The blocking gate ``R1L_G12_deterministic_reproduction`` is emitted either way,
+so the canonical gate set carries the status rather than a report sentence.
 """
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 import time
 from pathlib import Path
 
-import numpy as np
-import pandas as pd
-
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
-from phrt.config import sha256_file
+from phrt.numerics import pin
 
-PRESERVED = ROOT / "artifacts" / "preserved" / "r1l_stage1_dirty_run"
-TAB = ROOT / "artifacts" / "tables"
+pin()
+
+import numpy as np  # noqa: E402
+import pandas as pd  # noqa: E402
+
+from phrt.config import sha256_file  # noqa: E402
+from phrt.io.manifests import Gate, merge_gate_file  # noqa: E402
+
+RUNS = ROOT / "artifacts" / "runs"
+PRESERVED = ROOT / "artifacts" / "preserved"
 OUT = ROOT / "artifacts" / "provenance" / "R1L_STAGE1_REPRODUCTION.json"
-DIRTY_RUN = "R1L_20260827T044757Z_2ba66f02"
-NUMERICAL_ZERO = 1e-12          # the campaign's standard "is this zero" tolerance
+GATE = "R1L_G12_deterministic_reproduction"
 KEYS = ["source_class", "arm", "temporal_mode", "retarded_age", "parent", "child"]
+NUMERICAL_ZERO = 1e-12
+TABLES = ("r1l_class_spectra", "r1l_temporal_mode_visibility",
+          "r1l_old_structural_support", "r1l_age_information",
+          "r1l_class_nesting", "r1l_temporal_supports")
 
 
-def latest_full_run(mans: Path) -> Path:
-    """The newest stage-1 manifest that covers every class.
-
-    Selecting by timestamp alone is wrong: a diagnostic invocation restricted to
-    one class writes a manifest too, and picking it up would attach the wrong
-    provenance to a full-ladder comparison.
-    """
-    def n_classes(p):
-        # RunManifest flattens `extra` into the top level, so `classes` is a
-        # top-level key; the nested read is kept as a fallback rather than
-        # assumed away.
-        d = json.loads(p.read_text())
-        return len(d.get("classes") or d.get("extra", {}).get("classes") or [])
-
-    full = [p for p in sorted(mans.glob("R1L_*.json")) if n_classes(p) >= 6]
-    if not full:
-        raise SystemExit("no full-ladder R1L run manifest found")
-    return full[-1]
-
-
-def canonical(df: pd.DataFrame) -> pd.DataFrame:
+def normalize(df: pd.DataFrame) -> pd.DataFrame:
+    """Row order and column order made canonical, so equality tests content."""
     by = [c for c in KEYS if c in df.columns]
     d = df.sort_values(by).reset_index(drop=True) if by else df.reset_index(drop=True)
     return d[sorted(d.columns)]
 
 
 def is_discrete(x: pd.Series) -> bool:
-    """A rank, a count, a nullity or a flag: any of these differing is fatal.
-
-    Split out from the continuous spectral quantities because the two carry
-    completely different evidential weight. A rank that moved means the audit
-    reached a different conclusion. A singular value that moved in its last bits
-    means the reduction order changed.
-    """
+    """A rank, a count, a nullity or a flag. Any of these differing is fatal."""
     return (pd.api.types.is_bool_dtype(x) or pd.api.types.is_integer_dtype(x)
             or not pd.api.types.is_numeric_dtype(x))
 
 
-def compare(a: pd.DataFrame, b: pd.DataFrame) -> dict:
-    a, b = canonical(a), canonical(b)
-    if a.shape != b.shape:
-        return {"equal": False, "reason": f"shape {a.shape} vs {b.shape}"}
-    if list(a.columns) != list(b.columns):
-        return {"equal": False, "reason": "column sets differ"}
-    diffs, worst_rel, n_disc, n_cont = {}, 0.0, 0, 0
-    discrete_differ = []
+def diff_table(a: pd.DataFrame, b: pd.DataFrame) -> dict:
+    a, b = normalize(a), normalize(b)
+    if a.shape != b.shape or list(a.columns) != list(b.columns):
+        return {"exactly_equal": False, "discrete_equal": False,
+                "reason": f"shape/columns differ: {a.shape} vs {b.shape}"}
+    cols, worst, n_above, disc_bad = {}, 0.0, 0, []
     for c in a.columns:
         x, y = a[c], b[c]
         disc = is_discrete(x)
-        n_disc += disc
-        n_cont += not disc
         if pd.api.types.is_numeric_dtype(x) and pd.api.types.is_numeric_dtype(y):
-            xv = x.to_numpy(dtype=float)
-            yv = y.to_numpy(dtype=float)
+            xv, yv = x.to_numpy(dtype=float), y.to_numpy(dtype=float)
             bad = ~((xv == yv) | (np.isnan(xv) & np.isnan(yv)))
-            if bad.any():
-                scale = np.maximum(np.abs(xv), np.abs(yv))
-                rel = np.where(scale > 0, np.abs(xv - yv) / np.maximum(scale, 1e-300),
-                               0.0)
-                # A relative difference between two numerically-zero
-                # quantities is not a discrepancy, it is a ratio of noise. Null
-                # singular values and the class-nesting residual are exactly
-                # that: unfloored they dominate the summary with ratios near one
-                # while the quantities themselves are 1e-37 and 1e-107. The
-                # floor is the campaign's existing numerical-zero tolerance,
-                # not a value chosen after seeing these numbers.
-                floor = NUMERICAL_ZERO
-                sig = bad & (scale > floor)
-                i = int(np.argmax(np.where(sig if sig.any() else bad, rel, -1.0)))
-                srel = float(rel[sig].max()) if sig.any() else 0.0
-                worst_rel = max(worst_rel, srel)
-                diffs[c] = {"discrete": bool(disc),
-                            "n_differing": int(bad.sum()),
-                            "n_differing_above_noise_floor": int(sig.sum()),
-                            "noise_floor": floor,
-                            "worst_relative_difference_above_floor": srel,
-                            "worst_relative_difference_unfloored":
-                                float(rel[bad].max()),
-                            "at_row": i, "preserved": float(xv[i]),
-                            "rerun": float(yv[i]),
-                            "abs_diff": float(abs(xv[i] - yv[i]))}
-                if disc:
-                    discrete_differ.append(c)
+            if not bad.any():
+                continue
+            scale = np.maximum(np.abs(xv), np.abs(yv))
+            rel = np.where(scale > 0, np.abs(xv - yv) / np.maximum(scale, 1e-300), 0.0)
+            sig = bad & (scale > NUMERICAL_ZERO)
+            srel = float(rel[sig].max()) if sig.any() else 0.0
+            worst = max(worst, srel)
+            n_above += int(sig.sum())
+            i = int(np.argmax(np.where(sig if sig.any() else bad, rel, -1.0)))
+            cols[c] = {"discrete": bool(disc), "n_differing": int(bad.sum()),
+                       "n_differing_above_noise_floor": int(sig.sum()),
+                       "worst_relative_difference_above_floor": srel,
+                       "example": {"row": i, "a": float(xv[i]), "b": float(yv[i]),
+                                   "abs_diff": float(abs(xv[i] - yv[i]))}}
+            if disc:
+                disc_bad.append(c)
         elif not x.equals(y):
-            diffs[c] = {"discrete": True, "n_differing": int((x != y).sum()),
-                        "kind": "non-numeric"}
-            discrete_differ.append(c)
-    return {"equal": not diffs,
-            "discrete_results_equal": not discrete_differ,
-            "differing_discrete_columns": discrete_differ,
-            "worst_relative_difference": worst_rel,
-            "n_rows": int(len(a)), "n_columns": int(len(a.columns)),
-            "n_discrete_columns": int(n_disc), "n_continuous_columns": int(n_cont),
-            "differing_columns": diffs}
+            cols[c] = {"discrete": True, "n_differing": int((x != y).sum()),
+                       "kind": "non-numeric"}
+            disc_bad.append(c)
+    return {"exactly_equal": not cols, "discrete_equal": not disc_bad,
+            "differing_discrete_columns": disc_bad,
+            "worst_relative_difference_above_floor": worst,
+            "n_differing_cells_above_noise_floor": n_above,
+            "n_rows": int(len(a)), "differing_columns": cols}
+
+
+def load(d: Path, name: str) -> pd.DataFrame | None:
+    p = d / f"{name}.parquet"
+    return pd.read_parquet(p) if p.exists() else None
+
+
+def compare_dirs(a: Path, b: Path) -> dict:
+    out = {}
+    for name in TABLES:
+        da, db = load(a, name), load(b, name)
+        if da is None or db is None:
+            out[name] = {"exactly_equal": False, "discrete_equal": False,
+                         "reason": f"missing in {'a' if da is None else 'b'}"}
+        else:
+            out[name] = diff_table(da, db)
+    return out
+
+
+def roll(res: dict) -> dict:
+    return {"all_exactly_equal": all(v["exactly_equal"] for v in res.values()),
+            "all_discrete_equal": all(v["discrete_equal"] for v in res.values()),
+            "worst_relative_difference_above_floor":
+                max((v.get("worst_relative_difference_above_floor", 0.0)
+                     for v in res.values()), default=0.0),
+            "n_differing_cells_above_noise_floor":
+                sum(v.get("n_differing_cells_above_noise_floor", 0)
+                    for v in res.values())}
+
+
+def run_meta(run_id: str) -> dict:
+    p = ROOT / "artifacts" / "manifests" / f"{run_id}.json"
+    if not p.exists():
+        return {"run_id": run_id, "manifest": "missing"}
+    d = json.loads(p.read_text())
+    a = d.get("attestation", {})
+    n = d.get("numerics", {})
+    return {"run_id": run_id,
+            "execution_commit": a.get("execution_commit"),
+            "clean": a.get("clean"), "preregistered": a.get("preregistered"),
+            "n_tracked_changes": a.get("n_tracked_changes"),
+            "n_untracked": a.get("n_untracked"),
+            "classes": d.get("classes"),
+            "pinned_environment": n.get("pinned_environment"),
+            "threadpool_state": n.get("threadpool_state"),
+            "all_pools_single_threaded": n.get("all_pools_single_threaded"),
+            "gate_status": d.get("gate_status")}
 
 
 def main() -> int:
     t0 = time.time()
-    if not PRESERVED.exists():
-        raise SystemExit(f"{PRESERVED} is missing; nothing to reproduce against")
-    tables = sorted(p.stem for p in PRESERVED.glob("r1l_*.parquet"))
-    results, all_equal = {}, True
-    for name in tables:
-        new = TAB / f"{name}.parquet"
-        if not new.exists():
-            results[name] = {"equal": False, "reason": "rerun did not emit it"}
-            all_equal = False
-            continue
-        r = compare(pd.read_parquet(PRESERVED / f"{name}.parquet"),
-                    pd.read_parquet(new))
-        r["preserved_sha256"] = sha256_file(PRESERVED / f"{name}.parquet")
-        r["rerun_sha256"] = sha256_file(new)
-        results[name] = r
-        all_equal &= r["equal"]
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--a", default="", help="first pinned run id")
+    ap.add_argument("--b", default="", help="second pinned run id")
+    args = ap.parse_args()
 
-    clean = json.loads(latest_full_run(ROOT / "artifacts" / "manifests").read_text())
-    a = clean["attestation"]
-    clean_tree = bool(a.get("clean")) and bool(a.get("preregistered"))
-    gates = json.loads((ROOT / "artifacts" / "gates"
-                        / "r1l_stage1_gates.json").read_text())
-    failing = [k for k, v in gates["gates"].items() if v["status"] != "PASS"]
+    doc = {"schema": "phrt-reproduction/2",
+           "id": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION",
+           "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+           "ruling": "REVIEWER_RULING_R1L_REPRODUCIBILITY_009 items 9, 10, 12",
+           "noise_floor": NUMERICAL_ZERO,
+           "noise_floor_rule": "applies only to the preserved-run comparison of "
+                               "item 10. The pinned pair of item 9 is compared "
+                               "with no floor and no tolerance"}
 
-    discrete_equal = all(r.get("discrete_results_equal", False) for r in results.values())
-    worst_rel = max((r.get("worst_relative_difference", 0.0)
-                     for r in results.values()), default=0.0)
-    n_above = sum(d.get("n_differing_above_noise_floor", 0)
-                  for r in results.values()
-                  for d in r.get("differing_columns", {}).values())
-    verdict = ("R1L_STAGE1_CLEAN_REPRODUCTION_CONFIRMED"
-               if all_equal and clean_tree and not failing
-               else "R1L_STAGE1_REPRODUCTION_DISCREPANCY_STOP")
-    doc = {
-        "schema": "phrt-reproduction/1",
-        "id": "R1L_STAGE1_CLEAN_RERUN",
-        "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "ruling": "REVIEWER_RULING_R1L_STAGE1_008 item 5",
-        "equality_rule": "exact on every numeric cell, no tolerance. Same seeds, "
-                         "same rays, same committed code, so any difference is a "
-                         "defect",
-        "preserved_run": DIRTY_RUN,
-        "clean_run": clean["run_id"],
-        "clean_run_attestation": {k: a.get(k) for k in
-                                  ("execution_commit", "clean", "preregistered",
-                                   "n_tracked_changes", "n_untracked",
-                                   "porcelain_registered_sha256")},
-        "code_edited_between_runs": False,
-        "gates_failing_on_clean_run": failing,
-        "all_canonical_tables_equal": bool(all_equal),
-        "all_discrete_results_equal": bool(discrete_equal),
-        "worst_relative_difference_above_noise_floor": worst_rel,
-        "n_differing_cells_above_noise_floor": int(n_above),
-        "noise_floor": NUMERICAL_ZERO,
-        "noise_floor_rule": f"a cell counts toward the relative-difference "
-                            f"summary only if max(|preserved|, |rerun|) exceeds "
-                            f"{NUMERICAL_ZERO:g}, the campaign's existing "
-                            f"numerical-zero tolerance. Cells below it are still "
-                            f"compared and recorded, but a ratio of two "
-                            f"numerically-zero quantities is not a discrepancy. "
-                            f"The floor was not chosen after seeing these numbers",
-        "discrete_vs_continuous": "ranks, nullities, exact-zero counts, "
-                                  "operational ranks and detectability flags are "
-                                  "discrete; singular values, condition numbers "
-                                  "and information volumes are continuous. A "
-                                  "discrete difference means the audit reached a "
-                                  "different conclusion; a continuous one at "
-                                  "last-bit magnitude means the reduction order "
-                                  "changed",
-        "n_tables_compared": len(tables),
-        "tables": results,
-        "verdict": verdict,
-    }
+    if not (args.a and args.b):
+        doc["verdict"] = "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING"
+        doc["pinned_pair"] = {"status": "not yet executed"}
+        status, measured = "FAIL", 0
+        note = ("no pinned pair has been executed, so deterministic "
+                "reproduction is unproven. Blocking by default")
+    else:
+        da, db = RUNS / args.a / "tables", RUNS / args.b / "tables"
+        for d in (da, db):
+            if not d.exists():
+                raise SystemExit(f"{d} is missing; run the pinned pair first")
+        ma, mb = run_meta(args.a), run_meta(args.b)
+        res = compare_dirs(da, db)
+        r = roll(res)
+        pinned_ok = (r["all_exactly_equal"]
+                     and bool(ma.get("all_pools_single_threaded"))
+                     and bool(mb.get("all_pools_single_threaded"))
+                     and bool(ma.get("preregistered")) and bool(mb.get("preregistered"))
+                     and ma.get("execution_commit") == mb.get("execution_commit"))
+        doc["pinned_pair"] = {"a": ma, "b": mb, "tables": res, **r,
+                              "same_execution_commit":
+                                  ma.get("execution_commit") == mb.get("execution_commit"),
+                              "equality_rule": "exact on every normalized "
+                                               "scientific cell, no tolerance",
+                              "passes": bool(pinned_ok)}
+
+        prior = {}
+        for pdir in sorted(PRESERVED.glob("r1l_stage1_*")):
+            res_p = compare_dirs(da, pdir)
+            prior[pdir.name] = {"tables": res_p, **roll(res_p)}
+        doc["preserved_runs"] = {
+            "rule": "exact agreement on all discrete scientific conclusions; "
+                    "continuous differences reported, bitwise equality not "
+                    "required because those runs used an unrecorded "
+                    "multithreaded reduction order",
+            "index": json.loads((PRESERVED / "PRESERVED_RUNS.json").read_text())
+            if (PRESERVED / "PRESERVED_RUNS.json").exists() else {},
+            "comparisons": prior,
+            "all_discrete_conclusions_agree":
+                all(v["all_discrete_equal"] for v in prior.values())}
+
+        ok = pinned_ok and doc["preserved_runs"]["all_discrete_conclusions_agree"]
+        doc["verdict"] = ("R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PASS" if ok
+                          else "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_FAIL_STOP")
+        status = "PASS" if ok else "FAIL"
+        measured = r["n_differing_cells_above_noise_floor"] if not pinned_ok else 0
+        note = ("two pinned six-class runs agree on every normalized scientific "
+                "cell, and every discrete conclusion agrees with the preserved "
+                "runs" if ok else
+                "the pinned pair did not reproduce exactly, or a discrete "
+                "conclusion moved against a preserved run")
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(doc, indent=2) + "\n")
+    OUT.write_text(json.dumps(doc, indent=2, default=str) + "\n")
+    merge_gate_file([Gate(GATE, status, measured=measured, threshold=0, note=note)],
+                    doc.get("pinned_pair", {}).get("a", {}).get("run_id", "none"))
     print(f"wrote {OUT.relative_to(ROOT)}")
-    for name, r in results.items():
-        n = r.get("n_rows", "?")
-        print(f"  {'EQUAL' if r['equal'] else 'DIFFER'}  {name:34s} rows {n}"
-              + ("" if r["equal"] else f"  {r.get('reason', r.get('differing_columns'))}"))
-    print(f"  discrete results equal: {discrete_equal}   "
-          f"worst relative difference above floor: {worst_rel:.3e}   "
-          f"cells above floor: {n_above}")
-    print(f"  clean tree: {clean_tree}   gates failing: {failing or 'none'}")
-    print(f"  verdict: {verdict}")
+    if "pinned_pair" in doc and doc["pinned_pair"].get("tables"):
+        for k, v in doc["pinned_pair"]["tables"].items():
+            print(f"  pinned pair  {'EQUAL ' if v['exactly_equal'] else 'DIFFER'}  {k}")
+        for name, v in doc["preserved_runs"]["comparisons"].items():
+            print(f"  vs {name:34s} discrete_equal={v['all_discrete_equal']}  "
+                  f"worst_rel={v['worst_relative_difference_above_floor']:.3e}")
+    print(f"  gate {GATE}: {status}")
+    print(f"  verdict: {doc['verdict']}")
     print(f"total {time.time() - t0:.0f}s")
-    return 0 if verdict.endswith("CONFIRMED") else 1
+    return 0 if doc["verdict"].endswith("PASS") else 1
 
 
 if __name__ == "__main__":

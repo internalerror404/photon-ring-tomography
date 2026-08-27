@@ -1,0 +1,182 @@
+{
+  "schema": "phrt-record-amendment/1",
+  "id": "R1L_DETERMINISTIC_NUMERICS_AMENDMENT_009",
+  "created_utc": "2026-08-27T06:34:34Z",
+  "ruling": "REVIEWER_RULING_R1L_REPRODUCIBILITY_009",
+  "kind": "RECORD_ONLY_PLUS_ENVIRONMENT_DECLARATION",
+  "recomputation": "none by this amendment. It declares the environment the pinned runs must execute under and repairs canonical status text; the runs themselves follow",
+  "accepted_and_preserved_commits": [
+    "e536443f9fd975665f277f70fdb687e04b1d2bdc",
+    "0ae6b80a08b0ecf8e337e73070d10f2b9146198b",
+    "7cef3b0d1e1732356afeb3e8abda5114c18ada03"
+  ],
+  "preserved_disposition": "R1L_STAGE1_REPRODUCTION_DISCREPANCY_STOP",
+  "canonical_status_repairs": {
+    "a_stale_unlock_token": {
+      "defect": "the stage-1 report's closing section still carried R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED while the run that produced its numbers was under a reproduction STOP. A reader taking the closing token as the status would have read the stage as unlocked",
+      "repair": "the canonical stage-1 status is now the deterministic reproduction disposition whenever that disposition is not PASS. The audit's own finding is reported beside it as R1L_STAGE_1_AUDIT_FINDINGS_COMPLETE, explicitly labelled as a statement about the operator with no standing to unlock a stage",
+      "principle": "an audit whose numbers are not yet reproducible cannot authorize the next stage on the strength of its own findings"
+    },
+    "b_artifact_manifest_stop_token": {
+      "defect": "R1L_STAGE1_ARTIFACT_MANIFEST.json recorded the same stale unlock token as its stop_token",
+      "repair": "stop_token now carries the canonical status, and the manifest additionally names canonical_stage1_status, audit_finding, deterministic_reproduction and blocking_gate as separate fields so the three cannot be conflated again"
+    },
+    "c_gate_dashboard": {
+      "repair": "rebuilt after the blocking gate was added",
+      "active_blocking_failures_after_rebuild": 1,
+      "named": [
+        "R1L_G12_deterministic_reproduction"
+      ]
+    },
+    "d_blocking_gate": {
+      "added": "R1L_G12_deterministic_reproduction",
+      "initial_status": "FAIL",
+      "why_fail_before_computation": "deterministic reproduction is unproven until the pinned pair runs, and an unproven gate that defaults to pass is the failure mode this campaign has already been caught by",
+      "also_added": "R1L_G11_pinned_numerical_environment, an in-run gate that interrogates the loaded thread pools rather than reading back the environment"
+    },
+    "e_full_rank_phrase": {
+      "was": "C224's direct arm reported full column rank it did not have",
+      "defect": "the phrase says the reported rank was wrong. It was not. C224's direct arm has exactly the rank it reports; the rank is a true statement about the 224 global coefficients. The error was mine in inferring an epoch-local claim from it, and the corrected wording in ruling 008 item 3a fixed the inference while this phrase survived elsewhere and still impugned the number",
+      "now": "C224's direct arm has the full column rank it reports, and that number is correct. What it does not carry is any claim about epoch-local identifiability, on which C224 is silent"
+    }
+  },
+  "pinned_numerical_environment": {
+    "variables": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "when": "set before Python imports NumPy. Thread-pool sizes are read once when the threading runtime initialises behind the first numeric import, so a pin applied after that is decoration",
+    "enforcement": "phrt.numerics.pin() raises if any numeric module is already in sys.modules rather than silently no-opping, because a pin that appears to succeed and did not is worse than no pin",
+    "assertion": "phrt.numerics.require_single_threaded() interrogates the runtime that actually loaded and aborts unless every pool reports one thread. An empty pool list is also an abort: NumPy here always loads OpenBLAS, so finding no pool means the interrogation failed",
+    "measured_under_the_pin": {
+      "pinned_environment": {
+        "PYTHONHASHSEED": "0",
+        "OMP_NUM_THREADS": "1",
+        "OMP_DYNAMIC": "FALSE",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1"
+      },
+      "declared_pin": {
+        "PYTHONHASHSEED": "0",
+        "OMP_NUM_THREADS": "1",
+        "OMP_DYNAMIC": "FALSE",
+        "OPENBLAS_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "BLIS_NUM_THREADS": "1",
+        "VECLIB_MAXIMUM_THREADS": "1",
+        "NUMEXPR_NUM_THREADS": "1"
+      },
+      "threadpool_state": [
+        {
+          "user_api": "blas",
+          "internal_api": "openblas",
+          "num_threads": 1,
+          "version": "0.3.23.dev",
+          "threading_layer": "pthreads",
+          "architecture": "Prescott",
+          "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so"
+        }
+      ],
+      "all_pools_single_threaded": true
+    },
+    "measured_without_the_pin": "threadpool_info reports 4 OpenBLAS threads on this machine",
+    "dependency_added": "threadpoolctl 3.6.0, so the pool state can be measured rather than asserted. This changes the environment digest and is declared here rather than discovered in a later diff",
+    "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+  },
+  "run_isolation": {
+    "rule": "every run writes to artifacts/runs/<run_id>/, and the canonical artifacts/tables and gate files are written only by an explicit --promote on a full six-class run",
+    "partial_runs_refused": "--promote raises if fewer than six classes are selected",
+    "why_structural": "three L224-only diagnostic invocations previously overwrote full-ladder tables, CSVs and the gate file. A convention would not have prevented that; a separate output path does"
+  },
+  "preserved_runs_for_comparison": {
+    "schema": "phrt-preserved-runs/1",
+    "why": "Stage-1 tables from executions that predate the pinned numerical environment. Kept so the pinned baseline can be compared against them under REVIEWER_RULING_R1L_REPRODUCIBILITY_009 item 10, which requires exact agreement on discrete scientific conclusions and reporting rather than bitwise equality on continuous quantities.",
+    "runs": {
+      "r1l_stage1_dirty_run": {
+        "run_id": "R1L_20260827T044757Z_2ba66f02",
+        "attestation": "not clean, not preregistered: one tracked change, scripts/run_r1l_operator_audit.py",
+        "gates": "all ten PASS",
+        "numerics": "unpinned; effective BLAS thread count not recorded",
+        "disposition": "DIRTY_EXECUTION_OF_CORRECTED_HARNESS"
+      },
+      "r1l_stage1_unpinned_clean_run": {
+        "run_id": "R1L_20260827T054852Z_2ba66f02",
+        "also_reproduced_bitwise_by": "R1L_20260827T053853Z_2ba66f02",
+        "attestation": "clean and preregistered, zero tracked changes",
+        "gates": "all ten PASS",
+        "numerics": "unpinned; threadpool_info reports four OpenBLAS threads on this machine",
+        "disposition": "CLEAN_BUT_UNPINNED"
+      }
+    },
+    "not_preserved": {
+      "R1L_20260827T044412Z_2ba66f02": "clean and preregistered, FAILED R1L_G8 at 2.801e+02 on the observer-time mask defect. Its tables were overwritten before the preservation discipline existed; the manifest and its gates are kept.",
+      "R1L_20260827T054444Z_2ba66f02": "L224-only diagnostic probe, pinned threads. Not a stage-1 result.",
+      "R1L_20260827T054501Z_2ba66f02": "L224-only diagnostic probe, pinned threads. Not a stage-1 result."
+    }
+  },
+  "instructions_discharged": [
+    "1 accept and preserve the three commits",
+    "2 preserve R1L_STAGE1_REPRODUCTION_DISCREPANCY_STOP",
+    "3a remove the stale PASS/UNLOCKED token from the report",
+    "3b replace the artifact-manifest stop token",
+    "3c rebuild the gate dashboard",
+    "3d add a blocking deterministic-reproduction gate",
+    "3e replace the remaining full-rank phrase",
+    "4 commit this amendment",
+    "5 pin the numerical environment before NumPy is imported",
+    "6 record and assert effective BLAS thread-pool state",
+    "7 isolate every run under a run-specific output directory"
+  ],
+  "not_yet_done_at_the_time_of_this_amendment": [
+    "8 two complete six-class pinned runs",
+    "9 exact equality between them",
+    "10 comparison against every preserved run",
+    "11 or 12 the resulting disposition"
+  ],
+  "provenance": {
+    "freeze_sha256": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0"
+  },
+  "attestation": {
+    "available": true,
+    "execution_commit": "7cef3b0d1e1732356afeb3e8abda5114c18ada03",
+    "head_tree_sha": "c09eacaa2c7599f30f9e0fef03129b3d5dfc43fa",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": " M scripts/build_r1l_stage1_report.py\n M scripts/compare_r1l_stage1_reproduction.py\n M scripts/run_r1l_operator_audit.py\n?? scripts/register_r1l_determinism_amendment.py\n?? src/phrt/numerics.py\n?? tests/test_numerics.py\n",
+    "porcelain_registered_sha256": "71a725d8f6ce61f89c3f42bcdae88cea3e2935af34ddeca1b156b22179f1f741",
+    "porcelain_whole_tree_sha256": "4b6850d8fd01743548e825b0b9c9cdc6c7e1ad8f863e45932615c02a7b1655a5",
+    "n_tracked_changes": 3,
+    "n_untracked": 3,
+    "tracked_clean": false,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_LOCALIZED_AUDIT_FREEZE.json",
+        "sha256": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0",
+        "working_blob_sha": "d811388c9ed3684d3762f939c84a6cf610e4d1e9",
+        "committed_blob_sha": "d811388c9ed3684d3762f939c84a6cf610e4d1e9",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "schema": "phrt-preserved-runs/1",
+  "why": "Stage-1 tables from executions that predate the pinned numerical environment. Kept so the pinned baseline can be compared against them under REVIEWER_RULING_R1L_REPRODUCIBILITY_009 item 10, which requires exact agreement on discrete scientific conclusions and reporting rather than bitwise equality on continuous quantities.",
+  "runs": {
+    "r1l_stage1_dirty_run": {
+      "run_id": "R1L_20260827T044757Z_2ba66f02",
+      "attestation": "not clean, not preregistered: one tracked change, scripts/run_r1l_operator_audit.py",
+      "gates": "all ten PASS",
+      "numerics": "unpinned; effective BLAS thread count not recorded",
+      "disposition": "DIRTY_EXECUTION_OF_CORRECTED_HARNESS"
+    },
+    "r1l_stage1_unpinned_clean_run": {
+      "run_id": "R1L_20260827T054852Z_2ba66f02",
+      "also_reproduced_bitwise_by": "R1L_20260827T053853Z_2ba66f02",
+      "attestation": "clean and preregistered, zero tracked changes",
+      "gates": "all ten PASS",
+      "numerics": "unpinned; threadpool_info reports four OpenBLAS threads on this machine",
+      "disposition": "CLEAN_BUT_UNPINNED"
+    }
+  },
+  "not_preserved": {
+    "R1L_20260827T044412Z_2ba66f02": "clean and preregistered, FAILED R1L_G8 at 2.801e+02 on the observer-time mask defect. Its tables were overwritten before the preservation discipline existed; the manifest and its gates are kept.",
+    "R1L_20260827T054444Z_2ba66f02": "L224-only diagnostic probe, pinned threads. Not a stage-1 result.",
+    "R1L_20260827T054501Z_2ba66f02": "L224-only diagnostic probe, pinned threads. Not a stage-1 result."
+  }
+}

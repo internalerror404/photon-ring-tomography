@@ -2325,12 +2325,20 @@
         "run_id": "R1L_20260827T044757Z_2ba66f02",
         "recorded_at": "2026-08-27T04:51:44+00:00"
       }
+    },
+    "R1L_G12_deterministic_reproduction": {
+      "status": "FAIL",
+      "measured": 0,
+      "threshold": 0,
+      "note": "no pinned pair has been executed, so deterministic reproduction is unproven. Blocking by default",
+      "run_id": "none",
+      "recorded_at": "2026-08-27T06:32:29+00:00"
     }
   },
-  "updated_at": "2026-08-27T05:53:09+00:00",
+  "updated_at": "2026-08-27T06:32:29+00:00",
   "summary": {
     "PASS": 156,
-    "FAIL": 8,
+    "FAIL": 9,
     "NOT_RUN": 11
   }
 }

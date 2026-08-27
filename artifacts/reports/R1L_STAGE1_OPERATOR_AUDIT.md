@@ -13,8 +13,11 @@ property of the geometry and the basis alone.
 - age grid 2.0 M
   (was 4.0 M), probe half width
   3.0 M
-- stage-1 audit stop token **`R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED`**
-- reproduction verdict **`R1L_STAGE1_REPRODUCTION_DISCREPANCY_STOP`**
+- **canonical stage-1 status `R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING`**
+- audit finding `R1L_STAGE_1_AUDIT_FINDINGS_COMPLETE` — a finding about the operator, which has no
+  standing to unlock a stage until it is reproducible
+- deterministic reproduction `R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING`
+- blocking gate `R1L_G12_deterministic_reproduction`
 - amendment `R1L_STAGE1_DIRTY_EXECUTION_G8_MASK_FIX`
   (`artifacts/configs/R1L_STAGE1_DIRTY_EXECUTION_AMENDMENT_008.json`)
 
@@ -208,8 +211,11 @@ Established, on one geometry and with no estimator involved:
 | `L1056` | 517 | 7 | 55 | 154 | 0 | 154 |
 
 3. The resolved advantage is **not** an artifact of global-cosine
-   extrapolation. It is larger under the localized ladder than C224 implied,
-   because C224's direct arm reported full column rank it did not have.
+   extrapolation. C224's direct arm has the full column rank it reports — that
+   number is correct, and it is a statement about the 224 global coefficients.
+   What it does not carry is any claim about epoch-local identifiability, and
+   the localized ladder shows the direct arm is blind on three whole temporal
+   functions where C224 is silent on the question.
 4. Local support costs rank and conditioning, and at `L224` and `L448` the cost
    falls entirely on epochs the arm could not see. At `L1056` it does not: the
    direct arm loses 517 columns where whole
@@ -231,48 +237,20 @@ Not established, and not to be described as established:
 
 ## 8. Clean reproduction
 
-Ruling item 5. Stage 1 was rerun from a completely clean tree with no code
-edits between the runs, and every canonical numeric cell was required to match
-exactly — no tolerance, since the seeds, the rays and the committed code are
-identical and any difference would be a defect rather than rounding.
+Ruling items 8 and 9 require two complete six-class stage-1 runs, executed in
+separate processes from one clean committed tree under the pinned numerical
+environment, agreeing on every normalized scientific cell. That pair has **not**
+been executed.
 
-- preserved run `R1L_20260827T044757Z_2ba66f02` — correct, dirty
-- clean run `R1L_20260827T054852Z_2ba66f02` — execution commit
-  `0ae6b80a08b0`, clean True, preregistered
-  True, tracked changes 0, untracked
-  0
-- gates failing on the clean run: none
+Verdict: **`R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING`**. Gate `R1L_G12_deterministic_reproduction` is
+**FAIL** and blocking. Stage 2 is not entered.
 
-| table | rows | columns | numeric equality |
-|---|---:|---:|---|
-| `r1l_age_information` | 2196 | 9 | **DIFFERS** |
-| `r1l_class_nesting` | 4 | 7 | **DIFFERS** |
-| `r1l_class_spectra` | 36 | 22 | **DIFFERS** |
-| `r1l_old_structural_support` | 36 | 13 | **DIFFERS** |
-| `r1l_temporal_mode_visibility` | 480 | 13 | **DIFFERS** |
-| `r1l_temporal_supports` | 80 | 11 | **equal** |
+## 9. Status
 
-- every **discrete** result equal: **True** — ranks,
-  nullities, exact-zero column counts, operational ranks and detectability flags
-- worst **relative** difference above the 1e-12 numerical-zero
-  floor: **4.82e-06** over
-  5,169 cells
+The audit findings of sections 1 to 7 are complete: `R1L_STAGE_1_AUDIT_FINDINGS_COMPLETE`. That is a
+statement about the operator and it does not by itself authorize anything.
 
-Verdict: **`R1L_STAGE1_REPRODUCTION_DISCREPANCY_STOP`**.
-
-Under ruling item 5 this stops the sequence: stage 2 is **not** entered.
-
-**What differs.** No conclusion. Every discrete result is identical — every rank, nullity, exact-zero column count, operational rank and detectability flag. Every well-conditioned quantity agrees to about 1e-15. The differences are confined to the smallest singular and eigenvalues and to the condition numbers built from them, which is where a matrix with κ ≈ 1e10 carries roughly 1e-6 relative uncertainty in its smallest mode under any change of floating-point reduction order.
-
-**What is established about the cause, and what is not.** The *mechanism* is demonstrated: OpenBLAS here is built `DYNAMIC_ARCH` with `MAX_THREADS=2` and no pinned thread count, and a direct probe shows repeated invocations at a fixed thread count are bitwise identical while invocations at different thread counts are not. Two thread-pinned reruns of `L224` reproduced every numeric cell bitwise. Two *unpinned* full reruns are also bitwise identical to each other and both differ from the preserved run in the same way.
-
-What is **not** established is why the preserved run specifically diverged. Its effective BLAS thread count was never recorded, so it cannot be recovered after the fact, and an earlier draft of this section asserted the cause with more confidence than the evidence carries. The mechanism fits the signature exactly; it is not proof about that one execution.
-
-**Remedy, proposed and deliberately not applied.** Pin `OMP_NUM_THREADS=1` and `OPENBLAS_NUM_THREADS=1`, record the effective thread count in the run manifest alongside the existing hardware block, and rerun stage 1 once to set a bit-reproducible baseline. Applying it means re-establishing the stage-1 baseline, which is the reviewer's call and not one to take while stopped. The alternative — declaring a numerical equality tolerance in the freeze — would weaken the bright line the ruling drew, and is not recommended: an unrecorded environment variable is a real reproducibility gap even when the science it perturbs is invariant.
-
-## 9. Stop
-
-Stage 1 is complete and the freeze authorizes stage 1 only. Under the sequential
-rule the validation pilot is unlocked but **not** entered here.
-
-Stop token: `R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED`
+The canonical status of stage 1 is `R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PENDING`, which is the deterministic
+reproduction disposition. Gate `R1L_G12_deterministic_reproduction` is blocking
+and carries it, so the status lives in the gate set rather than in this
+sentence. Stage 2 is entered only when that gate passes.
