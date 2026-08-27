@@ -211,6 +211,50 @@ class PhysicalOperator(LinearOperator):
                     out += R.T @ per_t[k]
         return out
 
+    def forward_analytic(self, source_fn) -> np.ndarray:
+        """Whitened data for an arbitrary source, not restricted to the class.
+
+        ``matvec`` maps *coefficients* through the class design, so it can only
+        produce data for sources the class can express. A validation truth that
+        is only analytic -- which is the honest case, since a real history is
+        not in anyone's basis -- has to enter the same way the physics does:
+        sampled wherever the rays land and weighted by the same dOmega g^3.
+        Using this rather than projecting the truth into the class first is what
+        makes the representation floor a measurable quantity instead of zero by
+        construction.
+        """
+        per_order = []
+        for o in self.orders:
+            acc = []
+            for t in self.observer_times:
+                j = np.asarray(source_fn(o.source_r, o.source_phi,
+                                         float(t) - o.delay), dtype=float)
+                v = o.coefficient() * j
+                acc.append(np.array([v.sum()]) if self.collapse == "total_flux" else v)
+            per_order.append(np.concatenate(acc))
+        mixed = [sum(self.L[c, n] * per_order[n] for n in range(len(self.orders)))
+                 for c in range(self.n_channels)]
+        return np.concatenate(mixed) / np.sqrt(self.channel_variance())
+
+    def noise_from_standard(self, z: np.ndarray) -> np.ndarray:
+        """Whitened arm noise from one standard normal draw shared by all arms.
+
+        ``z`` has shape (n_orders, n_rays, n_times). The physical noise is
+        ``sigma sqrt(dOmega) z`` on each order's pixels; every arm is a declared
+        linear readout of that same physical draw, so the arms stay paired and
+        their covariance is propagated exactly rather than resampled.
+        """
+        z = np.asarray(z, dtype=float)
+        per_order = []
+        for i, o in enumerate(self.orders):
+            e = self.sigma_omega * np.sqrt(o.quadrature)[:, None] * z[i]
+            cols = [e[:, k].sum(keepdims=True) if self.collapse == "total_flux"
+                    else e[:, k] for k in range(self.observer_times.size)]
+            per_order.append(np.concatenate(cols))
+        mixed = [sum(self.L[c, n] * per_order[n] for n in range(len(self.orders)))
+                 for c in range(self.n_channels)]
+        return np.concatenate(mixed) / np.sqrt(self.channel_variance())
+
     def gram(self) -> np.ndarray:
         A = self.to_dense()
         G = A.T @ A

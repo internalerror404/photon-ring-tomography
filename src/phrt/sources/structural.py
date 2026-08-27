@@ -263,3 +263,87 @@ def structure_balanced(values: np.ndarray, level: np.ndarray,
     return j, {"achieved": frac(c), "baseline": float(c), "achievable": True,
                "max_structure_fraction": ceil["max_structure_fraction"],
                "positivity_boundary": c_min, "min_value": float(j.min())}
+
+
+# --------------------------------------------------------------------------
+# analytic shaping, so the truth the operator sees is the truth being scored
+
+
+def temporal_level_function(values: np.ndarray, grid_t: np.ndarray,
+                            t_min: float, t_max: float, n_temporal: int = 8):
+    """``ell(t)``, the spatially uniform part, as a function evaluable anywhere.
+
+    ``P_level v`` is uniform in space, so it is a pure function of source time,
+    and it lies exactly in the span of the class's temporal modes. Fitting its
+    grid values back onto those modes therefore recovers it exactly rather than
+    approximately, and the returned callable can be evaluated at the scattered
+    source times the rays land on.
+
+    This matters because the bank shaping is defined on the evaluation grid
+    while the operator samples wherever the rays go. Without an analytic form
+    the data and the truth would be different objects, and every error reported
+    would be measuring that difference as well as the reconstruction.
+    """
+    from phrt.sources.physical_basis import temporal_design
+    T = temporal_design(np.asarray(grid_t, float), t_min, t_max, n_temporal)
+    b, *_ = np.linalg.lstsq(T, np.asarray(values, float).ravel(), rcond=None)
+    resid = float(np.abs(T @ b - np.asarray(values, float).ravel()).max())
+
+    def ell(t):
+        return temporal_design(np.asarray(t, float), t_min, t_max, n_temporal) @ b
+
+    return ell, resid
+
+
+def spatial_mean_function(movie, grid_r: np.ndarray, grid_phi: np.ndarray,
+                          t_min: float, t_max: float, n_dense: int = 4096):
+    """``m(t)``, the spatial mean of the render, tabulated densely and interpolated.
+
+    Evaluating the exact mean at every ray time would mean rendering the movie
+    on the whole spatial grid tens of thousands of times per truth. The source
+    families vary on tens of M and the tabulation spacing here is under 0.04 M,
+    so interpolation is far below every tolerance in play -- but the runner
+    measures the interpolation error against exact evaluation at sampled times
+    rather than taking that on faith.
+    """
+    ts = np.linspace(t_min, t_max, n_dense)
+    R = np.asarray(grid_r, float)
+    P = np.asarray(grid_phi, float)
+    m = np.array([float(np.mean(movie(R, P, np.full(R.size, t)))) for t in ts])
+
+    def mean_at(t):
+        return np.interp(np.asarray(t, float), ts, m)
+
+    return mean_at, ts, m
+
+
+def shaped_renderer(bank: str, movie, level_values: np.ndarray,
+                    grid_r, grid_phi, grid_t, t_min, t_max,
+                    offset: float = 0.0, target_mean: float = 1.0,
+                    floor: float = 1e-9):
+    """The bank's truth as a callable on scattered (r, phi, t).
+
+    ``constant_flux`` divides by the spatial mean at that source time;
+    ``structure_balanced`` removes the uniform part and adds the frozen offset;
+    ``baseline_one`` adds one. All three are the same operations the grid-based
+    shaping performs, expressed so that the rays can be sampled.
+    """
+    if bank == "constant_flux_structural":
+        mean_at, _, _ = spatial_mean_function(movie, grid_r, grid_phi, t_min, t_max)
+
+        def render(r, phi, t):
+            m = mean_at(t)
+            v = movie(r, phi, t)
+            return np.where(m > floor, v * target_mean / np.maximum(m, floor), v)
+
+        return render, {"kind": "constant_flux"}
+
+    if bank == "baseline_one_positive":
+        return (lambda r, phi, t: movie(r, phi, t) + 1.0), {"kind": "baseline_one"}
+
+    ell, resid = temporal_level_function(level_values, grid_t, t_min, t_max)
+
+    def render(r, phi, t):
+        return movie(r, phi, t) - ell(t).ravel() + offset
+
+    return render, {"kind": "structure_balanced", "level_fit_residual": resid}
