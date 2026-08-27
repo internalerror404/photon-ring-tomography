@@ -1,0 +1,66 @@
+{
+  "experiment": "R1L_STAGE_1_OPERATOR_RANK_AUDIT",
+  "run_id": "R1L_20260827T044757Z_2ba66f02",
+  "gates": {
+    "R1L_G1_dyadic_dimension_mirror": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "the localized ladder has exactly the E3D dimensions"
+    },
+    "R1L_G2_exact_class_nesting": {
+      "status": "PASS",
+      "measured": 1.8398130241514823e-13,
+      "threshold": 1e-12,
+      "note": "dyadic nodes nest arithmetically, so this must be zero rather than small"
+    },
+    "R1L_G3_temporal_support_compactness": {
+      "status": "PASS",
+      "measured": 0.24968757810547362,
+      "threshold": 0.3,
+      "note": "largest fraction of the history any localized temporal function occupies"
+    },
+    "R1L_G4_adjoint": {
+      "status": "PASS",
+      "measured": 1.416888406462156e-13,
+      "threshold": 1e-08
+    },
+    "R1L_G5_dense_matrix_free_parity": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "R1L_G6_gram_monotonicity": {
+      "status": "PASS",
+      "measured": 1.0727792495617831e-16,
+      "threshold": 1e-10
+    },
+    "R1L_G7_enrichment_does_not_lose_rank": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "R1L_G8_unreached_columns_are_exactly_zero": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "note": "a temporal function whose support holds no ray must give a literally zero column, which is the property that makes an unseen epoch a null direction rather than a confident extrapolation"
+    },
+    "R1L_G9_orbit_law_matches_raymap_fluid": {
+      "status": "PASS",
+      "measured": 1.3877787807814457e-17,
+      "threshold": 1e-12,
+      "note": "pattern Omega against the Kerr fluid four-velocity the redshift was built from"
+    },
+    "R1L_G10_circular_centres_outside_isco": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    }
+  },
+  "summary": {
+    "PASS": 10,
+    "FAIL": 0,
+    "NOT_RUN": 0
+  }
+}

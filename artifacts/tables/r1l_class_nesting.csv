@@ -1,0 +1,5 @@
+geometry,kind,parent,child,parent_dimension,child_dimension,projection_residual
+a050_i050,localized,L224,L448,224,448,3.430978562408452e-14
+a050_i050,localized,L448,L1056,448,1056,1.672781073940917e-14
+a050_i050,global,C224,C448_T,224,448,1.8398130241514823e-13
+a050_i050,global,C448_T,C1056_ST,448,1056,9.308049123135655e-14

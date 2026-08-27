@@ -1,0 +1,106 @@
+{
+  "schema": "phrt-artifact-manifest/1",
+  "experiment_id": "R1L_STAGE_1_OPERATOR_RANK_AUDIT",
+  "created_utc": "2026-08-27T04:56:28Z",
+  "stop_token": "R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED",
+  "stop_conditions_evaluated": {
+    "R1L_STOP_1": false,
+    "R1L_STOP_3": false
+  },
+  "stop_conditions_deferred": [
+    "R1L_STOP_2",
+    "R1L_STOP_4"
+  ],
+  "authoritative_attestation": "execution",
+  "execution_attestation": {
+    "available": true,
+    "execution_commit": "291d387b3e911954ee0e0567e70e2a807a99544c",
+    "head_tree_sha": "71c07720ca166984ef0552575627203b77738b0d",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": " M scripts/run_r1l_operator_audit.py\n",
+    "porcelain_registered_sha256": "6694fee5ace1cbd01d0450919911be549aaea54e4d064655498621ae88761cc1",
+    "porcelain_whole_tree_sha256": "81d0822cf7c6f509bcc2f6a03f55fac4aebe67efbf6bc7ac90abcf265a25291b",
+    "n_tracked_changes": 1,
+    "n_untracked": 0,
+    "tracked_clean": false,
+    "untracked_clean": true,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_LOCALIZED_AUDIT_FREEZE.json",
+        "sha256": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0",
+        "working_blob_sha": "d811388c9ed3684d3762f939c84a6cf610e4d1e9",
+        "committed_blob_sha": "d811388c9ed3684d3762f939c84a6cf610e4d1e9",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "report_assembly_attestation": {
+    "available": true,
+    "execution_commit": "291d387b3e911954ee0e0567e70e2a807a99544c",
+    "head_tree_sha": "71c07720ca166984ef0552575627203b77738b0d",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": " M scripts/run_r1l_operator_audit.py\n?? scripts/build_r1l_stage1_report.py\n",
+    "porcelain_registered_sha256": "a4f050d2ba58601ef2d999ec241aac80cb024ca9398614a06659cb0ebb2172c4",
+    "porcelain_whole_tree_sha256": "eaa4db13d2b659ba348e5edbdd48e76d3ac984b3eabbacb7fc44b20c92a3eac5",
+    "n_tracked_changes": 1,
+    "n_untracked": 1,
+    "tracked_clean": false,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_LOCALIZED_AUDIT_FREEZE.json",
+        "sha256": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0",
+        "working_blob_sha": "d811388c9ed3684d3762f939c84a6cf610e4d1e9",
+        "committed_blob_sha": "d811388c9ed3684d3762f939c84a6cf610e4d1e9",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "inputs": {
+    "artifacts/configs/R1L_LOCALIZED_AUDIT_FREEZE.json": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0",
+    "artifacts/gates/r1l_stage1_gates.json": "89df86411b46f309aa583473e7561620abb69d84bcd4a746bf13a967bf2d8ba9",
+    "artifacts/manifests/R1L_20260827T044757Z_2ba66f02.json": "6e108b2397a9467d691c129988095ed64d5ea5769203cf106b74fc4c75b5ced2",
+    "artifacts/tables/r1l_age_information.parquet": "b225912c05f15e72e6acdc62708148b9c18d9a236ea8bcdf063da01a6abcde5e",
+    "artifacts/tables/r1l_class_nesting.parquet": "57c4e03fe1bbeaabfc1320a0339ec38160c4258a45faf13c4176e3ed42582b0c",
+    "artifacts/tables/r1l_class_spectra.parquet": "738e9cc5bcd5b339a08e829511a426706dffab5ece96f8b6cfac17f456c07c71",
+    "artifacts/tables/r1l_old_structural_support.parquet": "21e1080e5cc9e0a115de3bbf31f3ac8f06f74d744ad8b771b14ebdad41fc340f",
+    "artifacts/tables/r1l_temporal_mode_visibility.parquet": "02f816e0aedcdfd8743885bffa6189ab0d92730bdc88bb33194f96a98679150b",
+    "artifacts/tables/r1l_temporal_supports.parquet": "8462705609ca71c0ede10f9aee3f5e7a89d4304fb2afcd0bfd3b628ed904513a"
+  },
+  "outputs": {
+    "artifacts/reports/R1L_STAGE1_OPERATOR_AUDIT.md": "df2a6283c0f53449b0db5824e685cc3095e85c00f06b2cc2cd91c9c68731e7fd"
+  }
+}

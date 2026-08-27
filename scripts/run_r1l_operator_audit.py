@@ -211,9 +211,14 @@ def main() -> int:
              "parent_rank": 0, "unreached": 0.0, "compactness": 0.0, "orbit": 0.0}
 
     # ---- A: the basis contract, before any operator is formed ---------------
-    sr = np.concatenate([o.source_r for o in base])
-    sp = np.concatenate([o.source_phi for o in base])
-    st = np.concatenate([float(t_obs[0]) - o.delay for o in base])
+    # every observer time, not just the first: the operator samples the source
+    # at t_obs - delay for all eight, so a set built from one of them would call
+    # the newest temporal modes unreached and turn a bookkeeping slip into a
+    # false null-space claim -- the exact error this stage exists to avoid.
+    sr = np.concatenate([np.tile(o.source_r, t_obs.size) for o in base])
+    sp = np.concatenate([np.tile(o.source_phi, t_obs.size) for o in base])
+    st = np.concatenate([np.concatenate([float(t) - o.delay for t in t_obs])
+                         for o in base])
     for child, parent in PARENT.items():
         if child not in bases or parent not in bases:
             continue

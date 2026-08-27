@@ -1,0 +1,204 @@
+{
+  "run_id": "R1L_20260827T044412Z_2ba66f02",
+  "experiment_id": "R1L_STAGE_1_OPERATOR_RANK_AUDIT",
+  "execution_commit": "291d387b3e911954ee0e0567e70e2a807a99544c",
+  "manifest_build_commit": "291d387b3e911954ee0e0567e70e2a807a99544c",
+  "git_commit": "291d387b3e911954ee0e0567e70e2a807a99544c",
+  "git_commit_deprecated": "ambiguous: this is the manifest build commit, not the execution commit. Read execution_commit instead",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "subsample_seed": 20260825
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/R1L_LOCALIZED_AUDIT_FREEZE.json",
+      "sha256": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1l_class_spectra.parquet",
+      "sha256": "738e9cc5bcd5b339a08e829511a426706dffab5ece96f8b6cfac17f456c07c71"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1l_temporal_mode_visibility.parquet",
+      "sha256": "02f816e0aedcdfd8743885bffa6189ab0d92730bdc88bb33194f96a98679150b"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1l_old_structural_support.parquet",
+      "sha256": "21e1080e5cc9e0a115de3bbf31f3ac8f06f74d744ad8b771b14ebdad41fc340f"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1l_age_information.parquet",
+      "sha256": "b225912c05f15e72e6acdc62708148b9c18d9a236ea8bcdf063da01a6abcde5e"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1l_class_nesting.parquet",
+      "sha256": "8b37c45094c9c4940ddeeb4fd8a81b67db0fa3bff713253f4ada0d85def14e92"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/tables/r1l_temporal_supports.parquet",
+      "sha256": "8462705609ca71c0ede10f9aee3f5e7a89d4304fb2afcd0bfd3b628ed904513a"
+    }
+  ],
+  "gate_status": {
+    "R1L_G1_dyadic_dimension_mirror": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "the localized ladder has exactly the E3D dimensions"
+    },
+    "R1L_G2_exact_class_nesting": {
+      "status": "PASS",
+      "measured": 2.1355313351012487e-14,
+      "threshold": 1e-12,
+      "note": "dyadic nodes nest arithmetically, so this must be zero rather than small"
+    },
+    "R1L_G3_temporal_support_compactness": {
+      "status": "PASS",
+      "measured": 0.24968757810547362,
+      "threshold": 0.3,
+      "note": "largest fraction of the history any localized temporal function occupies"
+    },
+    "R1L_G4_adjoint": {
+      "status": "PASS",
+      "measured": 1.416888406462156e-13,
+      "threshold": 1e-08
+    },
+    "R1L_G5_dense_matrix_free_parity": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-10
+    },
+    "R1L_G6_gram_monotonicity": {
+      "status": "PASS",
+      "measured": 1.0727792495617831e-16,
+      "threshold": 1e-10
+    },
+    "R1L_G7_enrichment_does_not_lose_rank": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "R1L_G8_unreached_columns_are_exactly_zero": {
+      "status": "FAIL",
+      "measured": 280.089366526454,
+      "threshold": 0.0,
+      "note": "a temporal function whose support holds no ray must give a literally zero column, which is the property that makes an unseen epoch a null direction rather than a confident extrapolation"
+    },
+    "R1L_G9_orbit_law_matches_raymap_fluid": {
+      "status": "PASS",
+      "measured": 1.3877787807814457e-17,
+      "threshold": 1e-12,
+      "note": "pattern Omega against the Kerr fluid four-velocity the redshift was built from"
+    },
+    "R1L_G10_circular_centres_outside_isco": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    }
+  },
+  "started_at": "2026-08-27T04:44:12Z",
+  "finished_at": "2026-08-27T04:47:38+00:00",
+  "attestation": {
+    "available": true,
+    "execution_commit": "291d387b3e911954ee0e0567e70e2a807a99544c",
+    "head_tree_sha": "71c07720ca166984ef0552575627203b77738b0d",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_LOCALIZED_AUDIT_FREEZE.json",
+        "sha256": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0",
+        "working_blob_sha": "d811388c9ed3684d3762f939c84a6cf610e4d1e9",
+        "committed_blob_sha": "d811388c9ed3684d3762f939c84a6cf610e4d1e9",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "peak_rss_mb": 1876.09765625,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 206.58415126800537,
+  "stage": "operator_rank_audit",
+  "geometry": "a050_i050",
+  "reference_snr": 100.0,
+  "age_grid_step_M": 2.0,
+  "old_band_boundary_M": 57.666382656487954,
+  "classes": [
+    "L224",
+    "L448",
+    "L1056",
+    "C224",
+    "C448_T",
+    "C1056_ST"
+  ]
+}
