@@ -1,7 +1,7 @@
 {
   "schema": "phrt-hmt1-freeze/1",
   "id": "HMT_1_HISTORICAL_FEATURE_AND_CONTRAST_TOMOGRAPHY_V0",
-  "created_utc": "2026-08-27T21:41:48Z",
+  "created_utc": "2026-08-27T22:25:30Z",
   "ruling": "Reviewer authorization of HMT-1",
   "status": "FROZEN_BEFORE_ANY_NEW_TRUTH_OR_OPERATOR_SCORE",
   "branch": "research/hmt1_historical_feature_contrast_tomography_v0",
@@ -469,8 +469,8 @@
   },
   "attestation": {
     "available": true,
-    "execution_commit": "3fc3e6250157ab4a5ce528e0a549d1d65ee92334",
-    "head_tree_sha": "5d2549ed89ecabd26153b2a489b5fb387d22ee9d",
+    "execution_commit": "25ee718a44f3e23304239abf5885ed952ffe7a24",
+    "head_tree_sha": "ce46d74815820d77782ed9aa010956753af8432c",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -481,7 +481,7 @@
     ],
     "porcelain_registered": "",
     "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "porcelain_whole_tree_sha256": "ff68c4856334440b2b95cc9f534b4fad897ba9f9370fb50fa25e993feb8de1b8",
+    "porcelain_whole_tree_sha256": "98335abcd1b48aeb79206fa19f68e371645151118e9fb8db95984a83a818d2ee",
     "n_tracked_changes": 0,
     "n_untracked": 0,
     "tracked_clean": true,
