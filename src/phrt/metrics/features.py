@@ -31,14 +31,15 @@ def age_maps(values: np.ndarray, grid_t: np.ndarray, ages: np.ndarray,
     the field looked like at that age, smoothed by the same probe the rest of
     the campaign uses.
     """
-    v = np.asarray(values, float).reshape(shape_rphi[0], shape_rphi[1], -1)
-    t = np.asarray(grid_t, float).reshape(shape_rphi[0], shape_rphi[1], -1)[0, 0]
-    out = np.empty((ages.size, shape_rphi[0], shape_rphi[1]))
-    for i, a in enumerate(ages):
-        w = np.exp(-0.5 * ((t + float(a)) / half_width) ** 2)
-        s = w.sum()
-        out[i] = (v * w).sum(axis=2) / (s if s > 0 else 1.0)
-    return out
+    nr, npz = shape_rphi
+    v = np.asarray(values, float).reshape(nr * npz, -1)
+    t = np.asarray(grid_t, float).reshape(nr, npz, -1)[0, 0]
+    # one gemm rather than a loop over ages: the window stack is (n_t, n_ages)
+    # and the maps are the field times that stack, column-normalised
+    W = np.exp(-0.5 * ((t[:, None] + np.asarray(ages, float)[None, :])
+                       / half_width) ** 2)
+    W = W / np.maximum(W.sum(axis=0, keepdims=True), 1e-300)
+    return (v @ W).T.reshape(np.asarray(ages).size, nr, npz)
 
 
 def _parabolic(y0: float, y1: float, y2: float) -> float:
@@ -173,3 +174,61 @@ def aggregate(errs: dict, keys) -> np.ndarray:
     if not stack:
         return np.zeros(0)
     return np.sqrt(np.mean(np.stack(stack) ** 2, axis=0))
+
+
+def generative_peak_error(traj, ages: np.ndarray, feats: dict,
+                          r_axis: np.ndarray, phi_axis: np.ndarray,
+                          m_fold: int = 1) -> dict:
+    """How far the extracted peak sits from the trajectory it was drawn from.
+
+    Gate ``HMT1_G10b``. ``HMT1_G10`` only asks that extraction be *repeatable*;
+    a deterministic extractor that reads the wrong position passes it every
+    time. This asks the other question -- does the instrument, applied to the
+    truth itself with no operator and no noise in the way, return the feature
+    that was actually put there.
+
+    The error is reported in grid cells rather than in M and radians, because
+    the freeze declares this quantity at the evaluation-grid resolution: an
+    extractor reading a sampled field cannot localise a feature better than the
+    grid it is sampled on, and a tolerance in physical units would silently
+    become a different tolerance at a different radius. The radial axis is
+    uniform in ``log r``, so a cell there is a fixed step in ``log r``.
+
+    Ages where the generative amplitude has fallen below ``BIRTH_FRACTION`` of
+    its own maximum are excluded. That is not a convenience: where the feature
+    has faded to nothing the argmax of the residual is the argmax of numerical
+    dust, and scoring it would measure rounding rather than extraction. The
+    threshold is the one ``event_times`` already uses, not a new one.
+
+    ``m_fold`` folds the azimuthal comparison for the pattern families, whose
+    ``cos(m phi)`` shape has ``m`` equal maxima -- the extractor has no way to
+    prefer one, and no reason to.
+    """
+    ages = np.asarray(ages, float)
+    gen_r, gen_phi, gen_a = [], [], []
+    for a in ages:
+        tv = traj(float(a))
+        gen_r.append(tv.get("r_h", tv.get("r_peak", np.nan)))
+        gen_phi.append(tv.get("phi_h", tv.get("pattern_phase", np.nan)))
+        gen_a.append(tv.get("A_h", tv.get("a_m1", tv.get("a_m2", 1.0))))
+    gen_r = np.asarray(gen_r, float)
+    gen_phi = np.asarray(gen_phi, float)
+    gen_a = np.abs(np.asarray(gen_a, float))
+
+    live = np.isfinite(gen_r) & np.isfinite(gen_phi) & np.isfinite(gen_a)
+    if live.any() and gen_a[live].max() > 0:
+        live &= gen_a >= BIRTH_FRACTION * gen_a[live].max()
+    if not live.any():
+        return {"radial_cells": float("nan"), "azimuthal_cells": float("nan"),
+                "n_ages_scored": 0}
+
+    d_logr = float(np.log(r_axis[-1] / r_axis[0]) / (r_axis.size - 1))
+    d_phi = float(2.0 * np.pi / phi_axis.size)
+    fold = 2.0 * np.pi / max(int(m_fold), 1)
+
+    er = np.abs(np.log(np.asarray(feats["r_h"], float)[live] / gen_r[live])) / d_logr
+    dphi = np.asarray(feats["phi_h"], float)[live] - gen_phi[live]
+    dphi = (dphi + 0.5 * fold) % fold - 0.5 * fold
+    ep = np.abs(dphi) / d_phi
+    return {"radial_cells": float(er.max()), "azimuthal_cells": float(ep.max()),
+            "n_ages_scored": int(live.sum())}

@@ -3,6 +3,7 @@ import numpy as np
 import pytest
 
 from phrt.metrics.features import (aggregate, event_times, extract,
+                                   generative_peak_error,
                                    normalized_errors, peak_position)
 from phrt.sources.contrast import (FAMILIES, OFF_MANIFOLD, build,
                                    background_field)
@@ -174,3 +175,53 @@ def test_an_axisymmetric_model_cannot_absorb_the_fluctuation(grid, family):
     coef, *_ = np.linalg.lstsq(des, dj, rcond=None)
     absorbed = np.linalg.norm(des @ coef) / np.linalg.norm(dj)
     assert absorbed < 1e-10, (family, absorbed)
+
+
+@pytest.mark.parametrize("family", FAMILIES)
+def test_generative_peak_error_is_within_one_grid_cell(grid, family):
+    """G10b, on every declared family rather than only the easy ones."""
+    r, phi, t, gr, gp, gt, ti = grid
+    _, _, traj, dj, _, _ = _build(grid, family, 17)
+    ages = np.arange(0.0, 60.0 + 1e-9, 2.0)
+    got = extract(dj, gt, ages, r, phi, 3.0)
+    m = 2 if family == "m2_structural_mode" else 1
+    e = generative_peak_error(traj, ages, got, r, phi, m_fold=m)
+    assert e["n_ages_scored"] > 0
+    assert e["radial_cells"] <= 1.0, e
+    assert e["azimuthal_cells"] <= 1.0, e
+
+
+def test_generative_peak_error_detects_a_displaced_trajectory(grid):
+    """A gate that cannot fail is not evidence.
+
+    Feed the same extraction a trajectory shifted by a known number of cells
+    and check the measure reports that shift, in both coordinates. Without
+    this, G10b passing would only show that the arithmetic runs.
+    """
+    r, phi, t, gr, gp, gt, ti = grid
+    _, _, traj, dj, _, _ = _build(grid, "circular_hotspot_trajectory", 17)
+    ages = np.arange(0.0, 60.0 + 1e-9, 2.0)
+    got = extract(dj, gt, ages, r, phi, 3.0)
+    d_logr = float(np.log(r[-1] / r[0]) / (r.size - 1))
+    d_phi = float(2.0 * np.pi / phi.size)
+
+    for shift_r, shift_p in ((3.0, 0.0), (0.0, 4.0)):
+        def moved(a, sr=shift_r, sp=shift_p):
+            v = dict(traj(a))
+            v["r_h"] = v["r_h"] * np.exp(sr * d_logr)
+            v["phi_h"] = float(wrapped_angle(
+                np.array([v["phi_h"] + sp * d_phi]))[0])
+            return v
+        e = generative_peak_error(moved, ages, got, r, phi)
+        assert e["radial_cells"] == pytest.approx(shift_r, abs=0.5), e
+        assert e["azimuthal_cells"] == pytest.approx(shift_p, abs=0.5), e
+
+
+def test_generative_peak_error_skips_ages_where_the_feature_is_dead(grid):
+    """The flare is only scored while it is alive, and that is most of it."""
+    r, phi, t, gr, gp, gt, ti = grid
+    _, _, traj, dj, _, _ = _build(grid, "flare_birth_motion_decay", 5)
+    ages = np.arange(0.0, 120.0 + 1e-9, 2.0)
+    got = extract(dj, gt, ages, r, phi, 3.0)
+    e = generative_peak_error(traj, ages, got, r, phi)
+    assert 0 < e["n_ages_scored"] < ages.size

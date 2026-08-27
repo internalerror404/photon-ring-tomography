@@ -232,10 +232,21 @@ def main() -> int:
             "estimated_from_data": {
                 "b": "estimated by a fixed low-order axisymmetric procedure from "
                      "the arm's own data before dj is reconstructed",
-                "procedure": "azimuthal average of the direct-channel image "
-                             "back-projection, smoothed on the declared radial "
-                             "B-spline basis, positivity-clipped at the "
-                             "background floor",
+                "procedure": "least squares of the declared low-order "
+                             "axisymmetric design *through the arm's own "
+                             "operator* against that arm's own data, then "
+                             "positivity-clipped at the background floor",
+                "procedure_note": "the first draft said 'azimuthal average of "
+                                  "the direct-channel image back-projection'. "
+                                  "The adjoint of a whitened operator is not an "
+                                  "image and its azimuthal average is not a "
+                                  "background, so that recipe was not "
+                                  "well-posed. Fitting the same axisymmetric "
+                                  "design through the operator is the "
+                                  "well-posed version of the same idea, uses "
+                                  "only the arm's own data, and is still fixed "
+                                  "in advance. Corrected before any truth was "
+                                  "drawn",
                 "frozen_before_any_truth": True,
                 "role": "**the regime a paper-grade result must survive**"},
             "joint_inversion": {
@@ -252,9 +263,23 @@ def main() -> int:
         "reconstruction_class": {
             "id": "L448_contrast",
             "basis": "4 radial cubic B-splines in log r x 7 real Fourier modes "
-                     "x 16 compact temporal hats, level directions projected "
-                     "out so the class represents dj and not b",
-            "dimension_before_level_removal": 448,
+                     "x 16 compact temporal hats, with every m = 0 direction "
+                     "projected out so the class represents dj and cannot "
+                     "represent any part of b",
+            "dimension_before_projection": 448,
+            "dimension_after_projection": 384,
+            "why_all_m0_not_just_the_level": "dj has zero azimuthal mean at "
+                                             "every radius and age, so it is "
+                                             "orthogonal to every axisymmetric "
+                                             "field and not merely to the "
+                                             "spatially constant ones. "
+                                             "Projecting out only the level "
+                                             "would leave the class able to "
+                                             "represent axisymmetric structure "
+                                             "the source model forbids, and the "
+                                             "estimator would spend those "
+                                             "directions competing with the "
+                                             "background",
             "why_reuse": "the localized compact-support class is already "
                          "validated by the R1L stage-1 audit and its nesting, "
                          "adjoint and zero-column properties are gated. HMT-1 "
@@ -469,20 +494,47 @@ def main() -> int:
             "HMT1_G2_split_commitments_reproduce": "structural",
             "HMT1_G3_split_disjointness": "structural",
             "HMT1_G4_contrast_zero_spatial_mean": 1e-10,
+            "HMT1_G4b_azimuthal_zero_mean": 1e-10,
             "HMT1_G5_total_emissivity_nonnegative": 0.0,
             "HMT1_G6_background_strictly_positive": 1e-6,
             "HMT1_G7_adjoint": 1e-8,
             "HMT1_G8_operator_truth_identity": 1e-9,
             "HMT1_G9_null_controls": 0.05,
             "HMT1_G10_feature_extraction_deterministic": 1e-9,
-            "HMT1_G10b_truth_extraction_recovers_generative_parameters":
-                "reported at the evaluation-grid resolution rather than gated "
-                "at 1e-9, because extraction from a sampled field cannot beat "
-                "the grid it is sampled on",
+            "HMT1_G10b_truth_extraction_recovers_generative_parameters": 1.0,
             "HMT1_G11_off_manifold_excluded_from_endpoints": "structural",
             "HMT1_G12_no_maximal_regularization_collapse": "structural",
             "HMT1_G13_declared_gate_coverage": "structural",
             "HMT1_G14_resource_limits": "structural",
+        },
+        "gate_notes": {
+            "HMT1_G10b_truth_extraction_recovers_generative_parameters":
+                "one evaluation-grid cell, in each of radius and azimuth. Read "
+                "at the evaluation-grid resolution rather than at 1e-9, "
+                "because extraction from a sampled field cannot beat the grid "
+                "it is sampled on. The radial axis is uniform in log r, so a "
+                "cell is a fixed step in log r and the tolerance does not "
+                "silently change meaning with radius. Ages at which the "
+                "generative amplitude has fallen below the already-declared "
+                "birth fraction of its own maximum are not scored, because "
+                "there the peak location is the argmax of numerical dust. The "
+                "azimuthal comparison is folded by m for the pattern "
+                "families, whose cos(m phi) shape has m equal maxima",
+            "HMT1_G10b_registration_defect":
+                "this gate was first registered with its reading written into "
+                "the threshold field as prose, which left it declared but not "
+                "emitted -- the exact condition HMT1_G13 exists to catch, and "
+                "which it did catch on the first end-to-end run. G10 asks only "
+                "that extraction be repeatable, which a deterministic "
+                "extractor reading the wrong position also satisfies, so the "
+                "gate was implemented rather than withdrawn. Corrected before "
+                "any validation truth was scored",
+            "HMT1_G4b_registration_defect":
+                "G4b was emitted by the scorer before it was declared here, "
+                "and the coverage computation carried a hard-coded exemption "
+                "for it. Declaring it removes the exemption, so HMT1_G13 now "
+                "compares the declared and emitted sets with no allowance on "
+                "either side. Corrected before any validation truth was scored",
         },
         "resource_limits": {"wall_clock_seconds": 10800, "peak_rss_mb": 12000,
                             "on_exceeded": "HMT1_IMPLEMENTATION_DEFECT",
