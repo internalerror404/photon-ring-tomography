@@ -1,7 +1,7 @@
 {
   "schema": "phrt-artifact-manifest/1",
   "experiment_id": "R1L_STAGE_1_OPERATOR_RANK_AUDIT",
-  "created_utc": "2026-08-27T05:36:21Z",
+  "created_utc": "2026-08-27T05:55:16Z",
   "stop_token": "R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED",
   "stop_conditions_evaluated": {
     "R1L_STOP_1": false,
@@ -14,8 +14,8 @@
   "authoritative_attestation": "execution",
   "execution_attestation": {
     "available": true,
-    "execution_commit": "291d387b3e911954ee0e0567e70e2a807a99544c",
-    "head_tree_sha": "71c07720ca166984ef0552575627203b77738b0d",
+    "execution_commit": "0ae6b80a08b0ecf8e337e73070d10f2b9146198b",
+    "head_tree_sha": "6ec56edc69a87d87e168aa87a4850f36a9273f50",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -24,14 +24,14 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": " M scripts/run_r1l_operator_audit.py\n",
-    "porcelain_registered_sha256": "6694fee5ace1cbd01d0450919911be549aaea54e4d064655498621ae88761cc1",
-    "porcelain_whole_tree_sha256": "81d0822cf7c6f509bcc2f6a03f55fac4aebe67efbf6bc7ac90abcf265a25291b",
-    "n_tracked_changes": 1,
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "n_tracked_changes": 0,
     "n_untracked": 0,
-    "tracked_clean": false,
+    "tracked_clean": true,
     "untracked_clean": true,
-    "clean": false,
+    "clean": true,
     "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
     "files": [
       {
@@ -52,12 +52,12 @@
       }
     ],
     "all_registered_files_committed": true,
-    "preregistered": false
+    "preregistered": true
   },
   "report_assembly_attestation": {
     "available": true,
-    "execution_commit": "3a6786c0e92f268db1b071ee8bcebaa060709c00",
-    "head_tree_sha": "f10b56b4d438f6533a1c555c6cef815aa138345e",
+    "execution_commit": "0ae6b80a08b0ecf8e337e73070d10f2b9146198b",
+    "head_tree_sha": "6ec56edc69a87d87e168aa87a4850f36a9273f50",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -66,13 +66,13 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": " M scripts/build_r1l_stage1_report.py\n?? artifacts/configs/R1L_STAGE1_DIRTY_EXECUTION_AMENDMENT_008.json\n?? scripts/compare_r1l_stage1_reproduction.py\n?? scripts/register_r1l_stage1_amendment.py\n",
-    "porcelain_registered_sha256": "52b788b82408103c531d606ea1ebff203f12219b49570a4d2932aa5257c726ef",
-    "porcelain_whole_tree_sha256": "9c969b519779f6ef89c1ab6340c4760a4cb5c3a9734d04f8ac60cb3065d95f13",
-    "n_tracked_changes": 1,
-    "n_untracked": 3,
+    "porcelain_registered": " M scripts/build_r1l_stage1_report.py\n M scripts/compare_r1l_stage1_reproduction.py\n",
+    "porcelain_registered_sha256": "ba8992b97db5ee1be728fe2c8399b77002f4df1d57a72d64362912e6b5ce7c7e",
+    "porcelain_whole_tree_sha256": "1e8878716c4cefb7f1f23f98dabd29be98eef874101fc4a3d84a72da63f517cc",
+    "n_tracked_changes": 2,
+    "n_untracked": 0,
     "tracked_clean": false,
-    "untracked_clean": false,
+    "untracked_clean": true,
     "clean": false,
     "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
     "files": [
@@ -91,16 +91,16 @@
   "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
   "inputs": {
     "artifacts/configs/R1L_LOCALIZED_AUDIT_FREEZE.json": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0",
-    "artifacts/gates/r1l_stage1_gates.json": "89df86411b46f309aa583473e7561620abb69d84bcd4a746bf13a967bf2d8ba9",
-    "artifacts/manifests/R1L_20260827T044757Z_2ba66f02.json": "6e108b2397a9467d691c129988095ed64d5ea5769203cf106b74fc4c75b5ced2",
-    "artifacts/tables/r1l_age_information.parquet": "b225912c05f15e72e6acdc62708148b9c18d9a236ea8bcdf063da01a6abcde5e",
-    "artifacts/tables/r1l_class_nesting.parquet": "57c4e03fe1bbeaabfc1320a0339ec38160c4258a45faf13c4176e3ed42582b0c",
-    "artifacts/tables/r1l_class_spectra.parquet": "738e9cc5bcd5b339a08e829511a426706dffab5ece96f8b6cfac17f456c07c71",
-    "artifacts/tables/r1l_old_structural_support.parquet": "21e1080e5cc9e0a115de3bbf31f3ac8f06f74d744ad8b771b14ebdad41fc340f",
-    "artifacts/tables/r1l_temporal_mode_visibility.parquet": "02f816e0aedcdfd8743885bffa6189ab0d92730bdc88bb33194f96a98679150b",
+    "artifacts/gates/r1l_stage1_gates.json": "864331a44cb4bb111d6318514e0daf948b7ce08a3598c30209151c36e8ef0f6b",
+    "artifacts/manifests/R1L_20260827T054852Z_2ba66f02.json": "139d68d53b573312c298db42791bf6dd750bdadacd8315bf6fda7ccf1ce34c92",
+    "artifacts/tables/r1l_age_information.parquet": "4052e268a9b22cb4dcc25286dd0693950bd3d6c8dfddb882cd9e8193cb2141b0",
+    "artifacts/tables/r1l_class_nesting.parquet": "28f3cb68f83548e0d99756d95b5f1f04619bda86eb34eadb86f7e2c9271f798e",
+    "artifacts/tables/r1l_class_spectra.parquet": "3dbea41b42af7a5a5e8c31f5c2d89379019057bccf4f01f349af2ecd97384ba9",
+    "artifacts/tables/r1l_old_structural_support.parquet": "20fc9acdea73e11b521611e9d5e8ae7fdca6b9521d0046e9a2508b808b3aea84",
+    "artifacts/tables/r1l_temporal_mode_visibility.parquet": "d3e28a7e0d53202d0f4b4ea7d32300a50b3d344c16cb595c9505dc20247c905b",
     "artifacts/tables/r1l_temporal_supports.parquet": "8462705609ca71c0ede10f9aee3f5e7a89d4304fb2afcd0bfd3b628ed904513a"
   },
   "outputs": {
-    "artifacts/reports/R1L_STAGE1_OPERATOR_AUDIT.md": "ce9bcea4647de560751f522203c7022afa00c2e8533effed363234dbcad79344"
+    "artifacts/reports/R1L_STAGE1_OPERATOR_AUDIT.md": "b21f564e7f4e11a532165b90668c2c776d0b3a344bb95f6fb2413bc9c36898d2"
   }
 }

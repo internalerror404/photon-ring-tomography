@@ -42,8 +42,14 @@ def latest_full_run(mans: Path) -> Path:
     one class writes a manifest too, and picking it up would attach the wrong
     provenance to a full-ladder report.
     """
-    full = [p for p in sorted(mans.glob("R1L_*.json"))
-            if len(json.loads(p.read_text()).get("extra", {}).get("classes", [])) >= 6]
+    def n_classes(p):
+        # RunManifest flattens `extra` into the top level, so `classes` is a
+        # top-level key; the nested read is kept as a fallback rather than
+        # assumed away.
+        d = json.loads(p.read_text())
+        return len(d.get("classes") or d.get("extra", {}).get("classes") or [])
+
+    full = [p for p in sorted(mans.glob("R1L_*.json")) if n_classes(p) >= 6]
     if not full:
         raise SystemExit("no full-ladder R1L run manifest found")
     return full[-1]
@@ -177,27 +183,39 @@ def main() -> int:
         else:
             verdict_note = (
                 "\n\nUnder ruling item 5 this stops the sequence: stage 2 is **not**"
-                " entered. The discrepancy is not a changed conclusion — every"
-                " discrete result is identical and every well-conditioned quantity"
-                " agrees to ~1e-15. It is confined to the smallest singular and"
-                " eigenvalues and to the condition numbers derived from them, where"
-                " a matrix with κ ≈ 1e10 carries ~1e-6 relative uncertainty in its"
-                " smallest mode under any change of reduction order.\n\nThe cause is"
-                " identified and demonstrated, not conjectured: OpenBLAS on this"
-                " machine is built `DYNAMIC_ARCH` with `MAX_THREADS=2` and the"
-                " thread count is not pinned. Repeated invocations at a *fixed*"
-                " thread count are bitwise identical; invocations at *different*"
-                " thread counts are not. Two pinned reruns of `L224` reproduced"
-                " every numeric cell bitwise. The harness is therefore reproducible"
-                " but not currently pinned, which is a defect in the declared"
-                " environment rather than in the audit.\n\nA remedy is available and"
-                " is **not** applied here, because applying it means re-establishing"
-                " the stage-1 baseline and that is the reviewer's call: pin"
-                " `OMP_NUM_THREADS=1` and `OPENBLAS_NUM_THREADS=1` in the declared"
-                " environment, record them in the run manifest, and rerun stage 1"
-                " once more to set a bit-reproducible baseline. The alternative —"
-                " declaring a numerical-equality tolerance in the freeze — would"
-                " weaken the bright line the ruling drew and is not recommended.")
+                " entered.\n\n**What differs.** No conclusion. Every discrete result"
+                " is identical — every rank, nullity, exact-zero column count,"
+                " operational rank and detectability flag. Every well-conditioned"
+                " quantity agrees to about 1e-15. The differences are confined to"
+                " the smallest singular and eigenvalues and to the condition"
+                " numbers built from them, which is where a matrix with κ ≈ 1e10"
+                " carries roughly 1e-6 relative uncertainty in its smallest mode"
+                " under any change of floating-point reduction order.\n\n**What is"
+                " established about the cause, and what is not.** The *mechanism*"
+                " is demonstrated: OpenBLAS here is built `DYNAMIC_ARCH` with"
+                " `MAX_THREADS=2` and no pinned thread count, and a direct probe"
+                " shows repeated invocations at a fixed thread count are bitwise"
+                " identical while invocations at different thread counts are not."
+                " Two thread-pinned reruns of `L224` reproduced every numeric cell"
+                " bitwise. Two *unpinned* full reruns are also bitwise identical to"
+                " each other and both differ from the preserved run in the same"
+                " way.\n\nWhat is **not** established is why the preserved run"
+                " specifically diverged. Its effective BLAS thread count was never"
+                " recorded, so it cannot be recovered after the fact, and an"
+                " earlier draft of this section asserted the cause with more"
+                " confidence than the evidence carries. The mechanism fits the"
+                " signature exactly; it is not proof about that one execution."
+                "\n\n**Remedy, proposed and deliberately not applied.** Pin"
+                " `OMP_NUM_THREADS=1` and `OPENBLAS_NUM_THREADS=1`, record the"
+                " effective thread count in the run manifest alongside the"
+                " existing hardware block, and rerun stage 1 once to set a"
+                " bit-reproducible baseline. Applying it means re-establishing the"
+                " stage-1 baseline, which is the reviewer's call and not one to"
+                " take while stopped. The alternative — declaring a numerical"
+                " equality tolerance in the freeze — would weaken the bright line"
+                " the ruling drew, and is not recommended: an unrecorded"
+                " environment variable is a real reproducibility gap even when"
+                " the science it perturbs is invariant.")
         rows = D.join(f"| `{k}` | {v['n_rows']} | {v['n_columns']} | "
                       f"{'**equal**' if v['equal'] else '**DIFFERS**'} |"
                       for k, v in rd["tables"].items())

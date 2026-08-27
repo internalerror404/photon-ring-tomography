@@ -5,15 +5,16 @@ no estimator was fitted and no reconstruction error exists in this document.
 This stage reports only what the operator can and cannot see, which is a
 property of the geometry and the basis alone.
 
-- run `R1L_20260827T044757Z_2ba66f02`
-- execution commit `291d387b3e911954ee0e0567e70e2a807a99544c`
+- run `R1L_20260827T054852Z_2ba66f02`
+- execution commit `0ae6b80a08b0ecf8e337e73070d10f2b9146198b`
 - freeze `24f6732a7be9025e...`
 - geometry `a050_i050`, orders 0–2, reference SNR₀ = 100
 - operational threshold ρ = 1.0
 - age grid 2.0 M
   (was 4.0 M), probe half width
   3.0 M
-- stop token **`R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED`**
+- stage-1 audit stop token **`R1L_STAGE_1_PASS_VALIDATION_PILOT_UNLOCKED`**
+- reproduction verdict **`R1L_STAGE1_REPRODUCTION_DISCREPANCY_STOP`**
 - amendment `R1L_STAGE1_DIRTY_EXECUTION_G8_MASK_FIX`
   (`artifacts/configs/R1L_STAGE1_DIRTY_EXECUTION_AMENDMENT_008.json`)
 
@@ -69,7 +70,7 @@ cannot be counted as recovered morphology. Entries are operational ranks.
 | `L1056` | 455 | 0 | 185 | 91 | 3 | 243 | 0 |
 
 The direct image sees **nothing at all** in this subspace: its largest singular
-value there is 1.75e-14 at
+value there is 2.33e-14 at
 `L224`, which is numerical zero, against
 297.5 for the resolved
 stack.
@@ -167,17 +168,17 @@ is the result most likely to decide whether this line reaches observation.
 | gate | status | measured | threshold |
 |---|---|---|---|
 | `R1L_G1_dyadic_dimension_mirror` | PASS | 1 | 1 |
-| `R1L_G2_exact_class_nesting` | PASS | 1.840e-13 | 1.000e-12 |
+| `R1L_G2_exact_class_nesting` | PASS | 4.376e-14 | 1.000e-12 |
 | `R1L_G3_temporal_support_compactness` | PASS | 2.497e-01 | 3.000e-01 |
-| `R1L_G4_adjoint` | PASS | 1.417e-13 | 1.000e-08 |
+| `R1L_G4_adjoint` | PASS | 3.212e-14 | 1.000e-08 |
 | `R1L_G5_dense_matrix_free_parity` | PASS | 0.000e+00 | 1.000e-10 |
-| `R1L_G6_gram_monotonicity` | PASS | 1.073e-16 | 1.000e-10 |
+| `R1L_G6_gram_monotonicity` | PASS | 7.919e-17 | 1.000e-10 |
 | `R1L_G7_enrichment_does_not_lose_rank` | PASS | 0 | 0 |
 | `R1L_G8_unreached_columns_are_exactly_zero` | PASS | 0.000e+00 | 0.000e+00 |
 | `R1L_G9_orbit_law_matches_raymap_fluid` | PASS | 1.388e-17 | 1.000e-12 |
 | `R1L_G10_circular_centres_outside_isco` | PASS | 1 | 1 |
 
-`R1L_G2` measures 1.84e-13,
+`R1L_G2` measures 4.38e-14,
 which is QR round-off on a 36,864 x 1056
 design rather than a nesting defect. Exactness is a statement about the function
 spaces, and it is checked directly on the temporal factor alone in the unit
@@ -230,7 +231,44 @@ Not established, and not to be described as established:
 
 ## 8. Clean reproduction
 
-Pending. The clean rerun required by ruling item 5 has not been executed, so every number above still rests on a run that was not preregistered.
+Ruling item 5. Stage 1 was rerun from a completely clean tree with no code
+edits between the runs, and every canonical numeric cell was required to match
+exactly — no tolerance, since the seeds, the rays and the committed code are
+identical and any difference would be a defect rather than rounding.
+
+- preserved run `R1L_20260827T044757Z_2ba66f02` — correct, dirty
+- clean run `R1L_20260827T054852Z_2ba66f02` — execution commit
+  `0ae6b80a08b0`, clean True, preregistered
+  True, tracked changes 0, untracked
+  0
+- gates failing on the clean run: none
+
+| table | rows | columns | numeric equality |
+|---|---:|---:|---|
+| `r1l_age_information` | 2196 | 9 | **DIFFERS** |
+| `r1l_class_nesting` | 4 | 7 | **DIFFERS** |
+| `r1l_class_spectra` | 36 | 22 | **DIFFERS** |
+| `r1l_old_structural_support` | 36 | 13 | **DIFFERS** |
+| `r1l_temporal_mode_visibility` | 480 | 13 | **DIFFERS** |
+| `r1l_temporal_supports` | 80 | 11 | **equal** |
+
+- every **discrete** result equal: **True** — ranks,
+  nullities, exact-zero column counts, operational ranks and detectability flags
+- worst **relative** difference above the 1e-12 numerical-zero
+  floor: **4.82e-06** over
+  5,169 cells
+
+Verdict: **`R1L_STAGE1_REPRODUCTION_DISCREPANCY_STOP`**.
+
+Under ruling item 5 this stops the sequence: stage 2 is **not** entered.
+
+**What differs.** No conclusion. Every discrete result is identical — every rank, nullity, exact-zero column count, operational rank and detectability flag. Every well-conditioned quantity agrees to about 1e-15. The differences are confined to the smallest singular and eigenvalues and to the condition numbers built from them, which is where a matrix with κ ≈ 1e10 carries roughly 1e-6 relative uncertainty in its smallest mode under any change of floating-point reduction order.
+
+**What is established about the cause, and what is not.** The *mechanism* is demonstrated: OpenBLAS here is built `DYNAMIC_ARCH` with `MAX_THREADS=2` and no pinned thread count, and a direct probe shows repeated invocations at a fixed thread count are bitwise identical while invocations at different thread counts are not. Two thread-pinned reruns of `L224` reproduced every numeric cell bitwise. Two *unpinned* full reruns are also bitwise identical to each other and both differ from the preserved run in the same way.
+
+What is **not** established is why the preserved run specifically diverged. Its effective BLAS thread count was never recorded, so it cannot be recovered after the fact, and an earlier draft of this section asserted the cause with more confidence than the evidence carries. The mechanism fits the signature exactly; it is not proof about that one execution.
+
+**Remedy, proposed and deliberately not applied.** Pin `OMP_NUM_THREADS=1` and `OPENBLAS_NUM_THREADS=1`, record the effective thread count in the run manifest alongside the existing hardware block, and rerun stage 1 once to set a bit-reproducible baseline. Applying it means re-establishing the stage-1 baseline, which is the reviewer's call and not one to take while stopped. The alternative — declaring a numerical equality tolerance in the freeze — would weaken the bright line the ruling drew, and is not recommended: an unrecorded environment variable is a real reproducibility gap even when the science it perturbs is invariant.
 
 ## 9. Stop
 

@@ -1,6 +1,6 @@
 {
   "experiment": "R1L_STAGE_1_OPERATOR_RANK_AUDIT",
-  "run_id": "R1L_20260827T044757Z_2ba66f02",
+  "run_id": "R1L_20260827T054852Z_2ba66f02",
   "gates": {
     "R1L_G1_dyadic_dimension_mirror": {
       "status": "PASS",
@@ -10,7 +10,7 @@
     },
     "R1L_G2_exact_class_nesting": {
       "status": "PASS",
-      "measured": 1.8398130241514823e-13,
+      "measured": 4.3758399681514965e-14,
       "threshold": 1e-12,
       "note": "dyadic nodes nest arithmetically, so this must be zero rather than small"
     },
@@ -22,7 +22,7 @@
     },
     "R1L_G4_adjoint": {
       "status": "PASS",
-      "measured": 1.416888406462156e-13,
+      "measured": 3.2124692276173804e-14,
       "threshold": 1e-08
     },
     "R1L_G5_dense_matrix_free_parity": {
@@ -32,7 +32,7 @@
     },
     "R1L_G6_gram_monotonicity": {
       "status": "PASS",
-      "measured": 1.0727792495617831e-16,
+      "measured": 7.918503626872172e-17,
       "threshold": 1e-10
     },
     "R1L_G7_enrichment_does_not_lose_rank": {

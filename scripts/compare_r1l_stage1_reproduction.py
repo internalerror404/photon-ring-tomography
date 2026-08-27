@@ -41,8 +41,14 @@ def latest_full_run(mans: Path) -> Path:
     one class writes a manifest too, and picking it up would attach the wrong
     provenance to a full-ladder comparison.
     """
-    full = [p for p in sorted(mans.glob("R1L_*.json"))
-            if len(json.loads(p.read_text()).get("extra", {}).get("classes", [])) >= 6]
+    def n_classes(p):
+        # RunManifest flattens `extra` into the top level, so `classes` is a
+        # top-level key; the nested read is kept as a fallback rather than
+        # assumed away.
+        d = json.loads(p.read_text())
+        return len(d.get("classes") or d.get("extra", {}).get("classes") or [])
+
+    full = [p for p in sorted(mans.glob("R1L_*.json")) if n_classes(p) >= 6]
     if not full:
         raise SystemExit("no full-ladder R1L run manifest found")
     return full[-1]
