@@ -1,9 +1,9 @@
 {
   "schema": "phrt-gate-dashboard/1",
-  "created_utc": "2026-08-27T06:49:50Z",
-  "git_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
-  "total_gates": 177,
-  "passing": 158,
+  "created_utc": "2026-08-27T07:58:39Z",
+  "git_commit": "922ab9c686f83f08caa09c5aa61a56af28106923",
+  "total_gates": 191,
+  "passing": 172,
   "active_blocking_failures": 0,
   "preserved_literal_failures": 8,
   "future_phase_not_run": 11,

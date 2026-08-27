@@ -1,0 +1,158 @@
+{
+  "schema": "phrt-artifact-manifest/1",
+  "experiment_id": "R1L_STAGE_2_VALIDATION",
+  "created_utc": "2026-08-27T07:58:22Z",
+  "stop_token": "R1L_STAGE2_RESOLVED_AND_UNRESOLVED_PASS",
+  "disposition_rederived_from_tables": "R1L_STAGE2_RESOLVED_AND_UNRESOLVED_PASS",
+  "runner_and_report_agree": true,
+  "carried_by": {
+    "RESOLVED_PHYSICAL": [
+      "L1056",
+      "L224",
+      "L448"
+    ],
+    "UNRESOLVED_IMAGE": [
+      "L1056"
+    ]
+  },
+  "caveats": {
+    "coprimary_untestable": "the 0.25 span criterion sits below the smallest representation floor (0.208); every structural span is zero by construction",
+    "no_effect_size_threshold": "the primary endpoint requires only that the bootstrap interval exclude zero; the unresolved arm's passing effect is one part in ten thousand",
+    "span_definition_deviation": "mean over truths of the per-truth contiguous span, not the anchored quantile endpoint used elsewhere"
+  },
+  "authoritative_attestation": "execution",
+  "execution_attestation": {
+    "available": true,
+    "execution_commit": "e7f55bf388058986e5cea463b148c35734559d59",
+    "head_tree_sha": "86e9edc610ff7698982dfe7343765d12a6199d9b",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_STAGE2_VALIDATION_ACTIVATION_010.json",
+        "sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e",
+        "working_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "report_assembly_attestation": {
+    "available": true,
+    "execution_commit": "922ab9c686f83f08caa09c5aa61a56af28106923",
+    "head_tree_sha": "7ddad83b93d66b814da298c02b5ee5bde7d70263",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": " M scripts/build_r1l_stage2_report.py\n M scripts/run_r1l_stage2_score.py\n M scripts/run_r1l_stage2_validation.py\n",
+    "porcelain_registered_sha256": "678fec03ee030f1766098f3f3e8977b0689c6d7e96d72f508406d8939ef3579e",
+    "porcelain_whole_tree_sha256": "0f63836f579d713c6a0013be02e9ac6b697b3a0c4d13d83b9a685e8017da39df",
+    "n_tracked_changes": 3,
+    "n_untracked": 0,
+    "tracked_clean": false,
+    "untracked_clean": true,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_STAGE2_VALIDATION_ACTIVATION_010.json",
+        "sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e",
+        "working_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "numerics": {
+    "pinned_environment": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "declared_pin": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "threadpool_state": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.23.dev",
+        "threading_layer": "pthreads",
+        "architecture": "Prescott",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.21.dev",
+        "threading_layer": "pthreads",
+        "architecture": "Prescott",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/scipy.libs/libopenblasp-r0-23e5df77.3.21.dev.so"
+      }
+    ],
+    "all_pools_single_threaded": true
+  },
+  "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "sealed_main_commitment_sha256": "770e72016c11abb4afcb110cef8669f3fe9d9c9ef0e8f1bf26ca426f07f75d07",
+  "inputs": {
+    "artifacts/tables/r1l_s2_age_structure_errors.parquet": "9c72573994976f7e32f8996c2cbb47a94b76e6a7cc63c303c1e25a098108ebe2",
+    "artifacts/tables/r1l_s2_common_subspace.parquet": "24f2c954eee9fc292a6e5593198c5d60d84f1b408762cf293d45a35e2c7dbd9b",
+    "artifacts/tables/r1l_s2_null_pairs.parquet": "b56b3f6bf6ccd2b8dacc75945eb53f23bfefe783678624c969c8677c8d5d1dd3",
+    "artifacts/tables/r1l_s2_pilot_scores.parquet": "6e926b6503e69a323ce5537b647e40817173da575fde189a0ec7a4f66e6895c8",
+    "artifacts/tables/r1l_s2_primary_endpoint.parquet": "5d74d713a4b568ccdb5263764e31f05e0bfb5382d4529bc84dc492ba59c5e93f",
+    "artifacts/tables/r1l_s2_representation_floors.parquet": "5b489987656208e11c0b72b8c679b29557caa99f71adf1490ff0add3fcdab4ba",
+    "artifacts/tables/r1l_s2_selection.parquet": "8597341f2a7fcfe74ab5d774292b94379dbed1f68e3210a3d1e3a5fec764f0be",
+    "artifacts/tables/r1l_s2_source_balance.parquet": "265ef30a9603c9a368cdeca70c0bbad8920f0aeb1d72182900401cc65e283cf7"
+  },
+  "outputs": {
+    "artifacts/reports/R1L_STAGE2_VALIDATION.md": "069ba0d811d32ebdbae71a06972b03cb6341d36203c73f4bb63959db89a07c04"
+  }
+}

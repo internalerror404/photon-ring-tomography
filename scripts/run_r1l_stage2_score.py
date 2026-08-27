@@ -331,17 +331,32 @@ def finish(st, sel_rows, prim_rows, age_rows, floor_rows, sub_rows, null_rows,
                     "families_improved": ",".join(f for f, v in fams.items() if v),
                     **{f"improved_{f}": v for f, v in fams.items()}})
 
+    null_ok = all(r["relative_error"] < 0.05 for r in null_rows) if null_rows else False
+
     def passes(arm):
+        """All four declared criteria, and the class that carries them is named.
+
+        The freeze requires a bootstrap interval excluding zero, at least three
+        of the four fitting families improved, confirmation by both estimators,
+        and null-pair behaviour remaining likelihood-consistent. The fourth was
+        gated separately in an earlier draft but did not reach the token, which
+        would have let a control failure pass silently.
+
+        A criterion met at any one class counts, because the classes are a
+        nested ladder and a result at the richest class is a result. Which
+        class carries it is recorded rather than left implicit.
+        """
         rows = [r for r in endpoint_rows if r["arm"] == arm]
-        if not rows:
+        if not rows or not null_ok:
             return False
         by_est = {e: [r for r in rows if r["estimator"] == e]
                   for e in ("TSVD", "RIDGE_IDENTITY")}
+        if not (by_est["TSVD"] and by_est["RIDGE_IDENTITY"]):
+            return False
         return all(any(r["excludes_zero"] and r["n_families_improved"] >= 3
-                       for r in v) for v in by_est.values() if v) and bool(by_est["TSVD"])
+                       for r in v) for v in by_est.values())
 
     res_pass, unres_pass = passes("RESOLVED_PHYSICAL"), passes("UNRESOLVED_IMAGE")
-    null_ok = all(r["relative_error"] < 0.05 for r in null_rows) if null_rows else False
 
     if not pre["commitments_ok"] or not pre["disjoint"]:
         token = "R1L_STAGE2_IMPLEMENTATION_DEFECT"

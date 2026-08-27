@@ -105,9 +105,45 @@ def main() -> int:
         f"{r.error_outside_reference_data_subspace:.4f} |"
         for r in sub.itertuples())
 
-    gtab = D.join(f"| `{k}` | {v['status']} | "
-                  f"{v['measured'] if not isinstance(v['measured'], float) else f'{v[chr(109)]:.3e}' if False else v['measured']} |"
+    def fmt(x):
+        return f"{x:.3e}" if isinstance(x, float) else str(x)
+
+    gtab = D.join(f"| `{k}` | {v['status']} | {fmt(v['measured'])} |"
                   for k, v in gates["gates"].items())
+
+    # re-derive the disposition from the tables under the freeze's own rule, so
+    # the report and the runner have to agree rather than the report restating
+    null_ok = bool((nulls.relative_error < 0.05).all())
+
+    def carried_by(arm):
+        r = end[end.arm == arm]
+        if r.empty or not null_ok:
+            return False, []
+        who = []
+        for est in ("TSVD", "RIDGE_IDENTITY"):
+            v = r[(r.estimator == est) & r.excludes_zero
+                  & (r.n_families_improved >= 3)]
+            if v.empty:
+                return False, []
+            who += list(v.source_class)
+        return True, sorted(set(who))
+
+    res_ok, res_who = carried_by("RESOLVED_PHYSICAL")
+    unres_ok, unres_who = carried_by("UNRESOLVED_IMAGE")
+    rederived = ("R1L_STAGE2_RESOLVED_AND_UNRESOLVED_PASS" if res_ok and unres_ok
+                 else "R1L_STAGE2_RESOLVED_ONLY_PASS" if res_ok
+                 else "R1L_STAGE2_NEGATIVE_RESULT")
+    agree = rederived == token
+
+    end2 = end.copy()
+    end2["relative_delta"] = end2.delta / end2.mean_direct
+    sig = end2[end2.excludes_zero].sort_values("relative_delta")
+    sigtab = D.join(
+        f"| `{r.source_class}` | `{r.arm}` | {r.estimator} | {r.delta:.3e} | "
+        f"{r.relative_delta:.1e} |" for r in sig.itertuples())
+
+    floor_min = float(floors.representation_floor_structure_relative.min())
+    span_max = float(pilot.structure_stable_span_M.max())
 
     sealed = json.loads(SEALED.read_text())
     body = f"""# R1L stage 2 — structure-first validation pilot
@@ -207,9 +243,57 @@ Nothing was rendered through an operator, no datum was formed and no error was
 computed. Committing it before this report is what stops the sealed set from
 being chosen to flatter the pilot.
 
-## 9. Disposition
+## 9. Two findings that determine how section 2 must be read
 
-`{token}`
+**The co-primary was untestable as specified, and its result is not a negative
+result about the orders.** The structural stable span is **zero for every arm,
+every class and every SNR₀ on the frozen grid**, up to 30000. The span criterion
+asks for a relative structural error at or below 0.25, and the smallest
+representation floor anywhere in section 4 is **{floor_min:.3f}**. The criterion
+therefore sits below the floor everywhere: no operator, arm or estimator could
+have produced a nonzero span, because the class cannot represent the truths that
+well in the first place. `delta_L_stable_structure >= 8 M` was never reachable,
+and the largest span observed is {span_max:.1f} M. This is a specification
+mismatch between the 0.25 criterion and the analytic banks, not evidence about
+higher orders.
+
+**The primary endpoint has no effect-size threshold, and the effects that pass
+are mostly negligible.** All four declared criteria are met, but "excludes zero"
+is doing all the work: with 128 paired pilot truths and four draws each, the
+bootstrap variance is tiny and a consistent sign passes at almost any magnitude.
+Relative effect sizes of every interval that excludes zero:
+
+| class | arm | estimator | delta | delta / direct |
+|---|---|---|---:|---:|
+{sigtab}
+
+The unresolved arm's pass — the one that separates
+`RESOLVED_AND_UNRESOLVED_PASS` from `RESOLVED_ONLY_PASS` — is **one part in ten
+thousand**. Only ridge at `L1056` (7.2%) and at `L224` (3.3%) reaches a
+magnitude that would matter to a reader. I do not think the unresolved result as
+it stands supports any observational claim, and the freeze's own
+`unresolved_arm_rule` was written to prevent exactly the reverse mistake, not to
+license this one.
+
+A third, smaller note: the structural span here is the mean over truths of each
+truth's contiguous span, not the anchored quantile endpoint
+`T_stable_anchor(epsilon, q)` the campaign uses elsewhere. Since every value is
+zero under any definition, the simplification changes nothing, but it is a
+deviation and is recorded as one.
+
+## 10. Disposition
+
+The declared rule yields **`{token}`**, re-derived independently from the tables
+by this report ({"agreeing" if agree else "**DISAGREEING**"} with the runner).
+It is carried by: resolved at {", ".join(f"`{c}`" for c in res_who) or "no class"};
+unresolved at {", ".join(f"`{c}`" for c in unres_who) or "no class"}.
+
+That token is what the freeze declared, and it stands as the disposition. It
+should not be read as a scientific pass. On the evidence above, the honest
+summary is that the resolved arm shows a real but small old-band structural
+advantage that is substantial only under ridge, the unresolved arm's advantage
+is statistically resolvable and physically negligible, and the co-primary could
+not be tested at all.
 
 Stage 2 is a validation pilot and nothing here is a held-out result. The sealed
 main, geometry mismatch, order leakage, VLBI and ML all remain unauthorized.
@@ -223,6 +307,22 @@ main, geometry mismatch, order leakage, VLBI and ML all remain unauthorized.
         "experiment_id": "R1L_STAGE_2_VALIDATION",
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "stop_token": token,
+        "disposition_rederived_from_tables": rederived,
+        "runner_and_report_agree": agree,
+        "carried_by": {"RESOLVED_PHYSICAL": res_who, "UNRESOLVED_IMAGE": unres_who},
+        "caveats": {
+            "coprimary_untestable": f"the 0.25 span criterion sits below the "
+                                    f"smallest representation floor "
+                                    f"({floor_min:.3f}); every structural span "
+                                    f"is zero by construction",
+            "no_effect_size_threshold": "the primary endpoint requires only that "
+                                        "the bootstrap interval exclude zero; "
+                                        "the unresolved arm's passing effect is "
+                                        "one part in ten thousand",
+            "span_definition_deviation": "mean over truths of the per-truth "
+                                         "contiguous span, not the anchored "
+                                         "quantile endpoint used elsewhere",
+        },
         "authoritative_attestation": "execution",
         "execution_attestation": att,
         "report_assembly_attestation": attest([FZ]),
@@ -233,7 +333,11 @@ main, geometry mismatch, order leakage, VLBI and ML all remain unauthorized.
         "outputs": {str(OUT.relative_to(ROOT)): sha256_file(OUT)},
     }, indent=2, default=str) + "\n")
     print(f"wrote {OUT.relative_to(ROOT)}\nwrote {PROV.relative_to(ROOT)}")
-    print(f"  disposition: {token}\ntotal {time.time() - t0:.0f}s")
+    print(f"  disposition: {token} (re-derived: {rederived}, agree={agree})")
+    print(f"  resolved carried by {res_who}; unresolved carried by {unres_who}")
+    print(f"  smallest representation floor {floor_min:.3f}; "
+          f"largest structural span {span_max:.1f} M")
+    print(f"total {time.time() - t0:.0f}s")
     return 0
 
 

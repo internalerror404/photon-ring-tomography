@@ -1,0 +1,280 @@
+{
+  "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+  "experiment_id": "R1L_STAGE_2_VALIDATION",
+  "execution_commit": "e7f55bf388058986e5cea463b148c35734559d59",
+  "manifest_build_commit": "922ab9c686f83f08caa09c5aa61a56af28106923",
+  "git_commit": "922ab9c686f83f08caa09c5aa61a56af28106923",
+  "git_commit_deprecated": "ambiguous: this is the manifest build commit, not the execution commit. Read execution_commit instead",
+  "dirty_tree": true,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v21",
+    "architecture": "x86_64",
+    "memory_bytes": 16856150016,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.10GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "bank_seed": 20260901,
+    "noise_seed": 20260902,
+    "bootstrap_seed": 20260903,
+    "null_pair_seed": 20260904,
+    "subsample_seed": 20260825
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+      "sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/R1L_STAGE2_VALIDATION_ACTIVATION_010.json",
+      "sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1LS2_20260827T072633Z_2ba66f02/tables/r1l_s2_source_balance.parquet",
+      "sha256": "265ef30a9603c9a368cdeca70c0bbad8920f0aeb1d72182900401cc65e283cf7"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1LS2_20260827T072633Z_2ba66f02/tables/r1l_s2_selection.parquet",
+      "sha256": "8597341f2a7fcfe74ab5d774292b94379dbed1f68e3210a3d1e3a5fec764f0be"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1LS2_20260827T072633Z_2ba66f02/tables/r1l_s2_pilot_scores.parquet",
+      "sha256": "6e926b6503e69a323ce5537b647e40817173da575fde189a0ec7a4f66e6895c8"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1LS2_20260827T072633Z_2ba66f02/tables/r1l_s2_primary_endpoint.parquet",
+      "sha256": "5d74d713a4b568ccdb5263764e31f05e0bfb5382d4529bc84dc492ba59c5e93f"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1LS2_20260827T072633Z_2ba66f02/tables/r1l_s2_age_structure_errors.parquet",
+      "sha256": "9c72573994976f7e32f8996c2cbb47a94b76e6a7cc63c303c1e25a098108ebe2"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1LS2_20260827T072633Z_2ba66f02/tables/r1l_s2_representation_floors.parquet",
+      "sha256": "5b489987656208e11c0b72b8c679b29557caa99f71adf1490ff0add3fcdab4ba"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1LS2_20260827T072633Z_2ba66f02/tables/r1l_s2_common_subspace.parquet",
+      "sha256": "24f2c954eee9fc292a6e5593198c5d60d84f1b408762cf293d45a35e2c7dbd9b"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/R1LS2_20260827T072633Z_2ba66f02/tables/r1l_s2_null_pairs.parquet",
+      "sha256": "b56b3f6bf6ccd2b8dacc75945eb53f23bfefe783678624c969c8677c8d5d1dd3"
+    }
+  ],
+  "gate_status": {
+    "R1L_S2_G1_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "R1L_S2_G2_split_commitments_reproduce": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "R1L_S2_G3_split_disjointness_by_content_hash": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "R1L_S2_G4_source_balance_within_tolerance": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "median structure fraction and target reach per bank"
+    },
+    "R1L_S2_G5_positivity": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0
+    },
+    "R1L_S2_G6_no_hyperparameter_touched_pilot": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "selection reads only the selection split; the pilot split is scored at the frozen hyperparameter"
+    },
+    "R1L_S2_G7_adjoint": {
+      "status": "PASS",
+      "measured": 5.4784686873249625e-14,
+      "threshold": 1e-08
+    },
+    "R1L_S2_G8_estimator_closed_form": {
+      "status": "PASS",
+      "measured": 7.596671443711323e-16,
+      "threshold": 1e-09,
+      "note": "forward_analytic against matvec on an in-class source"
+    },
+    "R1L_S2_G9_noise_replay_bitwise": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "one physical draw per (truth, draw index) shared by every arm and class"
+    },
+    "R1L_S2_G10_sealed_main_not_scored": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "R1L_S2_G11_resource_limits": {
+      "status": "PASS",
+      "measured": 1756,
+      "threshold": 7200
+    },
+    "R1L_S2_G12_constant_flux_slice_means": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "R1L_S2_G13_analytic_shaping_matches_grid_truth": {
+      "status": "PASS",
+      "measured": 1.4571581283962626e-14,
+      "threshold": 1e-09,
+      "note": "the shaped truth evaluated as a function against the same truth built on the evaluation grid. If these differ, the operator and the scorer are looking at different sources"
+    },
+    "R1L_S2_G14_null_pair_separation_realized": {
+      "status": "PASS",
+      "measured": 2.4424906541753444e-15,
+      "threshold": 0.05,
+      "note": "a frozen separation in sigma must be realized by the operator to within 5 percent"
+    }
+  },
+  "started_at": "2026-08-27T07:26:33Z",
+  "finished_at": "2026-08-27T07:55:51+00:00",
+  "attestation": {
+    "available": true,
+    "execution_commit": "e7f55bf388058986e5cea463b148c35734559d59",
+    "head_tree_sha": "86e9edc610ff7698982dfe7343765d12a6199d9b",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_STAGE2_VALIDATION_ACTIVATION_010.json",
+        "sha256": "09d82c19e3fdcc28dbf7c194485bfe8ce49e9f970f108fde1f5191952b261a0e",
+        "working_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_blob_sha": "7fa948220b9523e7744600be071c9ebf9c5ccbdd",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "peak_rss_mb": 2059.55859375,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 1757.3276574611664,
+  "stage": "validation_pilot",
+  "classes": [
+    "L224",
+    "L448",
+    "L1056"
+  ],
+  "arms": [
+    "DIRECT_PHYSICAL",
+    "RESOLVED_PHYSICAL",
+    "UNRESOLVED_IMAGE",
+    "TOTAL_FLUX"
+  ],
+  "run_dir": "artifacts/runs/R1LS2_20260827T072633Z_2ba66f02",
+  "numerics": {
+    "pinned_environment": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "declared_pin": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "threadpool_state": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.23.dev",
+        "threading_layer": "pthreads",
+        "architecture": "Prescott",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.21.dev",
+        "threading_layer": "pthreads",
+        "architecture": "Prescott",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/scipy.libs/libopenblasp-r0-23e5df77.3.21.dev.so"
+      }
+    ],
+    "all_pools_single_threaded": true
+  }
+}

@@ -2349,11 +2349,115 @@
       "note": "every loaded BLAS pool must report exactly one thread, interrogated after the import rather than inferred from the environment",
       "run_id": "R1L_20260827T063735Z_2ba66f02",
       "recorded_at": "2026-08-27T06:49:50+00:00"
+    },
+    "R1L_S2_G1_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G2_split_commitments_reproduce": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G3_split_disjointness_by_content_hash": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G4_source_balance_within_tolerance": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "median structure fraction and target reach per bank",
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G5_positivity": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G6_no_hyperparameter_touched_pilot": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "selection reads only the selection split; the pilot split is scored at the frozen hyperparameter",
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G7_adjoint": {
+      "status": "PASS",
+      "measured": 5.4784686873249625e-14,
+      "threshold": 1e-08,
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G8_estimator_closed_form": {
+      "status": "PASS",
+      "measured": 7.596671443711323e-16,
+      "threshold": 1e-09,
+      "note": "forward_analytic against matvec on an in-class source",
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G9_noise_replay_bitwise": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "one physical draw per (truth, draw index) shared by every arm and class",
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G10_sealed_main_not_scored": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G11_resource_limits": {
+      "status": "PASS",
+      "measured": 1756,
+      "threshold": 7200,
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G12_constant_flux_slice_means": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G13_analytic_shaping_matches_grid_truth": {
+      "status": "PASS",
+      "measured": 1.4571581283962626e-14,
+      "threshold": 1e-09,
+      "note": "the shaped truth evaluated as a function against the same truth built on the evaluation grid. If these differ, the operator and the scorer are looking at different sources",
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
+    },
+    "R1L_S2_G14_null_pair_separation_realized": {
+      "status": "PASS",
+      "measured": 2.4424906541753444e-15,
+      "threshold": 0.05,
+      "note": "a frozen separation in sigma must be realized by the operator to within 5 percent",
+      "run_id": "R1LS2_20260827T072633Z_2ba66f02",
+      "recorded_at": "2026-08-27T07:55:51+00:00"
     }
   },
-  "updated_at": "2026-08-27T06:49:50+00:00",
+  "updated_at": "2026-08-27T07:55:51+00:00",
   "summary": {
-    "PASS": 158,
+    "PASS": 172,
     "FAIL": 8,
     "NOT_RUN": 11
   }

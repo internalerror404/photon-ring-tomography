@@ -276,7 +276,6 @@ def main() -> int:
              "grids": grids, "seeds": seeds, "n_draws": n_draws,
              "r": (r_in, r_out, t_lo, t_hi), "arms": arms_wanted,
              "numerics": numerics, "lim": lim, "reg": reg}
-    np.save(run_dir / "_state_marker.npy", np.array([0]))
     return score(state)
 
 
