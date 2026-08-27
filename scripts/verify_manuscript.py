@@ -333,7 +333,20 @@ def check_reports(fails: list[str]) -> int:
             if meas in ("", "-", "\u2013") or cur is None:
                 continue
             shown = f"{cur:.4g}" if isinstance(cur, float) else str(cur)
-            if meas != shown:
+            # Compare the numbers, not their spelling. A report rendering
+            # 2.497e-01 against a ledger holding 0.2497 is the same measurement
+            # in two formats; treating that as a mismatch would train a reader
+            # to ignore this check, which is the opposite of what it is for.
+            try:
+                # reports render at four significant digits, which can move a
+                # value by up to 5e-4 relative, so the tolerance must sit above
+                # that or every rounded row reads as a mismatch
+                same = float(meas) == float(cur) or (
+                    abs(float(meas) - float(cur))
+                    <= 1e-3 * max(abs(float(cur)), 1e-300))
+            except (TypeError, ValueError):
+                same = meas == shown
+            if not same:
                 fails.append(f"{rep.name}: {name} shows {meas}, ledger says {shown}")
     return n
 

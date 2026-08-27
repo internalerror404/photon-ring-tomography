@@ -6,7 +6,7 @@ real photon ring is claimed anywhere in this manuscript.
 
 - campaign tag `paper-I-campaign-final`, commit `8345068676b15ce8f96a76da9d92b159db215f1d`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
-- canonical artifact freeze: 369 artifacts, `artifacts/CANONICAL_ARTIFACT_FREEZE.json`
+- canonical artifact freeze: 464 artifacts, `artifacts/CANONICAL_ARTIFACT_FREEZE.json`
 - every number below is registered in `artifacts/manuscript/CLAIM_LEDGER.json`
   with the artifact, row filter and column it was read from
 
@@ -49,8 +49,8 @@ rank on the registered class is therefore a statement about that class and not
 about the continuum: temporal enrichment alone exposes a direct-channel null
 space of up to 100 dimensions.
 
-Fourth, and the only inversion in this paper, **a sealed held-out test shows
-that the extra reach is usable**. On one geometry and inside the declared class,
+Fourth, **a sealed held-out test shows that the extra reach is usable for the
+age-local emissivity level**. On one geometry and inside the declared class,
 scoring 640 truths committed by hash before any operator existed for
 them, stacking orders `n = 0, 1, 2` extends the anchored stable span of
 reconstruction from 48 to 80 M at `SNR_0 = 100`, a gain of
@@ -65,6 +65,24 @@ old-age morphology is not recovered at this SNR. Separately and at
 40 M direct against 76 M resolved. Reconstruction
 of histories outside the declared class fails, and posterior uncertainty is
 withdrawn after a calibration gate frozen in advance was missed.
+
+Fifth, we ask whether the same orders recover age-local *structure*, and report
+that under our preregistered standard they do not at the reference SNR. Replacing
+the global temporal factor with compactly supported functions shows the direct
+image has 84 identically zero columns on a 224-dimensional localized
+class where the mirrored global class reports full rank — old-epoch blindness
+becomes a null-space fact rather than a condition number, and orders 1 and 2
+supply 38 of the 0-dimensional structural support the
+direct image lacks. On truths synthesised exactly in the class, so that the
+representation floor is zero, the resolved arm reduces old-band structural error
+with per-truth medians of 0.168 and 0.178; but the
+cell-balanced means are 0.116 and 0.098 with lower bounds
+0.039 and 0.000, below the 5% floor fixed in advance, so
+**the materiality standard is not met**. It is met at ten times the SNR, as a
+secondary result. No contiguous structural interval is recovered at any SNR: the
+resolved-minus-direct span difference is 0 M against 8 M. We report
+these as a bar not cleared rather than an effect shown to be zero, and no sealed
+main was run.
 
 We report a negative control throughout. Permuting each order's delays,
 positions and weights independently — preserving all three marginals and
@@ -703,7 +721,123 @@ information the likelihood does not contain.
 
 ---
 
-## 7. Controls
+## 7. Compact temporal support, and what it costs the direct image
+
+Sections 5 and 6 use a class whose temporal factor is eight global cosines.
+Every coefficient there is supported on the whole history, so a fit constrained
+where rays land also determines the field where none do, and no table can
+separate measured depth from cosine extrapolation. This section removes the
+mechanism rather than arguing about it.
+
+We replace the temporal factor with compactly supported degree-one B-splines on
+dyadic node sets, giving three classes `L224`, `L448` and `L1056` that mirror
+the dimensions of `C224`, `C448_T` and `C1056_ST` exactly. Nesting is
+arithmetic, not numerical: the coarse node set is the even half of the fine one.
+Each temporal function occupies a quarter of the history at `L224` and an eighth
+at `L448`, against all of it for every cosine mode.
+
+### 7.1 Exact old-epoch null directions
+
+A coefficient whose support contains no ray gives an identically zero column, so
+"the direct image cannot see this epoch" becomes a statement about the null
+space. Measured on the same rays:
+
+| class | direct rank | identically zero direct columns | mirrored global class | direct rank |
+|---|---:|---:|---|---:|
+| `L224` | 140 | 84 | `C224` | 224 |
+| `L448` | 252 | 196 | `C448_T` | 411 |
+| `L1056` | 523 | 517 | `C1056_ST` | 911 |
+
+`C224` is full rank on its own global temporal subspace, and that number is
+correct. It establishes identifiability of the 224 global coefficients and says
+nothing either way about epoch-local identifiability, which `C224` cannot pose
+because none of its coefficients is confined to an epoch. `L224`, same dimension
+over the same rays, can pose it, and answers that 84 directions are
+invisible to the direct image outright.
+
+### 7.2 Higher orders supply what the direct image lacks
+
+Restricting to old-epoch temporal functions and projecting out the level
+component gives the old structural subspace. Operational ranks there:
+
+| class | direct | resolved | unresolved image |
+|---|---:|---:|---:|
+| `L224` | 0 | 38 | 21 |
+| `L448` | 0 | 93 | 46 |
+| `L1056` | 0 | 185 | 91 |
+
+The direct image is at zero everywhere, with a largest singular value of
+1.8e-14 — numerical zero. Orders 1 and 2 convert a subspace the direct image
+cannot see at all into tens or hundreds of measurable directions, and roughly
+half of that survives summing the orders into a single image plane.
+
+No truth was drawn and no estimator was fitted for this section. It is a
+statement about the operator.
+
+## 8. Does the added support reduce reconstruction error?
+
+Section 7 shows the resolved stack observes directions the direct image cannot.
+Whether that converts into a materially better reconstruction is a separate
+question, and this section reports a preregistered test of it that the resolved
+arm does not pass at the reference SNR.
+
+Truths here are synthesised *exactly* in the class, so the representation floor
+is zero and the error measured is reconstruction error alone. Three
+structure-first banks replace the baseline-dominated construction of section 6:
+two non-negative structure-balanced banks carry the physical claim, and a
+constant-flux bank is retained as a signed linear stress control. Projection
+into the class removes structure, so the bank nominally at structure fraction
+0.80 realises 0.66, and the constant-flux bank reaches a negative mass
+fraction of 0.197 — it is not everywhere a non-negative emissivity field
+and cannot carry a source claim.
+
+The endpoint is the paired relative reduction in old-band structural error
+against the direct image, aggregated with equal weight over bank-family cells.
+Materiality was fixed in advance: median ≥ 10%, both bootstrap lower bounds ≥
+5%, at least three of four families, every bank in scope positive, null controls
+passing, and both estimators agreeing on the same class.
+
+| SNR₀ | estimator | median | median CI low | cell-balanced mean | mean CI low | families |
+|---:|---|---:|---:|---:|---:|---|
+| 100 | TSVD | 0.168 | 0.099 | 0.116 | 0.039 | 3/4 |
+| 100 | ridge | 0.178 | 0.096 | 0.098 | 0.000 | 3/4 |
+| 1000 | TSVD | 0.275 | 0.198 | 0.259 | 0.210 | 4/4 |
+| 1000 | ridge | 0.304 | 0.225 | 0.286 | 0.237 | 4/4 |
+
+At the registered SNR₀ = 100 the medians clear the 10% bar and their own lower
+bounds clear 5%, but the cell-balanced means fall to 0.116 and
+0.098 with lower bounds of 0.039 and 0.000,
+below the 5% floor, and both drop to three of four families. **The preregistered
+materiality standard is not met.** The central estimates are positive; what
+fails is the bar, and we report the bar rather than the sign.
+
+At SNR₀ = 1000 the same arm meets every criterion on both estimators and all
+four families. That is a secondary result. A gain at tenfold higher normalised
+SNR does not substitute for the registered point.
+
+The signed constant-flux bank alone gives 0.358 and 0.399, the
+largest of the three, and pooling it in is what made an earlier version of this
+analysis read as material. Excluding it, as the design requires, removes the
+pass. We report that explicitly because it is the most instructive number here:
+a structural effect that lives mainly in a signed diagnostic is a linear
+inverse-problem result, not evidence about emissivity histories.
+
+### 8.1 No stable structural interval
+
+The companion endpoint asks for a contiguous age interval over which the
+structural error stays under 25% for 95% of truths. Under both noise semantics —
+averaging the noise draws per truth, and the stricter joint criterion over truth
+and noise together — every span is zero at both SNRs, so the resolved-minus-direct
+difference is 0 M against a threshold of 8 M. With the
+representation floor at zero, nothing blocked the criterion except the
+reconstruction itself. **This is a real negative result**, and it is
+complementary to section 8 rather than contradictory: an average-error
+improvement is not a recovered movie.
+
+No sealed main was executed and none is authorised. Every sealed commitment is
+preserved unscored.
+
+## 8. Controls
 
 ### 7.1 A physically meaningless operator is better conditioned than the real one
 
@@ -741,7 +875,7 @@ different objects and are kept apart throughout.
 
 ---
 
-## 8. Full rank on a declared class is a statement about that class
+## 9. Full rank on a declared class is a statement about that class
 
 The registered class C224 reaches full column rank under
 21 of 21 arm–anchor combinations. That fact is often where such
@@ -831,7 +965,7 @@ different physics, and a result in one does not transfer to the other.
 
 ---
 
-## 9. Discussion
+## 10. Discussion
 
 The picture that survives all of the above is narrower than the one a
 single-geometry study would support, and we think it is the useful one.
@@ -865,7 +999,7 @@ and conditioning is optimised by a permutation with no physical content at all.
 
 ---
 
-## 10. What the measurement-model correction changed
+## 11. What the measurement-model correction changed
 
 The defect and its consequences are recorded in the invalidation ledger as
 `D-H_flat_sigma_measurement_convention`, and 33 artifacts produced under the
@@ -908,7 +1042,7 @@ in the direction of a smaller claim.
 
 ---
 
-## 11. Limitations
+## 12. Limitations
 
 1. **Declared classes, not the continuum.** Every rank and nullity is relative
    to a finite-dimensional class. Section 8 is a demonstration that this
@@ -953,13 +1087,35 @@ in the direction of a smaller claim.
 
 ---
 
-## 12. Reproducibility and governance
+
+12. The structural reconstruction test of section 8 is a
+    representation-matched, zero-floor best-case benchmark. Truths are
+    synthesised exactly in the class, which isolates inversion error from
+    representation error and says nothing about arbitrary or realistic
+    accretion-flow histories. An off-class history aligned with well-observed
+    operator directions could be easier than some in-class ones; many others
+    would be much harder.
+
+13. Section 8 reports a preregistered standard that was not met, not a
+    demonstration that the effect is zero. The central estimates are positive on
+    both estimators.
+
+14. The structural effect at the reference SNR lives mainly in a signed
+    constant-flux diagnostic bank, which reaches a negative mass fraction of
+    0.197 and is not a physical emissivity history. Excluding it, as the
+    design requires, removes the pass.
+
+15. No sealed main was executed for the structural endpoint, so nothing in
+    section 8 is a held-out result. Every sealed commitment is preserved
+    unscored.
+
+## 13. Reproducibility and governance
 
 The campaign is gate-driven. Gates carry a mechanical status that is never
 edited to match a later adjudication, so a defect that was real stays visible:
 
 ```
-    gates passing:              146
+    gates passing:              189
     active blocking failures:   0
     preserved literal failures: 8
     future-phase not run:       11
@@ -983,7 +1139,7 @@ Reproduction path: the registry digest is `2ba66f0209fe1cdec97b8cf5862494c22fb94
 pins the ray-map hashes, source class, probe, observer sampling, age grid, noise
 convention, SNR grid, arms, rank conventions, thresholds, censoring rule and
 permutation seeds before the first geometry was evaluated; the canonical freeze
-lists the 369 artifacts the manuscript may cite; and the claim ledger maps
+lists the 464 artifacts the manuscript may cite; and the claim ledger maps
 every number above to the artifact, row filter and column it came from.
 `scripts/verify_manuscript.py` re-derives all of them from the frozen bytes and
 checks that each rendered value appears in this text.

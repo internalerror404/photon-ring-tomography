@@ -1,11 +1,11 @@
 {
   "schema": "phrt-claim-ledger/1",
-  "n_claims": 182,
+  "n_claims": 227,
   "claims_by_kind": {
     "literal": 24,
     "json": 43,
     "parquet_count": 16,
-    "parquet": 87,
+    "parquet": 132,
     "derived": 12
   },
   "artifacts_cited": [
@@ -28,10 +28,15 @@
     "artifacts/tables/r1_data_weak_errors.parquet",
     "artifacts/tables/r1_level_structure.parquet",
     "artifacts/tables/r1_null_pairs.parquet",
-    "artifacts/tables/r1_stable_depth.parquet"
+    "artifacts/tables/r1_stable_depth.parquet",
+    "artifacts/tables/r1l_2rb_bank_contract.parquet",
+    "artifacts/tables/r1l_2rb_delta_spans.parquet",
+    "artifacts/tables/r1l_2rb_endpoint.parquet",
+    "artifacts/tables/r1l_class_spectra.parquet",
+    "artifacts/tables/r1l_old_structural_support.parquet"
   ],
-  "created_utc": "2026-08-26T04:23:04Z",
-  "git_commit": "cff486956e67d8b41d8c82bbbb8aa92807311df6",
+  "created_utc": "2026-08-27T19:57:49Z",
+  "git_commit": "d8ea2152de9308163521a952c86888326d7f33a0",
   "campaign_tag": "paper-I-campaign-final",
   "campaign_commit": "8345068676b15ce8f96a76da9d92b159db215f1d",
   "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
@@ -187,7 +192,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G2_physical_dense_matrix_free/status",
         "format": "{}"
       },
@@ -200,7 +205,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G2_physical_dense_matrix_free/measured",
         "format": "{:.3g}"
       },
@@ -213,7 +218,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G3_physical_adjoint/status",
         "format": "{}"
       },
@@ -226,7 +231,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G3_physical_adjoint/measured",
         "format": "{:.3g}"
       },
@@ -239,7 +244,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G4_physical_resolved_unresolved_mixing/status",
         "format": "{}"
       },
@@ -252,7 +257,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G4_physical_resolved_unresolved_mixing/measured",
         "format": "{:.3g}"
       },
@@ -265,7 +270,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G4b_linear_collapse_covariance_propagation/status",
         "format": "{}"
       },
@@ -278,7 +283,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G4b_linear_collapse_covariance_propagation/measured",
         "format": "{:.3g}"
       },
@@ -291,7 +296,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G6_physical_Gram_monotonicity/status",
         "format": "{}"
       },
@@ -304,7 +309,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G6_physical_Gram_monotonicity/measured",
         "format": "{:.3g}"
       },
@@ -317,7 +322,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G6b_resolved_dominates_direct/status",
         "format": "{}"
       },
@@ -330,7 +335,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G6b_resolved_dominates_direct/measured",
         "format": "{:.3g}"
       },
@@ -343,7 +348,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G9w_weight_semantics/status",
         "format": "{}"
       },
@@ -356,7 +361,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_G9w_weight_semantics/measured",
         "format": "{:.3g}"
       },
@@ -369,7 +374,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_freeze_raymap_hashes/status",
         "format": "{}"
       },
@@ -382,7 +387,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_freeze_raymap_hashes/measured",
         "format": "{:.3g}"
       },
@@ -395,7 +400,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_frozen_grid_invariance/status",
         "format": "{}"
       },
@@ -408,7 +413,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_H2_registered_statistic_is_an_identity/status",
         "format": "{}"
       },
@@ -421,7 +426,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3C_H2_registered_statistic_is_an_identity/measured",
         "format": "{:.3g}"
       },
@@ -434,7 +439,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3D_adjoint/status",
         "format": "{}"
       },
@@ -447,7 +452,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3D_adjoint/measured",
         "format": "{:.3g}"
       },
@@ -460,7 +465,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3D_dense_smoke_comparison/status",
         "format": "{}"
       },
@@ -473,7 +478,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3D_dense_smoke_comparison/measured",
         "format": "{:.3g}"
       },
@@ -486,7 +491,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3D_Gram_monotonicity/status",
         "format": "{}"
       },
@@ -499,7 +504,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3D_Gram_monotonicity/measured",
         "format": "{:.3g}"
       },
@@ -512,7 +517,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3D_class_nesting/status",
         "format": "{}"
       },
@@ -525,7 +530,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3D_class_nesting/measured",
         "format": "{:.3g}"
       },
@@ -538,7 +543,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3D_enrichment_does_not_lose_rank/status",
         "format": "{}"
       },
@@ -551,7 +556,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/E3D_enrichment_does_not_lose_rank/measured",
         "format": "{:.3g}"
       },
@@ -564,7 +569,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/G10q_continuum_noise_quadrature_invariance/status",
         "format": "{}"
       },
@@ -577,7 +582,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/G10q_continuum_noise_quadrature_invariance/measured",
         "format": "{:.3g}"
       },
@@ -590,7 +595,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/G10q_continuum_noise_quadrature_invariance/measured",
         "format": "{:.1e}"
       },
@@ -603,7 +608,7 @@
       "source": {
         "kind": "json",
         "path": "artifacts/gates/correctness_gates.json",
-        "sha256": "1098c192f86be2e60661e8fbcf7eaf66d2f99cb713275aa4a68ec721b81e0a5b",
+        "sha256": "9d619d779b9368bc3f29c6a997e80543fc4dac17c4c78399333f1722d741d4fe",
         "pointer": "/gates/G10q_retired_flat_sigma_convention/measured",
         "format": "{:.0f}"
       },
@@ -611,8 +616,8 @@
     },
     {
       "id": "gates.pass",
-      "value": 146,
-      "rendered": "146",
+      "value": 189,
+      "rendered": "189",
       "source": {
         "kind": "literal",
         "source": "artifacts/gates/correctness_gates.json"
@@ -682,6 +687,884 @@
         "format": "{:d}"
       },
       "prose": "geometries with strictly positive resolved historical innovation"
+    },
+    {
+      "id": "R1L.S1.direct_rank.L224",
+      "value": 140,
+      "rendered": "140",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_class_spectra.parquet",
+        "sha256": "067efc63d8559ab778a7d9ebb3f5f92668190732911fd991046f4357527bb26b",
+        "where": {
+          "source_class": "L224",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "numerical_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "direct-arm numerical rank on L224"
+    },
+    {
+      "id": "R1L.S1.direct_zero_cols.L224",
+      "value": 84,
+      "rendered": "84",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_class_spectra.parquet",
+        "sha256": "067efc63d8559ab778a7d9ebb3f5f92668190732911fd991046f4357527bb26b",
+        "where": {
+          "source_class": "L224",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "n_exactly_zero_columns",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "identically zero direct columns on L224"
+    },
+    {
+      "id": "R1L.S1.global_direct_rank.C224",
+      "value": 224,
+      "rendered": "224",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_class_spectra.parquet",
+        "sha256": "067efc63d8559ab778a7d9ebb3f5f92668190732911fd991046f4357527bb26b",
+        "where": {
+          "source_class": "C224",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "numerical_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "direct-arm numerical rank on C224"
+    },
+    {
+      "id": "R1L.S1.old_structural_rank.dir.L224",
+      "value": 0,
+      "rendered": "0",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_old_structural_support.parquet",
+        "sha256": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c",
+        "where": {
+          "source_class": "L224",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "old_structural_operational_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "old-epoch structural operational rank, DIRECT_PHYSICAL on L224"
+    },
+    {
+      "id": "R1L.S1.old_structural_rank.res.L224",
+      "value": 38,
+      "rendered": "38",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_old_structural_support.parquet",
+        "sha256": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c",
+        "where": {
+          "source_class": "L224",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "old_structural_operational_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "old-epoch structural operational rank, RESOLVED_PHYSICAL on L224"
+    },
+    {
+      "id": "R1L.S1.old_structural_rank.unr.L224",
+      "value": 21,
+      "rendered": "21",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_old_structural_support.parquet",
+        "sha256": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c",
+        "where": {
+          "source_class": "L224",
+          "arm": "UNRESOLVED_IMAGE"
+        },
+        "column": "old_structural_operational_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "old-epoch structural operational rank, UNRESOLVED_IMAGE on L224"
+    },
+    {
+      "id": "R1L.S1.direct_rank.L448",
+      "value": 252,
+      "rendered": "252",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_class_spectra.parquet",
+        "sha256": "067efc63d8559ab778a7d9ebb3f5f92668190732911fd991046f4357527bb26b",
+        "where": {
+          "source_class": "L448",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "numerical_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "direct-arm numerical rank on L448"
+    },
+    {
+      "id": "R1L.S1.direct_zero_cols.L448",
+      "value": 196,
+      "rendered": "196",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_class_spectra.parquet",
+        "sha256": "067efc63d8559ab778a7d9ebb3f5f92668190732911fd991046f4357527bb26b",
+        "where": {
+          "source_class": "L448",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "n_exactly_zero_columns",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "identically zero direct columns on L448"
+    },
+    {
+      "id": "R1L.S1.global_direct_rank.C448_T",
+      "value": 411,
+      "rendered": "411",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_class_spectra.parquet",
+        "sha256": "067efc63d8559ab778a7d9ebb3f5f92668190732911fd991046f4357527bb26b",
+        "where": {
+          "source_class": "C448_T",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "numerical_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "direct-arm numerical rank on C448_T"
+    },
+    {
+      "id": "R1L.S1.old_structural_rank.dir.L448",
+      "value": 0,
+      "rendered": "0",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_old_structural_support.parquet",
+        "sha256": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c",
+        "where": {
+          "source_class": "L448",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "old_structural_operational_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "old-epoch structural operational rank, DIRECT_PHYSICAL on L448"
+    },
+    {
+      "id": "R1L.S1.old_structural_rank.res.L448",
+      "value": 93,
+      "rendered": "93",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_old_structural_support.parquet",
+        "sha256": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c",
+        "where": {
+          "source_class": "L448",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "old_structural_operational_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "old-epoch structural operational rank, RESOLVED_PHYSICAL on L448"
+    },
+    {
+      "id": "R1L.S1.old_structural_rank.unr.L448",
+      "value": 46,
+      "rendered": "46",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_old_structural_support.parquet",
+        "sha256": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c",
+        "where": {
+          "source_class": "L448",
+          "arm": "UNRESOLVED_IMAGE"
+        },
+        "column": "old_structural_operational_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "old-epoch structural operational rank, UNRESOLVED_IMAGE on L448"
+    },
+    {
+      "id": "R1L.S1.direct_rank.L1056",
+      "value": 523,
+      "rendered": "523",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_class_spectra.parquet",
+        "sha256": "067efc63d8559ab778a7d9ebb3f5f92668190732911fd991046f4357527bb26b",
+        "where": {
+          "source_class": "L1056",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "numerical_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "direct-arm numerical rank on L1056"
+    },
+    {
+      "id": "R1L.S1.direct_zero_cols.L1056",
+      "value": 517,
+      "rendered": "517",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_class_spectra.parquet",
+        "sha256": "067efc63d8559ab778a7d9ebb3f5f92668190732911fd991046f4357527bb26b",
+        "where": {
+          "source_class": "L1056",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "n_exactly_zero_columns",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "identically zero direct columns on L1056"
+    },
+    {
+      "id": "R1L.S1.global_direct_rank.C1056_ST",
+      "value": 911,
+      "rendered": "911",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_class_spectra.parquet",
+        "sha256": "067efc63d8559ab778a7d9ebb3f5f92668190732911fd991046f4357527bb26b",
+        "where": {
+          "source_class": "C1056_ST",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "numerical_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "direct-arm numerical rank on C1056_ST"
+    },
+    {
+      "id": "R1L.S1.old_structural_rank.dir.L1056",
+      "value": 0,
+      "rendered": "0",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_old_structural_support.parquet",
+        "sha256": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c",
+        "where": {
+          "source_class": "L1056",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "old_structural_operational_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "old-epoch structural operational rank, DIRECT_PHYSICAL on L1056"
+    },
+    {
+      "id": "R1L.S1.old_structural_rank.res.L1056",
+      "value": 185,
+      "rendered": "185",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_old_structural_support.parquet",
+        "sha256": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c",
+        "where": {
+          "source_class": "L1056",
+          "arm": "RESOLVED_PHYSICAL"
+        },
+        "column": "old_structural_operational_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "old-epoch structural operational rank, RESOLVED_PHYSICAL on L1056"
+    },
+    {
+      "id": "R1L.S1.old_structural_rank.unr.L1056",
+      "value": 91,
+      "rendered": "91",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_old_structural_support.parquet",
+        "sha256": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c",
+        "where": {
+          "source_class": "L1056",
+          "arm": "UNRESOLVED_IMAGE"
+        },
+        "column": "old_structural_operational_rank",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "old-epoch structural operational rank, UNRESOLVED_IMAGE on L1056"
+    },
+    {
+      "id": "R1L.S1.direct_old_sigma_max",
+      "value": 1.7511348513640774e-14,
+      "rendered": "1.8e-14",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_old_structural_support.parquet",
+        "sha256": "179c18850f11824eff2701d1d05c25cbe2df6af7eb8bde9ee9876aa9ae09f84c",
+        "where": {
+          "source_class": "L224",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "old_structural_sigma_max",
+        "aggregation": "first",
+        "format": "{:.1e}"
+      },
+      "prose": "largest direct-arm singular value in the old structural subspace"
+    },
+    {
+      "id": "R1L.S2R.median.tsvd.ref",
+      "value": 0.16819950229342667,
+      "rendered": "0.168",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 100.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "TSVD"
+        },
+        "column": "median_relative_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "per-truth median relative reduction, TSVD at SNR0 = 100"
+    },
+    {
+      "id": "R1L.S2R.median_ci_low.tsvd.ref",
+      "value": 0.09894080885580268,
+      "rendered": "0.099",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 100.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "TSVD"
+        },
+        "column": "median_ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "median bootstrap lower bound, TSVD at SNR0 = 100"
+    },
+    {
+      "id": "R1L.S2R.cell_mean.tsvd.ref",
+      "value": 0.11634226275435527,
+      "rendered": "0.116",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 100.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "TSVD"
+        },
+        "column": "relative_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "cell-balanced mean reduction, TSVD at SNR0 = 100"
+    },
+    {
+      "id": "R1L.S2R.mean_ci_low.tsvd.ref",
+      "value": 0.0390712225778172,
+      "rendered": "0.039",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 100.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "TSVD"
+        },
+        "column": "ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "cell-balanced mean lower bound, TSVD at SNR0 = 100"
+    },
+    {
+      "id": "R1L.S2R.families.tsvd.ref",
+      "value": 3,
+      "rendered": "3",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 100.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "TSVD"
+        },
+        "column": "n_families_improved",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "families improved, TSVD at SNR0 = 100"
+    },
+    {
+      "id": "R1L.S2R.median.ridge.ref",
+      "value": 0.17817659401176708,
+      "rendered": "0.178",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 100.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "median_relative_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "per-truth median relative reduction, RIDGE_IDENTITY at SNR0 = 100"
+    },
+    {
+      "id": "R1L.S2R.median_ci_low.ridge.ref",
+      "value": 0.09570682316435282,
+      "rendered": "0.096",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 100.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "median_ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "median bootstrap lower bound, RIDGE_IDENTITY at SNR0 = 100"
+    },
+    {
+      "id": "R1L.S2R.cell_mean.ridge.ref",
+      "value": 0.09774142603673076,
+      "rendered": "0.098",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 100.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "relative_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "cell-balanced mean reduction, RIDGE_IDENTITY at SNR0 = 100"
+    },
+    {
+      "id": "R1L.S2R.mean_ci_low.ridge.ref",
+      "value": 0.00027155600475331395,
+      "rendered": "0.000",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 100.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "cell-balanced mean lower bound, RIDGE_IDENTITY at SNR0 = 100"
+    },
+    {
+      "id": "R1L.S2R.families.ridge.ref",
+      "value": 3,
+      "rendered": "3",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 100.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "n_families_improved",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "families improved, RIDGE_IDENTITY at SNR0 = 100"
+    },
+    {
+      "id": "R1L.S2R.median.tsvd.sec",
+      "value": 0.27526277929159104,
+      "rendered": "0.275",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 1000.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "TSVD"
+        },
+        "column": "median_relative_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "per-truth median relative reduction, TSVD at SNR0 = 1000"
+    },
+    {
+      "id": "R1L.S2R.median_ci_low.tsvd.sec",
+      "value": 0.19767933674554541,
+      "rendered": "0.198",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 1000.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "TSVD"
+        },
+        "column": "median_ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "median bootstrap lower bound, TSVD at SNR0 = 1000"
+    },
+    {
+      "id": "R1L.S2R.cell_mean.tsvd.sec",
+      "value": 0.2587740663308036,
+      "rendered": "0.259",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 1000.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "TSVD"
+        },
+        "column": "relative_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "cell-balanced mean reduction, TSVD at SNR0 = 1000"
+    },
+    {
+      "id": "R1L.S2R.mean_ci_low.tsvd.sec",
+      "value": 0.2099559665456445,
+      "rendered": "0.210",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 1000.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "TSVD"
+        },
+        "column": "ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "cell-balanced mean lower bound, TSVD at SNR0 = 1000"
+    },
+    {
+      "id": "R1L.S2R.families.tsvd.sec",
+      "value": 4,
+      "rendered": "4",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 1000.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "TSVD"
+        },
+        "column": "n_families_improved",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "families improved, TSVD at SNR0 = 1000"
+    },
+    {
+      "id": "R1L.S2R.median.ridge.sec",
+      "value": 0.30381252916003704,
+      "rendered": "0.304",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 1000.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "median_relative_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "per-truth median relative reduction, RIDGE_IDENTITY at SNR0 = 1000"
+    },
+    {
+      "id": "R1L.S2R.median_ci_low.ridge.sec",
+      "value": 0.22531047528159662,
+      "rendered": "0.225",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 1000.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "median_ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "median bootstrap lower bound, RIDGE_IDENTITY at SNR0 = 1000"
+    },
+    {
+      "id": "R1L.S2R.cell_mean.ridge.sec",
+      "value": 0.2859320115191307,
+      "rendered": "0.286",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 1000.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "relative_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "cell-balanced mean reduction, RIDGE_IDENTITY at SNR0 = 1000"
+    },
+    {
+      "id": "R1L.S2R.mean_ci_low.ridge.sec",
+      "value": 0.236841886156555,
+      "rendered": "0.237",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 1000.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "cell-balanced mean lower bound, RIDGE_IDENTITY at SNR0 = 1000"
+    },
+    {
+      "id": "R1L.S2R.families.ridge.sec",
+      "value": 4,
+      "rendered": "4",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "physical_banks_only",
+          "snr0": 1000.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "n_families_improved",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "families improved, RIDGE_IDENTITY at SNR0 = 1000"
+    },
+    {
+      "id": "R1L.S2R.signed_bank_median.tsvd",
+      "value": 0.358040849109551,
+      "rendered": "0.358",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "single_bank",
+          "bank": "constant_flux_structural",
+          "snr0": 100.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "TSVD"
+        },
+        "column": "median_relative_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "signed-diagnostic-bank median reduction, TSVD"
+    },
+    {
+      "id": "R1L.S2R.signed_bank_median.ridge",
+      "value": 0.3986607228332125,
+      "rendered": "0.399",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_endpoint.parquet",
+        "sha256": "1840105617d8a9b1cc38e3705b2f261260c39e3ed4d99560d763fa2f8f3c9e18",
+        "where": {
+          "source_class": "L1056",
+          "scope": "single_bank",
+          "bank": "constant_flux_structural",
+          "snr0": 100.0,
+          "arm": "RESOLVED_PHYSICAL",
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "median_relative_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "signed-diagnostic-bank median reduction, RIDGE_IDENTITY"
+    },
+    {
+      "id": "R1L.S2R.delta_span",
+      "value": 0.0,
+      "rendered": "0",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_delta_spans.parquet",
+        "sha256": "823c95392fe1ad51a514aafd4d0250cfb61a77e68f16a4da673af381641a5f8b",
+        "where": {
+          "source_class": "L1056",
+          "noise_semantics": "joint_truth_noise"
+        },
+        "column": "delta_L_stable_structure_M",
+        "aggregation": "max",
+        "format": "{:.0f}"
+      },
+      "prose": "largest structural span difference under the joint truth-and-noise criterion"
+    },
+    {
+      "id": "R1L.S2R.span_threshold",
+      "value": 8.0,
+      "rendered": "8",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_delta_spans.parquet",
+        "sha256": "823c95392fe1ad51a514aafd4d0250cfb61a77e68f16a4da673af381641a5f8b",
+        "where": {
+          "source_class": "L1056",
+          "noise_semantics": "joint_truth_noise"
+        },
+        "column": "threshold_M",
+        "aggregation": "first",
+        "format": "{:.0f}"
+      },
+      "prose": "preregistered structural span threshold"
+    },
+    {
+      "id": "R1L.S2R.signed_bank_negative_mass",
+      "value": 0.19657483983569407,
+      "rendered": "0.197",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_bank_contract.parquet",
+        "sha256": "ce0a5ade03e6759b5fa48afadbea3c249c5bfa3d169cede9db1fe1522db4cdd8",
+        "where": {
+          "source_class": "L1056",
+          "bank": "constant_flux_structural"
+        },
+        "column": "negative_mass_relative_max",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "largest negative mass fraction in the signed constant-flux bank"
+    },
+    {
+      "id": "R1L.S2R.nominal_080_realized",
+      "value": 0.6599165643642737,
+      "rendered": "0.66",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1l_2rb_bank_contract.parquet",
+        "sha256": "ce0a5ade03e6759b5fa48afadbea3c249c5bfa3d169cede9db1fe1522db4cdd8",
+        "where": {
+          "source_class": "L1056",
+          "bank": "structure_balanced_080"
+        },
+        "column": "achieved_structure_fraction",
+        "aggregation": "first",
+        "format": "{:.2f}"
+      },
+      "prose": "realized structure fraction of the nominal-0.80 bank"
     },
     {
       "id": "depth.right_censored",
@@ -2092,8 +2975,8 @@
     },
     {
       "id": "governance.canonical",
-      "value": 369,
-      "rendered": "369",
+      "value": 464,
+      "rendered": "464",
       "source": {
         "kind": "literal",
         "source": "artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json"

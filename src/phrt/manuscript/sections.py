@@ -68,8 +68,8 @@ rank on the registered class is therefore a statement about that class and not
 about the continuum: temporal enrichment alone exposes a direct-channel null
 space of up to {nul448dir} dimensions.
 
-Fourth, and the only inversion in this paper, **a sealed held-out test shows
-that the extra reach is usable**. On one geometry and inside the declared class,
+Fourth, **a sealed held-out test shows that the extra reach is usable for the
+age-local emissivity level**. On one geometry and inside the declared class,
 scoring {r1_nsealed} truths committed by hash before any operator existed for
 them, stacking orders `n = 0, 1, 2` extends the anchored stable span of
 reconstruction from {r1_ic_dir} to {r1_ic_res} M at `SNR_0 = {ref}`, a gain of
@@ -84,6 +84,24 @@ old-age morphology is not recovered at this SNR. Separately and at
 {r1_span_str_dir} M direct against {r1_span_str_res} M resolved. Reconstruction
 of histories outside the declared class fails, and posterior uncertainty is
 withdrawn after a calibration gate frozen in advance was missed.
+
+Fifth, we ask whether the same orders recover age-local *structure*, and report
+that under our preregistered standard they do not at the reference SNR. Replacing
+the global temporal factor with compactly supported functions shows the direct
+image has {lzero_L224} identically zero columns on a 224-dimensional localized
+class where the mirrored global class reports full rank — old-epoch blindness
+becomes a null-space fact rather than a condition number, and orders 1 and 2
+supply {lold_res_L224} of the {lold_dir_L224}-dimensional structural support the
+direct image lacks. On truths synthesised exactly in the class, so that the
+representation floor is zero, the resolved arm reduces old-band structural error
+with per-truth medians of {lmed_tsvd_ref} and {lmed_ridge_ref}; but the
+cell-balanced means are {lmean_tsvd_ref} and {lmean_ridge_ref} with lower bounds
+{lclo_tsvd_ref} and {lclo_ridge_ref}, below the 5% floor fixed in advance, so
+**the materiality standard is not met**. It is met at ten times the SNR, as a
+secondary result. No contiguous structural interval is recovered at any SNR: the
+resolved-minus-direct span difference is {lspan} M against {lspanth} M. We report
+these as a bar not cleared rather than an effect shown to be zero, and no sealed
+main was run.
 
 We report a negative control throughout. Permuting each order's delays,
 positions and weights independently — preserving all three marginals and
@@ -591,7 +609,123 @@ information the likelihood does not contain.
 
 ---
 
-## 7. Controls
+## 7. Compact temporal support, and what it costs the direct image
+
+Sections 5 and 6 use a class whose temporal factor is eight global cosines.
+Every coefficient there is supported on the whole history, so a fit constrained
+where rays land also determines the field where none do, and no table can
+separate measured depth from cosine extrapolation. This section removes the
+mechanism rather than arguing about it.
+
+We replace the temporal factor with compactly supported degree-one B-splines on
+dyadic node sets, giving three classes `L224`, `L448` and `L1056` that mirror
+the dimensions of `C224`, `C448_T` and `C1056_ST` exactly. Nesting is
+arithmetic, not numerical: the coarse node set is the even half of the fine one.
+Each temporal function occupies a quarter of the history at `L224` and an eighth
+at `L448`, against all of it for every cosine mode.
+
+### 7.1 Exact old-epoch null directions
+
+A coefficient whose support contains no ray gives an identically zero column, so
+"the direct image cannot see this epoch" becomes a statement about the null
+space. Measured on the same rays:
+
+| class | direct rank | identically zero direct columns | mirrored global class | direct rank |
+|---|---:|---:|---|---:|
+| `L224` | {lrank_L224} | {lzero_L224} | `C224` | {grank_C224} |
+| `L448` | {lrank_L448} | {lzero_L448} | `C448_T` | {grank_C448_T} |
+| `L1056` | {lrank_L1056} | {lzero_L1056} | `C1056_ST` | {grank_C1056_ST} |
+
+`C224` is full rank on its own global temporal subspace, and that number is
+correct. It establishes identifiability of the 224 global coefficients and says
+nothing either way about epoch-local identifiability, which `C224` cannot pose
+because none of its coefficients is confined to an epoch. `L224`, same dimension
+over the same rays, can pose it, and answers that {lzero_L224} directions are
+invisible to the direct image outright.
+
+### 7.2 Higher orders supply what the direct image lacks
+
+Restricting to old-epoch temporal functions and projecting out the level
+component gives the old structural subspace. Operational ranks there:
+
+| class | direct | resolved | unresolved image |
+|---|---:|---:|---:|
+| `L224` | {lold_dir_L224} | {lold_res_L224} | {lold_unr_L224} |
+| `L448` | {lold_dir_L448} | {lold_res_L448} | {lold_unr_L448} |
+| `L1056` | {lold_dir_L1056} | {lold_res_L1056} | {lold_unr_L1056} |
+
+The direct image is at zero everywhere, with a largest singular value of
+{loldsig} — numerical zero. Orders 1 and 2 convert a subspace the direct image
+cannot see at all into tens or hundreds of measurable directions, and roughly
+half of that survives summing the orders into a single image plane.
+
+No truth was drawn and no estimator was fitted for this section. It is a
+statement about the operator.
+
+## 8. Does the added support reduce reconstruction error?
+
+Section 7 shows the resolved stack observes directions the direct image cannot.
+Whether that converts into a materially better reconstruction is a separate
+question, and this section reports a preregistered test of it that the resolved
+arm does not pass at the reference SNR.
+
+Truths here are synthesised *exactly* in the class, so the representation floor
+is zero and the error measured is reconstruction error alone. Three
+structure-first banks replace the baseline-dominated construction of section 6:
+two non-negative structure-balanced banks carry the physical claim, and a
+constant-flux bank is retained as a signed linear stress control. Projection
+into the class removes structure, so the bank nominally at structure fraction
+0.80 realises {lf080}, and the constant-flux bank reaches a negative mass
+fraction of {lnegmass} — it is not everywhere a non-negative emissivity field
+and cannot carry a source claim.
+
+The endpoint is the paired relative reduction in old-band structural error
+against the direct image, aggregated with equal weight over bank-family cells.
+Materiality was fixed in advance: median ≥ 10%, both bootstrap lower bounds ≥
+5%, at least three of four families, every bank in scope positive, null controls
+passing, and both estimators agreeing on the same class.
+
+| SNR₀ | estimator | median | median CI low | cell-balanced mean | mean CI low | families |
+|---:|---|---:|---:|---:|---:|---|
+| 100 | TSVD | {lmed_tsvd_ref} | {lmlo_tsvd_ref} | {lmean_tsvd_ref} | {lclo_tsvd_ref} | {lfam_tsvd_ref}/4 |
+| 100 | ridge | {lmed_ridge_ref} | {lmlo_ridge_ref} | {lmean_ridge_ref} | {lclo_ridge_ref} | {lfam_ridge_ref}/4 |
+| 1000 | TSVD | {lmed_tsvd_sec} | {lmlo_tsvd_sec} | {lmean_tsvd_sec} | {lclo_tsvd_sec} | {lfam_tsvd_sec}/4 |
+| 1000 | ridge | {lmed_ridge_sec} | {lmlo_ridge_sec} | {lmean_ridge_sec} | {lclo_ridge_sec} | {lfam_ridge_sec}/4 |
+
+At the registered SNR₀ = 100 the medians clear the 10% bar and their own lower
+bounds clear 5%, but the cell-balanced means fall to {lmean_tsvd_ref} and
+{lmean_ridge_ref} with lower bounds of {lclo_tsvd_ref} and {lclo_ridge_ref},
+below the 5% floor, and both drop to three of four families. **The preregistered
+materiality standard is not met.** The central estimates are positive; what
+fails is the bar, and we report the bar rather than the sign.
+
+At SNR₀ = 1000 the same arm meets every criterion on both estimators and all
+four families. That is a secondary result. A gain at tenfold higher normalised
+SNR does not substitute for the registered point.
+
+The signed constant-flux bank alone gives {lsgn_tsvd} and {lsgn_ridge}, the
+largest of the three, and pooling it in is what made an earlier version of this
+analysis read as material. Excluding it, as the design requires, removes the
+pass. We report that explicitly because it is the most instructive number here:
+a structural effect that lives mainly in a signed diagnostic is a linear
+inverse-problem result, not evidence about emissivity histories.
+
+### 8.1 No stable structural interval
+
+The companion endpoint asks for a contiguous age interval over which the
+structural error stays under 25% for 95% of truths. Under both noise semantics —
+averaging the noise draws per truth, and the stricter joint criterion over truth
+and noise together — every span is zero at both SNRs, so the resolved-minus-direct
+difference is {lspan} M against a threshold of {lspanth} M. With the
+representation floor at zero, nothing blocked the criterion except the
+reconstruction itself. **This is a real negative result**, and it is
+complementary to section 8 rather than contradictory: an average-error
+improvement is not a recovered movie.
+
+No sealed main was executed and none is authorised. Every sealed commitment is
+preserved unscored.
+
+## 8. Controls
 
 ### 7.1 A physically meaningless operator is better conditioned than the real one
 
@@ -629,7 +763,7 @@ different objects and are kept apart throughout.
 
 ---
 
-## 8. Full rank on a declared class is a statement about that class
+## 9. Full rank on a declared class is a statement about that class
 
 The registered class C224 reaches full column rank under
 {n224full} of {n224rows} arm–anchor combinations. That fact is often where such
@@ -706,7 +840,7 @@ different physics, and a result in one does not transfer to the other.
 
 ---
 
-## 9. Discussion
+## 10. Discussion
 
 The picture that survives all of the above is narrower than the one a
 single-geometry study would support, and we think it is the useful one.
@@ -740,7 +874,7 @@ and conditioning is optimised by a permutation with no physical content at all.
 
 ---
 
-## 10. What the measurement-model correction changed
+## 11. What the measurement-model correction changed
 
 The defect and its consequences are recorded in the invalidation ledger as
 `D-H_flat_sigma_measurement_convention`, and {nsup} artifacts produced under the
@@ -783,7 +917,7 @@ in the direction of a smaller claim.
 
 ---
 
-## 11. Limitations
+## 12. Limitations
 
 1. **Declared classes, not the continuum.** Every rank and nullity is relative
    to a finite-dimensional class. Section 8 is a demonstration that this
@@ -828,7 +962,29 @@ in the direction of a smaller claim.
 
 ---
 
-## 12. Reproducibility and governance
+
+12. The structural reconstruction test of section 8 is a
+    representation-matched, zero-floor best-case benchmark. Truths are
+    synthesised exactly in the class, which isolates inversion error from
+    representation error and says nothing about arbitrary or realistic
+    accretion-flow histories. An off-class history aligned with well-observed
+    operator directions could be easier than some in-class ones; many others
+    would be much harder.
+
+13. Section 8 reports a preregistered standard that was not met, not a
+    demonstration that the effect is zero. The central estimates are positive on
+    both estimators.
+
+14. The structural effect at the reference SNR lives mainly in a signed
+    constant-flux diagnostic bank, which reaches a negative mass fraction of
+    {lnegmass} and is not a physical emissivity history. Excluding it, as the
+    design requires, removes the pass.
+
+15. No sealed main was executed for the structural endpoint, so nothing in
+    section 8 is a held-out result. Every sealed commitment is preserved
+    unscored.
+
+## 13. Reproducibility and governance
 
 The campaign is gate-driven. Gates carry a mechanical status that is never
 edited to match a later adjudication, so a defect that was real stays visible:

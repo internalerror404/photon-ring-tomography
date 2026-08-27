@@ -4,9 +4,9 @@ Regenerated from canonical artifacts by `scripts/build_evidence_ledger.py`.
 Nothing here is typed by hand; every number is read from a frozen table or
 freeze, and the ledger is rebuilt rather than edited.
 
-- generated 2026-08-27T19:49:27Z
+- generated 2026-08-27T19:54:55Z
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
-- canonical artifact freeze v2: **369 artifacts**,
+- canonical artifact freeze v2: **464 artifacts**,
   campaign commit `8345068676b15ce8f96a76da9d92b159db215f1d`
 - gates: **208** total, **189** passing,
   **0** active blocking failures,

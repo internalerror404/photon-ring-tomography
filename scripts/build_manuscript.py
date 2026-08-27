@@ -65,6 +65,12 @@ R1F = "artifacts/tables/r1_family_depth.parquet"
 R1B = "artifacts/tables/r1_bootstrap.parquet"
 R1L = "artifacts/tables/r1_level_structure.parquet"
 R1W = "artifacts/tables/r1_data_weak_errors.parquet"
+# R1L: localized compact-support audit and exact-in-class structural validation
+LSP = "artifacts/tables/r1l_class_spectra.parquet"
+LOS = "artifacts/tables/r1l_old_structural_support.parquet"
+LEP = "artifacts/tables/r1l_2rb_endpoint.parquet"
+LDS = "artifacts/tables/r1l_2rb_delta_spans.parquet"
+LBC = "artifacts/tables/r1l_2rb_bank_contract.parquet"
 R1N = "artifacts/tables/r1_null_pairs.parquet"
 R1FZ = "artifacts/configs/R1_MAIN_FREEZE.json"
 
@@ -202,6 +208,93 @@ def main() -> int:
         "hypothesis": "H1_historical_extension", "snr0": REF,
         "J_old_resolved_positive": True},
         prose="geometries with strictly positive resolved historical innovation")
+    # ---- R1L stage 1: compact support turns blindness into a null space ----
+    for cl, gl in (("L224", "C224"), ("L448", "C448_T"), ("L1056", "C1056_ST")):
+        c[f"lrank_{cl}"] = L.table(f"R1L.S1.direct_rank.{cl}", LSP,
+                                   "numerical_rank", fmt="{:d}",
+                                   where={"source_class": cl,
+                                          "arm": "DIRECT_PHYSICAL"},
+                                   prose=f"direct-arm numerical rank on {cl}")
+        c[f"lzero_{cl}"] = L.table(f"R1L.S1.direct_zero_cols.{cl}", LSP,
+                                   "n_exactly_zero_columns", fmt="{:d}",
+                                   where={"source_class": cl,
+                                          "arm": "DIRECT_PHYSICAL"},
+                                   prose=f"identically zero direct columns on {cl}")
+        c[f"grank_{gl}"] = L.table(f"R1L.S1.global_direct_rank.{gl}", LSP,
+                                   "numerical_rank", fmt="{:d}",
+                                   where={"source_class": gl,
+                                          "arm": "DIRECT_PHYSICAL"},
+                                   prose=f"direct-arm numerical rank on {gl}")
+        for arm, tag in (("DIRECT_PHYSICAL", "dir"), ("RESOLVED_PHYSICAL", "res"),
+                         ("UNRESOLVED_IMAGE", "unr")):
+            c[f"lold_{tag}_{cl}"] = L.table(
+                f"R1L.S1.old_structural_rank.{tag}.{cl}", LOS,
+                "old_structural_operational_rank", fmt="{:d}",
+                where={"source_class": cl, "arm": arm},
+                prose=f"old-epoch structural operational rank, {arm} on {cl}")
+    c["loldsig"] = L.table("R1L.S1.direct_old_sigma_max", LOS,
+                           "old_structural_sigma_max", fmt="{:.1e}",
+                           where={"source_class": "L224",
+                                  "arm": "DIRECT_PHYSICAL"},
+                           prose="largest direct-arm singular value in the old "
+                                 "structural subspace")
+
+    # ---- R1L stage 2R: exact-in-class structural validation ----------------
+    for snr, stag in ((100.0, "ref"), (1000.0, "sec")):
+        for est, etag in (("TSVD", "tsvd"), ("RIDGE_IDENTITY", "ridge")):
+            w = {"source_class": "L1056", "scope": "physical_banks_only",
+                 "snr0": snr, "arm": "RESOLVED_PHYSICAL", "estimator": est}
+            c[f"lmed_{etag}_{stag}"] = L.table(
+                f"R1L.S2R.median.{etag}.{stag}", LEP,
+                "median_relative_reduction", fmt="{:.3f}", where=w,
+                prose=f"per-truth median relative reduction, {est} at SNR0 = {snr:.0f}")
+            c[f"lmlo_{etag}_{stag}"] = L.table(
+                f"R1L.S2R.median_ci_low.{etag}.{stag}", LEP, "median_ci_low",
+                fmt="{:.3f}", where=w,
+                prose=f"median bootstrap lower bound, {est} at SNR0 = {snr:.0f}")
+            c[f"lmean_{etag}_{stag}"] = L.table(
+                f"R1L.S2R.cell_mean.{etag}.{stag}", LEP, "relative_reduction",
+                fmt="{:.3f}", where=w,
+                prose=f"cell-balanced mean reduction, {est} at SNR0 = {snr:.0f}")
+            c[f"lclo_{etag}_{stag}"] = L.table(
+                f"R1L.S2R.mean_ci_low.{etag}.{stag}", LEP, "ci_low",
+                fmt="{:.3f}", where=w,
+                prose=f"cell-balanced mean lower bound, {est} at SNR0 = {snr:.0f}")
+            c[f"lfam_{etag}_{stag}"] = L.table(
+                f"R1L.S2R.families.{etag}.{stag}", LEP, "n_families_improved",
+                fmt="{:d}", where=w,
+                prose=f"families improved, {est} at SNR0 = {snr:.0f}")
+    for est, etag in (("TSVD", "tsvd"), ("RIDGE_IDENTITY", "ridge")):
+        c[f"lsgn_{etag}"] = L.table(
+            f"R1L.S2R.signed_bank_median.{etag}", LEP,
+            "median_relative_reduction", fmt="{:.3f}",
+            where={"source_class": "L1056", "scope": "single_bank",
+                   "bank": "constant_flux_structural", "snr0": 100.0,
+                   "arm": "RESOLVED_PHYSICAL", "estimator": est},
+            prose=f"signed-diagnostic-bank median reduction, {est}")
+    c["lspan"] = L.table("R1L.S2R.delta_span", LDS,
+                         "delta_L_stable_structure_M", agg="max", fmt="{:.0f}",
+                         where={"source_class": "L1056",
+                                "noise_semantics": "joint_truth_noise"},
+                         prose="largest structural span difference under the "
+                               "joint truth-and-noise criterion")
+    c["lspanth"] = L.table("R1L.S2R.span_threshold", LDS, "threshold_M",
+                           fmt="{:.0f}",
+                           where={"source_class": "L1056",
+                                  "noise_semantics": "joint_truth_noise"},
+                           prose="preregistered structural span threshold")
+    c["lnegmass"] = L.table("R1L.S2R.signed_bank_negative_mass", LBC,
+                            "negative_mass_relative_max", fmt="{:.3f}",
+                            where={"source_class": "L1056",
+                                   "bank": "constant_flux_structural"},
+                            prose="largest negative mass fraction in the signed "
+                                  "constant-flux bank")
+    c["lf080"] = L.table("R1L.S2R.nominal_080_realized", LBC,
+                         "achieved_structure_fraction", fmt="{:.2f}",
+                         where={"source_class": "L1056",
+                                "bank": "structure_balanced_080"},
+                         prose="realized structure fraction of the nominal-0.80 bank")
+
     c["ncens"] = L.count("depth.right_censored", DEP, where={"right_censored": True},
                          prose="right-censored depth entries")
     c["ndepth"] = L.count("depth.rows", DEP, prose="depth entries in total")
