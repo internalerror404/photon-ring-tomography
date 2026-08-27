@@ -487,7 +487,14 @@ def finish(st, selected) -> int:
     (ROOT / "artifacts" / "gates" / "hmt1_gates.json").write_text(doc)
     mp = man.write(st["reg"].path, st["reg"].sha256,
                    runtime_seconds=time.time() - st["t0"])
-    merge_gate_file(man.gates, st["run_id"])
+    # HMT-1 keeps its own gate ledger. The shared correctness_gates.json is
+    # pinned by CANONICAL_ARTIFACT_FREEZE_V2, which is Paper I's submission
+    # freeze: a new study writing into it changes a hash that freeze attests,
+    # and the manuscript verifier reports that as a broken freeze. A separate
+    # ledger is the same pattern the S0 gates already use.
+    merge_gate_file(man.gates, st["run_id"],
+                    path=ROOT / "artifacts" / "gates"
+                    / "hmt1_correctness_gates.json")
     print("\ngates")
     for g in man.gates:
         print(f"  {g.name:46s} {g.status}")

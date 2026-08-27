@@ -309,7 +309,9 @@ def check_reports(fails: list[str]) -> int:
     """Every gate value quoted in any report must match the gate ledger."""
     gates = json.loads((ROOT / "artifacts" / "gates"
                         / "correctness_gates.json").read_text())["gates"]
-    sub_files = {"S0": ROOT / "artifacts" / "gates" / "s0_correctness_gates.json"}
+    sub_files = {"S0": ROOT / "artifacts" / "gates" / "s0_correctness_gates.json",
+                 "HMT1": ROOT / "artifacts" / "gates"
+                 / "hmt1_correctness_gates.json"}
     extra = {}
     for p in sub_files.values():
         if p.exists():

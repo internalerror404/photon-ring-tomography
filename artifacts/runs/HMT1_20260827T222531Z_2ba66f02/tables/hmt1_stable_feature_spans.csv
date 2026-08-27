@@ -1,0 +1,13 @@
+regime,arm,snr0,epsilon,quantile,L_stable_features_M,n_realizations
+estimated_from_data,DIRECT_PHYSICAL,100.0,0.25,0.95,0.0,192
+estimated_from_data,RESOLVED_PHYSICAL,100.0,0.25,0.95,0.0,192
+estimated_from_data,TOTAL_FLUX,100.0,0.25,0.95,0.0,192
+estimated_from_data,UNRESOLVED_IMAGE,100.0,0.25,0.95,0.0,192
+joint_inversion,DIRECT_PHYSICAL,100.0,0.25,0.95,0.0,192
+joint_inversion,RESOLVED_PHYSICAL,100.0,0.25,0.95,0.0,192
+joint_inversion,TOTAL_FLUX,100.0,0.25,0.95,0.0,192
+joint_inversion,UNRESOLVED_IMAGE,100.0,0.25,0.95,0.0,192
+oracle_known,DIRECT_PHYSICAL,100.0,0.25,0.95,0.0,192
+oracle_known,RESOLVED_PHYSICAL,100.0,0.25,0.95,0.0,192
+oracle_known,TOTAL_FLUX,100.0,0.25,0.95,0.0,192
+oracle_known,UNRESOLVED_IMAGE,100.0,0.25,0.95,0.0,192

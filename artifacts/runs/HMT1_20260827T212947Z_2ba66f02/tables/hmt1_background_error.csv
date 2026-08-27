@@ -1,0 +1,17 @@
+regime,family,split,index,relative_error,max_absolute_error,bias,min_estimate
+oracle_known,circular_hotspot_trajectory,pilot,0,0.0,0.0,0.0,0.4157400306869983
+oracle_known,circular_hotspot_trajectory,pilot,1,0.0,0.0,0.0,0.26123182042692805
+oracle_known,circular_hotspot_trajectory,pilot,2,0.0,0.0,0.0,0.24109457814898844
+oracle_known,circular_hotspot_trajectory,pilot,3,0.0,0.0,0.0,0.23705252147918213
+oracle_known,circular_hotspot_trajectory,pilot,4,0.0,0.0,0.0,0.3583579715283512
+oracle_known,circular_hotspot_trajectory,pilot,5,0.0,0.0,0.0,0.3216311397523351
+oracle_known,circular_hotspot_trajectory,pilot,6,0.0,0.0,0.0,0.20957098907379737
+oracle_known,circular_hotspot_trajectory,pilot,7,0.0,0.0,0.0,0.28535549274385374
+oracle_known,circular_hotspot_trajectory,selection,0,0.0,0.0,0.0,0.26762685010903714
+oracle_known,circular_hotspot_trajectory,selection,1,0.0,0.0,0.0,0.1911453375144786
+oracle_known,circular_hotspot_trajectory,selection,2,0.0,0.0,0.0,0.40659506927663447
+oracle_known,circular_hotspot_trajectory,selection,3,0.0,0.0,0.0,0.4079184902384311
+oracle_known,circular_hotspot_trajectory,selection,4,0.0,0.0,0.0,0.21741460592922118
+oracle_known,circular_hotspot_trajectory,selection,5,0.0,0.0,0.0,0.19538602860095888
+oracle_known,circular_hotspot_trajectory,selection,6,0.0,0.0,0.0,0.1930786552210031
+oracle_known,circular_hotspot_trajectory,selection,7,0.0,0.0,0.0,0.3199819310126256

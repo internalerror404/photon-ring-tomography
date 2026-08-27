@@ -1,0 +1,5 @@
+regime,arm,snr0,epsilon,quantile,L_stable_features_M,n_realizations
+oracle_known,DIRECT_PHYSICAL,100.0,0.25,0.95,0.0,32
+oracle_known,RESOLVED_PHYSICAL,100.0,0.25,0.95,0.0,32
+oracle_known,TOTAL_FLUX,100.0,0.25,0.95,0.0,32
+oracle_known,UNRESOLVED_IMAGE,100.0,0.25,0.95,0.0,32

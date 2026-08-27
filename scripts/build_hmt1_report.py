@@ -88,8 +88,9 @@ def main() -> int:
     snr_p = fz["snr"]["primary"]
     snr_s = fz["snr"]["secondary"]
     M = fz["pass_criteria"]["material_benefit_under_both_classical_estimators"]
-    fams = list(fz["feature_families"])
+    fams = list(fz["feature_families"]["declared"])
     nfam = len(fams)
+    nregime = len(fz["background_regimes"]["declared"])
 
     def etab(df):
         return D.join(
@@ -119,9 +120,20 @@ def main() -> int:
         f"{r.worst_bias:.2e} | {r.min_estimate:.3f} |"
         for r in bg.itertuples())
 
+    def _num(x):
+        return f"{x:.4g}" if isinstance(x, float) else str(x)
+
+    # Four columns, name / status / measured / threshold, which is the layout
+    # the manuscript verifier cross-checks against the gate ledger. Notes are
+    # carried in prose below rather than in a third column: a note where the
+    # verifier expects a measured value is read as a measurement and reported
+    # as a mismatch.
     gtab = D.join(
-        f"| `{k}` | {v['status']} | {v.get('note', '')} |"
+        f"| `{k}` | {v['status']} | {_num(v.get('measured'))} | "
+        f"{_num(v.get('threshold'))} |"
         for k, v in g["gates"].items())
+    gnotes = D.join(
+        f"- `{k}` — {v['note']}" for k, v in g["gates"].items() if v.get("note"))
     nfail = sum(1 for v in g["gates"].values() if v["status"] != "PASS")
     failed = g.get("failed_gates", [])
     withheld = bool(g.get("science_reading_withheld"))
@@ -146,6 +158,44 @@ def main() -> int:
     detail = ("Failed gates: " + ", ".join(f"`{x}`" for x in failed) + "."
               if failed else
               "All gates pass, so the disposition is read from the science.")
+
+    # Why the co-primary failed, in numbers rather than in adjectives: an
+    # interval can be zero because the error leaves the tolerance early, or
+    # because it was never inside it. These are different findings.
+    req = fz["pass_criteria"]["nonzero_stable_feature_interval"]
+    eps = fz["primary_endpoints"]["stable_feature_interval"]["epsilon"]
+    jp = pd.read_parquet(TAB / "hmt1_joint_spans.parquet")
+    jr = jp[(jp.regime == "estimated_from_data")
+            & (jp.arm == "RESOLVED_PHYSICAL")]
+    frac_in = float((jr.pass_to_age_M > 0).mean()) if len(jr) else float("nan")
+    reach = float(jr.pass_to_age_M.max()) if len(jr) else float("nan")
+    sc = pd.read_parquet(TAB / "hmt1_scores.parquet")
+    scq = sc[(sc.regime == "estimated_from_data") & (sc.estimator == "TSVD")
+             & (sc.snr0 == snr_p)]
+    med = scq.groupby("arm").old_band_feature_error.median()
+    med_res = float(med.get("RESOLVED_PHYSICAL", float("nan")))
+    med_dir = float(med.get("DIRECT_PHYSICAL", float("nan")))
+    er = end[(end.regime == "estimated_from_data")
+             & (end.arm == "RESOLVED_PHYSICAL")
+             & (end.estimator == "TSVD") & (end.snr0 == snr_p)]
+    med_dir_red = float(er["median"].iloc[0]) if len(er) else float("nan")
+    why = f"""### Why the interval is zero
+
+An interval of zero can mean two different things -- the recovered history left
+the tolerance early, or it was never inside it -- and only the second is true
+here. Under the estimated background, the resolved arm's median old-band
+feature error is {med_res:.3f} against the direct image's {med_dir:.3f}. Both
+sit well above the registered tolerance of epsilon = {eps:.2f}. Only
+{100 * frac_in:.1f}% of resolved-arm realizations are inside the tolerance even
+at age zero, and the furthest any of them reaches is {reach:.0f} M, so at the
+registered 95% quantile the interval is {0.0:.1f} M for every arm including the
+direct one.
+
+So the improvement is real and the absolute accuracy is not sufficient. A
+{100 * med_dir_red:.0f}% relative reduction in an error of {med_dir:.2f} leaves
+an error of {med_res:.2f}, and the tolerance asks for {eps:.2f}. The resolved
+arm is better than the direct image at describing the past; it is not yet good
+enough to describe it within the accuracy this endpoint demanded."""
     if withheld:
         banner = f"""> **The scientific reading of this run is withheld.**
 >
@@ -200,8 +250,53 @@ free to change sign, which is what a fluctuation does.
 
 Geometry: spin a* = {fz['geometry']['a_star']}, inclination
 {fz['geometry']['inclination_deg']} deg. {nfam} declared feature families,
-{len(fz['background_regimes'])} background regimes, {len(fz['arms'])} arms,
+{nregime} background regimes, {len(fz['arms'])} arms,
 {len(banks):,} truths.
+
+## 1b. Three runs, and what the first two found
+
+This is the third execution of this freeze. The first two are not reported as
+results, and what they caught is worth recording, because in each case the run
+would have produced a publishable-looking number.
+
+**Run 1** failed `HMT1_G13`, the coverage gate, which exists to catch a gate the
+freeze declares and the scorer never emits. It caught two, in opposite
+directions: `G10b` had been registered with its reading written into the
+threshold field as prose and was never implemented, and `G4b` was emitted
+without being declared, with a hard-coded exemption in the coverage
+computation keeping it quiet. `G10b` was implemented rather than withdrawn --
+`G10` only asks that extraction be repeatable, which an extractor reading the
+wrong position also satisfies.
+
+**Run 2** failed `G12`: 22 of 24 arm-estimator cells pinned their selection at
+the most-regularized end of the grid, every arm collapsed onto the same
+near-null estimator, and the endpoint came out null. The tempting reading is
+that this endpoint has a representation floor and the selection rule is
+degenerate for it, which is the pathology R1L already met. That reading was
+wrong. Recording the whole selection sweep rather than only its argmin showed
+selection errors of order 1e12 to 1e17, and a normalised error cannot be 1e12.
+
+The freeze defines the aggregate over "the family's declared normalised
+parameter errors" and declares a different parameter list per family. The
+scorer used one global list for all six. A pure `cos(2 phi)` pattern has no
+`m = 1` content -- measured at 1.6e-17, which is round-off -- so dividing by
+"max over ages of `|a_m1|`" divided by round-off. An estimator can only shrink
+a term like that by driving its reconstruction to zero, so the selection rule
+was not degenerate: it was correctly minimising an error dominated by a
+division by zero.
+
+Run 2 also revealed that the oracle regime was not an oracle. The freeze says
+`b` is supplied *exactly*, but every regime was routed through the same
+least-squares design fit, leaving a 9% background residual inside the regime
+whose entire purpose is to have none. Its background error is now exactly zero,
+which is visible in section 4.
+
+Both runs are the reason the disposition logic changed. The stop token was
+selected from the science before any gate had been emitted, so run 2 failed two
+gates and still reported `HMT1_NO_MATERIAL_EFFECT`. A null result is exactly
+what a broken run looks like from the outside, and that one would have reported
+a null produced by a divide-by-zero. A failed gate now forces
+`HMT1_IMPLEMENTATION_DEFECT` and the science reading is withheld.
 
 ## 2. Primary endpoint at SNR₀ = {snr_p:.0f}
 
@@ -259,9 +354,11 @@ gives the nicer answer after seeing them is how a preregistration gets spent.
 
 {len(g['gates'])} gates, {g['summary']['PASS']} pass, {nfail} not.
 
-| gate | status | note |
-|---|---|---|
+| gate | status | measured | threshold |
+|---|---|---|---|
 {gtab}
+
+{gnotes}
 
 `HMT1_G10b` is the check that the feature extractor, pointed at the truth itself
 with no operator and no noise in the way, returns the feature that was actually
@@ -304,6 +401,8 @@ Local contrast amplitude spans
 {DISPOSITION_PROSE[token]}
 
 {detail}
+
+{why}
 
 ## 8. What this does not show
 

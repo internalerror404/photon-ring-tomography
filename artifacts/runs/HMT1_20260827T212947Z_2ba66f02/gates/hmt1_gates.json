@@ -1,0 +1,106 @@
+{
+  "experiment": "HMT1_VALIDATION",
+  "run_id": "HMT1_20260827T212947Z_2ba66f02",
+  "stop_token": "HMT1_MATERIAL_ERROR_REDUCTION_NO_STABLE_INTERVAL",
+  "gates": {
+    "HMT1_G1_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "HMT1_G2_split_commitments_reproduce": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "HMT1_G3_split_disjointness": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "selection and pilot derive from different commitment strings, so no truth seed can appear in both"
+    },
+    "HMT1_G4_contrast_zero_spatial_mean": {
+      "status": "PASS",
+      "measured": 1.1385816876992305e-17,
+      "threshold": 1e-10
+    },
+    "HMT1_G5_total_emissivity_nonnegative": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0
+    },
+    "HMT1_G6_background_strictly_positive": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0
+    },
+    "HMT1_G7_adjoint": {
+      "status": "PASS",
+      "measured": 3.19268607040435e-15,
+      "threshold": 1e-08
+    },
+    "HMT1_G8_operator_truth_identity": {
+      "status": "PASS",
+      "measured": 6.405093933734753e-16,
+      "threshold": 1e-09
+    },
+    "HMT1_G9_null_controls": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.05,
+      "note": "feature-pair separation controls are reported in the null-pair table"
+    },
+    "HMT1_G10_feature_extraction_deterministic": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-09
+    },
+    "HMT1_G11_off_manifold_excluded_from_endpoints": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "no off-manifold family contributes a row to the endpoint table"
+    },
+    "HMT1_G12_no_maximal_regularization_collapse": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT1_G4b_azimuthal_zero_mean": {
+      "status": "PASS",
+      "measured": 1.231653667943533e-16,
+      "threshold": 1e-10
+    },
+    "HMT1_G14_resource_limits": {
+      "status": "PASS",
+      "measured": 54,
+      "threshold": 10800
+    },
+    "HMT1_G13_declared_gate_coverage": {
+      "status": "FAIL",
+      "measured": 1,
+      "threshold": 0,
+      "note": "missing: ['HMT1_G10b_truth_extraction_recovers_generative_parameters']"
+    }
+  },
+  "verdicts": {
+    "oracle_known": {
+      "materiality": false,
+      "families_improved": 1,
+      "families_required_fraction_reading": 5,
+      "families_required_count_reading": 3,
+      "passes_under_count_reading": false,
+      "stable_interval": false,
+      "pass": false
+    }
+  },
+  "family_agreement_readings": {
+    "fraction_required": 5,
+    "count_required": 3
+  },
+  "summary": {
+    "PASS": 14,
+    "FAIL": 1,
+    "NOT_RUN": 0
+  }
+}

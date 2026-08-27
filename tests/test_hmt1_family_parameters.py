@@ -54,3 +54,29 @@ def test_keys_are_unique_and_ordered():
     """two_hotspot declares r_h1 and r_h2, which are one radial component."""
     keys = family_param_keys(FZ, "two_hotspot_trajectories")
     assert len(keys) == len(set(keys)), keys
+
+
+HMT1_LEDGER = ROOT / "artifacts" / "gates" / "hmt1_correctness_gates.json"
+
+# HMT-1 gates live in their own ledger so they do not perturb the hash that
+# Paper I's canonical artifact freeze pins. That separation must not also move
+# them out of the build's reach, so they get the same no-unadjudicated-failure
+# rule the shared dashboard has. Empty is the healthy state.
+DECLARED_BLOCKING: dict[str, str] = {}
+
+
+def test_no_unadjudicated_hmt1_gate_failures():
+    if not HMT1_LEDGER.exists():
+        pytest.skip("HMT-1 has not been run in this tree")
+    gates = json.loads(HMT1_LEDGER.read_text())["gates"]
+    failed = [n for n, v in gates.items()
+              if v["status"] == "FAIL" and n not in DECLARED_BLOCKING]
+    assert not failed, failed
+
+
+def test_hmt1_ledger_is_separate_from_the_frozen_dashboard():
+    """The whole point of the split: HMT-1 must not write the pinned file."""
+    shared = json.loads((ROOT / "artifacts" / "gates"
+                         / "correctness_gates.json").read_text())["gates"]
+    assert not [n for n in shared if n.startswith("HMT1_")], \
+        "HMT-1 gates leaked into the frozen shared dashboard"
