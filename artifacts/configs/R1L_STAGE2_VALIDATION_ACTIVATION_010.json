@@ -1,0 +1,432 @@
+{
+  "schema": "phrt-r1l-stage2-activation/1",
+  "id": "R1L_STAGE2_VALIDATION_ACTIVATION_010",
+  "created_utc": "2026-08-27T06:56:23Z",
+  "ruling": "REVIEWER_RULING_R1L_REPRODUCIBILITY_009 item 11",
+  "status": "FROZEN_BEFORE_ANY_SOURCE_TRUTH_IS_GENERATED",
+  "authorizing_evidence": {
+    "stage1_reproduction_verdict": "R1L_STAGE1_DETERMINISTIC_REPRODUCTION_PASS",
+    "stage1_baseline_run": "R1L_20260827T063735Z_2ba66f02",
+    "stage1_reproduced_by": "R1L_20260827T064329Z_2ba66f02",
+    "stage1_execution_commit": "dab6ae63e8ceca02849aa64912d6be72a47a2a6f",
+    "blocking_gate_cleared": "R1L_G12_deterministic_reproduction"
+  },
+  "scope": {
+    "authorized": [
+      "R1L_STAGE_2_VALIDATION"
+    ],
+    "not_authorized": [
+      "R1L sealed main",
+      "geometry mismatch",
+      "order leakage",
+      "VLBI",
+      "ML",
+      "any rescoring of the sealed R1 bank"
+    ],
+    "geometry": "a050_i050",
+    "classes": [
+      "L224",
+      "L448",
+      "L1056"
+    ],
+    "arms": [
+      "DIRECT_PHYSICAL",
+      "RESOLVED_PHYSICAL",
+      "UNRESOLVED_IMAGE",
+      "TOTAL_FLUX"
+    ],
+    "forbidden_language": "stage 2 is a validation pilot. No stage-2 number may be reported as a held-out result, and no stage-2 selection may be described as confirmation"
+  },
+  "counts": {
+    "banks": [
+      "constant_flux_structural",
+      "structure_balanced_050",
+      "structure_balanced_080",
+      "baseline_one_positive"
+    ],
+    "families": [
+      "circular_single_hotspot",
+      "circular_two_hotspots",
+      "circular_crescent",
+      "plunging_hotspot"
+    ],
+    "splits": [
+      "selection",
+      "pilot"
+    ],
+    "truths_per_bank_family_split": 8,
+    "n_cells": 32,
+    "n_truths_total": 256,
+    "n_truths_per_split": 128,
+    "noise_draws_per_truth": 4,
+    "noiseless_control_per_truth": 1,
+    "n_reconstruction_cells": 215040,
+    "estimators_scored": [
+      "TSVD",
+      "RIDGE_IDENTITY"
+    ]
+  },
+  "split_rule": {
+    "selection": "hyperparameters are chosen here and nowhere else",
+    "pilot": "the reported stage-2 endpoint is computed here, on truths no hyperparameter ever saw",
+    "disjointness": "by construction -- the two splits derive from different commitment strings, so no truth seed can appear in both. Gate R1L_S2_G3 re-checks it by content hash at run time rather than trusting the construction",
+    "commitments": {
+      "constant_flux_structural|circular_single_hotspot|selection": "ee680ecda8c58b0c01bbd918045fd229f7c1be67dbb40cf2308c78477e4e66b3",
+      "constant_flux_structural|circular_single_hotspot|pilot": "5a854f39eb7cce2350d5610b901a9dd058ee2e4568d60440ee3a89c401b4f724",
+      "constant_flux_structural|circular_two_hotspots|selection": "6eb75d88c36696002e2a0e84d071bdc759804bd2248250c539cfd7311f8aaba1",
+      "constant_flux_structural|circular_two_hotspots|pilot": "8f96881882a0f94f90f932d5d62fd16d9807e63e76d9ce1520b6790242e7a8e5",
+      "constant_flux_structural|circular_crescent|selection": "8c781e44d91cd6b8e91c557425dede29a7338dbd60f118088eb018f7fb0a2f1d",
+      "constant_flux_structural|circular_crescent|pilot": "c08a36cdd6cc5c422ece4dec434ba6c78440be4884179e84822a9d569fa42346",
+      "constant_flux_structural|plunging_hotspot|selection": "c6645d54b9a65afac19a88b2b0a88517742a383944889d2b5d3779f31bfb21da",
+      "constant_flux_structural|plunging_hotspot|pilot": "bd835adc74239afc980dd5ff95da8724b30cc0f7ee262bf76b963960040a309a",
+      "structure_balanced_050|circular_single_hotspot|selection": "a64c2a70bba3d463811dd0c3e68e6ba64e163937624f04f8ebfbfb301294611e",
+      "structure_balanced_050|circular_single_hotspot|pilot": "62a022080a2b79f574494b264b9527097373df0b561228b1dd2cfa3fb2eb3f15",
+      "structure_balanced_050|circular_two_hotspots|selection": "5ab92aa813131058ac990ba4183c1e9bc5e08fb01a284aa71dd22db55855c663",
+      "structure_balanced_050|circular_two_hotspots|pilot": "242aa6250fb9f33984a722c5ebaf75496b3987e662bd02b62abd8229ad9b4b02",
+      "structure_balanced_050|circular_crescent|selection": "e8b163f2d69de1801d82c3eef35f2c70d751c77641566778402de77510443691",
+      "structure_balanced_050|circular_crescent|pilot": "f10b9ceb80aba4f5b71c051ffeda208e849c6582302abb46e3ea2938b3e8c037",
+      "structure_balanced_050|plunging_hotspot|selection": "1b16ed809d4fd4b6e90ae8e436442b07c1cfa402104a2a145654cd60704adf0f",
+      "structure_balanced_050|plunging_hotspot|pilot": "e087c20258b3e14a83d6866e24d8808708c173e75da678e63ca13a87f1abb4ed",
+      "structure_balanced_080|circular_single_hotspot|selection": "098586f00d5d9006c6d0bb26c5d09c8bd4c83428840b86aef7cf3b43ae48e724",
+      "structure_balanced_080|circular_single_hotspot|pilot": "941846fe69157e6b1894957a4154878d95a825169bcfbc071bc2d650e3424ec4",
+      "structure_balanced_080|circular_two_hotspots|selection": "7261fd99c48cf3740f1c8aecef0864d7efe0fdcc3f3412ede65e6e1476f1f5cb",
+      "structure_balanced_080|circular_two_hotspots|pilot": "1cdecf1309bcea62f164c7d68f4a0e1cd99daf4debf8998bc65c8dbce8090e05",
+      "structure_balanced_080|circular_crescent|selection": "fcb41e58e9d5122652b07a7a47a4a5aa66d2ac0e1afba153d60426a3af5c45ac",
+      "structure_balanced_080|circular_crescent|pilot": "238e002c412b6864085c5693be0ffe308a307e34074b0be40894dca6bf3dbfed",
+      "structure_balanced_080|plunging_hotspot|selection": "9794df8b2a8fe4d8baeed6dd329c116ce49d897605b2049c50a07a00f0379afd",
+      "structure_balanced_080|plunging_hotspot|pilot": "1444c9f068c7a52e61f86156aee42af68b86c6373082ee2c9344873385f5bb56",
+      "baseline_one_positive|circular_single_hotspot|selection": "784ed951d3297b06bcc58c8e61f6155c3495fe8ae773679889759a08135dc4f9",
+      "baseline_one_positive|circular_single_hotspot|pilot": "566b584d374bcbdf9b7ac567988f22457549463af76b32944d89983de92897a7",
+      "baseline_one_positive|circular_two_hotspots|selection": "cec4aac0e73688429bbc2fe43e4477f3a596da2aa566de5cf5b02b120f5d034b",
+      "baseline_one_positive|circular_two_hotspots|pilot": "14db047fd244bfbe26dd1ca515be452c7e6f88a8462b0dd9a1c5a82b5b53f3f5",
+      "baseline_one_positive|circular_crescent|selection": "a31f9992ca0f83383934f1703504d2dc67cd4cd9a202eba764e305a41b82efe8",
+      "baseline_one_positive|circular_crescent|pilot": "5346883974036a46b08a86b8d3e082666ede4998cf96de993e555eee82292ade",
+      "baseline_one_positive|plunging_hotspot|selection": "55bc7768cddfbc19358c21acc0a08d6ca68bc14a9b9db58c5bb29e3f6dfaff0f",
+      "baseline_one_positive|plunging_hotspot|pilot": "be4b54527d09545c73aac21f33924c1d0d0264fea788e68915c0a0097d817154"
+    },
+    "commitment_meaning": "sha256 over (bank, family, split, n, seed). The runner derives every truth seed from the same string and must reproduce the hash before scoring"
+  },
+  "seeds": {
+    "bank_seed": 20260901,
+    "noise_seed": 20260902,
+    "bootstrap_seed": 20260903,
+    "null_pair_seed": 20260904,
+    "subsample_seed": 20260825
+  },
+  "source_banks": {
+    "constant_flux_structural": {
+      "role": "primary",
+      "construction": "each age slice renormalized to a fixed spatial mean, so total-level variation is removed and moving morphology is retained",
+      "target_structure_fraction": null,
+      "level_is_informative": false
+    },
+    "structure_balanced_050": {
+      "role": "primary",
+      "target_structure_fraction": 0.5,
+      "construction": "j = b(t) + s(r, phi, t) with b the minimum baseline that keeps j non-negative at the target fraction"
+    },
+    "structure_balanced_080": {
+      "role": "primary",
+      "target_structure_fraction": 0.8,
+      "construction": "as above at the higher fraction"
+    },
+    "baseline_one_positive": {
+      "role": "secondary control only",
+      "target_structure_fraction": null,
+      "measured_in_r1": 0.126,
+      "rule": "may not carry the primary endpoint"
+    }
+  },
+  "source_balance_tolerances": {
+    "structure_fraction_absolute": 0.02,
+    "structure_fraction_rule": "||P_structure j|| / ||j|| must fall within this of the target for every truth in a structure-balanced bank that is not at its positivity ceiling",
+    "constant_flux_slice_mean_relative": 1e-10,
+    "constant_flux_rule": "the spatial mean of every age slice must be constant to this relative tolerance",
+    "positivity_floor": 0.0,
+    "positivity_rule": "min over the rendered movie must be at or above zero",
+    "positivity_ceiling": {
+      "fact": "a non-negative field cannot have an arbitrary structure fraction. Writing j = s + c, positivity forces c >= -min(s), and the fraction ||s||/||s+c|| falls monotonically in c, so the maximum is ||s|| / ||s - min(s)||, reached exactly at the positivity boundary. Scaling does not evade it: at the boundary j = a(s - min s) for any a > 0 and the fraction is unchanged",
+      "measured_before_freezing": {
+        "what": "the ceiling per family, over 20 draws each, on the declared evaluation grid and the R0C level projector",
+        "why_this_is_not_peeking": "the ceiling is a property of the source family and the projector alone. No operator, arm, estimator, noise draw or reconstruction enters it, so it cannot be a result and cannot be selected on. It is measured here because declaring an unreachable target and calling the shortfall a finding would be worse",
+        "circular_single_hotspot": {
+          "min": 0.626,
+          "median": 0.845
+        },
+        "circular_two_hotspots": {
+          "min": 0.643,
+          "median": 0.723
+        },
+        "circular_crescent": {
+          "min": 0.517,
+          "median": 0.643
+        },
+        "plunging_hotspot": {
+          "min": 0.9,
+          "median": 0.944
+        },
+        "achievable_at_target_0_50": "79 of 80 draws",
+        "achievable_at_target_0_80": "40 of 80 draws"
+      },
+      "handling": "a truth whose target exceeds its ceiling is kept at the ceiling -- the most structural non-negative field of that shape -- and flagged at_positivity_ceiling. It is not discarded and the bank is not silently retargeted"
+    },
+    "bank_construction_failure": {
+      "min_fraction_of_truths_reaching_target": 0.5,
+      "rule": "a structure-balanced bank in which fewer than half the truths reach their declared target within 0.02 is a construction failure and dispositions R1L_STAGE2_SOURCE_BANK_FAILURE"
+    },
+    "baseline_dominance": {
+      "median_structure_fraction_floor": 0.35,
+      "rule": "R1L_STOP_4 trips when a primary bank's median achieved structure fraction falls below this, i.e. a level fraction above 0.94, which is the regime R1 was in at 0.126 structure and 0.992 level",
+      "note": "an earlier draft of this freeze set a ceiling of 0.60 on the *level* fraction. That was mis-specified: a structure fraction of 0.50 implies a level fraction of sqrt(1 - 0.25) = 0.866, so the reviewer's own primary target would have tripped its own failure condition. Corrected before any truth was generated"
+    }
+  },
+  "source_motion": {
+    "circular_families": {
+      "orbit_law": "Kerr prograde circular geodesic, 1/(r^{3/2}+a)",
+      "r_centre_M": [
+        4.233002529530826,
+        29.989231533549642
+      ],
+      "restriction": "centres strictly outside the ISCO"
+    },
+    "plunging_family": {
+      "orbit_law": "radial plunge on the ISCO's conserved E and L",
+      "r_centre_M": [
+        1.8660254037844386,
+        4.233002529530826
+      ],
+      "separate_from_circular": true
+    },
+    "velocity_field_for_g3": {
+      "metric": "Kerr, Boyer-Lindquist, equatorial, M = 1",
+      "spin": 0.5,
+      "sense": "prograde",
+      "outside_isco": "circular geodesic, Omega = 1 / (r^{3/2} + a)",
+      "inside_isco": "radial plunge on the ISCO's conserved E and L, Omega = u^phi / u^t",
+      "isco_radius_M": 4.233002529530826,
+      "horizon_radius_M": 1.8660254037844386,
+      "omega_isco": 0.10858835898027676,
+      "matches_raymap_fluid": true,
+      "raymap_fluid_note": "AART gfactorf called with betaphi = betar = sub_kep = 1, i.e. fully Keplerian outside the ISCO and plunging inside it, which is the same field",
+      "superseded_law": "Omega = r^{-3/2}, Newtonian, used by the R0/R1 families; retained there because those banks are sealed and reported"
+    }
+  },
+  "estimators": {
+    "TSVD": {
+      "role": "primary",
+      "cut_on": "sigma_i / sigma_max",
+      "grid": [
+        1.0,
+        0.31622776601683794,
+        0.1,
+        0.03162277660168379,
+        0.01,
+        0.0031622776601683794,
+        0.001,
+        0.00031622776601683794,
+        0.0001,
+        3.1622776601683795e-05,
+        1e-05,
+        3.162277660168379e-06,
+        1e-06,
+        3.162277660168379e-07,
+        1e-07
+      ],
+      "n_grid": 15
+    },
+    "RIDGE_IDENTITY": {
+      "role": "confirmatory",
+      "cut_on": "lambda / lambda_max(G)",
+      "grid": [
+        1.0,
+        0.31622776601683794,
+        0.1,
+        0.03162277660168379,
+        0.01,
+        0.0031622776601683794,
+        0.001,
+        0.00031622776601683794,
+        0.0001,
+        3.1622776601683795e-05,
+        1e-05,
+        3.162277660168379e-06,
+        1e-06,
+        3.162277660168379e-07,
+        1e-07,
+        3.162277660168379e-08,
+        1e-08,
+        3.1622776601683795e-09,
+        1e-09,
+        3.1622776601683795e-10,
+        1e-10
+      ],
+      "n_grid": 21
+    },
+    "ML": "NOT_AUTHORIZED",
+    "selection_rule": "lexicographic on the selection split, minimizing old-band structure error at SNR0 = 100, ties broken by the smaller model. Selected per (class, arm, estimator) and frozen before the pilot split is touched",
+    "no_retuning": "no hyperparameter may be revisited after any pilot truth is scored"
+  },
+  "snr_grid": [
+    30.0,
+    100.0,
+    300.0,
+    1000.0,
+    3000.0,
+    10000.0,
+    30000.0
+  ],
+  "reference_snr": 100.0,
+  "noise": {
+    "draws_per_truth": 4,
+    "noiseless_control": 1,
+    "coupling": "one resolved Gaussian draw per (truth, draw index); direct, unresolved and total flux are the declared linear readouts of that same draw, so the arms are paired",
+    "independent_unit": "the truth, not the truth-noise pair"
+  },
+  "primary_endpoint": {
+    "statistic": "delta_E_old_structure = E_old_structure(direct) - E_old_structure(resolved)",
+    "snr0": 100.0,
+    "split": "pilot",
+    "estimator_primary": "TSVD",
+    "estimator_confirmatory": "RIDGE_IDENTITY",
+    "old_band_boundary_M": 57.666382656487954,
+    "bootstrap": {
+      "kind": "paired truth-cluster",
+      "unit": "truth",
+      "n_resamples": 10000,
+      "level": 0.95,
+      "seed": 20260903
+    },
+    "success_requires": [
+      "bootstrap interval excluding zero",
+      "lower old-band structure error in at least three of the four fitting families",
+      "confirmation by both TSVD and RIDGE_IDENTITY",
+      "null-pair behaviour remaining likelihood-consistent"
+    ]
+  },
+  "coprimary_endpoint": {
+    "statistic": "delta_L_stable_structure",
+    "paper_grade_threshold_M": 8.0,
+    "prespecified_snr0": 100.0,
+    "permitted_snr0_ceiling": 1000.0,
+    "if_only_at_30000": "reported as a negative practicality result",
+    "age_grid_step_M": 2.0
+  },
+  "unresolved_arm_rule": "UNRESOLVED_IMAGE is reported at the same standing as RESOLVED_PHYSICAL. A gain that appears only in the resolved arm is an ideal channel-separation result and is dispositioned R1L_STAGE2_RESOLVED_ONLY_PASS, not a pass",
+  "required_outputs": [
+    "structure-only stable spans",
+    "age-resolved structure errors",
+    "source-balance diagnostics",
+    "representation floors",
+    "common-subspace errors",
+    "localized null-pair controls",
+    "a proposed sealed-main commitment, not scored"
+  ],
+  "sealed_main_commitment": {
+    "emitted": true,
+    "scored": false,
+    "rule": "stage 2 proposes the sealed-main bank and commits its hash. It must not be generated through any operator, inspected or scored in stage 2"
+  },
+  "resource_limits": {
+    "wall_clock_seconds": 7200,
+    "peak_rss_mb": 12000,
+    "on_exceeded": "R1L_STAGE2_IMPLEMENTATION_DEFECT. The run stops and reports; it does not silently reduce counts, drop a class or subsample a bank to fit",
+    "no_silent_reduction": "any reduction in the declared counts is a protocol deviation and must be recorded as one"
+  },
+  "numerical_environment": {
+    "pinned": true,
+    "variables": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "assertion": "every BLAS pool must report one thread, interrogated after import. Gate R1L_S2_G1"
+  },
+  "dispositions": {
+    "R1L_STAGE2_RESOLVED_AND_UNRESOLVED_PASS": "the primary endpoint succeeds on all four criteria for the resolved arm and the unresolved arm also shows a bootstrap interval excluding zero at SNR0 = 100",
+    "R1L_STAGE2_RESOLVED_ONLY_PASS": "the primary endpoint succeeds for the resolved arm and the unresolved arm does not",
+    "R1L_STAGE2_NEGATIVE_RESULT": "the banks are sound and the endpoint does not succeed for the resolved arm. This is a reportable result and is not a reason to widen the design",
+    "R1L_STAGE2_SOURCE_BANK_FAILURE": "a declared bank could not be constructed within the source-balance tolerances, so the endpoint was never testable",
+    "R1L_STAGE2_IMPLEMENTATION_DEFECT": "a gate failed, a resource limit was exceeded, or a split commitment did not reproduce",
+    "exactly_one": true
+  },
+  "gates": {
+    "R1L_S2_G1_pinned_numerical_environment": "structural",
+    "R1L_S2_G2_split_commitments_reproduce": "structural",
+    "R1L_S2_G3_split_disjointness_by_content_hash": "structural",
+    "R1L_S2_G4_source_balance_within_tolerance": "structural",
+    "R1L_S2_G5_positivity": 0.0,
+    "R1L_S2_G6_no_hyperparameter_touched_pilot": "structural",
+    "R1L_S2_G7_adjoint": 1e-08,
+    "R1L_S2_G8_estimator_closed_form": 1e-09,
+    "R1L_S2_G9_noise_replay_bitwise": "bitwise",
+    "R1L_S2_G10_sealed_main_not_scored": "structural",
+    "R1L_S2_G11_resource_limits": "structural"
+  },
+  "provenance": {
+    "r1l_freeze_sha256": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0",
+    "r1_freeze_sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "stage1_baseline_sha256": "de0e0dc9763d96e6755c57fab79329ccb56f526d153fdccf0c0cf934e848c11a",
+    "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+    "raymap_sha256": {
+      "a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+      "a050_i050_n1_core.h5": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+      "a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39"
+    }
+  },
+  "stop_after": "R1L_STAGE_2_VALIDATION",
+  "attestation": {
+    "available": true,
+    "execution_commit": "73a86d3bd69fbd975f17876b4df83469c33b3465",
+    "head_tree_sha": "37d6752bb48b0fe579f328483fe8f12848332ffb",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? artifacts/configs/R1L_STAGE2_VALIDATION_ACTIVATION_010.json\n?? scripts/register_r1l_stage2_activation.py\n?? src/phrt/sources/structural.py\n?? tests/test_structural_banks.py\n",
+    "porcelain_registered_sha256": "1b561bd6c18fc02f8a6eff9e7461bfa7d172d96fdb96286138908956c09ba770",
+    "porcelain_whole_tree_sha256": "1b561bd6c18fc02f8a6eff9e7461bfa7d172d96fdb96286138908956c09ba770",
+    "n_tracked_changes": 0,
+    "n_untracked": 4,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/R1L_LOCALIZED_AUDIT_FREEZE.json",
+        "sha256": "24f6732a7be9025ec968cf49a6c2d9ef10ad4fee7c0fb35256751e9380d6fdb0",
+        "working_blob_sha": "d811388c9ed3684d3762f939c84a6cf610e4d1e9",
+        "committed_blob_sha": "d811388c9ed3684d3762f939c84a6cf610e4d1e9",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/provenance/R1L_STAGE1_BASELINE.json",
+        "sha256": "de0e0dc9763d96e6755c57fab79329ccb56f526d153fdccf0c0cf934e848c11a",
+        "working_blob_sha": "7c0e04d4779c373efc848554b87ef72d127f47ac",
+        "committed_blob_sha": "7c0e04d4779c373efc848554b87ef72d127f47ac",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}
