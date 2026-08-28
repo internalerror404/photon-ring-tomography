@@ -1,0 +1,129 @@
+{
+  "schema": "phrt-record-amendment/1",
+  "id": "HMT2_STAGE1_ENDPOINT_COMPLETION_AMENDMENT_020",
+  "created_utc": "2026-08-28T05:40:13Z",
+  "ruling": "REVIEWER_RULING_HMT2_STAGE1_020",
+  "kind": "RECORD_AND_RECOMPUTATION_MANDATE",
+  "accepted_commit": "112cd830b5a6df78d9e9e11ab43cb6d5fca89308",
+  "written_before_recomputation": true,
+  "canonical_stage_0r": {
+    "stable_merger_rate_L448_contrast": 0.299,
+    "stable_merger_rate_L896_radial_enriched": 0.136,
+    "stratum": "STABLE_MULTI_RESOLVED, reconciled across the two finest refinement levels",
+    "status": "CANONICAL",
+    "supersedes": "the pooled 0.356 and 0.262, which remain in the record as what the finest grid alone would say and carry no claim"
+  },
+  "formal_token_preserved": "HMT2_S1_PHYSICAL_MORPHOLOGY_RECOVERY_PASS",
+  "formal_token_reading": "the registered pass criteria were met. The criteria are what the token reports, and the dispositions below say what the run actually establishes",
+  "scientific_dispositions": {
+    "HMT2_S1_SUBSTANTIVE_ALL_STATE_MORPHOLOGY_ERROR_REDUCTION": {
+      "finding": "the resolved arm in the primary class reduces the all-state morphology error against the direct image by a median 0.120 and 0.130 at SNR 100 and 0.122 and 0.141 at SNR 1000, on both classical estimators, on both targets, with paired bootstrap intervals excluding zero",
+      "robustness": "the resolved arm wins on all three measure kinds, so the reduction is not carried by one state class"
+    },
+    "HMT2_S1_ACCURATE_MORPHOLOGY_RECOVERY_NOT_ESTABLISHED": {
+      "finding": "absolute all-state error remains 0.66 for the resolved arm on a scale whose worst case is 1.0, and the conditional cost on stable multi-resolved states stays above 1.0, meaning more than one whole feature wrong on average",
+      "reading": "a material reduction in a morphology error is not accurate morphology recovery, and this run does not establish the latter"
+    },
+    "HMT2_S1_UNRESOLVED_NO_CONFIRMED_GAIN": {
+      "finding": "the unresolved-image arm reaches improvement in neither class on either target",
+      "reading": "the benefit is attributable to resolving the photon-ring orders rather than to the additional photons an unresolved second image also carries"
+    },
+    "HMT2_S1_ESTIMATOR_ROBUST_TWO_FEATURE_RESULT_NOT_RUN": {
+      "finding": "the stable multi-resolved endpoint was computed for TSVD at the primary SNR only",
+      "reading": "no estimator-robust statement about two-feature recovery exists. The 1.451 to 1.376 figure is one estimator at one SNR and must not be read as an estimator-robust result"
+    }
+  },
+  "defects_recorded": {
+    "HMT2_S1_PASS_RULE_HAS_NO_EFFECT_SIZE_FLOOR": {
+      "defect": "the improvement test is median > 0 with a bootstrap lower bound > 0, and carries no materiality threshold at all. HMT-1 required a median of 0.10 and a lower bound of 0.05; stage 1 requires only that the interval clear zero",
+      "consequence": "an arbitrarily small effect with a tight interval satisfies the rule. The measured effect is 0.12 to 0.14 and would clear an HMT-1-style floor, so the disposition does not change, but the rule that produced it is weaker than the number makes it look",
+      "evidence": "UNRESOLVED_IMAGE in the primary class under ridge records a median of 0.0001 with a lower bound of 0.0000, and misses only because the bound is not strictly positive",
+      "not_repaired_by_recomputation": "changing the pass rule now would be moving a criterion after seeing the result. It is recorded, and the recomputation reports effect sizes and intervals so a floor can be applied by inspection"
+    },
+    "HMT2_S1_PER_KIND_TABLE_FIRST_NOISE_DRAW_ONLY": {
+      "defect": "the per-state table was written from the first noise draw of four. The per-kind decomposition that the report used to argue the gain is not carried by one state class therefore rests on a quarter of the evidence",
+      "repaired_by": "item 9. All draws are decomposed"
+    },
+    "HMT2_S1_STABLE_MULTI_ENDPOINT_TSVD_ONLY": {
+      "defect": "the stable multi-resolved accumulation was gated on the estimator being TSVD and the SNR being primary",
+      "repaired_by": "item 9. Both estimators and both SNRs"
+    },
+    "HMT2_S1_CLASS_CONDITIONAL_LABEL_SEMANTICS_AMBIGUITY": {
+      "defect": "the class-conditional target compares against the in-class projection's maps and features while selecting the per-state measure from the *analytic* source label. A state the analytic field resolves into two features may be merged into one by the projection, and it is then scored by the multi-feature measure against a reference that has one. Which label should govern the class-conditional target was never decided",
+      "repaired_by": "item 9. Both companions are emitted, analytic-label and projected-label, so the choice is visible rather than implicit"
+    }
+  },
+  "recomputation_contract": {
+    "same": [
+      "validation bank",
+      "operators",
+      "hyperparameters",
+      "SNRs",
+      "noise draws"
+    ],
+    "forbidden": [
+      "new truth",
+      "selection",
+      "any change to a primary endpoint cell"
+    ],
+    "bitwise_requirement": "every existing primary endpoint cell must reproduce bitwise. Item 8",
+    "on_change": "STOP. Item 10. A recomputation that moves a primary cell is not a completion, it is a different run, and the difference has to be explained before anything is added to it",
+    "noise_stream_note": "the noise draws are generated by one stream over the full key list including the selection split. The recomputation scores only the pilot split but must still advance the stream over the selection keys in the same order, or the pilot noise differs and nothing reproduces",
+    "emit": [
+      "all-draw per-kind decompositions",
+      "non-DEAD companion",
+      "saturation fractions",
+      "per-family effects and intervals",
+      "stable multi endpoint for both estimators and both SNRs",
+      "analytic-label and projected-label class-conditional companions",
+      "stable age-resolved morphology interval"
+    ]
+  },
+  "inputs": {
+    "stage_1_freeze_sha256": "3a1a1750a21184a8eb406da0503edf4d28ddeb77c15e03adfd1af2f5465c7cda",
+    "stage_0r_freeze_sha256": "9d472892464b9422d1aa9e6d709bc18cbae26f47ab95f5b2fe60545abb737bb1",
+    "stage_1_gates_sha256": "e894fbbeedc83af6c8ac7a60f97fe33a935c302280c3a482e64af8c72c3e790e"
+  },
+  "attestation": {
+    "available": true,
+    "execution_commit": "112cd830b5a6df78d9e9e11ab43cb6d5fca89308",
+    "head_tree_sha": "834dde74bed0b62deb691bef5e6fb6db6899ead8",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/register_hmt2_stage1_amendment_020.py\n",
+    "porcelain_registered_sha256": "02706d5d994f7d2285b8d73456bd72b132128ae9a1ce509d8822d9fb3f3c3d6f",
+    "porcelain_whole_tree_sha256": "02706d5d994f7d2285b8d73456bd72b132128ae9a1ce509d8822d9fb3f3c3d6f",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0.json",
+        "sha256": "3a1a1750a21184a8eb406da0503edf4d28ddeb77c15e03adfd1af2f5465c7cda",
+        "working_blob_sha": "3db3b4efb03b8255eecdbad08aee6ffe0fba2ce5",
+        "committed_blob_sha": "3db3b4efb03b8255eecdbad08aee6ffe0fba2ce5",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/HMT2_STAGE0R_SOURCE_ONLY_CORRECTION_V0.json",
+        "sha256": "9d472892464b9422d1aa9e6d709bc18cbae26f47ab95f5b2fe60545abb737bb1",
+        "working_blob_sha": "31837ca31e449b5804735460d345ac72e5dfcf7b",
+        "committed_blob_sha": "31837ca31e449b5804735460d345ac72e5dfcf7b",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}
