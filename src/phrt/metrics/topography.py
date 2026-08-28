@@ -18,15 +18,23 @@ maxima that are not there.
 """
 from __future__ import annotations
 
+from functools import lru_cache
+
 import numpy as np
 
 STATES = ("SINGLE_RESOLVED", "MULTI_RESOLVED", "BLENDED", "DEAD", "AMBIGUOUS")
 
 
-def _neighbours(nr: int, npz: int):
-    """Index pairs of the 8-connected lattice, phi periodic and r not."""
+@lru_cache(maxsize=16)
+def _adjacency(nr: int, npz: int):
+    """8-connected neighbours as a flat CSR pair, phi periodic and r not.
+
+    Cached by shape. Rebuilding this per map cost more than the union-find it
+    feeds: the audit classifies a few hundred maps per truth and they all share
+    a handful of shapes.
+    """
     idx = np.arange(nr * npz).reshape(nr, npz)
-    out = []
+    a_all, b_all = [], []
     for dr in (-1, 0, 1):
         for dp in (-1, 0, 1):
             if dr == 0 and dp == 0:
@@ -37,8 +45,15 @@ def _neighbours(nr: int, npz: int):
                 a, b = a[:-1], b[:-1]
             elif dr < 0:
                 a, b = a[1:], b[1:]
-            out.append(np.stack([a.ravel(), b.ravel()]))
-    return np.concatenate(out, axis=1)
+            a_all.append(a.ravel())
+            b_all.append(b.ravel())
+    a = np.concatenate(a_all)
+    b = np.concatenate(b_all)
+    o = np.argsort(a, kind="stable")
+    a, b = a[o], b[o]
+    start = np.searchsorted(a, np.arange(nr * npz))
+    end = np.searchsorted(a, np.arange(nr * npz), side="right")
+    return b, start, end
 
 
 class _DSU:
@@ -66,21 +81,19 @@ def prominences(field: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
     """
     m = np.asarray(field, float)
     nr, npz = m.shape
-    flat = m.ravel()
+    flat = np.ascontiguousarray(m.ravel())
     order = np.argsort(-flat, kind="stable")
-    nb = _neighbours(nr, npz)
-    adj = [[] for _ in range(nr * npz)]
-    for a, b in zip(nb[0], nb[1]):
-        adj[a].append(b)
+    nbr, start, end = _adjacency(nr, npz)
 
     dsu = _DSU(nr * npz)
     seen = np.zeros(nr * npz, bool)
     prom = {}
     for c in order:
+        c = int(c)
         roots = set()
-        for n_ in adj[c]:
+        for n_ in nbr[start[c]:end[c]]:
             if seen[n_]:
-                roots.add(dsu.find(n_))
+                roots.add(dsu.find(int(n_)))
         seen[c] = True
         if not roots:
             dsu.peak[c] = flat[c]
