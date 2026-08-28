@@ -121,15 +121,30 @@
       "status": "PASS",
       "measured": 1,
       "threshold": 1,
-      "run_id": "HMT1M_20260828T005146Z_2ba66f02",
-      "recorded_at": "2026-08-28T00:51:47+00:00"
+      "run_id": "HMT1M_STAGE_A",
+      "recorded_at": "2026-08-28T01:30:42+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 1,
+        "threshold": 1,
+        "run_id": "HMT1M_20260828T005146Z_2ba66f02",
+        "recorded_at": "2026-08-28T00:51:47+00:00"
+      }
     },
     "HMT1M_G2_held_out_commitment_reproduces": {
       "status": "PASS",
       "measured": 1,
       "threshold": 1,
-      "run_id": "HMT1M_20260828T005146Z_2ba66f02",
-      "recorded_at": "2026-08-28T00:51:47+00:00"
+      "note": "all six declared commitments, not only the families run",
+      "run_id": "HMT1M_STAGE_A",
+      "recorded_at": "2026-08-28T01:30:42+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 1,
+        "threshold": 1,
+        "run_id": "HMT1M_20260828T005146Z_2ba66f02",
+        "recorded_at": "2026-08-28T00:51:47+00:00"
+      }
     },
     "HMT1M_G3_disjoint_from_validation_truths": {
       "status": "PASS",
@@ -141,31 +156,59 @@
     },
     "HMT1M_G4_contrast_zero_spatial_mean": {
       "status": "PASS",
-      "measured": 2.1826344984848814e-17,
+      "measured": 2.0458386775033116e-17,
       "threshold": 1e-10,
-      "run_id": "HMT1M_20260828T005146Z_2ba66f02",
-      "recorded_at": "2026-08-28T00:51:47+00:00"
+      "run_id": "HMT1M_STAGE_A",
+      "recorded_at": "2026-08-28T01:30:42+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 2.1826344984848814e-17,
+        "threshold": 1e-10,
+        "run_id": "HMT1M_20260828T005146Z_2ba66f02",
+        "recorded_at": "2026-08-28T00:51:47+00:00"
+      }
     },
     "HMT1M_G4b_azimuthal_zero_mean": {
       "status": "PASS",
-      "measured": 1.8908485888147197e-16,
+      "measured": 2.706168622523819e-16,
       "threshold": 1e-10,
-      "run_id": "HMT1M_20260828T005146Z_2ba66f02",
-      "recorded_at": "2026-08-28T00:51:47+00:00"
+      "run_id": "HMT1M_STAGE_A",
+      "recorded_at": "2026-08-28T01:30:42+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 1.8908485888147197e-16,
+        "threshold": 1e-10,
+        "run_id": "HMT1M_20260828T005146Z_2ba66f02",
+        "recorded_at": "2026-08-28T00:51:47+00:00"
+      }
     },
     "HMT1M_G5_total_emissivity_nonnegative": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 0.0,
-      "run_id": "HMT1M_20260828T005146Z_2ba66f02",
-      "recorded_at": "2026-08-28T00:51:47+00:00"
+      "run_id": "HMT1M_STAGE_A",
+      "recorded_at": "2026-08-28T01:30:42+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "run_id": "HMT1M_20260828T005146Z_2ba66f02",
+        "recorded_at": "2026-08-28T00:51:47+00:00"
+      }
     },
     "HMT1M_G6_background_strictly_positive": {
       "status": "PASS",
       "measured": 0.0,
       "threshold": 0.0,
-      "run_id": "HMT1M_20260828T005146Z_2ba66f02",
-      "recorded_at": "2026-08-28T00:51:47+00:00"
+      "run_id": "HMT1M_STAGE_A",
+      "recorded_at": "2026-08-28T01:30:42+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0.0,
+        "threshold": 0.0,
+        "run_id": "HMT1M_20260828T005146Z_2ba66f02",
+        "recorded_at": "2026-08-28T00:51:47+00:00"
+      }
     },
     "HMT1M_G7_adjoint": {
       "status": "PASS",
@@ -193,8 +236,15 @@
       "status": "PASS",
       "measured": 0.0,
       "threshold": 1e-09,
-      "run_id": "HMT1M_20260828T005146Z_2ba66f02",
-      "recorded_at": "2026-08-28T00:51:47+00:00"
+      "run_id": "HMT1M_STAGE_A",
+      "recorded_at": "2026-08-28T01:30:42+00:00",
+      "superseded": {
+        "status": "PASS",
+        "measured": 0.0,
+        "threshold": 1e-09,
+        "run_id": "HMT1M_20260828T005146Z_2ba66f02",
+        "recorded_at": "2026-08-28T00:51:47+00:00"
+      }
     },
     "HMT1M_G10b_truth_extraction_recovers_generative_parameters": {
       "status": "FAIL",
@@ -250,12 +300,36 @@
       "note": "complete",
       "run_id": "HMT1M_20260828T005146Z_2ba66f02",
       "recorded_at": "2026-08-28T00:51:47+00:00"
+    },
+    "HMT1M_G3_disjoint_from_validation_and_retired_truths": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "held-out seeds also appearing in the validation bank or in any bank this freeze has retired",
+      "run_id": "HMT1M_STAGE_A",
+      "recorded_at": "2026-08-28T01:30:42+00:00"
+    },
+    "HMT1M_G10c_truth_extraction_matches_independent_windowed_reference": {
+      "status": "FAIL",
+      "measured": 2.5762177517650087,
+      "threshold": 1.0,
+      "note": "worst displacement from the independent windowed reference, in evaluation-grid cells: radial 0.476, azimuthal 2.576",
+      "run_id": "HMT1M_STAGE_A",
+      "recorded_at": "2026-08-28T01:30:42+00:00"
+    },
+    "HMT1M_G17_off_manifold_bank_built": {
+      "status": "PASS",
+      "measured": 12,
+      "threshold": 12,
+      "note": "built here and marked unscored. Stage B checks that none reaches an endpoint",
+      "run_id": "HMT1M_STAGE_A",
+      "recorded_at": "2026-08-28T01:30:42+00:00"
     }
   },
-  "updated_at": "2026-08-28T00:51:47+00:00",
+  "updated_at": "2026-08-28T01:30:42+00:00",
   "summary": {
-    "PASS": 33,
-    "FAIL": 1,
+    "PASS": 35,
+    "FAIL": 2,
     "NOT_RUN": 0
   }
 }

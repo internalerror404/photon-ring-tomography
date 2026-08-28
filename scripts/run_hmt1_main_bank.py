@@ -33,6 +33,7 @@ from hmt1_main_common import (FZ, HASHES, VFZ, build_bank, commitment,  # noqa: 
 from phrt.attestation import attest  # noqa: E402
 from phrt.config import sha256_file  # noqa: E402
 from phrt.io.endpoint_lineage import screen  # noqa: E402
+from phrt.io.manifests import Gate, merge_gate_file  # noqa: E402
 from phrt.io.tables import write_table  # noqa: E402
 from phrt.metrics.features import extract  # noqa: E402
 from phrt.sources.contrast import OFF_MANIFOLD, build  # noqa: E402
@@ -215,6 +216,15 @@ def main() -> int:
     STAGE_A_GATES.write_text(json.dumps(doc, indent=2, default=str) + "\n")
     HASHES.parent.mkdir(parents=True, exist_ok=True)
     HASHES.write_text(json.dumps(doc, indent=2, default=str) + "\n")
+
+    # the HMT-1 ledger must reflect the current run, not the retired one it
+    # last saw. Stage A's gates are real gates and belong in it.
+    merge_gate_file(
+        [Gate(k, v["status"], measured=v.get("measured"),
+              threshold=v.get("threshold"), note=v.get("note"))
+         for k, v in gates.items()],
+        "HMT1M_STAGE_A",
+        path=ROOT / "artifacts" / "gates" / "hmt1_correctness_gates.json")
 
     print("\nstage A gates")
     for k, v in gates.items():

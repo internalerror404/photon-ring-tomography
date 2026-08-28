@@ -1,152 +1,129 @@
 # HMT-1 sealed held-out main
 
-Freeze `HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V1` (v2 bank seed), run `HMT1M_20260828T005146Z_2ba66f02`.
-Execution commit `0f570d318689`, tree clean:
-true, preregistered: true.
+Freeze `HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V2`, bank seed 20260921.
+Execution commit `707c4b998ea1`, tree clean:
+false, preregistered: false.
 
 ## Disposition
 
 `HMT1_MAIN_IMPLEMENTATION_DEFECT`
 
-17 of 18 gates pass. The failure is
-`HMT1M_G10b_truth_extraction_recovers_generative_parameters`.
+Stage A failed one source gate, so **no operator was imported and no held-out
+truth was evaluated**. There is no endpoint to withhold this time, because none
+was ever computed. The bank is untouched in the strongest available sense.
 
-> **The science reading of this run is withheld, and withheld means unseen.**
->
-> The endpoint tables were not written and the regime verdicts were not
-> printed. Nobody, including the author of this report, has seen how the
-> held-out bank scores. That is deliberate: labelling a defective run's
-> numbers "diagnostic only" still puts them in the record, which spends the
-> bank and means no corrected rerun on it could honestly be called sealed.
-> The bank is intact and a corrected rerun on it is still a sealed run.
+That is the two-stage split doing what ruling 017 item 10 asked of it. On the
+previous attempt the same class of problem was found only after the operator
+had run, which is what spent that bank.
 
-## What failed
+## Stage A — the source gates
 
-`HMT1M_G10b` asks whether the feature extractor, pointed at the truth itself
-with no operator and no noise in the way, returns the feature that was actually
-put there. Worst displacement over the 96 held-out truths, in
-evaluation-grid cells:
+| gate | status | measured | threshold |
+|---|---|---|---|
+| `HMT1M_G1_pinned_numerical_environment` | PASS | 1 | 1 |
+| `HMT1M_G2_held_out_commitment_reproduces` | PASS | 1 | 1 |
+| `HMT1M_G3_disjoint_from_validation_and_retired_truths` | PASS | 0 | 0 |
+| `HMT1M_G4_contrast_zero_spatial_mean` | PASS | 2.046e-17 | 1e-10 |
+| `HMT1M_G4b_azimuthal_zero_mean` | PASS | 2.706e-16 | 1e-10 |
+| `HMT1M_G5_total_emissivity_nonnegative` | PASS | 0 | 0 |
+| `HMT1M_G6_background_strictly_positive` | PASS | 0 | 0 |
+| `HMT1M_G10_feature_extraction_deterministic` | PASS | 0 | 1e-09 |
+| `HMT1M_G10c_truth_extraction_matches_independent_windowed_reference` | FAIL | 2.576 | 1 |
+| `HMT1M_G17_off_manifold_bank_built` | PASS | 12 | 12 |
+
+- `HMT1M_G2_held_out_commitment_reproduces` — all six declared commitments, not only the families run
+- `HMT1M_G3_disjoint_from_validation_and_retired_truths` — held-out seeds also appearing in the validation bank or in any bank this freeze has retired
+- `HMT1M_G10c_truth_extraction_matches_independent_windowed_reference` — worst displacement from the independent windowed reference, in evaluation-grid cells: radial 0.476, azimuthal 2.576
+- `HMT1M_G17_off_manifold_bank_built` — built here and marked unscored. Stage B checks that none reaches an endpoint
+
+## Stage B — the operator gates
+
+| _(stage B did not run: no operator was imported)_ | | | |
+
+## What failed, and what it is not
+
+`HMT1M_G10c` compares the extracted peak against an independent windowed
+reference, at the frozen one-cell threshold. Worst displacement per family over
+the 96 held-out truths:
 
 | family | worst displacement (cells) |
 |---|---|
-| `two_hotspot_trajectories` | 1.201 |
-| `plunging_feature` | 0.496 |
-| `m2_structural_mode` | 0.445 |
-| `m1_rotating_crescent` | 0.391 |
-| `flare_birth_motion_decay` | 0.343 |
-| `circular_hotspot_trajectory` | 0.303 |
+| `two_hotspot_trajectories` | 2.576 |
+| `plunging_feature` | 0.516 |
+| `m2_structural_mode` | 0.476 |
+| `circular_hotspot_trajectory` | 0.476 |
+| `m1_rotating_crescent` | 0.476 |
+| `flare_birth_motion_decay` | 0.450 |
 
-1 truth of 96 exceeds the sealed threshold of one cell. It is a
-`two_hotspot_trajectories` draw whose two spots are well separated -- 12.6
-azimuthal cells and 5.7 M radially, so this is not the near-tie that an earlier
-version of this label got wrong -- but whose angular rates differ by a factor of
-three. The faster spot sweeps about 2.5 azimuthal cells inside the declared 3 M
-probe window, and the peak of the smeared arc lands about 1.2 cells from the
-generative centre.
+| family | index | radial cells | azimuthal cells |
+|---|---|---|---|
+| `two_hotspot_trajectories` | 5 | 0.475 | 2.576 |
 
-So the extractor is not misreading the field. The generative *label* for a
-multi-feature family is imprecise: it names the declared centres, and for a
-feature that moves appreciably within the probe window the peak of the windowed
-field is not at the centre the window is centred on.
+One truth of 96. Getting to the real number took separating two
+different things.
 
-**This was not repaired, deliberately.** The threshold is sealed and item 8 of
-the ruling forbids changing a tolerance. The label could be made exact -- the
-generative reference for any family is the argmax of the analytic windowed
-field, which is computable and would remove the family-specific candidate logic
-entirely -- but that change would have been made after seeing the held-out
-bank, which is tuning until the gate goes green. Having a principled
-justification for such a change makes it more dangerous, not less. The run was
-executed exactly as sealed and reports what it gives.
+**A defect in G10c itself**, which this bank exposed and the
+396-truth validation had not. A field that is numerically
+zero away from its feature still has local maxima there, and the reference was
+offering them as candidates. Here a dust maximum at amplitude 0.00000 sat at
+the extractor's azimuth and absorbed a real 2.4-cell azimuthal disagreement,
+reporting 1.2 radial cells instead. Candidates now have to clear the birth
+fraction the campaign already uses for a feature being detectable. The
+correction moves reported errors *up*, not down -- this truth went from 1.251
+to 2.576 cells, and an off-manifold control from 0.578 to 10.157 -- which is
+the direction a correction to a gate should move.
 
-## Deviation on this freeze
+**What remains is neither the extractor's error nor the reference's.** The
+failing truth has two spots separated by 0.34 radial cells, with radial widths
+of 0.23 and 0.32 cells. Both blobs, and the gap between them, are sub-cell on
+the 16-point log-radial evaluation grid. They are radially unresolved: the
+extractor sees a blend and reports its azimuth, the reference resolves the
+dominant spot, and the two answers differ by more than a cell. The declared
+`two_hotspot_trajectories` range admits configurations the declared evaluation
+grid cannot resolve.
 
-Recorded in full in `HMT1_SEALED_MAIN_BANK_V1_RETIREMENT_016`. Stage B was
-smoke tested on the first sealed bank, which is an operator evaluation on
-held-out truths and therefore a peek, however small. That bank was retired and
-redrawn under a new seed rather than defended, and the runner gained a scratch
-mode that draws a throwaway bank and writes nothing canonical -- which is what
-the smoke test should have used. Run against a substituted bank it fails
-`HMT1M_G2` and `HMT1M_G16` exactly as it should, which is the first
-demonstration that the seal check can fail.
-
-That smoke run also falsified `HMT1M_G15` as originally written. It required
-the noiseless control to score a lower endpoint error than the noisy draws;
-with the sealed hyperparameters the feature error is bias dominated rather than
-noise dominated, so removing the noise barely moves it. The gate now measures
-what it was for -- that the noise path is live -- in the reconstruction rather
-than in the endpoint, and the endpoint direction is reported below and not
-gated, because no correct direction for it was established in advance.
+**Not redrawn and not relaxed.** Item 9 forbids a seed search and a
+redraw-until-pass loop, item 6 forbids changing family ranges, and item 5 froze
+the threshold at one cell. The bank stands as drawn.
 
 ## Controls, which carry no endpoint information
 
-Held-out bank: 96 truths, worst azimuthal mean
-1.89e-16, most negative total emissivity
-0.061, local contrast
-0.31 to
+96 held-out truths, worst azimuthal mean
+2.71e-16, most negative total emissivity
+0.073, local contrast
+0.30 to
 0.79 of the local background. Zero
-overlap with the validation seeds.
+overlap with the validation bank or with either retired bank.
+12 off-manifold truths built and marked unscored.
 
-Background error by regime:
+## Estimator scope
 
-| regime | median relative | worst |
-|---|---|---|
-| `estimated_from_data` | 0.0148 | 0.0577 |
-| `joint_inversion` | 0.0148 | 0.0577 |
-| `oracle_known` | 0.0000 | 0.0000 |
+`TSVD` and `RIDGE_IDENTITY` authorized. `NONNEGATIVE_CONSTRAINED` recorded
+`WITHDRAWN_UNSELECTED`: it was declared as a control in the validation freeze,
+never implemented, and has no selected hyperparameter, so running it now would
+require the selection ruling 015 item 8 forbids. `ML` remains `NOT_AUTHORIZED`.
+`HMT1M_G19` refuses any run whose estimator set differs from the authorized
+one.
 
-Noise path, as displacement between the noisy and noiseless reconstructions
-relative to the noiseless one:
+## What a further attempt would need
 
-| regime | arm | estimator | median displacement | noiseless endpoint lower |
-|---|---|---|---|---|
-| `estimated_from_data` | `DIRECT_PHYSICAL` | RIDGE_IDENTITY | 0.0639 | yes |
-| `estimated_from_data` | `DIRECT_PHYSICAL` | TSVD | 0.0732 | yes |
-| `estimated_from_data` | `RESOLVED_PHYSICAL` | RIDGE_IDENTITY | 0.1362 | no |
-| `estimated_from_data` | `RESOLVED_PHYSICAL` | TSVD | 0.1187 | no |
-| `estimated_from_data` | `TOTAL_FLUX` | RIDGE_IDENTITY | 4.0763 | no |
-| `estimated_from_data` | `TOTAL_FLUX` | TSVD | 4.0764 | no |
-| `estimated_from_data` | `UNRESOLVED_IMAGE` | RIDGE_IDENTITY | 0.0988 | no |
-| `estimated_from_data` | `UNRESOLVED_IMAGE` | TSVD | 0.0606 | no |
-| `joint_inversion` | `DIRECT_PHYSICAL` | RIDGE_IDENTITY | 0.0780 | yes |
-| `joint_inversion` | `DIRECT_PHYSICAL` | TSVD | 0.0258 | no |
-| `joint_inversion` | `RESOLVED_PHYSICAL` | RIDGE_IDENTITY | 0.1362 | no |
-| `joint_inversion` | `RESOLVED_PHYSICAL` | TSVD | 0.1187 | no |
-| `joint_inversion` | `TOTAL_FLUX` | RIDGE_IDENTITY | 4.0734 | no |
-| `joint_inversion` | `TOTAL_FLUX` | TSVD | 4.0764 | no |
-| `joint_inversion` | `UNRESOLVED_IMAGE` | RIDGE_IDENTITY | 0.0761 | no |
-| `joint_inversion` | `UNRESOLVED_IMAGE` | TSVD | 0.0606 | no |
-| `oracle_known` | `DIRECT_PHYSICAL` | RIDGE_IDENTITY | 0.0929 | yes |
-| `oracle_known` | `DIRECT_PHYSICAL` | TSVD | 0.0574 | no |
-| `oracle_known` | `RESOLVED_PHYSICAL` | RIDGE_IDENTITY | 0.1704 | no |
-| `oracle_known` | `RESOLVED_PHYSICAL` | TSVD | 0.1232 | no |
-| `oracle_known` | `TOTAL_FLUX` | RIDGE_IDENTITY | 4.7091 | no |
-| `oracle_known` | `TOTAL_FLUX` | TSVD | 4.7092 | no |
-| `oracle_known` | `UNRESOLVED_IMAGE` | RIDGE_IDENTITY | 0.0978 | no |
-| `oracle_known` | `UNRESOLVED_IMAGE` | TSVD | 0.0608 | no |
+A ruling on the declared `two_hotspot_trajectories` radial range. The family
+draws both spots independently across the full radial support, so a pair can
+land within a fraction of a log-radial cell of each other at large radius,
+where a cell is about 10 M and the blob widths are 2 to 3 M. Any of these would
+resolve it, and all of them are changes item 6 currently forbids:
 
-Null-pair controls: worst realized-versus-target separation error
-1.55e-15 over 96 near-null feature pairs.
+- require a minimum radial separation between the two spots, in cells;
+- refine the radial evaluation grid so that widths of 2 to 3 M are resolved at
+  large radius;
+- score `G10c` for multi-feature families against the blend the grid can
+  actually represent rather than the resolved reference.
 
-## Open gap, not closed here
+The third is the only one that touches no declared quantity, but it also
+weakens the gate, and choosing it after seeing which truth failed is the move
+this campaign has repeatedly had to refuse.
 
-The validation freeze declares a `NONNEGATIVE_CONSTRAINED` control estimator,
-scoped to the primary SNR and the estimated-background regime, which the
-validation never implemented. It has no sealed hyperparameter because it was
-never selected, and choosing one now is the selection item 8 forbids. It is
-left unimplemented and reported rather than smuggled in behind a prohibited
-selection. It needs a ruling.
-
-## What a corrected rerun would need
-
-A ruling on one question: may the `HMT1M_G10b` generative label be redefined as
-the argmax of the analytic windowed field, for every family, before the sealed
-main is re-executed on the same untouched bank. That is a change to how the
-truth is *labelled*, not to the tolerance, the endpoint, the estimators, the
-hyperparameters or the family set, all of which stay sealed. If the answer is
-no, the alternative reading is that this bank contains one truth the declared
-extraction procedure cannot label to within its own grid, and the run stands as
-a defect.
-
-**STOP.** No further stage is authorized. Order leakage, geometry mismatch,
-VLBI, machine learning and a new pixel-movie reconstruction campaign all remain
-unauthorized, and the R1L stop and its sealed commitments are untouched.
+**STOP.** Item 14: stopped after this execution regardless of disposition.
+Geometry mismatch, order leakage, VLBI, machine learning and a new pixel-movie
+campaign remain unauthorized, and the R1L stop and its sealed commitments are
+untouched.

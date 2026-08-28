@@ -1,7 +1,7 @@
 {
   "schema": "phrt-hmt1-main-stage-a/1",
   "id": "HMT1_MAIN_STAGE_A",
-  "created_utc": "2026-08-28T01:27:37Z",
+  "created_utc": "2026-08-28T01:30:42Z",
   "ruling": "REVIEWER_RULING_HMT1_MAIN_017",
   "freeze": "HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V2",
   "freeze_sha256": "b29cd20626afa97493378aff702c81bd33d7f0d06d20608808ba1b60a5c41e8b",
@@ -812,8 +812,8 @@
   },
   "attestation": {
     "available": true,
-    "execution_commit": "7d80e3adecc8582abfbf4865a6fc58a098d1ee2d",
-    "head_tree_sha": "dbba884f495f4eff8fbaaf5dbe7a5557030ac912",
+    "execution_commit": "707c4b998ea132fe35d423c87705f0cd108f65d4",
+    "head_tree_sha": "0219529cb9f1635087f68e4a8663999c94b19611",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -822,10 +822,10 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": " M src/phrt/metrics/windowed_reference.py\n M tests/test_windowed_reference.py\n",
-    "porcelain_registered_sha256": "686424f9e57ba3f316ba17e9ad70e6b8286ddee9e5517a6d1fce77a01beaa6f8",
-    "porcelain_whole_tree_sha256": "6f42451e8ebbafaa802330e48b3132c5ca08a4a25e42729f6154d66d65ae8116",
-    "n_tracked_changes": 2,
+    "porcelain_registered": " M scripts/build_hmt1_main_report.py\n M scripts/run_hmt1_main_bank.py\n M tests/test_hmt1_family_parameters.py\n",
+    "porcelain_registered_sha256": "cd8a502d6a799268707cba2531aabb95df13e31b790aa2a93118762333ed18b5",
+    "porcelain_whole_tree_sha256": "1caaadff1f0c21b5b3f122371f0fe57f3ac8b7d20b6c1c85852b23c71f7682ed",
+    "n_tracked_changes": 3,
     "n_untracked": 0,
     "tracked_clean": false,
     "untracked_clean": true,

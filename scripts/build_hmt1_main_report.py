@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Report for the HMT-1 sealed held-out main.
 
-If the run withheld its science reading, this report withholds it too. It reads
-only the gate file and the diagnostic tables, and never opens an endpoint table
-even if one exists, so building the report cannot itself spend the bank.
+Handles both outcomes: a completed stage B, and a stage A refusal in which no
+operator was ever imported. It never opens an endpoint table, so building the
+report cannot itself spend the bank.
 """
 from __future__ import annotations
 
@@ -25,58 +25,56 @@ from phrt.attestation import attest  # noqa: E402
 from phrt.config import sha256_file  # noqa: E402
 
 FZ = ROOT / "artifacts" / "configs" / "HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V2.json"
-RET = ROOT / "artifacts" / "configs" / "HMT1_SEALED_MAIN_BANK_V1_RETIREMENT_016.json"
-G = ROOT / "artifacts" / "gates" / "hmt1_main_gates.json"
+COR = ROOT / "artifacts" / "configs" / "HMT1_SEALED_MAIN_CORRECTION_AND_RETIREMENT_017.json"
+SA = ROOT / "artifacts" / "gates" / "hmt1_main_stage_a_gates.json"
+SB = ROOT / "artifacts" / "gates" / "hmt1_main_gates.json"
+G10C = ROOT / "artifacts" / "provenance" / "HMT1_G10C_VALIDATION.json"
 TAB = ROOT / "artifacts" / "tables"
 OUT = ROOT / "artifacts" / "reports" / "HMT1_SEALED_MAIN.md"
 PROV = ROOT / "artifacts" / "provenance" / "HMT1_SEALED_MAIN_ARTIFACT_MANIFEST.json"
 D = "\n"
 
 
+def _num(x):
+    return f"{x:.4g}" if isinstance(x, float) else str(x)
+
+
 def main() -> int:
     t0 = time.time()
     fz = json.loads(FZ.read_text())
-    g = json.loads(G.read_text())
-    token = g["stop_token"]
-    withheld = bool(g.get("science_reading_withheld"))
-    failed = g.get("failed_gates", [])
+    sa = json.loads(SA.read_text())
+    sb = json.loads(SB.read_text()) if SB.exists() else None
+    g10c = json.loads(G10C.read_text())
     banks = pd.read_parquet(TAB / "hmt1_main_source_banks.parquet")
-    nulls = pd.read_parquet(TAB / "hmt1_main_null_pairs.parquet")
-    nc = pd.read_parquet(TAB / "hmt1_main_noiseless_control.parquet")
-    bg = pd.read_parquet(TAB / "hmt1_main_background_error.parquet")
-    man = json.loads(sorted((ROOT / "artifacts" / "manifests")
-                            .glob("HMT1M_*.json"))[-1].read_text())
-    att = man["attestation"]
+    off = pd.read_parquet(TAB / "hmt1_main_off_manifold.parquet")
+    att = sa["attestation"]
 
-    def _num(x):
-        return f"{x:.4g}" if isinstance(x, float) else str(x)
+    sa_tab = D.join(f"| `{k}` | {v['status']} | {_num(v.get('measured'))} | "
+                    f"{_num(v.get('threshold'))} |" for k, v in sa["gates"].items())
+    sa_notes = D.join(f"- `{k}` — {v['note']}"
+                      for k, v in sa["gates"].items() if v.get("note"))
+    stage_b_ran = sb is not None
+    if stage_b_ran:
+        sb_tab = D.join(f"| `{k}` | {v['status']} | {_num(v.get('measured'))} | "
+                        f"{_num(v.get('threshold'))} |"
+                        for k, v in sb["gates"].items())
+        token = sb["stop_token"]
+    else:
+        sb_tab = ("| _(stage B did not run: no operator was imported)_ | | | |")
+        token = "HMT1_MAIN_IMPLEMENTATION_DEFECT"
 
-    gtab = D.join(f"| `{k}` | {v['status']} | {_num(v.get('measured'))} | "
-                  f"{_num(v.get('threshold'))} |" for k, v in g["gates"].items())
-    gnotes = D.join(f"- `{k}` — {v['note']}"
-                    for k, v in g["gates"].items() if v.get("note"))
-
-    banks["worst"] = banks[["generative_radial_cells",
-                            "generative_azimuthal_cells"]].max(axis=1)
+    banks["worst"] = banks[["g10c_radial_cells", "g10c_azimuthal_cells"]].max(axis=1)
     fam = banks.groupby("family").worst.max().sort_values(ascending=False)
     ftab = D.join(f"| `{k}` | {v:.3f} |" for k, v in fam.items())
-    off = int(banks.worst.gt(1.0).sum())
-
-    bgt = bg.groupby("regime").agg(
-        median_relative=("relative_error", "median"),
-        worst_relative=("relative_error", "max")).reset_index()
-    bgtab = D.join(f"| `{r.regime}` | {r.median_relative:.4f} | "
-                   f"{r.worst_relative:.4f} |" for r in bgt.itertuples())
-
-    nct = D.join(
-        f"| `{r.regime}` | `{r.arm}` | {r.estimator} | "
-        f"{r.median_noise_displacement_relative:.4f} | "
-        f"{'yes' if r.noiseless_endpoint_is_lower else 'no'} |"
-        for r in nc.sort_values(["regime", "arm", "estimator"]).itertuples())
+    over = banks[banks.worst > 1.0]
+    otab = D.join(
+        f"| `{r.family}` | {int(r.index_)} | {r.g10c_radial_cells:.3f} | "
+        f"{r.g10c_azimuthal_cells:.3f} |"
+        for r in over.rename(columns={"index": "index_"}).itertuples())
 
     body = f"""# HMT-1 sealed held-out main
 
-Freeze `{fz['id']}` ({fz.get('revision', 'v1')}), run `{g['run_id']}`.
+Freeze `{fz['id']}`, bank seed {fz['seeds']['bank_seed']}.
 Execution commit `{att['execution_commit'][:12]}`, tree clean:
 {str(att['clean']).lower()}, preregistered: {str(att['preregistered']).lower()}.
 
@@ -84,118 +82,108 @@ Execution commit `{att['execution_commit'][:12]}`, tree clean:
 
 `{token}`
 
-{len(g['gates']) - len(failed)} of {len(g['gates'])} gates pass. The failure is
-{', '.join(f'`{x}`' for x in failed)}.
+Stage A failed one source gate, so **no operator was imported and no held-out
+truth was evaluated**. There is no endpoint to withhold this time, because none
+was ever computed. The bank is untouched in the strongest available sense.
 
-> **The science reading of this run is withheld, and withheld means unseen.**
->
-> The endpoint tables were not written and the regime verdicts were not
-> printed. Nobody, including the author of this report, has seen how the
-> held-out bank scores. That is deliberate: labelling a defective run's
-> numbers "diagnostic only" still puts them in the record, which spends the
-> bank and means no corrected rerun on it could honestly be called sealed.
-> The bank is intact and a corrected rerun on it is still a sealed run.
+That is the two-stage split doing what ruling 017 item 10 asked of it. On the
+previous attempt the same class of problem was found only after the operator
+had run, which is what spent that bank.
 
-## What failed
+## Stage A — the source gates
 
-`HMT1M_G10b` asks whether the feature extractor, pointed at the truth itself
-with no operator and no noise in the way, returns the feature that was actually
-put there. Worst displacement over the {len(banks):,} held-out truths, in
-evaluation-grid cells:
+| gate | status | measured | threshold |
+|---|---|---|---|
+{sa_tab}
+
+{sa_notes}
+
+## Stage B — the operator gates
+
+{sb_tab}
+
+## What failed, and what it is not
+
+`HMT1M_G10c` compares the extracted peak against an independent windowed
+reference, at the frozen one-cell threshold. Worst displacement per family over
+the {len(banks):,} held-out truths:
 
 | family | worst displacement (cells) |
 |---|---|
 {ftab}
 
-{off} truth of {len(banks):,} exceeds the sealed threshold of one cell. It is a
-`two_hotspot_trajectories` draw whose two spots are well separated -- 12.6
-azimuthal cells and 5.7 M radially, so this is not the near-tie that an earlier
-version of this label got wrong -- but whose angular rates differ by a factor of
-three. The faster spot sweeps about 2.5 azimuthal cells inside the declared 3 M
-probe window, and the peak of the smeared arc lands about 1.2 cells from the
-generative centre.
+| family | index | radial cells | azimuthal cells |
+|---|---|---|---|
+{otab}
 
-So the extractor is not misreading the field. The generative *label* for a
-multi-feature family is imprecise: it names the declared centres, and for a
-feature that moves appreciably within the probe window the peak of the windowed
-field is not at the centre the window is centred on.
+One truth of {len(banks):,}. Getting to the real number took separating two
+different things.
 
-**This was not repaired, deliberately.** The threshold is sealed and item 8 of
-the ruling forbids changing a tolerance. The label could be made exact -- the
-generative reference for any family is the argmax of the analytic windowed
-field, which is computable and would remove the family-specific candidate logic
-entirely -- but that change would have been made after seeing the held-out
-bank, which is tuning until the gate goes green. Having a principled
-justification for such a change makes it more dangerous, not less. The run was
-executed exactly as sealed and reports what it gives.
+**A defect in G10c itself**, which this bank exposed and the
+{g10c['n_truths_scored']}-truth validation had not. A field that is numerically
+zero away from its feature still has local maxima there, and the reference was
+offering them as candidates. Here a dust maximum at amplitude 0.00000 sat at
+the extractor's azimuth and absorbed a real 2.4-cell azimuthal disagreement,
+reporting 1.2 radial cells instead. Candidates now have to clear the birth
+fraction the campaign already uses for a feature being detectable. The
+correction moves reported errors *up*, not down -- this truth went from 1.251
+to 2.576 cells, and an off-manifold control from 0.578 to 10.157 -- which is
+the direction a correction to a gate should move.
 
-## Deviation on this freeze
+**What remains is neither the extractor's error nor the reference's.** The
+failing truth has two spots separated by 0.34 radial cells, with radial widths
+of 0.23 and 0.32 cells. Both blobs, and the gap between them, are sub-cell on
+the 16-point log-radial evaluation grid. They are radially unresolved: the
+extractor sees a blend and reports its azimuth, the reference resolves the
+dominant spot, and the two answers differ by more than a cell. The declared
+`two_hotspot_trajectories` range admits configurations the declared evaluation
+grid cannot resolve.
 
-Recorded in full in `HMT1_SEALED_MAIN_BANK_V1_RETIREMENT_016`. Stage B was
-smoke tested on the first sealed bank, which is an operator evaluation on
-held-out truths and therefore a peek, however small. That bank was retired and
-redrawn under a new seed rather than defended, and the runner gained a scratch
-mode that draws a throwaway bank and writes nothing canonical -- which is what
-the smoke test should have used. Run against a substituted bank it fails
-`HMT1M_G2` and `HMT1M_G16` exactly as it should, which is the first
-demonstration that the seal check can fail.
-
-That smoke run also falsified `HMT1M_G15` as originally written. It required
-the noiseless control to score a lower endpoint error than the noisy draws;
-with the sealed hyperparameters the feature error is bias dominated rather than
-noise dominated, so removing the noise barely moves it. The gate now measures
-what it was for -- that the noise path is live -- in the reconstruction rather
-than in the endpoint, and the endpoint direction is reported below and not
-gated, because no correct direction for it was established in advance.
+**Not redrawn and not relaxed.** Item 9 forbids a seed search and a
+redraw-until-pass loop, item 6 forbids changing family ranges, and item 5 froze
+the threshold at one cell. The bank stands as drawn.
 
 ## Controls, which carry no endpoint information
 
-Held-out bank: {len(banks):,} truths, worst azimuthal mean
+{len(banks):,} held-out truths, worst azimuthal mean
 {banks.azimuthal_mean_max_abs.max():.2e}, most negative total emissivity
 {banks.min_total.min():.3f}, local contrast
 {banks.peak_fraction_of_background.min():.2f} to
 {banks.peak_fraction_of_background.max():.2f} of the local background. Zero
-overlap with the validation seeds.
+overlap with the validation bank or with either retired bank.
+{len(off):,} off-manifold truths built and marked unscored.
 
-Background error by regime:
+## Estimator scope
 
-| regime | median relative | worst |
-|---|---|---|
-{bgtab}
+`TSVD` and `RIDGE_IDENTITY` authorized. `NONNEGATIVE_CONSTRAINED` recorded
+`WITHDRAWN_UNSELECTED`: it was declared as a control in the validation freeze,
+never implemented, and has no selected hyperparameter, so running it now would
+require the selection ruling 015 item 8 forbids. `ML` remains `NOT_AUTHORIZED`.
+`HMT1M_G19` refuses any run whose estimator set differs from the authorized
+one.
 
-Noise path, as displacement between the noisy and noiseless reconstructions
-relative to the noiseless one:
+## What a further attempt would need
 
-| regime | arm | estimator | median displacement | noiseless endpoint lower |
-|---|---|---|---|---|
-{nct}
+A ruling on the declared `two_hotspot_trajectories` radial range. The family
+draws both spots independently across the full radial support, so a pair can
+land within a fraction of a log-radial cell of each other at large radius,
+where a cell is about 10 M and the blob widths are 2 to 3 M. Any of these would
+resolve it, and all of them are changes item 6 currently forbids:
 
-Null-pair controls: worst realized-versus-target separation error
-{nulls.relative_error.max():.2e} over {len(nulls):,} near-null feature pairs.
+- require a minimum radial separation between the two spots, in cells;
+- refine the radial evaluation grid so that widths of 2 to 3 M are resolved at
+  large radius;
+- score `G10c` for multi-feature families against the blend the grid can
+  actually represent rather than the resolved reference.
 
-## Open gap, not closed here
+The third is the only one that touches no declared quantity, but it also
+weakens the gate, and choosing it after seeing which truth failed is the move
+this campaign has repeatedly had to refuse.
 
-The validation freeze declares a `NONNEGATIVE_CONSTRAINED` control estimator,
-scoped to the primary SNR and the estimated-background regime, which the
-validation never implemented. It has no sealed hyperparameter because it was
-never selected, and choosing one now is the selection item 8 forbids. It is
-left unimplemented and reported rather than smuggled in behind a prohibited
-selection. It needs a ruling.
-
-## What a corrected rerun would need
-
-A ruling on one question: may the `HMT1M_G10b` generative label be redefined as
-the argmax of the analytic windowed field, for every family, before the sealed
-main is re-executed on the same untouched bank. That is a change to how the
-truth is *labelled*, not to the tolerance, the endpoint, the estimators, the
-hyperparameters or the family set, all of which stay sealed. If the answer is
-no, the alternative reading is that this bank contains one truth the declared
-extraction procedure cannot label to within its own grid, and the run stands as
-a defect.
-
-**STOP.** No further stage is authorized. Order leakage, geometry mismatch,
-VLBI, machine learning and a new pixel-movie reconstruction campaign all remain
-unauthorized, and the R1L stop and its sealed commitments are untouched.
+**STOP.** Item 14: stopped after this execution regardless of disposition.
+Geometry mismatch, order leakage, VLBI, machine learning and a new pixel-movie
+campaign remain unauthorized, and the R1L stop and its sealed commitments are
+untouched.
 """
     OUT.parent.mkdir(parents=True, exist_ok=True)
     PROV.parent.mkdir(parents=True, exist_ok=True)
@@ -207,17 +195,19 @@ unauthorized, and the R1L stop and its sealed commitments are untouched.
         "experiment_id": "HMT1_SEALED_MAIN",
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "stop_token": token,
-        "science_reading_withheld": withheld,
+        "stage_b_executed": stage_b_ran,
+        "operator_imported": stage_b_ran,
+        "endpoint_computed": False,
         "authoritative_attestation": "execution",
         "execution_attestation": att,
-        "report_assembly_attestation": attest([FZ, RET]),
+        "report_assembly_attestation": attest([FZ, COR]),
         "freeze_sha256": sha256_file(FZ),
-        "retirement_record_sha256": sha256_file(RET),
+        "correction_record_sha256": sha256_file(COR),
         "inputs": {p: sha256_file(ROOT / p) for p in inputs},
         "outputs": {str(OUT.relative_to(ROOT)): sha256_file(OUT)},
     }, indent=2, default=str) + "\n")
     print(f"wrote {OUT.relative_to(ROOT)}\nwrote {PROV.relative_to(ROOT)}")
-    print(f"  disposition: {token}  withheld: {withheld}")
+    print(f"  disposition: {token}  stage B executed: {stage_b_ran}")
     print(f"total {time.time() - t0:.0f}s")
     return 0
 

@@ -1,14 +1,16 @@
 {
   "schema": "phrt-artifact-manifest/1",
   "experiment_id": "HMT1_SEALED_MAIN",
-  "created_utc": "2026-08-28T00:52:52Z",
+  "created_utc": "2026-08-28T01:30:43Z",
   "stop_token": "HMT1_MAIN_IMPLEMENTATION_DEFECT",
-  "science_reading_withheld": true,
+  "stage_b_executed": false,
+  "operator_imported": false,
+  "endpoint_computed": false,
   "authoritative_attestation": "execution",
   "execution_attestation": {
     "available": true,
-    "execution_commit": "0f570d318689c86a7243331f4300c2dd9d722787",
-    "head_tree_sha": "1984cd0e01afa4096778319ef621c941d73a1c8f",
+    "execution_commit": "707c4b998ea132fe35d423c87705f0cd108f65d4",
+    "head_tree_sha": "0219529cb9f1635087f68e4a8663999c94b19611",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -17,71 +19,21 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": "",
-    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-    "n_tracked_changes": 0,
+    "porcelain_registered": " M scripts/build_hmt1_main_report.py\n M scripts/run_hmt1_main_bank.py\n M tests/test_hmt1_family_parameters.py\n",
+    "porcelain_registered_sha256": "cd8a502d6a799268707cba2531aabb95df13e31b790aa2a93118762333ed18b5",
+    "porcelain_whole_tree_sha256": "1caaadff1f0c21b5b3f122371f0fe57f3ac8b7d20b6c1c85852b23c71f7682ed",
+    "n_tracked_changes": 3,
     "n_untracked": 0,
-    "tracked_clean": true,
+    "tracked_clean": false,
     "untracked_clean": true,
-    "clean": true,
-    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
-    "files": [
-      {
-        "path": "artifacts/configs/HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V1.json",
-        "sha256": "b7afcb0e31289e7ae85c3f3eda7bf88fb8939f67f63b56377273a15d6b9cd4d5",
-        "working_blob_sha": "1840e7c0dafec5d9c7e612e75e617515fe07edbc",
-        "committed_blob_sha": "1840e7c0dafec5d9c7e612e75e617515fe07edbc",
-        "committed_at_execution_commit": true,
-        "tracked": true
-      },
-      {
-        "path": "artifacts/configs/HMT1_VALIDATION_FREEZE_V0.json",
-        "sha256": "4ed2338ca45eb47e11d4aeb49067799e9db3e3d41b8f8d9c391d9dd09fc7c361",
-        "working_blob_sha": "a922befe114cbaabffd6f43af80787243838fbac",
-        "committed_blob_sha": "a922befe114cbaabffd6f43af80787243838fbac",
-        "committed_at_execution_commit": true,
-        "tracked": true
-      }
-    ],
-    "all_registered_files_committed": true,
-    "preregistered": true
-  },
-  "report_assembly_attestation": {
-    "available": true,
-    "execution_commit": "0f570d318689c86a7243331f4300c2dd9d722787",
-    "head_tree_sha": "1984cd0e01afa4096778319ef621c941d73a1c8f",
-    "pathspecs": [
-      ":/src",
-      ":/scripts",
-      ":/configs",
-      ":/tests",
-      ":/schemas",
-      ":/artifacts/configs"
-    ],
-    "porcelain_registered": "?? scripts/build_hmt1_main_report.py\n",
-    "porcelain_registered_sha256": "bce47f4887bc4c397953a012e29e049db0c7e1eca02e8b94129124186f453819",
-    "porcelain_whole_tree_sha256": "4d7115d80efc4578c0a86cae9cd998d0597b8698e526e2dc843452c656a234f6",
-    "n_tracked_changes": 0,
-    "n_untracked": 1,
-    "tracked_clean": true,
-    "untracked_clean": false,
     "clean": false,
     "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
     "files": [
       {
-        "path": "artifacts/configs/HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V1.json",
-        "sha256": "b7afcb0e31289e7ae85c3f3eda7bf88fb8939f67f63b56377273a15d6b9cd4d5",
-        "working_blob_sha": "1840e7c0dafec5d9c7e612e75e617515fe07edbc",
-        "committed_blob_sha": "1840e7c0dafec5d9c7e612e75e617515fe07edbc",
-        "committed_at_execution_commit": true,
-        "tracked": true
-      },
-      {
-        "path": "artifacts/configs/HMT1_SEALED_MAIN_BANK_V1_RETIREMENT_016.json",
-        "sha256": "23290a80dda714535a5eb3578bb9ec1a7e78eb32a89fa7db0b6b5b172ddc5ff5",
-        "working_blob_sha": "b0b57011d3b96b458230fe6eb4ec6d9777408d56",
-        "committed_blob_sha": "b0b57011d3b96b458230fe6eb4ec6d9777408d56",
+        "path": "artifacts/configs/HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V2.json",
+        "sha256": "b29cd20626afa97493378aff702c81bd33d7f0d06d20608808ba1b60a5c41e8b",
+        "working_blob_sha": "e6e6714fb879a241f9771ea015591dc931cd0498",
+        "committed_blob_sha": "e6e6714fb879a241f9771ea015591dc931cd0498",
         "committed_at_execution_commit": true,
         "tracked": true
       }
@@ -89,16 +41,55 @@
     "all_registered_files_committed": true,
     "preregistered": false
   },
-  "freeze_sha256": "b7afcb0e31289e7ae85c3f3eda7bf88fb8939f67f63b56377273a15d6b9cd4d5",
-  "retirement_record_sha256": "23290a80dda714535a5eb3578bb9ec1a7e78eb32a89fa7db0b6b5b172ddc5ff5",
+  "report_assembly_attestation": {
+    "available": true,
+    "execution_commit": "707c4b998ea132fe35d423c87705f0cd108f65d4",
+    "head_tree_sha": "0219529cb9f1635087f68e4a8663999c94b19611",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": " M scripts/build_hmt1_main_report.py\n M scripts/run_hmt1_main_bank.py\n M tests/test_hmt1_family_parameters.py\n",
+    "porcelain_registered_sha256": "cd8a502d6a799268707cba2531aabb95df13e31b790aa2a93118762333ed18b5",
+    "porcelain_whole_tree_sha256": "e5ec0a619d72130508549c4c5dcc12938b946297fb0fd471c363041210bf1b01",
+    "n_tracked_changes": 3,
+    "n_untracked": 0,
+    "tracked_clean": false,
+    "untracked_clean": true,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V2.json",
+        "sha256": "b29cd20626afa97493378aff702c81bd33d7f0d06d20608808ba1b60a5c41e8b",
+        "working_blob_sha": "e6e6714fb879a241f9771ea015591dc931cd0498",
+        "committed_blob_sha": "e6e6714fb879a241f9771ea015591dc931cd0498",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/HMT1_SEALED_MAIN_CORRECTION_AND_RETIREMENT_017.json",
+        "sha256": "a43b1af8679fd9bea19526c16fbb382a0eccc492d71666b5f7e9eaa629090713",
+        "working_blob_sha": "7d042b3630549ae132e1752a23e95c73c609107e",
+        "committed_blob_sha": "7d042b3630549ae132e1752a23e95c73c609107e",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "freeze_sha256": "b29cd20626afa97493378aff702c81bd33d7f0d06d20608808ba1b60a5c41e8b",
+  "correction_record_sha256": "a43b1af8679fd9bea19526c16fbb382a0eccc492d71666b5f7e9eaa629090713",
   "inputs": {
-    "artifacts/tables/hmt1_main_background_error.parquet": "18c801b290a8a9848d3f9c77ea5e736a7c5562424d5ee8aa9c8fb47794e86cc5",
-    "artifacts/tables/hmt1_main_noiseless_control.parquet": "8edec17c80f51404ab9a519e9b59a7dbd972a2e14454ec623d7ceb4c4ed4a870",
-    "artifacts/tables/hmt1_main_null_pairs.parquet": "a071360b14ca56c83be196d5a65aa51ce65edd3d18fec0a5254a129616689c58",
-    "artifacts/tables/hmt1_main_off_manifold.parquet": "53800ddd9100dc214c55517237617c2ebcbfc6196a94ffb84c835f1ed3d7bac4",
-    "artifacts/tables/hmt1_main_source_banks.parquet": "538e74efa7d7b597191cd8e12fc928f68c148b5de831a81a9cf5e7a0f93ffbff"
+    "artifacts/tables/hmt1_main_off_manifold.parquet": "61a1808345d28ad2acaff329be4df896502cfb9a628e0452248d39aeb7515913",
+    "artifacts/tables/hmt1_main_source_banks.parquet": "5bb6d918cdd4e327792cf865101ec45224abe1dee76f4eec204aaa11e3cbe004"
   },
   "outputs": {
-    "artifacts/reports/HMT1_SEALED_MAIN.md": "26d54feadfd71308ec24a60d6908f1bbb51f7fec7b374ab489331f8bf5d52dda"
+    "artifacts/reports/HMT1_SEALED_MAIN.md": "34eef348e0d843523b91f4f9143585db43d6a4a07b45ab01c484e43cf22e4033"
   }
 }

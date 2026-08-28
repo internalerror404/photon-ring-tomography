@@ -70,6 +70,12 @@ DECLARED_BLOCKING: dict[str, str] = {
     # the held-out bank is tuning until the gate goes green. The run stands as
     # a defect with its endpoint withheld, pending a ruling.
     "HMT1M_G10b_truth_extraction_recovers_generative_parameters":
+        "artifacts/configs/HMT1_SEALED_MAIN_CORRECTION_AND_RETIREMENT_017.json",
+    # The replacement bank's stage A failure. One truth of 96 whose two spots
+    # are sub-cell apart on the log-radial evaluation grid, so the declared
+    # family range admits a configuration the declared grid cannot resolve.
+    # Not redrawn and not relaxed; it needs a ruling.
+    "HMT1M_G10c_truth_extraction_matches_independent_windowed_reference":
         "artifacts/reports/HMT1_SEALED_MAIN.md",
 }
 
