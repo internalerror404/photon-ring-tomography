@@ -16,16 +16,15 @@ from pathlib import Path
 
 import numpy as np
 
-from phrt.metrics.features import extract, generative_peak_error
+from phrt.metrics.features import extract
+from phrt.metrics.windowed_reference import peak_agreement, windowed_peak
 from phrt.sources.contrast import build
 
 ROOT = Path(__file__).resolve().parents[1]
-FZ = ROOT / "artifacts" / "configs" / "HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V1.json"
+FZ = ROOT / "artifacts" / "configs" / "HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V2.json"
 VFZ = ROOT / "artifacts" / "configs" / "HMT1_VALIDATION_FREEZE_V0.json"
 R1 = ROOT / "artifacts" / "configs" / "R1_MAIN_FREEZE.json"
 HASHES = ROOT / "artifacts" / "provenance" / "HMT1_MAIN_BANK_HASHES.json"
-
-M_FOLD = {"m1_rotating_crescent": 1, "m2_structural_mode": 2}
 
 
 def _payload(family: str, n: int, seed: int) -> bytes:
@@ -112,13 +111,17 @@ def build_bank(g: dict, families=None) -> dict:
                 g["gr"], g["gp"], g["gt"], g["t_index"], g["NT"])
             feats = extract(dj, g["gt"], g["ages"], g["r_axis"],
                             g["phi_axis"], g["half"])
-            gerr = generative_peak_error(traj, g["ages"], feats, g["r_axis"],
-                                         g["phi_axis"],
-                                         m_fold=M_FOLD.get(family, 1))
+            # G10c: the independent windowed reference. No per-family
+            # candidate list and no m-fold folding, because the windowed field
+            # has one set of maxima whatever drew it
+            ref = windowed_peak(fluct, np.unique(g["gt"]), g["ages"],
+                                g["r_in"], g["r_out"], g["NR"], g["NP"],
+                                g["half"])
+            gerr = peak_agreement(feats, ref, g["r_axis"], g["phi_axis"])
             out[(family, i)] = {
                 "b": b, "fluct": fluct, "traj": traj, "dj": dj, "bg": bg,
                 "diag": diag, "features": feats, "truth_seed": ts,
-                "generative": gerr,
+                "windowed": gerr,
                 "hashes": {"dj": _h(dj), "bg": _h(bg),
                            "total": _h(bg + dj),
                            "features": feature_hash(feats)},

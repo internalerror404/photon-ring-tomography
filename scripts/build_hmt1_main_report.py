@@ -24,7 +24,7 @@ import pandas as pd  # noqa: E402
 from phrt.attestation import attest  # noqa: E402
 from phrt.config import sha256_file  # noqa: E402
 
-FZ = ROOT / "artifacts" / "configs" / "HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V1.json"
+FZ = ROOT / "artifacts" / "configs" / "HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V2.json"
 RET = ROOT / "artifacts" / "configs" / "HMT1_SEALED_MAIN_BANK_V1_RETIREMENT_016.json"
 G = ROOT / "artifacts" / "gates" / "hmt1_main_gates.json"
 TAB = ROOT / "artifacts" / "tables"

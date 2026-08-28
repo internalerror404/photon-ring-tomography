@@ -18,10 +18,11 @@ ROOT = Path(__file__).resolve().parents[1]
 from phrt.attestation import attest
 from phrt.io.manifests import (Gate, RunManifest, gate_from_tolerance,
                                make_run_id, merge_gate_file)
+from phrt.io.endpoint_lineage import screen
 from phrt.io.tables import write_table
 from run_hmt1_score import paired_relative
 
-FZ = ROOT / "artifacts" / "configs" / "HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V1.json"
+FZ = ROOT / "artifacts" / "configs" / "HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V2.json"
 VFZ = ROOT / "artifacts" / "configs" / "HMT1_VALIDATION_FREEZE_V0.json"
 LEDGER = ROOT / "artifacts" / "gates" / "hmt1_correctness_gates.json"
 CLAIM = "estimated_from_data"
@@ -160,27 +161,13 @@ def finish(st) -> int:
     man.add_input(FZ)
 
     w = st["worst"]
-    man.add_gate(Gate("HMT1M_G1_pinned_numerical_environment",
-                      "PASS" if st["numerics"]["all_single_threaded"] else "FAIL",
-                      measured=1, threshold=1))
-    man.add_gate(Gate("HMT1M_G2_held_out_commitment_reproduces",
-                      "PASS" if st["commit_ok"] else "FAIL",
-                      measured=1 if st["commit_ok"] else 0, threshold=1))
-    man.add_gate(Gate("HMT1M_G3_disjoint_from_validation_truths",
-                      "PASS" if st["overlap"] == 0 else "FAIL",
-                      measured=st["overlap"], threshold=0,
-                      note="held-out truth seeds that also appear in the "
-                           "validation bank"))
-    man.add_gate(gate_from_tolerance("HMT1M_G4_contrast_zero_spatial_mean",
-                                     bw["zero_mean"], 1e-10))
-    man.add_gate(gate_from_tolerance("HMT1M_G4b_azimuthal_zero_mean",
-                                     bw["azimuthal"], 1e-10))
-    man.add_gate(Gate("HMT1M_G5_total_emissivity_nonnegative",
-                      "PASS" if bw["positivity"] <= 0.0 else "FAIL",
-                      measured=bw["positivity"], threshold=0.0))
-    man.add_gate(Gate("HMT1M_G6_background_strictly_positive",
-                      "PASS" if bw["background_floor"] <= 0.0 else "FAIL",
-                      measured=bw["background_floor"], threshold=0.0))
+    sa = st["stage_a"]
+    n_sa_fail = len(sa.get("failed_gates", []))
+    man.add_gate(Gate("HMT1M_G18_stage_a_source_gates_passed",
+                      "PASS" if n_sa_fail == 0 else "FAIL",
+                      measured=n_sa_fail, threshold=0,
+                      note=f"{len(sa['gates'])} source gates decided in stage A "
+                           f"before any operator was imported"))
     man.add_gate(gate_from_tolerance("HMT1M_G7_adjoint", w["adjoint"], 1e-8))
     man.add_gate(gate_from_tolerance("HMT1M_G8_operator_truth_identity",
                                      w["identity"], 1e-9))
@@ -189,22 +176,15 @@ def finish(st) -> int:
                       measured=null_worst, threshold=0.05,
                       note=f"worst realized-versus-target separation error "
                            f"over {len(nulls)} near-null feature pairs"))
-    man.add_gate(gate_from_tolerance("HMT1M_G10_feature_extraction_deterministic",
-                                     w["determinism"], 1e-9))
-    g10b = max(bw["generative_radial_cells"], bw["generative_azimuthal_cells"])
-    man.add_gate(Gate(
-        "HMT1M_G10b_truth_extraction_recovers_generative_parameters",
-        "PASS" if g10b <= 1.0 else "FAIL", measured=g10b, threshold=1.0,
-        note=f"worst peak displacement from the generating trajectory, in "
-             f"evaluation-grid cells: radial "
-             f"{bw['generative_radial_cells']:.3f}, azimuthal "
-             f"{bw['generative_azimuthal_cells']:.3f}"))
-    off_in = sum(1 for r in st["off_rows"] if r["in_endpoint"])
+    off_seeds = set(st["off_seeds"].values())
+    scored_seeds = {st["bank"][k]["truth_seed"] for k in st["bank"]}
+    off_in = len(off_seeds & scored_seeds)
     man.add_gate(Gate("HMT1M_G11_off_manifold_excluded_from_endpoints",
                       "PASS" if off_in == 0 else "FAIL",
                       measured=off_in, threshold=0,
-                      note=f"{len(st['off_rows'])} off-manifold truths built "
-                           f"and none contributes an endpoint row"))
+                      note=f"{len(off_seeds)} off-manifold truths built in "
+                           f"stage A; none of their seeds appears in the "
+                           f"evaluated bank"))
     man.add_gate(Gate("HMT1M_G12_sealed_hyperparameters_used_unchanged",
                       "PASS" if st["unsealed"] == 0 else "FAIL",
                       measured=st["unsealed"], threshold=0,
@@ -220,6 +200,16 @@ def finish(st) -> int:
                            f"reconstructions do not differ from the noiseless "
                            f"control, of {len(ncell)}. The endpoint direction "
                            f"is reported in the same table and is not gated"))
+    declared_est = set(fz["design"]["estimators_authorized"])
+    withdrawn = set(fz["design"]["estimators_withdrawn"])
+    run_est = set(st["estimators_run"])
+    est_bad = len(run_est ^ declared_est) + len(run_est & withdrawn)
+    man.add_gate(Gate("HMT1M_G19_estimator_scope",
+                      "PASS" if est_bad == 0 else "FAIL",
+                      measured=est_bad, threshold=0,
+                      note=f"ran {sorted(run_est)}; authorized "
+                           f"{sorted(declared_est)}; withdrawn "
+                           f"{sorted(withdrawn)}"))
     man.add_gate(Gate("HMT1M_G16_bank_hashes_match_committed",
                       "PASS" if not st["mismatched"] else "FAIL",
                       measured=len(st["mismatched"]), threshold=0,
@@ -228,10 +218,16 @@ def finish(st) -> int:
                            "before any operator was applied"))
 
     sub = {x.name: x.to_dict() for x in man.gates}
+    # coverage spans both stages: a gate decided in stage A is still a declared
+    # gate of this freeze, and a run that emitted neither would otherwise pass
+    stage_a_names = set(sa["gates"])
+    emitted = set(sub) | stage_a_names
     declared = set(fz["gates"])
     missing = sorted(d for d in declared
-                     if d not in sub and d != "HMT1M_G13_declared_gate_coverage")
-    undeclared = sorted(x for x in sub if x not in declared)
+                     if d not in emitted
+                     and d not in ("HMT1M_G13_declared_gate_coverage",
+                                   "HMT1M_G20_endpoint_lineage_firewall"))
+    undeclared = sorted(x for x in emitted if x not in declared)
     man.add_gate(Gate("HMT1M_G13_declared_gate_coverage",
                       "PASS" if not missing and not undeclared else "FAIL",
                       measured=len(missing) + len(undeclared), threshold=0,
@@ -240,6 +236,7 @@ def finish(st) -> int:
     sub = {x.name: x.to_dict() for x in man.gates}
 
     failed_gates = sorted(n for n, v in sub.items() if v["status"] != "PASS")
+    failed_gates += sorted(sa.get("failed_gates", []))
     if failed_gates:
         token = "HMT1_MAIN_IMPLEMENTATION_DEFECT"
 
@@ -252,23 +249,39 @@ def finish(st) -> int:
     # be called sealed again. The diagnostic tables that carry no endpoint
     # information are still written, because they are what a repair needs.
     withheld = bool(failed_gates)
-    endpoint_tables = {"hmt1_main_scores", "hmt1_main_endpoint",
-                       "hmt1_main_stable_feature_spans",
-                       "hmt1_main_joint_spans"}
+    # Item 11. The firewall works on lineage, not on a list of filenames. The
+    # table that leaked last time was called hmt1_main_noiseless_control and
+    # carried median_noisy and median_noiseless -- the endpoint, under a name
+    # that did not look like it. Nothing is written anywhere, not even into the
+    # run directory, until screen() has seen its columns.
+    blocked = {}
     for name, rows in (("hmt1_main_scores", st["score_rows"]),
                        ("hmt1_main_endpoint", end_rows),
                        ("hmt1_main_stable_feature_spans", span_rows),
                        ("hmt1_main_background_error", st["bgerr_rows"]),
                        ("hmt1_main_joint_spans", st["joint_rows"]),
                        ("hmt1_main_noiseless_control", ncell),
-                       ("hmt1_main_off_manifold", st["off_rows"]),
                        ("hmt1_main_null_pairs", st["null_rows"])):
-        if withheld and name in endpoint_tables:
+        if not rows:
             continue
-        if rows:
-            man.add_output(write_table(rows, name, out_dir=run_dir / "tables"))
-            if not scratch:
-                write_table(rows, name)
+        ok, bad = screen(name, rows, withheld)
+        if not ok:
+            blocked[name] = bad
+            continue
+        man.add_output(write_table(rows, name, out_dir=run_dir / "tables"))
+        if not scratch:
+            write_table(rows, name)
+
+    leaked = sorted(
+        n for n in blocked
+        if (run_dir / "tables" / f"{n}.parquet").exists()
+        or (ROOT / "artifacts" / "tables" / f"{n}.parquet").exists())
+    man.add_gate(Gate("HMT1M_G20_endpoint_lineage_firewall",
+                      "PASS" if not leaked else "FAIL",
+                      measured=len(leaked), threshold=0,
+                      note=(f"withheld: {withheld}; blocked "
+                            f"{sorted(blocked)}; on disk anyway: {leaked}")))
+    sub = {x.name: x.to_dict() for x in man.gates}
 
     doc = json.dumps({"experiment": "HMT1_SEALED_MAIN", "run_id": run_id,
                       "stop_token": token, "failed_gates": failed_gates,

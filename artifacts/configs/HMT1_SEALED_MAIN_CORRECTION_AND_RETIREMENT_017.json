@@ -1,0 +1,167 @@
+{
+  "schema": "phrt-record-amendment/1",
+  "id": "HMT1_SEALED_MAIN_CORRECTION_AND_RETIREMENT_017",
+  "created_utc": "2026-08-28T01:21:48Z",
+  "ruling": "REVIEWER_RULING_HMT1_MAIN_017",
+  "kind": "RECORD_ONLY",
+  "recomputation": "none",
+  "written_before_replacement_truth_drawn": true,
+  "preserved_run": {
+    "run_id": "HMT1M_20260828T005146Z_2ba66f02",
+    "disposition": "HMT1_MAIN_IMPLEMENTATION_DEFECT",
+    "gates": "17 of 18 passed",
+    "failed": "HMT1M_G10b_truth_extraction_recovers_generative_parameters"
+  },
+  "HMT1_MAIN_PARTIAL_ENDPOINT_EXPOSURE": {
+    "finding": "the withholding was incomplete. hmt1_main_noiseless_control was written under the withholding rule and carried median_noisy and median_noiseless: per-arm medians of the old-band feature error for the direct and resolved arms, at the primary SNR, in all three regimes",
+    "why_it_happened": "the withholding worked on a list of table names and that table was classified as a control. The classification was mine and it was wrong: the table's name described its purpose, not its columns",
+    "consequence": "old-band endpoint aggregates for the arms that carry the comparison were exposed for the bank drawn under bank_seed 20260917. That bank can no longer produce a sealed result",
+    "remedy": "the firewall now screens column lineage rather than filenames, in phrt.io.endpoint_lineage, with a test asserting that the exact columns which leaked are caught and that renaming a table changes nothing. Gate HMT1M_G20 checks after the fact that no blocked table reached disk",
+    "self_assessment": "I reported the previous run as having kept the bank unseen. That statement was wrong, and the reviewer caught what I missed"
+  },
+  "retired_banks": {
+    "20260915": {
+      "reason": "stage B smoke tested on it before the sealed run",
+      "record": "HMT1_SEALED_MAIN_BANK_V1_RETIREMENT_016"
+    },
+    "20260917": {
+      "reason": "HMT1_MAIN_PARTIAL_ENDPOINT_EXPOSURE",
+      "record": "HMT1_SEALED_MAIN_CORRECTION_AND_RETIREMENT_017",
+      "permanence": "permanent. Gate HMT1M_G3 refuses any held-out seed belonging to a retired bank, so neither can be redrawn under another name"
+    }
+  },
+  "preserved_gate_failure": {
+    "gate": "HMT1M_G10b_truth_extraction_recovers_generative_parameters",
+    "status": "FAIL",
+    "token": "RETIRED_RAW_TRAJECTORY_PROXY_INVALID_FOR_WINDOWED_FEATURE",
+    "reading": "the gate compared the extracted peak against the instantaneous generative centre. The extractor reports the argmax of the windowed field, and a feature that moves inside the window does not occupy that centre. The 1.201-cell failure was the proxy's error, not the extractor's",
+    "not_rerun": true
+  },
+  "replacement_gate": {
+    "gate": "HMT1M_G10c_truth_extraction_matches_independent_windowed_reference",
+    "threshold_cells": 1.0,
+    "threshold_unchanged": "the same frozen one-cell threshold the retired gate carried",
+    "independence": [
+      "evaluates the analytic source, not the sampled array the extractor reads",
+      "samples several times finer per evaluation cell and takes a plain argmax, where the extractor takes a coarse argmax and refines it parabolically",
+      "shares no code path with extract beyond numpy",
+      "shares the declared window, deliberately, so that it measures the extractor rather than the difference between two windows"
+    ],
+    "validation": {
+      "schema": "phrt-g10c-validation/1",
+      "id": "HMT1_G10C_VALIDATION",
+      "created_utc": "2026-08-28T01:15:55Z",
+      "ruling": "REVIEWER_RULING_HMT1_MAIN_017",
+      "gate": "HMT1M_G10c_truth_extraction_matches_independent_windowed_reference",
+      "threshold_cells": 1.0,
+      "n_truths_scored": 396,
+      "banks": [
+        "scratch_770001",
+        "scratch_770002",
+        "scratch_770003",
+        "validation"
+      ],
+      "worst_cells_overall": 0.836182677878717,
+      "worst_cells_by_bank": {
+        "validation": 0.47619047619047633,
+        "scratch_770001": 0.836182677878717,
+        "scratch_770002": 0.5776799096692581,
+        "scratch_770003": 0.47619047619047633
+      },
+      "worst_cells_by_family": {
+        "circular_hotspot_trajectory": 0.47619047619047566,
+        "two_hotspot_trajectories": 0.41709838607801114,
+        "m1_rotating_crescent": 0.47619047619047566,
+        "m2_structural_mode": 0.24576921378242964,
+        "flare_birth_motion_decay": 0.47619047619047566,
+        "plunging_feature": 0.47619047619047633,
+        "three_hotspot_cluster": 0.836182677878717,
+        "counter_rotating_pair": 0.5776799096692581,
+        "radially_drifting_arc": 0.47619047619047566
+      },
+      "n_over_threshold": 0,
+      "held_out_bank_touched": false,
+      "operator_imported": false,
+      "analytic_canaries": "tests/test_windowed_reference.py"
+    }
+  },
+  "estimator_scope": {
+    "TSVD": "AUTHORIZED",
+    "RIDGE_IDENTITY": "AUTHORIZED",
+    "NONNEGATIVE_CONSTRAINED": "WITHDRAWN_UNSELECTED",
+    "ML": "NOT_AUTHORIZED",
+    "gate": "HMT1M_G19_estimator_scope",
+    "note": "NONNEGATIVE_CONSTRAINED was declared as a control in the validation freeze and never implemented, so it has no selected hyperparameter. Selecting one now is the retuning ruling 015 item 8 forbids. Withdrawn rather than run, and the gate refuses any run that includes it"
+  },
+  "structural_changes": {
+    "source_gates_moved_to_stage_a": "item 10. Every gate decidable from the source alone is decided before an operator is imported, and stage B refuses to import one unless all of them passed. The operator imports are inside a function called after that check, so the ordering is a property of the file",
+    "endpoint_lineage_firewall": "item 11",
+    "one_new_bank_seed": "item 9. 20260921, fixed now. No seed search and no redraw-until-pass loop: whatever bank this seed produces is the bank"
+  },
+  "unchanged_by_this_correction": [
+    "production truth features",
+    "extract()",
+    "normalized_errors()",
+    "endpoint definitions",
+    "denominators",
+    "tolerances",
+    "materiality bars",
+    "hyperparameters",
+    "source families",
+    "family ranges",
+    "arms",
+    "SNRs"
+  ],
+  "not_authorized": [
+    "geometry mismatch",
+    "order leakage",
+    "VLBI",
+    "machine learning",
+    "a new pixel-movie reconstruction campaign"
+  ],
+  "after_execution": "STOP, regardless of scientific disposition",
+  "freeze_v2_sha256": "b29cd20626afa97493378aff702c81bd33d7f0d06d20608808ba1b60a5c41e8b",
+  "retirement_016_sha256": "23290a80dda714535a5eb3578bb9ec1a7e78eb32a89fa7db0b6b5b172ddc5ff5",
+  "attestation": {
+    "available": true,
+    "execution_commit": "d3c560ee4a6eecfd2674d864279ec2620509c21c",
+    "head_tree_sha": "c5258610289331b7ec7ba1876c3c3e159c8d7aa9",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": " M scripts/build_hmt1_main_report.py\n M scripts/hmt1_main_common.py\n M scripts/run_hmt1_main.py\n M scripts/run_hmt1_main_bank.py\n M scripts/run_hmt1_main_score.py\n?? artifacts/configs/HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V2.json\n?? scripts/register_hmt1_correction_017.py\n?? scripts/register_hmt1_sealed_main_freeze_v2.py\n?? src/phrt/io/endpoint_lineage.py\n?? tests/test_endpoint_lineage.py\n",
+    "porcelain_registered_sha256": "3a3b816024020fb93ed595b8bf5fec2c26b5697b40c5c71d469765240bccdcb9",
+    "porcelain_whole_tree_sha256": "3a3b816024020fb93ed595b8bf5fec2c26b5697b40c5c71d469765240bccdcb9",
+    "n_tracked_changes": 5,
+    "n_untracked": 5,
+    "tracked_clean": false,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V2.json",
+        "sha256": "b29cd20626afa97493378aff702c81bd33d7f0d06d20608808ba1b60a5c41e8b",
+        "working_blob_sha": "e6e6714fb879a241f9771ea015591dc931cd0498",
+        "committed_blob_sha": null,
+        "committed_at_execution_commit": false,
+        "tracked": false
+      },
+      {
+        "path": "artifacts/configs/HMT1_SEALED_MAIN_BANK_V1_RETIREMENT_016.json",
+        "sha256": "23290a80dda714535a5eb3578bb9ec1a7e78eb32a89fa7db0b6b5b172ddc5ff5",
+        "working_blob_sha": "b0b57011d3b96b458230fe6eb4ec6d9777408d56",
+        "committed_blob_sha": "b0b57011d3b96b458230fe6eb4ec6d9777408d56",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": false,
+    "preregistered": false
+  }
+}

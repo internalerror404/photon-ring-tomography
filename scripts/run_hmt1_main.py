@@ -32,20 +32,32 @@ from hmt1_main_common import (FZ, HASHES, R1, VFZ, build_bank,  # noqa: E402
                               commitment, grids)
 from phrt.attestation import attest  # noqa: E402
 from phrt.config import load_registry  # noqa: E402
-from phrt.geometry.raymap import read  # noqa: E402
-from phrt.geometry.sampling import common_count, stratified_subsample  # noqa: E402
-from phrt.inverse.background import (axisymmetric_design,  # noqa: E402
-                                     background_error, estimate_from_field)
-from phrt.io.manifests import (Gate, RunManifest, gate_from_tolerance,  # noqa: E402
-                               make_run_id, merge_gate_file)
-from phrt.io.tables import write_table  # noqa: E402
 from phrt.metrics.features import aggregate, extract, normalized_errors  # noqa: E402
-from phrt.operators.physical import PhysicalOperator  # noqa: E402
-from phrt.sources.contrast import OFF_MANIFOLD, build  # noqa: E402
-from phrt.sources.localized_basis import LocalizedBasis  # noqa: E402
-from phrt.sources.physical_basis import PhysicalBasis  # noqa: E402
-from run_hmt1_score import (family_param_keys, paired_relative,  # noqa: E402
-                            spectral_filter)
+from run_hmt1_score import family_param_keys, spectral_filter  # noqa: E402
+
+# Item 10. Nothing that can reach an operator is imported at module level.
+# Stage A's source gates are checked first and the imports happen inside
+# _operator_modules(), which is called only after that check passes. A test
+# asserts this module's top level stays free of them, so the ordering is a
+# property of the file rather than a habit.
+STAGE_A_GATES = ROOT / "artifacts" / "gates" / "hmt1_main_stage_a_gates.json"
+
+
+def _operator_modules():
+    from phrt.geometry.raymap import read
+    from phrt.geometry.sampling import common_count, stratified_subsample
+    from phrt.inverse.background import (axisymmetric_design,
+                                         background_error, estimate_from_field)
+    from phrt.operators.physical import PhysicalOperator
+    from phrt.sources.localized_basis import LocalizedBasis
+    from phrt.sources.physical_basis import PhysicalBasis
+    return dict(read=read, common_count=common_count,
+                stratified_subsample=stratified_subsample,
+                axisymmetric_design=axisymmetric_design,
+                background_error=background_error,
+                estimate_from_field=estimate_from_field,
+                PhysicalOperator=PhysicalOperator,
+                LocalizedBasis=LocalizedBasis, PhysicalBasis=PhysicalBasis)
 
 LEDGER = ROOT / "artifacts" / "gates" / "hmt1_correctness_gates.json"
 
@@ -101,6 +113,27 @@ def main() -> int:
     t_lo, t_hi = float(g["t_axis"][0]), float(g["t_axis"][-1])
     t_obs = np.asarray(r1["observation"]["observer_times_M"], float)
 
+    # ---- stage A must have passed before an operator is imported -----------
+    if not STAGE_A_GATES.exists():
+        print("stage A gate file missing: run scripts/run_hmt1_main_bank.py "
+              "first", file=sys.stderr)
+        return 1
+    stage_a = json.loads(STAGE_A_GATES.read_text())
+    if stage_a.get("failed_gates") or not stage_a.get("stage_b_may_proceed"):
+        print(f"stage A source gates failed: {stage_a.get('failed_gates')}. "
+              f"No operator will be imported and no held-out truth will be "
+              f"evaluated.", file=sys.stderr)
+        return 1
+    print(f"stage A clean: {len(stage_a['gates'])} source gates passed")
+
+    OPS = _operator_modules()
+    read = OPS["read"]
+    common_count, stratified_subsample = OPS["common_count"], OPS["stratified_subsample"]
+    axisymmetric_design = OPS["axisymmetric_design"]
+    background_error, estimate_from_field = OPS["background_error"], OPS["estimate_from_field"]
+    PhysicalOperator = OPS["PhysicalOperator"]
+    LocalizedBasis, PhysicalBasis = OPS["LocalizedBasis"], OPS["PhysicalBasis"]
+
     # ---- stage A's bank, and its hashes ------------------------------------
     committed = json.loads(HASHES.read_text())
     # every declared family, not only the subset being run: the commitments
@@ -118,18 +151,6 @@ def main() -> int:
                   if bank[k]["hashes"] != committed["hashes"][f"{k[0]}|{k[1]}"]]
     print(f"bank rebuilt, {len(bank)} truths, {len(mismatched)} hash "
           f"mismatches, {time.time() - t0:.0f}s")
-
-    vseeds = set()
-    for f in vfz["counts"]["families"]:
-        for s in vfz["counts"]["splits"]:
-            for rg in vfz["counts"]["regimes"]:
-                for i in range(8):
-                    p = json.dumps({"family": f, "split": s, "regime": rg,
-                                    "n": 8, "seed": vfz["seeds"]["bank_seed"],
-                                    "model": "contrast"}, sort_keys=True).encode()
-                    vseeds.add(int(hashlib.sha256(
-                        p + f"|{i}".encode()).hexdigest()[:16], 16) % (2 ** 63))
-    overlap = sum(1 for k in bank if bank[k]["truth_seed"] in vseeds)
 
     # ---- operators ---------------------------------------------------------
     basis = LocalizedBasis(r_in, r_out, t_lo, t_hi, 4, 7, 16)
@@ -323,26 +344,9 @@ def main() -> int:
         if time.time() - t0 > lim["wall_clock_seconds"]:
             raise SystemExit("HMT1_MAIN_IMPLEMENTATION_DEFECT: wall-clock limit")
 
-    # ---- off-manifold controls, built and excluded -------------------------
-    off_rows = []
-    for family in OFF_MANIFOLD:
-        for i in range(4):
-            # not hash((family, i)): str hashing is salted per interpreter
-            # unless PYTHONHASHSEED is set before the process starts, and
-            # pinning it from inside the process is too late. A salted seed
-            # would draw a different control bank on every run
-            oseed = int(hashlib.sha256(
-                f"hmt1_main_off_manifold|{family}|{i}".encode()
-            ).hexdigest()[:16], 16) % (2 ** 63)
-            orng = np.random.default_rng(oseed)
-            _, _, _, odj, obg, odiag = build(
-                orng, family, g["spin"], r_in, r_out, g["gr"], g["gp"], gt,
-                g["t_index"], g["NT"])
-            off_rows.append({"family": family, "index": i,
-                             "in_endpoint": False,
-                             "min_total": odiag["min_total"],
-                             "azimuthal_mean_max_abs":
-                                 odiag["azimuthal_mean_max_abs"]})
+    # off-manifold controls are built and marked unscored in stage A; stage B
+    # only has to show that none of them reached an endpoint
+    off_seeds = stage_a["off_manifold_seeds"]
 
     # ---- null-pair controls -------------------------------------------------
     null_rows = []
@@ -371,9 +375,11 @@ def main() -> int:
         snr_p=snr_p, snr_s=snr_s, n_noisy=n_noisy, span=span, boot=boot,
         M=M, lim=lim, ages=ages, old_mask=old_mask, keep=keep,
         score_rows=score_rows, joint_rows=joint_rows, bgerr_rows=bgerr_rows,
-        off_rows=off_rows, null_rows=null_rows, bank=bank,
-        commit_ok=commit_ok, mismatched=mismatched, overlap=overlap,
-        unsealed=unsealed, worst=worst, bank_worst=bw,
+        null_rows=null_rows, bank=bank,
+        commit_ok=commit_ok, mismatched=mismatched,
+        unsealed=unsealed, worst=worst, bank_worst=bw, stage_a=stage_a,
+        off_seeds=off_seeds, scored_families=sorted({r["family"] for r in score_rows}),
+        estimators_run=sorted({r["estimator"] for r in score_rows}),
         committed_sha=committed.get("freeze_sha256"), scratch=scratch)
     from run_hmt1_main_score import finish
     return finish(state)
