@@ -33,6 +33,8 @@ from __future__ import annotations
 
 import numpy as np
 
+from phrt.metrics.features import BIRTH_FRACTION
+
 DEFAULT_REFINE = 4
 
 
@@ -110,7 +112,11 @@ def local_maxima(cube: np.ndarray, rf: np.ndarray, pf: np.ndarray) -> list:
                     else:
                         sh[-1, :] = -np.inf
                 best = np.maximum(best, sh)
-        ii, jj = np.nonzero(m >= best)
+        keep = (m >= best) & (m > 0.0) & (m >= BIRTH_FRACTION * m.max())
+        ii, jj = np.nonzero(keep)
+        if ii.size == 0:                       # a dead age has no feature
+            fl = int(np.argmax(m))
+            ii, jj = np.array([fl // npz]), np.array([fl % npz])
         out.append((rf[ii], pf[jj], m[ii, jj]))
     return out
 

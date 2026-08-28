@@ -1,7 +1,7 @@
 {
   "schema": "phrt-g10c-validation/1",
   "id": "HMT1_G10C_VALIDATION",
-  "created_utc": "2026-08-28T01:15:55Z",
+  "created_utc": "2026-08-28T01:26:27Z",
   "ruling": "REVIEWER_RULING_HMT1_MAIN_017",
   "gate": "HMT1M_G10c_truth_extraction_matches_independent_windowed_reference",
   "threshold_cells": 1.0,
