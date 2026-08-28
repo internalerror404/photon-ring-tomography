@@ -1,0 +1,26 @@
+{
+  "schema": "phrt-figures/1",
+  "hierarchy": "all four are primary; the paper carries no supplementary figure tier",
+  "figures": [
+    {
+      "number": 1,
+      "name": "fig1_depth_inclination_not_spin",
+      "caption": "Recoverable depth at the reference SNR is flat across four spins at every inclination and steps sharply with inclination. The resolved stack sees deeper than the direct image at all twelve geometries; the margin is largest where the direct image is shallowest."
+    },
+    {
+      "number": 2,
+      "name": "fig2_shiva_effect",
+      "caption": "The Shiva effect, in one geometry family. Enriching the declared temporal class drives the resolved arm's operational-rank fraction down while the deepest recoverable epoch is unchanged. Identifiability and historical reach are different quantities and they move independently."
+    },
+    {
+      "number": 3,
+      "name": "fig3_two_held_out_results",
+      "caption": "The two held-out historical inverse results, on separate axes because they measure different things in different units. Left: STABLE_BASELINE_INCLUSIVE_EMISSIVITY_LEVEL_RECONSTRUCTION, the anchored stable span against the threshold declared in advance. Right: AGGREGATE_RESOLUTION_AWARE_MORPHOLOGY_ERROR_REDUCTION, median reduction with the paired bootstrap lower bound as the bar, against the 0.10 materiality floor. Both estimators, both targets."
+    },
+    {
+      "number": 4,
+      "name": "fig4_family_heterogeneity",
+      "caption": "FAMILY_HETEROGENEITY. Per-family median reduction with the paired bootstrap lower bound as the bar; a ringed marker is a cell that clears the declared floor. Five of twelve family-estimator cells are material, the simplest source in the bank is negative under both estimators, and ten truths per family makes every interval here wide. The aggregate is an average over this spread, not a uniform gain."
+    }
+  ]
+}

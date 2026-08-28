@@ -1,6 +1,6 @@
 {
   "schema": "phrt-canonical-freeze/2",
-  "created_utc": "2026-08-28T08:16:57Z",
+  "created_utc": "2026-08-28T15:26:50Z",
   "campaign_tag": "paper-I-campaign-final",
   "campaign_commit": "8345068676b15ce8f96a76da9d92b159db215f1d",
   "campaign_commit_source": "pinned to the accepted R0 pilot artifact commit",

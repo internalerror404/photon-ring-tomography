@@ -299,11 +299,16 @@ One geometry family is reconstructed and one source class is inverted. Nothing
 in this campaign is geometry-wide reconstruction, and nothing is arbitrary movie
 recovery. No telescope detection and no laboratory result is claimed anywhere.
 
-Two reconstruction claims stand, and they are different claims. R1 is
-**emissivity-level** recovery, extending the anchored stable span. The HMT-2
-sealed main is an aggregate reduction in a **resolution-aware morphology
-error** on held-out truths — single-feature, averaged over a heterogeneous set
-of source families, with no stable interval and no two-feature recovery.
+Two held-out historical inverse results stand, and they are different results.
+
+- **`STABLE_BASELINE_INCLUSIVE_EMISSIVITY_LEVEL_RECONSTRUCTION`** (R1) —
+  extension of the anchored stable span for age-local emissivity *level*.
+- **`AGGREGATE_RESOLUTION_AWARE_MORPHOLOGY_ERROR_REDUCTION`** (HMT-2 sealed
+  main) — an aggregate reduction in a resolution-aware morphology error on
+  held-out truths, carrying `MULTI_FEATURE_RECOVERY_NEGATIVE`,
+  `STABLE_MORPHOLOGY_INTERVAL_NEGATIVE`, `FAMILY_HETEROGENEITY` and
+  `DIRECT_BASELINE_SATURATION_QUALIFICATION` beside it.
+
 Neither is accurate historical movie recovery, and this ledger says so at both
 places rather than once.
 

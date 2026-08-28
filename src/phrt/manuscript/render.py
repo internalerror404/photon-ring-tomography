@@ -20,6 +20,7 @@ _INLINE_CODE = re.compile(r"`([^`]+)`")
 _BOLD = re.compile(r"\*\*([^*]+)\*\*")
 _ITALIC = re.compile(r"(?<!\*)\*([^*]+)\*(?!\*)")
 _LINK = re.compile(r"\[([^\]]+)\]\(([^)]+)\)")
+_FIGURE = re.compile(r"^!\[([^\]]+)\]\(([^)]+)\)$")
 _TABLE_SEP = re.compile(r"^\s*\|?[\s:-]*-[\s|:-]*\|?\s*$")
 BULLET = re.compile(r"^\s*[-*]\s+")
 ORDERED = re.compile(r"^\s*\d+\.\s+")
@@ -75,6 +76,17 @@ def to_html(md: str) -> str:
 
         if re.match(r"^-{3,}\s*$", line):
             out.append("<hr>")
+            i += 1
+            continue
+
+        # A line that is nothing but an image becomes a numbered figure. The
+        # alt text is the caption, so the two cannot drift apart and a reader
+        # with images off still gets the sentence the figure was carrying.
+        m = _FIGURE.match(line.strip())
+        if m:
+            out.append(f'<figure><img src="{m.group(2)}" alt="{m.group(1)}">'
+                       f"<figcaption>{_inline(m.group(1))}</figcaption>"
+                       "</figure>")
             i += 1
             continue
 
@@ -182,14 +194,52 @@ blockquote{margin:0 0 1rem;padding:.1rem 0 .1rem 1rem;border-left:3px solid var(
 color:var(--muted)}
 hr{border:0;border-top:1px solid var(--rule);margin:2rem 0}
 a{color:var(--accent)}
+figure{margin:1.6rem 0 1.4rem;padding:.9rem .9rem .4rem;background:#ffffff;
+border:1px solid var(--rule);border-radius:6px}
+figure img{display:block;width:100%;height:auto}
+figcaption{font-size:.82rem;line-height:1.5;color:var(--muted);
+margin:.6rem .2rem 0;font-family:ui-sans-serif,-apple-system,Segoe UI,Roboto,sans-serif}
+.titlepage{padding:2rem 0 1rem}
+.titlepage h1{font-size:2.1rem;margin-bottom:1.1rem}
+.titlepage .authors{font-size:1.06rem;margin:0 0 1.4rem}
 @media print{body{font-size:10.5pt}main{max-width:none;padding:0}
 h2{page-break-after:avoid}table{page-break-inside:avoid}
-.tablewrap{overflow:visible}}
+.tablewrap{overflow:visible}
+figure{page-break-inside:avoid;border:0;padding:0}
+.titlepage{page-break-after:always;padding-top:5rem;min-height:80vh}}
 """
 
 
-def page(title: str, md: str) -> str:
+def _titlepage(body: str) -> str:
+    """Wrap everything before the first section in its own page.
+
+    The builder emits one document; a title page is a print concern, so it is
+    made here rather than by asking the prose to know about pagination. The
+    first ``<h2>`` is the Abstract, which is where the paper proper starts.
+    """
+    i = body.find("<h2")
+    if i < 0:
+        return body
+    return f'<section class="titlepage">{body[:i]}</section>{body[i:]}'
+
+
+def page(title: str, md: str, meta: dict | None = None) -> str:
+    """Render the manuscript, with document metadata in the head.
+
+    ``meta`` carries author, subject and keywords. Chromium's print-to-PDF
+    copies the document title into the PDF, and the rest is stamped onto the
+    PDF afterwards by ``scripts/stamp_pdf_metadata.py``; the tags are emitted
+    here as well so the HTML is self-describing on its own.
+    """
+    meta = meta or {}
+    tags = "".join(
+        f"<meta name='{k}' content='{html.escape(str(v), quote=True)}'>"
+        for k, v in (("author", meta.get("author")),
+                     ("description", meta.get("subject")),
+                     ("keywords", meta.get("keywords")))
+        if v)
     return (f"<!doctype html><html><head><meta charset='utf-8'>"
             f"<meta name='viewport' content='width=device-width,initial-scale=1'>"
-            f"<title>{html.escape(title)}</title><style>{CSS}</style></head>"
-            f"<body><main>{to_html(md)}</main></body></html>")
+            f"<title>{html.escape(title)}</title>{tags}"
+            f"<style>{CSS}</style></head>"
+            f"<body><main>{_titlepage(to_html(md))}</main></body></html>")

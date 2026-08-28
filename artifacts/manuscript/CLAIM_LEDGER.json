@@ -1,11 +1,11 @@
 {
   "schema": "phrt-claim-ledger/1",
-  "n_claims": 269,
+  "n_claims": 276,
   "claims_by_kind": {
-    "literal": 24,
+    "literal": 30,
     "json": 45,
     "parquet_count": 20,
-    "parquet": 167,
+    "parquet": 168,
     "derived": 13
   },
   "artifacts_cited": [
@@ -43,8 +43,8 @@
     "artifacts/tables/r1l_class_spectra.parquet",
     "artifacts/tables/r1l_old_structural_support.parquet"
   ],
-  "created_utc": "2026-08-28T08:16:59Z",
-  "git_commit": "e9c1930a676a93e1043241c4bc8adfef8462260c",
+  "created_utc": "2026-08-28T15:26:52Z",
+  "git_commit": "82e106eee85c871ab6ec9685d823bce8a3c6de59",
   "campaign_tag": "paper-I-campaign-final",
   "campaign_commit": "8345068676b15ce8f96a76da9d92b159db215f1d",
   "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
@@ -4189,6 +4189,26 @@
       "prose": "prior-fit families"
     },
     {
+      "id": "r1.level.n_modes",
+      "value": 8,
+      "rendered": "8",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/r1_level_structure.parquet",
+        "sha256": "72aa18bb559b09474a1f8efcc8a32fd6247720ee14f5a7df43787c331e973388",
+        "where": {
+          "regime": "IN_CLASS_ID",
+          "snr0": 100.0,
+          "estimator": "TSVD",
+          "arm": "DIRECT_PHYSICAL"
+        },
+        "column": "n_level_modes",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "spatially uniform temporal modes spanning the level subspace"
+    },
+    {
       "id": "r1.level.fraction",
       "value": 0.9838218863433618,
       "rendered": "98.4%",
@@ -4482,6 +4502,66 @@
         "source": "artifacts/configs/R1_MAIN_FREEZE.json"
       },
       "prose": "sealed main-test truths"
+    },
+    {
+      "id": "software.kgeo.commit",
+      "value": "dc347060c5fb24e2c360c8aaffbfe25482a83805",
+      "rendered": "dc347060c5fb",
+      "source": {
+        "kind": "literal",
+        "source": "artifacts/provenance/kgeo_commit.txt"
+      },
+      "prose": "pinned kgeo cross-tracer commit"
+    },
+    {
+      "id": "software.aart.version",
+      "value": "2.1.10",
+      "rendered": "2.1.10",
+      "source": {
+        "kind": "literal",
+        "source": "importlib.metadata in the pinned analysis environment"
+      },
+      "prose": "aart version actually run"
+    },
+    {
+      "id": "software.numpy.version",
+      "value": "1.26.4",
+      "rendered": "1.26.4",
+      "source": {
+        "kind": "literal",
+        "source": "importlib.metadata in the pinned analysis environment"
+      },
+      "prose": "numpy version actually run"
+    },
+    {
+      "id": "software.scipy.version",
+      "value": "1.11.4",
+      "rendered": "1.11.4",
+      "source": {
+        "kind": "literal",
+        "source": "importlib.metadata in the pinned analysis environment"
+      },
+      "prose": "scipy version actually run"
+    },
+    {
+      "id": "software.pandas.version",
+      "value": "3.0.5",
+      "rendered": "3.0.5",
+      "source": {
+        "kind": "literal",
+        "source": "importlib.metadata in the pinned analysis environment"
+      },
+      "prose": "pandas version actually run"
+    },
+    {
+      "id": "software.pyarrow.version",
+      "value": "25.0.1",
+      "rendered": "25.0.1",
+      "source": {
+        "kind": "literal",
+        "source": "importlib.metadata in the pinned analysis environment"
+      },
+      "prose": "pyarrow version actually run"
     }
   ]
 }

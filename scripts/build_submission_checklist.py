@@ -59,7 +59,7 @@ def main() -> int:
     ledger = json.loads((MAN / "CLAIM_LEDGER.json").read_text())
     r1 = json.loads((ROOT / "artifacts" / "configs"
                      / "R1_MAIN_FREEZE.json").read_text())
-    bundle = json.loads((MAN / "PAPER_I_SOURCE_BUNDLE_MANIFEST.json").read_text())
+    bundle = json.loads((MAN / "PHOTON_RING_TOMOGRAPHY_I_SHIVA_EFFECT_SOURCE_BUNDLE_MANIFEST.json").read_text())
     tree = working_tree_state()
 
     ok_verify, last_verify = run("/tmp/aartvenv/bin/python",
@@ -148,12 +148,14 @@ def main() -> int:
          "negative result; OFF_GRID_OOD is labelled a mild-mismatch diagnostic "
          "rather than off-grid robustness; the retired (0.50, 0.90) endpoint "
          "stays in every table with its censoring disposition"),
-        ("The reconstruction claim is scoped", True,
-         "one geometry a* = 0.5, i = 50 deg. R1 is age-local emissivity level "
-         "on C224, not old-age morphology; the high-SNR structural result is "
-         "stated separately and not merged with it. The HMT-2 morphology "
-         "result is a separate held-out test on its own two classes and is "
-         "not merged with either"),
+        ("Both held-out historical inverse results are scoped", True,
+         "one geometry a* = 0.5, i = 50 deg. "
+         "STABLE_BASELINE_INCLUSIVE_EMISSIVITY_LEVEL_RECONSTRUCTION is "
+         "age-local emissivity level on C224, not old-age morphology, and the "
+         "high-SNR structural result is stated separately and not merged with "
+         "it. AGGREGATE_RESOLUTION_AWARE_MORPHOLOGY_ERROR_REDUCTION is a "
+         "separate held-out test on its own two classes and is not merged "
+         "with either"),
         ("The morphology claim states what it is not",
          all(k in man_text for k in (
              "average over a heterogeneous set",
@@ -180,7 +182,8 @@ def main() -> int:
          "manuscript's first line"),
         ("Source bundle reproduces the paper", True,
          f"{bundle.get('n_files', len(bundle.get('files', [])))} files, "
-         f"artifacts/manuscript/PAPER_I_SOURCE_BUNDLE.tar.gz"),
+         f"artifacts/manuscript/"
+         f"PHOTON_RING_TOMOGRAPHY_I_SHIVA_EFFECT_SOURCE_BUNDLE.tar.gz"),
         ("Working tree is clean at submission",
          bool(tree.get("clean")),
          f"tracked changes {tree.get('n_tracked_changes')}, untracked "
@@ -213,7 +216,7 @@ memory. **{n_pass} of {len(rows)}** answered affirmatively.
 
 | artifact | sha256 |
 |---|---|
-{D.join('| `' + str(p.relative_to(ROOT)) + '` | `' + sha256_file(p) + '` |' for p in (MAN / 'PAPER_I.md', MAN / 'PAPER_I.html', MAN / 'PAPER_I.pdf', MAN / 'CLAIM_LEDGER.json', MAN / 'PAPER_I_SOURCE_BUNDLE.tar.gz', MAN / 'PAPER_I_SOURCE_BUNDLE_MANIFEST.json', ROOT / 'docs' / 'Paper_I_v1_Current_Evidence_Ledger.md', ROOT / 'artifacts' / 'CANONICAL_ARTIFACT_FREEZE_V2.json') if p.exists())}
+{D.join('| `' + str(p.relative_to(ROOT)) + '` | `' + sha256_file(p) + '` |' for p in (MAN / 'PAPER_I.md', MAN / 'PAPER_I.html', MAN / 'PAPER_I.pdf', MAN / 'CLAIM_LEDGER.json', MAN / 'PHOTON_RING_TOMOGRAPHY_I_SHIVA_EFFECT_SOURCE_BUNDLE.tar.gz', MAN / 'PHOTON_RING_TOMOGRAPHY_I_SHIVA_EFFECT_SOURCE_BUNDLE_MANIFEST.json', ROOT / 'docs' / 'Paper_I_v1_Current_Evidence_Ledger.md', ROOT / 'artifacts' / 'CANONICAL_ARTIFACT_FREEZE_V2.json') if p.exists())}
 
 ## Not claimed
 

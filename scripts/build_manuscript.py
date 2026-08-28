@@ -28,6 +28,7 @@ from phrt import provenance
 from phrt.config import load_registry
 from phrt.io.dashboard import gate_counts
 from phrt.manuscript.ledger import ClaimLedger
+from phrt.manuscript import sections
 from phrt.manuscript.render import page
 
 OUT = ROOT / "artifacts" / "manuscript"
@@ -95,10 +96,12 @@ ARMS = ["DIRECT_PHYSICAL", "RESOLVED_PHYSICAL", "UNRESOLVED_IMAGE", "TOTAL_FLUX"
         "PAIRING_DESTROYED"]
 D = "\n"
 
-TITLE = ("Photon-Ring Retarded-Time Tomography I: Class-Dependent "
-         "Identifiability, the Separation of Historical Reach from Algebraic "
-         "Rank, and Held-Out Reconstruction of Age-Local Emissivity Level in "
-         "Near-Critical Null Geodesics")
+# PAPER_I_EDITORIAL_RULING_022 item 2. The ruling gives the title over three
+# lines; the break after the coined name is rendered as an em dash, which is
+# the only punctuation that does not read as a second colon.
+TITLE = ("Photon-Ring Retarded-Time Tomography I: The Shiva Effect \u2014 "
+         "Null Spaces, Multi-Geometry Observability, and Bounded Inference of "
+         "Historical Emissivity Level and Morphology")
 
 
 def surface_table(surf: pd.DataFrame, metric: str, fmt: str = "{:.0f}") -> str:
@@ -619,8 +622,11 @@ def main() -> int:
     c["surf_dg"] = surface_table(surf, "delta_G_indirect_rank")
 
     # ---- arms ----------------------------------------------------------------
-    arm_rows = ["| arm | operational rank (median) | range | kappa+ (median) | "
-                "J_old (median) | T_rec (median) |", "|---|---:|---|---:|---:|---:|"]
+    # Header words are kept short deliberately: the long form overflowed its
+    # container at the print width, which clips in the PDF rather than
+    # scrolling. The units are in the sentence above the table.
+    arm_rows = ["| arm | op. rank | range | kappa+ | J_old | T_rec |",
+                "|---|---:|---|---:|---:|---:|"]
     for a in ARMS:
         s = met[met.arm == a]
         arm_rows.append(f"| `{a}` | {s.operational_rank.median():.0f} | "
@@ -936,6 +942,13 @@ def main() -> int:
     c["r1_nfam_tot"] = L.literal("r1.families.total", len(piv), str(len(piv)),
                                  source=R1F, prose="prior-fit families")
     lw = {"regime": IC, "snr0": REF, "estimator": "TSVD"}
+    c["r1_nlevel"] = L.table("r1.level.n_modes", R1L, "n_level_modes",
+                             fmt="{:d}",
+                             where={"regime": "IN_CLASS_ID", "snr0": REF,
+                                    "estimator": "TSVD",
+                                    "arm": "DIRECT_PHYSICAL"},
+                             prose="spatially uniform temporal modes spanning "
+                                   "the level subspace")
     c["r1_levfrac"] = L.table("r1.level.fraction", R1L, "level_fraction_of_truth",
                               fmt="{:.1%}", where={**lw, "arm": DIR},
                               prose="fraction of a truth's age-window norm that "
@@ -1011,9 +1024,48 @@ def main() -> int:
                                 str(r1fz["sealed_bank"]["n_records"]),
                                 source=R1FZ, prose="sealed main-test truths")
 
+    # Software versions, read from the environment that ran the campaign
+    # rather than from the environment file, which pins names and not builds.
+    import importlib.metadata as _md
+
+    kgeo_commit = (ROOT / "artifacts" / "provenance"
+                   / "kgeo_commit.txt").read_text().strip()
+    c["kgeo_commit"] = L.literal("software.kgeo.commit", kgeo_commit,
+                                 kgeo_commit[:12],
+                                 source="artifacts/provenance/kgeo_commit.txt",
+                                 prose="pinned kgeo cross-tracer commit")
+    for pkg in ("aart", "numpy", "scipy", "pandas", "pyarrow"):
+        try:
+            v = _md.version(pkg)
+        except Exception:
+            v = "unpinned"
+        c[f"{pkg}_version"] = L.literal(f"software.{pkg}.version", v, v,
+                                        source="importlib.metadata in the "
+                                               "pinned analysis environment",
+                                        prose=f"{pkg} version actually run")
+
+    # Figures. The caption lives with the code that draws the figure, so a
+    # figure and its caption cannot drift; the paper interpolates both.
+    figs = json.loads((OUT / "figures" / "FIGURES.json").read_text())["figures"]
+    for f in figs:
+        c[f"fig{f['number']}"] = (f"![Figure {f['number']}. {f['caption']}]"
+                                  f"(figures/{f['name']}.png)")
+
     body = manuscript(c, prov)
     (OUT / "PAPER_I.md").write_text(body)
-    (OUT / "PAPER_I.html").write_text(page(TITLE, body))
+    meta = {
+        "author": sections.AUTHORS,
+        "subject": "Theory and controlled synthetic computation on Kerr "
+                   "photon-ring retarded-time tomography: null spaces, "
+                   "multi-geometry observability, and two sealed held-out "
+                   "historical inverse results. No observational claim.",
+        "keywords": "black hole; Kerr; photon ring; retarded time; "
+                    "inverse problem; identifiability; null space; "
+                    "held-out validation; preregistration",
+    }
+    (OUT / "PAPER_I.html").write_text(page(TITLE, body, meta))
+    (OUT / "PDF_METADATA.json").write_text(
+        json.dumps({"title": TITLE, **meta}, indent=2) + "\n")
     ledger = L.to_dict({
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "git_commit": prov.git_commit,

@@ -27,14 +27,21 @@ sys.path.insert(0, str(ROOT / "src"))
 from phrt import provenance
 
 OUT = ROOT / "artifacts" / "manuscript"
-BUNDLE = OUT / "PAPER_I_SOURCE_BUNDLE.tar.gz"
-MANIFEST = OUT / "PAPER_I_SOURCE_BUNDLE_MANIFEST.json"
+# PAPER_I_EDITORIAL_RULING_022 item 6: the bundle is named for the paper it
+# rebuilds. The old PAPER_I_SOURCE_BUNDLE name is not kept as an alias -- two
+# names for one archive is how a reviewer ends up with the wrong one.
+BUNDLE = OUT / "PHOTON_RING_TOMOGRAPHY_I_SHIVA_EFFECT_SOURCE_BUNDLE.tar.gz"
+MANIFEST = OUT / "PHOTON_RING_TOMOGRAPHY_I_SHIVA_EFFECT_SOURCE_BUNDLE_MANIFEST.json"
 
 EXPLICIT = [
     "artifacts/manuscript/PAPER_I.md",
     "artifacts/manuscript/PAPER_I.html",
     "artifacts/manuscript/PAPER_I.pdf",
     "artifacts/manuscript/CLAIM_LEDGER.json",
+    # V2 is the freeze the manuscript actually builds and verifies against;
+    # V1 travels with it as the preserved record of the earlier line, because
+    # the verifier reads both.
+    "artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json",
     "artifacts/CANONICAL_ARTIFACT_FREEZE.json",
     "artifacts/SUPERSEDED_PRE_G10Q.json",
     "artifacts/GATE_DASHBOARD.json",
@@ -59,12 +66,24 @@ EXPLICIT = [
     "scripts/run_e3c_operator_grid.py",
     "scripts/run_e3d_source_class_stress.py",
     "scripts/build_e3c_freeze.py",
+    "scripts/build_evidence_ledger.py",
+    "scripts/build_submission_checklist.py",
+    "scripts/build_source_bundle.py",
+    "scripts/stamp_pdf_metadata.py",
+    "scripts/build_figures.py",
+    "scripts/build_release_note.py",
+    "docs/PAPER_I_PROOF_AUDIT.md",
+    "docs/PAPER_I_RELEASE_NOTE.md",
+    "artifacts/manuscript/PDF_METADATA.json",
+    "docs/Paper_I_v1_Current_Evidence_Ledger.md",
+    "docs/PAPER_I_SUBMISSION_CHECKLIST.md",
     "src/phrt/manuscript/ledger.py",
     "src/phrt/manuscript/render.py",
     "src/phrt/manuscript/sections.py",
     "src/phrt/io/dashboard.py",
 ]
-GLOBS = ["artifacts/reports/*.md", "environments/*.yml"]
+GLOBS = ["artifacts/reports/*.md", "environments/*.yml",
+         "artifacts/manuscript/figures/*"]
 
 
 def cited_tables() -> list[str]:
@@ -92,17 +111,20 @@ def main() -> int:
 
     entries = {p: hashlib.sha256((ROOT / p).read_bytes()).hexdigest() for p in paths}
     prov = provenance.collect()
-    fz = json.loads((ROOT / "artifacts" / "CANONICAL_ARTIFACT_FREEZE.json").read_text())
+    fz = json.loads((ROOT / "artifacts"
+                     / "CANONICAL_ARTIFACT_FREEZE_V2.json").read_text())
     doc = {
         "schema": "phrt-source-bundle/1",
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "git_commit": prov.git_commit,
         "campaign_tag": fz["campaign_tag"],
         "campaign_commit": fz["campaign_commit"],
-        "rebuild": ["python scripts/build_canonical_freeze.py",
+        "rebuild": ["python scripts/build_canonical_freeze.py --v2",
+                    "python scripts/build_evidence_ledger.py",
                     "python scripts/build_manuscript.py",
                     "python scripts/compile_manuscript.py",
-                    "python scripts/verify_manuscript.py"],
+                    "python scripts/verify_manuscript.py",
+                    "python scripts/build_submission_checklist.py"],
         "excluded": "artifacts/raymaps/*.h5 -- large binaries whose sha256 are "
                     "pinned in artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json, "
                     "which is included",

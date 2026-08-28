@@ -1,12 +1,23 @@
-# Photon-Ring Retarded-Time Tomography I: Class-Dependent Identifiability, the Separation of Historical Reach from Algebraic Rank, and Held-Out Reconstruction of Age-Local Emissivity Level in Near-Critical Null Geodesics
+# Photon-Ring Retarded-Time Tomography I: The Shiva Effect — Null Spaces, Multi-Geometry Observability, and Bounded Inference of Historical Emissivity Level and Morphology
+
+**Hina Dixit and Abhinav Chauhan**
 
 **Preprint draft — theory and controlled synthetic computation only.**
 No telescope detection, no laboratory result, and no recovery from a resolved
 real photon ring is claimed anywhere in this manuscript.
 
-- campaign tag `paper-I-campaign-final`, commit `8345068676b15ce8f96a76da9d92b159db215f1d`
+Two held-out historical inverse results are reported:
+`STABLE_BASELINE_INCLUSIVE_EMISSIVITY_LEVEL_RECONSTRUCTION` and
+`AGGREGATE_RESOLUTION_AWARE_MORPHOLOGY_ERROR_REDUCTION`. Neither is recovery of
+a historical movie.
+
+- campaign tag `paper-I-campaign-final`; the canonical freeze is pinned at commit `8345068676b15ce8f96a76da9d92b159db215f1d`,
+  which is the accepted artifact commit it was first cut against and is not the
+  commit that built this document
+- manuscript built at commit `82e106eee85c871ab6ec9685d823bce8a3c6de59`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
-- canonical artifact freeze: 591 artifacts, `artifacts/CANONICAL_ARTIFACT_FREEZE.json`
+- canonical artifact freeze: 591 artifacts,
+  `artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json`
 - every number below is registered in `artifacts/manuscript/CLAIM_LEDGER.json`
   with the artifact, row filter and column it was read from
 
@@ -14,97 +25,64 @@ real photon ring is claimed anywhere in this manuscript.
 
 ## Abstract
 
-Light that passes near the photon shell of a Kerr black hole reaches a distant
-observer along a family of increasingly delayed null geodesics, so a single
-image contains a superposition of source epochs. We ask what of that history is
-actually recoverable, and we separate three questions that are routinely
-conflated: whether a declared source model is identifiable, how far back in
-retarded time an observation can see, and how strongly higher-order images are
-suppressed.
+Light passing near the photon shell of a Kerr black hole reaches a distant
+observer along a family of increasingly delayed null geodesics, so one image
+superposes many source epochs. We ask what of that history is recoverable, and
+separate three quantities that are routinely conflated: algebraic
+identifiability of a declared source model, historical reach at a given
+signal-to-noise ratio, and throughput suppression between orders. The forward
+operator is matrix-free and whitened, built from per-ray Kerr transfer maps on
+12 registered spin–inclination geometries with orders n = 0, 1, 2, under a
+pixel-integrated measurement model whose whitened row carries
+`sqrt(dOmega) g^3`; the earlier flat-per-row convention made Fisher information
+scale with pixel count, and is retired with everything it moved recorded rather
+than absorbed.
 
-We build a matrix-free whitened forward operator directly from per-ray Kerr
-transfer maps on 12 registered spin–inclination geometries, retaining
-orders n = 0, 1, 2. The measurement model is pixel-integrated with white noise
-of fixed density per unit solid angle, so the whitened row carries
-`sqrt(dOmega) g^3`; an earlier convention using `g^3` with a flat per-row noise
-made Fisher information scale with pixel count and is retired, with the
-correction and everything it moved recorded rather than absorbed.
+The three quantities separate, and they separate in one particular way, which
+we name the **Shiva effect**: the enrichment of the source model that creates
+recoverable history destroys identifiability, and the compactness that makes an
+epoch well posed makes the direct image exactly blind to it. Historical
+extension is real, modest, and set by inclination rather than spin — the
+resolved stack sees deeper than the direct image at 12 of 12
+geometries, with median recoverable depth 60, 84 and 144 M at
+i = 20, 50 and 75 degrees and a single value across four spins. Retarded-time
+diversity supplies more of that reach than spatial remapping: flattening the
+delays costs 0.98 of the higher orders' entire contribution against 0.57
+for transplanting the spatial map. Enriching the declared class from
+224 to 1056 dimensions drives the resolved operational-rank
+fraction down 16.8 percentage points and the smallest determined singular
+value down five orders of magnitude while the deepest recoverable epoch moves
+by at most 1 grid step of 4 M, and compact temporal support turns
+the direct image's old-epoch blindness into 84 identically zero
+columns rather than a large condition number.
 
-Six results. First, **historical extension is real but modest and set by
-inclination, not spin**: the resolved stack sees deeper than the direct image at
-12 of 12 geometries, with median recoverable depth
-60, 84 and 144 M at i = 20, 50 and 75 degrees, and the four
-spins give a single value at every inclination. Second, **retarded-time
-diversity supplies more of that reach than spatial remapping, but not all of
-it**: measured against the direct image as the zero point, flattening the delays
-costs a median 0.98 of the higher orders' entire contribution while
-transplanting the spatial map costs 0.57. Third, and most consequential for
-how such claims should be stated, **identifiability and historical reach are
-different quantities that move independently**. Enriching the declared source
-class from 224 to 1056 dimensions drives the resolved
-operational-rank fraction down by 16.8 percentage points and the smallest
-determined singular value down by five orders of magnitude, while the deepest
-recoverable epoch moves by at most 1 grid step of 4 M. Full column
-rank on the registered class is therefore a statement about that class and not
-about the continuum: temporal enrichment alone exposes a direct-channel null
-space of up to 100 dimensions.
+Two sealed held-out historical inverse results follow, each judged against a
+materiality floor fixed before its bank was drawn.
+**`STABLE_BASELINE_INCLUSIVE_EMISSIVITY_LEVEL_RECONSTRUCTION`**: on
+640 truths committed by hash before an operator existed for them,
+stacking orders extends the anchored stable span from 48 to
+80 M at `SNR_0 = 100`, a gain of 32 M against a threshold of
+8 M, on both prior-free estimators and 4 of 4
+source families. It is a statement about the age-local emissivity *level*:
+98.4% of the field norm is its spatially constant part.
+**`AGGREGATE_RESOLUTION_AWARE_MORPHOLOGY_ERROR_REDUCTION`**: on 60
+further held-out truths, scored by whichever measure the state's own resolved
+label selects and with no state excluded, the resolved stack reduces morphology
+error against the analytic source by 0.164 and 0.133, lower
+bounds 0.116 and 0.101. Neither an unresolved second
+image nor total flux reaches materiality, so the gain is attributable to
+resolving the orders rather than to the photons they carry. Four qualifications
+travel with that result rather than after it: `MULTI_FEATURE_RECOVERY_NEGATIVE`,
+`STABLE_MORPHOLOGY_INTERVAL_NEGATIVE`, `FAMILY_HETEROGENEITY` and
+`DIRECT_BASELINE_SATURATION_QUALIFICATION`.
 
-Fourth, **a sealed held-out test shows that the extra reach is usable for the
-age-local emissivity level**. On one geometry and inside the declared class,
-scoring 640 truths committed by hash before any operator existed for
-them, stacking orders `n = 0, 1, 2` extends the anchored stable span of
-reconstruction from 48 to 80 M at `SNR_0 = 100`, a gain of
-32 M against a threshold of 8 M declared in advance. Two
-prior-free estimators agree, 4 of 4 source families show it,
-and it survives a held-out dynamical family. It is a gain in the **age-local
-emissivity level**: 98.4% of the field norm is its spatially constant
-part, and under an explicit level/structure projector the old-band structure
-error is 1.169 against 1.141, above one for both arms. Detailed
-old-age morphology is not recovered at this SNR. Separately and at
-`SNR_0 = 30000`, three orders of magnitude higher, the structural span is
-40 M direct against 76 M resolved. Reconstruction
-of histories outside the declared class fails, and posterior uncertainty is
-withdrawn after a calibration gate frozen in advance was missed.
-
-Fifth, we ask whether the same orders recover age-local *structure*, and report
-that under our preregistered standard they do not at the reference SNR. Replacing
-the global temporal factor with compactly supported functions shows the direct
-image has 84 identically zero columns on a 224-dimensional localized
-class where the mirrored global class reports full rank — old-epoch blindness
-becomes a null-space fact rather than a condition number, and orders 1 and 2
-supply 38 of the 0-dimensional structural support the
-direct image lacks. On truths synthesised exactly in the class, so that the
-representation floor is zero, the resolved arm reduces old-band structural error
-with per-truth medians of 0.168 and 0.178; but the
-cell-balanced means are 0.116 and 0.098 with lower bounds
-0.039 and 0.000, below the 5% floor fixed in advance, so
-**the materiality standard is not met**. It is met at ten times the SNR, as a
-secondary result. No contiguous structural interval is recovered at any SNR: the
-resolved-minus-direct span difference is 0 M against 8 M. We report
-these as a bar not cleared rather than an effect shown to be zero, and no sealed
-main was run.
-
-Sixth, **a second sealed test asks whether the recovered *shape* is right,
-and finds an aggregate improvement that is not movie recovery**. Before drawing
-any truth we audited the source objects themselves — 169 of them, with no
-ray map imported and no operator constructed — and found that projection into
-the claim-bearing class merges genuinely two-feature states into one at a rate
-of 0.136, which sets a ceiling no estimator can beat. Scoring
-60 held-out truths under a resolution-aware morphology error, whose
-per-state measure is selected by what the evaluation grid can resolve and which
-excludes no state, the resolved stack reduces error against the direct image by
-0.164 and 0.133 in an end-to-end comparison with the
-analytic source, lower bounds 0.116 and 0.101, against a
-floor of 0.10 and 0.05 declared before the bank existed. Neither an unresolved
-second image nor total flux reaches materiality, so the gain is attributable to
-resolving the orders. It remains an average over a heterogeneous set:
-5 of 12 family–estimator cells are material, two-feature
-recovery reaches materiality nowhere, and the stable morphology interval is
-0 M.
-
-We report a negative control throughout. Permuting each order's delays,
-positions and weights independently — preserving all three marginals and
-destroying only their pairing — yields a better-conditioned operator than the
+Between the two, age-local *structure* under our preregistered standard is a
+bar not cleared at the reference SNR rather than an effect shown to be zero,
+and it is cleared at ten times that SNR as a secondary result. Neither result
+is recovery of a historical movie, and we say so at every place both appear.
+Throughout we carry a negative control: permuting each order's delays,
+positions and weights independently, which preserves all three marginals and
+destroys only their pairing, yields a better-conditioned operator than the
 physical one at 12 of 12 geometries across 16 frozen seeds.
 Conditioning is not evidence of physical content, and no conclusion here rests
 on it.
@@ -140,12 +118,64 @@ shows that they separate. It also documents a measurement-convention defect we
 found and corrected mid-campaign, because several of the conclusions we would
 otherwise have reported were artefacts of it.
 
+Running through those measurements is one structural fact, and we name it
+because it recurs in three independent places and is the reason a
+photon-ring history cannot be read off a reach statistic. **The same
+enrichment of the source model that creates recoverable history destroys
+identifiability, and the same compactness that makes an epoch well posed makes
+the direct image exactly blind to it.** We call this the *Shiva effect*, after
+the destroyer who is also the creator, and we mean it literally rather than
+decoratively: the destruction is an exact null space, not an ill-conditioning.
+Enriching the declared temporal class from 224 to 1056 dimensions moves the
+deepest recoverable epoch by at most one grid step while driving the resolved
+operational-rank fraction down by 16.8 percentage points
+(section 11); replacing the global temporal factor with compactly
+supported functions gives the direct image 84 identically zero
+columns on a class where the mirrored global class reports full rank
+(section 7.1); and the higher orders supply
+38 of the old-epoch structural directions the direct image lacks
+(section 7.2). Creation and destruction are the same operation
+seen from two sides, and a claim about historical recovery that quotes only one
+of them is not wrong so much as incomplete.
+
+### 1.2 Contributions
+
+1. **A whitened, matrix-free operator built from validated ray maps**, with the
+   pixel-integrated measurement convention stated explicitly and the earlier
+   convention retired in public (section 2, section 13).
+2. **The separation of identifiability, historical reach and throughput**,
+   measured rather than argued, on 12 geometries
+   (section 5, section 11).
+3. **The Shiva effect**: enrichment that creates history destroys
+   identifiability, and compactness that makes an epoch well posed makes the
+   direct image exactly blind to it — an exact null space, not an
+   ill-conditioning (section 7, section 11).
+4. **`STABLE_BASELINE_INCLUSIVE_EMISSIVITY_LEVEL_RECONSTRUCTION`**, a sealed
+   held-out historical inverse result on the age-local emissivity level, with
+   its level-versus-structure decomposition reported in the same section
+   (section 6).
+5. **`AGGREGATE_RESOLUTION_AWARE_MORPHOLOGY_ERROR_REDUCTION`**, a second sealed
+   held-out historical inverse result, on a measure that changes with what the
+   evaluation grid can resolve and excludes no state, with
+   `MULTI_FEATURE_RECOVERY_NEGATIVE`, `STABLE_MORPHOLOGY_INTERVAL_NEGATIVE`,
+   `FAMILY_HETEROGENEITY` and `DIRECT_BASELINE_SATURATION_QUALIFICATION`
+   reported beside it (section 9).
+6. **A preregistered negative result on age-local structure** at the reference
+   SNR, preserved as a bar not cleared rather than an effect shown to be zero
+   (section 8).
+7. **A nonphysical negative control that beats the physical operator on
+   conditioning**, which refutes conditioning as evidence of physical content
+   (section 10.1).
+8. **A governance record that survives its own defects**: every freeze, gate,
+   amendment and retired bank is committed before the result it governs, and
+   the failures are preserved rather than edited (section 16).
+
 ### 1.1 What is deliberately not claimed
 
 No statement here concerns a real observation. The source model is a declared
 finite-dimensional class, and no result is extrapolated from full rank on such a
 class to injectivity on a continuum of source functions — that inference is
-exactly what section 8 shows to be invalid. No machine-learned reconstruction is
+exactly what section 11 shows to be invalid. No machine-learned reconstruction is
 performed. No geometry-mismatch or order-leakage study is included. The
 recoverable depth reported everywhere is a detection statement about a localized
 unit-norm historical mode, never the largest delay any ray happens to carry.
@@ -172,7 +202,10 @@ Var(eta)      = sigma_Omega^2 dOmega_{n,p}
 The distinction from a delay ladder matters. The pilot geometry's orders span
 *overlapping* retarded windows, so an image order does not correspond to one
 source epoch, and `a_n j(t_o - n tau)` is only an asymptotic summary. A
-distributed delay kernel and a delay ladder have different null spaces.
+distributed delay kernel and a delay ladder need not have the same null space,
+and on this operator they do not: the ladder's null space is fixed by the
+three discrete lags, while the kernel's is fixed by the whole delay
+distribution within each window.
 
 Whitening under the declared noise gives the row that every audit consumes:
 
@@ -194,7 +227,7 @@ quieter detector per unit sky than the direct image.
 The corrected convention is invariant under the same split-and-merge test to
 5.4e-15, against 7 for the retired one, and the check is a registered
 gate. Every result in this manuscript is computed under the corrected
-convention; section 10 lists what the correction moved.
+convention; section 13 lists what the correction moved.
 
 Derived arms are linear maps of the same resolved data with their covariance
 propagated, never separate models with their own noise level:
@@ -295,7 +328,7 @@ class–anchor combinations (E3D).
 `E3C_freeze_raymap_hashes` re-checks every ray map against the digest pinned
 before evaluation; `E3C_frozen_grid_invariance` checks that the class dimension
 and age grid were identical at every geometry. `E3D_class_nesting` is discussed
-in section 8.
+in section 11.
 
 ---
 
@@ -307,6 +340,8 @@ At the reference SNR the resolved stack sees deeper than the direct image at
 12 of 12 geometries, and carries strictly positive historical
 innovation beyond the direct channel's own 99.9% throughput-weighted age
 boundary at 12 of 12.
+
+![Figure 1. Recoverable depth at the reference SNR is flat across four spins at every inclination and steps sharply with inclination. The resolved stack sees deeper than the direct image at all twelve geometries; the margin is largest where the direct image is shallowest.](figures/fig1_depth_inclination_not_spin.png)
 
 **Recoverable depth, resolved stack (M):**
 
@@ -481,8 +516,11 @@ fractional position within its own retarded window, giving
 Gamma_sensitivity_matched = -0.5 log( I_{n+1}^matched / I_n^matched )
 ```
 
-against the throughput exponent `Gamma_amp = -log(A_g ratio)`. All 19 window
-fractions are retained at every geometry.
+against the throughput exponent `Gamma_amp = -log(A_g ratio)`. The one-half is
+what makes the two comparable: `I` is a Fisher information and scales as the
+square of an amplitude, so half its log ratio is the log ratio of the amplitude
+that `Gamma_amp` measures directly. All 19 window fractions are retained at
+every geometry.
 
 | geometry | pair | defined / 19 | median | IQR | Gamma_amp | difference | window overlap | disposition |
 |---|---|---:|---:|---:|---:|---:|---:|---|
@@ -580,7 +618,7 @@ anywhere in this paper; the surface is reported cell by cell.
 | **trend in spin** | nondecreasing | nonmonotone | nonincreasing | |
 
 Read off the cells rather than summarised: the resolved operational rank is
-constant at i = 20, nondecreasing at i = 50, nonmonotone at i = 75; nonincreasing at a* = 0.00, nonincreasing at a* = 0.50, nonincreasing at a* = 0.90, nonmonotone at a* = 0.98. There is no clean monotone spin trend, and section 7.2 shows
+constant at i = 20, nondecreasing at i = 50, nonmonotone at i = 75; nonincreasing at a* = 0.00, nonincreasing at a* = 0.50, nonincreasing at a* = 0.90, nonmonotone at a* = 0.98. There is no clean monotone spin trend, and section 10.2 shows
 that what trend there is in rank is partly confounded with the source domain and
 must not be read as a pure spacetime effect. The inclination dependence is the
 robust one, and it runs opposite to depth: higher inclination buys reach and
@@ -588,7 +626,11 @@ costs identifiable directions.
 
 ### 5.7 Arms at a glance
 
-| arm | operational rank (median) | range | kappa+ (median) | J_old (median) | T_rec (median) |
+Medians over the 12 geometries: operational rank and its range, positive
+condition number, historical innovation `J_old` and recoverable depth `T_rec`
+in M, both at the reference SNR.
+
+| arm | op. rank | range | kappa+ | J_old | T_rec |
 |---|---:|---|---:|---:|---:|
 | `DIRECT_PHYSICAL` | 153 | 133–159 | 9.00e+08 | 8.29 | 60 |
 | `RESOLVED_PHYSICAL` | 202 | 184–205 | 7.84e+05 | 40.72 | 84 |
@@ -603,7 +645,7 @@ Two rows in that table are not measurement architectures and must not be read
 as ones. `EQUALIZED_ORDER_SENSITIVITY` removes the physical attenuation between
 orders by fiat; its large `J_old` and depth are an oracle bound on what
 attenuation costs, not an achievable configuration. `PAIRING_DESTROYED` is the
-nonphysical negative control of section 7.1. `TOTAL_FLUX` is a genuine but
+nonphysical negative control of section 10.1. `TOTAL_FLUX` is a genuine but
 deliberately impoverished readout: it collapses all spatial information and
 reaches a median operational rank of 13 against the resolved
 stack's 202, and is included as a floor.
@@ -612,12 +654,14 @@ stack's 202, and is included as a floor.
 
 ## 6. Held-out reconstruction of age-local emissivity level
 
-Sections 2 to 5 are an observability audit: they ask what a measurement can
-distinguish, and they invert nothing. This section is the only place in the
-paper where a source history is actually reconstructed, and it is deliberately
-narrow. One geometry, `a* = 0.5` and `i = 50` degrees. One source class, C224.
-A single sealed bank of 640 truths, hashed before an operator existed
-for them, scored once.
+**Result label: `STABLE_BASELINE_INCLUSIVE_EMISSIVITY_LEVEL_RECONSTRUCTION`.**
+
+Section 2 through section 5 are an observability audit:
+they ask what a measurement can distinguish, and they invert nothing. This is
+the first of the paper's two held-out historical inverse results, and it is
+deliberately narrow. One geometry, `a* = 0.5` and `i = 50` degrees. One source
+class, C224. A single sealed bank of 640 truths, hashed before an
+operator existed for them, scored once.
 
 ### 6.1 What was sealed, and when
 
@@ -677,10 +721,27 @@ lower bound of 0.419.
 
 The registered metric normalises by the whole age-window norm, and
 **98.4%** of that norm is the spatially constant part of the field. An
-error under it is therefore not a statement about morphology. Splitting the
-field with an orthogonal projector, `x = P_level x + P_structure x`, where
-`P_level` projects onto fields constant in space at each source time and is
-spanned by the class's own temporal modes:
+error under it is therefore not a statement about morphology. So we split the
+field with an explicit projector,
+
+```
+x = P_level x + P_structure x,      P_structure = I - P_level
+```
+
+where `P_level` is the orthogonal projection, under the plain Euclidean inner
+product on grid points that the age-window norms themselves use, onto fields
+constant in space at each source time. Its range is spanned by the class's own
+8 temporal modes rendered as spatially uniform fields, so it is a
+subspace of the declared class rather than an approximation to one, and it
+carries the positive baseline every family sits on.
+
+Each component below is normalised by the norm of *that* component of the
+truth, not by the whole-field norm. The two columns are therefore not two parts
+of one unit budget and must not be added: the level component holds
+98.4% of the norm, so a level error of 0.266 is a much larger absolute
+error than a structure error of 0.927.
+
+
 
 | quantity | direct | resolved |
 |---|---:|---:|
@@ -860,12 +921,19 @@ preserved unscored.
 
 ## 9. Held-out morphology, measured at the resolution the grid actually has
 
+**Result label: `AGGREGATE_RESOLUTION_AWARE_MORPHOLOGY_ERROR_REDUCTION`, with
+`MULTI_FEATURE_RECOVERY_NEGATIVE`, `STABLE_MORPHOLOGY_INTERVAL_NEGATIVE`,
+`FAMILY_HETEROGENEITY` and `DIRECT_BASELINE_SATURATION_QUALIFICATION`.** The
+four qualifications are part of the result, not commentary on it, and
+section 9.4 states each one with the number that supports it.
+
 Everything above measures emissivity *level*, or structural error under a norm
 that treats every direction alike. Neither says whether the *shape* of the
 source at a given epoch is recovered — how many features it has, where they
 are, how bright they are. That question needs a measure that knows what the
 evaluation grid can resolve, and a preregistered statement of what counts as
-success before the truths are drawn.
+success before the truths are drawn. This is the second of the paper's two
+held-out historical inverse results.
 
 ### 9.1 The source objects, before any measurement
 
@@ -930,6 +998,8 @@ reductions are 0.158 and 0.160, with lower bounds
 0.114 and 0.092. All eight quantities clear the declared
 floor.
 
+![Figure 3. The two held-out historical inverse results, on separate axes because they measure different things in different units. Left: STABLE_BASELINE_INCLUSIVE_EMISSIVITY_LEVEL_RECONSTRUCTION, the anchored stable span against the threshold declared in advance. Right: AGGREGATE_RESOLUTION_AWARE_MORPHOLOGY_ERROR_REDUCTION, median reduction with the paired bootstrap lower bound as the bar, against the 0.10 materiality floor. Both estimators, both targets.](figures/fig3_two_held_out_results.png)
+
 Both controls behave. The unresolved-image arm — a second image with the same
 extra photons but no order labels — reaches +0.000 and
 +0.015, and the total-flux arm -0.020 and +0.036;
@@ -942,30 +1012,18 @@ when it is showing rather than being asserted.
 
 ### 9.4 What this result is not
 
-**It is an average over a heterogeneous set.** 5 of 12
+**`FAMILY_HETEROGENEITY`. It is an average over a heterogeneous set.** 5 of 12
 family–estimator cells are material, and the simplest source in the bank — one
 moving hotspot — is negative under both estimators:
 
-| source family | estimator | median reduction | CI low | material |
-|---|---|---:|---:|---|
-| `circular_hotspot_trajectory` | ridge | -0.022 | -0.200 | no |
-| `circular_hotspot_trajectory` | TSVD | -0.051 | -0.115 | no |
-| `flare_birth_motion_decay` | ridge | +0.381 | +0.191 | **yes** |
-| `flare_birth_motion_decay` | TSVD | +0.377 | +0.065 | **yes** |
-| `m1_rotating_crescent` | ridge | +0.204 | +0.030 | no |
-| `m1_rotating_crescent` | TSVD | +0.212 | +0.049 | no |
-| `m2_structural_mode` | ridge | +0.320 | +0.146 | **yes** |
-| `m2_structural_mode` | TSVD | +0.243 | +0.165 | **yes** |
-| `plunging_feature` | ridge | +0.111 | +0.084 | **yes** |
-| `plunging_feature` | TSVD | +0.097 | +0.071 | no |
-| `two_hotspot_trajectories` | ridge | +0.178 | -0.006 | no |
-| `two_hotspot_trajectories` | TSVD | +0.135 | -0.087 | no |
+![Figure 4. FAMILY_HETEROGENEITY. Per-family median reduction with the paired bootstrap lower bound as the bar; a ringed marker is a cell that clears the declared floor. Five of twelve family-estimator cells are material, the simplest source in the bank is negative under both estimators, and ten truths per family makes every interval here wide. The aggregate is an average over this spread, not a uniform gain.](figures/fig4_family_heterogeneity.png)
 
-Ten truths per family makes every interval here wide, so no per-family claim is
+The twelve exact values are in the evidence ledger rather than repeated here.
+Ten truths per family makes every interval wide, so no per-family claim is
 supported in either direction. What is supported is that the aggregate is not a
 uniform improvement and must not be quoted as one.
 
-**Two-feature recovery does not reach materiality anywhere.** On the
+**`MULTI_FEATURE_RECOVERY_NEGATIVE`. Two-feature recovery does not reach materiality anywhere.** On the
 17 truths of 60 that carry a stable multi-resolved state at
 all, the absolute assignment cost for the resolved arm is 1.208 and
 1.302, where 1.0 is one whole feature wrong. The measure resolves
@@ -973,7 +1031,7 @@ that a state has two features and recovers the morphology of one. It does not
 recover the pair, and the sealed bank reproduces on held-out truths exactly the
 split an earlier validation found.
 
-**There is no stable morphology interval.** 0 M for every arm,
+**`STABLE_MORPHOLOGY_INTERVAL_NEGATIVE`. There is no stable morphology interval.** 0 M for every arm,
 estimator, class and SNR. At the reference SNR the resolved arm does not even
 extend how far back morphology stays in tolerance: its mean reach is
 3.06 M against the direct image's 3.32 M, lower
@@ -983,7 +1041,7 @@ reference-SNR comparison is the claim-bearing one and reads as a general
 statement if the SNR is left off. A per-age error reduction is not a recovered
 history at either.
 
-**The baseline is partly floor-limited.** 56.6% of direct-image states
+**`DIRECT_BASELINE_SATURATION_QUALIFICATION`. The baseline is partly floor-limited.** 56.6% of direct-image states
 under ridge and 55.0% under TSVD sit at the measure's ceiling, so the
 mean substantially counts how many states failed outright rather than how far
 off the recovered shape was. The absolute error the resolved arm reaches is
@@ -1060,6 +1118,8 @@ analyses stop. It should not be, because it is a joint property of the operator
 and a 224-dimensional model, and the way to find out how much of it is the
 model's poverty is to enrich the model.
 
+![Figure 2. The Shiva effect, in one geometry family. Enriching the declared temporal class drives the resolved arm's operational-rank fraction down while the deepest recoverable epoch is unchanged. Identifiability and historical reach are different quantities and they move independently.](figures/fig2_shiva_effect.png)
+
 We do so along a nested ladder on three anchor geometries. The azimuthal and
 temporal factors are literal prefixes, so their columns are preserved; the
 radial cubic B-spline factor is refined, so its columns move while its span is
@@ -1115,7 +1175,7 @@ including the resolved stack itself (up to 35 dimensions of
 column rank at every class and every anchor, including the
 1056-dimensional one, where the physical resolved operator does not.
 An operator with no physical content is the only one on the table that stays
-identifiable under enrichment. This is the same lesson as section 7.1 arriving
+identifiable under enrichment. This is the same lesson as section 10.1 arriving
 from the rank side: identifiability is not a measure of physical fidelity.
 
 **The delay-only equivalence does not survive enrichment.** Indistinguishable
@@ -1164,7 +1224,7 @@ distinctive about near-critical geodesics.
 Recoverable history is controlled by an information-weighted temporal kernel. It
 is not controlled by the oldest ray, which is an extreme-value statistic that
 does not converge; not by total photon-ring flux, which the equalized-sensitivity
-arm shows to be a poor proxy; and not by algebraic rank, which section 8 shows
+arm shows to be a poor proxy; and not by algebraic rank, which section 11 shows
 can move by hundreds of dimensions while depth moves by one grid step.
 
 The most transferable methodological point is negative. Three of the quantities
@@ -1222,7 +1282,7 @@ in the direction of a smaller claim.
 ## 14. Limitations
 
 1. **Declared classes, not the continuum.** Every rank and nullity is relative
-   to a finite-dimensional class. Section 8 is a demonstration that this
+   to a finite-dimensional class. Section 11 is a demonstration that this
    qualification is load-bearing, not a formality.
 2. **Three image orders.** Orders above n = 2 are not computed. No asymptotic
    exponent in n is fitted, and none should be read off the three points here.
@@ -1231,7 +1291,7 @@ in the direction of a smaller claim.
    is not the geometric Kerr critical exponent and is not identified with it
    anywhere.
 4. **A source domain that moves with spin.** The primary radial support follows
-   the rays. Section 7.2 measures the confound on three anchors; it does not
+   the rays. Section 10.2 measures the confound on three anchors; it does not
    remove it from the primary surface.
 5. **5 matched-support cells are undefined.** At low inclination the
    n = 0 and n = 1 retarded windows are disjoint. Those cells are reported and
@@ -1296,14 +1356,65 @@ in the direction of a smaller claim.
 
 14. The structural effect at the reference SNR lives mainly in a signed
     constant-flux diagnostic bank, which reaches a negative mass fraction of
-    0.197 and is not a physical emissivity history. Excluding it, as the
-    design requires, removes the pass.
+    0.197 and is not a physical emissivity history. Section 8
+    reports what excluding it costs.
 
 15. No sealed main was executed for the structural endpoint, so nothing in
     section 8 is a held-out result. Every sealed commitment is preserved
     unscored.
 
-## 15. Reproducibility and governance
+**Figures.** All four are primary; there is no supplementary tier, because a
+figure not worth placing in the argument is not worth carrying. Each is drawn
+by `scripts/build_figures.py` from the same canonical tables the claim ledger
+cites, and each caption is stored with the code that draws it, so a figure and
+its caption cannot drift apart. Figure 1 is the observability result, figure 2
+is the Shiva effect, figure 3 is the two held-out results side by side on
+separate axes, and figure 4 is the family heterogeneity that qualifies the
+second of them.
+
+## 15. Conclusion
+
+A resolved photon ring carries retarded-time information, and this paper is an
+attempt to say exactly how much, on synthetic data, with the standard for
+"how much" written down first.
+
+What the orders buy is real and bounded. They see deeper than the direct image
+at every geometry we registered, by a margin set by inclination and not by
+spin. They convert an ill-posed old-epoch problem into a well-posed one on
+compactly supported classes, where the direct image has exact null directions
+rather than merely poor conditioning. And on two sealed held-out banks they
+deliver two historical inverse results:
+`STABLE_BASELINE_INCLUSIVE_EMISSIVITY_LEVEL_RECONSTRUCTION`, an extension of
+the anchored stable span for age-local emissivity level, and
+`AGGREGATE_RESOLUTION_AWARE_MORPHOLOGY_ERROR_REDUCTION`, an aggregate
+improvement in a resolution-aware morphology error, each attributable to
+resolving the orders rather than to the photons those orders carry.
+
+What they do not buy is a movie. The level result is a level result: most of
+the recovered norm is the spatially constant part, and old-band structure error
+stays above one for both arms. The morphology result is an average over a
+heterogeneous set of source families that reaches materiality in no
+two-feature cell, extends no stable morphology interval, and is measured
+against a direct baseline more than half of whose states sit at the measure's
+ceiling. Age-local structure under our preregistered standard is a bar not
+cleared at the reference SNR. We report each of these beside its result rather
+than after it, because the distance between "a measurable improvement in an
+error" and "the history was recovered" is where a claim of this kind goes
+wrong.
+
+The Shiva effect is the reason we think that distance is structural rather than
+incidental. A source model rich enough to describe a real accretion history is
+rich enough to destroy the identifiability that made the reach statistic
+meaningful; a model small enough to be identifiable is a statement about that
+model. Any future claim to have read history out of a photon ring will have to
+name which side of that trade it is standing on, and this paper's contribution
+is to make the trade measurable rather than rhetorical.
+
+Everything here is theory and controlled synthetic computation on one operator
+family. No telescope detection, no laboratory result, and no recovery from a
+resolved real photon ring is claimed.
+
+## 16. Reproducibility and governance
 
 The campaign is gate-driven. Gates carry a mechanical status that is never
 edited to match a later adjudication, so a defect that was real stays visible:
@@ -1339,6 +1450,62 @@ every number above to the artifact, row filter and column it came from.
 checks that each rendered value appears in this text.
 
 ---
+
+## References
+
+Literature entries were checked against the publisher or arXiv record rather
+than recalled; software entries are pinned to the version or commit this
+campaign actually ran.
+
+**Kerr lensing and the photon ring**
+
+1. S. E. Gralla, D. E. Holz and R. M. Wald, *Black hole shadows, photon rings,
+   and lensing rings*, Phys. Rev. D **100**, 024018 (2019), arXiv:1906.00873.
+2. S. E. Gralla and A. Lupsasca, *Lensing by Kerr black holes*,
+   Phys. Rev. D **101**, 044031 (2020), arXiv:1910.12873.
+3. M. D. Johnson, A. Lupsasca, A. Strominger, G. N. Wong, S. Hadar, D. Kapec,
+   R. Narayan, A. Chael, C. F. Gammie, P. Galison, D. C. M. Palumbo,
+   S. S. Doeleman, L. Blackburn, M. Wielgus, D. W. Pesce, J. R. Farah and
+   J. M. Moran, *Universal interferometric signatures of a black hole's photon
+   ring*, Sci. Adv. **6**, eaaz1310 (2020), arXiv:1907.04329,
+   doi:10.1126/sciadv.aaz1310.
+4. Event Horizon Telescope Collaboration, *First M87 Event Horizon Telescope
+   Results. I. The Shadow of the Supermassive Black Hole*,
+   Astrophys. J. Lett. **875**, L1 (2019), doi:10.3847/2041-8213/ab0ec7.
+
+**Time domain in the photon ring**
+
+5. G. N. Wong, *Black hole glimmer signatures of mass, spin, and inclination*,
+   Astrophys. J. **909**, 217 (2021), arXiv:2009.06641,
+   doi:10.3847/1538-4357/abdd2d.
+6. S. Hadar, M. D. Johnson, A. Lupsasca and G. N. Wong, *Photon ring
+   autocorrelations*, Phys. Rev. D **103**, 104038 (2021), arXiv:2010.03683.
+
+   References 5 and 6 read the time domain through statistics of the observed
+   intensity — an arrival-time sequence and a two-point function. This paper
+   asks the complementary question: treated as a linear inverse problem, what
+   of the source history is *identifiable and recoverable*, and under what
+   declared class. Neither reference is used as an input to any number here.
+
+**Inverse problems**
+
+7. P. C. Hansen, *Rank-Deficient and Discrete Ill-Posed Problems: Numerical
+   Aspects of Linear Inversion*, SIAM Monographs on Mathematical Modeling and
+   Computation 4 (1998). The truncated-SVD and Tikhonov estimators used here
+   are the standard ones; nothing in this paper is a new estimator.
+
+**Software, pinned to what was run**
+
+8. A. Cárdenas-Avendaño, A. Lupsasca and H. Zhu, *Adaptive analytical ray
+   tracing of black hole photon rings*, Phys. Rev. D **107**, 043030 (2023),
+   arXiv:2211.07469. Code: `aart` 2.1.10, the primary ray tracer.
+9. A. Chael, `kgeo`, a Kerr null-geodesic tracer implementing the
+   Gralla–Lupsasca formalism, <https://github.com/achael/kgeo>, pinned at
+   commit `dc347060c5fb` and used as an independent cross-tracer, not as the
+   primary.
+10. NumPy 1.26.4, SciPy 1.11.4, pandas 3.0.5 and
+    PyArrow 25.0.1, under the pinned single-threaded environment
+    described in section 16.
 
 ## Data and code availability
 

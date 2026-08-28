@@ -9,6 +9,7 @@ column or a heading orphaned at a page break does not show up in the markdown.
 """
 from __future__ import annotations
 
+import subprocess
 import sys
 from pathlib import Path
 
@@ -17,6 +18,12 @@ OUT = ROOT / "artifacts" / "manuscript"
 HTML = OUT / "PAPER_I.html"
 PDF = OUT / "PAPER_I.pdf"
 SHOTS = OUT / "pages"
+META = OUT / "PDF_METADATA.json"
+
+# Short enough to sit in a header without wrapping. The full title is on the
+# title page and in the PDF metadata.
+RUNNING_HEAD = "Photon-Ring Retarded-Time Tomography I: The Shiva Effect"
+RUNNING_AUTHORS = "Dixit &amp; Chauhan"
 
 
 def main() -> int:
@@ -39,8 +46,26 @@ def main() -> int:
                               device_scale_factor=2)
         pg.goto(HTML.as_uri(), wait_until="load")
         pg.emulate_media(media="print")
+        # A running header and a page number. Chromium ignores CSS @page
+        # margin boxes, so the templates are the only route; they are rendered
+        # at a fixed 9pt independent of the page's own styles, and the title
+        # page suppresses its own header via display_header_footer's first-page
+        # behaviour being unavailable -- so the header is deliberately short
+        # enough to sit above a title page without looking wrong.
+        head = (
+            "<div style=\"font:400 8pt -apple-system,Segoe UI,Roboto,sans-serif;"
+            "color:#666;width:100%;padding:0 16mm;display:flex;"
+            "justify-content:space-between\">"
+            f"<span>{RUNNING_HEAD}</span><span>{RUNNING_AUTHORS}</span></div>")
+        foot = (
+            "<div style=\"font:400 8pt -apple-system,Segoe UI,Roboto,sans-serif;"
+            "color:#666;width:100%;padding:0 16mm;text-align:center\">"
+            "<span class=\"pageNumber\"></span> of "
+            "<span class=\"totalPages\"></span></div>")
         pg.pdf(path=str(PDF), format="A4", print_background=True,
-               margin={"top": "18mm", "bottom": "18mm",
+               display_header_footer=True,
+               header_template=head, footer_template=foot,
+               margin={"top": "20mm", "bottom": "20mm",
                        "left": "16mm", "right": "16mm"})
 
         # page images for inspection: screen media, scrolled in viewport steps
@@ -84,6 +109,22 @@ def main() -> int:
                   f"{o['text'].replace(chr(10), ' ')}")
     else:
         print("  no element overflows its container")
+
+    # The metadata stamp lives in its own script because it needs pypdf, which
+    # the pinned analysis environment does not carry. Run it with whichever
+    # interpreter can import it rather than leaving the PDF unattributed.
+    stamped = False
+    for exe in (sys.executable, "python3", "/usr/bin/python3"):
+        r = subprocess.run([exe, str(ROOT / "scripts" / "stamp_pdf_metadata.py")],
+                           cwd=ROOT, capture_output=True, text=True)
+        if r.returncode == 0:
+            print("  " + r.stdout.strip().replace("\n", "\n  "))
+            stamped = True
+            break
+    if not stamped:
+        print("  WARNING: PDF metadata not stamped; no interpreter here has "
+              "pypdf. The PDF carries no author or subject.")
+        return 1
     return 0
 
 
