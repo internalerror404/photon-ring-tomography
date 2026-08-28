@@ -244,6 +244,17 @@ def finish(st) -> int:
         token = "HMT1_MAIN_IMPLEMENTATION_DEFECT"
 
     scratch = st.get("scratch", False)
+
+    # A defective sealed run must not leak its endpoint. If a gate failed, the
+    # science reading is withheld -- and withheld means not written and not
+    # printed, not merely labelled. Otherwise the held-out numbers are in the
+    # transcript, the bank is spent, and no corrected rerun on it could ever
+    # be called sealed again. The diagnostic tables that carry no endpoint
+    # information are still written, because they are what a repair needs.
+    withheld = bool(failed_gates)
+    endpoint_tables = {"hmt1_main_scores", "hmt1_main_endpoint",
+                       "hmt1_main_stable_feature_spans",
+                       "hmt1_main_joint_spans"}
     for name, rows in (("hmt1_main_scores", st["score_rows"]),
                        ("hmt1_main_endpoint", end_rows),
                        ("hmt1_main_stable_feature_spans", span_rows),
@@ -252,6 +263,8 @@ def finish(st) -> int:
                        ("hmt1_main_noiseless_control", ncell),
                        ("hmt1_main_off_manifold", st["off_rows"]),
                        ("hmt1_main_null_pairs", st["null_rows"])):
+        if withheld and name in endpoint_tables:
+            continue
         if rows:
             man.add_output(write_table(rows, name, out_dir=run_dir / "tables"))
             if not scratch:
@@ -259,9 +272,14 @@ def finish(st) -> int:
 
     doc = json.dumps({"experiment": "HMT1_SEALED_MAIN", "run_id": run_id,
                       "stop_token": token, "failed_gates": failed_gates,
-                      "science_reading_withheld": bool(failed_gates),
+                      "science_reading_withheld": withheld,
+                      "endpoint_withheld_note":
+                          "the endpoint tables and regime verdicts of this run "
+                          "were not written and not printed, so the held-out "
+                          "bank remains unseen and a corrected rerun on it can "
+                          "still be sealed" if withheld else None,
                       "claim_bearing_regime": CLAIM,
-                      "gates": sub, "verdicts": verdicts,
+                      "gates": sub, "verdicts": {} if withheld else verdicts,
                       "family_agreement_readings": {
                           "fraction_required": req_frac,
                           "count_required": req_count},
@@ -279,7 +297,11 @@ def finish(st) -> int:
     print("\ngates")
     for x in man.gates:
         print(f"  {x.name:56s} {x.status}")
-    for rg, v in verdicts.items():
-        print(f"  {rg:22s} pass={v.get('pass')}  {v}")
+    if withheld:
+        print("\n  science reading WITHHELD: endpoint tables not written and "
+              "verdicts not printed, so the held-out bank stays unseen")
+    else:
+        for rg, v in verdicts.items():
+            print(f"  {rg:22s} pass={v.get('pass')}  {v}")
     print(f"stop token: {token}\nmanifest {mp}\ntotal {time.time() - t0:.0f}s")
     return 0 if not man.failed_gates else 1
