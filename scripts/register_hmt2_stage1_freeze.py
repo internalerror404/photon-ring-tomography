@@ -31,13 +31,15 @@ VFZ = ROOT / "artifacts" / "configs" / "HMT1_VALIDATION_FREEZE_V0.json"
 OUT = ROOT / "artifacts" / "configs" / "HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0.json"
 
 SEED = 20260941
-PER_FAMILY = 8
+PER_FAMILY = 6      # per split
 N_DRAWS = 4
+SELECTION_DRAWS = 2
+SPLITS = ("selection", "pilot")
 
 
-def commitment(family, n, seed):
+def commitment(family, split, n, seed):
     return hashlib.sha256(json.dumps(
-        {"family": family, "split": "hmt2_stage1_validation", "n": n,
+        {"family": family, "split": f"hmt2_stage1_{split}", "n": n,
          "seed": seed, "model": "contrast"}, sort_keys=True).encode()).hexdigest()
 
 
@@ -165,17 +167,38 @@ def main() -> int:
         },
 
         "bank": {
-            "truths_per_family": PER_FAMILY,
+            "truths_per_family_per_split": PER_FAMILY,
+            "splits": list(SPLITS),
             "n_families": len(fams),
-            "n_truths": PER_FAMILY * len(fams),
+            "n_truths": PER_FAMILY * len(fams) * len(SPLITS),
             "noise_draws_per_truth": N_DRAWS,
+            "selection_draws_per_truth": SELECTION_DRAWS,
             "bank_seed": SEED,
+            "split_rule": "hyperparameters are chosen on the selection split "
+                          "and nowhere else; the endpoint is read on the pilot "
+                          "split, on truths no hyperparameter saw",
             "fresh": "a new validation bank, disjoint from every HMT-1 bank "
                      "and from the stage 0 audit bank by commitment string",
-            "commitments": {f: commitment(f, PER_FAMILY, SEED) for f in fams},
+            "commitments": {f"{f}|{sp}": commitment(f, sp, PER_FAMILY, SEED)
+                            for f in fams for sp in SPLITS},
+            "size_note": "an earlier draft declared 8 per family with no split "
+                         "at all, which left nowhere disjoint to select "
+                         "hyperparameters. Corrected before any truth was "
+                         "drawn",
             "not_a_sealed_main": "item 17. This is a validation. No held-out "
                                  "sealed bank is created, and none is "
                                  "authorized",
+        },
+        "evaluation": {
+            "comparison_grid": [16, 32, 40],
+            "rule": "the state's *label* comes from the converged source "
+                    "analysis on the two finest refinement levels; the "
+                    "*measurement* happens on the declared evaluation grid. "
+                    "That split is what resolution-aware means here: a state "
+                    "is scored for what it is, measured where the instrument "
+                    "looks. Scoring the label on the coarse grid would let the "
+                    "grid decide what the source contains, which is the HMT-1 "
+                    "failure",
         },
 
         "arms": list(vfz["arms"]),
@@ -289,7 +312,8 @@ def main() -> int:
     }
     OUT.write_text(json.dumps(doc, indent=2, default=str) + "\n")
     print(f"wrote {OUT.relative_to(ROOT)}\n  sha256 {sha256_file(OUT)}")
-    print(f"  {PER_FAMILY} x {len(fams)} = {PER_FAMILY * len(fams)} truths, "
+    print(f"  {PER_FAMILY} x {len(fams)} x {len(SPLITS)} = "
+          f"{PER_FAMILY * len(fams) * len(SPLITS)} truths, "
           f"{len(doc['gates'])} gates, 2 targets")
     return 0
 

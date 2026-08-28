@@ -1,7 +1,7 @@
 {
   "schema": "phrt-hmt2-stage1-freeze/1",
   "id": "HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0",
-  "created_utc": "2026-08-28T04:11:21Z",
+  "created_utc": "2026-08-28T04:14:01Z",
   "ruling": "REVIEWER_RULING_HMT2_STAGE0_019",
   "status": "FROZEN_BEFORE_ANY_VALIDATION_TRUTH",
   "branch": "research/hmt2_resolution_aware_feature_measure_v0",
@@ -85,21 +85,42 @@
     }
   },
   "bank": {
-    "truths_per_family": 8,
+    "truths_per_family_per_split": 6,
+    "splits": [
+      "selection",
+      "pilot"
+    ],
     "n_families": 6,
-    "n_truths": 48,
+    "n_truths": 72,
     "noise_draws_per_truth": 4,
+    "selection_draws_per_truth": 2,
     "bank_seed": 20260941,
+    "split_rule": "hyperparameters are chosen on the selection split and nowhere else; the endpoint is read on the pilot split, on truths no hyperparameter saw",
     "fresh": "a new validation bank, disjoint from every HMT-1 bank and from the stage 0 audit bank by commitment string",
     "commitments": {
-      "circular_hotspot_trajectory": "045748304c4238269fd1dc94b244a61053f705701355c4435e543f09177d4792",
-      "two_hotspot_trajectories": "3eaa9a3b6ec74093aca2bcd8e6ef7c5a0a9eb68cbed4f6869e07c8e0b32b82c2",
-      "m1_rotating_crescent": "733266f107f636007a0774b4fa456737dfc2a5de6b0f38a4a6e9bb7ba07f5209",
-      "m2_structural_mode": "56a90decd67770a67420ee218dd255d3f98501c5ae8f4983f6a813ae88f2017b",
-      "flare_birth_motion_decay": "53a390392c278fbe9b047c0ae6f81bf94b0b2fd57461eb33d3dd681660e85509",
-      "plunging_feature": "88095f10c1f62a189719392a7989d20fe84be8ba176f74542104a44a1353fde3"
+      "circular_hotspot_trajectory|selection": "b380f3d11a51f361849bf8159f7407c7ffcca6bb6c620b4f9e6e8429deb9c728",
+      "circular_hotspot_trajectory|pilot": "3fc4ee13e234a3df61a75f4e1e6594c3c2983830be9d15ead8851f2f8b3a6c8f",
+      "two_hotspot_trajectories|selection": "908637c01497b177c50b1c9ce483727ccd3c296588a652d11143dca9803c89f9",
+      "two_hotspot_trajectories|pilot": "dbd7a3d72a431516bcae1baf3588aee3fc032391ea26f3b24dc051c148a29b7d",
+      "m1_rotating_crescent|selection": "e66364c13a956a4976c129e07a025bd165695946f380098718b753e25c3e4a6c",
+      "m1_rotating_crescent|pilot": "a151999cc63948a95f832fd1c52252a6ed5119ba98359e3905754b0825fd0403",
+      "m2_structural_mode|selection": "dc36c5f94b7a33bc15bb94761b110698784afe97369f25a1bf45796e7ea517de",
+      "m2_structural_mode|pilot": "f64eebb5dfd27f57d401730ba1238a4e14ebbcb7677b4b3ba185c9242de8b5f7",
+      "flare_birth_motion_decay|selection": "3503194ece30e5c480406e025ee8f7faacb1126394c463347e05ce86dd52efa6",
+      "flare_birth_motion_decay|pilot": "5b76fe6df0ffff7a73d04344cfca69d4658a6f814efa69729d0698e49418674a",
+      "plunging_feature|selection": "7610f83758fe853aaad238740e351e5ec853876814b7ebb6df89a8bf8799f893",
+      "plunging_feature|pilot": "4645adf2463d852e8526621acced3eef377445d7d9e12b01cbe850ef1ccffb66"
     },
+    "size_note": "an earlier draft declared 8 per family with no split at all, which left nowhere disjoint to select hyperparameters. Corrected before any truth was drawn",
     "not_a_sealed_main": "item 17. This is a validation. No held-out sealed bank is created, and none is authorized"
+  },
+  "evaluation": {
+    "comparison_grid": [
+      16,
+      32,
+      40
+    ],
+    "rule": "the state's *label* comes from the converged source analysis on the two finest refinement levels; the *measurement* happens on the declared evaluation grid. That split is what resolution-aware means here: a state is scored for what it is, measured where the instrument looks. Scoring the label on the coarse grid would let the grid decide what the source contains, which is the HMT-1 failure"
   },
   "arms": [
     "DIRECT_PHYSICAL",
@@ -210,8 +231,8 @@
   },
   "attestation": {
     "available": true,
-    "execution_commit": "f46c2e295cceb3e868581a87eeb3e08137474b68",
-    "head_tree_sha": "19ab0b27c57110b60e5a0b4337496a699c2686b5",
+    "execution_commit": "77f39104ccdd13625fa514bc0c760ef1f0a69a6e",
+    "head_tree_sha": "86b741c91b71158d0aec4ce3af8ec80030fd64e6",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -220,13 +241,13 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": "?? artifacts/configs/HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0.json\n?? scripts/register_hmt2_stage1_freeze.py\n",
-    "porcelain_registered_sha256": "eb4cf93f7811345ab5eed6b4dd0ba0249da82a8d12977b08d851347599363b19",
-    "porcelain_whole_tree_sha256": "eb4cf93f7811345ab5eed6b4dd0ba0249da82a8d12977b08d851347599363b19",
-    "n_tracked_changes": 0,
-    "n_untracked": 2,
-    "tracked_clean": true,
-    "untracked_clean": false,
+    "porcelain_registered": " M artifacts/configs/HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0.json\n M scripts/register_hmt2_stage1_freeze.py\n",
+    "porcelain_registered_sha256": "4951c7ffbff194a447c2133bb227fd236661d804908ca4b188223df5d8eb5d6e",
+    "porcelain_whole_tree_sha256": "4951c7ffbff194a447c2133bb227fd236661d804908ca4b188223df5d8eb5d6e",
+    "n_tracked_changes": 2,
+    "n_untracked": 0,
+    "tracked_clean": false,
+    "untracked_clean": true,
     "clean": false,
     "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
     "files": [
