@@ -121,6 +121,13 @@ def build_bank(cfg: dict) -> dict:
                 "fluct": fluct, "labels": labels, "maps_phys": mph,
                 "feats_phys": fp, "inclass": inclass, "truth_seed": ts,
                 "diag": diag, "n_ambiguous": unstable,
-                "hashes": {"dj": _h(dj), "labels": _h(
-                    [hash(s) % 1000 for s in labels])}}
+                # not hash(str): Python salts string hashing per process
+                # unless PYTHONHASHSEED is set before the interpreter starts,
+                # and pin() sets it far too late. Stage A and stage B are
+                # different processes, so a label hash built that way never
+                # matches. The same mistake was fixed once already, in HMT-1's
+                # off-manifold seeds, and came back here in a new place.
+                "hashes": {"dj": _h(dj),
+                           "labels": hashlib.sha256(
+                               "|".join(labels).encode()).hexdigest()}}
     return out
