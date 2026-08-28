@@ -1,0 +1,87 @@
+{
+  "schema": "phrt-artifact-manifest/1",
+  "experiment_id": "HMT2_STAGE1",
+  "created_utc": "2026-08-28T05:07:39Z",
+  "stop_token": "HMT2_S1_PHYSICAL_MORPHOLOGY_RECOVERY_PASS",
+  "class_conditional_improves": true,
+  "physical_end_to_end_improves": true,
+  "execution_attestation": {
+    "available": true,
+    "execution_commit": "c7698040a7265dee5c7cdd142646cebcc5876c8f",
+    "head_tree_sha": "240cad9f22bfe355280c958a5783df4f5ce2763d",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0.json",
+        "sha256": "3a1a1750a21184a8eb406da0503edf4d28ddeb77c15e03adfd1af2f5465c7cda",
+        "working_blob_sha": "3db3b4efb03b8255eecdbad08aee6ffe0fba2ce5",
+        "committed_blob_sha": "3db3b4efb03b8255eecdbad08aee6ffe0fba2ce5",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "report_assembly_attestation": {
+    "available": true,
+    "execution_commit": "c7698040a7265dee5c7cdd142646cebcc5876c8f",
+    "head_tree_sha": "240cad9f22bfe355280c958a5783df4f5ce2763d",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/build_hmt2_stage1_report.py\n",
+    "porcelain_registered_sha256": "961ed06f0280c9b81a9b781bd39c7955283ea7806194b6a227e37e99c0e3c546",
+    "porcelain_whole_tree_sha256": "04a37ee8f465928c205018308e3cae4777e0e42e9b31b4d110064b394448ae30",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0.json",
+        "sha256": "3a1a1750a21184a8eb406da0503edf4d28ddeb77c15e03adfd1af2f5465c7cda",
+        "working_blob_sha": "3db3b4efb03b8255eecdbad08aee6ffe0fba2ce5",
+        "committed_blob_sha": "3db3b4efb03b8255eecdbad08aee6ffe0fba2ce5",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "freeze_sha256": "3a1a1750a21184a8eb406da0503edf4d28ddeb77c15e03adfd1af2f5465c7cda",
+  "inputs": {
+    "artifacts/tables/hmt2_stage1_endpoint.parquet": "5b06915883b771430b8270514bd144810360d91bfc677ef3cd8ea242788def8c",
+    "artifacts/tables/hmt2_stage1_scores.parquet": "ddd964848989985468c9061c437fcc5d6b6f38add96f16453ea5d9099d73bbd5",
+    "artifacts/tables/hmt2_stage1_selection.parquet": "7ff6392e016f51e0df9080e11642d4131caca4b0e0897b18d00e05e16a5b1997",
+    "artifacts/tables/hmt2_stage1_source_banks.parquet": "fb87dabb46928713b07764bb429479e3cfeeb8090ecf1c2bf025c6f67cd880d3",
+    "artifacts/tables/hmt2_stage1_states.parquet": "ca51eeb5f08d60b8d33cda954bb18b035318dcf32a355357b07b8054c9455275"
+  },
+  "outputs": {
+    "artifacts/reports/HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY.md": "b437ae3460a1bef83c3ad41f7c28b659242bfa6411e3c85a7f639258adff2839"
+  }
+}

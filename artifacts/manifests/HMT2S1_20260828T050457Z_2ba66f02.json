@@ -1,0 +1,283 @@
+{
+  "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+  "experiment_id": "HMT2_STAGE1",
+  "execution_commit": "c7698040a7265dee5c7cdd142646cebcc5876c8f",
+  "manifest_build_commit": "c7698040a7265dee5c7cdd142646cebcc5876c8f",
+  "git_commit": "c7698040a7265dee5c7cdd142646cebcc5876c8f",
+  "git_commit_deprecated": "ambiguous: this is the manifest build commit, not the execution commit. Read execution_commit instead",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v22",
+    "architecture": "x86_64",
+    "memory_bytes": 16856133632,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "truths_per_family_per_split": 6,
+    "splits": [
+      "selection",
+      "pilot"
+    ],
+    "n_families": 6,
+    "n_truths": 72,
+    "noise_draws_per_truth": 4,
+    "selection_draws_per_truth": 2,
+    "bank_seed": 20260941,
+    "split_rule": "hyperparameters are chosen on the selection split and nowhere else; the endpoint is read on the pilot split, on truths no hyperparameter saw",
+    "fresh": "a new validation bank, disjoint from every HMT-1 bank and from the stage 0 audit bank by commitment string",
+    "commitments": {
+      "circular_hotspot_trajectory|selection": "b380f3d11a51f361849bf8159f7407c7ffcca6bb6c620b4f9e6e8429deb9c728",
+      "circular_hotspot_trajectory|pilot": "3fc4ee13e234a3df61a75f4e1e6594c3c2983830be9d15ead8851f2f8b3a6c8f",
+      "two_hotspot_trajectories|selection": "908637c01497b177c50b1c9ce483727ccd3c296588a652d11143dca9803c89f9",
+      "two_hotspot_trajectories|pilot": "dbd7a3d72a431516bcae1baf3588aee3fc032391ea26f3b24dc051c148a29b7d",
+      "m1_rotating_crescent|selection": "e66364c13a956a4976c129e07a025bd165695946f380098718b753e25c3e4a6c",
+      "m1_rotating_crescent|pilot": "a151999cc63948a95f832fd1c52252a6ed5119ba98359e3905754b0825fd0403",
+      "m2_structural_mode|selection": "dc36c5f94b7a33bc15bb94761b110698784afe97369f25a1bf45796e7ea517de",
+      "m2_structural_mode|pilot": "f64eebb5dfd27f57d401730ba1238a4e14ebbcb7677b4b3ba185c9242de8b5f7",
+      "flare_birth_motion_decay|selection": "3503194ece30e5c480406e025ee8f7faacb1126394c463347e05ce86dd52efa6",
+      "flare_birth_motion_decay|pilot": "5b76fe6df0ffff7a73d04344cfca69d4658a6f814efa69729d0698e49418674a",
+      "plunging_feature|selection": "7610f83758fe853aaad238740e351e5ec853876814b7ebb6df89a8bf8799f893",
+      "plunging_feature|pilot": "4645adf2463d852e8526621acced3eef377445d7d9e12b01cbe850ef1ccffb66"
+    },
+    "size_note": "an earlier draft declared 8 per family with no split at all, which left nowhere disjoint to select hyperparameters. Corrected before any truth was drawn",
+    "not_a_sealed_main": "item 17. This is a validation. No held-out sealed bank is created, and none is authorized"
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0.json",
+      "sha256": "3a1a1750a21184a8eb406da0503edf4d28ddeb77c15e03adfd1af2f5465c7cda"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT2S1_20260828T050457Z_2ba66f02/tables/hmt2_stage1_source_banks.parquet",
+      "sha256": "fb87dabb46928713b07764bb429479e3cfeeb8090ecf1c2bf025c6f67cd880d3"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT2S1_20260828T050457Z_2ba66f02/tables/hmt2_stage1_selection.parquet",
+      "sha256": "7ff6392e016f51e0df9080e11642d4131caca4b0e0897b18d00e05e16a5b1997"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT2S1_20260828T050457Z_2ba66f02/tables/hmt2_stage1_scores.parquet",
+      "sha256": "ddd964848989985468c9061c437fcc5d6b6f38add96f16453ea5d9099d73bbd5"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT2S1_20260828T050457Z_2ba66f02/tables/hmt2_stage1_endpoint.parquet",
+      "sha256": "5b06915883b771430b8270514bd144810360d91bfc677ef3cd8ea242788def8c"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT2S1_20260828T050457Z_2ba66f02/tables/hmt2_stage1_states.parquet",
+      "sha256": "ca51eeb5f08d60b8d33cda954bb18b035318dcf32a355357b07b8054c9455275"
+    }
+  ],
+  "gate_status": {
+    "HMT2S1_G1_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "HMT2S1_G2_commitments_reproduce": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "HMT2S1_G3_bank_disjoint_from_stage_0_and_hmt1": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "the commitment payload carries a split string no earlier bank used, so no seed can recur"
+    },
+    "HMT2S1_G4_contrast_zero_spatial_mean": {
+      "status": "PASS",
+      "measured": 1.7979121339147306e-17,
+      "threshold": 1e-10
+    },
+    "HMT2S1_G5_total_emissivity_nonnegative": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0
+    },
+    "HMT2S1_G6_adjoint": {
+      "status": "PASS",
+      "measured": 2.37854553969458e-15,
+      "threshold": 1e-08
+    },
+    "HMT2S1_G7_operator_truth_identity": {
+      "status": "PASS",
+      "measured": 7.758504213309246e-16,
+      "threshold": 1e-09
+    },
+    "HMT2S1_G8_both_targets_reported": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "24 endpoint rows, each carrying both targets"
+    },
+    "HMT2S1_G9_no_state_excluded_from_primary": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "every (class, arm, estimator, SNR, truth, target) group holds 61 states, one per age, with none dropped"
+    },
+    "HMT2S1_G10_blended_not_forced_into_two_tracks": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "BLENDED or AMBIGUOUS states scored by the assignment measure"
+    },
+    "HMT2S1_G11_secondary_restricted_to_stable_states": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "the secondary endpoint reads only states whose reconciled label is MULTI_RESOLVED"
+    },
+    "HMT2S1_G12_estimator_scope": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "ran ['RIDGE_IDENTITY', 'TSVD']; authorized ['RIDGE_IDENTITY', 'TSVD']"
+    },
+    "HMT2S1_G13_no_sealed_bank_created": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "this stage writes no held-out sealed bank"
+    },
+    "HMT2S1_G15_resource_limits": {
+      "status": "PASS",
+      "measured": 2713,
+      "threshold": 14400
+    },
+    "HMT2S1_G14_declared_gate_coverage": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "complete"
+    }
+  },
+  "started_at": "2026-08-28T04:19:44Z",
+  "finished_at": "2026-08-28T05:04:59+00:00",
+  "attestation": {
+    "available": true,
+    "execution_commit": "c7698040a7265dee5c7cdd142646cebcc5876c8f",
+    "head_tree_sha": "240cad9f22bfe355280c958a5783df4f5ce2763d",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0.json",
+        "sha256": "3a1a1750a21184a8eb406da0503edf4d28ddeb77c15e03adfd1af2f5465c7cda",
+        "working_blob_sha": "3db3b4efb03b8255eecdbad08aee6ffe0fba2ce5",
+        "committed_blob_sha": "3db3b4efb03b8255eecdbad08aee6ffe0fba2ce5",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "peak_rss_mb": 1283.6015625,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 2715.239517688751,
+  "classes": [
+    "L896_radial_enriched",
+    "L448_contrast"
+  ],
+  "arms": [
+    "DIRECT_PHYSICAL",
+    "RESOLVED_PHYSICAL",
+    "UNRESOLVED_IMAGE",
+    "TOTAL_FLUX"
+  ],
+  "families": [
+    "circular_hotspot_trajectory",
+    "two_hotspot_trajectories",
+    "m1_rotating_crescent",
+    "m2_structural_mode",
+    "flare_birth_motion_decay",
+    "plunging_feature"
+  ],
+  "run_dir": "artifacts/runs/HMT2S1_20260828T050457Z_2ba66f02",
+  "numerics": {
+    "pools": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.23.dev",
+        "threading_layer": "pthreads",
+        "architecture": "SkylakeX",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.21.dev",
+        "threading_layer": "pthreads",
+        "architecture": "SkylakeX",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/scipy.libs/libopenblasp-r0-23e5df77.3.21.dev.so"
+      }
+    ],
+    "n_pools": 2,
+    "all_single_threaded": true,
+    "environment": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    }
+  }
+}

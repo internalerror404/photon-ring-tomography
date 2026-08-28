@@ -1,0 +1,123 @@
+{
+  "gates": {
+    "HMT2S1_G1_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G2_commitments_reproduce": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G3_bank_disjoint_from_stage_0_and_hmt1": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "the commitment payload carries a split string no earlier bank used, so no seed can recur",
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G4_contrast_zero_spatial_mean": {
+      "status": "PASS",
+      "measured": 1.7979121339147306e-17,
+      "threshold": 1e-10,
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G5_total_emissivity_nonnegative": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G6_adjoint": {
+      "status": "PASS",
+      "measured": 2.37854553969458e-15,
+      "threshold": 1e-08,
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G7_operator_truth_identity": {
+      "status": "PASS",
+      "measured": 7.758504213309246e-16,
+      "threshold": 1e-09,
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G8_both_targets_reported": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "24 endpoint rows, each carrying both targets",
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G9_no_state_excluded_from_primary": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "every (class, arm, estimator, SNR, truth, target) group holds 61 states, one per age, with none dropped",
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G10_blended_not_forced_into_two_tracks": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "BLENDED or AMBIGUOUS states scored by the assignment measure",
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G11_secondary_restricted_to_stable_states": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "the secondary endpoint reads only states whose reconciled label is MULTI_RESOLVED",
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G12_estimator_scope": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "ran ['RIDGE_IDENTITY', 'TSVD']; authorized ['RIDGE_IDENTITY', 'TSVD']",
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G13_no_sealed_bank_created": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "this stage writes no held-out sealed bank",
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G15_resource_limits": {
+      "status": "PASS",
+      "measured": 2713,
+      "threshold": 14400,
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2S1_G14_declared_gate_coverage": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "complete",
+      "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
+      "recorded_at": "2026-08-28T05:04:59+00:00"
+    }
+  },
+  "updated_at": "2026-08-28T05:04:59+00:00",
+  "summary": {
+    "PASS": 15,
+    "FAIL": 0,
+    "NOT_RUN": 0
+  }
+}
