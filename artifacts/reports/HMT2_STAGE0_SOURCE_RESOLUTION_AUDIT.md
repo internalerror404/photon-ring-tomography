@@ -43,18 +43,25 @@ families:
 | `radially_drifting_arc` | 8 | 1.000 | 0.000 | 0.000 | 0.000 | 0.000 | 0.127 | 0.420 | 0 |
 | `three_hotspot_cluster` | 8 | 0.000 | 1.000 | 0.000 | 0.000 | 0.000 | 0.205 | 0.486 | 1 |
 
-`conv` is the grid-convergence error between the two finest levels, in level-0
-cells: how much the measured feature set moves when the analysis grid is
-doubled. `card err` is the largest disagreement in how many features are
-present.
+`conv` is the **positional** convergence between the two finest levels, in
+level-0 cells: how far the *matched* features move when the analysis grid is
+refined by a factor of two. It excludes unmatched features by construction, so
+it is not a statement of complete grid convergence. `card err` is the largest
+number by which the two levels disagree about how many features are present.
 
 ## 3. What projection onto a reconstruction class destroys
 
 The merger rate is the fraction of `MULTI_RESOLVED` states that stop being
-multi-resolved once the field is projected onto the class. The representation
-floor is the set-valued assignment error between the analytic field's features
-and its own best in-class approximation -- the error an estimator starts with,
-before any operator and before any noise.
+multi-resolved once the field is projected onto the class. **These rates are
+withheld as canonical pending stage 0R** (ruling 019 item 3): they are taken
+over the finest grid's label, which includes states the two finest grids
+disagree about.
+
+The representation floor is the set-valued **unbalanced** assignment cost
+between the analytic field's features and its own best in-class approximation:
+matched displacement plus a penalty for every feature gained or lost. Large
+values mean a change in cardinality, not a large distance. It is the error an
+estimator starts with, before any operator and before any noise.
 
 | family | class | multi states | merger rate | floor median | floor max |
 |---|---|---|---|---|---|
@@ -133,14 +140,27 @@ time; the rest is BLENDED or AMBIGUOUS. HMT-1 asked for a resolved peak
 position from that family at every age, and roughly a fifth of the time there
 was no such thing to ask for.
 
-**The grids themselves are converged.** Doubling the analysis grid moves the
-measured feature set by 0.25 cells
-at the median and 0.43 at the worst, with
-the cardinality disagreeing at most once in the whole declared bank. The
-resolution limit is in the source-grid contract, not in the arithmetic.
+**Positions converge under refinement; cardinality does not always.** Refining
+the analysis grid by a factor of two moves the *matched* features by
+0.25 cells at the median and
+0.43 at the worst. That is positional
+convergence only. The number of features the two levels find differs by at most
+one, and it does differ: the mixed-resolution regime shows up as a cardinality
+disagreement rather than as a position error.
 
-**Projection onto the current class destroys resolved structure.** Of the
-two-hotspot states that are genuinely MULTI_RESOLVED in the analytic field,
+The three grids are **factor-two refinements, not node-nested grids**. Only the
+azimuthal axis nests -- 32 equally spaced angles are a subset of 64. The radial
+axis places 16 then 32 points across a fixed log range and the temporal axis 40
+then 80 across a fixed interval, and in neither case are the coarse nodes fine
+nodes. The stage 0 freeze asserted that every coarse node is a fine node; that
+is false for two of the three axes and is corrected here.
+
+**Projection onto the current class destroys resolved structure.** The rates
+below are **withheld as canonical** pending stage 0R, per ruling 019 item 3:
+they count every state the finest grid called MULTI_RESOLVED, including states
+the two finest grids disagreed about, and a merger rate over states whose
+multiplicity is itself unresolved measures the classifier as much as the
+projection. Of the two-hotspot states the finest grid calls MULTI_RESOLVED,
 36%
 stop being multi-resolved once projected onto `L448_contrast`, the class HMT-1
 used. Doubling the radial functions brings that to
@@ -149,7 +169,9 @@ An estimator working in the current class cannot recover two features that its
 own class merges before the operator is even applied.
 
 **Radial enrichment moves the representation floor by about an order of
-magnitude.** The median floor -- the assignment error between the analytic
+magnitude.** The floor is an **unbalanced total cost**, not an ordinary
+displacement: its large values are dominated by the penalty for a feature
+gained or lost rather than by any distance. The median -- between the analytic
 field and its own best in-class approximation, before any operator and any
 noise -- falls from
 2.41 cells to

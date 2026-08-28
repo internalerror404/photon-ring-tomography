@@ -1,0 +1,138 @@
+{
+  "schema": "phrt-record-amendment/1",
+  "id": "HMT2_STAGE0_PRESERVED_FINDINGS_019",
+  "created_utc": "2026-08-28T03:31:28Z",
+  "ruling": "REVIEWER_RULING_HMT2_STAGE0_019",
+  "kind": "RECORD_ONLY",
+  "accepted_commit": "2e478b49394fc6a199ad702911d0852a4a002d19",
+  "qualified_by": "HMT2_STAGE0R_SOURCE_ONLY_CORRECTION_V0",
+  "findings": {
+    "HMT2_STAGE0_CANARY_BLENDED_61_OF_61": {
+      "statement": "the HMT-1 truth that failed the sealed main classifies BLENDED at all 61 ages, on every grid",
+      "measured": {
+        "n_blended": 61,
+        "n_ages": 61,
+        "n_multi_resolved": 0,
+        "n_ambiguous": 0,
+        "positional_convergence_cells_median": 0.250117952075559,
+        "cardinality_disagreement_max": 0
+      },
+      "reading": "not marginal and not unstable. A well-determined field with one peak, from which HMT-1's gate was demanding a resolved peak position that does not exist. The gate was right to fail and the cause was upstream of it",
+      "scope": "this source, all ages, both finest grids",
+      "unaffected_by_the_correction": true
+    },
+    "HMT2_STAGE0_TWO_HOTSPOT_MIXED_RESOLUTION_REGIME": {
+      "statement": "two_hotspot_trajectories occupies a mixed resolution regime across its declared range: part resolved, part blended, part unstable between the two finest grids",
+      "measured": {
+        "fraction_multi_resolved": 0.7807377049180327,
+        "fraction_blended": 0.0860655737704918,
+        "fraction_ambiguous": 0.13319672131147542,
+        "n_truths": 24
+      },
+      "reading": "the family is not uniformly resolvable and was never checked to be. HMT-1 asked it for a resolved peak position at every age",
+      "scope": "the declared six families; the other five show no ambiguity at all",
+      "unaffected_by_the_correction": true
+    },
+    "HMT2_STAGE0_L448_REPRESENTATION_LIMIT": {
+      "statement": "the class HMT-1 used cannot keep a narrow radial feature narrow, and its representation floor is the largest of the two classes",
+      "measured": {
+        "minimum_representable_width_M": {
+          "r=6": 3.0,
+          "r=20": 4.0,
+          "r=45": 6.0
+        },
+        "representation_floor_median_cells": 2.3988095238095224
+      },
+      "reading": "the HMT-1 truth that failed had radial widths of 2.29 and 3.03 M at r near 45 M, where this class broadens anything under about 6 M by a factor of two. The failure was representable in the class definition before any source was drawn",
+      "floor_is_an_unbalanced_cost": "matched displacement plus a penalty per feature gained or lost, so large values mean a cardinality change and not a large distance",
+      "unaffected_by_the_correction": true
+    },
+    "HMT2_STAGE0_L896_RADIAL_ENRICHMENT_BENEFIT": {
+      "statement": "doubling the radial functions, changing nothing else, lowers the representation floor by about an order of magnitude and narrows the minimum representable width",
+      "measured": {
+        "representation_floor_median_cells": {
+          "L448_contrast": 2.3988095238095224,
+          "L896_radial_enriched": 0.47619047619047566
+        },
+        "minimum_representable_width_M": {
+          "r=6": 2.0,
+          "r=20": 4.0,
+          "r=45": 4.0
+        }
+      },
+      "reading": "the enrichment is nested in radius, so it adds resolution and removes nothing. It improves the floor substantially and still does not reach the 2 to 3 M widths the failing truth carried at large radius",
+      "unaffected_by_the_correction": true
+    }
+  },
+  "withheld_pending_stage_0r": {
+    "quantity": "two-hotspot projection merger rates",
+    "values": [
+      0.356,
+      0.262
+    ],
+    "status": "NOT_CANONICAL",
+    "reason": "item 3. Taken over the finest grid's label, which includes states the two finest grids disagree about"
+  },
+  "stage_0_statements_corrected": {
+    "node_nesting": {
+      "asserted": "each level doubles every axis, so every coarse node is a fine node",
+      "correct": "factor-two refinement, not node nesting. Only the azimuthal axis nests: 32 equally spaced angles are a subset of 64. The radial axis places 16 then 32 points across a fixed log range and the temporal axis 40 then 80 across a fixed interval, and in neither case are the coarse nodes fine nodes",
+      "verified": "checked directly on the three axes",
+      "consequence": "none for any measured quantity. Nothing in the audit assumed a shared node; the levels are compared through the assignment metric, which needs no common grid. The claim was wrong and load-bearing for nothing"
+    },
+    "grid_convergence": {
+      "asserted": "the grids themselves are converged",
+      "correct": "positional convergence only. The reported figure is a matched position cost and excludes unmatched features by construction; the cardinality does differ between levels, by at most one feature"
+    },
+    "recorded_source_only_booleans": {
+      "defect": "stage 0 wrote ray_map_imported and operator_constructed as literal false rather than deriving them from an inspection. That records an intention",
+      "corrected_in": "stage 0R, which inspects before and after all computation and derives the booleans from the final inspection"
+    }
+  },
+  "inputs": {
+    "stage_0_freeze_sha256": "1689a13f78597c0dbb673424cd2cf69f0e35a16a4c286c68e50176af40c73462",
+    "stage_0r_freeze_sha256": "9d472892464b9422d1aa9e6d709bc18cbae26f47ab95f5b2fe60545abb737bb1"
+  },
+  "attestation": {
+    "available": true,
+    "execution_commit": "2e478b49394fc6a199ad702911d0852a4a002d19",
+    "head_tree_sha": "db40755b081e32a300a266e0c76f1e2a5f565659",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": " M scripts/build_hmt2_stage0_report.py\n?? artifacts/configs/HMT2_STAGE0R_SOURCE_ONLY_CORRECTION_V0.json\n?? scripts/register_hmt2_stage0_findings_019.py\n?? scripts/register_hmt2_stage0r_freeze.py\n?? scripts/run_hmt2_stage0r_correction.py\n",
+    "porcelain_registered_sha256": "76967479250b6466986484f45f081e0e4a405a35ad5947dd2a7e6d491840ca92",
+    "porcelain_whole_tree_sha256": "1154221736867a3d9071db8ed4de998e20d9470414385ee333e9770bc333beb5",
+    "n_tracked_changes": 1,
+    "n_untracked": 4,
+    "tracked_clean": false,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE0_SOURCE_OBJECT_AND_RESOLUTION_AUDIT_V0.json",
+        "sha256": "1689a13f78597c0dbb673424cd2cf69f0e35a16a4c286c68e50176af40c73462",
+        "working_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/HMT2_STAGE0R_SOURCE_ONLY_CORRECTION_V0.json",
+        "sha256": "9d472892464b9422d1aa9e6d709bc18cbae26f47ab95f5b2fe60545abb737bb1",
+        "working_blob_sha": "31837ca31e449b5804735460d345ac72e5dfcf7b",
+        "committed_blob_sha": null,
+        "committed_at_execution_commit": false,
+        "tracked": false
+      }
+    ],
+    "all_registered_files_committed": false,
+    "preregistered": false
+  }
+}

@@ -1,0 +1,174 @@
+{
+  "schema": "phrt-hmt2-stage0r-freeze/1",
+  "id": "HMT2_STAGE0R_SOURCE_ONLY_CORRECTION_V0",
+  "created_utc": "2026-08-28T03:26:57Z",
+  "ruling": "REVIEWER_RULING_HMT2_STAGE0_019",
+  "status": "FROZEN_BEFORE_CORRECTION_RUN",
+  "branch": "research/hmt2_resolution_aware_feature_measure_v0",
+  "corrects": "HMT2_STAGE0_SOURCE_OBJECT_AND_RESOLUTION_AUDIT_V0",
+  "corrects_sha256": "1689a13f78597c0dbb673424cd2cf69f0e35a16a4c286c68e50176af40c73462",
+  "accepted_execution_commit": "2e478b49394fc6a199ad702911d0852a4a002d19",
+  "unchanged_from_stage_0": {
+    "sources": 169,
+    "bank_seed": 20260931,
+    "commitments": {
+      "circular_hotspot_trajectory": "396de9bb12b39817bb144c0f78550695ba761d02b9513390ba0986462d40902f",
+      "two_hotspot_trajectories": "37532c92b501904de8980e4d45d7fca9f229acd2c769782cb6ca0d8f23909c48",
+      "m1_rotating_crescent": "31a0b2c14ae1e9629b54d1e7a0687268c76f8a7058fcdf17fa87390cafac3991",
+      "m2_structural_mode": "14ace0623ed014d8bc4704c4f907120edeb7327a630ed69f589a3f06611db377",
+      "flare_birth_motion_decay": "29f610bd8986844e18957e1da82fee7139c5035fa276b3abfba7c93dda98c39f",
+      "plunging_feature": "f0837631d0e6335f52d49ae5d0a95e1eb124d91f570ce2465fecd36b26cc2790",
+      "three_hotspot_cluster": "9f5571581fa0c3dbe4816f41d72cb12703156b7a089dd4ddd78d15916fbabaf3",
+      "counter_rotating_pair": "de21bbdcaef21ac14d3e281b67550e89eeba5f2ede758828b4f19c03180cfe3b",
+      "radially_drifting_arc": "30831c07331d93425dc3e1cf27021412db1f3cb820c2141c7401746871815dc8"
+    },
+    "family_ranges": "the original six, verbatim, with no separation cut",
+    "prominence_fraction": 0.25,
+    "dead_fraction": 0.25,
+    "levels": [
+      [
+        16,
+        32,
+        40
+      ],
+      [
+        32,
+        64,
+        80
+      ],
+      [
+        64,
+        128,
+        160
+      ]
+    ],
+    "classes": [
+      "L448_contrast",
+      "L896_radial_enriched"
+    ],
+    "rule": "item 5. No redraw and no new source bank. Stage 0R is the same computation over the same objects with the accounting corrected and the output widened"
+  },
+  "prohibitions": {
+    "ray_map": "not imported",
+    "observation_operator": "not constructed",
+    "guard": "item 10. The source-only guard is called before any work and again after all computation, and the booleans recorded in the run document are derived from the final inspection rather than written as literals. The first run wrote them as literals, which records an intention rather than an observation"
+  },
+  "withheld_pending_this_correction": {
+    "quantity": "two-hotspot projection merger rates",
+    "values": [
+      0.356,
+      0.262
+    ],
+    "reason": "item 3. Those rates counted every state the finest grid labelled MULTI_RESOLVED, including states the two finest grids disagreed about. A merger rate over states whose multiplicity is itself unresolved measures the classifier as much as the projection",
+    "status": "not canonical until recomputed over reconciled stable states"
+  },
+  "per_age_projection_table": {
+    "name": "hmt2_stage0r_per_age",
+    "columns": [
+      "family",
+      "index",
+      "age_M",
+      "class",
+      "label_fine",
+      "label_coarser",
+      "label_reconciled",
+      "label_projected",
+      "cardinality_pre",
+      "cardinality_post",
+      "matched_position_cost_cells",
+      "unbalanced_cost_cells",
+      "unbalanced_cost_normalized",
+      "canary",
+      "off_manifold"
+    ],
+    "rule": "item 7. One row per age per class, so every rate below is recomputable from the table rather than trusted",
+    "normalization": "unbalanced cost divided by the cost of a single wholly unmatched feature, which is the largest distance the level-0 grid admits. A normalized cost of 1.0 therefore means one feature gained or lost"
+  },
+  "merger_rate_strata": {
+    "STABLE_MULTI_RESOLVED": {
+      "definition": "the two finest levels agree on MULTI_RESOLVED",
+      "carries_claim": true
+    },
+    "AMBIGUOUS_FINE_MULTI": {
+      "definition": "the finest level says MULTI_RESOLVED and the next coarser disagrees",
+      "carries_claim": false,
+      "role": "reported so the size of the disagreement is visible rather than absorbed"
+    },
+    "ALL_FINEST_MULTI": {
+      "definition": "every state the finest level calls MULTI_RESOLVED, which is the union of the two above and what stage 0 reported",
+      "carries_claim": false,
+      "role": "reported for continuity with the withheld numbers"
+    },
+    "rule": "item 8. Only STABLE_MULTI_RESOLVED may carry the scientific merger-rate claim"
+  },
+  "language_corrections": {
+    "positional_convergence": "the convergence figure is a matched position cost. It excludes unmatched features by construction, so it is positional convergence and not complete grid convergence",
+    "cardinality": "reported as differing by at most one feature, which is what was measured, rather than as agreement",
+    "grids": "factor-two refinement grids, not node-nested grids. Only the azimuthal axis nests: phi at 32 points is a subset of phi at 64. The radial axis is 16 then 32 points spanning a fixed log range, and the temporal axis 40 then 80 over a fixed interval, and in both cases the coarse nodes are not fine nodes. Stage 0's freeze asserted that every coarse node is a fine node, and that is false for two of the three axes",
+    "representation_floor": "an unbalanced total cost, not an ordinary displacement. Its large values are dominated by the penalty for a feature gained or lost, not by a distance"
+  },
+  "preserved_findings": [
+    "HMT2_STAGE0_CANARY_BLENDED_61_OF_61",
+    "HMT2_STAGE0_TWO_HOTSPOT_MIXED_RESOLUTION_REGIME",
+    "HMT2_STAGE0_L448_REPRESENTATION_LIMIT",
+    "HMT2_STAGE0_L896_RADIAL_ENRICHMENT_BENEFIT"
+  ],
+  "gates": {
+    "HMT2R_G1_pinned_numerical_environment": "structural",
+    "HMT2R_G2_source_only_before": 0,
+    "HMT2R_G3_source_only_after": 0,
+    "HMT2R_G4_same_sources_as_stage_0": 0,
+    "HMT2R_G5_no_redraw": "structural",
+    "HMT2R_G6_per_age_table_complete": 0,
+    "HMT2R_G7_strata_partition_the_finest_multi_states": 0,
+    "HMT2R_G8_canary_excluded_from_aggregates": 0,
+    "HMT2R_G9_declared_gate_coverage": "structural"
+  },
+  "gate_notes": {
+    "HMT2R_G4_same_sources_as_stage_0": "truth seeds that differ from the stage 0 bank. Must be zero: item 5 forbids a redraw",
+    "HMT2R_G7_strata_partition_the_finest_multi_states": "STABLE_MULTI_RESOLVED and AMBIGUOUS_FINE_MULTI must partition ALL_FINEST_MULTI exactly, with no state in both and none left over"
+  },
+  "after": "STOP if any corrected source-only gate fails. Item 11",
+  "on_pass": "HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0 is authorized by item 12, and is a separate registration",
+  "not_authorized": [
+    "order leakage",
+    "geometry mismatch",
+    "VLBI",
+    "machine learning",
+    "a new pixel-movie reconstruction campaign"
+  ],
+  "attestation": {
+    "available": true,
+    "execution_commit": "2e478b49394fc6a199ad702911d0852a4a002d19",
+    "head_tree_sha": "db40755b081e32a300a266e0c76f1e2a5f565659",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/register_hmt2_stage0r_freeze.py\n",
+    "porcelain_registered_sha256": "ee84a4a50678c63f10c681ec5f120909f884abe4e76c4a12ffe4d8c01d98c5b3",
+    "porcelain_whole_tree_sha256": "ee84a4a50678c63f10c681ec5f120909f884abe4e76c4a12ffe4d8c01d98c5b3",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE0_SOURCE_OBJECT_AND_RESOLUTION_AUDIT_V0.json",
+        "sha256": "1689a13f78597c0dbb673424cd2cf69f0e35a16a4c286c68e50176af40c73462",
+        "working_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}

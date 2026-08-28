@@ -1,7 +1,7 @@
 {
   "schema": "phrt-artifact-manifest/1",
   "experiment_id": "HMT2_STAGE0",
-  "created_utc": "2026-08-28T02:51:58Z",
+  "created_utc": "2026-08-28T03:30:40Z",
   "ray_map_imported": false,
   "operator_constructed": false,
   "canary_excluded_from_aggregates": true,
@@ -41,8 +41,8 @@
   },
   "report_assembly_attestation": {
     "available": true,
-    "execution_commit": "5a70f712117777ef1a8264a85f8ca15b9b5e9301",
-    "head_tree_sha": "87c1ed6282dc155a573c5ef3766c436cafc3b338",
+    "execution_commit": "2e478b49394fc6a199ad702911d0852a4a002d19",
+    "head_tree_sha": "db40755b081e32a300a266e0c76f1e2a5f565659",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -51,13 +51,13 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": " M scripts/build_hmt2_stage0_report.py\n",
-    "porcelain_registered_sha256": "7e2f3168c861ab901dd648401c4ff7ed8b8e40a392371a3d77f9072908f0139a",
-    "porcelain_whole_tree_sha256": "eec1511dd36a67275a0e114aa8bed14a4d2f7ee6056a0e2d8ebed157e4385136",
+    "porcelain_registered": " M scripts/build_hmt2_stage0_report.py\n?? artifacts/configs/HMT2_STAGE0R_SOURCE_ONLY_CORRECTION_V0.json\n?? scripts/register_hmt2_stage0r_freeze.py\n?? scripts/run_hmt2_stage0r_correction.py\n",
+    "porcelain_registered_sha256": "b2bd201c7e06bae7b406531e478bbfa68ff281e0dca35fca41e1fa76ccff4601",
+    "porcelain_whole_tree_sha256": "6ae7632520f0d02e982ce7603ec95207acab866d5ba1357150fe60a02ed9ef63",
     "n_tracked_changes": 1,
-    "n_untracked": 0,
+    "n_untracked": 3,
     "tracked_clean": false,
-    "untracked_clean": true,
+    "untracked_clean": false,
     "clean": false,
     "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
     "files": [
@@ -83,6 +83,6 @@
     "artifacts/tables/hmt2_stage0_tracks.parquet": "c6624fb60b507434122453cb678dd22f67c04daaaba0d56d629f89d363483bcd"
   },
   "outputs": {
-    "artifacts/reports/HMT2_STAGE0_SOURCE_RESOLUTION_AUDIT.md": "1a303773d5a204094b933c6b62d72f96dc131a18176a0b336c555ad1624c810b"
+    "artifacts/reports/HMT2_STAGE0_SOURCE_RESOLUTION_AUDIT.md": "45ef6a4ccfcd206d866d2c7feb13287299b8bd2912ffb87290046746b8f8f5ab"
   }
 }
