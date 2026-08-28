@@ -1,0 +1,96 @@
+{
+  "schema": "phrt-artifact-manifest/1",
+  "experiment_id": "HMT2_STAGE0R",
+  "created_utc": "2026-08-28T04:08:45Z",
+  "ray_map_imported": false,
+  "operator_constructed": false,
+  "canonical_merger_rates": {
+    "stratum": "STABLE_MULTI_RESOLVED",
+    "L448_contrast": 0.2992125984251969,
+    "L896_radial_enriched": 0.13648293963254593
+  },
+  "execution_attestation": {
+    "available": true,
+    "execution_commit": "99beb485e1a83fc77c73b37b9dbd23ccd262e6cf",
+    "head_tree_sha": "4fafec896c2cb4698ab923f58af8da63a8d2af14",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "56e7e0368799c84523bedb13c0f00cfcfcac263f6a0c705fb18207002fc6fa83",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE0R_SOURCE_ONLY_CORRECTION_V0.json",
+        "sha256": "9d472892464b9422d1aa9e6d709bc18cbae26f47ab95f5b2fe60545abb737bb1",
+        "working_blob_sha": "31837ca31e449b5804735460d345ac72e5dfcf7b",
+        "committed_blob_sha": "31837ca31e449b5804735460d345ac72e5dfcf7b",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/HMT2_STAGE0_SOURCE_OBJECT_AND_RESOLUTION_AUDIT_V0.json",
+        "sha256": "1689a13f78597c0dbb673424cd2cf69f0e35a16a4c286c68e50176af40c73462",
+        "working_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "report_assembly_attestation": {
+    "available": true,
+    "execution_commit": "99beb485e1a83fc77c73b37b9dbd23ccd262e6cf",
+    "head_tree_sha": "4fafec896c2cb4698ab923f58af8da63a8d2af14",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/build_hmt2_stage0r_report.py\n",
+    "porcelain_registered_sha256": "e550b33813cda1d6bb5cf2b45814f5c5ad712b67af963ee2c45894c58837c659",
+    "porcelain_whole_tree_sha256": "6b0be47df4c2b6d2b63906c84617e07b1eee7b085a052596a9807ba486265c1b",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE0R_SOURCE_ONLY_CORRECTION_V0.json",
+        "sha256": "9d472892464b9422d1aa9e6d709bc18cbae26f47ab95f5b2fe60545abb737bb1",
+        "working_blob_sha": "31837ca31e449b5804735460d345ac72e5dfcf7b",
+        "committed_blob_sha": "31837ca31e449b5804735460d345ac72e5dfcf7b",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "freeze_sha256": "9d472892464b9422d1aa9e6d709bc18cbae26f47ab95f5b2fe60545abb737bb1",
+  "inputs": {
+    "artifacts/tables/hmt2_stage0r_merger_rates.parquet": "7a3189a08ff9ab7e5bc72a98edf74b0b635cae65de5bc1cd821fe0197ca3a75d",
+    "artifacts/tables/hmt2_stage0r_per_age.parquet": "affd06eb4e46c0c82a48880299bf2405bc893503fa7c8cc773ad398f0c0c79e1"
+  },
+  "outputs": {
+    "artifacts/reports/HMT2_STAGE0R_SOURCE_ONLY_CORRECTION.md": "f7b0cad58af20a91925934c4b413d40be4a906150cd58176a4dd86665d9a714c"
+  }
+}
