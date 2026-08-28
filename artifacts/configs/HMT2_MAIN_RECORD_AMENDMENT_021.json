@@ -1,0 +1,184 @@
+{
+  "schema": "phrt-record-amendment/1",
+  "id": "HMT2_MAIN_RECORD_AMENDMENT_021",
+  "created_utc": "2026-08-28T08:07:16Z",
+  "ruling": "REVIEWER_RULING_HMT2_MAIN_021",
+  "kind": "RECORD_ONLY",
+  "accepted_commit": "0d1f7510caf76f7b05e87b640d343ca9b9fbcf93",
+  "alters_no_endpoint": true,
+  "recomputation": "NONE. Item 10 forbids rerunning, appending truths or recomputing the endpoint. Every figure here is read from the parquet the accepted run wrote",
+  "formal_token_preserved": "HMT2_MAIN_PHYSICAL_MORPHOLOGY_RECOVERY_PASS",
+  "formal_token_reading": "the preregistered pass criteria were met on held-out truths at a materiality floor declared before the bank was drawn. That is what the token reports. What the run establishes, and what it does not, is in the dispositions",
+  "scientific_dispositions": {
+    "HMT2_MAIN_AGGREGATE_PHYSICAL_MORPHOLOGY_ERROR_REDUCTION_CONFIRMED": {
+      "finding": "in the claim-bearing class at the reference SNR the resolved arm reduces the all-state resolution-aware morphology error against the direct image by a median 0.164 under ridge and 0.133 under TSVD on the physical end-to-end target, with paired bootstrap lower bounds 0.116 and 0.101",
+      "floor": "median 0.10 and lower bound 0.05, declared in the sealed freeze before the bank was drawn",
+      "scope": "aggregate over the bank. It is an average across a heterogeneous set of families and is not a per-family or per-source statement"
+    },
+    "HMT2_MAIN_ORDER_RESOLUTION_ATTRIBUTION_SUPPORTED": {
+      "finding": "the unresolved-image control reaches at most 0.015 in the claim-bearing class and the total-flux control reaches 0.036, neither material",
+      "reading": "the benefit is attributable to resolving the photon-ring orders and not to the additional photons an unresolved second image also carries, nor to the extra flux constraint alone",
+      "limit": "an attribution within the four declared arms of one geometry. It is not a statement about any other route to the same information"
+    },
+    "HMT2_MAIN_MULTI_FEATURE_RECOVERY_NEGATIVE": {
+      "finding": "two-feature recovery reaches materiality in no cell. In the claim-bearing class the median reductions are 0.137 to 0.187 and the absolute assignment cost stays between 1.208 and 1.302 on a scale where 1.0 is one whole feature wrong",
+      "reading": "the measure resolves that a state has two features and recovers the morphology of one. It does not recover the pair. This is a negative result and is preserved as one",
+      "held_out": "the sealed main reproduces on fresh truths the same split the stage 1 completion found",
+      "n_truths_carrying_the_endpoint": 17,
+      "power": "only 17 of 60 truths carry a stable multi-resolved state at all, so this endpoint is the thinnest in the run. It is reported as a not-established rather than as a demonstrated absence"
+    },
+    "HMT2_MAIN_STABLE_MORPHOLOGY_INTERVAL_NEGATIVE": {
+      "finding": "the stable morphology interval is 0 M for every arm, estimator, class and SNR",
+      "mean_reach_at_the_reference_snr": "the resolved arm reaches 3.062 M against the direct image's 3.317 M, lower under both estimators",
+      "mean_reach_at_tenfold_snr": "the ordering reverses: 3.454 M resolved against 2.917 M direct. Stated explicitly because the reference-SNR comparison is the claim-bearing one and reads as a general statement if the SNR is left off",
+      "reading": "there is no age window over which recovered morphology holds steady. At the reference SNR the resolved arm does not even extend how far back morphology stays in tolerance. A per-age error reduction is not a history interval"
+    },
+    "HMT2_MAIN_FAMILY_HETEROGENEITY_PRESERVED": {
+      "finding": "5 of 12 family-estimator cells are material on the physical end-to-end target and 4 of 12 on both targets. circular_hotspot_trajectory is negative under both estimators",
+      "material_physical": [
+        "flare_birth_motion_decay|RIDGE_IDENTITY",
+        "flare_birth_motion_decay|TSVD",
+        "m2_structural_mode|RIDGE_IDENTITY",
+        "m2_structural_mode|TSVD",
+        "plunging_feature|RIDGE_IDENTITY"
+      ],
+      "material_both_targets": [
+        "flare_birth_motion_decay|RIDGE_IDENTITY",
+        "m2_structural_mode|RIDGE_IDENTITY",
+        "m2_structural_mode|TSVD",
+        "plunging_feature|RIDGE_IDENTITY"
+      ],
+      "material_under_both_estimators": [
+        "flare_birth_motion_decay",
+        "m2_structural_mode"
+      ],
+      "reading": "the aggregate is not a uniform improvement and must not be quoted as one. Ten truths per family makes these intervals wide, so no family claim is supported in either direction; the heterogeneity is what is recorded, not a ranking"
+    },
+    "HMT2_MAIN_DIRECT_BASELINE_SATURATION_QUALIFICATION": {
+      "finding": "in the claim-bearing class 55.8% of direct-image states sit at the measure's ceiling, against 42.0% for the resolved arm",
+      "reading": "the mean substantially counts how many states failed outright rather than how far off the recovered morphology was. The direct baseline is partly floor-limited, which flatters the difference, and the gain must be read with the saturation fractions beside it",
+      "not_repaired": "changing the measure's ceiling after seeing the result would be moving a criterion. The fractions are emitted so the reader can discount by inspection"
+    },
+    "HMT2_MAIN_ACCURATE_HISTORICAL_MOVIE_RECOVERY_NOT_ESTABLISHED": {
+      "finding": "absolute all-state error for the resolved arm remains 0.598 to 0.650 on a scale whose worst case is 1.0, with no stable interval and no two-feature recovery",
+      "reading": "a material reduction in a morphology error is not accurate recovery of a historical movie, and this campaign does not establish the latter at any point. Nothing here licenses a statement about arbitrary or realistic accretion-flow histories"
+    }
+  },
+  "scope_deviation": {
+    "disposition": "HMT2_MAIN_REDUCED_SCOPE_EVIDENCE_ACCEPTED",
+    "authorized": {
+      "truths": 96,
+      "truths_per_family": 16,
+      "noise_draws": 8
+    },
+    "executed": {
+      "truths": 60,
+      "truths_per_family": 10,
+      "noise_draws": 4
+    },
+    "pre_data": "the reduction was written into HMT2_SEALED_MAIN_V1 and committed before any held-out truth was drawn, so it cannot have been chosen to shape the result",
+    "defect": "it was not flagged as a deviation at the time and no rationale was recorded in the freeze. A reduced bank was simply written down as though it were the authorized one",
+    "consequence": "every interval in the run is wider than the authorized design would have given, and the per-family cells at ten truths are wide enough that no family claim is supported either way. The aggregate endpoint clears its floor at this sample size, which is why the evidence stands",
+    "accepted_by": "item 4"
+  },
+  "family_counts_clarified": {
+    "physical_end_to_end_material": "5/12",
+    "both_targets_material": "4/12",
+    "corrects": "the sealed main commit message and the return report both say '4 of 12 family-estimator cells are material', which is the both-targets count. 5 of 12 are material on PHYSICAL_END_TO_END, the target that carries the physical claim. Item 5",
+    "narrative_correction": "the two families material under both estimators are flare_birth_motion_decay and m2_structural_mode; plunging_feature is material under ridge alone, which is the third family in the 5-cell count and was omitted from the earlier summary"
+  },
+  "qualifications_recorded": {
+    "HMT2_MAIN_STAGE_A_ATTESTATION_DIRTY": {
+      "qualification": "the authoritative stage A run, which drew the sealed bank and committed its hashes, executed against a working tree that was not clean on the registered pathspecs: 1 tracked modification and 3 untracked files",
+      "what_was_dirty": " M scripts/hmt2_sealed_common.py\n?? scripts/run_hmt2_sealed_main.py\n?? scripts/run_hmt2_sealed_main_score.py\n?? tests/test_hmt2_bank_hash_determinism.py\n",
+      "why": "the modification is the deterministic-hash repair below. Stage A had to be re-run with the fix in the tree before it could be committed alongside the hashes it produced",
+      "mitigation": "the sealed freeze was tracked and already committed when stage A ran, at 44446cf3a9bb; the exact porcelain diff is recorded and hashed in the manifest; the fix and the bank hashes stage A produced were then committed together as 9713af2caf3f, and stage B executed at that same commit with a fully clean tree and reproduced all 60 commitments",
+      "reading": "the bank is verifiable from the committed record. The attestation is not clean and is not presented as clean",
+      "not_repairable_retrospectively": "re-running stage A from a clean tree would draw the bank again, which item 10 forbids and which would destroy the seal"
+    },
+    "HMT2_MAIN_SALTED_HASH_DEFECT_CAUGHT_BY_GATE": {
+      "defect": "the sealed bank's label-integrity field was built with Python's builtin hash(), which salts string hashing per process unless PYTHONHASHSEED is set before the interpreter starts. pin() sets it far too late. Stage A and stage B are separate processes, so the field could never match",
+      "presented_as": "60 of 60 bank hash mismatches at the start of stage B, which reads as a tampered bank",
+      "scope": "the integrity field only. Truth content and truth seeds were sha256 throughout, so no drawn truth and no seed was ever affected. The defect was in the check, not in the bank",
+      "caught_by": "HMT2M_G2_commitments_reproduce, which refused to let stage B proceed. The gate did its job",
+      "third_occurrence": "the same bug appeared at the R0 null-pair seed and at HMT-1's off-manifold seeds. Twice it was found by reasoning backwards from a symptom",
+      "repair": "labels are hashed with sha256 of the joined label string, and three tests now hold the property: one scans every script for a bare builtin hash() call, one asserts that builtin hash differs across processes, one asserts the replacement is stable across them",
+      "no_endpoint_effect": "the repair changed an integrity field and nothing the endpoint reads"
+    }
+  },
+  "text_corrections": {
+    "test_count": {
+      "commit_message_says": 488,
+      "correct": 489,
+      "cause": "the message was written before test_the_csv_twin_is_capped was added to the same amended commit. The accepted tree at 0d1f7510 collects 489",
+      "resolution": "the commit message is part of the accepted commit and is not rewritten. 489 is the count of record and is what every later document says. Item 7"
+    }
+  },
+  "artifact_management": {
+    "change": "CSV_TWIN_MAX_ROWS = 250000 in src/phrt/io/tables.py",
+    "reason": "the 936960-row state table produced a 122 MB CSV twin against a 1.7 MB parquet, above the remote's file size limit",
+    "behaviour": "above the cap the writer emits a .csv.skipped stub naming the row count and pointing at the parquet",
+    "status": "NON_SCIENTIFIC_ARTIFACT_MANAGEMENT_REPAIR. Parquet is authoritative for every table and always was; the stub is required so a missing twin is never silent. Item 8"
+  },
+  "not_authorized": [
+    "order leakage",
+    "geometry mismatch",
+    "VLBI",
+    "machine learning",
+    "a new pixel-movie campaign",
+    "rerunning, appending truths or recomputing the endpoint"
+  ],
+  "inputs": {
+    "sealed_main_freeze_sha256": "bb65f5615e2dff7ad89ea541b89a68a81295dfc087634dba8a2c7cf1d179bf88",
+    "stage_1_amendment_sha256": "ade1065e569181b35bb6a7fdb208c27228276b3995f387c2e67c58a06a5d2ad1",
+    "sealed_main_gates_sha256": "2ece59e9e1a577830d8d4374c7fa09ff601421ab1e2f163d59c8a3f4c4bf7d75",
+    "artifact_manifest_sha256": "124f7662618ea17c60ffdb3330ad31e21dd1b2089af9f861d1fe7b935504f93c",
+    "bank_hashes_sha256": "fb723492b627d4c0c8189bcfee9ce8163b0821cd6bd847e9c173ace832f72d87",
+    "endpoint_table_sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+    "per_family_table_sha256": "1ec96fdfeaeac06831c27006351c408b05dc93170e2fd5ba7fd4f5a57ef0f6a4",
+    "stable_multi_table_sha256": "46f000fa474a16e37b40ebd0821f18ddfce9e21475ee166e9ef7febb3dfd1c17",
+    "stable_interval_table_sha256": "3ebef34768860d390d7842be18c41863b8ae55e2edaf8130654bd4f900ab9d80"
+  },
+  "attestation": {
+    "available": true,
+    "execution_commit": "e9c1930a676a93e1043241c4bc8adfef8462260c",
+    "head_tree_sha": "e60ac2c7e2eb999f085b708db7d27e502ba9fb30",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": " M scripts/build_canonical_freeze.py\n M scripts/build_evidence_ledger.py\n M scripts/build_manuscript.py\n M scripts/register_hmt2_main_amendment_021.py\n M src/phrt/manuscript/sections.py\n",
+    "porcelain_registered_sha256": "7ec3e0560825926ff003e665371bcee0e641f545a8147c85b185dcbcaf61838c",
+    "porcelain_whole_tree_sha256": "c633c2d01e635cb0b64e256e3762add5107515119001d24bf55f5caa630ea5f1",
+    "n_tracked_changes": 5,
+    "n_untracked": 0,
+    "tracked_clean": false,
+    "untracked_clean": true,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_SEALED_MAIN_V1.json",
+        "sha256": "bb65f5615e2dff7ad89ea541b89a68a81295dfc087634dba8a2c7cf1d179bf88",
+        "working_blob_sha": "1965d12da7badbce9f8686a362b54a6caaa1facf",
+        "committed_blob_sha": "1965d12da7badbce9f8686a362b54a6caaa1facf",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/HMT2_STAGE1_ENDPOINT_COMPLETION_AMENDMENT_020.json",
+        "sha256": "ade1065e569181b35bb6a7fdb208c27228276b3995f387c2e67c58a06a5d2ad1",
+        "working_blob_sha": "8e6837228df5fa3404ca3730e76131b244c8b990",
+        "committed_blob_sha": "8e6837228df5fa3404ca3730e76131b244c8b990",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}
