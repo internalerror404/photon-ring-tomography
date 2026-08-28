@@ -1,0 +1,261 @@
+{
+  "schema": "phrt-hmt2-stage1-freeze/1",
+  "id": "HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0",
+  "created_utc": "2026-08-28T04:11:21Z",
+  "ruling": "REVIEWER_RULING_HMT2_STAGE0_019",
+  "status": "FROZEN_BEFORE_ANY_VALIDATION_TRUTH",
+  "branch": "research/hmt2_resolution_aware_feature_measure_v0",
+  "authorized_by": "item 12, stage 0R having passed every corrected source-only gate",
+  "stage_0r_gates_sha256": "1c77907aa156ead7694470d861a0e00bccfdc8ffe771e62aaa1dfbcac26d797d",
+  "what_stage_1_is": "the first HMT-2 stage that constructs an operator. It asks whether resolving the photon ring orders improves a resolution-aware description of the past, measured on every state the source presents rather than only the states that happen to be cleanly resolved",
+  "source_model": {
+    "families": [
+      "circular_hotspot_trajectory",
+      "two_hotspot_trajectories",
+      "m1_rotating_crescent",
+      "m2_structural_mode",
+      "flare_birth_motion_decay",
+      "plunging_feature"
+    ],
+    "ranges": "the original six declared ranges, verbatim. Item 13",
+    "minimum_separation_cut": "none. Item 13. Stage 0R measured what these ranges contain; a cut would remove the very states the endpoint is designed to score",
+    "expected_windowed_multiplicity": {
+      "circular_hotspot_trajectory": 1,
+      "two_hotspot_trajectories": 2,
+      "m1_rotating_crescent": 1,
+      "m2_structural_mode": 2,
+      "flare_birth_motion_decay": 1,
+      "plunging_feature": 1,
+      "three_hotspot_cluster": 3,
+      "counter_rotating_pair": 2,
+      "radially_drifting_arc": 1
+    }
+  },
+  "classes": {
+    "primary": {
+      "id": "L896_radial_enriched",
+      "radial": 8,
+      "azimuthal": 7,
+      "temporal": 16,
+      "dimension_after_m0_removal": 768,
+      "role": "the primary bounded class. Item 13",
+      "why": "stage 0R measured its stable-state merger rate at 0.136 against 0.299 for the current class, and its representation floor about an order of magnitude lower"
+    },
+    "control": {
+      "id": "L448_contrast",
+      "radial": 4,
+      "azimuthal": 7,
+      "temporal": 16,
+      "dimension_after_m0_removal": 384,
+      "role": "representation-limited control. Item 13",
+      "why": "it is the class HMT-1 used, and carrying it makes the cost of the representation limit visible in the same run rather than by comparison across runs"
+    }
+  },
+  "targets": {
+    "CLASS_CONDITIONAL": {
+      "reference": "the best in-class approximation of the source object",
+      "reads": "how much of what the class can represent the estimator recovers",
+      "claim_it_supports": "a class-conditional result, and nothing more"
+    },
+    "PHYSICAL_END_TO_END": {
+      "reference": "the analytic source object itself",
+      "reads": "how much of what is actually there the estimator recovers",
+      "claim_it_supports": "a physical historical-recovery claim"
+    },
+    "rule": "item 14. Improvement on CLASS_CONDITIONAL alone is a class-conditional result. A physical claim requires improvement on PHYSICAL_END_TO_END as well. Both are reported for every arm, estimator and SNR, always together and always named"
+  },
+  "endpoints": {
+    "primary": {
+      "id": "all_state_resolution_aware_morphology_error",
+      "definition": "one error per (truth, age) computed by the measure appropriate to that state's reconciled label, aggregated over all states without exclusion",
+      "per_state_measure": {
+        "SINGLE_RESOLVED": "set-valued unbalanced assignment cost on the one feature",
+        "MULTI_RESOLVED": "set-valued unbalanced assignment cost over the feature set",
+        "BLENDED": "normalised discrepancy in centroid, size and mode content -- what a one-peak field supports",
+        "AMBIGUOUS": "the BLENDED measure, because a state whose multiplicity the analysis grid cannot settle must not be scored as though it had a definite feature count",
+        "DEAD": "amplitude discrepancy only; no position is defined"
+      },
+      "normalisation": "each per-state measure is expressed in units of its own worst case, so states of different kinds combine without one kind dominating by having a larger natural scale",
+      "no_exclusions": "item 16. BLENDED and AMBIGUOUS states are in the primary endpoint and are never forced into two-track scoring"
+    },
+    "secondary_conditional": {
+      "id": "set_valued_positions_and_tracks",
+      "restricted_to": "reconciled STABLE_MULTI_RESOLVED states",
+      "rule": "item 15. Conditional by construction and reported as such: it says what recovery looks like where the source is cleanly resolved, and carries no claim about the rest"
+    }
+  },
+  "bank": {
+    "truths_per_family": 8,
+    "n_families": 6,
+    "n_truths": 48,
+    "noise_draws_per_truth": 4,
+    "bank_seed": 20260941,
+    "fresh": "a new validation bank, disjoint from every HMT-1 bank and from the stage 0 audit bank by commitment string",
+    "commitments": {
+      "circular_hotspot_trajectory": "045748304c4238269fd1dc94b244a61053f705701355c4435e543f09177d4792",
+      "two_hotspot_trajectories": "3eaa9a3b6ec74093aca2bcd8e6ef7c5a0a9eb68cbed4f6869e07c8e0b32b82c2",
+      "m1_rotating_crescent": "733266f107f636007a0774b4fa456737dfc2a5de6b0f38a4a6e9bb7ba07f5209",
+      "m2_structural_mode": "56a90decd67770a67420ee218dd255d3f98501c5ae8f4983f6a813ae88f2017b",
+      "flare_birth_motion_decay": "53a390392c278fbe9b047c0ae6f81bf94b0b2fd57461eb33d3dd681660e85509",
+      "plunging_feature": "88095f10c1f62a189719392a7989d20fe84be8ba176f74542104a44a1353fde3"
+    },
+    "not_a_sealed_main": "item 17. This is a validation. No held-out sealed bank is created, and none is authorized"
+  },
+  "arms": [
+    "DIRECT_PHYSICAL",
+    "RESOLVED_PHYSICAL",
+    "UNRESOLVED_IMAGE",
+    "TOTAL_FLUX"
+  ],
+  "estimators": {
+    "authorized": [
+      "TSVD",
+      "RIDGE_IDENTITY"
+    ],
+    "rule": "item 17, classical only",
+    "ML": "NOT_AUTHORIZED",
+    "NONNEGATIVE_CONSTRAINED": "WITHDRAWN_UNSELECTED, carried forward from ruling 017 item 12",
+    "selection": "on a selection split disjoint from the reported split, by the same rule the HMT-1 validation used"
+  },
+  "snr": {
+    "primary": 100.0,
+    "secondary": 1000.0
+  },
+  "classification": {
+    "prominence_fraction": 0.25,
+    "dead_fraction": 0.25,
+    "levels": [
+      [
+        32,
+        64,
+        80
+      ],
+      [
+        64,
+        128,
+        160
+      ]
+    ],
+    "reconciliation": "the reconciled label from the two finest refinement levels, as in stage 0R",
+    "note": "the source-side classification is computed exactly as stage 0R computed it, on the same two finest refinement levels, so a state's label does not depend on which stage is looking at it. An earlier draft of this freeze took the two coarsest levels while claiming the two finest; corrected before any truth was drawn",
+    "cost_note": "the source classification is per truth, not per arm or draw, so using the finest level costs 48 classifications rather than 48 times the arm, estimator, SNR and draw product. The reconstruction is evaluated on the same grids through the separable factors, which needs no dense design"
+  },
+  "gates": {
+    "HMT2S1_G1_pinned_numerical_environment": "structural",
+    "HMT2S1_G2_commitments_reproduce": "structural",
+    "HMT2S1_G3_bank_disjoint_from_stage_0_and_hmt1": 0,
+    "HMT2S1_G4_contrast_zero_spatial_mean": 1e-10,
+    "HMT2S1_G5_total_emissivity_nonnegative": 0.0,
+    "HMT2S1_G6_adjoint": 1e-08,
+    "HMT2S1_G7_operator_truth_identity": 1e-09,
+    "HMT2S1_G8_both_targets_reported": 0,
+    "HMT2S1_G9_no_state_excluded_from_primary": 0,
+    "HMT2S1_G10_blended_not_forced_into_two_tracks": 0,
+    "HMT2S1_G11_secondary_restricted_to_stable_states": 0,
+    "HMT2S1_G12_estimator_scope": 0,
+    "HMT2S1_G13_no_sealed_bank_created": 0,
+    "HMT2S1_G14_declared_gate_coverage": "structural",
+    "HMT2S1_G15_resource_limits": "structural"
+  },
+  "gate_notes": {
+    "HMT2S1_G8_both_targets_reported": "endpoint rows missing either target. Must be zero: item 14 requires both, and reporting one alone is how a class-conditional result gets read as a physical one",
+    "HMT2S1_G9_no_state_excluded_from_primary": "states present in the source classification and absent from the primary endpoint. Must be zero",
+    "HMT2S1_G10_blended_not_forced_into_two_tracks": "BLENDED or AMBIGUOUS states scored by a multi-feature measure. Must be zero",
+    "HMT2S1_G13_no_sealed_bank_created": "held-out sealed banks created by this stage. Must be zero"
+  },
+  "pass_criteria": {
+    "class_conditional": "resolved arm improves on the direct image, both estimators, interval excluding zero",
+    "physical_end_to_end": "the same, against the analytic source",
+    "reading": "improvement on the first alone is reported as CLASS_CONDITIONAL_ONLY and is not a historical recovery claim"
+  },
+  "dispositions": {
+    "HMT2_S1_PHYSICAL_MORPHOLOGY_RECOVERY_PASS": "improvement on both targets",
+    "HMT2_S1_CLASS_CONDITIONAL_ONLY": "improvement on CLASS_CONDITIONAL and not on PHYSICAL_END_TO_END",
+    "HMT2_S1_NO_MATERIAL_EFFECT": "banks sound, neither target improves materially",
+    "HMT2_S1_SOURCE_BANK_FAILURE": "a declared bank could not be built within tolerances",
+    "HMT2_S1_IMPLEMENTATION_DEFECT": "a gate failed, a limit was exceeded, or a commitment did not reproduce"
+  },
+  "gate_failure_forces_defect_token": true,
+  "resource_limits": {
+    "wall_clock_seconds": 14400,
+    "on_exceeded": "HMT2_S1_IMPLEMENTATION_DEFECT"
+  },
+  "numerical_environment": {
+    "pinned": true,
+    "variables": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "assertion": "every BLAS pool must report one thread, interrogated after import"
+  },
+  "after": "STOP for reviewer adjudication. Item 18",
+  "not_authorized": [
+    "a sealed held-out main",
+    "order leakage",
+    "geometry mismatch",
+    "VLBI",
+    "machine learning",
+    "a new pixel-movie reconstruction campaign"
+  ],
+  "inherits": {
+    "stage_0_sha256": "1689a13f78597c0dbb673424cd2cf69f0e35a16a4c286c68e50176af40c73462",
+    "stage_0r_sha256": "9d472892464b9422d1aa9e6d709bc18cbae26f47ab95f5b2fe60545abb737bb1",
+    "hmt1_validation_freeze_sha256": "4ed2338ca45eb47e11d4aeb49067799e9db3e3d41b8f8d9c391d9dd09fc7c361"
+  },
+  "attestation": {
+    "available": true,
+    "execution_commit": "f46c2e295cceb3e868581a87eeb3e08137474b68",
+    "head_tree_sha": "19ab0b27c57110b60e5a0b4337496a699c2686b5",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? artifacts/configs/HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0.json\n?? scripts/register_hmt2_stage1_freeze.py\n",
+    "porcelain_registered_sha256": "eb4cf93f7811345ab5eed6b4dd0ba0249da82a8d12977b08d851347599363b19",
+    "porcelain_whole_tree_sha256": "eb4cf93f7811345ab5eed6b4dd0ba0249da82a8d12977b08d851347599363b19",
+    "n_tracked_changes": 0,
+    "n_untracked": 2,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE0_SOURCE_OBJECT_AND_RESOLUTION_AUDIT_V0.json",
+        "sha256": "1689a13f78597c0dbb673424cd2cf69f0e35a16a4c286c68e50176af40c73462",
+        "working_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/HMT2_STAGE0R_SOURCE_ONLY_CORRECTION_V0.json",
+        "sha256": "9d472892464b9422d1aa9e6d709bc18cbae26f47ab95f5b2fe60545abb737bb1",
+        "working_blob_sha": "31837ca31e449b5804735460d345ac72e5dfcf7b",
+        "committed_blob_sha": "31837ca31e449b5804735460d345ac72e5dfcf7b",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/HMT1_VALIDATION_FREEZE_V0.json",
+        "sha256": "4ed2338ca45eb47e11d4aeb49067799e9db3e3d41b8f8d9c391d9dd09fc7c361",
+        "working_blob_sha": "a922befe114cbaabffd6f43af80787243838fbac",
+        "committed_blob_sha": "a922befe114cbaabffd6f43af80787243838fbac",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}
