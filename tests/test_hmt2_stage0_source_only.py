@@ -38,22 +38,45 @@ def test_the_audit_imports_no_operator_anywhere():
 def test_the_audit_carries_its_own_runtime_guard():
     """A source file can be edited; the guard fires at run time."""
     src = AUDIT.read_text()
-    assert "_assert_source_only" in src
-    assert "FORBIDDEN" in src
+    assert "assert_source_only()" in src
+    assert "from phrt.io.source_only import" in src
 
 
 def test_the_guard_actually_detects_an_operator_import():
+    """The guard reads sys.modules, so the test has to control sys.modules.
+
+    Inside the full suite other tests have already imported an operator and the
+    guard fires immediately -- correctly. That is a property of a shared
+    interpreter, not of the audit, which runs in its own process where the only
+    imports are its own. So the test clears exactly what the guard forbids,
+    reading the list from the guard itself, checks the clean case, imports an
+    operator on purpose, and restores sys.modules as it found it.
+    """
     import importlib
     import sys
-    spec = importlib.util.spec_from_file_location("_hmt2_audit_guard", AUDIT)
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    assert mod._assert_source_only() is True
-    importlib.import_module("phrt.operators.physical")
-    with pytest.raises(SystemExit):
-        mod._assert_source_only()
-    sys.modules.pop("phrt.operators.physical", None)
-    sys.modules.pop("phrt.operators", None)
+
+    from phrt.io.source_only import FORBIDDEN as GUARD_FORBIDDEN
+    from phrt.io.source_only import assert_source_only
+
+    saved = {k: v for k, v in sys.modules.items()
+             if k.startswith(GUARD_FORBIDDEN)}
+    for k in saved:
+        del sys.modules[k]
+    try:
+        assert assert_source_only() is True
+        importlib.import_module("phrt.operators.physical")
+        with pytest.raises(SystemExit):
+            assert_source_only()
+    finally:
+        for k in [k for k in sys.modules if k.startswith(GUARD_FORBIDDEN)]:
+            del sys.modules[k]
+        sys.modules.update(saved)
+
+
+def test_the_guard_forbids_the_right_modules():
+    from phrt.io.source_only import FORBIDDEN
+    assert set(FORBIDDEN) == {"phrt.operators", "phrt.geometry.raymap",
+                              "phrt.geometry.sampling"}
 
 
 def test_the_freeze_declares_the_prohibition():

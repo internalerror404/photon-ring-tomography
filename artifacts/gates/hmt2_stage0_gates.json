@@ -1,0 +1,114 @@
+{
+  "schema": "phrt-hmt2-stage0/1",
+  "id": "HMT2_STAGE0_AUDIT",
+  "created_utc": "2026-08-28T02:50:11Z",
+  "ruling": "REVIEWER_RULING_HMT1_SOURCE_RESOLUTION_018",
+  "freeze": "HMT2_STAGE0_SOURCE_OBJECT_AND_RESOLUTION_AUDIT_V0",
+  "freeze_sha256": "1689a13f78597c0dbb673424cd2cf69f0e35a16a4c286c68e50176af40c73462",
+  "ray_map_imported": false,
+  "operator_constructed": false,
+  "source_only_verified": true,
+  "n_truths": 169,
+  "n_declared": 144,
+  "n_off_manifold": 24,
+  "canary": 1,
+  "levels": [
+    [
+      16,
+      32,
+      40
+    ],
+    [
+      32,
+      64,
+      80
+    ],
+    [
+      64,
+      128,
+      160
+    ]
+  ],
+  "classes": [
+    "L448_contrast",
+    "L896_radial_enriched"
+  ],
+  "numerical_environment": {
+    "pinned_environment": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "declared_pin": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "threadpool_state": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.23.dev",
+        "threading_layer": "pthreads",
+        "architecture": "SkylakeX",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.21.dev",
+        "threading_layer": "pthreads",
+        "architecture": "SkylakeX",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/scipy.libs/libopenblasp-r0-23e5df77.3.21.dev.so"
+      }
+    ],
+    "all_pools_single_threaded": true
+  },
+  "attestation": {
+    "available": true,
+    "execution_commit": "5a70f712117777ef1a8264a85f8ca15b9b5e9301",
+    "head_tree_sha": "87c1ed6282dc155a573c5ef3766c436cafc3b338",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "eb7afa9ac914dd4f2d9b8630ef61590ee20c133f921c073948de7ac9a763077d",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE0_SOURCE_OBJECT_AND_RESOLUTION_AUDIT_V0.json",
+        "sha256": "1689a13f78597c0dbb673424cd2cf69f0e35a16a4c286c68e50176af40c73462",
+        "working_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "runtime_seconds": 2438
+}

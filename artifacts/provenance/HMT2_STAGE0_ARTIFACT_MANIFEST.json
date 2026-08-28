@@ -1,0 +1,88 @@
+{
+  "schema": "phrt-artifact-manifest/1",
+  "experiment_id": "HMT2_STAGE0",
+  "created_utc": "2026-08-28T02:51:58Z",
+  "ray_map_imported": false,
+  "operator_constructed": false,
+  "canary_excluded_from_aggregates": true,
+  "execution_attestation": {
+    "available": true,
+    "execution_commit": "5a70f712117777ef1a8264a85f8ca15b9b5e9301",
+    "head_tree_sha": "87c1ed6282dc155a573c5ef3766c436cafc3b338",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "eb7afa9ac914dd4f2d9b8630ef61590ee20c133f921c073948de7ac9a763077d",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE0_SOURCE_OBJECT_AND_RESOLUTION_AUDIT_V0.json",
+        "sha256": "1689a13f78597c0dbb673424cd2cf69f0e35a16a4c286c68e50176af40c73462",
+        "working_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "report_assembly_attestation": {
+    "available": true,
+    "execution_commit": "5a70f712117777ef1a8264a85f8ca15b9b5e9301",
+    "head_tree_sha": "87c1ed6282dc155a573c5ef3766c436cafc3b338",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": " M scripts/build_hmt2_stage0_report.py\n",
+    "porcelain_registered_sha256": "7e2f3168c861ab901dd648401c4ff7ed8b8e40a392371a3d77f9072908f0139a",
+    "porcelain_whole_tree_sha256": "eec1511dd36a67275a0e114aa8bed14a4d2f7ee6056a0e2d8ebed157e4385136",
+    "n_tracked_changes": 1,
+    "n_untracked": 0,
+    "tracked_clean": false,
+    "untracked_clean": true,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE0_SOURCE_OBJECT_AND_RESOLUTION_AUDIT_V0.json",
+        "sha256": "1689a13f78597c0dbb673424cd2cf69f0e35a16a4c286c68e50176af40c73462",
+        "working_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_blob_sha": "1c4890805944f7324a02eec6ad6d8265a296ce00",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "freeze_sha256": "1689a13f78597c0dbb673424cd2cf69f0e35a16a4c286c68e50176af40c73462",
+  "inputs": {
+    "artifacts/tables/hmt2_stage0_blended.parquet": "5e8d2805fbaf3700b2ee59146e1c666804bf8226a57554ef1ff25c586921ea46",
+    "artifacts/tables/hmt2_stage0_class_widths.parquet": "d717aa7e388d58942365fac7f3e61a392f32581d4d922c519cb753e6e1b99d4a",
+    "artifacts/tables/hmt2_stage0_multi_features.parquet": "f05611afc1c3035ceb932b3de7d0388273f2ecf1da3f502e89a55e39d8007df3",
+    "artifacts/tables/hmt2_stage0_projection.parquet": "03efe731037a264fe873164ada2aa39d554b45548ba064ee110fcaf7a800927e",
+    "artifacts/tables/hmt2_stage0_states.parquet": "98398806e26e07a1eb7aa0ff7988c94e4e1c7e7dbe9543b757ea6e730f736b99",
+    "artifacts/tables/hmt2_stage0_tracks.parquet": "c6624fb60b507434122453cb678dd22f67c04daaaba0d56d629f89d363483bcd"
+  },
+  "outputs": {
+    "artifacts/reports/HMT2_STAGE0_SOURCE_RESOLUTION_AUDIT.md": "1a303773d5a204094b933c6b62d72f96dc131a18176a0b336c555ad1624c810b"
+  }
+}

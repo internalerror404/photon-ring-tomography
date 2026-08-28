@@ -64,15 +64,19 @@ def main() -> int:
     ftab = frac_table(agg)
     otab = frac_table(offm)
 
+    # pooled over states, not the mean of per-truth rates: a truth with three
+    # multi-resolved ages and one with sixty should not weigh the same, and a
+    # family with no multi-resolved state at all has no rate rather than zero
+    pg = pj_agg.groupby(["family", "class"], as_index=False).agg(
+        n_multi_before=("n_multi_before", "sum"),
+        n_merged=("n_merged", "sum"),
+        floor_med=("representation_floor_median", "median"),
+        floor_max=("representation_floor_max", "max"))
     ptab = D.join(
         f"| `{r.family}` | `{r['class']}` | {int(r.n_multi_before)} | "
-        f"{r.merger_rate:.3f} | {r.representation_floor_median:.3f} | "
-        f"{r.representation_floor_max:.3f} |"
-        for _, r in pj_agg.groupby(["family", "class"], as_index=False).agg(
-            n_multi_before=("n_multi_before", "sum"),
-            merger_rate=("merger_rate", "mean"),
-            representation_floor_median=("representation_floor_median", "median"),
-            representation_floor_max=("representation_floor_max", "max")).iterrows())
+        + (f"{r.n_merged / r.n_multi_before:.3f}" if r.n_multi_before else "--")
+        + f" | {r.floor_med:.3f} | {r.floor_max:.3f} |"
+        for _, r in pg.iterrows())
 
     mw = wd.dropna(subset=["minimum_representable_width_M"])
     mtab = D.join(
@@ -81,8 +85,9 @@ def main() -> int:
         for _, r in mw.sort_values(["class", "r_centre_M"]).iterrows())
 
     ctab = D.join(
-        f"| `{r['class']}` | {r.merger_rate:.3f} | "
-        f"{r.representation_floor_median:.3f} |"
+        f"| `{r['class']}` | {int(r.n_multi_before)} | "
+        + (f"{r.n_merged / r.n_multi_before:.3f}" if r.n_multi_before else "--")
+        + f" | {r.representation_floor_median:.3f} |"
         for _, r in can_pj.iterrows())
     c0 = can.iloc[0] if len(can) else None
     cn = float(c0.n_ages) if c0 is not None else 1.0
@@ -183,11 +188,61 @@ States over its {int(cn)} ages: single
 {int(c0.n_dead) if c0 is not None else 0}, ambiguous
 {int(c0.n_ambiguous) if c0 is not None else 0}.
 
-| class | merger rate | representation floor median |
-|---|---|---|
+| class | multi states | merger rate | representation floor median |
+|---|---|---|---|
 {ctab}
 
-## 8. What this does and does not establish
+## 8. What the audit found
+
+**The problem is one family, and it is quantified.** Five of the six declared
+families are clean: the single-feature families classify SINGLE_RESOLVED at
+every live age with no ambiguity, and the m = 2 pattern classifies
+MULTI_RESOLVED at every age, its two lobes being azimuthally separated and so
+untouched by a radial grid. `two_hotspot_trajectories` is the exception. Across
+its declared range it is MULTI_RESOLVED only
+{100 * float(agg[agg.family == 'two_hotspot_trajectories'].n_multi_resolved.sum() / agg[agg.family == 'two_hotspot_trajectories'].n_ages.sum()):.0f}% of the
+time; the rest is BLENDED or AMBIGUOUS. HMT-1 asked for a resolved peak
+position from that family at every age, and roughly a fifth of the time there
+was no such thing to ask for.
+
+**The grids themselves are converged.** Doubling the analysis grid moves the
+measured feature set by {agg.grid_convergence_cells_median.median():.2f} cells
+at the median and {agg.grid_convergence_cells_max.max():.2f} at the worst, with
+the cardinality disagreeing at most once in the whole declared bank. The
+resolution limit is in the source-grid contract, not in the arithmetic.
+
+**Projection onto the current class destroys resolved structure.** Of the
+two-hotspot states that are genuinely MULTI_RESOLVED in the analytic field,
+{100 * float(pg[(pg.family == 'two_hotspot_trajectories') & (pg['class'] == 'L448_contrast')].n_merged.iloc[0] / pg[(pg.family == 'two_hotspot_trajectories') & (pg['class'] == 'L448_contrast')].n_multi_before.iloc[0]):.0f}%
+stop being multi-resolved once projected onto `L448_contrast`, the class HMT-1
+used. Doubling the radial functions brings that to
+{100 * float(pg[(pg.family == 'two_hotspot_trajectories') & (pg['class'] == 'L896_radial_enriched')].n_merged.iloc[0] / pg[(pg.family == 'two_hotspot_trajectories') & (pg['class'] == 'L896_radial_enriched')].n_multi_before.iloc[0]):.0f}%.
+An estimator working in the current class cannot recover two features that its
+own class merges before the operator is even applied.
+
+**Radial enrichment moves the representation floor by about an order of
+magnitude.** The median floor -- the assignment error between the analytic
+field and its own best in-class approximation, before any operator and any
+noise -- falls from
+{pg[pg['class'] == 'L448_contrast'].floor_med.median():.2f} cells to
+{pg[pg['class'] == 'L896_radial_enriched'].floor_med.median():.2f} across the
+declared families.
+
+**And the class cannot keep a narrow feature narrow.** `L448_contrast`
+broadens anything below about 6 M at r = 45 M by a factor of two. The HMT-1
+truth that failed had radial widths of 2.29 and 3.03 M at r = 46 and 43 M --
+well under that floor. The enriched class improves it to about 4 M at the same
+radius, which is better and still above those widths.
+
+**The canary is blended at every age.** The HMT-1 truth that failed the sealed
+main classifies BLENDED at all {int(cn)} ages, on every grid, with a grid
+convergence of {float(c0.grid_convergence_cells_median):.2f} cells and no
+cardinality disagreement. It is not an unstable or marginal source: it is a
+perfectly well-determined field with one peak, and HMT-1's gate was asking it
+for a resolved peak position that does not exist. The gate was right to fail
+and the reason was upstream of it.
+
+## 9. What this does and does not establish
 
 It establishes what these six families put on these grids and what survives
 projection onto these two classes. It says nothing about any estimator, because

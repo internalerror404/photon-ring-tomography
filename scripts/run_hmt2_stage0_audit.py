@@ -27,6 +27,7 @@ import numpy as np  # noqa: E402
 
 from phrt.attestation import attest  # noqa: E402
 from phrt.config import sha256_file  # noqa: E402
+from phrt.io.source_only import assert_source_only  # noqa: E402
 from phrt.io.tables import write_table  # noqa: E402
 from phrt.metrics.feature_sets import (assignment, associate_tracks,  # noqa: E402
                                        blended_descriptors, cell_metric,
@@ -40,17 +41,6 @@ from phrt.sources.separable_projection import (factors,  # noqa: E402
 
 FZ = ROOT / "artifacts" / "configs" / "HMT2_STAGE0_SOURCE_OBJECT_AND_RESOLUTION_AUDIT_V0.json"
 OUT = ROOT / "artifacts" / "gates" / "hmt2_stage0_gates.json"
-
-FORBIDDEN = ("phrt.operators", "phrt.geometry.raymap", "phrt.geometry.sampling")
-
-
-def _assert_source_only():
-    """Item 8, checked rather than promised."""
-    bad = sorted(m for m in sys.modules if m.startswith(FORBIDDEN))
-    if bad:
-        raise SystemExit(f"stage 0 must import no operator or ray map: {bad}")
-    return True
-
 
 def truth_seed(family, i, n, seed):
     p = json.dumps({"family": family, "split": "hmt2_stage0_source_audit",
@@ -96,7 +86,7 @@ def main() -> int:
     t0 = time.time()
     numerics = require_single_threaded()
     fz = json.loads(FZ.read_text())
-    _assert_source_only()
+    assert_source_only()
 
     inh = fz["inherited"]
     r_in, r_out = 1.8660386527060988, 49.98205255591607
