@@ -61,8 +61,32 @@ HMT1_LEDGER = ROOT / "artifacts" / "gates" / "hmt1_correctness_gates.json"
 # HMT-1 gates live in their own ledger so they do not perturb the hash that
 # Paper I's canonical artifact freeze pins. That separation must not also move
 # them out of the build's reach, so they get the same no-unadjudicated-failure
-# rule the shared dashboard has. Empty is the healthy state.
-DECLARED_BLOCKING: dict[str, str] = {}
+# rule the shared dashboard has. Empty is the healthy state, and an entry has
+# to point at a real document that rules on the failure.
+DECLARED_BLOCKING: dict[str, str] = {
+    # The sealed main's generative label for a multi-feature family is
+    # imprecise for a spot that moves appreciably inside the probe window. Not
+    # repaired: the threshold is sealed, and redefining the label after seeing
+    # the held-out bank is tuning until the gate goes green. The run stands as
+    # a defect with its endpoint withheld, pending a ruling.
+    "HMT1M_G10b_truth_extraction_recovers_generative_parameters":
+        "artifacts/reports/HMT1_SEALED_MAIN.md",
+}
+
+
+def test_every_declared_blocking_hmt1_gate_cites_a_real_document():
+    for gate, doc in DECLARED_BLOCKING.items():
+        assert (ROOT / doc).exists(), f"{gate} cites {doc}, which is missing"
+
+
+def test_declared_blocking_hmt1_gates_are_not_stale():
+    """A gate that now passes must not stay on the adjudicated list."""
+    if not HMT1_LEDGER.exists():
+        pytest.skip("HMT-1 has not been run in this tree")
+    gates = json.loads(HMT1_LEDGER.read_text())["gates"]
+    stale = [g for g in DECLARED_BLOCKING
+             if g in gates and gates[g]["status"] == "PASS"]
+    assert not stale, stale
 
 
 def test_no_unadjudicated_hmt1_gate_failures():

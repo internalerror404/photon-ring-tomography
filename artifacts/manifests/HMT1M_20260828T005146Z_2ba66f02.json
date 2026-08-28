@@ -1,0 +1,284 @@
+{
+  "run_id": "HMT1M_20260828T005146Z_2ba66f02",
+  "experiment_id": "HMT1_SEALED_MAIN",
+  "execution_commit": "0f570d318689c86a7243331f4300c2dd9d722787",
+  "manifest_build_commit": "0f570d318689c86a7243331f4300c2dd9d722787",
+  "git_commit": "0f570d318689c86a7243331f4300c2dd9d722787",
+  "git_commit_deprecated": "ambiguous: this is the manifest build commit, not the execution commit. Read execution_commit instead",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v22",
+    "architecture": "x86_64",
+    "memory_bytes": 16856133632,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "bank_seed": 20260917,
+    "noise_seed": 20260919,
+    "bootstrap_seed": 20260918,
+    "null_pair_seed": 20260920,
+    "subsample_seed": 20260825,
+    "freshness": "different values from the validation seeds, and the seed commitment payload carries split='sealed_main_heldout', a string no validation commitment used. Disjointness is therefore by construction and is checked as well"
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V1.json",
+      "sha256": "b7afcb0e31289e7ae85c3f3eda7bf88fb8939f67f63b56377273a15d6b9cd4d5"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT1M_20260828T005146Z_2ba66f02/tables/hmt1_main_background_error.parquet",
+      "sha256": "18c801b290a8a9848d3f9c77ea5e736a7c5562424d5ee8aa9c8fb47794e86cc5"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT1M_20260828T005146Z_2ba66f02/tables/hmt1_main_noiseless_control.parquet",
+      "sha256": "8edec17c80f51404ab9a519e9b59a7dbd972a2e14454ec623d7ceb4c4ed4a870"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT1M_20260828T005146Z_2ba66f02/tables/hmt1_main_off_manifold.parquet",
+      "sha256": "53800ddd9100dc214c55517237617c2ebcbfc6196a94ffb84c835f1ed3d7bac4"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT1M_20260828T005146Z_2ba66f02/tables/hmt1_main_null_pairs.parquet",
+      "sha256": "a071360b14ca56c83be196d5a65aa51ce65edd3d18fec0a5254a129616689c58"
+    }
+  ],
+  "gate_status": {
+    "HMT1M_G1_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "HMT1M_G2_held_out_commitment_reproduces": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "HMT1M_G3_disjoint_from_validation_truths": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "held-out truth seeds that also appear in the validation bank"
+    },
+    "HMT1M_G4_contrast_zero_spatial_mean": {
+      "status": "PASS",
+      "measured": 2.1826344984848814e-17,
+      "threshold": 1e-10
+    },
+    "HMT1M_G4b_azimuthal_zero_mean": {
+      "status": "PASS",
+      "measured": 1.8908485888147197e-16,
+      "threshold": 1e-10
+    },
+    "HMT1M_G5_total_emissivity_nonnegative": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0
+    },
+    "HMT1M_G6_background_strictly_positive": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0
+    },
+    "HMT1M_G7_adjoint": {
+      "status": "PASS",
+      "measured": 1.2770744281617431e-15,
+      "threshold": 1e-08
+    },
+    "HMT1M_G8_operator_truth_identity": {
+      "status": "PASS",
+      "measured": 7.758504213309246e-16,
+      "threshold": 1e-09
+    },
+    "HMT1M_G9_null_controls": {
+      "status": "PASS",
+      "measured": 1.5543122344752192e-15,
+      "threshold": 0.05,
+      "note": "worst realized-versus-target separation error over 96 near-null feature pairs"
+    },
+    "HMT1M_G10_feature_extraction_deterministic": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 1e-09
+    },
+    "HMT1M_G10b_truth_extraction_recovers_generative_parameters": {
+      "status": "FAIL",
+      "measured": 1.200705664997491,
+      "threshold": 1.0,
+      "note": "worst peak displacement from the generating trajectory, in evaluation-grid cells: radial 0.445, azimuthal 1.201"
+    },
+    "HMT1M_G11_off_manifold_excluded_from_endpoints": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "12 off-manifold truths built and none contributes an endpoint row"
+    },
+    "HMT1M_G12_sealed_hyperparameters_used_unchanged": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "reconstructions run at a hyperparameter other than the sealed one for their cell"
+    },
+    "HMT1M_G14_resource_limits": {
+      "status": "PASS",
+      "measured": 660,
+      "threshold": 10800
+    },
+    "HMT1M_G15_noise_path_is_live": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "cells at the primary SNR where the noisy reconstructions do not differ from the noiseless control, of 24. The endpoint direction is reported in the same table and is not gated"
+    },
+    "HMT1M_G16_bank_hashes_match_committed": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "held-out truths whose field or feature hashes differ from the values committed by stage A before any operator was applied"
+    },
+    "HMT1M_G13_declared_gate_coverage": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "complete"
+    }
+  },
+  "started_at": "2026-08-28T00:40:47Z",
+  "finished_at": "2026-08-28T00:51:47+00:00",
+  "attestation": {
+    "available": true,
+    "execution_commit": "0f570d318689c86a7243331f4300c2dd9d722787",
+    "head_tree_sha": "1984cd0e01afa4096778319ef621c941d73a1c8f",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V1.json",
+        "sha256": "b7afcb0e31289e7ae85c3f3eda7bf88fb8939f67f63b56377273a15d6b9cd4d5",
+        "working_blob_sha": "1840e7c0dafec5d9c7e612e75e617515fe07edbc",
+        "committed_blob_sha": "1840e7c0dafec5d9c7e612e75e617515fe07edbc",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/HMT1_VALIDATION_FREEZE_V0.json",
+        "sha256": "4ed2338ca45eb47e11d4aeb49067799e9db3e3d41b8f8d9c391d9dd09fc7c361",
+        "working_blob_sha": "a922befe114cbaabffd6f43af80787243838fbac",
+        "committed_blob_sha": "a922befe114cbaabffd6f43af80787243838fbac",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "peak_rss_mb": 987.5859375,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 659.6797773838043,
+  "stage": "sealed_main",
+  "regimes": [
+    "oracle_known",
+    "estimated_from_data",
+    "joint_inversion"
+  ],
+  "families": [
+    "circular_hotspot_trajectory",
+    "two_hotspot_trajectories",
+    "m1_rotating_crescent",
+    "m2_structural_mode",
+    "flare_birth_motion_decay",
+    "plunging_feature"
+  ],
+  "arms": [
+    "DIRECT_PHYSICAL",
+    "RESOLVED_PHYSICAL",
+    "UNRESOLVED_IMAGE",
+    "TOTAL_FLUX"
+  ],
+  "claim_bearing_regime": "estimated_from_data",
+  "contrast_class_dimension": 384,
+  "run_dir": "artifacts/runs/HMT1M_20260828T005146Z_2ba66f02",
+  "numerics": {
+    "pools": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.23.dev",
+        "threading_layer": "pthreads",
+        "architecture": "SkylakeX",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.21.dev",
+        "threading_layer": "pthreads",
+        "architecture": "SkylakeX",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/scipy.libs/libopenblasp-r0-23e5df77.3.21.dev.so"
+      }
+    ],
+    "n_pools": 2,
+    "all_single_threaded": true,
+    "environment": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    }
+  }
+}
