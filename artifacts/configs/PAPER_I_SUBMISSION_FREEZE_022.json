@@ -1,0 +1,105 @@
+{
+  "schema": "phrt-submission-freeze/1",
+  "id": "PAPER_I_SUBMISSION_FREEZE_022",
+  "created_utc": "2026-08-28T15:30:20Z",
+  "ruling": "PAPER_I_EDITORIAL_RULING_022",
+  "status": "FROZEN_FOR_SUBMISSION",
+  "title": "Photon-Ring Retarded-Time Tomography I: The Shiva Effect \u2014 Null Spaces, Multi-Geometry Observability, and Bounded Inference of Historical Emissivity Level and Morphology",
+  "authors": "Hina Dixit and Abhinav Chauhan",
+  "results": {
+    "held_out": [
+      "STABLE_BASELINE_INCLUSIVE_EMISSIVITY_LEVEL_RECONSTRUCTION",
+      "AGGREGATE_RESOLUTION_AWARE_MORPHOLOGY_ERROR_REDUCTION"
+    ],
+    "qualifications_travelling_with_the_second": [
+      "MULTI_FEATURE_RECOVERY_NEGATIVE",
+      "STABLE_MORPHOLOGY_INTERVAL_NEGATIVE",
+      "FAMILY_HETEROGENEITY",
+      "DIRECT_BASELINE_SATURATION_QUALIFICATION"
+    ],
+    "not_established": "recovery of a historical movie, at any point in the campaign"
+  },
+  "editorial_pass": {
+    "compression": "abstract rewritten from 900 to about 500 words around the two labelled results; the twelve-row per-family table replaced by figure 4 with the exact values left in the evidence ledger; one duplicated sentence removed",
+    "figure_hierarchy": {
+      "n_figures": 4,
+      "hierarchy": "all four are primary; the paper carries no supplementary figure tier",
+      "figures": [
+        "fig1_depth_inclination_not_spin",
+        "fig2_shiva_effect",
+        "fig3_two_held_out_results",
+        "fig4_family_heterogeneity"
+      ]
+    },
+    "bibliography": "10 entries; literature checked against the publisher or arXiv record, software pinned to the version or commit actually run",
+    "proof_audit": "docs/PAPER_I_PROOF_AUDIT.md, 20 assertions, 3 defects of statement found and repaired",
+    "preflight": "no element overflows its container at the print width; running header and page numbers present; PDF metadata stamped and dated from the canonical freeze so a rebuild does not churn the bundle"
+  },
+  "checks_at_freeze": {
+    "manuscript_verification": "PASS",
+    "verification_summary": [
+      "claims in ledger                  276",
+      "claims re-derived from artifacts  233",
+      "rendered values found in the text 276",
+      "independent regeneration checks   672",
+      "gate rows cross-checked in reports 336",
+      "",
+      "all checks pass"
+    ],
+    "tests": "492 passed in 34.99s",
+    "tests_returncode": 0,
+    "n_claims": 276,
+    "n_artifacts_cited": 33,
+    "gates": {
+      "total_gates": 208,
+      "passing": 189,
+      "active_blocking_failures": 0,
+      "preserved_literal_failures": 8
+    }
+  },
+  "deliverables": {
+    "artifacts/manuscript/PAPER_I.pdf": "b2af07620ecebabd704a83aa9022f044574de443a7130a1c9ae5a8050a3962d5",
+    "artifacts/manuscript/PAPER_I.md": "e04d3dc14f41dc004e3d3af4a1f144fdbeaeaae4512d019cbcaaf5256dc56fcc",
+    "artifacts/manuscript/PAPER_I.html": "950f771b059c9df8633ecf53de061999c18b78b4164829563d75335e15bf343a",
+    "artifacts/manuscript/CLAIM_LEDGER.json": "8d195ce597ad8892c6b3b199315c5b7e7d6c46d630b05bc2967bc1ee7035a1ed",
+    "artifacts/manuscript/PDF_METADATA.json": "67ad355ff7e596cb9227d07bba19e9bc784d93350c798ed65f87f035d86e7646",
+    "artifacts/manuscript/PHOTON_RING_TOMOGRAPHY_I_SHIVA_EFFECT_SOURCE_BUNDLE.tar.gz": "9e86c66ef676c6f4e240924f0ee9eca48307a29d7bb2249f59bcd987705fc126",
+    "artifacts/manuscript/PHOTON_RING_TOMOGRAPHY_I_SHIVA_EFFECT_SOURCE_BUNDLE_MANIFEST.json": "693a41ee4fab91ac6f3d46b9581b770b9cc4b2440a77c0d3a337ff3aa64ca20f",
+    "artifacts/manuscript/figures/FIGURES.json": "6d8d335b0845d2135cb9887a26d86f4cde4552167fe1f8518e5168d58c0aa13f",
+    "artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json": "471a0da7a06e5f89f90f01672db5c96b169e009ebdd3d52e3d1a6636e5192c2b",
+    "docs/Paper_I_v1_Current_Evidence_Ledger.md": "2189c43718eae0e4faaea8d0de6a53a93fe9a3e3dde888cc8e92bc2c41765539",
+    "docs/PAPER_I_SUBMISSION_CHECKLIST.md": "10d501c8b669f49f72018dc02c308bd993edf82e9c4885dc234b10d32a137d79",
+    "docs/PAPER_I_RELEASE_NOTE.md": "b8465a52b148ea226fddfa53f9823da838e5bb86da8f163a1a91a96f7055cca2",
+    "docs/PAPER_I_PROOF_AUDIT.md": "8b518641e49a3e6377f027739c221a28fa8eac89252d91fe3b737ac56e137294"
+  },
+  "not_authorized": [
+    "order leakage",
+    "geometry mismatch",
+    "VLBI",
+    "machine learning",
+    "a new pixel-movie campaign",
+    "any further experiment for Paper I"
+  ],
+  "working_tree_at_freeze": {
+    "available": true,
+    "execution_commit": "69b25de5d22e4f46c25ccf5d242b75714ed41f3a",
+    "head_tree_sha": "05dbe2d1238521279ecc7c761022aa79cce63ed2",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "be825991cce0806e1929e1322c363118d79ee90760cf0ba787e54f9ead7f72c3",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does"
+  }
+}
