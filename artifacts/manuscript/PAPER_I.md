@@ -6,7 +6,7 @@ real photon ring is claimed anywhere in this manuscript.
 
 - campaign tag `paper-I-campaign-final`, commit `8345068676b15ce8f96a76da9d92b159db215f1d`
 - registry sha256 `2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796`
-- canonical artifact freeze: 464 artifacts, `artifacts/CANONICAL_ARTIFACT_FREEZE.json`
+- canonical artifact freeze: 591 artifacts, `artifacts/CANONICAL_ARTIFACT_FREEZE.json`
 - every number below is registered in `artifacts/manuscript/CLAIM_LEDGER.json`
   with the artifact, row filter and column it was read from
 
@@ -30,7 +30,7 @@ of fixed density per unit solid angle, so the whitened row carries
 made Fisher information scale with pixel count and is retired, with the
 correction and everything it moved recorded rather than absorbed.
 
-Four results. First, **historical extension is real but modest and set by
+Six results. First, **historical extension is real but modest and set by
 inclination, not spin**: the resolved stack sees deeper than the direct image at
 12 of 12 geometries, with median recoverable depth
 60, 84 and 144 M at i = 20, 50 and 75 degrees, and the four
@@ -84,6 +84,24 @@ resolved-minus-direct span difference is 0 M against 8 M. We report
 these as a bar not cleared rather than an effect shown to be zero, and no sealed
 main was run.
 
+Sixth, **a second sealed test asks whether the recovered *shape* is right,
+and finds an aggregate improvement that is not movie recovery**. Before drawing
+any truth we audited the source objects themselves — 169 of them, with no
+ray map imported and no operator constructed — and found that projection into
+the claim-bearing class merges genuinely two-feature states into one at a rate
+of 0.136, which sets a ceiling no estimator can beat. Scoring
+60 held-out truths under a resolution-aware morphology error, whose
+per-state measure is selected by what the evaluation grid can resolve and which
+excludes no state, the resolved stack reduces error against the direct image by
+0.164 and 0.133 in an end-to-end comparison with the
+analytic source, lower bounds 0.116 and 0.101, against a
+floor of 0.10 and 0.05 declared before the bank existed. Neither an unresolved
+second image nor total flux reaches materiality, so the gain is attributable to
+resolving the orders. It remains an average over a heterogeneous set:
+5 of 12 family–estimator cells are material, two-feature
+recovery reaches materiality nowhere, and the stable morphology interval is
+0 M.
+
 We report a negative control throughout. Permuting each order's delays,
 positions and weights independently — preserving all three marginals and
 destroying only their pairing — yields a better-conditioned operator than the
@@ -131,6 +149,9 @@ exactly what section 8 shows to be invalid. No machine-learned reconstruction is
 performed. No geometry-mismatch or order-leakage study is included. The
 recoverable depth reported everywhere is a detection statement about a localized
 unit-norm historical mode, never the largest delay any ray happens to carry.
+The morphology result of section 9 is an aggregate error reduction on
+single-feature states; it is not recovery of a historical movie, and the two
+are kept apart wherever both appear.
 
 ---
 
@@ -837,9 +858,165 @@ improvement is not a recovered movie.
 No sealed main was executed and none is authorised. Every sealed commitment is
 preserved unscored.
 
-## 8. Controls
+## 9. Held-out morphology, measured at the resolution the grid actually has
 
-### 7.1 A physically meaningless operator is better conditioned than the real one
+Everything above measures emissivity *level*, or structural error under a norm
+that treats every direction alike. Neither says whether the *shape* of the
+source at a given epoch is recovered — how many features it has, where they
+are, how bright they are. That question needs a measure that knows what the
+evaluation grid can resolve, and a preregistered statement of what counts as
+success before the truths are drawn.
+
+### 9.1 The source objects, before any measurement
+
+An earlier attempt at this question was closed without a result. Its declared
+source range admitted two-feature configurations its declared evaluation grid
+could not separate, and the two specifications had never been checked against
+each other. That is a contract between the source model and the grid, and it is
+decidable from the source alone.
+
+So it was decided from the source alone. 169 source objects — 168
+after excluding the preserved failure canary, which is a regression fixture and
+never evidence — were classified at every age by topographic prominence on
+three nested grids, with **no ray map imported and no observation operator
+constructed**, asserted by a guard before and after. Of 10248 source
+states, 3375 — 32.9% — carry more than one resolved feature.
+
+The number that matters for what follows is how often projection into a source
+class destroys a distinction the source itself has. On states both finest grids
+agree are multi-resolved, two-hotspot sources merge into one feature at a rate
+of 0.136 in the claim-bearing class and 0.299 in the
+representation-limited control. Pooling in the states only the finest grid
+calls multi raises these to 0.262 and 0.356; we report
+the stratified rates, because a state whose multiplicity the analysis grid
+cannot settle should not be counted as a merger the physics caused. The
+narrowest feature the claim-bearing class can represent at all is
+2.00 M.
+
+None of this involves an estimator. It is what the source objects are, and it
+sets the ceiling everything below is measured against.
+
+### 9.2 A measure that changes with the state, and excludes nothing
+
+Each (truth, age) state carries a reconciled label — resolved single, resolved
+multiple, blended, dead, or ambiguous between the two finest grids — and the
+label selects the error measure: exact optimal assignment between feature sets,
+a blended-descriptor distance, or an amplitude comparison. Each is normalized
+to its own worst case, so the three are commensurable, and **no state is
+dropped**. Ambiguous states are scored by the blended measure, which is the
+conservative choice: a state whose multiplicity the grid cannot settle must not
+be scored as though it had a definite feature count.
+
+Two targets are reported for every arm, always together. `CLASS_CONDITIONAL`
+compares against the best in-class projection of the truth and asks what the
+estimator achieved given the representation. `PHYSICAL_END_TO_END` compares
+against the analytic source and carries the physical claim: an improvement on
+the conditional target alone is a statement about estimation, not about the
+source.
+
+### 9.3 The held-out result
+
+60 truths were drawn from a bank whose per-family commitments were
+committed before the draw, with 4 paired noise draws each. The
+hyperparameters came unchanged from an earlier selection split and the runner
+has no sweep. Materiality was declared before the bank existed: median ≥ 0.10
+and paired bootstrap lower bound ≥ 0.05.
+
+In the claim-bearing class at SNR_0 = 100, the resolved arm reduces the
+all-state morphology error against the direct image by 0.164 under
+ridge and 0.133 under TSVD on the physical target, with lower bounds
+0.116 and 0.101. On the class-conditional target the
+reductions are 0.158 and 0.160, with lower bounds
+0.114 and 0.092. All eight quantities clear the declared
+floor.
+
+Both controls behave. The unresolved-image arm — a second image with the same
+extra photons but no order labels — reaches +0.000 and
++0.015, and the total-flux arm -0.020 and +0.036;
+neither is material. The benefit is therefore attributable to resolving the
+photon-ring orders rather than to the additional photons an unresolved second
+image also carries. In the representation-limited control class the same
+comparison gives 0.101 and 0.061 — material under one
+estimator and not the other, which is what a representation limit looks like
+when it is showing rather than being asserted.
+
+### 9.4 What this result is not
+
+**It is an average over a heterogeneous set.** 5 of 12
+family–estimator cells are material, and the simplest source in the bank — one
+moving hotspot — is negative under both estimators:
+
+| source family | estimator | median reduction | CI low | material |
+|---|---|---:|---:|---|
+| `circular_hotspot_trajectory` | ridge | -0.022 | -0.200 | no |
+| `circular_hotspot_trajectory` | TSVD | -0.051 | -0.115 | no |
+| `flare_birth_motion_decay` | ridge | +0.381 | +0.191 | **yes** |
+| `flare_birth_motion_decay` | TSVD | +0.377 | +0.065 | **yes** |
+| `m1_rotating_crescent` | ridge | +0.204 | +0.030 | no |
+| `m1_rotating_crescent` | TSVD | +0.212 | +0.049 | no |
+| `m2_structural_mode` | ridge | +0.320 | +0.146 | **yes** |
+| `m2_structural_mode` | TSVD | +0.243 | +0.165 | **yes** |
+| `plunging_feature` | ridge | +0.111 | +0.084 | **yes** |
+| `plunging_feature` | TSVD | +0.097 | +0.071 | no |
+| `two_hotspot_trajectories` | ridge | +0.178 | -0.006 | no |
+| `two_hotspot_trajectories` | TSVD | +0.135 | -0.087 | no |
+
+Ten truths per family makes every interval here wide, so no per-family claim is
+supported in either direction. What is supported is that the aggregate is not a
+uniform improvement and must not be quoted as one.
+
+**Two-feature recovery does not reach materiality anywhere.** On the
+17 truths of 60 that carry a stable multi-resolved state at
+all, the absolute assignment cost for the resolved arm is 1.208 and
+1.302, where 1.0 is one whole feature wrong. The measure resolves
+that a state has two features and recovers the morphology of one. It does not
+recover the pair, and the sealed bank reproduces on held-out truths exactly the
+split an earlier validation found.
+
+**There is no stable morphology interval.** 0 M for every arm,
+estimator, class and SNR. At the reference SNR the resolved arm does not even
+extend how far back morphology stays in tolerance: its mean reach is
+3.06 M against the direct image's 3.32 M, lower
+under both estimators. At tenfold SNR the ordering reverses,
+3.45 M against 2.92 M — worth stating, because the
+reference-SNR comparison is the claim-bearing one and reads as a general
+statement if the SNR is left off. A per-age error reduction is not a recovered
+history at either.
+
+**The baseline is partly floor-limited.** 56.6% of direct-image states
+under ridge and 55.0% under TSVD sit at the measure's ceiling, so the
+mean substantially counts how many states failed outright rather than how far
+off the recovered shape was. The absolute error the resolved arm reaches is
+0.598 and 0.650, against the direct image's 0.727
+and 0.755, on a scale whose worst case is 1.0.
+
+Read together: an aggregate, single-feature morphology error reduction on
+held-out truths, attributable to order resolution, in one geometry and two
+source classes. Not accurate recovery of a historical movie, which this
+campaign does not establish at any point.
+
+### 9.5 Two integrity qualifications
+
+The authoritative bank-drawing stage executed against a working tree that was
+not clean on the registered pathspecs: a deterministic-hash repair had to be
+present before the stage could be re-run, and it was committed together with
+the hashes that stage produced. The porcelain diff is recorded and hashed in
+the run manifest, and the scoring stage ran at that commit with a clean tree
+and reproduced every bank commitment. The attestation is not clean and is not
+presented as clean.
+
+The repair itself is worth stating, because it is a reproducibility failure
+mode that recurred three times in this campaign. Python salts string hashing
+per process unless the seed is fixed before the interpreter starts, so a
+builtin `hash()` of a label string can never match across two processes. The
+integrity field built that way reported every held-out truth as tampered. Truth
+content and seeds were SHA-256 throughout, so nothing drawn was affected, and
+the commitment gate refused to let scoring proceed. The check now scans every
+script for a bare builtin `hash()` call.
+
+## 10. Controls
+
+### 10.1 A physically meaningless operator is better conditioned than the real one
 
 `PAIRING_DESTROYED` permutes delay, spatial position and quadrature weight
 independently within each order. All three marginals survive; only their pairing
@@ -855,7 +1032,7 @@ reads good conditioning, high operational rank or a large stable rank as
 evidence that an operator is capturing physical structure is refuted by these
 rows.
 
-### 7.2 The source domain moves with spin, and we measured how much
+### 10.2 The source domain moves with spin, and we measured how much
 
 The registered radial support is geometry-dependent — the knots follow the rays,
 and a higher-spin geometry's rays reach closer to the horizon. A spin trend in
@@ -875,7 +1052,7 @@ different objects and are kept apart throughout.
 
 ---
 
-## 9. Full rank on a declared class is a statement about that class
+## 11. Full rank on a declared class is a statement about that class
 
 The registered class C224 reaches full column rank under
 21 of 21 arm–anchor combinations. That fact is often where such
@@ -948,7 +1125,7 @@ substituting the direct order's well-sampled spatial map onto every order is not
 a strict impoverishment. `DELAY_ONLY` is a mechanism probe, not a measurement
 architecture.
 
-### 8.1 Identifiability and reach move independently
+### 11.1 Identifiability and reach move independently
 
 Over the same ladder the resolved *operational*-rank fraction falls by
 16.8 percentage points and the smallest determined singular value falls
@@ -965,7 +1142,7 @@ different physics, and a result in one does not transfer to the other.
 
 ---
 
-## 10. Discussion
+## 12. Discussion
 
 The picture that survives all of the above is narrower than the one a
 single-geometry study would support, and we think it is the useful one.
@@ -999,7 +1176,7 @@ and conditioning is optimised by a permutation with no physical content at all.
 
 ---
 
-## 11. What the measurement-model correction changed
+## 13. What the measurement-model correction changed
 
 The defect and its consequences are recorded in the invalidation ledger as
 `D-H_flat_sigma_measurement_convention`, and 33 artifacts produced under the
@@ -1042,7 +1219,7 @@ in the direction of a smaller claim.
 
 ---
 
-## 12. Limitations
+## 14. Limitations
 
 1. **Declared classes, not the continuum.** Every rank and nullity is relative
    to a finite-dimensional class. Section 8 is a demonstration that this
@@ -1084,6 +1261,23 @@ in the direction of a smaller claim.
     estimators missed a band frozen in advance, so they are retained as point
     estimators. No credible interval, posterior movie or coverage statement is
     available from this line, and none appears in this paper.
+12. **The morphology gain is single-feature and heterogeneous.** Section 9
+    reaches materiality in 5 of 12 family–estimator cells and
+    in no two-feature cell; the absolute assignment cost on stable
+    multi-resolved states stays at 1.208 and 1.302, above
+    one whole feature wrong. The simplest source in the bank is negative under
+    both estimators.
+13. **The morphology baseline is partly floor-limited.** 56.6% of
+    direct-image states under ridge sit at the measure's ceiling, so part of
+    the reduction is states that failed outright under the direct image and
+    did not under the resolved stack. The saturation fractions are reported
+    beside every figure so the reader can discount by inspection.
+14. **The morphology bank is smaller than the design it inherited.** It carries
+    60 truths and 4 paired noise draws where the earlier
+    authorization was 96 and 8. The reduction was fixed and committed before
+    any truth was drawn, so it cannot have shaped the result, but every
+    interval in section 9 is wider than the authorized design would have
+    given.
 
 ---
 
@@ -1109,7 +1303,7 @@ in the direction of a smaller claim.
     section 8 is a held-out result. Every sealed commitment is preserved
     unscored.
 
-## 13. Reproducibility and governance
+## 15. Reproducibility and governance
 
 The campaign is gate-driven. Gates carry a mechanical status that is never
 edited to match a later adjudication, so a defect that was real stays visible:
@@ -1139,7 +1333,7 @@ Reproduction path: the registry digest is `2ba66f0209fe1cdec97b8cf5862494c22fb94
 pins the ray-map hashes, source class, probe, observer sampling, age grid, noise
 convention, SNR grid, arms, rank conventions, thresholds, censoring rule and
 permutation seeds before the first geometry was evaluated; the canonical freeze
-lists the 464 artifacts the manuscript may cite; and the claim ledger maps
+lists the 591 artifacts the manuscript may cite; and the claim ledger maps
 every number above to the artifact, row filter and column it came from.
 `scripts/verify_manuscript.py` re-derives all of them from the frozen bytes and
 checks that each rendered value appears in this text.

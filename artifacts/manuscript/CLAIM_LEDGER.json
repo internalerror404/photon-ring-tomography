@@ -1,16 +1,17 @@
 {
   "schema": "phrt-claim-ledger/1",
-  "n_claims": 227,
+  "n_claims": 269,
   "claims_by_kind": {
     "literal": 24,
-    "json": 43,
-    "parquet_count": 16,
-    "parquet": 132,
-    "derived": 12
+    "json": 45,
+    "parquet_count": 20,
+    "parquet": 167,
+    "derived": 13
   },
   "artifacts_cited": [
     "artifacts/SUPERSEDED_PRE_G10Q.json",
     "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+    "artifacts/configs/HMT2_SEALED_MAIN_V1.json",
     "artifacts/gates/correctness_gates.json",
     "artifacts/tables/e3b_matched_support_attenuation.parquet",
     "artifacts/tables/e3b_singular_spectra.parquet",
@@ -24,6 +25,13 @@
     "artifacts/tables/e3d_class_nesting.parquet",
     "artifacts/tables/e3d_class_spectra.parquet",
     "artifacts/tables/e3d_operator_smoke.parquet",
+    "artifacts/tables/hmt2_main_endpoint.parquet",
+    "artifacts/tables/hmt2_main_per_family.parquet",
+    "artifacts/tables/hmt2_main_stable_interval.parquet",
+    "artifacts/tables/hmt2_main_stable_multi.parquet",
+    "artifacts/tables/hmt2_stage0_class_widths.parquet",
+    "artifacts/tables/hmt2_stage0_states.parquet",
+    "artifacts/tables/hmt2_stage0r_merger_rates.parquet",
     "artifacts/tables/r1_bootstrap.parquet",
     "artifacts/tables/r1_data_weak_errors.parquet",
     "artifacts/tables/r1_level_structure.parquet",
@@ -35,8 +43,8 @@
     "artifacts/tables/r1l_class_spectra.parquet",
     "artifacts/tables/r1l_old_structural_support.parquet"
   ],
-  "created_utc": "2026-08-27T19:57:49Z",
-  "git_commit": "d8ea2152de9308163521a952c86888326d7f33a0",
+  "created_utc": "2026-08-28T08:16:59Z",
+  "git_commit": "e9c1930a676a93e1043241c4bc8adfef8462260c",
   "campaign_tag": "paper-I-campaign-final",
   "campaign_commit": "8345068676b15ce8f96a76da9d92b159db215f1d",
   "registry_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
@@ -1567,6 +1575,787 @@
       "prose": "realized structure fraction of the nominal-0.80 bank"
     },
     {
+      "id": "HMT2.S0R.n_sources",
+      "value": 169,
+      "rendered": "169",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/hmt2_stage0_states.parquet",
+        "sha256": "98398806e26e07a1eb7aa0ff7988c94e4e1c7e7dbe9543b757ea6e730f736b99",
+        "where": {},
+        "format": "{:d}"
+      },
+      "prose": "source objects audited at stage 0, including the preserved failure canary"
+    },
+    {
+      "id": "HMT2.S0R.n_aggregated",
+      "value": 168,
+      "rendered": "168",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/hmt2_stage0_states.parquet",
+        "sha256": "98398806e26e07a1eb7aa0ff7988c94e4e1c7e7dbe9543b757ea6e730f736b99",
+        "where": {
+          "canary": false
+        },
+        "format": "{:d}"
+      },
+      "prose": "sources entering every stage 0R aggregate; the canary is excluded"
+    },
+    {
+      "id": "HMT2.S0R.n_states",
+      "value": 10248,
+      "rendered": "10248",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_stage0_states.parquet",
+        "sha256": "98398806e26e07a1eb7aa0ff7988c94e4e1c7e7dbe9543b757ea6e730f736b99",
+        "where": {
+          "canary": false
+        },
+        "column": "n_ages",
+        "aggregation": "sum",
+        "format": "{:d}"
+      },
+      "prose": "source states classified, over all ages"
+    },
+    {
+      "id": "HMT2.S0R.n_multi",
+      "value": 3375,
+      "rendered": "3375",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_stage0_states.parquet",
+        "sha256": "98398806e26e07a1eb7aa0ff7988c94e4e1c7e7dbe9543b757ea6e730f736b99",
+        "where": {
+          "canary": false
+        },
+        "column": "n_multi_resolved",
+        "aggregation": "sum",
+        "format": "{:d}"
+      },
+      "prose": "states the two finest grids agree are multi-resolved"
+    },
+    {
+      "id": "HMT2.S0R.multi_fraction",
+      "value": 0.32933255269320844,
+      "rendered": "32.9%",
+      "source": {
+        "kind": "derived",
+        "inputs": [
+          "HMT2.S0R.n_multi",
+          "HMT2.S0R.n_states"
+        ],
+        "expression": "n_multi / n_states"
+      },
+      "prose": "fraction of source states carrying more than one feature"
+    },
+    {
+      "id": "HMT2.S0R.merger_rate.pri",
+      "value": 0.13648293963254593,
+      "rendered": "0.136",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_stage0r_merger_rates.parquet",
+        "sha256": "7a3189a08ff9ab7e5bc72a98edf74b0b635cae65de5bc1cd821fe0197ca3a75d",
+        "where": {
+          "stratum": "STABLE_MULTI_RESOLVED",
+          "family": "two_hotspot_trajectories",
+          "class": "L896_radial_enriched"
+        },
+        "column": "merger_rate",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "canonical two-feature merger rate under projection, L896_radial_enriched"
+    },
+    {
+      "id": "HMT2.S0R.merger_rate_pooled.pri",
+      "value": 0.2623318385650224,
+      "rendered": "0.262",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_stage0r_merger_rates.parquet",
+        "sha256": "7a3189a08ff9ab7e5bc72a98edf74b0b635cae65de5bc1cd821fe0197ca3a75d",
+        "where": {
+          "stratum": "ALL_FINEST_MULTI",
+          "family": "two_hotspot_trajectories",
+          "class": "L896_radial_enriched"
+        },
+        "column": "merger_rate",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "pooled merger rate over all finest-level multi states, L896_radial_enriched"
+    },
+    {
+      "id": "HMT2.S0R.merger_rate.ctl",
+      "value": 0.2992125984251969,
+      "rendered": "0.299",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_stage0r_merger_rates.parquet",
+        "sha256": "7a3189a08ff9ab7e5bc72a98edf74b0b635cae65de5bc1cd821fe0197ca3a75d",
+        "where": {
+          "stratum": "STABLE_MULTI_RESOLVED",
+          "family": "two_hotspot_trajectories",
+          "class": "L448_contrast"
+        },
+        "column": "merger_rate",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "canonical two-feature merger rate under projection, L448_contrast"
+    },
+    {
+      "id": "HMT2.S0R.merger_rate_pooled.ctl",
+      "value": 0.35575485799701045,
+      "rendered": "0.356",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_stage0r_merger_rates.parquet",
+        "sha256": "7a3189a08ff9ab7e5bc72a98edf74b0b635cae65de5bc1cd821fe0197ca3a75d",
+        "where": {
+          "stratum": "ALL_FINEST_MULTI",
+          "family": "two_hotspot_trajectories",
+          "class": "L448_contrast"
+        },
+        "column": "merger_rate",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "pooled merger rate over all finest-level multi states, L448_contrast"
+    },
+    {
+      "id": "HMT2.S0R.min_representable_width",
+      "value": 2.0,
+      "rendered": "2.00",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_stage0_class_widths.parquet",
+        "sha256": "d717aa7e388d58942365fac7f3e61a392f32581d4d922c519cb753e6e1b99d4a",
+        "where": {
+          "class": "L896_radial_enriched"
+        },
+        "column": "minimum_representable_width_M",
+        "aggregation": "min",
+        "format": "{:.2f}"
+      },
+      "prose": "narrowest feature the claim-bearing class can represent"
+    },
+    {
+      "id": "HMT2.MAIN.n_truths",
+      "value": 60,
+      "rendered": "60",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/configs/HMT2_SEALED_MAIN_V1.json",
+        "sha256": "bb65f5615e2dff7ad89ea541b89a68a81295dfc087634dba8a2c7cf1d179bf88",
+        "pointer": "/bank/n_truths",
+        "format": "{:d}"
+      },
+      "prose": "held-out truths in the sealed bank"
+    },
+    {
+      "id": "HMT2.MAIN.n_draws",
+      "value": 4,
+      "rendered": "4",
+      "source": {
+        "kind": "json",
+        "path": "artifacts/configs/HMT2_SEALED_MAIN_V1.json",
+        "sha256": "bb65f5615e2dff7ad89ea541b89a68a81295dfc087634dba8a2c7cf1d179bf88",
+        "pointer": "/bank/noise_draws_per_truth",
+        "format": "{:d}"
+      },
+      "prose": "paired noise draws per truth"
+    },
+    {
+      "id": "HMT2.MAIN.physical.ridge",
+      "value": 0.16408626376826957,
+      "rendered": "0.164",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "PHYSICAL_END_TO_END_median_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "median all-state morphology error reduction, physical target, RIDGE_IDENTITY"
+    },
+    {
+      "id": "HMT2.MAIN.physical_ci_low.ridge",
+      "value": 0.1158299380515115,
+      "rendered": "0.116",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "PHYSICAL_END_TO_END_ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "paired bootstrap lower bound, physical target, RIDGE_IDENTITY"
+    },
+    {
+      "id": "HMT2.MAIN.class_conditional.ridge",
+      "value": 0.15783832944234497,
+      "rendered": "0.158",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "CLASS_CONDITIONAL_median_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "median reduction, class-conditional target, RIDGE_IDENTITY"
+    },
+    {
+      "id": "HMT2.MAIN.class_conditional_ci_low.ridge",
+      "value": 0.11375683601436354,
+      "rendered": "0.114",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "CLASS_CONDITIONAL_ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "paired bootstrap lower bound, class-conditional, RIDGE_IDENTITY"
+    },
+    {
+      "id": "HMT2.MAIN.absolute_arm.ridge",
+      "value": 0.5983952964497304,
+      "rendered": "0.598",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "PHYSICAL_END_TO_END_arm",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "absolute all-state morphology error, resolved arm, RIDGE_IDENTITY"
+    },
+    {
+      "id": "HMT2.MAIN.absolute_direct.ridge",
+      "value": 0.7267690139758544,
+      "rendered": "0.727",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "PHYSICAL_END_TO_END_direct",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "absolute all-state morphology error, direct image, RIDGE_IDENTITY"
+    },
+    {
+      "id": "HMT2.MAIN.saturation_direct.ridge",
+      "value": 0.5661202185792349,
+      "rendered": "56.6%",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "PHYSICAL_END_TO_END_saturation_direct",
+        "aggregation": "first",
+        "format": "{:.1%}"
+      },
+      "prose": "direct-image states at the measure's ceiling, RIDGE_IDENTITY"
+    },
+    {
+      "id": "HMT2.MAIN.control_class.ridge",
+      "value": 0.1013166300205908,
+      "rendered": "0.101",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L448_contrast",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "PHYSICAL_END_TO_END_median_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "median reduction in the representation-limited control class, RIDGE_IDENTITY"
+    },
+    {
+      "id": "HMT2.MAIN.unres.ridge",
+      "value": 0.0,
+      "rendered": "+0.000",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "UNRESOLVED_IMAGE",
+          "snr0": 100.0,
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "PHYSICAL_END_TO_END_median_reduction",
+        "aggregation": "first",
+        "format": "{:+.3f}"
+      },
+      "prose": "UNRESOLVED_IMAGE control, physical target, RIDGE_IDENTITY"
+    },
+    {
+      "id": "HMT2.MAIN.flux.ridge",
+      "value": -0.020165602653782692,
+      "rendered": "-0.020",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "TOTAL_FLUX",
+          "snr0": 100.0,
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "PHYSICAL_END_TO_END_median_reduction",
+        "aggregation": "first",
+        "format": "{:+.3f}"
+      },
+      "prose": "TOTAL_FLUX control, physical target, RIDGE_IDENTITY"
+    },
+    {
+      "id": "HMT2.MAIN.multi_cost.ridge",
+      "value": 1.2075161404856698,
+      "rendered": "1.208",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_stable_multi.parquet",
+        "sha256": "46f000fa474a16e37b40ebd0821f18ddfce9e21475ee166e9ef7febb3dfd1c17",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "RIDGE_IDENTITY"
+        },
+        "column": "arm_cost",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "absolute two-feature assignment cost, resolved arm, RIDGE_IDENTITY"
+    },
+    {
+      "id": "HMT2.MAIN.physical.tsvd",
+      "value": 0.13324696182664822,
+      "rendered": "0.133",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "TSVD"
+        },
+        "column": "PHYSICAL_END_TO_END_median_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "median all-state morphology error reduction, physical target, TSVD"
+    },
+    {
+      "id": "HMT2.MAIN.physical_ci_low.tsvd",
+      "value": 0.10087508271767966,
+      "rendered": "0.101",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "TSVD"
+        },
+        "column": "PHYSICAL_END_TO_END_ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "paired bootstrap lower bound, physical target, TSVD"
+    },
+    {
+      "id": "HMT2.MAIN.class_conditional.tsvd",
+      "value": 0.15978793934539642,
+      "rendered": "0.160",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "TSVD"
+        },
+        "column": "CLASS_CONDITIONAL_median_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "median reduction, class-conditional target, TSVD"
+    },
+    {
+      "id": "HMT2.MAIN.class_conditional_ci_low.tsvd",
+      "value": 0.09194933985013759,
+      "rendered": "0.092",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "TSVD"
+        },
+        "column": "CLASS_CONDITIONAL_ci_low",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "paired bootstrap lower bound, class-conditional, TSVD"
+    },
+    {
+      "id": "HMT2.MAIN.absolute_arm.tsvd",
+      "value": 0.6496653221462988,
+      "rendered": "0.650",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "TSVD"
+        },
+        "column": "PHYSICAL_END_TO_END_arm",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "absolute all-state morphology error, resolved arm, TSVD"
+    },
+    {
+      "id": "HMT2.MAIN.absolute_direct.tsvd",
+      "value": 0.7548799355818087,
+      "rendered": "0.755",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "TSVD"
+        },
+        "column": "PHYSICAL_END_TO_END_direct",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "absolute all-state morphology error, direct image, TSVD"
+    },
+    {
+      "id": "HMT2.MAIN.saturation_direct.tsvd",
+      "value": 0.5495901639344262,
+      "rendered": "55.0%",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "TSVD"
+        },
+        "column": "PHYSICAL_END_TO_END_saturation_direct",
+        "aggregation": "first",
+        "format": "{:.1%}"
+      },
+      "prose": "direct-image states at the measure's ceiling, TSVD"
+    },
+    {
+      "id": "HMT2.MAIN.control_class.tsvd",
+      "value": 0.060595123423292374,
+      "rendered": "0.061",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L448_contrast",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "TSVD"
+        },
+        "column": "PHYSICAL_END_TO_END_median_reduction",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "median reduction in the representation-limited control class, TSVD"
+    },
+    {
+      "id": "HMT2.MAIN.unres.tsvd",
+      "value": 0.01493588377481601,
+      "rendered": "+0.015",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "UNRESOLVED_IMAGE",
+          "snr0": 100.0,
+          "estimator": "TSVD"
+        },
+        "column": "PHYSICAL_END_TO_END_median_reduction",
+        "aggregation": "first",
+        "format": "{:+.3f}"
+      },
+      "prose": "UNRESOLVED_IMAGE control, physical target, TSVD"
+    },
+    {
+      "id": "HMT2.MAIN.flux.tsvd",
+      "value": 0.03591372207608645,
+      "rendered": "+0.036",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_endpoint.parquet",
+        "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "TOTAL_FLUX",
+          "snr0": 100.0,
+          "estimator": "TSVD"
+        },
+        "column": "PHYSICAL_END_TO_END_median_reduction",
+        "aggregation": "first",
+        "format": "{:+.3f}"
+      },
+      "prose": "TOTAL_FLUX control, physical target, TSVD"
+    },
+    {
+      "id": "HMT2.MAIN.multi_cost.tsvd",
+      "value": 1.3019210031782413,
+      "rendered": "1.302",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_stable_multi.parquet",
+        "sha256": "46f000fa474a16e37b40ebd0821f18ddfce9e21475ee166e9ef7febb3dfd1c17",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "TSVD"
+        },
+        "column": "arm_cost",
+        "aggregation": "first",
+        "format": "{:.3f}"
+      },
+      "prose": "absolute two-feature assignment cost, resolved arm, TSVD"
+    },
+    {
+      "id": "HMT2.MAIN.multi_n_truths",
+      "value": 17,
+      "rendered": "17",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_stable_multi.parquet",
+        "sha256": "46f000fa474a16e37b40ebd0821f18ddfce9e21475ee166e9ef7febb3dfd1c17",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "estimator": "TSVD"
+        },
+        "column": "n_truths",
+        "aggregation": "first",
+        "format": "{:d}"
+      },
+      "prose": "truths carrying a stable multi-resolved state at all"
+    },
+    {
+      "id": "HMT2.MAIN.stable_interval",
+      "value": 0.0,
+      "rendered": "0",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_stable_interval.parquet",
+        "sha256": "3ebef34768860d390d7842be18c41863b8ae55e2edaf8130654bd4f900ab9d80",
+        "where": {},
+        "column": "L_stable_morphology_M",
+        "aggregation": "max",
+        "format": "{:.0f}"
+      },
+      "prose": "largest stable morphology interval over every arm, estimator and SNR"
+    },
+    {
+      "id": "HMT2.MAIN.mean_reach_resolved.ref",
+      "value": 3.0625,
+      "rendered": "3.06",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_stable_interval.parquet",
+        "sha256": "3ebef34768860d390d7842be18c41863b8ae55e2edaf8130654bd4f900ab9d80",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0
+        },
+        "column": "mean_reach_M",
+        "aggregation": "mean",
+        "format": "{:.2f}"
+      },
+      "prose": "mean morphology reach, resolved arm at SNR0 = 100"
+    },
+    {
+      "id": "HMT2.MAIN.mean_reach_direct.ref",
+      "value": 3.3166666666666664,
+      "rendered": "3.32",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_stable_interval.parquet",
+        "sha256": "3ebef34768860d390d7842be18c41863b8ae55e2edaf8130654bd4f900ab9d80",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "DIRECT_PHYSICAL",
+          "snr0": 100.0
+        },
+        "column": "mean_reach_M",
+        "aggregation": "mean",
+        "format": "{:.2f}"
+      },
+      "prose": "mean morphology reach, direct image at SNR0 = 100"
+    },
+    {
+      "id": "HMT2.MAIN.mean_reach_resolved.sec",
+      "value": 3.4541666666666666,
+      "rendered": "3.45",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_stable_interval.parquet",
+        "sha256": "3ebef34768860d390d7842be18c41863b8ae55e2edaf8130654bd4f900ab9d80",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 1000.0
+        },
+        "column": "mean_reach_M",
+        "aggregation": "mean",
+        "format": "{:.2f}"
+      },
+      "prose": "mean morphology reach, resolved arm at SNR0 = 1000"
+    },
+    {
+      "id": "HMT2.MAIN.mean_reach_direct.sec",
+      "value": 2.9166666666666665,
+      "rendered": "2.92",
+      "source": {
+        "kind": "parquet",
+        "path": "artifacts/tables/hmt2_main_stable_interval.parquet",
+        "sha256": "3ebef34768860d390d7842be18c41863b8ae55e2edaf8130654bd4f900ab9d80",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "DIRECT_PHYSICAL",
+          "snr0": 1000.0
+        },
+        "column": "mean_reach_M",
+        "aggregation": "mean",
+        "format": "{:.2f}"
+      },
+      "prose": "mean morphology reach, direct image at SNR0 = 1000"
+    },
+    {
+      "id": "HMT2.MAIN.families_material",
+      "value": 5,
+      "rendered": "5",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/hmt2_main_per_family.parquet",
+        "sha256": "1ec96fdfeaeac06831c27006351c408b05dc93170e2fd5ba7fd4f5a57ef0f6a4",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0,
+          "PHYSICAL_END_TO_END_material": true
+        },
+        "format": "{:d}"
+      },
+      "prose": "family-estimator cells material on the physical target"
+    },
+    {
+      "id": "HMT2.MAIN.families_total",
+      "value": 12,
+      "rendered": "12",
+      "source": {
+        "kind": "parquet_count",
+        "path": "artifacts/tables/hmt2_main_per_family.parquet",
+        "sha256": "1ec96fdfeaeac06831c27006351c408b05dc93170e2fd5ba7fd4f5a57ef0f6a4",
+        "where": {
+          "class": "L896_radial_enriched",
+          "arm": "RESOLVED_PHYSICAL",
+          "snr0": 100.0
+        },
+        "format": "{:d}"
+      },
+      "prose": "family-estimator cells in the claim-bearing class"
+    },
+    {
       "id": "depth.right_censored",
       "value": 0,
       "rendered": "0",
@@ -2975,8 +3764,8 @@
     },
     {
       "id": "governance.canonical",
-      "value": 464,
-      "rendered": "464",
+      "value": 591,
+      "rendered": "591",
       "source": {
         "kind": "literal",
         "source": "artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json"

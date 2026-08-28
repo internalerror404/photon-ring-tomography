@@ -73,6 +73,17 @@ LDS = "artifacts/tables/r1l_2rb_delta_spans.parquet"
 LBC = "artifacts/tables/r1l_2rb_bank_contract.parquet"
 R1N = "artifacts/tables/r1_null_pairs.parquet"
 R1FZ = "artifacts/configs/R1_MAIN_FREEZE.json"
+# HMT-2: source-object resolution audit and held-out morphology recovery
+HS0 = "artifacts/tables/hmt2_stage0_states.parquet"
+HSR = "artifacts/tables/hmt2_stage0r_merger_rates.parquet"
+HSW = "artifacts/tables/hmt2_stage0_class_widths.parquet"
+HME = "artifacts/tables/hmt2_main_endpoint.parquet"
+HMF = "artifacts/tables/hmt2_main_per_family.parquet"
+HMM = "artifacts/tables/hmt2_main_stable_multi.parquet"
+HMI = "artifacts/tables/hmt2_main_stable_interval.parquet"
+HMFZ = "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+HCLASS = "L896_radial_enriched"
+HCTRL = "L448_contrast"
 
 REF = 100.0
 CANARY = "a050_i050"
@@ -294,6 +305,148 @@ def main() -> int:
                          where={"source_class": "L1056",
                                 "bank": "structure_balanced_080"},
                          prose="realized structure fraction of the nominal-0.80 bank")
+
+    # ---- HMT-2: source-object resolution, then held-out morphology --------
+    # Stage 0R is source-side only: no ray map, no operator. It says what the
+    # source objects are before any measurement touches them, which is the
+    # thing HMT-1 never checked and was closed for.
+    c["hs_nsrc"] = L.count("HMT2.S0R.n_sources", HS0,
+                           prose="source objects audited at stage 0, "
+                                 "including the preserved failure canary")
+    c["hs_nagg"] = L.count("HMT2.S0R.n_aggregated", HS0, where={"canary": False},
+                           prose="sources entering every stage 0R aggregate; "
+                                 "the canary is excluded")
+    _nst = L.table("HMT2.S0R.n_states", HS0, "n_ages", agg="sum", fmt="{:d}",
+                   where={"canary": False},
+                   prose="source states classified, over all ages")
+    _nmul = L.table("HMT2.S0R.n_multi", HS0, "n_multi_resolved", agg="sum",
+                    fmt="{:d}", where={"canary": False},
+                    prose="states the two finest grids agree are multi-resolved")
+    c["hs_nstates"], c["hs_nmulti"] = _nst, _nmul
+    c["hs_fmulti"] = L.derived(
+        "HMT2.S0R.multi_fraction", int(_nmul) / int(_nst),
+        f"{int(_nmul) / int(_nst):.1%}",
+        inputs=["HMT2.S0R.n_multi", "HMT2.S0R.n_states"],
+        expression="n_multi / n_states",
+        prose="fraction of source states carrying more than one feature")
+    for cls, ctag in ((HCLASS, "pri"), (HCTRL, "ctl")):
+        c[f"hs_merge_{ctag}"] = L.table(
+            f"HMT2.S0R.merger_rate.{ctag}", HSR, "merger_rate", fmt="{:.3f}",
+            where={"stratum": "STABLE_MULTI_RESOLVED",
+                   "family": "two_hotspot_trajectories", "class": cls},
+            prose=f"canonical two-feature merger rate under projection, {cls}")
+        c[f"hs_mergeall_{ctag}"] = L.table(
+            f"HMT2.S0R.merger_rate_pooled.{ctag}", HSR, "merger_rate",
+            fmt="{:.3f}",
+            where={"stratum": "ALL_FINEST_MULTI",
+                   "family": "two_hotspot_trajectories", "class": cls},
+            prose=f"pooled merger rate over all finest-level multi states, {cls}")
+    c["hs_minw"] = L.table("HMT2.S0R.min_representable_width", HSW,
+                           "minimum_representable_width_M", agg="min",
+                           fmt="{:.2f}", where={"class": HCLASS},
+                           prose="narrowest feature the claim-bearing class can "
+                                 "represent")
+
+    # The sealed main. Truths drawn after the freeze was committed, scored once.
+    c["hm_ntruths"] = L.json("HMT2.MAIN.n_truths", HMFZ, "/bank/n_truths",
+                             fmt="{:d}",
+                             prose="held-out truths in the sealed bank")
+    c["hm_ndraws"] = L.json("HMT2.MAIN.n_draws", HMFZ,
+                            "/bank/noise_draws_per_truth", fmt="{:d}",
+                            prose="paired noise draws per truth")
+    for est, etag in (("RIDGE_IDENTITY", "ridge"), ("TSVD", "tsvd")):
+        w = {"class": HCLASS, "arm": "RESOLVED_PHYSICAL", "snr0": REF,
+             "estimator": est}
+        c[f"hm_phys_{etag}"] = L.table(
+            f"HMT2.MAIN.physical.{etag}", HME,
+            "PHYSICAL_END_TO_END_median_reduction", fmt="{:.3f}", where=w,
+            prose=f"median all-state morphology error reduction, physical "
+                  f"target, {est}")
+        c[f"hm_physlo_{etag}"] = L.table(
+            f"HMT2.MAIN.physical_ci_low.{etag}", HME,
+            "PHYSICAL_END_TO_END_ci_low", fmt="{:.3f}", where=w,
+            prose=f"paired bootstrap lower bound, physical target, {est}")
+        c[f"hm_cc_{etag}"] = L.table(
+            f"HMT2.MAIN.class_conditional.{etag}", HME,
+            "CLASS_CONDITIONAL_median_reduction", fmt="{:.3f}", where=w,
+            prose=f"median reduction, class-conditional target, {est}")
+        c[f"hm_cclo_{etag}"] = L.table(
+            f"HMT2.MAIN.class_conditional_ci_low.{etag}", HME,
+            "CLASS_CONDITIONAL_ci_low", fmt="{:.3f}", where=w,
+            prose=f"paired bootstrap lower bound, class-conditional, {est}")
+        c[f"hm_abs_{etag}"] = L.table(
+            f"HMT2.MAIN.absolute_arm.{etag}", HME, "PHYSICAL_END_TO_END_arm",
+            fmt="{:.3f}", where=w,
+            prose=f"absolute all-state morphology error, resolved arm, {est}")
+        c[f"hm_absdir_{etag}"] = L.table(
+            f"HMT2.MAIN.absolute_direct.{etag}", HME,
+            "PHYSICAL_END_TO_END_direct", fmt="{:.3f}", where=w,
+            prose=f"absolute all-state morphology error, direct image, {est}")
+        c[f"hm_sat_{etag}"] = L.table(
+            f"HMT2.MAIN.saturation_direct.{etag}", HME,
+            "PHYSICAL_END_TO_END_saturation_direct", fmt="{:.1%}", where=w,
+            prose=f"direct-image states at the measure's ceiling, {est}")
+        c[f"hm_ctrl_{etag}"] = L.table(
+            f"HMT2.MAIN.control_class.{etag}", HME,
+            "PHYSICAL_END_TO_END_median_reduction", fmt="{:.3f}",
+            where={"class": HCTRL, "arm": "RESOLVED_PHYSICAL", "snr0": REF,
+                   "estimator": est},
+            prose=f"median reduction in the representation-limited control "
+                  f"class, {est}")
+        for arm, atag in (("UNRESOLVED_IMAGE", "unres"), ("TOTAL_FLUX", "flux")):
+            c[f"hm_{atag}_{etag}"] = L.table(
+                f"HMT2.MAIN.{atag}.{etag}", HME,
+                "PHYSICAL_END_TO_END_median_reduction", fmt="{:+.3f}",
+                where={"class": HCLASS, "arm": arm, "snr0": REF,
+                       "estimator": est},
+                prose=f"{arm} control, physical target, {est}")
+        c[f"hm_multi_{etag}"] = L.table(
+            f"HMT2.MAIN.multi_cost.{etag}", HMM, "arm_cost", fmt="{:.3f}",
+            where={"class": HCLASS, "arm": "RESOLVED_PHYSICAL", "snr0": REF,
+                   "estimator": est},
+            prose=f"absolute two-feature assignment cost, resolved arm, {est}")
+    c["hm_multin"] = L.table("HMT2.MAIN.multi_n_truths", HMM, "n_truths",
+                             fmt="{:d}",
+                             where={"class": HCLASS, "arm": "RESOLVED_PHYSICAL",
+                                    "snr0": REF, "estimator": "TSVD"},
+                             prose="truths carrying a stable multi-resolved "
+                                   "state at all")
+    c["hm_stable"] = L.table("HMT2.MAIN.stable_interval", HMI,
+                             "L_stable_morphology_M", agg="max", fmt="{:.0f}",
+                             prose="largest stable morphology interval over "
+                                   "every arm, estimator and SNR")
+    for snr, stag in ((REF, "ref"), (1000.0, "sec")):
+        c[f"hm_reach_res_{stag}"] = L.table(
+            f"HMT2.MAIN.mean_reach_resolved.{stag}", HMI, "mean_reach_M",
+            agg="mean", fmt="{:.2f}",
+            where={"class": HCLASS, "arm": "RESOLVED_PHYSICAL", "snr0": snr},
+            prose=f"mean morphology reach, resolved arm at SNR0 = {snr:.0f}")
+        c[f"hm_reach_dir_{stag}"] = L.table(
+            f"HMT2.MAIN.mean_reach_direct.{stag}", HMI, "mean_reach_M",
+            agg="mean", fmt="{:.2f}",
+            where={"class": HCLASS, "arm": "DIRECT_PHYSICAL", "snr0": snr},
+            prose=f"mean morphology reach, direct image at SNR0 = {snr:.0f}")
+    c["hm_nfam"] = L.count("HMT2.MAIN.families_material", HMF,
+                           where={"class": HCLASS, "arm": "RESOLVED_PHYSICAL",
+                                  "snr0": REF,
+                                  "PHYSICAL_END_TO_END_material": True},
+                           prose="family-estimator cells material on the "
+                                 "physical target")
+    c["hm_nfamall"] = L.count("HMT2.MAIN.families_total", HMF,
+                              where={"class": HCLASS,
+                                     "arm": "RESOLVED_PHYSICAL", "snr0": REF},
+                              prose="family-estimator cells in the "
+                                    "claim-bearing class")
+    c["hm_famtab"] = D.join(
+        f"| `{r.family}` | {'ridge' if r.estimator != 'TSVD' else 'TSVD'} | "
+        f"{r.PHYSICAL_END_TO_END_median_reduction:+.3f} | "
+        f"{r.PHYSICAL_END_TO_END_ci_low:+.3f} | "
+        f"{'**yes**' if r.PHYSICAL_END_TO_END_material else 'no'} |"
+        for r in L.frame(HMF)[
+            (L.frame(HMF)["class"] == HCLASS)
+            & (L.frame(HMF).arm == "RESOLVED_PHYSICAL")
+            & (L.frame(HMF).snr0 == REF)].sort_values(
+                ["family", "estimator"]).itertuples())
 
     c["ncens"] = L.count("depth.right_censored", DEP, where={"right_censored": True},
                          prose="right-censored depth entries")

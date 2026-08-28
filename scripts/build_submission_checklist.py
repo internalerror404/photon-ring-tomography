@@ -73,6 +73,26 @@ def main() -> int:
         ok_tests, last_tests = run(py_test, "-m", "pytest", "tests/", "-q")
         last_tests = f"`{py_test} -m pytest tests/ -q` says: {last_tests}"
 
+    # HMT-2 morphology: the checklist answers from the tables, not from prose
+    import pandas as pd
+
+    am21 = json.loads((ROOT / "artifacts" / "configs"
+                       / "HMT2_MAIN_RECORD_AMENDMENT_021.json").read_text())
+    man_text = (MAN / "PAPER_I.md").read_text() if (MAN / "PAPER_I.md").exists() \
+        else ""
+    _hf = pd.read_parquet(ROOT / "artifacts" / "tables"
+                          / "hmt2_main_per_family.parquet")
+    _hf = _hf[(_hf["class"] == "L896_radial_enriched")
+              & (_hf.arm == "RESOLVED_PHYSICAL") & (_hf.snr0 == 100.0)]
+    hm_nfam = int(_hf.PHYSICAL_END_TO_END_material.sum())
+    hm_nfamall = int(len(_hf))
+    _he = pd.read_parquet(ROOT / "artifacts" / "tables"
+                          / "hmt2_main_endpoint.parquet")
+    hm_sat = float(_he[(_he["class"] == "L896_radial_enriched")
+                       & (_he.arm == "RESOLVED_PHYSICAL")
+                       & (_he.snr0 == 100.0)]
+                   .PHYSICAL_END_TO_END_saturation_direct.mean())
+
     rows = [
         ("Every manuscript number is registered and re-derivable",
          ok_verify,
@@ -129,9 +149,32 @@ def main() -> int:
          "rather than off-grid robustness; the retired (0.50, 0.90) endpoint "
          "stays in every table with its censoring disposition"),
         ("The reconstruction claim is scoped", True,
-         "one geometry a* = 0.5, i = 50 deg; one source class C224; age-local "
-         "emissivity level, not old-age morphology. The high-SNR structural "
-         "result is stated separately and not merged with it"),
+         "one geometry a* = 0.5, i = 50 deg. R1 is age-local emissivity level "
+         "on C224, not old-age morphology; the high-SNR structural result is "
+         "stated separately and not merged with it. The HMT-2 morphology "
+         "result is a separate held-out test on its own two classes and is "
+         "not merged with either"),
+        ("The morphology claim states what it is not",
+         all(k in man_text for k in (
+             "average over a heterogeneous set",
+             "does not reach materiality anywhere",
+             "no stable morphology interval",
+             "Not accurate recovery of a historical movie",
+             "the measure's ceiling")),
+         f"section 9 reports {hm_nfam} of {hm_nfamall} family-estimator cells "
+         f"material, materiality in no two-feature cell, a stable morphology "
+         f"interval of 0 M, and {hm_sat:.1%} of direct-image states at the "
+         "measure's ceiling -- each in the same section as the headline, not "
+         "in a later caveat"),
+        ("The morphology bank's reduced scope is declared",
+         am21["scope_deviation"]["disposition"]
+         == "HMT2_MAIN_REDUCED_SCOPE_EVIDENCE_ACCEPTED",
+         f"{am21['scope_deviation']['executed']['truths']} truths and "
+         f"{am21['scope_deviation']['executed']['noise_draws']} draws executed "
+         f"against {am21['scope_deviation']['authorized']['truths']} and "
+         f"{am21['scope_deviation']['authorized']['noise_draws']} authorized; "
+         "fixed and committed before any truth was drawn, and recorded in "
+         "HMT2_MAIN_RECORD_AMENDMENT_021 with the widened intervals it costs"),
         ("No real-data, telescope or laboratory claim", True,
          "theory and controlled synthetic computation only, stated in the "
          "manuscript's first line"),

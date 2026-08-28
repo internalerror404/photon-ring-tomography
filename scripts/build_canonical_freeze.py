@@ -53,6 +53,26 @@ V2_NOT_CITABLE_AS_RESULT_PREFIXES = (
     "artifacts/configs/R0_PROPOSED_R1_MAIN_FREEZE.json",
 )
 
+# The HMT lines. HMT-1 was closed with no standing result, HMT-2's stage 0
+# merger rates were superseded by the source-only correction, and stage 1 is
+# validation on a bank the selection saw. Each set is canonical and none of
+# them is a held-out morphology result.
+HMT1_PREFIXES = (
+    "artifacts/tables/hmt1_",
+    "artifacts/reports/HMT1_",
+    "artifacts/provenance/HMT1_",
+    "artifacts/manifests/HMT1",
+)
+HMT2_STAGE0_PREFIXES = (
+    "artifacts/tables/hmt2_stage0_",
+    "artifacts/reports/HMT2_STAGE0_SOURCE_RESOLUTION_AUDIT.md",
+)
+HMT2_STAGE1_PREFIXES = (
+    "artifacts/tables/hmt2_stage1",
+    "artifacts/reports/HMT2_STAGE1_",
+    "artifacts/manifests/HMT2S1",
+)
+
 TAG = "paper-I-campaign-final"
 # The commit the tag names, pinned literally. A fresh clone that does not
 # carry the tag must still reproduce this freeze, and the paper must keep
@@ -221,6 +241,49 @@ def main() -> int:
                        "threshold frozen before R0C. The probe itself was "
                        "correct, so no physical rerun follows from this"},
         ]
+        doc["historical_morphology_citation_policy"] = {
+            "rule": "the HMT lines add 127 canonical artifacts. Being in the "
+                    "freeze makes them reproducible and citable in methods, "
+                    "preregistration and as preserved failures. Only the "
+                    "HMT-2 sealed main carries a held-out morphology result, "
+                    "and the three sets below carry none",
+            "HMT1_CLOSED_NO_RESULT_STANDS": {
+                "paths": sorted(rel for rel in canonical
+                                if rel.startswith(HMT1_PREFIXES)),
+                "reason": "HMT1_SEALED_MAIN_CORRECTION_AND_RETIREMENT_017 "
+                          "amended the HMT-1 sealed main with "
+                          "HMT1_MAIN_PARTIAL_ENDPOINT_EXPOSURE, and "
+                          "HMT1_CLOSURE_RECORD_018 closed the line and "
+                          "rescoped its validation to "
+                          "DOMINANT_OR_BLENDED_FEATURE_DESCRIPTOR. Bank seed "
+                          "20260917 is retired permanently and seed 20260921 "
+                          "is preserved as "
+                          "HMT1_SOURCE_RESOLUTION_FAILURE_CANARY, for "
+                          "regression only and never as held-out evidence",
+            },
+            "HMT2_STAGE0_MERGER_RATES_SUPERSEDED": {
+                "paths": sorted(rel for rel in canonical
+                                if rel.startswith(HMT2_STAGE0_PREFIXES)),
+                "reason": "REVIEWER_RULING_HMT2_STAGE0_019 withheld the "
+                          "pooled merger rates pending recompute. The "
+                          "canonical rates are stage 0R's, on the "
+                          "STABLE_MULTI_RESOLVED stratum reconciled across "
+                          "the two finest levels, and live in "
+                          "artifacts/tables/hmt2_stage0r_merger_rates.parquet",
+            },
+            "HMT2_STAGE1_VALIDATION_NOT_HELD_OUT": {
+                "paths": sorted(rel for rel in canonical
+                                if rel.startswith(HMT2_STAGE1_PREFIXES)),
+                "reason": "stage 1 is validation on a bank the hyperparameter "
+                          "selection saw. It established that the measure and "
+                          "the estimators work and it authorized the sealed "
+                          "main; the held-out result is the sealed main's",
+            },
+            "carries_the_held_out_result": sorted(
+                rel for rel in canonical
+                if rel.startswith(("artifacts/tables/hmt2_main_",
+                                   "artifacts/reports/HMT2_SEALED_MAIN.md"))),
+        }
     out = (ROOT / "artifacts" / ("CANONICAL_ARTIFACT_FREEZE_V2.json" if args.v2
                                  else "CANONICAL_ARTIFACT_FREEZE.json"))
     out.write_text(json.dumps(doc, indent=2) + "\n")
