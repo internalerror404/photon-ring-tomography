@@ -1,0 +1,416 @@
+{
+  "schema": "phrt-hmt1-sealed-main-freeze/1",
+  "id": "HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V1",
+  "created_utc": "2026-08-28T00:27:32Z",
+  "ruling": "REVIEWER_RULING_HMT1_VALIDATION_015",
+  "status": "SEALED_BEFORE_ANY_HELD_OUT_TRUTH_OR_OPERATOR_EVALUATION",
+  "branch": "research/hmt1_historical_feature_contrast_tomography_v0",
+  "inherits": {
+    "validation_freeze": "HMT_1_HISTORICAL_FEATURE_AND_CONTRAST_TOMOGRAPHY_V0",
+    "validation_freeze_sha256": "4ed2338ca45eb47e11d4aeb49067799e9db3e3d41b8f8d9c391d9dd09fc7c361",
+    "record_amendment": "HMT1_VALIDATION_RECORD_AMENDMENT_015",
+    "record_amendment_sha256": "35c80bfb7fe32fd04f544400f59b5daeb42f26b5d26fa387027deae894bfcab2",
+    "unchanged": "geometry, source model, contrast construction, reconstruction class, arms, estimators, feature extraction, normalisation denominators, aggregate, endpoints, materiality, tolerances and family agreement are inherited verbatim from the validation freeze. This freeze changes the truths and nothing else"
+  },
+  "design": {
+    "truths_per_family": 16,
+    "families": [
+      "circular_hotspot_trajectory",
+      "two_hotspot_trajectories",
+      "m1_rotating_crescent",
+      "m2_structural_mode",
+      "flare_birth_motion_decay",
+      "plunging_feature"
+    ],
+    "n_families": 6,
+    "n_truths": 96,
+    "regimes": [
+      "oracle_known",
+      "estimated_from_data",
+      "joint_inversion"
+    ],
+    "regime_reading": "each held-out truth is evaluated under all three background regimes, so the regime comparison is paired on the same truth. The ruling says '16 fresh truths per family, 6 families, 3 background regimes', which reads as 96 truths seen three ways rather than 288 separate draws. Recording the reading because the other one is available and would change the count",
+    "noise_draws_per_truth": 8,
+    "noiseless_control_draws": 1,
+    "noiseless_control_role": "reported alongside the noisy draws and gated by HMT1M_G15. It is not part of the endpoint statistic: an endpoint averaged over a draw that has no noise would report a number no instrument can produce",
+    "snr_primary": 100.0,
+    "snr_secondary": 1000.0,
+    "arms": [
+      "DIRECT_PHYSICAL",
+      "RESOLVED_PHYSICAL",
+      "UNRESOLVED_IMAGE",
+      "TOTAL_FLUX"
+    ],
+    "estimators": [
+      "TSVD",
+      "RIDGE_IDENTITY",
+      "NONNEGATIVE_CONSTRAINED",
+      "ML"
+    ]
+  },
+  "regime_roles": {
+    "estimated_from_data": "CLAIM_BEARING. The reported result is the one obtained here",
+    "oracle_known": "confirmatory only",
+    "joint_inversion": "confirmatory only",
+    "rule": "a result that exists only under a confirmatory regime is reported as background-assisted and does not pass"
+  },
+  "sealed_hyperparameters": {
+    "values": {
+      "oracle_known|DIRECT_PHYSICAL|TSVD": {
+        "hyperparameter": 0.01,
+        "validation_selection_error": 0.6815224681450385,
+        "grid_size": 15,
+        "at_max_regularization_end": false
+      },
+      "oracle_known|DIRECT_PHYSICAL|RIDGE_IDENTITY": {
+        "hyperparameter": 1e-05,
+        "validation_selection_error": 0.6719053679813922,
+        "grid_size": 21,
+        "at_max_regularization_end": false
+      },
+      "oracle_known|RESOLVED_PHYSICAL|TSVD": {
+        "hyperparameter": 0.0031622776601683794,
+        "validation_selection_error": 0.5393011153869315,
+        "grid_size": 15,
+        "at_max_regularization_end": false
+      },
+      "oracle_known|RESOLVED_PHYSICAL|RIDGE_IDENTITY": {
+        "hyperparameter": 3.162277660168379e-06,
+        "validation_selection_error": 0.5021611303443597,
+        "grid_size": 21,
+        "at_max_regularization_end": false
+      },
+      "oracle_known|UNRESOLVED_IMAGE|TSVD": {
+        "hyperparameter": 0.01,
+        "validation_selection_error": 0.6567603388448108,
+        "grid_size": 15,
+        "at_max_regularization_end": false
+      },
+      "oracle_known|UNRESOLVED_IMAGE|RIDGE_IDENTITY": {
+        "hyperparameter": 3.1622776601683795e-05,
+        "validation_selection_error": 0.5980188718902684,
+        "grid_size": 21,
+        "at_max_regularization_end": false
+      },
+      "oracle_known|TOTAL_FLUX|TSVD": {
+        "hyperparameter": 0.001,
+        "validation_selection_error": 0.7055153341046386,
+        "grid_size": 15,
+        "at_max_regularization_end": false
+      },
+      "oracle_known|TOTAL_FLUX|RIDGE_IDENTITY": {
+        "hyperparameter": 1e-10,
+        "validation_selection_error": 0.7055154067423891,
+        "grid_size": 21,
+        "at_max_regularization_end": false
+      },
+      "estimated_from_data|DIRECT_PHYSICAL|TSVD": {
+        "hyperparameter": 0.0031622776601683794,
+        "validation_selection_error": 0.6613277176876536,
+        "grid_size": 15,
+        "at_max_regularization_end": false
+      },
+      "estimated_from_data|DIRECT_PHYSICAL|RIDGE_IDENTITY": {
+        "hyperparameter": 0.0001,
+        "validation_selection_error": 0.6509267639370634,
+        "grid_size": 21,
+        "at_max_regularization_end": false
+      },
+      "estimated_from_data|RESOLVED_PHYSICAL|TSVD": {
+        "hyperparameter": 0.0031622776601683794,
+        "validation_selection_error": 0.5354078927288769,
+        "grid_size": 15,
+        "at_max_regularization_end": false
+      },
+      "estimated_from_data|RESOLVED_PHYSICAL|RIDGE_IDENTITY": {
+        "hyperparameter": 1e-05,
+        "validation_selection_error": 0.4984866996444514,
+        "grid_size": 21,
+        "at_max_regularization_end": false
+      },
+      "estimated_from_data|UNRESOLVED_IMAGE|TSVD": {
+        "hyperparameter": 0.01,
+        "validation_selection_error": 0.6427847165266866,
+        "grid_size": 15,
+        "at_max_regularization_end": false
+      },
+      "estimated_from_data|UNRESOLVED_IMAGE|RIDGE_IDENTITY": {
+        "hyperparameter": 3.1622776601683795e-05,
+        "validation_selection_error": 0.6160207682795936,
+        "grid_size": 21,
+        "at_max_regularization_end": false
+      },
+      "estimated_from_data|TOTAL_FLUX|TSVD": {
+        "hyperparameter": 0.001,
+        "validation_selection_error": 0.7015477709919947,
+        "grid_size": 15,
+        "at_max_regularization_end": false
+      },
+      "estimated_from_data|TOTAL_FLUX|RIDGE_IDENTITY": {
+        "hyperparameter": 1e-10,
+        "validation_selection_error": 0.7015478454262633,
+        "grid_size": 21,
+        "at_max_regularization_end": false
+      },
+      "joint_inversion|DIRECT_PHYSICAL|TSVD": {
+        "hyperparameter": 0.1,
+        "validation_selection_error": 0.670022670312952,
+        "grid_size": 15,
+        "at_max_regularization_end": false
+      },
+      "joint_inversion|DIRECT_PHYSICAL|RIDGE_IDENTITY": {
+        "hyperparameter": 3.1622776601683795e-05,
+        "validation_selection_error": 0.658811712644902,
+        "grid_size": 21,
+        "at_max_regularization_end": false
+      },
+      "joint_inversion|RESOLVED_PHYSICAL|TSVD": {
+        "hyperparameter": 0.0031622776601683794,
+        "validation_selection_error": 0.5494734156413109,
+        "grid_size": 15,
+        "at_max_regularization_end": false
+      },
+      "joint_inversion|RESOLVED_PHYSICAL|RIDGE_IDENTITY": {
+        "hyperparameter": 1e-05,
+        "validation_selection_error": 0.506766742442703,
+        "grid_size": 21,
+        "at_max_regularization_end": false
+      },
+      "joint_inversion|UNRESOLVED_IMAGE|TSVD": {
+        "hyperparameter": 0.01,
+        "validation_selection_error": 0.6166598635869268,
+        "grid_size": 15,
+        "at_max_regularization_end": false
+      },
+      "joint_inversion|UNRESOLVED_IMAGE|RIDGE_IDENTITY": {
+        "hyperparameter": 0.0001,
+        "validation_selection_error": 0.5899382446427293,
+        "grid_size": 21,
+        "at_max_regularization_end": false
+      },
+      "joint_inversion|TOTAL_FLUX|TSVD": {
+        "hyperparameter": 0.001,
+        "validation_selection_error": 0.6892093216367243,
+        "grid_size": 15,
+        "at_max_regularization_end": false
+      },
+      "joint_inversion|TOTAL_FLUX|RIDGE_IDENTITY": {
+        "hyperparameter": 1e-08,
+        "validation_selection_error": 0.6892055577727286,
+        "grid_size": 21,
+        "at_max_regularization_end": false
+      }
+    },
+    "provenance": "selected on the validation selection split by the corrected scorer, canonical run HMT1_20260827T224512Z_2ba66f02",
+    "all_interior": "no selected value sits at either end of its grid, which is what HMT1_G12 checked and passed in the validation",
+    "rule": "used verbatim. The sealed main performs no selection sweep at all -- there is no code path in the main runner that evaluates a second hyperparameter"
+  },
+  "prohibited_in_the_sealed_main": [
+    "hyperparameter selection or retuning of any kind",
+    "changing an estimator or adding one",
+    "changing the feature list scored for any family",
+    "changing any normalisation denominator",
+    "changing any tolerance, epsilon, quantile or materiality bar",
+    "excluding a family, a truth, an arm or a regime after seeing it",
+    "adding a source family or an off-manifold control to the endpoint",
+    "re-running with a different seed and reporting the better run"
+  ],
+  "endpoints": {
+    "primary": {
+      "old_band_feature_error": {
+        "statistic": "delta_E_old_features = (E_old_features(direct) - E_old_features(arm)) / E_old_features(direct), per truth",
+        "aggregation": "equal weight over family cells",
+        "old_band_boundary_M": 57.666382656487954,
+        "bootstrap": {
+          "kind": "paired truth-cluster",
+          "unit": "truth",
+          "n_resamples": 10000,
+          "level": 0.95,
+          "seed": 20260911,
+          "intervals": "one for the per-truth median and one for the cell-balanced mean, each named where reported"
+        }
+      },
+      "stable_feature_interval": {
+        "statistic": "L_stable_features(epsilon, q) = sup{T >= 0 : Pr[sup_{0 <= a <= T} E_features(a) <= epsilon] >= q}, supremum inside the probability, over truth and noise jointly",
+        "epsilon": 0.25,
+        "quantile": 0.95,
+        "age_grid_step_M": 2.0,
+        "probe_half_width_M": 3.0,
+        "requirement": "strictly positive for the resolved arm, and greater than the direct arm's"
+      },
+      "event_time_error": "reported for flare_birth_motion_decay in M, with its own interval",
+      "trajectory_error": "angular and radial error reported separately in radians and M, not only as the normalised aggregate"
+    },
+    "secondary": {
+      "rendered_frame_error": "relative error of the rendered dj frame",
+      "perceptual": "structural similarity of rendered frames",
+      "rule": "secondary. Neither may carry the primary claim, and a perceptually convincing frame is not evidence that the trajectory was measured"
+    },
+    "note": "inherited verbatim. Reproduced here so the sealed document is self-contained and a later edit to the validation freeze cannot silently move this endpoint"
+  },
+  "pass_criteria": {
+    "material_benefit_under_both_classical_estimators": {
+      "median_relative_reduction": 0.1,
+      "median_bootstrap_lower_bound": 0.05,
+      "cell_balanced_mean": 0.1,
+      "mean_bootstrap_lower_bound": 0.05,
+      "note": "the same numeric standard R1L used, so the two studies are comparable"
+    },
+    "nonzero_stable_feature_interval": {
+      "resolved_L_stable_features_M": "> 0",
+      "and_greater_than_direct": true
+    },
+    "family_agreement": {
+      "declared_rule": "at least three quarters of the declared families, rounded up",
+      "n_families": 6,
+      "required_count": 5,
+      "ambiguity_recorded": "the authorizing ruling says 'at least 3/4 families'. Earlier rulings used 'three of the four' when there were exactly four families; here there are six. The fraction reading is taken as primary because it preserves the stringency of the earlier rule, and the literal count reading (3 of 6) is also reported so the reviewer can see both and overturn this choice"
+    },
+    "survives_estimated_background": {
+      "required_regime": "estimated_from_data",
+      "rule": "a result that exists only under the oracle background is reported as background-assisted and does not pass"
+    },
+    "null_controls_consistent": true,
+    "exactly_one_disposition": true,
+    "claim_bearing_regime": "estimated_from_data"
+  },
+  "dispositions": {
+    "HMT1_MAIN_FEATURE_RECOVERY_PASS": "every criterion met in the claim-bearing regime",
+    "HMT1_MAIN_BACKGROUND_ASSISTED_ONLY": "criteria met only under a confirmatory regime",
+    "HMT1_MAIN_MATERIAL_ERROR_REDUCTION_NO_STABLE_INTERVAL": "material feature-error reduction with no positive stable feature interval",
+    "HMT1_MAIN_NO_MATERIAL_EFFECT": "banks sound, materiality not met. A reportable result",
+    "HMT1_MAIN_SOURCE_BANK_FAILURE": "a held-out bank could not be built within the contrast-model tolerances",
+    "HMT1_MAIN_IMPLEMENTATION_DEFECT": "a gate failed, a limit was exceeded, a commitment did not reproduce, or a committed bank hash did not match"
+  },
+  "exactly_one_disposition": true,
+  "gate_failure_forces_defect_token": true,
+  "two_stage_execution": {
+    "rule": "item 9. All final source and feature hashes are committed before any operator is applied to a held-out truth",
+    "stage_a": {
+      "script": "scripts/run_hmt1_main_bank.py",
+      "does": "draws the held-out truths, extracts their features, and writes per-truth sha256 of the emissivity field and of the extracted feature history",
+      "output": "artifacts/provenance/HMT1_MAIN_BANK_HASHES.json",
+      "touches_no_operator": true
+    },
+    "stage_b": {
+      "script": "scripts/run_hmt1_main.py",
+      "does": "rebuilds the same bank, verifies every hash against the committed file, and only then applies the operator",
+      "on_mismatch": "HMT1_MAIN_IMPLEMENTATION_DEFECT"
+    }
+  },
+  "seeds": {
+    "bank_seed": 20260915,
+    "noise_seed": 20260917,
+    "bootstrap_seed": 20260916,
+    "null_pair_seed": 20260918,
+    "subsample_seed": 20260825,
+    "freshness": "different values from the validation seeds, and the seed commitment payload carries split='sealed_main_heldout', a string no validation commitment used. Disjointness is therefore by construction and is checked as well"
+  },
+  "commitments": {
+    "circular_hotspot_trajectory": "20e2f612fee364e56b5646d88312be99fcefedd1ad332cc6ea304da14b91e73a",
+    "two_hotspot_trajectories": "915532a94fc0232d4f6e2ee5c843e4083de7ec4fe378775f0cd6d8fecfc1c697",
+    "m1_rotating_crescent": "e2b15587c08769ec191cd00c6328b8ac040b23f102d43507487ff51d966da0dc",
+    "m2_structural_mode": "447f05b89bb18dccfbe84a2b780b6fdd481a4ac9de135fb6b96b0d73185ad4dd",
+    "flare_birth_motion_decay": "60f321bbf64d559a3dee212b1fed47e05c4d41f06d3231d561cf53c7ca3ef23d",
+    "plunging_feature": "1203351c2d9ebd8e45413e47853106b729a05377dae245a1af12d91ecb3358ec"
+  },
+  "gates": {
+    "HMT1M_G1_pinned_numerical_environment": "structural",
+    "HMT1M_G2_held_out_commitment_reproduces": "structural",
+    "HMT1M_G3_disjoint_from_validation_truths": 0,
+    "HMT1M_G4_contrast_zero_spatial_mean": 1e-10,
+    "HMT1M_G4b_azimuthal_zero_mean": 1e-10,
+    "HMT1M_G5_total_emissivity_nonnegative": 0.0,
+    "HMT1M_G6_background_strictly_positive": 1e-06,
+    "HMT1M_G7_adjoint": 1e-08,
+    "HMT1M_G8_operator_truth_identity": 1e-09,
+    "HMT1M_G9_null_controls": 0.05,
+    "HMT1M_G10_feature_extraction_deterministic": 1e-09,
+    "HMT1M_G10b_truth_extraction_recovers_generative_parameters": 1.0,
+    "HMT1M_G11_off_manifold_excluded_from_endpoints": "structural",
+    "HMT1M_G12_sealed_hyperparameters_used_unchanged": 0,
+    "HMT1M_G13_declared_gate_coverage": "structural",
+    "HMT1M_G14_resource_limits": "structural",
+    "HMT1M_G15_noiseless_control_is_cleanest": 0,
+    "HMT1M_G16_bank_hashes_match_committed": 0
+  },
+  "gate_notes": {
+    "HMT1M_G3_disjoint_from_validation_truths": "number of held-out truth seeds that also appear in the validation bank. Must be zero",
+    "HMT1M_G12_sealed_hyperparameters_used_unchanged": "number of reconstructions run at a hyperparameter other than the sealed one for its (regime, arm, estimator). Must be zero. This replaces the validation's collapse gate, which guarded a selection sweep that no longer exists",
+    "HMT1M_G15_noiseless_control_is_cleanest": "number of (regime, arm, estimator) cells at the primary SNR where the noiseless control's median old-band feature error is not below the noisy median. Must be zero: if adding noise does not increase the error, the noise path is not doing what it claims",
+    "HMT1M_G16_bank_hashes_match_committed": "number of held-out truths whose emissivity field or feature history hashes differ from the values committed before the operator was applied. Must be zero"
+  },
+  "resource_limits": {
+    "wall_clock_seconds": 10800,
+    "peak_rss_mb": 12000,
+    "on_exceeded": "HMT1_MAIN_IMPLEMENTATION_DEFECT",
+    "no_silent_reduction": true
+  },
+  "numerical_environment": {
+    "pinned": true,
+    "variables": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "assertion": "every BLAS pool must report one thread, interrogated after import"
+  },
+  "scope": {
+    "authorized": "the HMT-1 sealed held-out main, and nothing else",
+    "not_authorized": [
+      "order leakage",
+      "geometry mismatch",
+      "VLBI",
+      "machine learning",
+      "a new pixel-movie reconstruction campaign"
+    ],
+    "after": "STOP"
+  },
+  "attestation": {
+    "available": true,
+    "execution_commit": "3c072a9d96dc4906edd61a4866c3923c06014793",
+    "head_tree_sha": "10e5971d4591b8677380ae5d9ae3f21d2bd8f318",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/register_hmt1_sealed_main_freeze.py\n",
+    "porcelain_registered_sha256": "74e64943a90401ad569e5e0cf5cdefd077cb8974d5424318f32f826781a8d3a6",
+    "porcelain_whole_tree_sha256": "74e64943a90401ad569e5e0cf5cdefd077cb8974d5424318f32f826781a8d3a6",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT1_VALIDATION_FREEZE_V0.json",
+        "sha256": "4ed2338ca45eb47e11d4aeb49067799e9db3e3d41b8f8d9c391d9dd09fc7c361",
+        "working_blob_sha": "a922befe114cbaabffd6f43af80787243838fbac",
+        "committed_blob_sha": "a922befe114cbaabffd6f43af80787243838fbac",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/HMT1_VALIDATION_RECORD_AMENDMENT_015.json",
+        "sha256": "35c80bfb7fe32fd04f544400f59b5daeb42f26b5d26fa387027deae894bfcab2",
+        "working_blob_sha": "eda661c80646c96a2dc6973db7ea8b3058d48bc5",
+        "committed_blob_sha": "eda661c80646c96a2dc6973db7ea8b3058d48bc5",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}
