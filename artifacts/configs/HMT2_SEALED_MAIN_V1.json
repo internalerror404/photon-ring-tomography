@@ -1,0 +1,348 @@
+{
+  "schema": "phrt-hmt2-sealed-main-freeze/1",
+  "id": "HMT2_SEALED_MAIN_V1",
+  "created_utc": "2026-08-28T06:08:24Z",
+  "ruling": "REVIEWER_RULING_HMT2_STAGE1_020",
+  "status": "SEALED_BEFORE_ANY_HELD_OUT_TRUTH",
+  "branch": "research/hmt2_resolution_aware_feature_measure_v0",
+  "authorized_by": "item 11, on HMT2_S1_ENDPOINT_COMPLETION_PASS",
+  "completion_gates_sha256": "4439e527ef3a7cd4333ed21ea207286a72f6b801f7c747ac242c8f5cdaaa7da3",
+  "inherits_verbatim": {
+    "source_families": [
+      "circular_hotspot_trajectory",
+      "two_hotspot_trajectories",
+      "m1_rotating_crescent",
+      "m2_structural_mode",
+      "flare_birth_motion_decay",
+      "plunging_feature"
+    ],
+    "family_ranges": "the original six, no separation cut",
+    "classes": {
+      "primary": {
+        "id": "L896_radial_enriched",
+        "radial": 8,
+        "azimuthal": 7,
+        "temporal": 16,
+        "dimension_after_m0_removal": 768,
+        "role": "the primary bounded class. Item 13",
+        "why": "stage 0R measured its stable-state merger rate at 0.136 against 0.299 for the current class, and its representation floor about an order of magnitude lower"
+      },
+      "control": {
+        "id": "L448_contrast",
+        "radial": 4,
+        "azimuthal": 7,
+        "temporal": 16,
+        "dimension_after_m0_removal": 384,
+        "role": "representation-limited control. Item 13",
+        "why": "it is the class HMT-1 used, and carrying it makes the cost of the representation limit visible in the same run rather than by comparison across runs"
+      }
+    },
+    "arms": [
+      "DIRECT_PHYSICAL",
+      "RESOLVED_PHYSICAL",
+      "UNRESOLVED_IMAGE",
+      "TOTAL_FLUX"
+    ],
+    "targets": {
+      "CLASS_CONDITIONAL": {
+        "reference": "the best in-class approximation of the source object",
+        "reads": "how much of what the class can represent the estimator recovers",
+        "claim_it_supports": "a class-conditional result, and nothing more"
+      },
+      "PHYSICAL_END_TO_END": {
+        "reference": "the analytic source object itself",
+        "reads": "how much of what is actually there the estimator recovers",
+        "claim_it_supports": "a physical historical-recovery claim"
+      },
+      "rule": "item 14. Improvement on CLASS_CONDITIONAL alone is a class-conditional result. A physical claim requires improvement on PHYSICAL_END_TO_END as well. Both are reported for every arm, estimator and SNR, always together and always named"
+    },
+    "primary_endpoint": {
+      "id": "all_state_resolution_aware_morphology_error",
+      "definition": "one error per (truth, age) computed by the measure appropriate to that state's reconciled label, aggregated over all states without exclusion",
+      "per_state_measure": {
+        "SINGLE_RESOLVED": "set-valued unbalanced assignment cost on the one feature",
+        "MULTI_RESOLVED": "set-valued unbalanced assignment cost over the feature set",
+        "BLENDED": "normalised discrepancy in centroid, size and mode content -- what a one-peak field supports",
+        "AMBIGUOUS": "the BLENDED measure, because a state whose multiplicity the analysis grid cannot settle must not be scored as though it had a definite feature count",
+        "DEAD": "amplitude discrepancy only; no position is defined"
+      },
+      "normalisation": "each per-state measure is expressed in units of its own worst case, so states of different kinds combine without one kind dominating by having a larger natural scale",
+      "no_exclusions": "item 16. BLENDED and AMBIGUOUS states are in the primary endpoint and are never forced into two-track scoring"
+    },
+    "secondary_conditional": {
+      "id": "set_valued_positions_and_tracks",
+      "restricted_to": "reconciled STABLE_MULTI_RESOLVED states",
+      "rule": "item 15. Conditional by construction and reported as such: it says what recovery looks like where the source is cleanly resolved, and carries no claim about the rest"
+    },
+    "classification": {
+      "prominence_fraction": 0.25,
+      "dead_fraction": 0.25,
+      "levels": [
+        [
+          32,
+          64,
+          80
+        ],
+        [
+          64,
+          128,
+          160
+        ]
+      ],
+      "reconciliation": "the reconciled label from the two finest refinement levels, as in stage 0R",
+      "note": "the source-side classification is computed exactly as stage 0R computed it, on the same two finest refinement levels, so a state's label does not depend on which stage is looking at it. An earlier draft of this freeze took the two coarsest levels while claiming the two finest; corrected before any truth was drawn",
+      "cost_note": "the source classification is per truth, not per arm or draw, so using the finest level costs 48 classifications rather than 48 times the arm, estimator, SNR and draw product. The reconstruction is evaluated on the same grids through the separable factors, which needs no dense design"
+    },
+    "evaluation": {
+      "comparison_grid": [
+        16,
+        32,
+        40
+      ],
+      "rule": "the state's *label* comes from the converged source analysis on the two finest refinement levels; the *measurement* happens on the declared evaluation grid. That split is what resolution-aware means here: a state is scored for what it is, measured where the instrument looks. Scoring the label on the coarse grid would let the grid decide what the source contains, which is the HMT-1 failure"
+    },
+    "expected_windowed_multiplicity": {
+      "circular_hotspot_trajectory": 1,
+      "two_hotspot_trajectories": 2,
+      "m1_rotating_crescent": 1,
+      "m2_structural_mode": 2,
+      "flare_birth_motion_decay": 1,
+      "plunging_feature": 1,
+      "three_hotspot_cluster": 3,
+      "counter_rotating_pair": 2,
+      "radially_drifting_arc": 1
+    },
+    "prominence_fraction": 0.25,
+    "stage_1_freeze_sha256": "3a1a1750a21184a8eb406da0503edf4d28ddeb77c15e03adfd1af2f5465c7cda"
+  },
+  "sealed_hyperparameters": {
+    "values": {
+      "L896_radial_enriched|DIRECT_PHYSICAL|TSVD": {
+        "hyperparameter": 0.1,
+        "stage_1_selection_error": 0.7704521038621652,
+        "at_max_regularization_end": false
+      },
+      "L896_radial_enriched|DIRECT_PHYSICAL|RIDGE_IDENTITY": {
+        "hyperparameter": 0.03162277660168379,
+        "stage_1_selection_error": 0.734286688794366,
+        "at_max_regularization_end": false
+      },
+      "L896_radial_enriched|RESOLVED_PHYSICAL|TSVD": {
+        "hyperparameter": 0.03162277660168379,
+        "stage_1_selection_error": 0.7111795283633477,
+        "at_max_regularization_end": false
+      },
+      "L896_radial_enriched|RESOLVED_PHYSICAL|RIDGE_IDENTITY": {
+        "hyperparameter": 0.001,
+        "stage_1_selection_error": 0.6679386269666077,
+        "at_max_regularization_end": false
+      },
+      "L896_radial_enriched|UNRESOLVED_IMAGE|TSVD": {
+        "hyperparameter": 0.0031622776601683794,
+        "stage_1_selection_error": 0.7581693482378927,
+        "at_max_regularization_end": false
+      },
+      "L896_radial_enriched|UNRESOLVED_IMAGE|RIDGE_IDENTITY": {
+        "hyperparameter": 0.03162277660168379,
+        "stage_1_selection_error": 0.7186899520694109,
+        "at_max_regularization_end": false
+      },
+      "L896_radial_enriched|TOTAL_FLUX|TSVD": {
+        "hyperparameter": 0.03162277660168379,
+        "stage_1_selection_error": 0.7177405294771098,
+        "at_max_regularization_end": false
+      },
+      "L896_radial_enriched|TOTAL_FLUX|RIDGE_IDENTITY": {
+        "hyperparameter": 0.0001,
+        "stage_1_selection_error": 0.7183894796242496,
+        "at_max_regularization_end": false
+      },
+      "L448_contrast|DIRECT_PHYSICAL|TSVD": {
+        "hyperparameter": 0.31622776601683794,
+        "stage_1_selection_error": 0.7968743501320401,
+        "at_max_regularization_end": false
+      },
+      "L448_contrast|DIRECT_PHYSICAL|RIDGE_IDENTITY": {
+        "hyperparameter": 0.03162277660168379,
+        "stage_1_selection_error": 0.7708129504971706,
+        "at_max_regularization_end": false
+      },
+      "L448_contrast|RESOLVED_PHYSICAL|TSVD": {
+        "hyperparameter": 0.03162277660168379,
+        "stage_1_selection_error": 0.7561322904341585,
+        "at_max_regularization_end": false
+      },
+      "L448_contrast|RESOLVED_PHYSICAL|RIDGE_IDENTITY": {
+        "hyperparameter": 0.001,
+        "stage_1_selection_error": 0.7124744795633017,
+        "at_max_regularization_end": false
+      },
+      "L448_contrast|UNRESOLVED_IMAGE|TSVD": {
+        "hyperparameter": 0.31622776601683794,
+        "stage_1_selection_error": 0.79326924263946,
+        "at_max_regularization_end": false
+      },
+      "L448_contrast|UNRESOLVED_IMAGE|RIDGE_IDENTITY": {
+        "hyperparameter": 0.03162277660168379,
+        "stage_1_selection_error": 0.7551612590487811,
+        "at_max_regularization_end": false
+      },
+      "L448_contrast|TOTAL_FLUX|TSVD": {
+        "hyperparameter": 0.01,
+        "stage_1_selection_error": 0.7415152709343531,
+        "at_max_regularization_end": false
+      },
+      "L448_contrast|TOTAL_FLUX|RIDGE_IDENTITY": {
+        "hyperparameter": 0.00031622776601683794,
+        "stage_1_selection_error": 0.7405803187911005,
+        "at_max_regularization_end": false
+      }
+    },
+    "provenance": "the stage 1 selection split, unchanged. All 16 are interior to their grids",
+    "rule": "used verbatim. This runner contains no selection sweep"
+  },
+  "bank": {
+    "truths_per_family": 10,
+    "n_truths": 60,
+    "noise_draws_per_truth": 4,
+    "bank_seed": 20260953,
+    "commitments": {
+      "circular_hotspot_trajectory": "66af96bef30bee253daaea0e97e57a233f58bc5c3194e78947d7eee4dc88b461",
+      "two_hotspot_trajectories": "1233b1908f5219e2ce11a9002cd6318b989b7acc1288b9119fdb8378521ea49f",
+      "m1_rotating_crescent": "44c5e045cf57e59a65e0f9124b06d85d9f1fc20a8214f8d1322dd221798c0bbf",
+      "m2_structural_mode": "114ade876654e2bce2f93c44688fe0d23e73259eb74725723bdd1fa478a9ede0",
+      "flare_birth_motion_decay": "5910934f7e73b6934c5b56f0107cfd7a945867a923f91ce55e33c5901c1cd556",
+      "plunging_feature": "9d21db630713a7fc2e4efb22594ff65e7cc9d05a5f5f708506d27761011d2d1d"
+    },
+    "freshness": "the commitment payload carries split='hmt2_sealed_main_heldout', a string no earlier bank used, so no seed can recur. Checked as well",
+    "held_out": true
+  },
+  "pass_criteria": {
+    "materiality": {
+      "median_relative_reduction": 0.1,
+      "median_bootstrap_lower_bound": 0.05,
+      "provenance": "the numeric standard HMT-1 declared and used. Stage 1's rule asked only that the interval clear zero, which HMT2_S1_PASS_RULE_HAS_NO_EFFECT_SIZE_FLOOR records as a defect. A floor cannot be added to a finished run without moving a criterion after the fact, but it can and must be declared in advance for a new one, and it is declared here"
+    },
+    "both_targets_required": "a physical claim requires materiality on PHYSICAL_END_TO_END. Materiality on CLASS_CONDITIONAL alone is reported as class-conditional and is not a physical claim",
+    "both_estimators_required": true,
+    "claim_bearing_class": "L896_radial_enriched",
+    "saturation_disclosure": "the fraction of states at the measure's ceiling is reported for every cell. A reduction that is entirely a change in saturation fraction is reported as such"
+  },
+  "must_emit": [
+    "all-draw per-kind decompositions",
+    "non-DEAD companion",
+    "saturation fractions",
+    "per-family effects and intervals",
+    "stable multi endpoint for both estimators and both SNRs",
+    "analytic-label and projected-label class-conditional companions",
+    "stable age-resolved morphology interval"
+  ],
+  "two_stage_execution": {
+    "rule": "every source-side gate is decided in stage A, before any operator is imported, and the bank hashes are committed before stage B runs. Carried forward from ruling 017 items 9 and 10, which the HMT-1 sealed main needed and did not have",
+    "stage_a": "scripts/run_hmt2_sealed_main_bank.py",
+    "stage_b": "scripts/run_hmt2_sealed_main.py",
+    "on_stage_a_failure": "stage B refuses to import an operator"
+  },
+  "endpoint_lineage_firewall": {
+    "rule": "on any failed gate no endpoint-derived quantity is emitted under any filename. Carried forward from ruling 017 item 11",
+    "module": "phrt.io.endpoint_lineage"
+  },
+  "dispositions": {
+    "HMT2_MAIN_PHYSICAL_MORPHOLOGY_RECOVERY_PASS": "materiality on both targets, both estimators, claim-bearing class",
+    "HMT2_MAIN_CLASS_CONDITIONAL_ONLY": "materiality on CLASS_CONDITIONAL and not on PHYSICAL_END_TO_END",
+    "HMT2_MAIN_NO_MATERIAL_EFFECT": "banks sound, materiality not reached",
+    "HMT2_MAIN_SOURCE_BANK_FAILURE": "a held-out bank could not be built within tolerances",
+    "HMT2_MAIN_IMPLEMENTATION_DEFECT": "a gate failed, a limit was exceeded, a commitment did not reproduce, or a committed bank hash did not match"
+  },
+  "exactly_one_disposition": true,
+  "gate_failure_forces_defect_token": true,
+  "gates": {
+    "HMT2M_G1_pinned_numerical_environment": "structural",
+    "HMT2M_G2_commitments_reproduce": "structural",
+    "HMT2M_G3_disjoint_from_every_earlier_bank": 0,
+    "HMT2M_G4_contrast_zero_spatial_mean": 1e-10,
+    "HMT2M_G5_total_emissivity_nonnegative": 0.0,
+    "HMT2M_G6_source_classification_stable": 0,
+    "HMT2M_G7_adjoint": 1e-08,
+    "HMT2M_G8_operator_truth_identity": 1e-09,
+    "HMT2M_G9_stage_a_source_gates_passed": 0,
+    "HMT2M_G10_bank_hashes_match_committed": 0,
+    "HMT2M_G11_sealed_hyperparameters_used_unchanged": 0,
+    "HMT2M_G12_both_targets_reported": 0,
+    "HMT2M_G13_no_state_excluded_from_primary": 0,
+    "HMT2M_G14_blended_not_forced_into_two_tracks": 0,
+    "HMT2M_G15_all_required_companions_emitted": 0,
+    "HMT2M_G16_estimator_scope": 0,
+    "HMT2M_G17_endpoint_lineage_firewall": 0,
+    "HMT2M_G18_declared_gate_coverage": "structural",
+    "HMT2M_G19_resource_limits": "structural"
+  },
+  "resource_limits": {
+    "wall_clock_seconds": 14400,
+    "on_exceeded": "HMT2_MAIN_IMPLEMENTATION_DEFECT"
+  },
+  "numerical_environment": {
+    "pinned": true,
+    "variables": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "assertion": "every BLAS pool must report one thread, interrogated after import"
+  },
+  "after": "STOP. Item 12",
+  "not_authorized": [
+    "order leakage",
+    "geometry mismatch",
+    "VLBI",
+    "machine learning",
+    "a new pixel-movie reconstruction campaign"
+  ],
+  "attestation": {
+    "available": true,
+    "execution_commit": "caf938193bfe47504f9f1b91b713cdef1c45484f",
+    "head_tree_sha": "cd988eab4e94e5b7d65034f04407d9e506316949",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/register_hmt2_sealed_main_freeze.py\n",
+    "porcelain_registered_sha256": "83aacde918762681636ede604cc6f58d855686ade11b6bb01c7e5edf53d87df6",
+    "porcelain_whole_tree_sha256": "83aacde918762681636ede604cc6f58d855686ade11b6bb01c7e5edf53d87df6",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_STAGE1_RESOLUTION_AWARE_MORPHOLOGY_VALIDATION_V0.json",
+        "sha256": "3a1a1750a21184a8eb406da0503edf4d28ddeb77c15e03adfd1af2f5465c7cda",
+        "working_blob_sha": "3db3b4efb03b8255eecdbad08aee6ffe0fba2ce5",
+        "committed_blob_sha": "3db3b4efb03b8255eecdbad08aee6ffe0fba2ce5",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/HMT2_STAGE1_ENDPOINT_COMPLETION_AMENDMENT_020.json",
+        "sha256": "ade1065e569181b35bb6a7fdb208c27228276b3995f387c2e67c58a06a5d2ad1",
+        "working_blob_sha": "8e6837228df5fa3404ca3730e76131b244c8b990",
+        "committed_blob_sha": "8e6837228df5fa3404ca3730e76131b244c8b990",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}
