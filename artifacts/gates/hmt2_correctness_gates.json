@@ -112,11 +112,93 @@
       "note": "complete",
       "run_id": "HMT2S1_20260828T050457Z_2ba66f02",
       "recorded_at": "2026-08-28T05:04:59+00:00"
+    },
+    "HMT2C_G1_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "HMT2S1C_20260828T060401Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:04:10+00:00"
+    },
+    "HMT2C_G2_primary_endpoint_reproduces_bitwise": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "10 columns x 24 cells compared exactly, stable_multi excluded as item 9 extends it",
+      "run_id": "HMT2S1C_20260828T060401Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:04:10+00:00"
+    },
+    "HMT2C_G3_no_selection_performed": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "hyperparameters read from the stage 1 selection table; this runner has no sweep",
+      "run_id": "HMT2S1C_20260828T060401Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:04:10+00:00"
+    },
+    "HMT2C_G4_all_draws_decomposed": {
+      "status": "PASS",
+      "measured": 4,
+      "threshold": 4,
+      "note": "distinct noise draws present in the per-state table",
+      "run_id": "HMT2S1C_20260828T060401Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:04:10+00:00"
+    },
+    "HMT2C_G5_stable_multi_both_estimators_and_snrs": {
+      "status": "PASS",
+      "measured": 4,
+      "threshold": 4,
+      "note": "2 estimators x 2 SNRs",
+      "run_id": "HMT2S1C_20260828T060401Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:04:10+00:00"
+    },
+    "HMT2C_G6_both_class_conditional_companions": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "note": "analytic-label and projected-label companions both present",
+      "run_id": "HMT2S1C_20260828T060401Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:04:10+00:00"
+    },
+    "HMT2C_G7_blended_not_forced_into_two_tracks": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "run_id": "HMT2S1C_20260828T060401Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:04:10+00:00"
+    },
+    "HMT2C_G8_non_dead_companion_emitted": {
+      "status": "PASS",
+      "measured": 24,
+      "threshold": 1,
+      "run_id": "HMT2S1C_20260828T060401Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:04:10+00:00"
+    },
+    "HMT2C_G9_saturation_fractions_emitted": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "HMT2S1C_20260828T060401Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:04:10+00:00"
+    },
+    "HMT2C_G10_per_family_effects_emitted": {
+      "status": "PASS",
+      "measured": 144,
+      "threshold": 1,
+      "run_id": "HMT2S1C_20260828T060401Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:04:10+00:00"
+    },
+    "HMT2C_G11_stable_age_interval_emitted": {
+      "status": "PASS",
+      "measured": 32,
+      "threshold": 1,
+      "run_id": "HMT2S1C_20260828T060401Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:04:10+00:00"
     }
   },
-  "updated_at": "2026-08-28T05:04:59+00:00",
+  "updated_at": "2026-08-28T06:04:10+00:00",
   "summary": {
-    "PASS": 15,
+    "PASS": 26,
     "FAIL": 0,
     "NOT_RUN": 0
   }
