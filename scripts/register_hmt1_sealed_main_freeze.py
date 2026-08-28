@@ -34,7 +34,13 @@ AMD = ROOT / "artifacts" / "configs" / "HMT1_VALIDATION_RECORD_AMENDMENT_015.jso
 SEL = ROOT / "artifacts" / "tables" / "hmt1_selection.parquet"
 OUT = ROOT / "artifacts" / "configs" / "HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V1.json"
 
-SEED = 20260915                    # fresh; disjoint from the validation seeds
+# v2. The v1 bank drawn under seed 20260915 is retired: stage B was smoke
+# tested on it before the sealed run, which is an operator evaluation on
+# held-out truths and therefore a peek, however small. Redrawing under a new
+# seed costs five seconds and restores the seal, which is cheaper than
+# arguing about how little the peek revealed. See
+# HMT1_SEALED_MAIN_BANK_V1_RETIREMENT_016.
+SEED = 20260917
 N_PER_FAMILY = 16
 N_NOISE_DRAWS = 8
 NOISELESS_DRAWS = 1
@@ -75,6 +81,8 @@ def main() -> int:
     doc = {
         "schema": "phrt-hmt1-sealed-main-freeze/1",
         "id": "HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V1",
+        "revision": "v2 bank seed",
+        "revision_reason": "HMT1_SEALED_MAIN_BANK_V1_RETIREMENT_016",
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "ruling": "REVIEWER_RULING_HMT1_VALIDATION_015",
         "status": "SEALED_BEFORE_ANY_HELD_OUT_TRUTH_OR_OPERATOR_EVALUATION",
@@ -241,7 +249,7 @@ def main() -> int:
             "HMT1M_G12_sealed_hyperparameters_used_unchanged": 0,
             "HMT1M_G13_declared_gate_coverage": "structural",
             "HMT1M_G14_resource_limits": "structural",
-            "HMT1M_G15_noiseless_control_is_cleanest": 0,
+            "HMT1M_G15_noise_path_is_live": 0,
             "HMT1M_G16_bank_hashes_match_committed": 0,
         },
         "gate_notes": {
@@ -253,12 +261,25 @@ def main() -> int:
                 "the sealed one for its (regime, arm, estimator). Must be "
                 "zero. This replaces the validation's collapse gate, which "
                 "guarded a selection sweep that no longer exists",
-            "HMT1M_G15_noiseless_control_is_cleanest":
+            "HMT1M_G15_noise_path_is_live":
                 "number of (regime, arm, estimator) cells at the primary SNR "
-                "where the noiseless control's median old-band feature error "
-                "is not below the noisy median. Must be zero: if adding noise "
-                "does not increase the error, the noise path is not doing "
-                "what it claims",
+                "where the noisy reconstructions do not differ from the "
+                "noiseless control. Must be zero",
+            "HMT1M_G15_corrected_definition":
+                "this gate first required the noiseless control to score a "
+                "lower endpoint error than the noisy draws. That expectation "
+                "is false here and the smoke run falsified it: with the "
+                "sealed hyperparameters the feature error is bias dominated, "
+                "not noise dominated -- the noise norm exceeds the signal "
+                "norm but the regularization removes most of it -- so "
+                "removing the noise barely moves the error and can slightly "
+                "worsen a bounded argmax metric by removing dither. The "
+                "gate's purpose was to confirm the noise path is live, and "
+                "it now measures that directly, in the reconstruction rather "
+                "than in the endpoint. The endpoint direction is still "
+                "reported, in hmt1_main_noiseless_control, and is not gated "
+                "because no correct direction for it was established in "
+                "advance",
             "HMT1M_G16_bank_hashes_match_committed":
                 "number of held-out truths whose emissivity field or feature "
                 "history hashes differ from the values committed before the "

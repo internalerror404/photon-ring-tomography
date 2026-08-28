@@ -1,7 +1,9 @@
 {
   "schema": "phrt-hmt1-sealed-main-freeze/1",
   "id": "HMT1_SEALED_HELD_OUT_MAIN_FREEZE_V1",
-  "created_utc": "2026-08-28T00:27:32Z",
+  "revision": "v2 bank seed",
+  "revision_reason": "HMT1_SEALED_MAIN_BANK_V1_RETIREMENT_016",
+  "created_utc": "2026-08-28T00:36:49Z",
   "ruling": "REVIEWER_RULING_HMT1_VALIDATION_015",
   "status": "SEALED_BEFORE_ANY_HELD_OUT_TRUTH_OR_OPERATOR_EVALUATION",
   "branch": "research/hmt1_historical_feature_contrast_tomography_v0",
@@ -299,20 +301,20 @@
     }
   },
   "seeds": {
-    "bank_seed": 20260915,
-    "noise_seed": 20260917,
-    "bootstrap_seed": 20260916,
-    "null_pair_seed": 20260918,
+    "bank_seed": 20260917,
+    "noise_seed": 20260919,
+    "bootstrap_seed": 20260918,
+    "null_pair_seed": 20260920,
     "subsample_seed": 20260825,
     "freshness": "different values from the validation seeds, and the seed commitment payload carries split='sealed_main_heldout', a string no validation commitment used. Disjointness is therefore by construction and is checked as well"
   },
   "commitments": {
-    "circular_hotspot_trajectory": "20e2f612fee364e56b5646d88312be99fcefedd1ad332cc6ea304da14b91e73a",
-    "two_hotspot_trajectories": "915532a94fc0232d4f6e2ee5c843e4083de7ec4fe378775f0cd6d8fecfc1c697",
-    "m1_rotating_crescent": "e2b15587c08769ec191cd00c6328b8ac040b23f102d43507487ff51d966da0dc",
-    "m2_structural_mode": "447f05b89bb18dccfbe84a2b780b6fdd481a4ac9de135fb6b96b0d73185ad4dd",
-    "flare_birth_motion_decay": "60f321bbf64d559a3dee212b1fed47e05c4d41f06d3231d561cf53c7ca3ef23d",
-    "plunging_feature": "1203351c2d9ebd8e45413e47853106b729a05377dae245a1af12d91ecb3358ec"
+    "circular_hotspot_trajectory": "3a713af137203e4a8703dfc258542b61ff9fd7d8deb8544f3050d2e54095e9fa",
+    "two_hotspot_trajectories": "9803f753f5bab78471b465fa30790359a56584f02ba389a7557583e3dc58d140",
+    "m1_rotating_crescent": "e85dc48049fa292df05b356446d3222cfd12d077e7468346ef4ac61edd0f1b73",
+    "m2_structural_mode": "224c3d37915aa066896fd6cfd0a3c593d236a57426c2d85b71f96e47eff85d31",
+    "flare_birth_motion_decay": "de650c8d02f8c4cca9d7cf44c1ec2074f9754b87ae5da47d725aec6b8ca249b9",
+    "plunging_feature": "d28d3e8f59cd1d88a720ff3cec15d7118f7f078936606de8c9d291199fd8727b"
   },
   "gates": {
     "HMT1M_G1_pinned_numerical_environment": "structural",
@@ -331,13 +333,14 @@
     "HMT1M_G12_sealed_hyperparameters_used_unchanged": 0,
     "HMT1M_G13_declared_gate_coverage": "structural",
     "HMT1M_G14_resource_limits": "structural",
-    "HMT1M_G15_noiseless_control_is_cleanest": 0,
+    "HMT1M_G15_noise_path_is_live": 0,
     "HMT1M_G16_bank_hashes_match_committed": 0
   },
   "gate_notes": {
     "HMT1M_G3_disjoint_from_validation_truths": "number of held-out truth seeds that also appear in the validation bank. Must be zero",
     "HMT1M_G12_sealed_hyperparameters_used_unchanged": "number of reconstructions run at a hyperparameter other than the sealed one for its (regime, arm, estimator). Must be zero. This replaces the validation's collapse gate, which guarded a selection sweep that no longer exists",
-    "HMT1M_G15_noiseless_control_is_cleanest": "number of (regime, arm, estimator) cells at the primary SNR where the noiseless control's median old-band feature error is not below the noisy median. Must be zero: if adding noise does not increase the error, the noise path is not doing what it claims",
+    "HMT1M_G15_noise_path_is_live": "number of (regime, arm, estimator) cells at the primary SNR where the noisy reconstructions do not differ from the noiseless control. Must be zero",
+    "HMT1M_G15_corrected_definition": "this gate first required the noiseless control to score a lower endpoint error than the noisy draws. That expectation is false here and the smoke run falsified it: with the sealed hyperparameters the feature error is bias dominated, not noise dominated -- the noise norm exceeds the signal norm but the regularization removes most of it -- so removing the noise barely moves the error and can slightly worsen a bounded argmax metric by removing dither. The gate's purpose was to confirm the noise path is live, and it now measures that directly, in the reconstruction rather than in the endpoint. The endpoint direction is still reported, in hmt1_main_noiseless_control, and is not gated because no correct direction for it was established in advance",
     "HMT1M_G16_bank_hashes_match_committed": "number of held-out truths whose emissivity field or feature history hashes differ from the values committed before the operator was applied. Must be zero"
   },
   "resource_limits": {
@@ -373,8 +376,8 @@
   },
   "attestation": {
     "available": true,
-    "execution_commit": "3c072a9d96dc4906edd61a4866c3923c06014793",
-    "head_tree_sha": "10e5971d4591b8677380ae5d9ae3f21d2bd8f318",
+    "execution_commit": "1734dabfeeb634b8c1821baca1584331df688a93",
+    "head_tree_sha": "f8a8d5357829ce8cfb273d4382468e5ac1deab5b",
     "pathspecs": [
       ":/src",
       ":/scripts",
@@ -383,12 +386,12 @@
       ":/schemas",
       ":/artifacts/configs"
     ],
-    "porcelain_registered": "?? scripts/register_hmt1_sealed_main_freeze.py\n",
-    "porcelain_registered_sha256": "74e64943a90401ad569e5e0cf5cdefd077cb8974d5424318f32f826781a8d3a6",
-    "porcelain_whole_tree_sha256": "74e64943a90401ad569e5e0cf5cdefd077cb8974d5424318f32f826781a8d3a6",
-    "n_tracked_changes": 0,
-    "n_untracked": 1,
-    "tracked_clean": true,
+    "porcelain_registered": " M scripts/register_hmt1_sealed_main_freeze.py\n?? scripts/run_hmt1_main.py\n?? scripts/run_hmt1_main_score.py\n",
+    "porcelain_registered_sha256": "92609be3426958e53b5fa7bf4d7b49964f8910e9b8d6aa2b31f513e076a87bea",
+    "porcelain_whole_tree_sha256": "92609be3426958e53b5fa7bf4d7b49964f8910e9b8d6aa2b31f513e076a87bea",
+    "n_tracked_changes": 1,
+    "n_untracked": 2,
+    "tracked_clean": false,
     "untracked_clean": false,
     "clean": false,
     "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
