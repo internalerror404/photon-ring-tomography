@@ -1,0 +1,273 @@
+{
+  "schema": "phrt-hmt2-stage0-freeze/1",
+  "id": "HMT2_STAGE0_SOURCE_OBJECT_AND_RESOLUTION_AUDIT_V0",
+  "created_utc": "2026-08-28T01:58:02Z",
+  "ruling": "REVIEWER_RULING_HMT1_SOURCE_RESOLUTION_018",
+  "status": "FROZEN_BEFORE_ANY_SOURCE_BANK_IS_DRAWN",
+  "branch": "research/hmt2_resolution_aware_feature_measure_v0",
+  "predecessor": "HMT1_CLOSURE_RECORD_018",
+  "predecessor_sha256": "cb8932de8d04a2e73b4daea8b969c6e0148dc463d4eaab12b64a0f0b4d86aa9e",
+  "question": "given these source families and these grids, what is there to be measured. HMT-1 specified a source model and an evaluation grid independently and never checked the contract between them; the sealed main failed on exactly that. Stage 0 establishes the contract before any estimator is asked to honour it",
+  "prohibitions": {
+    "ray_map": "not imported. Item 8",
+    "observation_operator": "not constructed. Item 8",
+    "consequence": "no quantity produced here is an inverse-problem result, and none can be read as one",
+    "separation_cut": "not imposed. Item 9. The original six family parameter ranges are preserved exactly as HMT-1 declared them, because the audit's job is to measure what those ranges contain, not to repair them in advance"
+  },
+  "source_families": {
+    "declared": [
+      "circular_hotspot_trajectory",
+      "two_hotspot_trajectories",
+      "m1_rotating_crescent",
+      "m2_structural_mode",
+      "flare_birth_motion_decay",
+      "plunging_feature"
+    ],
+    "off_manifold": [
+      "three_hotspot_cluster",
+      "counter_rotating_pair",
+      "radially_drifting_arc"
+    ],
+    "ranges": "inherited verbatim from HMT_1_HISTORICAL_FEATURE_AND_CONTRAST_TOMOGRAPHY_V0",
+    "expected_windowed_multiplicity": {
+      "circular_hotspot_trajectory": 1,
+      "two_hotspot_trajectories": 2,
+      "m1_rotating_crescent": 1,
+      "m2_structural_mode": 2,
+      "flare_birth_motion_decay": 1,
+      "plunging_feature": 1,
+      "three_hotspot_cluster": 3,
+      "counter_rotating_pair": 2,
+      "radially_drifting_arc": 1
+    },
+    "multiplicity_note": "declared from the generative form before any bank is drawn. It is what distinguishes a BLENDED state from a SINGLE_RESOLVED one: the field shows one peak either way, and only the source model knows whether something was lost"
+  },
+  "bank": {
+    "truths_per_family": 24,
+    "n_families": 6,
+    "n_truths": 144,
+    "off_manifold_per_family": 8,
+    "bank_seed": 20260931,
+    "commitments": {
+      "circular_hotspot_trajectory": "396de9bb12b39817bb144c0f78550695ba761d02b9513390ba0986462d40902f",
+      "two_hotspot_trajectories": "37532c92b501904de8980e4d45d7fca9f229acd2c769782cb6ca0d8f23909c48",
+      "m1_rotating_crescent": "31a0b2c14ae1e9629b54d1e7a0687268c76f8a7058fcdf17fa87390cafac3991",
+      "m2_structural_mode": "14ace0623ed014d8bc4704c4f907120edeb7327a630ed69f589a3f06611db377",
+      "flare_birth_motion_decay": "29f610bd8986844e18957e1da82fee7139c5035fa276b3abfba7c93dda98c39f",
+      "plunging_feature": "f0837631d0e6335f52d49ae5d0a95e1eb124d91f570ce2465fecd36b26cc2790",
+      "three_hotspot_cluster": "9f5571581fa0c3dbe4816f41d72cb12703156b7a089dd4ddd78d15916fbabaf3",
+      "counter_rotating_pair": "de21bbdcaef21ac14d3e281b67550e89eeba5f2ede758828b4f19c03180cfe3b",
+      "radially_drifting_arc": "30831c07331d93425dc3e1cf27021412db1f3cb820c2141c7401746871815dc8"
+    },
+    "size_note": "the bank size is declared for cost and is not a grid reduction. Item 10 forbids reducing the final grid because a source is expensive; it does not fix how many sources are audited"
+  },
+  "grids": {
+    "nested": [
+      {
+        "n_radial": 16,
+        "n_azimuthal": 32,
+        "n_temporal": 40,
+        "level": 0
+      },
+      {
+        "n_radial": 32,
+        "n_azimuthal": 64,
+        "n_temporal": 80,
+        "level": 1
+      },
+      {
+        "n_radial": 64,
+        "n_azimuthal": 128,
+        "n_temporal": 160,
+        "level": 2
+      }
+    ],
+    "nesting": "each level doubles every axis, so every coarse node is a fine node and the levels are directly comparable",
+    "construction_grid": "the finest level. The source object is built once, at the highest resolution, so that only the analysis resolution varies across levels. Building at each level would confound the grid's effect on the object with its effect on the measurement",
+    "analysis_grids": "all three levels",
+    "cell_metric": "the level-0 grid, (16, 32, 40), so that distances reported at different levels are in the same units -- the units HMT-1's one-cell tolerance was written in",
+    "streaming": "levels are processed one truth at a time and never held together. Item 10"
+  },
+  "source_classes": {
+    "L448_contrast": {
+      "radial": 4,
+      "azimuthal": 7,
+      "temporal": 16,
+      "dimension_before_m0_removal": 448,
+      "dimension_after": 384,
+      "role": "the class HMT-1 used"
+    },
+    "L896_radial_enriched": {
+      "radial": 8,
+      "azimuthal": 7,
+      "temporal": 16,
+      "dimension_before_m0_removal": 896,
+      "dimension_after": 768,
+      "role": "nested radial enrichment. Item 11. The radial direction is doubled and nothing else changes, because the HMT-1 failure was radial: two spots 0.34 log-radial cells apart with sub-cell widths",
+      "nested_in_radius": "the 4-function radial space is contained in the 8-function one, so the enrichment adds resolution and removes nothing"
+    },
+    "projection": "separable least squares, mode by mode. The basis and the grid are both tensor products, so the projection factorises and the finest grid never needs a dense design matrix"
+  },
+  "classification": {
+    "states": [
+      "SINGLE_RESOLVED",
+      "MULTI_RESOLVED",
+      "BLENDED",
+      "DEAD",
+      "AMBIGUOUS"
+    ],
+    "rule": "topographic prominence. Every local maximum of the windowed field is assigned the height it stands above the highest saddle connecting it to any higher maximum. A maximum counts as a resolved feature when its prominence reaches the frozen fraction of the age's global maximum",
+    "prominence_fraction": 0.25,
+    "dead_fraction": 0.25,
+    "constants_note": "both reuse the birth fraction already declared in the campaign's event-time definition. No new tuned constant is introduced by this audit",
+    "definitions": {
+      "DEAD": "the age's global maximum is below the dead fraction of the truth's maximum over all ages",
+      "SINGLE_RESOLVED": "exactly one prominent peak, and the family expects one",
+      "MULTI_RESOLVED": "two or more prominent peaks",
+      "BLENDED": "exactly one prominent peak where the family expects more. Something is present that the grid does not separate",
+      "AMBIGUOUS": "the label disagrees between the two finest levels"
+    },
+    "stability_requirement": "item 12. AMBIGUOUS is defined as instability between the final two refinement levels rather than by a tolerance band, so the requirement is the definition rather than a check bolted onto it"
+  },
+  "feature_measure": {
+    "kind": "set-valued. Item 13",
+    "element": [
+      "r",
+      "phi",
+      "amplitude",
+      "prominence"
+    ],
+    "distance": "Euclidean in level-0 grid cells, radial measured in log r cells and azimuthal in wrapped phi cells",
+    "assignment": "optimal injective assignment minimising total distance, computed exactly over all matchings",
+    "unbalanced_penalty": "an unmatched feature costs the largest distance the level-0 grid admits, sqrt((n_radial - 1)^2 + (n_azimuthal / 2)^2) cells. Derived from the grid rather than chosen, so creating or destroying a feature costs exactly as much as the worst possible mismatch",
+    "forbidden": "a single global argmax for a multi-feature family. That is what HMT-1 did, and it is why its validation scope is now DOMINANT_OR_BLENDED_FEATURE_DESCRIPTOR"
+  },
+  "reporting": {
+    "BLENDED": [
+      "centroid_r",
+      "centroid_phi",
+      "total_contrast",
+      "second_moment_rr",
+      "second_moment_pp",
+      "second_moment_rp",
+      "a_m1",
+      "a_m2",
+      "multiplicity_label"
+    ],
+    "BLENDED_note": "item 14. No two trajectories are forced through a one-peak field. What a blended state supports is a centroid, a size and a mode content, and those are what it reports",
+    "MULTI_RESOLVED": [
+      "peak_r",
+      "peak_phi",
+      "peak_amplitude",
+      "cardinality",
+      "track_id"
+    ],
+    "MULTI_RESOLVED_note": "item 15. Tracks are associated across ages by the same assignment metric"
+  },
+  "quantities": {
+    "per_family_and_class": [
+      "fraction_single_resolved",
+      "fraction_multi_resolved",
+      "fraction_blended",
+      "fraction_dead",
+      "fraction_ambiguous",
+      "grid_convergence_error_cells",
+      "projection_induced_merger_rate",
+      "minimum_representable_width",
+      "feature_measure_representation_floor"
+    ],
+    "grid_convergence_error_cells": "assignment error between the feature sets measured at the two finest levels",
+    "projection_induced_merger_rate": "fraction of MULTI_RESOLVED (truth, age) states that stop being MULTI_RESOLVED once the field is projected onto the class",
+    "minimum_representable_width": "the input Gaussian width at which the projected width reaches twice the input width. A class property, measured by projecting blobs of decreasing width, not by drawing sources",
+    "feature_measure_representation_floor": "assignment error between the analytic field's feature set and its own best in-class approximation. The floor any estimator faces before noise"
+  },
+  "canary": {
+    "id": "HMT1_SOURCE_RESOLUTION_FAILURE_CANARY",
+    "source": "HMT-1 bank seed 20260921, two_hotspot_trajectories index 5",
+    "role": "named regression only. Item 17",
+    "excluded_from": "every aggregate success statistic and every per-family fraction",
+    "construction_note": "its parameters are a property of the seed and not of the construction grid, so building it at the finest level reproduces the same two spots 0.34 log-radial cells apart"
+  },
+  "after": "STOP. Item 18",
+  "not_authorized": [
+    "HMT-2 validation",
+    "a new sealed bank",
+    "order leakage",
+    "geometry mismatch",
+    "VLBI",
+    "machine learning"
+  ],
+  "numerical_environment": {
+    "pinned": true,
+    "variables": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "assertion": "every BLAS pool must report one thread, interrogated after import"
+  },
+  "inherited": {
+    "validation_freeze_sha256": "4ed2338ca45eb47e11d4aeb49067799e9db3e3d41b8f8d9c391d9dd09fc7c361",
+    "r1_freeze_sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "age_grid_step_M": 2.0,
+    "probe_half_width_M": 3.0,
+    "age_grid_max_M": 120.0,
+    "spin": 0.5,
+    "inclination_deg": 50.0
+  },
+  "attestation": {
+    "available": true,
+    "execution_commit": "ffba9c9a7284855d8a59a97432f10ee18edb6eda",
+    "head_tree_sha": "b0016ee099eb60b6566c3901afc0cbe35e63f03f",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/register_hmt2_stage0_freeze.py\n",
+    "porcelain_registered_sha256": "3135bda31a57402b3c2c3a8024725f1fef60522a540f1d582714d63770d46fde",
+    "porcelain_whole_tree_sha256": "3135bda31a57402b3c2c3a8024725f1fef60522a540f1d582714d63770d46fde",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT1_VALIDATION_FREEZE_V0.json",
+        "sha256": "4ed2338ca45eb47e11d4aeb49067799e9db3e3d41b8f8d9c391d9dd09fc7c361",
+        "working_blob_sha": "a922befe114cbaabffd6f43af80787243838fbac",
+        "committed_blob_sha": "a922befe114cbaabffd6f43af80787243838fbac",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/HMT1_CLOSURE_RECORD_018.json",
+        "sha256": "cb8932de8d04a2e73b4daea8b969c6e0148dc463d4eaab12b64a0f0b4d86aa9e",
+        "working_blob_sha": "eba54b895d098d2699cd5353e0436b0ff6db87aa",
+        "committed_blob_sha": "eba54b895d098d2699cd5353e0436b0ff6db87aa",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      },
+      {
+        "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+        "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+        "working_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_blob_sha": "b0b3b46dad00fb7f3bdf1d230505ca694cd1389d",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  }
+}
