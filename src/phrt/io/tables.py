@@ -35,6 +35,11 @@ def _check_columns(df: pd.DataFrame, required: Sequence[str], label: str) -> Non
         raise ValueError(f"{label} table missing required columns: {missing}")
 
 
+# A CSV twin above this many rows is larger than a remote will accept and
+# larger than anyone will grep. The parquet remains authoritative either way.
+CSV_TWIN_MAX_ROWS = 250_000
+
+
 def write_table(rows: Iterable[dict[str, Any]], name: str,
                 required: Sequence[str] | None = None,
                 out_dir: str | Path | None = None) -> Path:
@@ -45,8 +50,19 @@ def write_table(rows: Iterable[dict[str, Any]], name: str,
     d.mkdir(parents=True, exist_ok=True)
     p = d / f"{name}.parquet"
     df.to_parquet(p, index=False)
-    # A CSV twin keeps every number greppable without a parquet reader.
-    df.to_csv(d / f"{name}.csv", index=False)
+    # A CSV twin keeps every number greppable without a parquet reader, which
+    # is worth having and is not worth 122 MB. One HMT-2 state table reached
+    # exactly that -- a 70x blow-up over its 1.7 MB parquet -- and GitHub
+    # refuses anything over 100 MB, so the push failed after the science was
+    # already committed. Above the cap the parquet stands alone and a stub
+    # says where the numbers are, rather than a large file being written and
+    # then discovered to be unpushable.
+    if len(df) <= CSV_TWIN_MAX_ROWS:
+        df.to_csv(d / f"{name}.csv", index=False)
+    else:
+        (d / f"{name}.csv.skipped").write_text(
+            f"{len(df)} rows exceeds the {CSV_TWIN_MAX_ROWS} row cap for the "
+            f"CSV twin; read {name}.parquet\n")
     return p
 
 

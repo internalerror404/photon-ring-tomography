@@ -62,3 +62,21 @@ def test_no_script_calls_the_builtin_hash():
                 continue          # inside a string literal: prose, not a call
             bad.append(f"{path.name}:{n}: {line.strip()}")
     assert not bad, bad
+
+
+def test_the_csv_twin_is_capped():
+    """A convenience mirror must not make an artifact unpushable."""
+    import pandas as pd
+    from phrt.io.tables import CSV_TWIN_MAX_ROWS, write_table
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as d:
+        small = [{"a": i} for i in range(10)]
+        write_table(small, "small", out_dir=d)
+        assert (Path(d) / "small.csv").exists()
+
+        big = [{"a": i} for i in range(CSV_TWIN_MAX_ROWS + 1)]
+        write_table(big, "big", out_dir=d)
+        assert (Path(d) / "big.parquet").exists()
+        assert not (Path(d) / "big.csv").exists()
+        assert (Path(d) / "big.csv.skipped").exists()

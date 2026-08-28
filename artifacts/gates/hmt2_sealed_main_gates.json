@@ -1,0 +1,121 @@
+{
+  "experiment": "HMT2_SEALED_MAIN",
+  "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+  "stop_token": "HMT2_MAIN_PHYSICAL_MORPHOLOGY_RECOVERY_PASS",
+  "failed_gates": [],
+  "science_reading_withheld": false,
+  "class_conditional_material": true,
+  "physical_end_to_end_material": true,
+  "materiality": {
+    "median_relative_reduction": 0.1,
+    "median_bootstrap_lower_bound": 0.05,
+    "provenance": "the numeric standard HMT-1 declared and used. Stage 1's rule asked only that the interval clear zero, which HMT2_S1_PASS_RULE_HAS_NO_EFFECT_SIZE_FLOOR records as a defect. A floor cannot be added to a finished run without moving a criterion after the fact, but it can and must be declared in advance for a new one, and it is declared here"
+  },
+  "gates": {
+    "HMT2M_G7_adjoint": {
+      "status": "PASS",
+      "measured": 2.37854553969458e-15,
+      "threshold": 1e-08
+    },
+    "HMT2M_G8_operator_truth_identity": {
+      "status": "PASS",
+      "measured": 7.758504213309246e-16,
+      "threshold": 1e-09
+    },
+    "HMT2M_G9_stage_a_source_gates_passed": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G10_bank_hashes_match_committed": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G11_sealed_hyperparameters_used_unchanged": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G12_both_targets_reported": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G13_no_state_excluded_from_primary": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G14_blended_not_forced_into_two_tracks": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G15_all_required_companions_emitted": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "all seven required emissions present, all draws decomposed"
+    },
+    "HMT2M_G16_estimator_scope": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G19_resource_limits": {
+      "status": "PASS",
+      "measured": 1219,
+      "threshold": 14400
+    },
+    "HMT2M_G17_endpoint_lineage_firewall": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "withheld: False; blocked []"
+    },
+    "HMT2M_G1_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "HMT2M_G2_commitments_reproduce": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "HMT2M_G3_disjoint_from_every_earlier_bank": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "checked against 241 earlier truth seeds"
+    },
+    "HMT2M_G4_contrast_zero_spatial_mean": {
+      "status": "PASS",
+      "measured": 2.352379901114643e-17,
+      "threshold": 1e-10
+    },
+    "HMT2M_G5_total_emissivity_nonnegative": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0
+    },
+    "HMT2M_G6_source_classification_stable": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 3660,
+      "note": "0 of 3660 states are AMBIGUOUS between the two finest levels. Reported, not gated to zero: an unstable state is a real property of a source and is scored by the blended measure"
+    },
+    "HMT2M_G18_declared_gate_coverage": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "complete"
+    }
+  },
+  "summary": {
+    "PASS": 19,
+    "FAIL": 0,
+    "NOT_RUN": 0
+  }
+}

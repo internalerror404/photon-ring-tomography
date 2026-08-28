@@ -1,0 +1,272 @@
+{
+  "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+  "experiment_id": "HMT2_SEALED_MAIN",
+  "execution_commit": "9713af2caf3f1035622b09c8026ea31f75c0275e",
+  "manifest_build_commit": "9713af2caf3f1035622b09c8026ea31f75c0275e",
+  "git_commit": "9713af2caf3f1035622b09c8026ea31f75c0275e",
+  "git_commit_deprecated": "ambiguous: this is the manifest build commit, not the execution commit. Read execution_commit instead",
+  "dirty_tree": false,
+  "config_path": "/home/user/photon-ring-tomography/configs/paper1_experiment_registry_v0.2.yaml",
+  "config_sha256": "2ba66f0209fe1cdec97b8cf5862494c22fb94704318f9601a7a1f9eb4b783796",
+  "environment_sha256": "00bf00f9bb7f2905ea69b970f9f75880c0f7ea32fca29da43b1f46bb212fe7d1",
+  "hardware": {
+    "platform": "Linux",
+    "platform_release": "6.18.44-fc-v22",
+    "architecture": "x86_64",
+    "memory_bytes": 16856133632,
+    "cpu": "Intel(R) Xeon(R) Processor @ 2.80GHz",
+    "cpu_count": 4,
+    "mps_available": false
+  },
+  "seeds": {
+    "truths_per_family": 10,
+    "n_truths": 60,
+    "noise_draws_per_truth": 4,
+    "bank_seed": 20260953,
+    "commitments": {
+      "circular_hotspot_trajectory": "66af96bef30bee253daaea0e97e57a233f58bc5c3194e78947d7eee4dc88b461",
+      "two_hotspot_trajectories": "1233b1908f5219e2ce11a9002cd6318b989b7acc1288b9119fdb8378521ea49f",
+      "m1_rotating_crescent": "44c5e045cf57e59a65e0f9124b06d85d9f1fc20a8214f8d1322dd221798c0bbf",
+      "m2_structural_mode": "114ade876654e2bce2f93c44688fe0d23e73259eb74725723bdd1fa478a9ede0",
+      "flare_birth_motion_decay": "5910934f7e73b6934c5b56f0107cfd7a945867a923f91ce55e33c5901c1cd556",
+      "plunging_feature": "9d21db630713a7fc2e4efb22594ff65e7cc9d05a5f5f708506d27761011d2d1d"
+    },
+    "freshness": "the commitment payload carries split='hmt2_sealed_main_heldout', a string no earlier bank used, so no seed can recur. Checked as well",
+    "held_out": true
+  },
+  "inputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/configs/HMT2_SEALED_MAIN_V1.json",
+      "sha256": "bb65f5615e2dff7ad89ea541b89a68a81295dfc087634dba8a2c7cf1d179bf88"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT2M_20260828T064757Z_2ba66f02/tables/hmt2_main_scores.parquet",
+      "sha256": "25890e54d235ad92dcce9801cf02e70465c6ba8df426b0cd76620dd348790d9f"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT2M_20260828T064757Z_2ba66f02/tables/hmt2_main_endpoint.parquet",
+      "sha256": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT2M_20260828T064757Z_2ba66f02/tables/hmt2_main_per_family.parquet",
+      "sha256": "1ec96fdfeaeac06831c27006351c408b05dc93170e2fd5ba7fd4f5a57ef0f6a4"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT2M_20260828T064757Z_2ba66f02/tables/hmt2_main_stable_multi.parquet",
+      "sha256": "46f000fa474a16e37b40ebd0821f18ddfce9e21475ee166e9ef7febb3dfd1c17"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT2M_20260828T064757Z_2ba66f02/tables/hmt2_main_stable_interval.parquet",
+      "sha256": "3ebef34768860d390d7842be18c41863b8ae55e2edaf8130654bd4f900ab9d80"
+    },
+    {
+      "path": "/home/user/photon-ring-tomography/artifacts/runs/HMT2M_20260828T064757Z_2ba66f02/tables/hmt2_main_states.parquet",
+      "sha256": "0d7c655270ec97a147419c8ec99333ecade172febd5b1f4754474b023ab4994c"
+    }
+  ],
+  "gate_status": {
+    "HMT2M_G7_adjoint": {
+      "status": "PASS",
+      "measured": 2.37854553969458e-15,
+      "threshold": 1e-08
+    },
+    "HMT2M_G8_operator_truth_identity": {
+      "status": "PASS",
+      "measured": 7.758504213309246e-16,
+      "threshold": 1e-09
+    },
+    "HMT2M_G9_stage_a_source_gates_passed": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G10_bank_hashes_match_committed": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G11_sealed_hyperparameters_used_unchanged": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G12_both_targets_reported": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G13_no_state_excluded_from_primary": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G14_blended_not_forced_into_two_tracks": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G15_all_required_companions_emitted": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "all seven required emissions present, all draws decomposed"
+    },
+    "HMT2M_G16_estimator_scope": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0
+    },
+    "HMT2M_G19_resource_limits": {
+      "status": "PASS",
+      "measured": 1219,
+      "threshold": 14400
+    },
+    "HMT2M_G17_endpoint_lineage_firewall": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "withheld: False; blocked []"
+    },
+    "HMT2M_G1_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "HMT2M_G2_commitments_reproduce": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1
+    },
+    "HMT2M_G3_disjoint_from_every_earlier_bank": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "checked against 241 earlier truth seeds"
+    },
+    "HMT2M_G4_contrast_zero_spatial_mean": {
+      "status": "PASS",
+      "measured": 2.352379901114643e-17,
+      "threshold": 1e-10
+    },
+    "HMT2M_G5_total_emissivity_nonnegative": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0
+    },
+    "HMT2M_G6_source_classification_stable": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 3660,
+      "note": "0 of 3660 states are AMBIGUOUS between the two finest levels. Reported, not gated to zero: an unstable state is a real property of a source and is scored by the blended measure"
+    },
+    "HMT2M_G18_declared_gate_coverage": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "complete"
+    }
+  },
+  "started_at": "2026-08-28T06:27:38Z",
+  "finished_at": "2026-08-28T06:48:13+00:00",
+  "attestation": {
+    "available": true,
+    "execution_commit": "9713af2caf3f1035622b09c8026ea31f75c0275e",
+    "head_tree_sha": "22a43d4ee3ee298dbc17a707ee2485a09c920f65",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_SEALED_MAIN_V1.json",
+        "sha256": "bb65f5615e2dff7ad89ea541b89a68a81295dfc087634dba8a2c7cf1d179bf88",
+        "working_blob_sha": "1965d12da7badbce9f8686a362b54a6caaa1facf",
+        "committed_blob_sha": "1965d12da7badbce9f8686a362b54a6caaa1facf",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "peak_rss_mb": 2107.0703125,
+  "packages": {
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pandas": "3.0.5",
+    "pyarrow": "25.0.1",
+    "h5py": "3.16.0",
+    "matplotlib": "3.8.4",
+    "scikit-learn": "ABSENT",
+    "scikit-image": "0.22.0",
+    "pyyaml": "6.0.3",
+    "torch": "ABSENT",
+    "aart": "2.1.10",
+    "imageio": "2.37.4"
+  },
+  "protocol_deviations": [
+    {
+      "id": "D1_platform",
+      "registered": "macos_native (execution_target in registry)",
+      "actual": "Linux x86_64",
+      "effect": "No macOS-specific or Apple-Silicon-specific result can be claimed. All float64 CPU numerics are platform-portable and unaffected; runtime and peak-RSS rows describe this Linux host, not a Mac."
+    },
+    {
+      "id": "D2_no_mps",
+      "registered": "optional Apple-Silicon MPS for compact neural models",
+      "actual": "no MPS device present",
+      "effect": "Gate G11 (CPU/MPS inference parity) cannot be executed and is recorded NOT_RUN. Neural training runs on CPU float32. CUDA is not substituted for MPS in any registered gate."
+    }
+  ],
+  "runtime_seconds": 1234.420836687088,
+  "run_dir": "artifacts/runs/HMT2M_20260828T064757Z_2ba66f02",
+  "numerics": {
+    "pools": [
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.23.dev",
+        "threading_layer": "pthreads",
+        "architecture": "SkylakeX",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "version": "0.3.21.dev",
+        "threading_layer": "pthreads",
+        "architecture": "SkylakeX",
+        "filepath": "/tmp/aartvenv/lib/python3.11/site-packages/scipy.libs/libopenblasp-r0-23e5df77.3.21.dev.so"
+      }
+    ],
+    "n_pools": 2,
+    "all_single_threaded": true,
+    "environment": {
+      "PYTHONHASHSEED": "0",
+      "OMP_NUM_THREADS": "1",
+      "OMP_DYNAMIC": "FALSE",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "BLIS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    }
+  }
+}

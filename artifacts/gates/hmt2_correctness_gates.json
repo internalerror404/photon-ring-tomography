@@ -194,11 +194,149 @@
       "threshold": 1,
       "run_id": "HMT2S1C_20260828T060401Z_2ba66f02",
       "recorded_at": "2026-08-28T06:04:10+00:00"
+    },
+    "HMT2M_G7_adjoint": {
+      "status": "PASS",
+      "measured": 2.37854553969458e-15,
+      "threshold": 1e-08,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G8_operator_truth_identity": {
+      "status": "PASS",
+      "measured": 7.758504213309246e-16,
+      "threshold": 1e-09,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G9_stage_a_source_gates_passed": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G10_bank_hashes_match_committed": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G11_sealed_hyperparameters_used_unchanged": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G12_both_targets_reported": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G13_no_state_excluded_from_primary": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G14_blended_not_forced_into_two_tracks": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G15_all_required_companions_emitted": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "all seven required emissions present, all draws decomposed",
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G16_estimator_scope": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G19_resource_limits": {
+      "status": "PASS",
+      "measured": 1219,
+      "threshold": 14400,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G17_endpoint_lineage_firewall": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "withheld: False; blocked []",
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G1_pinned_numerical_environment": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G2_commitments_reproduce": {
+      "status": "PASS",
+      "measured": 1,
+      "threshold": 1,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G3_disjoint_from_every_earlier_bank": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "checked against 241 earlier truth seeds",
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G4_contrast_zero_spatial_mean": {
+      "status": "PASS",
+      "measured": 2.352379901114643e-17,
+      "threshold": 1e-10,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G5_total_emissivity_nonnegative": {
+      "status": "PASS",
+      "measured": 0.0,
+      "threshold": 0.0,
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G6_source_classification_stable": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 3660,
+      "note": "0 of 3660 states are AMBIGUOUS between the two finest levels. Reported, not gated to zero: an unstable state is a real property of a source and is scored by the blended measure",
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
+    },
+    "HMT2M_G18_declared_gate_coverage": {
+      "status": "PASS",
+      "measured": 0,
+      "threshold": 0,
+      "note": "complete",
+      "run_id": "HMT2M_20260828T064757Z_2ba66f02",
+      "recorded_at": "2026-08-28T06:48:13+00:00"
     }
   },
-  "updated_at": "2026-08-28T06:04:10+00:00",
+  "updated_at": "2026-08-28T06:48:13+00:00",
   "summary": {
-    "PASS": 26,
+    "PASS": 45,
     "FAIL": 0,
     "NOT_RUN": 0
   }

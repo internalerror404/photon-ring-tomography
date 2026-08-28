@@ -1,0 +1,122 @@
+{
+  "schema": "phrt-artifact-manifest/1",
+  "experiment_id": "HMT2_SEALED_MAIN",
+  "created_utc": "2026-08-28T06:50:16Z",
+  "stop_token": "HMT2_MAIN_PHYSICAL_MORPHOLOGY_RECOVERY_PASS",
+  "physical_end_to_end_material": true,
+  "class_conditional_material": true,
+  "stage_a_attestation": {
+    "available": true,
+    "execution_commit": "44446cf3a9bb058dcd3a33eaf50717b2520adcca",
+    "head_tree_sha": "5b3cfb984d2fe81131b426d085615d4227cb935f",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": " M scripts/hmt2_sealed_common.py\n?? scripts/run_hmt2_sealed_main.py\n?? scripts/run_hmt2_sealed_main_score.py\n?? tests/test_hmt2_bank_hash_determinism.py\n",
+    "porcelain_registered_sha256": "6d42177331c3a767c335440706d8b326b1aa5e724a166fdc39e4eb7c0c828786",
+    "porcelain_whole_tree_sha256": "043c107fa05ed9660e7677fe9bed863ac299e915daa9db446aaebe07110239cf",
+    "n_tracked_changes": 1,
+    "n_untracked": 3,
+    "tracked_clean": false,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_SEALED_MAIN_V1.json",
+        "sha256": "bb65f5615e2dff7ad89ea541b89a68a81295dfc087634dba8a2c7cf1d179bf88",
+        "working_blob_sha": "1965d12da7badbce9f8686a362b54a6caaa1facf",
+        "committed_blob_sha": "1965d12da7badbce9f8686a362b54a6caaa1facf",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "execution_attestation": {
+    "available": true,
+    "execution_commit": "9713af2caf3f1035622b09c8026ea31f75c0275e",
+    "head_tree_sha": "22a43d4ee3ee298dbc17a707ee2485a09c920f65",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "",
+    "porcelain_registered_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "porcelain_whole_tree_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "n_tracked_changes": 0,
+    "n_untracked": 0,
+    "tracked_clean": true,
+    "untracked_clean": true,
+    "clean": true,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_SEALED_MAIN_V1.json",
+        "sha256": "bb65f5615e2dff7ad89ea541b89a68a81295dfc087634dba8a2c7cf1d179bf88",
+        "working_blob_sha": "1965d12da7badbce9f8686a362b54a6caaa1facf",
+        "committed_blob_sha": "1965d12da7badbce9f8686a362b54a6caaa1facf",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": true
+  },
+  "report_assembly_attestation": {
+    "available": true,
+    "execution_commit": "9713af2caf3f1035622b09c8026ea31f75c0275e",
+    "head_tree_sha": "22a43d4ee3ee298dbc17a707ee2485a09c920f65",
+    "pathspecs": [
+      ":/src",
+      ":/scripts",
+      ":/configs",
+      ":/tests",
+      ":/schemas",
+      ":/artifacts/configs"
+    ],
+    "porcelain_registered": "?? scripts/build_hmt2_sealed_main_report.py\n",
+    "porcelain_registered_sha256": "201ff158325064829dbe64fb268b6869e1cdaf848606b3b2279e5b079aa7c5b7",
+    "porcelain_whole_tree_sha256": "49a93260fb453c429a6dc0343d03b02521d1a2796320703b20c994b4225ada53",
+    "n_tracked_changes": 0,
+    "n_untracked": 1,
+    "tracked_clean": true,
+    "untracked_clean": false,
+    "clean": false,
+    "rule": "scoped to registered paths: source, scripts, configs, tests, schemas and artifacts/configs. Generated artifacts elsewhere do not make a run unattested; an uncommitted freeze does",
+    "files": [
+      {
+        "path": "artifacts/configs/HMT2_SEALED_MAIN_V1.json",
+        "sha256": "bb65f5615e2dff7ad89ea541b89a68a81295dfc087634dba8a2c7cf1d179bf88",
+        "working_blob_sha": "1965d12da7badbce9f8686a362b54a6caaa1facf",
+        "committed_blob_sha": "1965d12da7badbce9f8686a362b54a6caaa1facf",
+        "committed_at_execution_commit": true,
+        "tracked": true
+      }
+    ],
+    "all_registered_files_committed": true,
+    "preregistered": false
+  },
+  "freeze_sha256": "bb65f5615e2dff7ad89ea541b89a68a81295dfc087634dba8a2c7cf1d179bf88",
+  "inputs": {
+    "artifacts/tables/hmt2_main_endpoint.parquet": "c89cdcf8861f943e931675f4985b99cd89e5e4e934b704f3d1a236651cd6e1e7",
+    "artifacts/tables/hmt2_main_per_family.parquet": "1ec96fdfeaeac06831c27006351c408b05dc93170e2fd5ba7fd4f5a57ef0f6a4",
+    "artifacts/tables/hmt2_main_scores.parquet": "25890e54d235ad92dcce9801cf02e70465c6ba8df426b0cd76620dd348790d9f",
+    "artifacts/tables/hmt2_main_stable_interval.parquet": "3ebef34768860d390d7842be18c41863b8ae55e2edaf8130654bd4f900ab9d80",
+    "artifacts/tables/hmt2_main_stable_multi.parquet": "46f000fa474a16e37b40ebd0821f18ddfce9e21475ee166e9ef7febb3dfd1c17",
+    "artifacts/tables/hmt2_main_states.parquet": "0d7c655270ec97a147419c8ec99333ecade172febd5b1f4754474b023ab4994c"
+  },
+  "outputs": {
+    "artifacts/reports/HMT2_SEALED_MAIN.md": "8d6ede758df736418b50644ae2ca0b4dcda1e545c7195ed7de74d9977e030f94"
+  }
+}
