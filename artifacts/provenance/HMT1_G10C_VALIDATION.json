@@ -1,0 +1,37 @@
+{
+  "schema": "phrt-g10c-validation/1",
+  "id": "HMT1_G10C_VALIDATION",
+  "created_utc": "2026-08-28T01:15:55Z",
+  "ruling": "REVIEWER_RULING_HMT1_MAIN_017",
+  "gate": "HMT1M_G10c_truth_extraction_matches_independent_windowed_reference",
+  "threshold_cells": 1.0,
+  "n_truths_scored": 396,
+  "banks": [
+    "scratch_770001",
+    "scratch_770002",
+    "scratch_770003",
+    "validation"
+  ],
+  "worst_cells_overall": 0.836182677878717,
+  "worst_cells_by_bank": {
+    "validation": 0.47619047619047633,
+    "scratch_770001": 0.836182677878717,
+    "scratch_770002": 0.5776799096692581,
+    "scratch_770003": 0.47619047619047633
+  },
+  "worst_cells_by_family": {
+    "circular_hotspot_trajectory": 0.47619047619047566,
+    "two_hotspot_trajectories": 0.41709838607801114,
+    "m1_rotating_crescent": 0.47619047619047566,
+    "m2_structural_mode": 0.24576921378242964,
+    "flare_birth_motion_decay": 0.47619047619047566,
+    "plunging_feature": 0.47619047619047633,
+    "three_hotspot_cluster": 0.836182677878717,
+    "counter_rotating_pair": 0.5776799096692581,
+    "radially_drifting_arc": 0.47619047619047566
+  },
+  "n_over_threshold": 0,
+  "held_out_bank_touched": false,
+  "operator_imported": false,
+  "analytic_canaries": "tests/test_windowed_reference.py"
+}
