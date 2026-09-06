@@ -1,0 +1,789 @@
+{
+  "stage": "Q2",
+  "ruling": "PAPER_I_R3A_RULING_026",
+  "question": "is the piecewise ray representation accurate enough for ONE fixed observation, not whether a changing detector reproduces an ideal ray-level norm",
+  "generated_utc": "2026-09-06T20:27:45Z",
+  "commit": "f29f9e53112333d346dda655dbb41277791638a2",
+  "freeze": {
+    "path": "artifacts/revisions/mahakal_v4_1/R3A_QC_026_INPUT_FREEZE.json",
+    "verified_input_hashes": true,
+    "n_files": 20,
+    "commit_at_freeze_time": "a2620f17931701dbfd3e29ff0c118669106592e6"
+  },
+  "detector": {
+    "alpha_min": -25.0,
+    "alpha_max": 25.0,
+    "beta_min": -25.0,
+    "beta_max": 25.0,
+    "pitch": 0.4,
+    "n_alpha": 125,
+    "n_beta": 125,
+    "n_cells": 15625,
+    "cell_area": 0.16000000000000003
+  },
+  "sigma": 0.011341986814407566,
+  "observer_times_M": [
+    0.0,
+    2.857142857142857,
+    5.714285714285714,
+    8.571428571428571,
+    11.428571428571429,
+    14.285714285714286,
+    17.142857142857142,
+    20.0
+  ],
+  "clock": {
+    "absolute_reference_coordinate_time_M": -978.6055123201214,
+    "source": "artifacts/raymaps/a050_i050_n0_core.h5 metadata t_reference",
+    "rule": "delay_common = t_reference_absolute - coordinate_time",
+    "per_profile_recentring": "forbidden",
+    "negative_offsets": "recorded, never clipped to zero"
+  },
+  "tolerances": {
+    "fixed_detector_response_relative": 0.001,
+    "mask_symmetric_difference_relative": 0.001,
+    "corrected_area_relative": 0.001,
+    "exact_fixture_relative": 1e-12,
+    "exact_fixture_absolute": 1e-12,
+    "successive_late_refinement_pairs_required": 2,
+    "applies_to": "every order and every declared field, not an average",
+    "adjustment_after_results": "forbidden"
+  },
+  "successive_pairs_required": 2,
+  "pairs_evaluated": [
+    "coarse->core",
+    "core->fine"
+  ],
+  "comparisons": [
+    {
+      "pair": "coarse->core",
+      "order": 0,
+      "response": {
+        "screen:1": {
+          "fine_response_norm": 12365.262117065267,
+          "absolute_difference": 621.09867919055,
+          "relative_error": 0.050229317689381874,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:alpha/25": {
+          "fine_response_norm": 7176.549460340609,
+          "absolute_difference": 322.3882868829091,
+          "relative_error": 0.04492246429353085,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:beta/25": {
+          "fine_response_norm": 7133.692037289101,
+          "absolute_difference": 543.7171655109219,
+          "relative_error": 0.07621819987025144,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:(alpha/25)^2": {
+          "fine_response_norm": 5559.473315689726,
+          "absolute_difference": 260.6903596659259,
+          "relative_error": 0.04689119721650895,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:(beta/25)^2": {
+          "fine_response_norm": 5493.740350966623,
+          "absolute_difference": 538.6390135404316,
+          "relative_error": 0.09804595396388877,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:alpha*beta/625": {
+          "fine_response_norm": 4118.834912772939,
+          "absolute_difference": 315.1715257707298,
+          "relative_error": 0.07651958198017353,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3": {
+          "fine_response_norm": 11040.589959419583,
+          "absolute_difference": 497.8739512422857,
+          "relative_error": 0.04509486839673009,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*cos(2*pi*(t_obs-delay)/20)": {
+          "fine_response_norm": 7774.417133222049,
+          "absolute_difference": 500.35614567050794,
+          "relative_error": 0.06435931300011671,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*sin(2*pi*(t_obs-delay)/20)": {
+          "fine_response_norm": 7796.478315999687,
+          "absolute_difference": 467.34624828433857,
+          "relative_error": 0.059943249931865436,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*cos(2*pi*(t_obs-delay)/40)": {
+          "fine_response_norm": 7783.205989993305,
+          "absolute_difference": 408.87456081275127,
+          "relative_error": 0.05253292298038009,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*sin(2*pi*(t_obs-delay)/40)": {
+          "fine_response_norm": 7819.786265004195,
+          "absolute_difference": 368.0006098376334,
+          "relative_error": 0.047060187755328116,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        }
+      },
+      "worst_relative_response_error": 0.09804595396388877,
+      "worst_field": "screen:(beta/25)^2",
+      "all_fields_pass": false,
+      "area": {
+        "coarser": 2454.9634668682247,
+        "finer": 2465.5199999999886,
+        "relative_error": 0.0042816659900402135,
+        "passes": false
+      },
+      "mask": {
+        "intersection": 2453.2898160745626,
+        "union": 2467.1936507936507,
+        "symmetric_difference": 13.903834719088081,
+        "relative_error": 0.005635485773326092,
+        "passes": false
+      },
+      "declared_domains_agree": true,
+      "declared_domains": {
+        "coarse": [
+          -25.0,
+          25.0
+        ],
+        "core": [
+          -25.0,
+          25.0
+        ]
+      }
+    },
+    {
+      "pair": "coarse->core",
+      "order": 1,
+      "response": {
+        "screen:1": {
+          "fine_response_norm": 1768.9042082041074,
+          "absolute_difference": 88.51076097779973,
+          "relative_error": 0.05003705716074977,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:alpha/25": {
+          "fine_response_norm": 268.9361160782115,
+          "absolute_difference": 14.067431386541218,
+          "relative_error": 0.05230770634930324,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:beta/25": {
+          "fine_response_norm": 340.49782194950615,
+          "absolute_difference": 16.306213037293464,
+          "relative_error": 0.04788933140286454,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:(alpha/25)^2": {
+          "fine_response_norm": 53.428925526707886,
+          "absolute_difference": 3.1430309270296797,
+          "relative_error": 0.058826392184483496,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:(beta/25)^2": {
+          "fine_response_norm": 79.83098942220889,
+          "absolute_difference": 3.8972011354245932,
+          "relative_error": 0.04881814898739557,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:alpha*beta/625": {
+          "fine_response_norm": 39.17433447932199,
+          "absolute_difference": 1.8307836105832553,
+          "relative_error": 0.046734261983432716,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3": {
+          "fine_response_norm": 1078.8260242896608,
+          "absolute_difference": 62.25876144335002,
+          "relative_error": 0.05770973265531252,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*cos(2*pi*(t_obs-delay)/20)": {
+          "fine_response_norm": 508.5036326817583,
+          "absolute_difference": 120.54339931089282,
+          "relative_error": 0.23705513896757874,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*sin(2*pi*(t_obs-delay)/20)": {
+          "fine_response_norm": 501.5840737767957,
+          "absolute_difference": 119.69157098336869,
+          "relative_error": 0.2386271359896313,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*cos(2*pi*(t_obs-delay)/40)": {
+          "fine_response_norm": 631.8219843232238,
+          "absolute_difference": 79.13822825471662,
+          "relative_error": 0.12525399593286635,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*sin(2*pi*(t_obs-delay)/40)": {
+          "fine_response_norm": 641.825816612561,
+          "absolute_difference": 79.09193855775047,
+          "relative_error": 0.12322959985496255,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        }
+      },
+      "worst_relative_response_error": 0.2386271359896313,
+      "worst_field": "transferred:g^3*sin(2*pi*(t_obs-delay)/20)",
+      "all_fields_pass": false,
+      "area": {
+        "coarser": 55.19360000000008,
+        "finer": 55.03782197061289,
+        "relative_error": 0.0028223929837371117,
+        "passes": false
+      },
+      "mask": {
+        "intersection": 53.587114840082826,
+        "union": 56.644307130530144,
+        "symmetric_difference": 3.0571922904473183,
+        "relative_error": 0.05397174835950201,
+        "passes": false
+      },
+      "declared_domains_agree": true,
+      "declared_domains": {
+        "coarse": [
+          -10.0,
+          10.0
+        ],
+        "core": [
+          -10.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "pair": "coarse->core",
+      "order": 2,
+      "response": {
+        "screen:1": {
+          "fine_response_norm": 132.3396851412879,
+          "absolute_difference": 10.853089794067333,
+          "relative_error": 0.08200933667388136,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:alpha/25": {
+          "fine_response_norm": 17.242557222281636,
+          "absolute_difference": 1.2909579407464136,
+          "relative_error": 0.07487044549738699,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:beta/25": {
+          "fine_response_norm": 21.670643965185498,
+          "absolute_difference": 1.854282207105438,
+          "relative_error": 0.08556654846456777,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:(alpha/25)^2": {
+          "fine_response_norm": 3.085566899146177,
+          "absolute_difference": 0.23985367373204042,
+          "relative_error": 0.07773407013097385,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:(beta/25)^2": {
+          "fine_response_norm": 4.002392979640955,
+          "absolute_difference": 0.357453916395678,
+          "relative_error": 0.08931004981618379,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:alpha*beta/625": {
+          "fine_response_norm": 2.13546126247534,
+          "absolute_difference": 0.1451843918923066,
+          "relative_error": 0.06798736855756154,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3": {
+          "fine_response_norm": 52.85425257120174,
+          "absolute_difference": 6.768644054924478,
+          "relative_error": 0.12806243065884265,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*cos(2*pi*(t_obs-delay)/20)": {
+          "fine_response_norm": 13.690931193677342,
+          "absolute_difference": 12.347774052698032,
+          "relative_error": 0.9018943911134695,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*sin(2*pi*(t_obs-delay)/20)": {
+          "fine_response_norm": 14.335132098641498,
+          "absolute_difference": 12.748565989106712,
+          "relative_error": 0.8893232306045411,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*cos(2*pi*(t_obs-delay)/40)": {
+          "fine_response_norm": 19.625667044427807,
+          "absolute_difference": 10.747441581776881,
+          "relative_error": 0.5476217219749652,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*sin(2*pi*(t_obs-delay)/40)": {
+          "fine_response_norm": 21.414647921483937,
+          "absolute_difference": 11.378998057378402,
+          "relative_error": 0.5313651711248816,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        }
+      },
+      "worst_relative_response_error": 0.9018943911134695,
+      "worst_field": "transferred:g^3*cos(2*pi*(t_obs-delay)/20)",
+      "all_fields_pass": false,
+      "area": {
+        "coarser": 1.668721931675428,
+        "finer": 1.6763862538144905,
+        "relative_error": 0.004571930914860965,
+        "passes": false
+      },
+      "mask": {
+        "intersection": 1.3238457898073943,
+        "union": 2.021262395682524,
+        "symmetric_difference": 0.6974166058751297,
+        "relative_error": 0.34504011323063843,
+        "passes": false
+      },
+      "declared_domains_agree": true,
+      "declared_domains": {
+        "coarse": [
+          -7.0,
+          7.0
+        ],
+        "core": [
+          -7.0,
+          7.0
+        ]
+      }
+    },
+    {
+      "pair": "core->fine",
+      "order": 0,
+      "response": {
+        "screen:1": {
+          "fine_response_norm": 12381.981959651252,
+          "absolute_difference": 327.3884102037302,
+          "relative_error": 0.026440711290856327,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:alpha/25": {
+          "fine_response_norm": 7185.605299515395,
+          "absolute_difference": 160.80127710886217,
+          "relative_error": 0.02237825073967071,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:beta/25": {
+          "fine_response_norm": 7160.47003488054,
+          "absolute_difference": 278.25278522613286,
+          "relative_error": 0.03885956981464765,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:(alpha/25)^2": {
+          "fine_response_norm": 5566.160945771162,
+          "absolute_difference": 124.17767256495402,
+          "relative_error": 0.022309393094228948,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:(beta/25)^2": {
+          "fine_response_norm": 5527.676592684048,
+          "absolute_difference": 277.66734661402404,
+          "relative_error": 0.050232198276852956,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:alpha*beta/625": {
+          "fine_response_norm": 4134.323821511263,
+          "absolute_difference": 160.32684062643713,
+          "relative_error": 0.03877945887843666,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3": {
+          "fine_response_norm": 11055.468160586923,
+          "absolute_difference": 251.66826782534503,
+          "relative_error": 0.0227641438761092,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*cos(2*pi*(t_obs-delay)/20)": {
+          "fine_response_norm": 7798.568371198637,
+          "absolute_difference": 196.74297434363848,
+          "relative_error": 0.025228088666920178,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*sin(2*pi*(t_obs-delay)/20)": {
+          "fine_response_norm": 7818.598712280792,
+          "absolute_difference": 177.1392092723708,
+          "relative_error": 0.022656132612885675,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*cos(2*pi*(t_obs-delay)/40)": {
+          "fine_response_norm": 7798.239109794023,
+          "absolute_difference": 190.998574741942,
+          "relative_error": 0.024492526075798528,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*sin(2*pi*(t_obs-delay)/40)": {
+          "fine_response_norm": 7832.112121951217,
+          "absolute_difference": 168.76491744738453,
+          "relative_error": 0.021547816836582783,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        }
+      },
+      "worst_relative_response_error": 0.050232198276852956,
+      "worst_field": "screen:(beta/25)^2",
+      "all_fields_pass": false,
+      "area": {
+        "coarser": 2465.5199999999886,
+        "finer": 2470.18193254946,
+        "relative_error": 0.0018872830733806115,
+        "passes": false
+      },
+      "mask": {
+        "intersection": 2464.527770842379,
+        "union": 2471.1741617070693,
+        "symmetric_difference": 6.646390864690147,
+        "relative_error": 0.002689567966386824,
+        "passes": false
+      },
+      "declared_domains_agree": true,
+      "declared_domains": {
+        "core": [
+          -25.0,
+          25.0
+        ],
+        "fine": [
+          -25.0,
+          25.0
+        ]
+      }
+    },
+    {
+      "pair": "core->fine",
+      "order": 1,
+      "response": {
+        "screen:1": {
+          "fine_response_norm": 1771.2970140329364,
+          "absolute_difference": 32.223201097249,
+          "relative_error": 0.018191867790643624,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:alpha/25": {
+          "fine_response_norm": 269.321449248192,
+          "absolute_difference": 5.509277499741274,
+          "relative_error": 0.020456140849978214,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:beta/25": {
+          "fine_response_norm": 340.9091691881276,
+          "absolute_difference": 5.248686982336368,
+          "relative_error": 0.015396144946280188,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:(alpha/25)^2": {
+          "fine_response_norm": 53.54755752191395,
+          "absolute_difference": 1.2173286906224192,
+          "relative_error": 0.022733598822397012,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:(beta/25)^2": {
+          "fine_response_norm": 79.91192357109169,
+          "absolute_difference": 1.176558145752325,
+          "relative_error": 0.014723186392899539,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:alpha*beta/625": {
+          "fine_response_norm": 39.21050640065689,
+          "absolute_difference": 0.6396192445155374,
+          "relative_error": 0.016312445393585173,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3": {
+          "fine_response_norm": 1080.769889054253,
+          "absolute_difference": 22.778575296934363,
+          "relative_error": 0.021076249003261147,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*cos(2*pi*(t_obs-delay)/20)": {
+          "fine_response_norm": 510.40732283138135,
+          "absolute_difference": 38.05508460759193,
+          "relative_error": 0.07455826534088314,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*sin(2*pi*(t_obs-delay)/20)": {
+          "fine_response_norm": 503.54325056867714,
+          "absolute_difference": 39.048165140170354,
+          "relative_error": 0.07754679483057565,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*cos(2*pi*(t_obs-delay)/40)": {
+          "fine_response_norm": 632.9370284847132,
+          "absolute_difference": 25.7697314398341,
+          "relative_error": 0.040714526532802615,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*sin(2*pi*(t_obs-delay)/40)": {
+          "fine_response_norm": 643.0106594258621,
+          "absolute_difference": 25.54124586479996,
+          "relative_error": 0.039721341303432654,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        }
+      },
+      "worst_relative_response_error": 0.07754679483057565,
+      "worst_field": "transferred:g^3*sin(2*pi*(t_obs-delay)/20)",
+      "all_fields_pass": false,
+      "area": {
+        "coarser": 55.03782197061289,
+        "finer": 55.064839097032156,
+        "relative_error": 0.0004906420660134654,
+        "passes": true
+      },
+      "mask": {
+        "intersection": 54.273584535622156,
+        "union": 55.82907653202289,
+        "symmetric_difference": 1.5554919964007325,
+        "relative_error": 0.027861682353074943,
+        "passes": false
+      },
+      "declared_domains_agree": true,
+      "declared_domains": {
+        "core": [
+          -10.0,
+          10.0
+        ],
+        "fine": [
+          -10.0,
+          10.0
+        ]
+      }
+    },
+    {
+      "pair": "core->fine",
+      "order": 2,
+      "response": {
+        "screen:1": {
+          "fine_response_norm": 131.51298159175514,
+          "absolute_difference": 4.284449858517003,
+          "relative_error": 0.03257815165210736,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:alpha/25": {
+          "fine_response_norm": 17.207959207010866,
+          "absolute_difference": 0.6538531489705166,
+          "relative_error": 0.037997134994608994,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:beta/25": {
+          "fine_response_norm": 21.50590920665,
+          "absolute_difference": 0.5821613536429553,
+          "relative_error": 0.027069832205138342,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:(alpha/25)^2": {
+          "fine_response_norm": 3.0943181441926546,
+          "absolute_difference": 0.12623591786216073,
+          "relative_error": 0.04079603711695819,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:(beta/25)^2": {
+          "fine_response_norm": 3.975704176818172,
+          "absolute_difference": 0.09359427377434866,
+          "relative_error": 0.02354155883128454,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "screen:alpha*beta/625": {
+          "fine_response_norm": 2.11659594579079,
+          "absolute_difference": 0.06701793527838697,
+          "relative_error": 0.031663074575789256,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3": {
+          "fine_response_norm": 52.18343885763663,
+          "absolute_difference": 4.145551222709593,
+          "relative_error": 0.07944189408481125,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*cos(2*pi*(t_obs-delay)/20)": {
+          "fine_response_norm": 13.454761146150416,
+          "absolute_difference": 5.1923975180635855,
+          "relative_error": 0.3859152504947439,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*sin(2*pi*(t_obs-delay)/20)": {
+          "fine_response_norm": 14.082081704068102,
+          "absolute_difference": 5.288203465771976,
+          "relative_error": 0.37552711146707046,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*cos(2*pi*(t_obs-delay)/40)": {
+          "fine_response_norm": 18.657376483706205,
+          "absolute_difference": 5.162267900368002,
+          "relative_error": 0.2766877703773784,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        },
+        "transferred:g^3*sin(2*pi*(t_obs-delay)/40)": {
+          "fine_response_norm": 20.461460221974423,
+          "absolute_difference": 5.296471358786135,
+          "relative_error": 0.25885109377961363,
+          "denominator_is_floor": false,
+          "empty_or_zero_signal": false,
+          "passes": false
+        }
+      },
+      "worst_relative_response_error": 0.3859152504947439,
+      "worst_field": "transferred:g^3*cos(2*pi*(t_obs-delay)/20)",
+      "all_fields_pass": false,
+      "area": {
+        "coarser": 1.6763862538144905,
+        "finer": 1.6699821438632128,
+        "relative_error": 0.003820187583085727,
+        "passes": false
+      },
+      "mask": {
+        "intersection": 1.4954554601112493,
+        "union": 1.850912937566454,
+        "symmetric_difference": 0.3554574774552046,
+        "relative_error": 0.1920444069738653,
+        "passes": false
+      },
+      "declared_domains_agree": false,
+      "declared_domains": {
+        "core": [
+          -7.0,
+          7.0
+        ],
+        "fine": [
+          -6.0,
+          6.0
+        ]
+      }
+    }
+  ],
+  "both_successive_pairs_qualify": false,
+  "status": "R3A_QUADRATURE_NOT_YET_QUALIFIED",
+  "three_levels_are_not_proof_of_divergence": true,
+  "target_modes_inspected": false
+}

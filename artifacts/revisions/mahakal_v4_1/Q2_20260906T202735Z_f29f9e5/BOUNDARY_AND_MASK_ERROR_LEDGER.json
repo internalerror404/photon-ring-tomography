@@ -1,0 +1,428 @@
+{
+  "stage": "Q2",
+  "purpose": "boundary, domain and mask accounting kept separate from the response comparison",
+  "per_profile_and_order": [
+    {
+      "profile": "coarse",
+      "order": 0,
+      "n_valid": 3992,
+      "corrected_valid_area": 2454.9634668682247,
+      "declared_domain_M": [
+        -25.0,
+        25.0
+      ],
+      "clock_shift_from_stored_delay_M": 0.46117203553183117,
+      "delay_min_under_common_clock": 0.46117203553183117,
+      "delay_max_under_common_clock": 57.88637070007428,
+      "negative_delay_present": false,
+      "field_of_view": {
+        "n_valid": 3992,
+        "total_valid_cell_area": 2454.9634668682247,
+        "area_captured_in_field_of_view": 2454.9634668682247,
+        "area_outside_field_of_view": 0.0,
+        "captured_fraction": 1.0,
+        "n_rays_partly_outside": 0,
+        "n_rays_wholly_outside": 0
+      },
+      "valid_nodes_on_declared_domain_boundary": 188,
+      "outside_declared_domain": "MISSING_DATA_NOT_CERTIFIED_ZERO"
+    },
+    {
+      "profile": "coarse",
+      "order": 1,
+      "n_valid": 2156,
+      "corrected_valid_area": 55.19360000000008,
+      "declared_domain_M": [
+        -10.0,
+        10.0
+      ],
+      "clock_shift_from_stored_delay_M": 0.46117203553183117,
+      "delay_min_under_common_clock": 46.32000369909963,
+      "delay_max_under_common_clock": 101.1593197373503,
+      "negative_delay_present": false,
+      "field_of_view": {
+        "n_valid": 2156,
+        "total_valid_cell_area": 55.19360000000008,
+        "area_captured_in_field_of_view": 55.19360000000008,
+        "area_outside_field_of_view": 0.0,
+        "captured_fraction": 1.0,
+        "n_rays_partly_outside": 0,
+        "n_rays_wholly_outside": 0
+      },
+      "valid_nodes_on_declared_domain_boundary": 0,
+      "outside_declared_domain": "CERTIFIED_ZERO_BY_THE_LENSING_BAND_HULL"
+    },
+    {
+      "profile": "coarse",
+      "order": 2,
+      "n_valid": 1037,
+      "corrected_valid_area": 1.668721931675428,
+      "declared_domain_M": [
+        -7.0,
+        7.0
+      ],
+      "clock_shift_from_stored_delay_M": 0.46117203553183117,
+      "delay_min_under_common_clock": 62.38427521836536,
+      "delay_max_under_common_clock": 118.96377267066066,
+      "negative_delay_present": false,
+      "field_of_view": {
+        "n_valid": 1037,
+        "total_valid_cell_area": 1.668721931675428,
+        "area_captured_in_field_of_view": 1.668721931675428,
+        "area_outside_field_of_view": 0.0,
+        "captured_fraction": 1.0,
+        "n_rays_partly_outside": 0,
+        "n_rays_wholly_outside": 0
+      },
+      "valid_nodes_on_declared_domain_boundary": 0,
+      "outside_declared_domain": "CERTIFIED_ZERO_BY_THE_LENSING_BAND_HULL"
+    },
+    {
+      "profile": "core",
+      "order": 0,
+      "n_valid": 15597,
+      "corrected_valid_area": 2465.5199999999886,
+      "declared_domain_M": [
+        -25.0,
+        25.0
+      ],
+      "clock_shift_from_stored_delay_M": 0.0,
+      "delay_min_under_common_clock": 0.0,
+      "delay_max_under_common_clock": 57.88637070007428,
+      "negative_delay_present": false,
+      "field_of_view": {
+        "n_valid": 15597,
+        "total_valid_cell_area": 2465.5199999999886,
+        "area_captured_in_field_of_view": 2465.5199999999886,
+        "area_outside_field_of_view": 0.0,
+        "captured_fraction": 1.0,
+        "n_rays_partly_outside": 0,
+        "n_rays_wholly_outside": 0
+      },
+      "valid_nodes_on_declared_domain_boundary": 374,
+      "outside_declared_domain": "MISSING_DATA_NOT_CERTIFIED_ZERO"
+    },
+    {
+      "profile": "core",
+      "order": 1,
+      "n_valid": 8531,
+      "corrected_valid_area": 55.03782197061289,
+      "declared_domain_M": [
+        -10.0,
+        10.0
+      ],
+      "clock_shift_from_stored_delay_M": 0.0,
+      "delay_min_under_common_clock": 46.31560975207242,
+      "delay_max_under_common_clock": 103.3907965185889,
+      "negative_delay_present": false,
+      "field_of_view": {
+        "n_valid": 8531,
+        "total_valid_cell_area": 55.03782197061289,
+        "area_captured_in_field_of_view": 55.03782197061289,
+        "area_outside_field_of_view": 0.0,
+        "captured_fraction": 1.0,
+        "n_rays_partly_outside": 0,
+        "n_rays_wholly_outside": 0
+      },
+      "valid_nodes_on_declared_domain_boundary": 0,
+      "outside_declared_domain": "CERTIFIED_ZERO_BY_THE_LENSING_BAND_HULL"
+    },
+    {
+      "profile": "core",
+      "order": 2,
+      "n_valid": 4179,
+      "corrected_valid_area": 1.6763862538144905,
+      "declared_domain_M": [
+        -7.0,
+        7.0
+      ],
+      "clock_shift_from_stored_delay_M": 0.0,
+      "delay_min_under_common_clock": 62.385187262026534,
+      "delay_max_under_common_clock": 120.17886422444246,
+      "negative_delay_present": false,
+      "field_of_view": {
+        "n_valid": 4179,
+        "total_valid_cell_area": 1.6763862538144905,
+        "area_captured_in_field_of_view": 1.6763862538144905,
+        "area_outside_field_of_view": 0.0,
+        "captured_fraction": 1.0,
+        "n_rays_partly_outside": 0,
+        "n_rays_wholly_outside": 0
+      },
+      "valid_nodes_on_declared_domain_boundary": 0,
+      "outside_declared_domain": "CERTIFIED_ZERO_BY_THE_LENSING_BAND_HULL"
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "n_valid": 61635,
+      "corrected_valid_area": 2470.18193254946,
+      "declared_domain_M": [
+        -25.0,
+        25.0
+      ],
+      "clock_shift_from_stored_delay_M": -0.23327358989490676,
+      "delay_min_under_common_clock": -0.23327358989490676,
+      "delay_max_under_common_clock": 57.88637070007428,
+      "negative_delay_present": true,
+      "field_of_view": {
+        "n_valid": 61635,
+        "total_valid_cell_area": 2470.18193254946,
+        "area_captured_in_field_of_view": 2470.1819325494594,
+        "area_outside_field_of_view": 4.547473508864641e-13,
+        "captured_fraction": 0.9999999999999998,
+        "n_rays_partly_outside": 0,
+        "n_rays_wholly_outside": 0
+      },
+      "valid_nodes_on_declared_domain_boundary": 746,
+      "outside_declared_domain": "MISSING_DATA_NOT_CERTIFIED_ZERO"
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "n_valid": 34278,
+      "corrected_valid_area": 55.064839097032156,
+      "declared_domain_M": [
+        -10.0,
+        10.0
+      ],
+      "clock_shift_from_stored_delay_M": -0.23327358989490676,
+      "delay_min_under_common_clock": 46.31304150221115,
+      "delay_max_under_common_clock": 104.12040575174944,
+      "negative_delay_present": false,
+      "field_of_view": {
+        "n_valid": 34278,
+        "total_valid_cell_area": 55.064839097032156,
+        "area_captured_in_field_of_view": 55.064839097032156,
+        "area_outside_field_of_view": 0.0,
+        "captured_fraction": 1.0,
+        "n_rays_partly_outside": 0,
+        "n_rays_wholly_outside": 0
+      },
+      "valid_nodes_on_declared_domain_boundary": 0,
+      "outside_declared_domain": "CERTIFIED_ZERO_BY_THE_LENSING_BAND_HULL"
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "n_valid": 16672,
+      "corrected_valid_area": 1.6699821438632128,
+      "declared_domain_M": [
+        -6.0,
+        6.0
+      ],
+      "clock_shift_from_stored_delay_M": -0.23327358989490676,
+      "delay_min_under_common_clock": 62.38349769749277,
+      "delay_max_under_common_clock": 120.7198182843357,
+      "negative_delay_present": false,
+      "field_of_view": {
+        "n_valid": 16672,
+        "total_valid_cell_area": 1.6699821438632128,
+        "area_captured_in_field_of_view": 1.6699821438632128,
+        "area_outside_field_of_view": 0.0,
+        "captured_fraction": 1.0,
+        "n_rays_partly_outside": 0,
+        "n_rays_wholly_outside": 0
+      },
+      "valid_nodes_on_declared_domain_boundary": 0,
+      "outside_declared_domain": "CERTIFIED_ZERO_BY_THE_LENSING_BAND_HULL"
+    }
+  ],
+  "cropped_flux_against_the_archived_padded_screen": {
+    "older_R3A_screen": "alpha [-25.4, 25.4], beta [-25.0, 25.4], pitch 0.02",
+    "D026": "alpha [-25, 25], beta [-25, 25], pitch 0.4",
+    "captured_fraction_by_profile_and_order": {
+      "coarse_n0": 1.0,
+      "coarse_n1": 1.0,
+      "coarse_n2": 1.0,
+      "core_n0": 1.0,
+      "core_n1": 1.0,
+      "core_n2": 1.0,
+      "fine_n0": 0.9999999999999998,
+      "fine_n1": 1.0,
+      "fine_n2": 1.0
+    },
+    "note": "under the corrected measure an order's cells stop at its declared domain, so D026 crops nothing the archive holds; the padding in the older screen covered ground the maps never sampled"
+  },
+  "coverage_certification": {
+    "coarse_n0": "MISSING_DATA_NOT_CERTIFIED_ZERO",
+    "coarse_n1": "CERTIFIED_ZERO_BY_THE_LENSING_BAND_HULL",
+    "coarse_n2": "CERTIFIED_ZERO_BY_THE_LENSING_BAND_HULL",
+    "core_n0": "MISSING_DATA_NOT_CERTIFIED_ZERO",
+    "core_n1": "CERTIFIED_ZERO_BY_THE_LENSING_BAND_HULL",
+    "core_n2": "CERTIFIED_ZERO_BY_THE_LENSING_BAND_HULL",
+    "fine_n0": "MISSING_DATA_NOT_CERTIFIED_ZERO",
+    "fine_n1": "CERTIFIED_ZERO_BY_THE_LENSING_BAND_HULL",
+    "fine_n2": "CERTIFIED_ZERO_BY_THE_LENSING_BAND_HULL"
+  },
+  "mask_and_area_by_pair": [
+    {
+      "pair": "coarse->core",
+      "order": 0,
+      "area": {
+        "coarser": 2454.9634668682247,
+        "finer": 2465.5199999999886,
+        "relative_error": 0.0042816659900402135,
+        "passes": false
+      },
+      "mask": {
+        "intersection": 2453.2898160745626,
+        "union": 2467.1936507936507,
+        "symmetric_difference": 13.903834719088081,
+        "relative_error": 0.005635485773326092,
+        "passes": false
+      },
+      "declared_domains": {
+        "coarse": [
+          -25.0,
+          25.0
+        ],
+        "core": [
+          -25.0,
+          25.0
+        ]
+      },
+      "declared_domains_agree": true
+    },
+    {
+      "pair": "coarse->core",
+      "order": 1,
+      "area": {
+        "coarser": 55.19360000000008,
+        "finer": 55.03782197061289,
+        "relative_error": 0.0028223929837371117,
+        "passes": false
+      },
+      "mask": {
+        "intersection": 53.587114840082826,
+        "union": 56.644307130530144,
+        "symmetric_difference": 3.0571922904473183,
+        "relative_error": 0.05397174835950201,
+        "passes": false
+      },
+      "declared_domains": {
+        "coarse": [
+          -10.0,
+          10.0
+        ],
+        "core": [
+          -10.0,
+          10.0
+        ]
+      },
+      "declared_domains_agree": true
+    },
+    {
+      "pair": "coarse->core",
+      "order": 2,
+      "area": {
+        "coarser": 1.668721931675428,
+        "finer": 1.6763862538144905,
+        "relative_error": 0.004571930914860965,
+        "passes": false
+      },
+      "mask": {
+        "intersection": 1.3238457898073943,
+        "union": 2.021262395682524,
+        "symmetric_difference": 0.6974166058751297,
+        "relative_error": 0.34504011323063843,
+        "passes": false
+      },
+      "declared_domains": {
+        "coarse": [
+          -7.0,
+          7.0
+        ],
+        "core": [
+          -7.0,
+          7.0
+        ]
+      },
+      "declared_domains_agree": true
+    },
+    {
+      "pair": "core->fine",
+      "order": 0,
+      "area": {
+        "coarser": 2465.5199999999886,
+        "finer": 2470.18193254946,
+        "relative_error": 0.0018872830733806115,
+        "passes": false
+      },
+      "mask": {
+        "intersection": 2464.527770842379,
+        "union": 2471.1741617070693,
+        "symmetric_difference": 6.646390864690147,
+        "relative_error": 0.002689567966386824,
+        "passes": false
+      },
+      "declared_domains": {
+        "core": [
+          -25.0,
+          25.0
+        ],
+        "fine": [
+          -25.0,
+          25.0
+        ]
+      },
+      "declared_domains_agree": true
+    },
+    {
+      "pair": "core->fine",
+      "order": 1,
+      "area": {
+        "coarser": 55.03782197061289,
+        "finer": 55.064839097032156,
+        "relative_error": 0.0004906420660134654,
+        "passes": true
+      },
+      "mask": {
+        "intersection": 54.273584535622156,
+        "union": 55.82907653202289,
+        "symmetric_difference": 1.5554919964007325,
+        "relative_error": 0.027861682353074943,
+        "passes": false
+      },
+      "declared_domains": {
+        "core": [
+          -10.0,
+          10.0
+        ],
+        "fine": [
+          -10.0,
+          10.0
+        ]
+      },
+      "declared_domains_agree": true
+    },
+    {
+      "pair": "core->fine",
+      "order": 2,
+      "area": {
+        "coarser": 1.6763862538144905,
+        "finer": 1.6699821438632128,
+        "relative_error": 0.003820187583085727,
+        "passes": false
+      },
+      "mask": {
+        "intersection": 1.4954554601112493,
+        "union": 1.850912937566454,
+        "symmetric_difference": 0.3554574774552046,
+        "relative_error": 0.1920444069738653,
+        "passes": false
+      },
+      "declared_domains": {
+        "core": [
+          -7.0,
+          7.0
+        ],
+        "fine": [
+          -6.0,
+          6.0
+        ]
+      },
+      "declared_domains_agree": false
+    }
+  ]
+}

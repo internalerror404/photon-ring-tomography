@@ -1,0 +1,122 @@
+{
+  "schema": "phrt-completion/1",
+  "id": "R3A_QC_026_COMPLETION",
+  "ruling": "PAPER_I_R3A_RULING_026",
+  "generated_utc": "2026-09-06T20:36:35Z",
+  "commit": "f29f9e53112333d346dda655dbb41277791638a2",
+  "fail_closed": true,
+  "an_unrecorded_condition_is_a_failure": true,
+  "required_conditions": [
+    "prerequisite_test_success",
+    "verified_input_hashes",
+    "fixed_target_indices",
+    "fixed_detector",
+    "fixed_sigma",
+    "fresh_output_directory",
+    "clean_execution_snapshot",
+    "preexecution_freeze_committed_before_outcomes",
+    "q0_inventory_and_dependency_overlay_complete",
+    "q1_measure_specification_and_unit_tests_complete",
+    "q2_fixed_detector_comparison_complete",
+    "q3_trigger_assessed_before_tracing",
+    "no_tolerance_adjusted_after_results",
+    "no_archive_rewritten",
+    "no_endpoint_recomputed_or_rescaled",
+    "no_target_spectrum_count_or_estimator_inspected",
+    "no_paid_resource_acquired",
+    "skipped_prerequisites_recorded",
+    "only_permitted_target_operation_used"
+  ],
+  "conditions": {
+    "prerequisite_test_success": true,
+    "verified_input_hashes": true,
+    "fixed_target_indices": true,
+    "fixed_detector": true,
+    "fixed_sigma": true,
+    "fresh_output_directory": true,
+    "clean_execution_snapshot": true,
+    "preexecution_freeze_committed_before_outcomes": true,
+    "q0_inventory_and_dependency_overlay_complete": true,
+    "q1_measure_specification_and_unit_tests_complete": true,
+    "q2_fixed_detector_comparison_complete": true,
+    "q3_trigger_assessed_before_tracing": true,
+    "no_tolerance_adjusted_after_results": true,
+    "no_archive_rewritten": true,
+    "no_endpoint_recomputed_or_rescaled": true,
+    "no_target_spectrum_count_or_estimator_inspected": true,
+    "only_permitted_target_operation_used": true,
+    "no_paid_resource_acquired": true,
+    "skipped_prerequisites_recorded": true
+  },
+  "unrecorded_conditions": [],
+  "failed_conditions": [],
+  "governance_complete": true,
+  "test_suites": {
+    "full": {
+      "paths": [
+        "tests"
+      ],
+      "interpreter": "python3",
+      "returncode": 0,
+      "passed": true,
+      "summary": "552 passed in 44.10s"
+    },
+    "q1_units": {
+      "suite": [
+        "tests/revision_v4_1/test_c13_measure.py"
+      ],
+      "interpreter": "python3",
+      "returncode": 0,
+      "stderr_tail": [],
+      "passed": true,
+      "summary": "13 passed in 4.21s",
+      "collected": [
+        "test_P1_nodal_dual_cells_tile_the_declared_domain_exactly",
+        "test_P2_endpoint_inclusive_nodes_get_half_and_quarter_cells",
+        "test_P3_rectangular_grid_is_not_reduced_to_one_spacing",
+        "test_P4_non_uniform_axis_is_refused",
+        "test_P5_invalid_rays_are_dropped_not_smeared",
+        "test_P6_subdividing_cells_carrying_the_same_field_changes_nothing",
+        "test_P6b_subdivision_invariance_holds_on_a_real_order",
+        "test_P7_brightness_and_flux_representations_agree_on_unequal_areas",
+        "test_P8_inherited_covariance_matches_its_definition",
+        "test_P9_detector_noise_is_assigned_once_after_the_order_sum",
+        "test_P10_zero_area_parent_is_refused",
+        "test_P11_legacy_and_corrected_measures_are_both_available_and_differ",
+        "test_P12_real_maps_partition_their_declared_screen"
+      ],
+      "covers": {
+        "partition": "P1 clipped dual cells tile the declared domain",
+        "endpoint_semantics": "P2 half-width edges and quarter corners; full centre cells enlarge the domain",
+        "beta_axis_and_rectangular_cells": "P3 unequal alpha and beta spacing are carried separately",
+        "non_uniform_refusal": "P4 a non-uniform axis raises, never averages",
+        "invalid_mask": "P5 masking removes area and adds none",
+        "representation_invariance": "P6/P6b subdividing cells that carry the same field moves the fixed-detector response by less than 1e-12, on a fixture and on an archived order",
+        "acquisition_units": "P7 brightness and integrated-flux parents agree on unequal-area cells, and O in place of L is detectable",
+        "inherited_covariance": "P8 equals sigma^2 O diag(1/a) O^T, is symmetric PSD, and differs from the single-sky detector covariance",
+        "noise_assigned_once": "P9 per cell per time, after the order sum",
+        "zero_area": "P10 refused, not inverted",
+        "legacy_vs_corrected": "P11/P12 both measures available, different, and the corrected one partitions the real screens"
+      }
+    }
+  },
+  "skipped_prerequisites": [],
+  "skipped_prerequisites_note": "none. The whole suite was run to completion in this record, and its return code is recorded above rather than inferred from a subset",
+  "separate_statuses": {
+    "constructor_and_units": "CORRECT",
+    "constructor_evidence": "13 C13 canaries including the 1e-12 representation-invariance identity, the brightness/flux unit agreement on unequal areas, and the inherited covariance identity",
+    "quadrature": "R3A_QUADRATURE_NOT_YET_QUALIFIED",
+    "refinement_route": "R3A_QC_REFINEMENT_BUDGET_OR_CAPABILITY_BLOCKED",
+    "note": "a kernel can be correct while its quadrature is not qualified; these are reported separately and neither substitutes for the other"
+  },
+  "return_status": "R3A_QUADRATURE_NOT_YET_QUALIFIED",
+  "blocker": "R3A_QC_REFINEMENT_BUDGET_OR_CAPABILITY_BLOCKED",
+  "stop_before_R3B": true,
+  "R3B_authorized": false,
+  "artifacts": {
+    "q0": "artifacts/revisions/mahakal_v4_1/Q0_20260906T201153Z_adcf0cf",
+    "q1": "artifacts/revisions/mahakal_v4_1/Q1_20260906T202037Z_383a72c",
+    "q2": "artifacts/revisions/mahakal_v4_1/Q2_20260906T202735Z_f29f9e5",
+    "freeze": "artifacts/revisions/mahakal_v4_1/R3A_QC_026_INPUT_FREEZE.json"
+  }
+}
