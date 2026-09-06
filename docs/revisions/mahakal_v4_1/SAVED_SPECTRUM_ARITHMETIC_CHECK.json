@@ -1,0 +1,32 @@
+{
+  "review_scope": "Arithmetic check of fetched saved spectra; no physical operator rerun and no repository test-suite execution.",
+  "repository": "internalerror404/photon-ring-tomography",
+  "source_commit": "d15debbeefcaab31d56e2977805168d2782bd28b",
+  "source_path": "artifacts/revisions/mahakal_v4_1/R0_20260906T070540Z_38e1f8a/nuisance_adjusted_spectra.npz",
+  "git_blob_sha_verified": "c15d4b0725d00efa508420db05b9f7fc16e676dc",
+  "source_file_sha256": "5a881b73c12f81949da5eaad306a9ea7c6f8897a1a63e902e61108821632386a",
+  "target_dimension": 72,
+  "resolved": {
+    "trace_F_known": 11.053660141651502,
+    "trace_F_cond": 7.198318097661488,
+    "trace_ratio_cond_over_known": 0.6512157968868042,
+    "singular_values_known_first4": [
+      2.039370858888488,
+      1.564268014989455,
+      1.02762009267211,
+      0.8012265412930448
+    ],
+    "singular_values_cond_first4": [
+      1.4371649013558634,
+      1.3458732686433825,
+      0.8062804378838909,
+      0.7117333935908874
+    ],
+    "n_operational_known_at_rho1": 3,
+    "n_operational_cond_at_rho1": 2
+  },
+  "direct": {
+    "known_all_zero": true,
+    "conditional_all_zero": true
+  }
+}

@@ -3,6 +3,7 @@ reviewed_commit: d15debbeefcaab31d56e2977805168d2782bd28b
 work_branch: research/mahakal_v4_1
 delivery_commit: 38e1f8a758e68d0bb272085bc826152d53996931
 status: SCIENTIFIC_CANDIDATE_SUPPORTED_CLOSEOUT_REPLAY_REQUIRED
+
 scope:
   accept:
     - additive_branch_and_preservation_of_freeze_022
@@ -18,6 +19,7 @@ scope:
     - clean_reference_geometry_numerical_replay
   review_is_physical_rerun: false
   reported_513_tests_independently_rerun_in_review: false
+
 preservation:
   freeze_022: immutable
   original_R0_R2_run_directory: immutable
@@ -26,6 +28,7 @@ preservation:
   original_legacy_runners: preserve
   new_results: unique_directory_no_overwrite
   no_reset_rebase_or_force_push: true
+
 scientific_target:
   geometry: {spin: 0.5, inclination_degrees: 50}
   source: full_L224
@@ -39,6 +42,7 @@ scientific_target:
   target_selection: reuse_original_support_rule_and_exact_column_set
   geometry_uncertainty: not_included
   new_truths_or_retuning: forbidden
+
 required_record_corrections:
   - Separate R0 starting commit from R1 and R2 execution identities.
   - Record that the R1 freeze omitted the R2 runner.
@@ -49,6 +53,7 @@ required_record_corrections:
   - Name information totals as normalized Fisher traces.
   - Keep numerical rank separate from operational fraction.
   - Treat PAIRING_DESTROYED as nonphysical, not as absent from all manuscript claims.
+
 launch_sequence:
   A:
     - Commit the correction record and complete the missing guards and tests.
@@ -64,6 +69,7 @@ launch_sequence:
   C:
     - Commit outputs separately without changing the input freeze.
     - Return the numerical comparison and any differences, then stop.
+
 gate_hardening:
   completion_requires:
     - prerequisite_test_success
@@ -85,6 +91,7 @@ gate_hardening:
   full_information_matrix_checks: required_in_small_fixtures_not_trace_only
   restore_protocol_fixture_tolerances: true
   G11_G14_fixture_rtol: 1.0e-10
+
 replay_comparison:
   direct_target_columns: exactly_zero
   numerical_relative_tolerance: 1.0e-10
@@ -93,6 +100,7 @@ replay_comparison:
   primary_operational_counts: [0, 2]
   changed_result: report_and_investigate_never_tune_to_expected_values
   interpretation: numerical_reproduction_not_new_independent_empirical_confirmation
+
 mode_export:
   scope: same_operator_only_no_estimator
   export_top_modes: 3
@@ -106,6 +114,7 @@ mode_export:
   sign_rule: largest_absolute_source_coefficient_positive
   near_degenerate_modes: compare_subspaces_not_individual_signed_vectors
   interpretation: signed_source_perturbations_not_reconstructed_histories
+
 additional_authorization:
   raw_RayMap_metadata_inventory: allowed
   inspect_fields: [alpha, beta, pixel_area, valid, coordinate_time, delay]
@@ -114,6 +123,7 @@ additional_authorization:
   extra_geometries_or_nuisance_enrichment: not_authorized
   new_reconstruction_bank_or_estimator: not_authorized
   new_submission_freeze: not_authorized
+
 return:
   required:
     - record_amendment
