@@ -1,0 +1,5 @@
+quantity,n,max_abs_difference,max_relative_difference_above_atol,n_near_zero_compared_absolutely,within_tolerance
+DIRECT_PHYSICAL_conditional,72,0.0,0.0,72,True
+DIRECT_PHYSICAL_known,72,0.0,0.0,72,True
+RESOLVED_PHYSICAL_conditional,72,3.3306690738754696e-15,1.9739765377835283e-13,16,True
+RESOLVED_PHYSICAL_known,72,4.440892098500626e-15,1.4011014570769476e-13,12,True

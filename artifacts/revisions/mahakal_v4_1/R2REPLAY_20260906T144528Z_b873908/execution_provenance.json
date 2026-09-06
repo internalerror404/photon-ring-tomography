@@ -1,0 +1,34 @@
+{
+  "schema": "phrt-phase-provenance/1",
+  "phase": "R2_REPLAY",
+  "execution_commit": "b87390880a13e5967babb0ed876cdbe7a84fd416",
+  "execution_branch": "research/mahakal_v4_1",
+  "tree_clean_at_start": true,
+  "command": "/tmp/aartvenv/bin/python scripts/revision_v4_1/r2b_replay.py artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908",
+  "input_freeze": {
+    "path": "artifacts/revisions/mahakal_v4_1/R2_REPLAY_INPUT_FREEZE.json",
+    "sha256": "7730b8c32f15148997001141f42eca6070e6a21b7dbe6d95845cd462d48567b0",
+    "n_inputs": 36,
+    "all_match": true,
+    "freeze_sha256": "7730b8c32f15148997001141f42eca6070e6a21b7dbe6d95845cd462d48567b0"
+  },
+  "target_manifest_sha256": "e6b6b0dac9f35dbb96405f6ab2dd76e139d8f9ad5838c638ffb72a3c04271273",
+  "target_selection_check": {
+    "n_target": 72,
+    "n_nuisance": 152,
+    "indices_checked": true,
+    "temporal_modes_outside_direct_footprint": [
+      0,
+      1,
+      2
+    ]
+  },
+  "python": "3.11.15",
+  "numpy": "1.26.4",
+  "scipy": "1.11.4",
+  "platform": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
+  "runtime_seconds": 14.9,
+  "max_rss_mib": 496.5,
+  "sigma": 0.011341986814407566,
+  "calibration_mode": "COMMON_REFERENCE_COUNT"
+}

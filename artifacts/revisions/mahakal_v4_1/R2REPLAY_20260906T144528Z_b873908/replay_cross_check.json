@@ -1,0 +1,8 @@
+{
+  "schema": "phrt-replay-cross-check/1",
+  "first_replay": "R2REPLAY_20260906T143710Z_15f87d3",
+  "second_replay": "R2REPLAY_20260906T144528Z_b873908",
+  "reason": "the canonical ruling bytes arrived after the first freeze; the freeze was re-cut and the run repeated",
+  "worst_absolute_difference": 0.0,
+  "bitwise_identical": true
+}
