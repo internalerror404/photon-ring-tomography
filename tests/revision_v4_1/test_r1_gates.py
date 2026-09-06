@@ -25,6 +25,10 @@ from phrt.revision_v4_1.calibration import (COMMON_REFERENCE_COUNT,  # noqa: E40
                                             fisher_information, legacy_s_ref)
 
 RTOL = 1e-10
+# Protocol: well_conditioned_fixture_relative_tolerance = 1e-10, and the
+# fixture coordinate condition must stay under 1e4 so the bar is meaningful.
+FIXTURE_RTOL = 1e-10
+FIXTURE_COND_MAX = 1e4
 SPLITS = (2, 4, 8, 16)
 
 
@@ -166,27 +170,45 @@ def test_G08_noiseless_constraints_are_kept_not_discarded():
     assert np.abs(w.exact).max() > 0, "the exact constraint carries signal"
 
 
-def test_G09_invertible_reexpression_preserves_information():
-    A, q = _fixture(n_rows=8, n_cols=4)
+def _fisher(w) -> np.ndarray:
+    """The full information matrix B^T B, not its trace."""
+    return w.B.T @ w.B
+
+
+def test_G09_invertible_reexpression_preserves_the_whole_fisher_matrix():
+    """Trace equality is necessary and far from sufficient."""
+    A, _ = _fixture(n_rows=8, n_cols=4)
     C = np.diag(np.linspace(0.5, 2.0, 8))
-    base = covariance.whiten(A, C).information
+    F0 = _fisher(covariance.whiten(A, C))
+    scale = max(float(np.abs(F0).max()), 1e-300)
     rng = np.random.default_rng(3)
-    worst = 0.0
+    worst_matrix = worst_trace = 0.0
     for _ in range(50):
         L = rng.normal(size=(8, 8))
         while abs(np.linalg.det(L)) < 1e-3 or np.linalg.cond(L) > 1e4:
             L = rng.normal(size=(8, 8))
-        got = covariance.mixed_whiten(A, L, C).information
-        worst = max(worst, abs(got / base - 1.0))
-    assert worst < 1e-10, f"worst relative deviation {worst:.3e}"
+        F = _fisher(covariance.mixed_whiten(A, L, C))
+        worst_matrix = max(worst_matrix, float(np.abs(F - F0).max()) / scale)
+        worst_trace = max(worst_trace,
+                          abs(np.trace(F) / np.trace(F0) - 1.0))
+    assert worst_matrix < FIXTURE_RTOL, (
+        f"worst full-matrix deviation {worst_matrix:.3e} against "
+        f"{FIXTURE_RTOL:.0e}; trace-only deviation was {worst_trace:.3e}")
 
 
-def test_G10_rank_reducing_postprocessing_contracts_information():
+def test_G10_rank_reducing_postprocessing_contracts_in_the_loewner_order():
+    """F_after <= F_before as matrices: no direction may gain information."""
     A, _ = _fixture(n_rows=8, n_cols=4)
     C = np.eye(8)
-    base = covariance.whiten(A, C).information
-    L = np.ones((1, 8))                            # collapse to one channel
-    assert covariance.mixed_whiten(A, L, C).information <= base + 1e-12
+    F0 = _fisher(covariance.whiten(A, C))
+    for L in (np.ones((1, 8)), np.eye(8)[:3], np.vstack([np.ones((1, 8)),
+                                                         np.eye(8)[0]])):
+        F = _fisher(covariance.mixed_whiten(A, L, C))
+        gap = np.linalg.eigvalsh(F0 - F)
+        assert gap.min() > -1e-10 * max(float(np.abs(F0).max()), 1.0), (
+            f"a direction gained information: smallest eigenvalue of "
+            f"F_before - F_after is {gap.min():.3e}")
+        assert np.trace(F) <= np.trace(F0) + 1e-12
 
 
 # ---- G11 / G19 ----------------------------------------------------------
@@ -211,7 +233,9 @@ def test_G11_source_basis_change_leaves_the_physical_spectrum_fixed():
         coord = np.linalg.svd(A @ T, compute_uv=False)
         worst_coord = max(worst_coord,
                           float(np.linalg.cond(A @ T) / np.linalg.cond(A)))
-    assert worst_phys < 1e-9, f"physical spectrum moved by {worst_phys:.3e}"
+    assert worst_phys < FIXTURE_RTOL, (
+        f"physical spectrum moved by {worst_phys:.3e} against "
+        f"{FIXTURE_RTOL:.0e}")
     assert worst_coord > 2.0, ("the fixture must actually stress coordinate "
                                "conditioning, else the invariance is vacuous")
 
@@ -263,7 +287,8 @@ def test_G14_nuisance_coordinate_changes_do_not_move_the_result():
             K = rng.normal(size=(5, 5))
         got = conditioning.conditional_spectrum(B_o, B_n @ K).s_conditional
         worst = max(worst, float(np.abs(got / ref - 1).max()))
-    assert worst < 1e-9, f"worst relative deviation {worst:.3e}"
+    assert worst < FIXTURE_RTOL, (
+        f"worst relative deviation {worst:.3e} against {FIXTURE_RTOL:.0e}")
 
 
 def test_G15_conditional_information_never_exceeds_known_remainder():

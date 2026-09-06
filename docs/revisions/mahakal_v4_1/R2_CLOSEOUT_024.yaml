@@ -1,0 +1,128 @@
+review_id: PAPER_I_R0_R2_REVIEW_024
+reviewed_commit: d15debbeefcaab31d56e2977805168d2782bd28b
+work_branch: research/mahakal_v4_1
+delivery_commit: 38e1f8a758e68d0bb272085bc826152d53996931
+status: SCIENTIFIC_CANDIDATE_SUPPORTED_CLOSEOUT_REPLAY_REQUIRED
+scope:
+  accept:
+    - additive_branch_and_preservation_of_freeze_022
+    - R0_source_findings_and_ten_site_inventory
+    - E3C_physical_reference_calibration_replay
+    - reported_stored_curve_count_correction
+    - saved_R2_spectrum_arithmetic
+  pending:
+    - phase_specific_execution_provenance
+    - complete_preexecution_runner_and_target_freeze
+    - honest_distinction_between_inventory_and_integration_coverage
+    - fail_closed_completion_status
+    - clean_reference_geometry_numerical_replay
+  review_is_physical_rerun: false
+  reported_513_tests_independently_rerun_in_review: false
+preservation:
+  freeze_022: immutable
+  original_R0_R2_run_directory: immutable
+  original_completion_token: preserve_with_new_review_disposition
+  original_preregistration_gap: disclose_never_backdate
+  original_legacy_runners: preserve
+  new_results: unique_directory_no_overwrite
+  no_reset_rebase_or_force_push: true
+scientific_target:
+  geometry: {spin: 0.5, inclination_degrees: 50}
+  source: full_L224
+  target_dimension: 72
+  nuisance_dimension: 152
+  snr_label: 100
+  actual_sigma: 0.011341986814407568
+  rho: 1.0
+  effect_amplitude: 1.0
+  source_metric: registered_r_dr_dphi_dt
+  target_selection: reuse_original_support_rule_and_exact_column_set
+  geometry_uncertainty: not_included
+  new_truths_or_retuning: forbidden
+required_record_corrections:
+  - Separate R0 starting commit from R1 and R2 execution identities.
+  - Record that the R1 freeze omitted the R2 runner.
+  - Record that the target manifest was written before spectra but not committed before execution.
+  - Mark ten of ten as inventory coverage, not ten integration-tested runner paths.
+  - Classify every calibration site as replay-tested, integration-tested, deferred, or retired.
+  - Do not count deferred or retired exemptions as test passes.
+  - Name information totals as normalized Fisher traces.
+  - Keep numerical rank separate from operational fraction.
+  - Treat PAIRING_DESTROYED as nonphysical, not as absent from all manuscript claims.
+launch_sequence:
+  A:
+    - Commit the correction record and complete the missing guards and tests.
+    - Prepare the identical target manifest without inspecting new spectra.
+    - Freeze all new runners, numerical dependencies, configs, maps, tests and target bytes.
+    - Commit that complete input snapshot and verify a clean registered tree.
+  B:
+    - Execute in a fresh output directory from the pinned clean snapshot.
+    - Preserve the original numerical model and all declared tolerances.
+    - Record actual execution commit, input hashes, versions, commands, runtime and memory.
+    - Recompute direct and resolved spectra and compare with the archived candidate.
+    - Emit actual measured residuals and test outcomes, not only PASS labels.
+  C:
+    - Commit outputs separately without changing the input freeze.
+    - Return the numerical comparison and any differences, then stop.
+gate_hardening:
+  completion_requires:
+    - prerequisite_test_success
+    - verified_input_and_target_hashes
+    - explicit_source_rank_and_nuisance_rank_decisions
+    - finite_numeric_outputs
+    - source_metric_promotion
+    - stable_nuisance_rank_and_operational_counts_across_registered_tolerances
+    - no_unresolved_blocker
+  inject_failure_tests:
+    - failed_R1_test
+    - modified_or_missing_input
+    - changed_target_columns
+    - unpromoted_source_Gram
+    - changed_nuisance_rank_with_unchanged_operational_count
+    - changed_operational_count
+    - existing_output_directory
+  empty_target: explicit_non_success_scientific_disposition_without_reselection
+  full_information_matrix_checks: required_in_small_fixtures_not_trace_only
+  restore_protocol_fixture_tolerances: true
+  G11_G14_fixture_rtol: 1.0e-10
+replay_comparison:
+  direct_target_columns: exactly_zero
+  numerical_relative_tolerance: 1.0e-10
+  numerical_absolute_tolerance: 1.0e-12
+  near_zero_singular_values: absolute_tolerance_not_relative_error
+  primary_operational_counts: [0, 2]
+  changed_result: report_and_investigate_never_tune_to_expected_values
+  interpretation: numerical_reproduction_not_new_independent_empirical_confirmation
+mode_export:
+  scope: same_operator_only_no_estimator
+  export_top_modes: 3
+  include:
+    - singular_values_and_threshold_margins
+    - right_singular_vectors_and_source_coefficient_vectors
+    - source_Gram_and_column_labels
+    - source_support_and_physical_norm
+    - known_and_conditional_information_on_each_same_exported_direction
+    - subspace_angles_across_rank_tolerances_and_last_two_metric_refinements
+  sign_rule: largest_absolute_source_coefficient_positive
+  near_degenerate_modes: compare_subspaces_not_individual_signed_vectors
+  interpretation: signed_source_perturbations_not_reconstructed_histories
+additional_authorization:
+  raw_RayMap_metadata_inventory: allowed
+  inspect_fields: [alpha, beta, pixel_area, valid, coordinate_time, delay]
+  new_geodesics: not_authorized
+  physical_common_sky_operator_or_R3_sweep: not_authorized
+  extra_geometries_or_nuisance_enrichment: not_authorized
+  new_reconstruction_bank_or_estimator: not_authorized
+  new_submission_freeze: not_authorized
+return:
+  required:
+    - record_amendment
+    - full_input_freeze_and_phase_provenance
+    - integration_coverage_by_evidence_level
+    - fail_closed_gate_tests
+    - saved_candidate_vs_clean_replay_comparison
+    - mode_export
+    - optional_raw_map_readiness_inventory
+    - hashes_and_explicit_NOT_RUN_items
+  success: R2_REFERENCE_GEOMETRY_REPLAY_ACCEPTANCE_READY
+  stop_after_return: true

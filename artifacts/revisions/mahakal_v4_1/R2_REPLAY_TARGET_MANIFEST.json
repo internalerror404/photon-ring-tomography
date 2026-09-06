@@ -1,0 +1,789 @@
+{
+  "schema": "phrt-r2-target-manifest/2",
+  "created_utc": "2026-09-06T14:34:32Z",
+  "phase": "A",
+  "prepared_without_inspecting_spectra": true,
+  "reuses": "the original support rule and the exact column set",
+  "original_manifest": {
+    "path": "artifacts/revisions/mahakal_v4_1/R0_20260906T070540Z_38e1f8a/R2_TARGET_AND_NUISANCE_MANIFEST.json",
+    "sha256": "f88cbb7224a511ff8bb8eb94a3eea9dee46a6ad3f1d5c05f17a8fd631092c8c0",
+    "n_target_columns": 72,
+    "n_nuisance_columns": 152
+  },
+  "selection_rule": "target = azimuthal_m >= 1 AND the temporal hat's support contains no direct-order sample. Decided from ray support and basis geometry alone; no singular value, error or score enters",
+  "geometry": {
+    "id": "a050_i050",
+    "spin": 0.5,
+    "inclination_deg": 50.0
+  },
+  "orders": [
+    0,
+    1,
+    2
+  ],
+  "observer_times_M": [
+    0.0,
+    2.857142857142857,
+    5.714285714285714,
+    8.571428571428571,
+    11.428571428571429,
+    14.285714285714286,
+    17.142857142857142,
+    20.0
+  ],
+  "source_class": {
+    "id": "L224",
+    "dimension": 224,
+    "n_radial": 4,
+    "n_azimuthal": 7,
+    "n_temporal": 8,
+    "r_inner_M": 1.8660386527060988,
+    "r_outer_M": 49.98205255591607,
+    "t_min_M": -128.82234649196255,
+    "t_max_M": 29.0,
+    "full_model_includes_m0": true
+  },
+  "ray_maps": {
+    "artifacts/raymaps/a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+    "artifacts/raymaps/a050_i050_n1_core.h5": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+    "artifacts/raymaps/a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39"
+  },
+  "subsample_seed": 20260825,
+  "direct_footprint_M": [
+    -57.80751574810631,
+    19.99961781448451
+  ],
+  "temporal_modes_outside_direct_footprint": [
+    0,
+    1,
+    2
+  ],
+  "n_target_columns": 72,
+  "n_nuisance_columns": 152,
+  "target_column_indices": [
+    8,
+    9,
+    10,
+    16,
+    17,
+    18,
+    24,
+    25,
+    26,
+    32,
+    33,
+    34,
+    40,
+    41,
+    42,
+    48,
+    49,
+    50,
+    64,
+    65,
+    66,
+    72,
+    73,
+    74,
+    80,
+    81,
+    82,
+    88,
+    89,
+    90,
+    96,
+    97,
+    98,
+    104,
+    105,
+    106,
+    120,
+    121,
+    122,
+    128,
+    129,
+    130,
+    136,
+    137,
+    138,
+    144,
+    145,
+    146,
+    152,
+    153,
+    154,
+    160,
+    161,
+    162,
+    176,
+    177,
+    178,
+    184,
+    185,
+    186,
+    192,
+    193,
+    194,
+    200,
+    201,
+    202,
+    208,
+    209,
+    210,
+    216,
+    217,
+    218
+  ],
+  "target_column_labels": [
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 1,
+      "azimuthal_m": 1,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 1,
+      "azimuthal_m": 1,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 1,
+      "azimuthal_m": 1,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 2,
+      "azimuthal_m": 1,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 2,
+      "azimuthal_m": 1,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 2,
+      "azimuthal_m": 1,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 3,
+      "azimuthal_m": 2,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 3,
+      "azimuthal_m": 2,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 3,
+      "azimuthal_m": 2,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 4,
+      "azimuthal_m": 2,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 4,
+      "azimuthal_m": 2,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 4,
+      "azimuthal_m": 2,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 5,
+      "azimuthal_m": 3,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 5,
+      "azimuthal_m": 3,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 5,
+      "azimuthal_m": 3,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 6,
+      "azimuthal_m": 3,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 6,
+      "azimuthal_m": 3,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 0,
+      "azimuthal_mode": 6,
+      "azimuthal_m": 3,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 1,
+      "azimuthal_m": 1,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 1,
+      "azimuthal_m": 1,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 1,
+      "azimuthal_m": 1,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 2,
+      "azimuthal_m": 1,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 2,
+      "azimuthal_m": 1,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 2,
+      "azimuthal_m": 1,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 3,
+      "azimuthal_m": 2,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 3,
+      "azimuthal_m": 2,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 3,
+      "azimuthal_m": 2,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 4,
+      "azimuthal_m": 2,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 4,
+      "azimuthal_m": 2,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 4,
+      "azimuthal_m": 2,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 5,
+      "azimuthal_m": 3,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 5,
+      "azimuthal_m": 3,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 5,
+      "azimuthal_m": 3,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 6,
+      "azimuthal_m": 3,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 6,
+      "azimuthal_m": 3,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 1,
+      "azimuthal_mode": 6,
+      "azimuthal_m": 3,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 1,
+      "azimuthal_m": 1,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 1,
+      "azimuthal_m": 1,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 1,
+      "azimuthal_m": 1,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 2,
+      "azimuthal_m": 1,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 2,
+      "azimuthal_m": 1,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 2,
+      "azimuthal_m": 1,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 3,
+      "azimuthal_m": 2,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 3,
+      "azimuthal_m": 2,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 3,
+      "azimuthal_m": 2,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 4,
+      "azimuthal_m": 2,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 4,
+      "azimuthal_m": 2,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 4,
+      "azimuthal_m": 2,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 5,
+      "azimuthal_m": 3,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 5,
+      "azimuthal_m": 3,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 5,
+      "azimuthal_m": 3,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 6,
+      "azimuthal_m": 3,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 6,
+      "azimuthal_m": 3,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 2,
+      "azimuthal_mode": 6,
+      "azimuthal_m": 3,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 1,
+      "azimuthal_m": 1,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 1,
+      "azimuthal_m": 1,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 1,
+      "azimuthal_m": 1,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 2,
+      "azimuthal_m": 1,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 2,
+      "azimuthal_m": 1,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 2,
+      "azimuthal_m": 1,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 3,
+      "azimuthal_m": 2,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 3,
+      "azimuthal_m": 2,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 3,
+      "azimuthal_m": 2,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 4,
+      "azimuthal_m": 2,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 4,
+      "azimuthal_m": 2,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 4,
+      "azimuthal_m": 2,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 5,
+      "azimuthal_m": 3,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 5,
+      "azimuthal_m": 3,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 5,
+      "azimuthal_m": 3,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 6,
+      "azimuthal_m": 3,
+      "temporal_mode": 0,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -109.09455318046723,
+      "temporal_support_width_M": 19.72779331149532
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 6,
+      "azimuthal_m": 3,
+      "temporal_mode": 1,
+      "temporal_support_lo_M": -128.82234649196255,
+      "temporal_support_hi_M": -89.36675986897191,
+      "temporal_support_width_M": 39.45558662299064
+    },
+    {
+      "radial_mode": 3,
+      "azimuthal_mode": 6,
+      "azimuthal_m": 3,
+      "temporal_mode": 2,
+      "temporal_support_lo_M": -109.09455318046723,
+      "temporal_support_hi_M": -69.63896655747659,
+      "temporal_support_width_M": 39.45558662299064
+    }
+  ],
+  "matches_original_selection": true,
+  "empty_target": false
+}
