@@ -1,10 +1,10 @@
 {
   "schema": "phrt-input-freeze/1",
   "id": "R2_REPLAY_INPUT_FREEZE",
-  "created_utc": "2026-09-06T14:36:11Z",
+  "created_utc": "2026-09-06T14:45:28Z",
   "purpose": "the complete pre-execution snapshot the R1 freeze lacked",
   "closes": "review 024 issue A",
-  "n_files": 35,
+  "n_files": 36,
   "environment": {
     "python": "3.11.15",
     "numpy": "1.26.4",
@@ -12,7 +12,7 @@
     "platform": "Linux-6.18.44-fc-v24-x86_64-with-glibc2.39",
     "threading": "phrt.numerics.pin, single-threaded"
   },
-  "commit_at_freeze_time": "d15debbeefcaab31d56e2977805168d2782bd28b",
+  "commit_at_freeze_time": "45f0f74b85284eebb11196716f9cda5a2e9e2971",
   "files": {
     "artifacts/configs/R1_MAIN_FREEZE.json": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
     "artifacts/raymaps/a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
@@ -20,7 +20,7 @@
     "artifacts/raymaps/a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39",
     "artifacts/revisions/mahakal_v4_1/R2_CLOSEOUT_RECORD_024.json": "70eb0efc43a7ea52258d5549b95510b597746e02188b44b3618979d88a3e2d76",
     "artifacts/revisions/mahakal_v4_1/R2_REPLAY_TARGET_MANIFEST.json": "e6b6b0dac9f35dbb96405f6ab2dd76e139d8f9ad5838c638ffb72a3c04271273",
-    "docs/revisions/mahakal_v4_1/R2_CLOSEOUT_024.yaml": "c222b7dcaff39a4991fa59f644a1f631590293c968edc9ae345943d4450b6c26",
+    "docs/revisions/mahakal_v4_1/R2_CLOSEOUT_024.yaml": "5c2dee9bcf20477d6e90758eb4bfefa2fafa080409895dc29f407b5eebe22f74",
     "scripts/revision_v4_1/r0_claim_map.py": "21b9d219a464c0fe337e3250d503c2ec6aac8f893c2df9834ed2a24d27fad19b",
     "scripts/revision_v4_1/r0_dispositions.py": "86aa4cc396d0b2e93e4ea8e6f9778a55bacefcbc4788849729e1c8ce98226c5a",
     "scripts/revision_v4_1/r0_normalization_inventory.py": "d1502568197d2fdf4d88294fe726a3e24dfec689647feafdf9b6cbc8a40421ef",
@@ -31,6 +31,7 @@
     "scripts/revision_v4_1/r2_closeout_record.py": "37ff752a325964417fb6e9f51bbf04b9dec7803ba0d21ffa47f2fb11c0437df8",
     "scripts/revision_v4_1/r2_conditional_information.py": "1e00ceba0e599545e9247c77a8b72932904b3344279fbf21a59f89805f8a50c1",
     "scripts/revision_v4_1/r2_report.py": "6ad1a8de33249158544b223a84d9ad7180253171e010e6758632d4dd40a5894d",
+    "scripts/revision_v4_1/r2b_hat_diagnostic.py": "4a13ed7cb634751bdc8da4aecbad3ed4aa53ba4d70df81db2dcf4a19143f6ade",
     "scripts/revision_v4_1/r2b_input_freeze.py": "f91491b4f41e2ba6d386aa0827688f4fbdfac99c16f1f77913f41689925d743e",
     "scripts/revision_v4_1/r2b_prepare_manifest.py": "32ea80339174cf009b621b5ab431c2b8ca45af750292027114c566dabf36802d",
     "scripts/revision_v4_1/r2b_replay.py": "4527ebda642bd72ff8a9beac19607f9f7bdcaac8ee1ca085613c9329841cb44b",
