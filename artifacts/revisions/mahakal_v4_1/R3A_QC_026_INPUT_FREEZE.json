@@ -1,0 +1,153 @@
+{
+  "schema": "phrt-input-freeze/1",
+  "id": "R3A_QC_026_INPUT_FREEZE",
+  "ruling": "PAPER_I_R3A_RULING_026",
+  "stage": "Q2",
+  "written_before_any_q2_outcome_exists": true,
+  "created_utc": "2026-09-06T20:27:14Z",
+  "commit_at_freeze_time": "a2620f17931701dbfd3e29ff0c118669106592e6",
+  "frozen_files_clean_in_git": true,
+  "uncommitted_among_frozen_files": [],
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4",
+    "pytest_interpreter": "system python3"
+  },
+  "geometry": {
+    "id": "a050_i050",
+    "spin": 0.5,
+    "inclination_deg": 50,
+    "orders": [
+      0,
+      1,
+      2
+    ],
+    "new_geometries": "forbidden"
+  },
+  "profiles_compared": [
+    "coarse",
+    "core",
+    "fine"
+  ],
+  "detector_D026": {
+    "alpha_bounds_M": [
+      -25.0,
+      25.0
+    ],
+    "beta_bounds_M": [
+      -25.0,
+      25.0
+    ],
+    "pitch_M": 0.4,
+    "cells": [
+      125,
+      125
+    ],
+    "sigma": 0.011341986814407566,
+    "sigma_fixed_during_all_refinement": true,
+    "snr_recalibration": "forbidden",
+    "observer_times_M": [
+      0.0,
+      2.857142857142857,
+      5.714285714285714,
+      8.571428571428571,
+      11.428571428571429,
+      14.285714285714286,
+      17.142857142857142,
+      20.0
+    ],
+    "observer_times_source": "artifacts/configs/R1_MAIN_FREEZE.json observation.observer_times_M",
+    "interpretation": "a newly declared ideal fixed aperture, not an EHT forecast and not a replacement that makes the archived 0.02 M design pass"
+  },
+  "clock": {
+    "absolute_reference_coordinate_time_M": -978.6055123201214,
+    "source": "artifacts/raymaps/a050_i050_n0_core.h5 metadata t_reference",
+    "rule": "delay_common = t_reference_absolute - coordinate_time",
+    "per_profile_recentring": "forbidden",
+    "negative_offsets": "recorded, never clipped to zero"
+  },
+  "measure": {
+    "convention": "NODAL_DUAL_CLIPPED_TO_DECLARED_DOMAIN",
+    "specified_in": "src/phrt/revision_v4_1/measure.py",
+    "archives_rewritten": false
+  },
+  "field_suite": {
+    "screen_fields": [
+      "1",
+      "alpha/25",
+      "beta/25",
+      "(alpha/25)^2",
+      "(beta/25)^2",
+      "alpha*beta/625"
+    ],
+    "transferred_fields": [
+      "g^3",
+      "g^3*cos(2*pi*(t_obs-delay)/20)",
+      "g^3*sin(2*pi*(t_obs-delay)/20)",
+      "g^3*cos(2*pi*(t_obs-delay)/40)",
+      "g^3*sin(2*pi*(t_obs-delay)/40)"
+    ],
+    "valid_mask_applied_to_every_field": true,
+    "all_orders_and_all_observer_times": true,
+    "target_modes_inspected": false
+  },
+  "metrics": {
+    "response_error": "||W y_fine - W y_coarse|| / max(||W y_fine||, floor)",
+    "response_floor": "1e-12 * the same order's constant-field response norm",
+    "mask_error": "symmetric difference area / union area, from an exact rectangle-set intersection",
+    "area_error": "|A_fine - A_coarse| / max(A_fine, A_coarse)",
+    "empty_mask_or_zero_signal": "reported explicitly, never divided into a floor"
+  },
+  "tolerances": {
+    "fixed_detector_response_relative": 0.001,
+    "mask_symmetric_difference_relative": 0.001,
+    "corrected_area_relative": 0.001,
+    "exact_fixture_relative": 1e-12,
+    "exact_fixture_absolute": 1e-12,
+    "successive_late_refinement_pairs_required": 2,
+    "applies_to": "every order and every declared field, not an average",
+    "adjustment_after_results": "forbidden"
+  },
+  "target": {
+    "indices": "the accepted 72 columns, unchanged",
+    "reselection": "forbidden",
+    "target_spectra_operational_counts_estimators": "not computed in this stage",
+    "only_permitted_target_operation": "the analytical uniform order-weight bound recorded in Q1"
+  },
+  "guards": [
+    "input_hashes",
+    "fixed_target_indices",
+    "fixed_detector",
+    "fixed_sigma",
+    "fresh_output_directory"
+  ],
+  "outcome_labels": {
+    "pass": "R3A_FIXED_DETECTOR_QUADRATURE_READY_FOR_REVIEW",
+    "fail": "R3A_QUADRATURE_NOT_YET_QUALIFIED"
+  },
+  "stop_before_R3B": true,
+  "n_files": 20,
+  "files": {
+    "artifacts/configs/R1_MAIN_FREEZE.json": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "artifacts/raymaps/a050_i050_n0_coarse.h5": "690d5f903fc0a44f39c6747fcd647cc2d003be3e1b9a7b8230f5f690d0ef9f91",
+    "artifacts/raymaps/a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+    "artifacts/raymaps/a050_i050_n0_fine.h5": "5ec970f9581e7d237f44b3241ee848f378b59b5fe62101f3a87e7c406fad9b7c",
+    "artifacts/raymaps/a050_i050_n1_coarse.h5": "6f0dfa77073a6b05d13876d7fe366ae1422d315e4e439df29c329ac8c3ce171e",
+    "artifacts/raymaps/a050_i050_n1_core.h5": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+    "artifacts/raymaps/a050_i050_n1_fine.h5": "855cf6794699d7690a1804098719b07a998f3d0a702af883a2a9e94f21fa395e",
+    "artifacts/raymaps/a050_i050_n2_coarse.h5": "8a416fb173f2e51834a14a2162126613c1bb778909ffac32a0301159b5454338",
+    "artifacts/raymaps/a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39",
+    "artifacts/raymaps/a050_i050_n2_fine.h5": "820fbab07abcc51de7eb561d3c9acdc346408d948dff0571aef474db4f119ee9",
+    "artifacts/revisions/mahakal_v4_1/R2_REPLAY_TARGET_MANIFEST.json": "e6b6b0dac9f35dbb96405f6ab2dd76e139d8f9ad5838c638ffb72a3c04271273",
+    "scripts/revision_v4_1/q0_measure_inventory.py": "7c65a9a50da81f159ce4c3f343dd07d8555a3bb9e3119cc0af092134d4f9d037",
+    "scripts/revision_v4_1/q1_measure_specification.py": "2f3085b55bae5acd2eadc5128ed42a9cc0d9a1e789db9921270ca36b808ab929",
+    "scripts/revision_v4_1/q2_fixed_detector_convergence.py": "5a2cd99237eaa1d706c85c075feb48425c00dd20ecc863c762f9fb30b723a0ab",
+    "scripts/revision_v4_1/q2_freeze.py": "d308fa71259e87d0779d2d3ac48c132c5feeb77cde1afbb82e48a46841a5edf2",
+    "src/phrt/revision_v4_1/acquisition.py": "437f93e945354941b0508ccd0c1c222d5ceb62922a24718aaa39e44bfa04d81d",
+    "src/phrt/revision_v4_1/common_sky.py": "116c7e3df945a917195469db7b6ce7e637255d7497cc8dbfefc4211c4d8a0d23",
+    "src/phrt/revision_v4_1/measure.py": "ed44131dedfa654d847dea5c3dd7fdeb588be1603037a3a34f221fa1a674df76",
+    "tests/revision_v4_1/test_c13_measure.py": "8cb955eda8f35f482b7b8f3af97d75d272f02e5ef1ce34f585b339b092e8350d",
+    "tests/revision_v4_1/test_r3a_construction.py": "e78154eb96ce4f62f26cecf46b109fc020c66eacd35afa406ab537fbbedaa62e"
+  }
+}
