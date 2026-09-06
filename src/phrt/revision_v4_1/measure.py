@@ -224,3 +224,39 @@ def build_ray_cells(alpha: np.ndarray, beta: np.ndarray, convention: str,
                            "this screen is not the tensor product it claims")
     return RayCells(ax.lo[ia], ax.hi[ia], bx.lo[ib], bx.hi[ib], ax, bx,
                     convention)
+
+
+def interval_overlap_matrix(lo1: np.ndarray, hi1: np.ndarray,
+                            lo2: np.ndarray, hi2: np.ndarray) -> np.ndarray:
+    """Exact overlap length between two sets of intervals on one axis."""
+    return np.clip(np.minimum(hi1[:, None], hi2[None, :])
+                   - np.maximum(lo1[:, None], lo2[None, :]), 0.0, None)
+
+
+def valid_matrix(alpha: np.ndarray, beta: np.ndarray, cells: RayCells,
+                 valid: np.ndarray) -> np.ndarray:
+    """The validity mask as a node grid, for exact region arithmetic."""
+    if cells.axis_alpha is None or cells.axis_beta is None:
+        raise MeasureError("a refined cell set has no node grid")
+    ia = np.searchsorted(cells.axis_alpha.nodes, alpha)
+    ib = np.searchsorted(cells.axis_beta.nodes, beta)
+    V = np.zeros((cells.axis_alpha.nodes.size, cells.axis_beta.nodes.size),
+                 bool)
+    V[ia, ib] = valid
+    return V
+
+
+def region_intersection_area(cells1: RayCells, V1: np.ndarray,
+                             cells2: RayCells, V2: np.ndarray) -> float:
+    """Exact area shared by two masked rectangle sets on the same screen.
+
+    Both regions are unions of axis-aligned rectangles drawn from tensor
+    grids, so the shared area separates per axis and no rasterization onto a
+    third grid is needed -- which matters, because rasterizing would put the
+    answer at the mercy of a resolution chosen after the fact.
+    """
+    Wa = interval_overlap_matrix(cells1.axis_alpha.lo, cells1.axis_alpha.hi,
+                                 cells2.axis_alpha.lo, cells2.axis_alpha.hi)
+    Wb = interval_overlap_matrix(cells1.axis_beta.lo, cells1.axis_beta.hi,
+                                 cells2.axis_beta.lo, cells2.axis_beta.hi)
+    return float(np.sum(V1 * (Wa @ V2.astype(float) @ Wb.T)))
