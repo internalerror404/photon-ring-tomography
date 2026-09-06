@@ -1,0 +1,179 @@
+review_id: PAPER_I_R3A_RULING_026
+reviewed_commit: 5d56f7e9ef30087fee2eef6ef8c4c6306615adcb
+work_branch: research/mahakal_v4_1
+status: R3A_BLOCK_CONFIRMED_C13_REPAIR_AND_FIXED_DETECTOR_CONVERGENCE_AUTHORIZED
+new_defect:
+  ledger_id: C13
+  id: QUADRATURE_GEOMETRY_MISMATCH_026
+  status: CONFIRMED_GEOMETRY_WEIGHT_INCONSISTENCY_PHYSICAL_REVALIDATION_REQUIRED
+  extends_existing_ledger_without_renumbering: true
+  confirmed_scope: mismatch_between_nominal_pitch_area_and_realized_geometric_cell_claim
+  all_archived_endpoints_changed: not_established
+  correction_is_only_delta_alpha_squared: false
+  require_both_axes_and_boundary_semantics: true
+preservation:
+  old_maps_freezes_R2_runs_R3A_runs_tables_tests: immutable
+  original_1e_12_detector_pitch_test: FAIL_AS_WRITTEN
+  original_criterion_future_use: RETIRED_AS_UNIVERSAL_QUADRATURE_INVARIANCE_TEST
+  original_point02_detector: archived_design_not_silently_replaced
+  new_outputs: unique_additive_directories
+  delivery: GitHub_only
+  paid_resource_acquisition: not_authorized
+scientific_scope:
+  new_geometries: forbidden
+  geometry: {spin: 0.5, inclination_degrees: 50}
+  orders: [0, 1, 2]
+  target: exact_accepted_72_column_set
+  nuisance: same_full_L224_remaining_152_columns
+  source_metric: same_registered_source_norm
+  target_reselection: forbidden
+  target_spectra_operational_counts_or_estimators: not_authorized_in_R3A_QC
+  allowed_R2_impact: analytical_uniform_positive_order_weight_bound_only
+  new_truths_or_reconstruction: forbidden
+  R3B: blocked_pending_next_review
+chosen_route:
+  primary: fixed_detector_converged_ray_quadrature
+  internal_mesh: nonuniform_common_refinement_or_direct_exact_overlap
+  integration_mesh_is_detector: false
+  per_order_independent_cameras: not_the_common_sky_experiment
+  feasibility_impossibility_from_rational_pitches: withdrawn
+  uniform_common_divisor_M: '2/290085'
+  actual_origins_alignment: separate_check_not_implied_by_pitch_ratios
+detector_D026:
+  interpretation: new_ideal_fixed_aperture_not_EHT_forecast
+  alpha_bounds_M: [-25.0, 25.0]
+  beta_bounds_M: [-25.0, 25.0]
+  pitch_M: 0.4
+  cells: [125, 125]
+  design_rule: original_declared_order0_screen_limit_and_core_spacing
+  observer_times: exact_eight_times_from_accepted_R1_MAIN_FREEZE
+  sigma: 0.011341986814407566
+  sigma_fixed_during_all_refinement: true
+  SNR_recalibration_to_hide_weight_change: forbidden
+  original_padded_field_of_view_comparison: report_cropped_flux_separately
+  outside_map_coverage: certify_zero_or_report_missing_data_never_assume_zero
+  point02_design_result: preserve_as_different_measurement
+phases:
+  Q0:
+    tasks:
+      - Inventory geometric versus stored weights in all maps used by claimed results.
+      - Verify alpha and beta spacing separately, uniformity, duplicates and ordering.
+      - Trace pinned generator endpoint semantics and finite domain per profile.
+      - Separate nominal request pitch, realized nodes, cell edges and effective sampled quadrature.
+      - Assign immutable source hashes and map-to-runner-to-claim dependencies.
+      - Mark raw mask validity distinct from fractional geometric coverage.
+      - Map area changes to weights, outer domain and masks separately.
+    inputs: existing_archived_maps_only
+    outputs: [C13_MAP_MEASURE_INVENTORY.json, C13_CLAIM_DEPENDENCY_OVERLAY.md]
+  Q1:
+    tasks:
+      - Build corrected geometric records without rewriting HDF5 archives.
+      - Use node dual cells clipped to declared finite boundaries when nodes include endpoints.
+      - Use full center cells only with an explicit fixed domain and justified coverage.
+      - Support rectangular or variable-area boundary cells, not sqrt_area squares by default.
+      - Use common-refinement integration internally where useful.
+      - Test invariant fixed-detector integration under same-field cell subdivision.
+      - Verify inherited-noise brightness and integrated-flux representations agree.
+      - Verify detector noise is assigned once after the physical sum.
+      - Record original and corrected measure separately; no rescaled endpoint claims.
+    scalar_spacing_only_diagnostic:
+      purpose: isolate_interior_pitch_error_not_complete_physical_correction
+      core_factors: ['1', '(250/249)^2', '(700/699)^2']
+      reference_sigma_unchanged_when_only_these_factors_apply: true
+      conditional_information_bound: r_min_F_old_le_F_new_le_r_max_F_old
+      counts_certified_only_under_bound_assumptions: [0, 2]
+      excludes: [boundary_clipping, changed_masks, new_rays, new_detector, estimator_errors]
+    outputs: [C13_MEASURE_SPECIFICATION.json, GEOMETRIC_CELL_SIDECAR_MANIFEST.json, C13_UNIT_AND_GEOMETRY_TESTS.json]
+  Q2:
+    tasks:
+      - Freeze D026, corrected measures, existing profiles, clock reference and field suite.
+      - Compare existing coarse/core/fine profiles at identical detector and actual sigma.
+      - Use fixed absolute observer-time origin, not each profile's sampled maximum.
+      - Retain and reconcile signed time offsets instead of clipping or recentering them.
+      - Measure per-order mask symmetric differences and corrected active area.
+      - Compare every field response vector, not only total trace.
+      - Report insufficient refinement explicitly; three levels are not proof of divergence.
+    field_suite:
+      screen_fields: ['1', 'alpha/25', 'beta/25', '(alpha/25)^2', '(beta/25)^2', 'alpha*beta/625']
+      transferred_fields: ['g^3', 'g^3*cos(2*pi*(t_obs-delay)/20)', 'g^3*sin(2*pi*(t_obs-delay)/20)', 'g^3*cos(2*pi*(t_obs-delay)/40)', 'g^3*sin(2*pi*(t_obs-delay)/40)']
+      valid_mask: apply_explicitly_to_every_field
+      all_orders_and_times: required
+      no_chosen_target_modes: true
+    metrics:
+      response_error: norm_W_yfine_minus_W_ycoarse_over_max_norm_W_yfine_floor
+      response_floor: 1e-12_times_same_order_constant_mask_response_norm
+      mask_error: symmetric_difference_area_over_union_area_on_fixed_domain
+      area_error: absolute_area_difference_over_larger_corrected_area
+      empty_mask_or_zero_signal: explicit_empty_case_not_silent_division_floor
+      interpolation_holes: report_separately_never_hide_in_area_total
+    outputs: [FIXED_DETECTOR_PROFILE_CONVERGENCE.json, BOUNDARY_AND_MASK_ERROR_LEDGER.json]
+  Q3:
+    status: conditional_bounded_same_geometry_numerical_refinement_authorized
+    triggers:
+      - Q0_and_Q1_pass_and_existing_profiles_fail_new_Q2_accuracy_criteria
+      - complete_preexecution_plan_and_dependencies_committed
+      - pinned_tracer_can_evaluate_declared_points_without_changing_physics
+      - no_paid_resource_acquisition
+    allowance:
+      total_new_screen_order_ray_evaluations_maximum: 250000
+      batches_maximum: 2
+      evaluations_per_batch_maximum: 125000
+      peak_memory_GiB_maximum: 8
+      wall_clock_hours_maximum: 2
+      tracing_implementation: same_pinned_backend_and_physical_model
+      refinement: nested_or_error_estimated_at_fixed_detector
+      selection: validity_boundaries_geometry_and_declared_field_residuals_only
+      candidate_target_information_selection: forbidden
+      count_all_queries_including_invalid_and_retried: true
+      all_orders_accounted_for: true
+      additional_screens_are_finer_numerics_not_new_geometry: true
+    requirements:
+      - Freeze refinement rule, tie breaking, budget and map origins before queries.
+      - Record prospective nodes, exact areas and per-node solver/validity status.
+      - Separate lensing-boundary discretization from transfer-field integration.
+      - Include a shifted or independent boundary check not sharing the same nested-grid alias.
+      - Preserve earlier levels and failures.
+      - Existing profiles and every newly used dependency must appear in the input freeze.
+    cap_or_capability_failure: return_R3A_QC_REFINEMENT_BUDGET_OR_CAPABILITY_BLOCKED
+    outputs: [NEW_RAY_EVALUATION_PROVENANCE.json, FIXED_DETECTOR_REFINEMENT_REPORT.json]
+acceptance_criteria:
+  exact_normalized_fixture_relative_tolerance: 1.0e-12
+  exact_normalized_fixture_absolute_tolerance: 1.0e-12
+  geometric_and_covariance_fixtures: small_well_conditioned_with_full_matrix_checks
+  fixed_detector_response_relative_tolerance: 1.0e-3
+  mask_symmetric_difference_relative_tolerance: 1.0e-3
+  corrected_area_relative_tolerance: 1.0e-3
+  successive_late_refinement_pairs_required: 2
+  all_orders_and_every_declared_field: required_not_average
+  independent_shift_or_boundary_holdout: required_for_promotion
+  tolerance_adjustment_after_results: forbidden
+  original_1e_12_fail_becomes_pass: false
+  certified_continuum_injectivity_or_estimator_accuracy: false
+  construction_tolerance_is_full_R3B_error_certificate: false
+noise:
+  O_definition: geometric_overlap_area_brightness_to_integrated_flux
+  a_definition: geometric_parent_cell_area
+  integrated_parent_signal: a_times_brightness
+  integrated_parent_covariance: sigma_squared_diag_a
+  integrated_parent_postprocessing_L: O_diag_inverse_a
+  inherited_covariance: sigma_squared_O_diag_inverse_a_O_transpose
+  detector_covariance: sigma_squared_diag_detector_area_assigned_once
+  two_models_share_covariance: not_assumed
+  information_monotonicity_vs_parent: only_matched_inherited_noise_experiment
+  summed_sky_ceiling_is_sum_of_orderwise_ceilings: not_assumed
+completion:
+  snapshot_after_diagnostics_is_preexecution_freeze: false
+  code_config_map_test_freeze_before_new_outcomes: true
+  clean_execution_snapshot: required
+  guards: [input_hashes, fixed_target_indices, fixed_detector, fixed_sigma, fresh_output_directory]
+  include_test_returncodes_and_skipped_prerequisites: true
+  all_conditions_recorded: required_fail_closed
+  kernel_correct_but_quadrature_not_qualified: separate_status
+  outputs:
+    - R3A_QC_026_RETURN.md
+    - R3A_QC_026_COMPLETION.json
+    - R3A_QC_026_INPUT_FREEZE.json
+    - SHA256SUMS.txt
+  success: R3A_FIXED_DETECTOR_QUADRATURE_READY_FOR_REVIEW
+  blocked: R3A_QUADRATURE_NOT_YET_QUALIFIED
+  stop_before_R3B: true

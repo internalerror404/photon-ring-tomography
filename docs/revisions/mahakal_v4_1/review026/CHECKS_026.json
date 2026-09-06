@@ -1,0 +1,219 @@
+{
+  "rational_lattice": {
+    "pitches_M": [
+      "2/5",
+      "20/249",
+      "14/699"
+    ],
+    "common_pitch_divisor_M": "2/290085",
+    "integer_pitch_multiples": [
+      58017,
+      11650,
+      2905
+    ],
+    "origin_alignment_requires_separate_check": true,
+    "uniform_cells_50_by_50_at_common_pitch": 52593317015625.0,
+    "rectilinear_overlay_axis_edge_count_upper_bound": 1079,
+    "overlay_cell_count_before_padding_upper_bound": 1162084,
+    "overlay_is_integration_mesh_not_detector": true
+  },
+  "reported_square_grid_area_factors": [
+    {
+      "profile": "coarse",
+      "order": 0,
+      "factor_exact": "15625/15876",
+      "factor": 0.9841899722852104
+    },
+    {
+      "profile": "coarse",
+      "order": 1,
+      "factor_exact": "1",
+      "factor": 1.0
+    },
+    {
+      "profile": "coarse",
+      "order": 2,
+      "factor_exact": "122500/121801",
+      "factor": 1.0057388691390055
+    },
+    {
+      "profile": "core",
+      "order": 0,
+      "factor_exact": "1",
+      "factor": 1.0
+    },
+    {
+      "profile": "core",
+      "order": 1,
+      "factor_exact": "62500/62001",
+      "factor": 1.0080482572861729
+    },
+    {
+      "profile": "core",
+      "order": 2,
+      "factor_exact": "490000/488601",
+      "factor": 1.0028632769887904
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "factor_exact": "62500/62001",
+      "factor": 1.0080482572861729
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "factor_exact": "250000/249001",
+      "factor": 1.0040120320801924
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "factor_exact": "1440000/1437601",
+      "factor": 1.0016687523172285
+    }
+  ],
+  "reported_order0_area_only_correction": {
+    "legacy_area_M2": [
+      2554.88,
+      2495.52,
+      2465.4
+    ],
+    "spacing_only_area_M2": [
+      2514.4872763920384,
+      2495.52,
+      2485.2421735133303
+    ],
+    "last_pair_relative_to_fine": 0.004135543246532003,
+    "boundary_clipping_or_mask_correction_applied": false,
+    "inference": "These three levels do not establish asymptotic nonconvergence."
+  },
+  "projection_fixture": {
+    "ray_field_norm_squared": 5.0,
+    "detector_norm_squared": 4.733333333333333,
+    "unresolved_within_cell_variance": 0.2666666666666666,
+    "fixed_detector_split_max_abs": 0.0
+  },
+  "covariance_fixture": {
+    "correct_max_abs": 1.3877787807814457e-17,
+    "incorrect_area_times_flux_covariance_error": 0.1965
+  },
+  "isolated_core_weight_bound": {
+    "area_factor_min": 1.0,
+    "area_factor_max": 1.0080482572861729,
+    "conditional_singular_value_lower": [
+      1.4371649013558634,
+      1.3458732686433825,
+      0.8062804378838909
+    ],
+    "conditional_singular_value_upper": [
+      1.442936647947654,
+      1.3512783821720709,
+      0.8095185119316174
+    ],
+    "conditional_trace_interval": [
+      7.198318097661488,
+      7.256252013739182
+    ],
+    "fixture_min_bound_eigenvalue": 0.0,
+    "conditions": [
+      "same rays and validity masks",
+      "same source metric and nuisance family",
+      "same sigma; direct core multiplier is 1",
+      "uniform positive per-order spacing correction only"
+    ],
+    "does_not_cover": [
+      "boundary clipping",
+      "ray refinement",
+      "mask changes",
+      "new detector",
+      "estimator error"
+    ]
+  },
+  "fixed_detector_ray_refinement_fixture": {
+    "ray_counts": [
+      20,
+      40,
+      80,
+      160
+    ],
+    "relative_response_error": [
+      0.0005414641282058592,
+      0.00013536603205148087,
+      3.384150801287868e-05,
+      8.46037700327643e-06
+    ]
+  },
+  "scope": "Review-026 arithmetic and independent finite-volume fixtures.\nNot a Kerr run, raw-HDF5 validation, or execution of the repository test suite.\nThe rational grid inputs and candidate singular values are transcribed from\nrepository records at 5d56f7e9ef30087fee2eef6ef8c4c6306615adcb and review 024.\nUsage: python checks_026.py --output NEW_PATH.json",
+  "reviewed_commit": "5d56f7e9ef30087fee2eef6ef8c4c6306615adcb",
+  "checks": [
+    {
+      "name": "rational_pitches_have_common_divisor",
+      "passed": true
+    },
+    {
+      "name": "exact_nominal_spacing_matches_two_of_nine",
+      "passed": true
+    },
+    {
+      "name": "unaligned_exact_overlap_conserves_flux",
+      "passed": true
+    },
+    {
+      "name": "unaligned_detector_has_legitimate_information_loss",
+      "passed": true
+    },
+    {
+      "name": "aligned_detector_reaches_piecewise_field_norm",
+      "passed": true
+    },
+    {
+      "name": "projection_variance_identity",
+      "passed": true
+    },
+    {
+      "name": "same_detector_same_field_subdivision_is_invariant",
+      "passed": true
+    },
+    {
+      "name": "brightness_and_flux_covariance_conventions_agree",
+      "passed": true
+    },
+    {
+      "name": "area_matrix_is_not_flux_fraction_matrix",
+      "passed": true
+    },
+    {
+      "name": "node_dual_boundary_weights_sum_to_domain",
+      "passed": true
+    },
+    {
+      "name": "unclipped_equal_node_cells_enlarge_domain",
+      "passed": true
+    },
+    {
+      "name": "equal_area_does_not_imply_mask_or_response_convergence",
+      "passed": true
+    },
+    {
+      "name": "profiled_fisher_inherits_weight_bounds_32_fixtures",
+      "passed": true
+    },
+    {
+      "name": "isolated_core_uniform_weight_change_keeps_two_directions",
+      "passed": true
+    },
+    {
+      "name": "fixed_detector_ray_quadrature_converges_for_smooth_fixture",
+      "passed": true
+    }
+  ],
+  "n_checks": 15,
+  "all_passed": true,
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5"
+  },
+  "physical_operator_or_repository_suite_rerun": false,
+  "script_sha256": "cf36813a56b27347f07670b98224e06cd95a01fd1b7d80fd31b7e64de8bb8ea1"
+}
