@@ -1,0 +1,87 @@
+{
+  "stage": "H1",
+  "declared_before_results": true,
+  "band_symdiff_relative": 0.00025,
+  "inner_plus_outer_symdiff_relative": 0.00025,
+  "hull_only_response_relative": 0.00025,
+  "independent_shift_and_root_discrepancy": 2.5e-05,
+  "aggregate_numerical_integration_relative": 1e-06,
+  "denominator": "the band union of the compared pair, inside D026, per order; never the outer hull and never the screen",
+  "measured": [
+    {
+      "pair": "60->120",
+      "order": 0,
+      "eta_band": 4.993259989623901e-06,
+      "eta_boundaries": 4.99325998885854e-06,
+      "hull_only_response": 9.70933852962286e-05,
+      "angular_quadrature": 8.208412931443165e-13
+    },
+    {
+      "pair": "60->120",
+      "order": 1,
+      "eta_band": 0.0012489791837599204,
+      "eta_boundaries": 0.0012489791837598622,
+      "hull_only_response": 0.002909600438224654,
+      "angular_quadrature": 2.1303006484253737e-10
+    },
+    {
+      "pair": "60->120",
+      "order": 2,
+      "eta_band": 0.03024922109600216,
+      "eta_boundaries": 0.030249221096002088,
+      "hull_only_response": 0.005978386707771082,
+      "angular_quadrature": 5.622624649903923e-09
+    },
+    {
+      "pair": "120->240",
+      "order": 0,
+      "eta_band": 1.2250929249418887e-06,
+      "eta_boundaries": 1.2250929244514807e-06,
+      "hull_only_response": 2.3831878723322116e-05,
+      "angular_quadrature": 7.620560419976411e-13
+    },
+    {
+      "pair": "120->240",
+      "order": 1,
+      "eta_band": 0.00030650698547642985,
+      "eta_boundaries": 0.0003065069854761508,
+      "hull_only_response": 0.0006901722432931986,
+      "angular_quadrature": 2.1740501711795817e-10
+    },
+    {
+      "pair": "120->240",
+      "order": 2,
+      "eta_band": 0.007504984832877737,
+      "eta_boundaries": 0.007504984832878097,
+      "hull_only_response": 0.0013605308787894015,
+      "angular_quadrature": 5.305090154351034e-09
+    },
+    {
+      "pair": "240->480",
+      "order": 0,
+      "eta_band": 3.0340433743891425e-07,
+      "eta_boundaries": 3.034043377313629e-07,
+      "hull_only_response": 5.887268898933796e-06,
+      "angular_quadrature": 8.796356609063764e-13
+    },
+    {
+      "pair": "240->480",
+      "order": 1,
+      "eta_band": 7.591642209847334e-05,
+      "eta_boundaries": 7.591642209868876e-05,
+      "hull_only_response": 0.00017202628487406592,
+      "angular_quadrature": 2.167773880116809e-10
+    },
+    {
+      "pair": "240->480",
+      "order": 2,
+      "eta_band": 0.0018638386656083619,
+      "eta_boundaries": 0.0018638386656089907,
+      "hull_only_response": 0.0003335977506746983,
+      "angular_quadrature": 5.450247176020596e-09
+    }
+  ],
+  "boundary_solves_used": 18000,
+  "boundary_solve_cap": 30000,
+  "transfer_rays_used": 0
+}

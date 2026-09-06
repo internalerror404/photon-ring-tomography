@@ -1,0 +1,39 @@
+{
+  "schema": "phrt-input-freeze/1",
+  "id": "FRACTIONAL_COVERAGE_027_INPUT_FREEZE",
+  "ruling": "PAPER_I_FRACTIONAL_COVERAGE_RULING_027",
+  "created_utc": "2026-09-06T22:52:53Z",
+  "commit": "4031c219cdb58b0aca000630d3c1fdab88029735",
+  "preexecution_registration": {
+    "satisfied_for_H0_and_H1": false,
+    "disclosure": "this record was written after H0 and H1 ran, so it is an input record and not a preexecution registration for those stages. Every tolerance used is taken verbatim from ruling 027 and none was chosen or changed after seeing a result, but the level ladder, the angular sampling and the decision rule were committed after their first execution. Under the ruling's own H2 launch clause the H1 outcome is therefore reported as an explicitly separated diagnostic rather than a registered qualification",
+    "remedy_not_taken": "re-running H1 under a registered freeze would spend a second full boundary-solve allowance on an identical computation, and the ruling has already directed that a wasteful run must not be performed merely to justify a record"
+  },
+  "detector_and_clock": "unchanged, as pinned in R3A_QC_026_INPUT_FREEZE",
+  "n_files": 23,
+  "files": {
+    "src/phrt/revision_v4_1/polyclip.py": "c90637271059890cc1e6cac25bb7a76aebf6d6cb9d8354fb1f87137a4f761e98",
+    "src/phrt/revision_v4_1/fractional.py": "b0637cc12f1722fd6de632f928e81cdaf3be00377b2a6bae4c49c7d9dbc3669d",
+    "src/phrt/revision_v4_1/hulls.py": "362467068576e5f348e054e1c6e9f0d225423a693e575324db9bf74c54ea1d49",
+    "src/phrt/revision_v4_1/measure.py": "ed44131dedfa654d847dea5c3dd7fdeb588be1603037a3a34f221fa1a674df76",
+    "src/phrt/revision_v4_1/acquisition.py": "437f93e945354941b0508ccd0c1c222d5ceb62922a24718aaa39e44bfa04d81d",
+    "scripts/revision_v4_1/h0_fractional_baseline.py": "b985c07522ccbb2389aaa211f80864c1c040b5ada481489223f4e42e909e0cdd",
+    "scripts/revision_v4_1/h1_hull_convergence.py": "2e518c27ff92a1dcca738536719649d6c5a183503e4479e9cc220f725355b60b",
+    "scripts/revision_v4_1/h2_fractional_validation.py": "0f32dcebd7ccea6d721ff942ebf77592877e92762abf9dd7d8ebe110ad900ab7",
+    "tests/revision_v4_1/test_polyclip.py": "95b98f4d476060008b90ed4e77b51cf73230b61d5c479b55150f32c635c3c23c",
+    "tests/revision_v4_1/test_fractional_027.py": "778acc9f403442b752a1eae8841dece6343fe728394445981f2b4d658ef35e8f",
+    "artifacts/revisions/mahakal_v4_1/R3A_QC_026_INPUT_FREEZE.json": "5b5529817dd9941ab68bbc2dd37dee34a421e5a4ae567fe5b99f092a26c791e9",
+    "artifacts/e3_pilot/aart_out/coarse/LensingBands_a_0.5_i_50.0_dx0_0.8_dx1_0.16_dx2_0.04.h5": "5f23b3c565e7a65d7d78b4b23d7f82a075e37652361a08c861f1b73844928afe",
+    "artifacts/raymaps/a050_i050_n0_coarse.h5": "690d5f903fc0a44f39c6747fcd647cc2d003be3e1b9a7b8230f5f690d0ef9f91",
+    "artifacts/raymaps/a050_i050_n1_coarse.h5": "6f0dfa77073a6b05d13876d7fe366ae1422d315e4e439df29c329ac8c3ce171e",
+    "artifacts/raymaps/a050_i050_n2_coarse.h5": "8a416fb173f2e51834a14a2162126613c1bb778909ffac32a0301159b5454338",
+    "artifacts/e3_pilot/aart_out/core/LensingBands_a_0.5_i_50.0_dx0_0.4_dx1_0.08_dx2_0.02.h5": "cf004cee02e784c5124c31e2ffc7fad070b516d660c8a376aab086edd040cc86",
+    "artifacts/raymaps/a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+    "artifacts/raymaps/a050_i050_n1_core.h5": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+    "artifacts/raymaps/a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39",
+    "artifacts/e3_pilot/aart_out/fine/LensingBands_a_0.5_i_50.0_dx0_0.2_dx1_0.04_dx2_0.01.h5": "aecd5af1449fb4bfd6e7979e2bd9b6995cf6688472b1cfd532d51183602f42c6",
+    "artifacts/raymaps/a050_i050_n0_fine.h5": "5ec970f9581e7d237f44b3241ee848f378b59b5fe62101f3a87e7c406fad9b7c",
+    "artifacts/raymaps/a050_i050_n1_fine.h5": "855cf6794699d7690a1804098719b07a998f3d0a702af883a2a9e94f21fa395e",
+    "artifacts/raymaps/a050_i050_n2_fine.h5": "820fbab07abcc51de7eb561d3c9acdc346408d948dff0571aef474db4f119ee9"
+  }
+}

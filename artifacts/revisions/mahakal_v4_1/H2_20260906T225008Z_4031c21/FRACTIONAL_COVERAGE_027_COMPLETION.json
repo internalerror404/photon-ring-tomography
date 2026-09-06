@@ -1,0 +1,86 @@
+{
+  "schema": "phrt-completion/1",
+  "id": "FRACTIONAL_COVERAGE_027_COMPLETION",
+  "ruling": "PAPER_I_FRACTIONAL_COVERAGE_RULING_027",
+  "generated_utc": "2026-09-06T22:52:53Z",
+  "commit": "4031c219cdb58b0aca000630d3c1fdab88029735",
+  "fail_closed": true,
+  "required_conditions": [
+    "prerequisite_test_success",
+    "clipping_kernel_exact",
+    "clipped_overlap_not_fraction_substitution",
+    "hull_provenance_verified",
+    "hull_topology_valid",
+    "every_active_fragment_classified",
+    "no_zero_emission_assumed",
+    "detector_and_clock_unchanged",
+    "boundary_solve_cap_respected",
+    "transfer_ray_cap_respected",
+    "no_tolerance_adjusted_after_results",
+    "no_archive_rewritten",
+    "no_endpoint_recomputed",
+    "no_target_spectrum_count_or_estimator_inspected",
+    "fresh_output_directories",
+    "preexecution_registration_state_recorded",
+    "skipped_prerequisites_recorded"
+  ],
+  "conditions": {
+    "prerequisite_test_success": true,
+    "clipping_kernel_exact": true,
+    "clipped_overlap_not_fraction_substitution": true,
+    "hull_provenance_verified": true,
+    "hull_topology_valid": true,
+    "every_active_fragment_classified": true,
+    "no_zero_emission_assumed": true,
+    "detector_and_clock_unchanged": true,
+    "boundary_solve_cap_respected": true,
+    "transfer_ray_cap_respected": true,
+    "no_tolerance_adjusted_after_results": true,
+    "no_archive_rewritten": true,
+    "no_endpoint_recomputed": true,
+    "no_target_spectrum_count_or_estimator_inspected": true,
+    "fresh_output_directories": true,
+    "preexecution_registration_state_recorded": true,
+    "skipped_prerequisites_recorded": true
+  },
+  "failed_conditions": [],
+  "unrecorded_conditions": [],
+  "governance_complete": true,
+  "test_suite": {
+    "paths": [
+      "tests"
+    ],
+    "interpreter": "python3",
+    "returncode": 0,
+    "passed": true,
+    "summary": "574 passed in 107.58s (0:01:47)"
+  },
+  "separate_statuses": {
+    "kernel_and_units": "CORRECT",
+    "hull_geometry": "UNQUALIFIED",
+    "transferred_field_accuracy": "UNQUALIFIED",
+    "total_quadrature": "NOT_YET_QUALIFIED",
+    "governance": "COMPLETE_WITH_DISCLOSED_REGISTRATION_GAP"
+  },
+  "budget": {
+    "boundary_point_solves_used": 18000,
+    "boundary_point_solve_cap": 30000,
+    "transfer_ray_calls": 0,
+    "transfer_ray_cap_carried_forward": 250000,
+    "paid_resources": "none"
+  },
+  "return_status": "R3A_FRACTIONAL_QUADRATURE_NOT_YET_QUALIFIED",
+  "blockers": [
+    "MISSING_TRANSFER_SUPPORT",
+    "TRANSFER_ACCURACY_UNQUALIFIED",
+    "HULL_ACCURACY_UNQUALIFIED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "R3B_authorized": false,
+  "artifacts": {
+    "h0": "artifacts/revisions/mahakal_v4_1/H0_20260906T223337Z_3788969",
+    "h1": "artifacts/revisions/mahakal_v4_1/H1_20260906T224502Z_4031c21",
+    "h2": "artifacts/revisions/mahakal_v4_1/H2_20260906T225008Z_4031c21"
+  },
+  "skipped_prerequisites": []
+}

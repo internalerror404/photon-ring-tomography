@@ -1,0 +1,626 @@
+{
+  "stage": "H2",
+  "ruling": "PAPER_I_FRACTIONAL_COVERAGE_RULING_027",
+  "generated_utc": "2026-09-06T22:50:21Z",
+  "commit": "4031c219cdb58b0aca000630d3c1fdab88029735",
+  "transfer_ray_calls": 0,
+  "boundary_point_solves_this_stage": 0,
+  "hull_provenance": {
+    "solves": 0,
+    "from_cache": true,
+    "cache": "L480_s0_xNone.npz"
+  },
+  "hull_held_fixed_at_level": 480,
+  "explicitly_separated_diagnostic": true,
+  "hull_accuracy_at_this_level": "H1 did not qualify this level; the band symmetric difference against the next coarser level is 3.0e-7, 7.6e-5 and 1.9e-3 for orders 0, 1 and 2, so the geometry carried into this stage is accurate to those figures and no better",
+  "hull_source": "the finest level H1 measured, reused from the H1 solve cache",
+  "detector": {
+    "alpha_min": -25.0,
+    "alpha_max": 25.0,
+    "beta_min": -25.0,
+    "beta_max": 25.0,
+    "pitch": 0.4,
+    "n_alpha": 125,
+    "n_beta": 125,
+    "n_cells": 15625,
+    "cell_area": 0.16000000000000003
+  },
+  "sigma": 0.011341986814407566,
+  "observer_times_M": [
+    0.0,
+    2.857142857142857,
+    5.714285714285714,
+    8.571428571428571,
+    11.428571428571429,
+    14.285714285714286,
+    17.142857142857142,
+    20.0
+  ],
+  "absolute_clock_reference": -978.6055123201214,
+  "fields": {
+    "screen": [
+      "1",
+      "alpha/25",
+      "beta/25",
+      "(alpha/25)^2",
+      "(beta/25)^2",
+      "alpha*beta/625"
+    ],
+    "transferred": [
+      "g^3",
+      "g^3*cos20",
+      "g^3*sin20",
+      "g^3*cos40",
+      "g^3*sin40"
+    ],
+    "transferred_support": "carried only by fragments with valid transfer data; the rest is unmeasured, not zero emission"
+  },
+  "tolerances": {
+    "component": 0.0005,
+    "total": 0.001,
+    "mask": 0.001,
+    "area": 0.001
+  },
+  "comparisons": [
+    {
+      "pair": "coarse->core",
+      "order": 0,
+      "worst_field": "transferred:g^3*cos20",
+      "worst_relative": 0.06435928522258776,
+      "per_field": {
+        "screen:1": {
+          "fine_norm": 4385.463839749293,
+          "absolute": 1.5229025006828834e-12,
+          "relative": 3.47261442878513e-16,
+          "zero_response": false
+        },
+        "screen:alpha/25": {
+          "fine_norm": 2544.9482840386695,
+          "absolute": 20.039011723468303,
+          "relative": 0.007874034945679792,
+          "zero_response": false
+        },
+        "screen:beta/25": {
+          "fine_norm": 2544.910711054957,
+          "absolute": 20.038665305085008,
+          "relative": 0.007874015075671656,
+          "zero_response": false
+        },
+        "screen:(alpha/25)^2": {
+          "fine_norm": 1971.4941148950236,
+          "absolute": 31.202814663978724,
+          "relative": 0.01582698848971212,
+          "zero_response": false
+        },
+        "screen:(beta/25)^2": {
+          "fine_norm": 1971.4928676253892,
+          "absolute": 31.202756566885274,
+          "relative": 0.015826969034114825,
+          "zero_response": false
+        },
+        "screen:alpha*beta/625": {
+          "fine_norm": 1469.3710625829244,
+          "absolute": 16.363058026632615,
+          "relative": 0.011136096554037835,
+          "zero_response": false
+        },
+        "transferred:g^3": {
+          "fine_norm": 11040.589959156618,
+          "absolute": 497.87348841209996,
+          "relative": 0.04509482647702027,
+          "zero_response": false
+        },
+        "transferred:g^3*cos20": {
+          "fine_norm": 7774.417133048293,
+          "absolute": 500.3559297052281,
+          "relative": 0.06435928522258776,
+          "zero_response": false
+        },
+        "transferred:g^3*sin20": {
+          "fine_norm": 7796.478315834645,
+          "absolute": 467.3459764789315,
+          "relative": 0.05994321507054691,
+          "zero_response": false
+        },
+        "transferred:g^3*cos40": {
+          "fine_norm": 7783.205989794028,
+          "absolute": 408.87426586363483,
+          "relative": 0.05253288508614368,
+          "zero_response": false
+        },
+        "transferred:g^3*sin40": {
+          "fine_norm": 7819.7862648402215,
+          "absolute": 368.00030813600563,
+          "relative": 0.0470601491744896,
+          "zero_response": false
+        }
+      },
+      "component_budget": 0.0005,
+      "total_budget": 0.001,
+      "component_passes": false,
+      "total_passes": false,
+      "active_area": {
+        "coarser": 2475.263067761475,
+        "finer": 2475.263067761475,
+        "relative": 0.0,
+        "passes": true
+      },
+      "supported_area": {
+        "coarser": 2453.249190198882,
+        "finer": 2464.5752608346093,
+        "relative": 0.004595546671150076,
+        "passes": false
+      },
+      "legacy_binary_mask_intersection_for_reference": 2453.2898160745626
+    },
+    {
+      "pair": "coarse->core",
+      "order": 1,
+      "worst_field": "transferred:g^3*sin20",
+      "worst_relative": 0.23762475730403654,
+      "per_field": {
+        "screen:1": {
+          "fine_norm": 723.2430931399736,
+          "absolute": 6.9520040874915535e-12,
+          "relative": 9.612264746710952e-15,
+          "zero_response": false
+        },
+        "screen:alpha/25": {
+          "fine_norm": 112.37308005747725,
+          "absolute": 0.0181647377414513,
+          "relative": 0.0001616467016135919,
+          "zero_response": false
+        },
+        "screen:beta/25": {
+          "fine_norm": 153.62695283843468,
+          "absolute": 0.017259250194544513,
+          "relative": 0.00011234519643630243,
+          "zero_response": false
+        },
+        "screen:(alpha/25)^2": {
+          "fine_norm": 22.95586341463505,
+          "absolute": 0.008792763417797124,
+          "relative": 0.00038302908755727627,
+          "zero_response": false
+        },
+        "screen:(beta/25)^2": {
+          "fine_norm": 40.25903402100188,
+          "absolute": 0.009782000541941517,
+          "relative": 0.00024297653383433275,
+          "zero_response": false
+        },
+        "screen:alpha*beta/625": {
+          "fine_norm": 18.373697718427756,
+          "absolute": 0.002375936183541763,
+          "relative": 0.0001293118140916641,
+          "zero_response": false
+        },
+        "transferred:g^3": {
+          "fine_norm": 1078.8249393882652,
+          "absolute": 61.89791752994968,
+          "relative": 0.05737531203630512,
+          "zero_response": false
+        },
+        "transferred:g^3*cos20": {
+          "fine_norm": 508.5030997727024,
+          "absolute": 120.02590974479656,
+          "relative": 0.23603771500792695,
+          "zero_response": false
+        },
+        "transferred:g^3*sin20": {
+          "fine_norm": 501.5834491239055,
+          "absolute": 119.1886453657896,
+          "relative": 0.23762475730403654,
+          "zero_response": false
+        },
+        "transferred:g^3*cos40": {
+          "fine_norm": 631.8212692054913,
+          "absolute": 78.59392632020139,
+          "relative": 0.12439265683320924,
+          "zero_response": false
+        },
+        "transferred:g^3*sin40": {
+          "fine_norm": 641.8251870940068,
+          "absolute": 78.56877013332253,
+          "relative": 0.12241459467967986,
+          "zero_response": false
+        }
+      },
+      "component_budget": 0.0005,
+      "total_budget": 0.001,
+      "component_passes": false,
+      "total_passes": false,
+      "active_area": {
+        "coarser": 72.00460197262365,
+        "finer": 72.00460197262444,
+        "relative": 1.1052180586372407e-14,
+        "passes": true
+      },
+      "supported_area": {
+        "coarser": 54.63987609952799,
+        "finer": 54.82878468110337,
+        "relative": 0.003445427117783444,
+        "passes": false
+      },
+      "legacy_binary_mask_intersection_for_reference": 53.587114840082826
+    },
+    {
+      "pair": "coarse->core",
+      "order": 2,
+      "worst_field": "transferred:g^3*cos20",
+      "worst_relative": 0.8550747659823721,
+      "per_field": {
+        "screen:1": {
+          "fine_norm": 54.21912846620927,
+          "absolute": 5.600981255967155e-12,
+          "relative": 1.0330267959688484e-13,
+          "zero_response": false
+        },
+        "screen:alpha/25": {
+          "fine_norm": 7.216650545439583,
+          "absolute": 0.0006299349180608964,
+          "relative": 8.728909818959865e-05,
+          "zero_response": false
+        },
+        "screen:beta/25": {
+          "fine_norm": 8.811324142746253,
+          "absolute": 0.00039607963897711853,
+          "relative": 4.4951205126551064e-05,
+          "zero_response": false
+        },
+        "screen:(alpha/25)^2": {
+          "fine_norm": 1.31152631292245,
+          "absolute": 0.00025721884926051345,
+          "relative": 0.0001961217603689227,
+          "zero_response": false
+        },
+        "screen:(beta/25)^2": {
+          "fine_norm": 1.6283315101274978,
+          "absolute": 0.00015635038442167584,
+          "relative": 9.60187673389884e-05,
+          "zero_response": false
+        },
+        "screen:alpha*beta/625": {
+          "fine_norm": 0.8770072829666254,
+          "absolute": 3.7248659323743056e-05,
+          "relative": 4.2472462939809536e-05,
+          "zero_response": false
+        },
+        "transferred:g^3": {
+          "fine_norm": 52.59253657613878,
+          "absolute": 7.0376891624818,
+          "relative": 0.13381535899667554,
+          "zero_response": false
+        },
+        "transferred:g^3*cos20": {
+          "fine_norm": 13.563420703629172,
+          "absolute": 11.597738784076174,
+          "relative": 0.8550747659823721,
+          "zero_response": false
+        },
+        "transferred:g^3*sin20": {
+          "fine_norm": 14.223705290892221,
+          "absolute": 11.960546189237366,
+          "relative": 0.840888217565643,
+          "zero_response": false
+        },
+        "transferred:g^3*cos40": {
+          "fine_norm": 19.52211862171705,
+          "absolute": 9.876498999533203,
+          "relative": 0.5059132766740931,
+          "zero_response": false
+        },
+        "transferred:g^3*sin40": {
+          "fine_norm": 21.30166473142,
+          "absolute": 10.522546534472337,
+          "relative": 0.49397766170601487,
+          "zero_response": false
+        }
+      },
+      "component_budget": 0.0005,
+      "total_budget": 0.001,
+      "component_passes": false,
+      "total_passes": false,
+      "active_area": {
+        "coarser": 2.003859759710468,
+        "finer": 2.0038597597106644,
+        "relative": 9.795467462357219e-14,
+        "passes": true
+      },
+      "supported_area": {
+        "coarser": 1.4792009249387261,
+        "finer": 1.601259868699536,
+        "relative": 0.07622681748712042,
+        "passes": false
+      },
+      "legacy_binary_mask_intersection_for_reference": 1.3238457898073943
+    },
+    {
+      "pair": "core->fine",
+      "order": 0,
+      "worst_field": "transferred:g^3*cos20",
+      "worst_relative": 0.025228087993270493,
+      "per_field": {
+        "screen:1": {
+          "fine_norm": 4385.463839749293,
+          "absolute": 8.826413371305175e-13,
+          "relative": 2.0126521831747133e-16,
+          "zero_response": false
+        },
+        "screen:alpha/25": {
+          "fine_norm": 2544.9681033708002,
+          "absolute": 0.17364526908267597,
+          "relative": 6.823082334614861e-05,
+          "zero_response": false
+        },
+        "screen:beta/25": {
+          "fine_norm": 2544.9306835890175,
+          "absolute": 0.1785371273830894,
+          "relative": 7.015402365745592e-05,
+          "zero_response": false
+        },
+        "screen:(alpha/25)^2": {
+          "fine_norm": 1971.3999364662939,
+          "absolute": 0.1474531126921292,
+          "relative": 7.479614357522848e-05,
+          "zero_response": false
+        },
+        "screen:(beta/25)^2": {
+          "fine_norm": 1971.398696047773,
+          "absolute": 0.14595899891143274,
+          "relative": 7.403829535042753e-05,
+          "zero_response": false
+        },
+        "screen:alpha*beta/625": {
+          "fine_norm": 1469.394751642772,
+          "absolute": 0.04195948824900474,
+          "relative": 2.8555626867521034e-05,
+          "zero_response": false
+        },
+        "transferred:g^3": {
+          "fine_norm": 11055.468160549279,
+          "absolute": 251.66826068167066,
+          "relative": 0.0227641432300201,
+          "zero_response": false
+        },
+        "transferred:g^3*cos20": {
+          "fine_norm": 7798.568371179072,
+          "absolute": 196.74296908964178,
+          "relative": 0.025228087993270493,
+          "zero_response": false
+        },
+        "transferred:g^3*sin20": {
+          "fine_norm": 7818.598712264481,
+          "absolute": 177.1392035410099,
+          "relative": 0.022656131879890982,
+          "zero_response": false
+        },
+        "transferred:g^3*cos40": {
+          "fine_norm": 7798.239109766818,
+          "absolute": 190.99856943563148,
+          "relative": 0.024492525395434138,
+          "zero_response": false
+        },
+        "transferred:g^3*sin40": {
+          "fine_norm": 7832.112121929768,
+          "absolute": 168.76491237656353,
+          "relative": 0.021547816189202006,
+          "zero_response": false
+        }
+      },
+      "component_budget": 0.0005,
+      "total_budget": 0.001,
+      "component_passes": false,
+      "total_passes": false,
+      "active_area": {
+        "coarser": 2475.263067761475,
+        "finer": 2475.263067761475,
+        "relative": 0.0,
+        "passes": true
+      },
+      "supported_area": {
+        "coarser": 2464.5752608346093,
+        "finer": 2469.7446067011274,
+        "relative": 0.0020930689968882694,
+        "passes": false
+      },
+      "legacy_binary_mask_intersection_for_reference": 2464.527770842379
+    },
+    {
+      "pair": "core->fine",
+      "order": 1,
+      "worst_field": "transferred:g^3*sin20",
+      "worst_relative": 0.07754721490365447,
+      "per_field": {
+        "screen:1": {
+          "fine_norm": 723.2430931399738,
+          "absolute": 7.495399557190353e-12,
+          "relative": 1.0363596456412646e-14,
+          "zero_response": false
+        },
+        "screen:alpha/25": {
+          "fine_norm": 112.374955659782,
+          "absolute": 0.006287413022100789,
+          "relative": 5.595030480933927e-05,
+          "zero_response": false
+        },
+        "screen:beta/25": {
+          "fine_norm": 153.62852164343383,
+          "absolute": 0.0074222803403719935,
+          "relative": 4.8313166467870036e-05,
+          "zero_response": false
+        },
+        "screen:(alpha/25)^2": {
+          "fine_norm": 22.95602025377296,
+          "absolute": 0.002525207615045372,
+          "relative": 0.00011000197713409576,
+          "zero_response": false
+        },
+        "screen:(beta/25)^2": {
+          "fine_norm": 40.25927318742042,
+          "absolute": 0.003981248519216493,
+          "relative": 9.889022339480512e-05,
+          "zero_response": false
+        },
+        "screen:alpha*beta/625": {
+          "fine_norm": 18.374459950347404,
+          "absolute": 0.0013545381683101481,
+          "relative": 7.371852952252553e-05,
+          "zero_response": false
+        },
+        "transferred:g^3": {
+          "fine_norm": 1080.769876469563,
+          "absolute": 22.776725497196104,
+          "relative": 0.021074537691222882,
+          "zero_response": false
+        },
+        "transferred:g^3*cos20": {
+          "fine_norm": 510.4073153579064,
+          "absolute": 38.05538405630977,
+          "relative": 0.07455885311836621,
+          "zero_response": false
+        },
+        "transferred:g^3*sin20": {
+          "fine_norm": 503.54324153628164,
+          "absolute": 39.048375964696824,
+          "relative": 0.07754721490365447,
+          "zero_response": false
+        },
+        "transferred:g^3*cos40": {
+          "fine_norm": 632.9370186004983,
+          "absolute": 25.767972049515343,
+          "relative": 0.04071174744446376,
+          "zero_response": false
+        },
+        "transferred:g^3*sin40": {
+          "fine_norm": 643.0106507928548,
+          "absolute": 25.53986292599706,
+          "relative": 0.039719191112161996,
+          "zero_response": false
+        }
+      },
+      "component_budget": 0.0005,
+      "total_budget": 0.001,
+      "component_passes": false,
+      "total_passes": false,
+      "active_area": {
+        "coarser": 72.00460197262444,
+        "finer": 72.00460197262456,
+        "relative": 1.5788829409103413e-15,
+        "passes": true
+      },
+      "supported_area": {
+        "coarser": 54.82878468110337,
+        "finer": 54.98424959266063,
+        "relative": 0.002827444453802491,
+        "passes": false
+      },
+      "legacy_binary_mask_intersection_for_reference": 54.273584535622156
+    },
+    {
+      "pair": "core->fine",
+      "order": 2,
+      "worst_field": "transferred:g^3*cos20",
+      "worst_relative": 0.38272374995392294,
+      "per_field": {
+        "screen:1": {
+          "fine_norm": 54.219128466209106,
+          "absolute": 8.520107859708752e-12,
+          "relative": 1.571421028100576e-13,
+          "zero_response": false
+        },
+        "screen:alpha/25": {
+          "fine_norm": 7.21662031671674,
+          "absolute": 0.0001581985939977923,
+          "relative": 2.1921424026055183e-05,
+          "zero_response": false
+        },
+        "screen:beta/25": {
+          "fine_norm": 8.811325807102733,
+          "absolute": 0.00010617488452901303,
+          "relative": 1.204981938625245e-05,
+          "zero_response": false
+        },
+        "screen:(alpha/25)^2": {
+          "fine_norm": 1.3115095093325122,
+          "absolute": 6.957235214331228e-05,
+          "relative": 5.304753922731438e-05,
+          "zero_response": false
+        },
+        "screen:(beta/25)^2": {
+          "fine_norm": 1.6283314920566554,
+          "absolute": 4.219000984486323e-05,
+          "relative": 2.5909963696381846e-05,
+          "zero_response": false
+        },
+        "screen:alpha*beta/625": {
+          "fine_norm": 0.8770043334782637,
+          "absolute": 8.01196083516572e-06,
+          "relative": 9.135600052726872e-06,
+          "zero_response": false
+        },
+        "transferred:g^3": {
+          "fine_norm": 52.17405990739139,
+          "absolute": 4.057550153602953,
+          "relative": 0.07776949236469383,
+          "zero_response": false
+        },
+        "transferred:g^3*cos20": {
+          "fine_norm": 13.447442826214443,
+          "absolute": 5.146655745739771,
+          "relative": 0.38272374995392294,
+          "zero_response": false
+        },
+        "transferred:g^3*sin20": {
+          "fine_norm": 14.076021368315113,
+          "absolute": 5.239695840106335,
+          "relative": 0.3722426744748201,
+          "zero_response": false
+        },
+        "transferred:g^3*cos40": {
+          "fine_norm": 18.651101529293005,
+          "absolute": 5.121023723142489,
+          "relative": 0.27456950545786923,
+          "zero_response": false
+        },
+        "transferred:g^3*sin40": {
+          "fine_norm": 20.4543676025963,
+          "absolute": 5.260256972891172,
+          "relative": 0.257170354766846,
+          "zero_response": false
+        }
+      },
+      "component_budget": 0.0005,
+      "total_budget": 0.001,
+      "component_passes": false,
+      "total_passes": false,
+      "active_area": {
+        "coarser": 2.0038597597106644,
+        "finer": 2.0038597597102434,
+        "relative": 2.1009283154558016e-13,
+        "passes": true
+      },
+      "supported_area": {
+        "coarser": 1.601259868699536,
+        "finer": 1.6388585962206117,
+        "relative": 0.02294202050609029,
+        "passes": false
+      },
+      "legacy_binary_mask_intersection_for_reference": 1.4954554601112493
+    }
+  ],
+  "unsupported_area_fraction": {
+    "coarse_n0": 0.008893550689342167,
+    "coarse_n1": 0.2411613341005312,
+    "coarse_n2": 0.2618241282750987,
+    "core_n0": 0.004317846885071308,
+    "core_n1": 0.2385377714892607,
+    "core_n2": 0.2009122090805695,
+    "fine_n0": 0.0022294442688625127,
+    "fine_n1": 0.2363786746079768,
+    "fine_n2": 0.18214905595110642
+  },
+  "worst_unsupported_area_fraction": 0.2618241282750987,
+  "transferred_field_accuracy_qualified": false,
+  "runtime_seconds": 13.58273434638977
+}
