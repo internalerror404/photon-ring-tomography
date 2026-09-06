@@ -1,0 +1,283 @@
+protocol_id: MAHAKAL_REVISION_INFORMATION_BOUNDARY_V4_1
+schema_version: 1
+status: authorized_R0_R1_R2_reference_geometry_only
+amendment: PAPER_I_DEFECT_AMENDMENT_023.md
+supersedes_execution_package: MAHAKAL_REVISION_INFORMATION_BOUNDARY_V4_0
+repository:
+  name: internalerror404/photon-ring-tomography
+  delivery_branch: research/hmt2_resolution_aware_feature_measure_v0
+  inspected_base: 7961e5bd7d46be23885151afa7664596cc58cfa6
+  inspected_tree: 2425d64452dd3a02afe2b2cfe9e112513de7e557
+  original_freeze: artifacts/configs/PAPER_I_SUBMISSION_FREEZE_022.json
+  uploaded_pdf_sha256: 152b099fc09994e917f629bda90de19bfd388ee19e96f754a0dfc4b763e61148
+  frozen_repository_pdf_sha256: b2af07620ecebabd704a83aa9022f044574de443a7130a1c9ae5a8050a3962d5
+  pdf_identity_status: different_bytes_claim_lineage_requires_mapping
+  local_divergence_rule: reconcile_without_reset_rebase_clean_or_overwrite
+  new_work_branch_prefix: research/mahakal_v4_1
+self_contained_inputs:
+  - PAPER_I_DEFECT_AMENDMENT_023.md
+  - CORRECTION_LEDGER.md
+  - AGENT_HANDOFF.md
+  - EXPERIMENT_PROTOCOL.yaml
+missing_v4_helpers_required: false
+prior_algebra_report_is_physical_evidence: false
+current_delivery_physical_experiments_run: false
+preservation:
+  old_freeze_and_deliverables: immutable
+  canonical_artifacts_tables_banks_gates: immutable
+  ledger_aliases: new_overlay_only
+  failed_gates: preserve_literal_outcomes
+  new_source_root: src/phrt/revision_v4_1
+  new_runner_root: scripts/revision_v4_1
+  new_test_root: tests/revision_v4_1
+  new_output_root: artifacts/revisions/mahakal_v4_1
+  output_policy: unique_run_directory_never_overwrite
+  inherited_writer_policy: isolated_replay_or_verified_output_redirection
+  outcome_bearing_R2: requires_new_code_config_test_freeze
+execution:
+  arithmetic: CPU_float64
+  threading: repository_single_threaded_pinned_environment
+  new_ray_tracing: not_required_not_authorized_here
+  dense_algebra: small_fixtures_only
+  physical_algebra: blocked_or_matrix_free_with_memory_manifest
+  full_dense_data_covariance: prohibited_default
+  new_truths: prohibited
+  estimator_retuning: prohibited
+  geometry_mismatch: not_authorized
+  common_sky_physical_campaign: deferred_R3
+  new_multi_geometry_nuisance_sweep: not_authorized
+  VLBI_or_ML: not_authorized
+  end_after: R2_reference_geometry_report
+invariants:
+  - Use one declared actual noise density across all arms within a geometry.
+  - Do not apply SNR again to an operator containing actual sweep noise.
+  - reference_rows in NoiseModel.from_snr is a slice, not the new count parameter.
+  - A from_snr-only or unused-helper patch cannot close physical normalization.
+  - Equal ray counts do not establish inter-order screen registration.
+  - Preserve flux semantics separately for each runner.
+  - No SNR cutoff or regularization in the nuisance projector.
+  - Keep baseline and boundary-overlap nuisance columns.
+  - A source metric is not a prior precision.
+  - Changing source norm does not silently change archived estimators.
+  - Numerical success is not a physical or novelty claim.
+  - A zero conditional spectrum is a valid outcome.
+  - Do not weaken thresholds or select favorable rank tolerances.
+arm_aliases:
+  all_verified_index_sum_consumers:
+    UNRESOLVED_IMAGE: INDEX_SUM_CONTROL
+  index_paired_mechanism_consumers:
+    DELAY_ONLY: INDEX_PAIRED_DELAY_SUBSTITUTION
+    SPATIAL_ONLY: INDEX_PAIRED_SPATIAL_SUBSTITUTION
+  E3C:
+    TOTAL_FLUX: ORDER_RESOLVED_FLUX_CONTROL
+  HMT2:
+    TOTAL_FLUX: ALL_ORDER_FLUX_CONTROL
+  unchanged:
+    - DIRECT_PHYSICAL
+    - RESOLVED_PHYSICAL
+    - PAIRING_DESTROYED
+phases:
+  R0:
+    scope: all_twelve_ledger_items_no_outcome_recomputation
+    ledger_ids: [C01, C02, C03, C04, C05, C06, C07, C08, C09, C10, C11, C12]
+    required:
+      - Verify thirteen frozen deliverables and map differing manuscript versions.
+      - Preserve canonical artifact freeze and exact old source identities.
+      - Enumerate normalization definitions and all call sites by AST and text search.
+      - Classify toy from_snr separately from physical runner calibration.
+      - Record actual sigma, reference norm and counts per runner and geometry.
+      - Trace operator, mixer, collapse, covariance and source/background paths.
+      - Map all affected claims, captions, evidence rows and derivative releases.
+      - Record C05a and C05b separately under the same ledger ID.
+      - Locate legacy arrays without retuning or generating new truths.
+    normalization_search_seeds:
+      - scripts/run_e3c_operator_grid.py
+      - scripts/run_hmt2_sealed_main.py
+      - scripts/run_hmt2_stage1.py
+      - scripts/run_hmt1_validation.py
+      - scripts/run_r1l_stage2r_b.py
+      - scripts/run_e3d_source_class_stress.py
+      - src/phrt/operators/whitening.py
+      - scripts/reproduce_v01.py
+    search_is_exhaustive_only_after_call_graph_inventory: true
+    disposition_required_fields:
+      - status
+      - observed_ref
+      - file_paths
+      - blob_SHA_or_SHA256
+      - runner_family
+      - old_claim_IDs
+      - observed_behavior
+      - affected_claims
+      - surviving_claims
+      - new_alias
+      - required_test
+      - test_status
+      - numerical_rerun_needed
+      - prose_overlay_needed
+      - blocker
+    outputs:
+      - provenance.json
+      - correction_dispositions.json
+      - claim_dependency_map.csv
+      - manuscript_claim_overlay.md
+      - normalization_site_inventory.json
+    blockers:
+      - Conflicting unreconciled local governance record.
+      - Missing physical provenance for a claimed reproduction.
+    partial_progress_rule: Missing uploaded-PDF linkage blocks that reproduction claim, not isolated algebra or explicitly repository-based work.
+  R1:
+    launch_condition: R0_records_committed_and_relevant_source_provenance_resolved
+    calibration_modes:
+      LEGACY_REPLAY: exact_original_formula_and_grid
+      LOCKED_LEGACY_NOISE: frozen_per_geometry_sigma_for_same_observation_refinement
+      COMMON_REFERENCE_COUNT: sqrt_reference_energy_over_campaign_design_count
+    E3C_common_reference:
+      rays_per_order_design: 1536
+      observer_times_count: 8
+      reference_direct_row_count: 12288
+      exceptional_geometry: a000_i020
+      observed_exceptional_rays: 1483
+      count_only_information_factor: 1.035738368172623
+      count_only_sigma_factor: 0.9825959452728606
+    other_campaign_count_rule: derive_from_registered_design_and_freeze_before_outcomes
+    physical_site_integration:
+      requirement: map_every_legacy_calibration_site_to_versioned_production_entrypoint_and_test
+      reject: helper_only_or_toy_only_repair
+      legacy_source_replay: retain
+      zero_reference_signal: explicit_error_not_silent_floor
+    pixel_split_factors: [2, 4, 8, 16]
+    amplitude_or_inverse_noise_factors: [1, 2, 4]
+    stored_curve_impact_audit:
+      scope: all_existing_E3C_geometries_arms_SNRs_and_thresholds
+      fresh_geodesics: false
+      information_factor: reference_direct_row_count_divided_by_legacy_direct_row_count
+      singular_value_factor: square_root_of_information_factor
+      outputs: [noise_dictionary.csv, normalization_endpoint_deltas.csv, threshold_crossings.csv]
+      reconstruct:
+        - full_threshold_masks
+        - oldest_passing_age
+        - longest_passing_run
+        - anchor_connected_span
+        - nonlinear_log_sensitivity_integrals
+        - operational_counts
+      note: A small factor and 4M binning do not prove unchanged endpoints.
+    covariance:
+      general_rule: L_C_L_transpose_full_not_diagonal
+      archived_identity_or_single_sum: preserve_valid_cases
+      singular_rule: whiten_stochastic_support_and_test_noiseless_signal_constraints
+      undocumented_ridge: forbidden
+    source_metric:
+      measure: nondimensional_r_dr_dphi_dt
+      domain: common_registered_annulus_and_source_time_interval
+      factorization: weighted_QR_or_SVD_preferred_Cholesky_when_justified
+      full_Gram_cross_terms: required
+      physical_volume_claim: false
+      quadrature_refinements_minimum: 3
+      final_pair_Gram_relative_tolerance: 1.0e-6
+      endpoint_stability_across_last_two_refinements: required_for_promotion
+      dependency_removal: explicit_certificate_only
+    gates:
+      G01: amplitude_noise_information_scaling
+      G02: legacy_physical_path_replay
+      G03: fixed_noise_spatial_split_merge
+      G04: common_count_recalibrated_spatial_split_merge
+      G05: legacy_recalibration_counterexample_detected
+      G06: production_calibration_site_coverage
+      G07: exact_general_mixing_covariance_and_adjoint
+      G08: redundant_outputs_and_noiseless_constraints
+      G09: invertible_reexpression_information_invariance
+      G10: rank_reducing_postprocessing_information_contraction
+      G11: source_basis_change_with_transformed_Gram
+      G12: old_equals_recent_conditional_zero
+      G13: independent_recent_measurement_breaks_degeneracy
+      G14: nuisance_coordinate_change_invariance
+      G15: conditional_information_does_not_exceed_known_remainder
+      G16: cardinality_does_not_prove_registration
+      G17: index_substitution_reindexing_counterexample
+      G18: runner_specific_flux_rows_and_permutation_invariance
+      G19: source_Gram_quadrature_convergence
+      G20: archived_mask_and_endpoint_count_impact_audit_complete
+    well_conditioned_fixture_relative_tolerance: 1.0e-10
+    fixture_coordinate_condition_maximum: 1.0e4
+    results_policy: G05_G16_G17_pass_means_expected_counterexample_was_detected
+    outputs:
+      - calibration_migration_map.json
+      - numerical_gates.json
+      - physical_metric_convergence.json
+      - R1_CODE_CONFIG_TEST_FREEZE.json
+    blockers:
+      - Any relevant failed implementation gate.
+      - Any discovered physical calibration site without classification or integration evidence.
+      - Missing required model or metric metadata.
+  R2:
+    launch_condition: relevant_R0_R1_gates_pass_and_R2_target_manifest_committed
+    geometry: {spin: 0.5, inclination_degrees: 50}
+    orders: [0, 1, 2]
+    maps: reuse_verified_frozen_reference_geometry_maps
+    observation: inherited_exact_schedule
+    primary_snr_label: 100
+    calibration: COMMON_REFERENCE_COUNT
+    actual_sigma_must_be_reported: true
+    source:
+      primary_class: L224
+      full_model: include_all_m0_and_contrast_columns
+      support_and_time_domain: inherited_registered_localized_basis
+      target: nonaxisymmetric_compact_temporal_factors_outside_direct_retarded_time_footprint
+      target_selection_basis: support_geometry_only_never_singular_value_or_reconstruction_score
+      nuisance: all_other_full_model_coefficients_including_old_baseline_recent_and_boundary_overlap
+      target_manifest_before_spectra: required
+      empty_target: report_do_not_reselect
+    nuisance_tiers:
+      - KNOWN_REMAINDER_DIAGNOSTIC_UPPER_BOUND
+      - UNKNOWN_REMAINING_EMISSIVITY_INCLUDING_BASELINE
+    model_scope: unconstrained_linear_source_nuisance_fixed_known_geometry
+    geometry_nuisance_or_finite_mismatch: deferred
+    primary_arms: [DIRECT_PHYSICAL, RESOLVED_PHYSICAL]
+    optional_diagnostic_arms:
+      - ALL_ORDER_FLUX_CONTROL
+      - ORDER_RESOLVED_FLUX_CONTROL
+      - INDEX_SUM_CONTROL
+    index_control_is_physical_acquisition: false
+    scalar_probe_companion:
+      status: optional_separate_known_remainder_replay
+      h_M: 3.0
+      identical_to_compact_coefficient_target: false
+    new_width_age_or_geometry_sweeps: deferred
+    target_metric: H_old_from_declared_target_source_functions
+    formula: B_cond = (I - U_n U_n_transpose) W A_old R_old_inverse
+    projection_implementation: thin_factors_never_materialize_data_space_identity
+    nuisance_rank_rtol_primary: 1.0e-12
+    nuisance_rank_rtol_sensitivity: [1.0e-13, 1.0e-12, 1.0e-11]
+    nuisance_preconditioning: invertible_recorded_source_metric_or_column_change
+    nuisance_SNR_cutoff_or_regularizer: forbidden
+    effect_amplitude: 1.0
+    rho: 1.0
+    endpoints:
+      - known_remainder_and_conditional_singular_spectra
+      - operational_target_counts
+      - absolute_target_dimension_and_kernel_diagnostics
+      - matched_direction_information_comparisons
+      - nuisance_projector_rank_and_tolerance_sensitivity
+      - source_metric_convergence_and_actual_noise
+    hypothesis: Higher orders may add old directions that the declared nuisances cannot mimic.
+    favorable_outcome_required: false
+    unstable_operational_conclusion: NUMERICALLY_UNRESOLVED
+    outputs:
+      - R2_TARGET_AND_NUISANCE_MANIFEST.json
+      - nuisance_adjusted_spectra.npz
+      - reference_geometry_information.csv
+      - nuisance_rank_sensitivity.csv
+      - R0_R2_REPORT.md
+      - SHA256SUMS.txt
+    npz_allow_pickle: false
+    stop_after_completion: true
+return_tokens:
+  - R0_BLOCKED
+  - R1_BLOCKED
+  - R2_NUMERICALLY_UNRESOLVED
+  - R0_R2_COMPLETE_REFERENCE_GEOMETRY
+future_only:
+  R3: common_sky_registration_detector_and_declared_counterfactual_mechanism_models
+  R4: new_validation_and_fresh_reconstruction_main_after_separate_authorization
+  R5: admissible_ambiguity_pairs_and_new_manuscript_freeze
