@@ -1,0 +1,161 @@
+review_id: PAPER_I_BOUNDARY_VALIDITY_RULING_028
+reviewed_commit: 6f76ee56f024f4e5895b89325dc43d4db08863b3
+work_branch: research/mahakal_v4_1
+status: PHYSICAL_CONTOUR_PILOT_AUTHORIZED_HULL_TOLERANCE_RETAINED
+preservation:
+  governing_defect: C13
+  old_maps_runs_tests_freezes: immutable
+  old_failures: retain
+  R2_legacy_acceptance: unchanged
+  new_R2_operator_or_SVD: forbidden
+  R3B: not_authorized
+  delivery: GitHub_only
+fixed_experiment:
+  geometry: {id: a050_i050, spin: 0.5, inclination_degrees: 50}
+  orders: [0, 1, 2]
+  detector: D026
+  bounds_M: {alpha: [-25.0, 25.0], beta: [-25.0, 25.0]}
+  pitch_M: 0.4
+  cells: [125, 125]
+  sigma: 0.011341986814407566
+  clock_reference_M: -978.6055123201214
+  observer_times: exact_accepted_eight
+  target: exact_accepted_72_indices
+  nuisance: remaining_152_full_L224_coefficients
+  source_norm: unchanged
+  recentering_clipping_or_recalibration: forbidden
+record_corrections:
+  center_area_shares: center_classified_geometric_diagnostics_not_resolved_contour_areas
+  active_area_H2: geometric_band_not_complete_emitting_region
+  missing_response_H2: partial_response_on_available_support
+  halved_error_norm: not_exact_causal_decomposition
+  R2_row_bound: {count_lower: 1, count_upper: 2, actual_count_measured: false}
+  budget_status: projected_uniform_polygon_plan_over_remaining_cap_not_literal_exhaustion
+  registration: AUDIT_COMPLETE_WITH_PREREGISTRATION_FAILURE
+  shifted_hull_check_tolerance: 2.5e-4
+  tighter_root_check_tolerance: 2.5e-5
+  radial_area_trapezoid: approximate_not_exact_on_vertex_angles
+physical_domain_partition:
+  states: [CERTIFIED_EMITTING, CERTIFIED_NON_EMITTING, UNRESOLVED]
+  point_status_is_fragment_certificate: false
+  outside_annulus_verified_over_fragment: physical_zero_not_missing_transfer
+  solver_failure: unresolved_not_physical_boundary
+  certified_non_emitting_area_must_be_small: false
+  emitting_support_transfer_states: [AVAILABLE_ACCURACY_TESTED, AVAILABLE_UNQUALIFIED, MISSING_OR_SOLVER_UNRESOLVED]
+  full_validity_predicate: pinned_band_and_source_domain_no_new_cutoffs
+  overlap: detector_intersect_corrected_cell_intersect_valid_emission_domain
+  single_sky_noise: sigma_squared_times_full_detector_area_once
+  inherited_noise: matched_declared_parent_only
+contour_pilot:
+  scalar_function: r_source_order_branch_minus_50
+  seed_data: cached_samples_hulls_and_declared_geometry
+  method: bracketed_safeguarded_continuation_on_finite_continuous_branch
+  scalar_sign_change_certifies_branch_continuity: false
+  one_root_per_radial_line: not_assumed
+  same_sign_endpoints_exclude_roots: false
+  checks: [multiple_crossings, tangencies, closed_components, branch_identity, finite_values, residual, screen_brackets, topology]
+  unresolved_primitive_log: [radial_roots, polar_order, azimuth_integral, time_integral, redshift, numerical_conditioning, no_prior_evaluation]
+  retry_policy: same_physical_equations_pinned_prospective_numeric_configuration
+  backend_substitution: forbidden_without_new_ruling
+  failed_value_zero_fill: forbidden
+  physical_query_count: each_screen_order_evaluation_including_failures_and_retries
+  error_budget: inherited_transfer_emission_component_5e_4_and_total_1e_3
+  unknown_support_response: validated_envelope_or_explicit_blocker
+  sampled_max_is_validated_envelope: false
+hull_candidate:
+  permission: one_declared_curved_boundary_representation
+  support: authenticated_cached_root_solutions
+  validation: fresh_defining_equation_solves_away_from_fit_knots
+  permitted_forms: validated_smooth_periodic_radial_or_piecewise_parametric_curve
+  physical_corners_and_exact_outer_square: preserve
+  root_equations_safety_factors_clamps_branches: preserve_and_label
+  positive_band_width_and_valid_topology: required
+  silent_width_floor_convexification_or_smoothing: forbidden
+  critical_mark_parameterization_accuracy: explicit_input_check
+  independent_midpoint_quarter_or_shifted_samples: required
+  all_five_boundaries_recomputed_for_each_query: not_required_select_actual_needed_boundary
+  densify_old_straight_polygon_as_new_geometry: forbidden
+  tessellate_validated_curve_for_clipping: permitted_with_separate_1e_6_integration_budget
+  two_late_pairs_and_independent_checks: required
+  exact_continuum_theorem_from_samples: not_claimed
+accuracy_unchanged:
+  band_symdiff_relative: 2.5e-4
+  inner_plus_outer_symdiff_relative: 2.5e-4
+  denominator: same_order_band_union_not_screen_or_outer_hull
+  hull_only_response: 2.5e-4
+  shifted_hull_check: 2.5e-4
+  tenfold_tighter_root_comparison: 2.5e-5
+  transferred_field_and_emission_boundary_response: 5.0e-4
+  total_response_mask_area: 1.0e-3
+  exact_fixture_atol: 1.0e-12
+  exact_fixture_rtol: 1.0e-12
+  integration_or_tessellation: 1.0e-6
+  thinness_in_ray_cells_relaxes_geometry: false
+  per_field_per_order_and_per_time: required
+  physical_non_emission_counted_as_missing_error: false
+resource_ledger:
+  boundary_spent: 18000
+  boundary_lifetime_cap: 30000
+  boundary_remaining: 12000
+  boundary_independent_check_reserve_min: 4000
+  transfer_spent: 0
+  transfer_lifetime_cap: 250000
+  transfer_pilot_max: 20000
+  transfer_initial_diagnostic_max: 4000
+  transfer_independent_validation_reserve_min: 4000
+  first_transfer_batch_only: true
+  second_transfer_batch: review_required
+  every_attempt_counted: true
+  aborted_9000_boundary_solves: remain_charged
+  cached_reads: zero_new_calls_with_hashes
+  full_transfer_calls_inside_boundary_routine: charge_both_applicable_ledgers
+  peak_GiB: 8
+  cumulative_compute_hours_under_027: 2
+  time_already_used: reconcile_before_launch_no_silent_reset
+  extra_paid_resources: not_authorized
+launch:
+  inputs_and_plan_committed_before_new_physical_queries: required
+  freeze: code_solver_config_cache_maps_selection_tests_counters_detector_clock
+  guard_before_uncached_root_or_transfer_call: required
+  clean_registered_tree: required
+  output_directory: fresh
+  phase_execution_identity: record
+  checks_recorded_vs_checks_satisfied: separate
+  capability_probe_that_traces: must_pass_same_guard
+  previous_runs: diagnostic_preserved_no_backdating_no_compulsory_duplicate_run
+stages:
+  V0:
+    tasks: [record_overlays, classify_point_vs_fragment_status, validate_solver_primitives, commit_pilot_freeze]
+    new_physical_queries: zero
+  V1:
+    tasks: [initial_cost_and_failure_probe, bracketed_emission_contours, solver_recovery_audit, independent_support_checks]
+    transfer_limit: 20000
+    reporting: certified_regions_and_unresolved_tubes_with_response_bounds
+  G1:
+    tasks: [freeze_one_curved_candidate, validate_fresh_boundary_points, check_topology_and_width, measure_original_geometry_metrics]
+    boundary_limit: remaining_12000
+    report_per_order_partial_success: allowed_not_global_qualification
+  V2:
+    tasks: [controlled_partial_response_diagnostics, full_domain_field_convergence_where_supported, actual_resource_and_registration_report]
+    target_information: forbidden
+completion:
+  physical_contour_status: separate
+  solver_support_status: separate
+  hull_status: separate
+  overall_quadrature_status: separate
+  preregistration_satisfied: explicit_condition_not_merely_state_recorded
+  all_named_conditions_recorded_and_true_for_success: required
+  not_run_checks: explicit_never_pass
+  review_ready: BOUNDARY_VALIDITY_028_REVIEW_READY
+  blocked: BOUNDARY_VALIDITY_028_BLOCKED
+  neither_token_authorizes_R3B: true
+outputs:
+  - BOUNDARY_VALIDITY_028_INPUT_FREEZE.json
+  - INTERPRETATION_OVERLAY_028.md
+  - EMISSION_CONTOUR_AND_UNCERTAINTY_028.json
+  - SOLVER_FAILURE_AND_RECOVERY_028.json
+  - CURVED_HULL_VALIDATION_028.json
+  - RESOURCE_LEDGER_028.json
+  - BOUNDARY_VALIDITY_028_RETURN.md
+  - BOUNDARY_VALIDITY_028_COMPLETION.json
+  - SHA256SUMS.txt

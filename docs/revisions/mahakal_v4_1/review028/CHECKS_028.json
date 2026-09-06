@@ -1,0 +1,192 @@
+{
+  "scope": "Synthetic tests and arithmetic only; no real hull, ray, target-operator, or repository-suite execution.",
+  "reviewed_commit": "6f76ee56f024f4e5895b89325dc43d4db08863b3",
+  "checks": [
+    {
+      "name": "physical_emission_contour_root",
+      "passed": true
+    },
+    {
+      "name": "numerical_failure_remains_unknown_not_outside",
+      "passed": true
+    },
+    {
+      "name": "verified_outside_sample_is_not_missing_transfer",
+      "passed": true
+    },
+    {
+      "name": "one_outside_cell_center_does_not_exclude_whole_cell",
+      "passed": true
+    },
+    {
+      "name": "bracket_sign_change_across_pole_is_not_physical_root",
+      "passed": true
+    },
+    {
+      "name": "equal_endpoint_signs_can_hide_two_roots",
+      "passed": true
+    },
+    {
+      "name": "tangency_is_not_detected_by_sign_change_only",
+      "passed": true
+    },
+    {
+      "name": "small_scalar_residual_does_not_bound_screen_position_without_gradient",
+      "passed": true
+    },
+    {
+      "name": "response_norm_reduction_is_not_additive_causal_decomposition",
+      "passed": true
+    },
+    {
+      "name": "thin_band_geometry_budget_depends_on_width_not_ray_cell_count",
+      "passed": true
+    },
+    {
+      "name": "same_detector_flux_can_hide_band_disagreement",
+      "passed": true
+    },
+    {
+      "name": "same_fixed_polygon_across_profiles_is_not_continuum_convergence",
+      "passed": true
+    },
+    {
+      "name": "vertex_angle_trapezoid_is_not_exact_polygon_area",
+      "passed": true
+    },
+    {
+      "name": "curved_boundary_32_tested_at_fresh_parameters",
+      "passed": true
+    },
+    {
+      "name": "curved_boundary_64_tested_at_fresh_parameters",
+      "passed": true
+    },
+    {
+      "name": "curved_boundary_128_tested_at_fresh_parameters",
+      "passed": true
+    },
+    {
+      "name": "validated_curved_representation_can_reduce_error_at_same_nodes_in_fixture",
+      "passed": true
+    },
+    {
+      "name": "synthetic_curved_thin_band_meets_original_geometry_budget",
+      "passed": true
+    },
+    {
+      "name": "synthetic_straight_thin_band_remains_unqualified_same_nodes",
+      "passed": true
+    },
+    {
+      "name": "row_bound_proves_at_least_one_and_at_most_two_not_exactly_one",
+      "passed": true
+    },
+    {
+      "name": "small_unknown_area_need_not_have_small_response",
+      "passed": true
+    },
+    {
+      "name": "remaining_budget_is_not_literal_exhaustion",
+      "passed": true
+    }
+  ],
+  "n_checks": 22,
+  "all_passed": true,
+  "physical_root_fixture": {
+    "root": 0.5,
+    "point_statuses": [
+      "PHYSICAL_INSIDE_AT_EVALUATED_POINT",
+      "UNKNOWN_SOLVER",
+      "PHYSICAL_INSIDE_AT_EVALUATED_POINT",
+      "PHYSICAL_OUTSIDE_AT_EVALUATED_POINT",
+      "PHYSICAL_OUTSIDE_AT_EVALUATED_POINT"
+    ]
+  },
+  "pole_fixture": {
+    "returned_point": 0.1234567889999575,
+    "residual_magnitude": 23532852396449.36
+  },
+  "response_norm_fixture": {
+    "norm_decrease": 0.025,
+    "removed_vector_norm": 0.05590169943749475
+  },
+  "thin_band_fixture": {
+    "width": 0.03,
+    "displacement": 0.0001,
+    "relative_symdiff": 0.00664451827242525
+  },
+  "fixed_polygon_true_disk_area_error": 0.0018267026292004829,
+  "vertex_angle_trapezoid_square_area": 6.283185307179586,
+  "synthetic_curved_boundary_comparison": [
+    {
+      "vertices_per_boundary": 32,
+      "straight_polygon": {
+        "band_symdiff_relative": 0.8409528588661512,
+        "boundaries_symdiff_relative": 0.9401560926213066,
+        "min_width": 0.015999950586038203
+      },
+      "periodic_cubic": {
+        "band_symdiff_relative": 0.0012019225017951933,
+        "boundaries_symdiff_relative": 0.0012019225017952983,
+        "min_width": 0.016000000004654957
+      },
+      "independent_midpoint_max_error": 3.4747784321886854e-05
+    },
+    {
+      "vertices_per_boundary": 64,
+      "straight_polygon": {
+        "band_symdiff_relative": 0.3369653847877543,
+        "boundaries_symdiff_relative": 0.33696538478775423,
+        "min_width": 0.015999999006240273
+      },
+      "periodic_cubic": {
+        "band_symdiff_relative": 6.872816806013419e-05,
+        "boundaries_symdiff_relative": 6.872816806005427e-05,
+        "min_width": 0.01600000000461055
+      },
+      "independent_midpoint_max_error": 2.045210838019784e-06
+    },
+    {
+      "vertices_per_boundary": 128,
+      "straight_polygon": {
+        "band_symdiff_relative": 0.09640722658959877,
+        "boundaries_symdiff_relative": 0.09640722658959894,
+        "min_width": 0.015999999989619873
+      },
+      "periodic_cubic": {
+        "band_symdiff_relative": 4.193424185780696e-06,
+        "boundaries_symdiff_relative": 4.193424186201931e-06,
+        "min_width": 0.016000000004599002
+      },
+      "independent_midpoint_max_error": 1.2598117482554017e-07
+    }
+  ],
+  "row_bound": {
+    "ratio_min": 0.50008121,
+    "ratio_max": 1.0080482572861729,
+    "singular_lower": [
+      1.016311572042193,
+      0.9517533973548011,
+      0.570172663248016
+    ],
+    "singular_upper": [
+      1.442936647947654,
+      1.3512783821720709,
+      0.8095185119316174
+    ],
+    "operational_count_lower": 1,
+    "operational_count_upper": 2,
+    "actual_corrected_count_measured": false
+  },
+  "remaining_counters_reported_by_agent": {
+    "boundary_solves": 12000,
+    "transfer_evaluations": 250000
+  },
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "script_sha256": "03da272144d5c70eb6287d2dee604202d1c0dc674e93411f023606ab42b6aa27"
+}
