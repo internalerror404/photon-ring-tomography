@@ -1,0 +1,8 @@
+{
+  "stage": "H0",
+  "suite": "tests/revision_v4_1/test_polyclip.py",
+  "plus": "tests/revision_v4_1/test_fractional_027.py",
+  "returncode": 0,
+  "passed": true,
+  "summary": "22 passed in 0.69s"
+}

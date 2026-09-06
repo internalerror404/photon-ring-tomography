@@ -1,0 +1,196 @@
+{
+  "stage": "H0",
+  "ruling": "PAPER_I_FRACTIONAL_COVERAGE_RULING_027",
+  "generated_utc": "2026-09-06T22:34:04Z",
+  "commit": "3788969f2e2709f1a41a0f17518d4227a9fefc33",
+  "transfer_ray_calls": 0,
+  "boundary_point_solves": 0,
+  "hulls_regenerated": false,
+  "hull_source": "archived AART lensing-band files, read not rebuilt",
+  "pinned_convention": {
+    "band": "interior(hull_ne) minus interior(hull_ni), matching lensingbands.grid_mask's indexes = in_hull(grid, hull2) & ~in_hull(grid, hull)",
+    "order_0_outer": "the four-corner screen square at +/-limits",
+    "order_0_inner": "the apparent horizon curve, not the critical curve",
+    "orders_1_2": "radial scalings of the 120 critical-curve directions, each a root of nlayers at that direction",
+    "directions": "npointsS arclength marks on the upper critical curve, mirrored to 2*npointsS directions"
+  },
+  "validity_predicate": {
+    "source": "src/phrt/geometry/raymap.py::validity",
+    "clauses": [
+      "band membership",
+      "finite source_r, source_phi, coordinate_time",
+      "source_r > r_+ = 1.8660254037844386",
+      "source_r <= 50.0"
+    ],
+    "hull_alone_is_the_predicate": false
+  },
+  "files": {
+    "artifacts/e3_pilot/aart_out/coarse/LensingBands_a_0.5_i_50.0_dx0_0.8_dx1_0.16_dx2_0.04.h5": "5f23b3c565e7a65d7d78b4b23d7f82a075e37652361a08c861f1b73844928afe",
+    "artifacts/raymaps/a050_i050_n0_coarse.h5": "690d5f903fc0a44f39c6747fcd647cc2d003be3e1b9a7b8230f5f690d0ef9f91",
+    "artifacts/raymaps/a050_i050_n1_coarse.h5": "6f0dfa77073a6b05d13876d7fe366ae1422d315e4e439df29c329ac8c3ce171e",
+    "artifacts/raymaps/a050_i050_n2_coarse.h5": "8a416fb173f2e51834a14a2162126613c1bb778909ffac32a0301159b5454338",
+    "artifacts/e3_pilot/aart_out/core/LensingBands_a_0.5_i_50.0_dx0_0.4_dx1_0.08_dx2_0.02.h5": "cf004cee02e784c5124c31e2ffc7fad070b516d660c8a376aab086edd040cc86",
+    "artifacts/raymaps/a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+    "artifacts/raymaps/a050_i050_n1_core.h5": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+    "artifacts/raymaps/a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39",
+    "artifacts/e3_pilot/aart_out/fine/LensingBands_a_0.5_i_50.0_dx0_0.2_dx1_0.04_dx2_0.01.h5": "aecd5af1449fb4bfd6e7979e2bd9b6995cf6688472b1cfd532d51183602f42c6",
+    "artifacts/raymaps/a050_i050_n0_fine.h5": "5ec970f9581e7d237f44b3241ee848f378b59b5fe62101f3a87e7c406fad9b7c",
+    "artifacts/raymaps/a050_i050_n1_fine.h5": "855cf6794699d7690a1804098719b07a998f3d0a702af883a2a9e94f21fa395e",
+    "artifacts/raymaps/a050_i050_n2_fine.h5": "820fbab07abcc51de7eb561d3c9acdc346408d948dff0571aef474db4f119ee9"
+  },
+  "per_profile": {
+    "coarse": {
+      "npointsS_marks": 60,
+      "directions": 120,
+      "hulls": [
+        {
+          "order": 0,
+          "outer_vertices": 4,
+          "inner_vertices": 120,
+          "outer_signed_area": 2500.0,
+          "inner_signed_area": -24.721231389824048,
+          "band_area": 2475.278768610176,
+          "outer_simple": true,
+          "inner_simple": true,
+          "outer_unique_vertices": 4,
+          "inner_unique_vertices": 120,
+          "inner_strictly_inside_outer": true,
+          "nesting_consistent": true,
+          "band_area_by_clipping": 2475.278768610176
+        },
+        {
+          "order": 1,
+          "outer_vertices": 120,
+          "inner_vertices": 120,
+          "outer_signed_area": -147.25575770199663,
+          "inner_signed_area": -75.2942439688006,
+          "band_area": 71.96151373319603,
+          "outer_simple": true,
+          "inner_simple": true,
+          "outer_unique_vertices": 120,
+          "inner_unique_vertices": 120,
+          "inner_strictly_inside_outer": true,
+          "nesting_consistent": true,
+          "band_area_by_clipping": 71.96151373319604
+        },
+        {
+          "order": 2,
+          "outer_vertices": 120,
+          "inner_vertices": 120,
+          "outer_signed_area": -84.6039699110595,
+          "inner_signed_area": -82.60104758246851,
+          "band_area": 2.0029223285909836,
+          "outer_simple": true,
+          "inner_simple": true,
+          "outer_unique_vertices": 120,
+          "inner_unique_vertices": 120,
+          "inner_strictly_inside_outer": true,
+          "nesting_consistent": true,
+          "band_area_by_clipping": 2.002922328590955
+        }
+      ]
+    },
+    "core": {
+      "npointsS_marks": 60,
+      "directions": 120,
+      "hulls": [
+        {
+          "order": 0,
+          "outer_vertices": 4,
+          "inner_vertices": 120,
+          "outer_signed_area": 2500.0,
+          "inner_signed_area": -24.721231389824048,
+          "band_area": 2475.278768610176,
+          "outer_simple": true,
+          "inner_simple": true,
+          "outer_unique_vertices": 4,
+          "inner_unique_vertices": 120,
+          "inner_strictly_inside_outer": true,
+          "nesting_consistent": true,
+          "band_area_by_clipping": 2475.278768610176
+        },
+        {
+          "order": 1,
+          "outer_vertices": 120,
+          "inner_vertices": 120,
+          "outer_signed_area": -147.25575770199663,
+          "inner_signed_area": -75.2942439688006,
+          "band_area": 71.96151373319603,
+          "outer_simple": true,
+          "inner_simple": true,
+          "outer_unique_vertices": 120,
+          "inner_unique_vertices": 120,
+          "inner_strictly_inside_outer": true,
+          "nesting_consistent": true,
+          "band_area_by_clipping": 71.96151373319604
+        },
+        {
+          "order": 2,
+          "outer_vertices": 120,
+          "inner_vertices": 120,
+          "outer_signed_area": -84.6039699110595,
+          "inner_signed_area": -82.60104758246851,
+          "band_area": 2.0029223285909836,
+          "outer_simple": true,
+          "inner_simple": true,
+          "outer_unique_vertices": 120,
+          "inner_unique_vertices": 120,
+          "inner_strictly_inside_outer": true,
+          "nesting_consistent": true,
+          "band_area_by_clipping": 2.002922328590955
+        }
+      ]
+    },
+    "fine": {
+      "npointsS_marks": 60,
+      "directions": 120,
+      "hulls": [
+        {
+          "order": 0,
+          "outer_vertices": 4,
+          "inner_vertices": 120,
+          "outer_signed_area": 2500.0,
+          "inner_signed_area": -24.721231389824048,
+          "band_area": 2475.278768610176,
+          "outer_simple": true,
+          "inner_simple": true,
+          "outer_unique_vertices": 4,
+          "inner_unique_vertices": 120,
+          "inner_strictly_inside_outer": true,
+          "nesting_consistent": true,
+          "band_area_by_clipping": 2475.278768610176
+        },
+        {
+          "order": 1,
+          "outer_vertices": 120,
+          "inner_vertices": 120,
+          "outer_signed_area": -147.25575770199663,
+          "inner_signed_area": -75.2942439688006,
+          "band_area": 71.96151373319603,
+          "outer_simple": true,
+          "inner_simple": true,
+          "outer_unique_vertices": 120,
+          "inner_unique_vertices": 120,
+          "inner_strictly_inside_outer": true,
+          "nesting_consistent": true,
+          "band_area_by_clipping": 71.96151373319604
+        },
+        {
+          "order": 2,
+          "outer_vertices": 120,
+          "inner_vertices": 120,
+          "outer_signed_area": -84.6039699110595,
+          "inner_signed_area": -82.60104758246851,
+          "band_area": 2.0029223285909836,
+          "outer_simple": true,
+          "inner_simple": true,
+          "outer_unique_vertices": 120,
+          "inner_unique_vertices": 120,
+          "inner_strictly_inside_outer": true,
+          "nesting_consistent": true,
+          "band_area_by_clipping": 2.002922328590955
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,395 @@
+{
+  "stage": "H0",
+  "categories": {
+    "SUPPORTED_BY_VALID_CENTRE_RAY": "the cell centre is a valid ray; its transfer values apply to the fragment",
+    "CENTRE_OUTSIDE_DECLARED_EMISSION_ANNULUS": "the centre lands outside the declared emission annulus. Zero by the emission model, but the annulus boundary cuts cells and that cut is not resolved here",
+    "CENTRE_SOLVER_UNRESOLVED": "the centre is in the band and the solver returned a non-finite landing. Unresolved, not zero emission",
+    "MISSING_TRANSFER_SUPPORT": "the fragment is in the band but its cell centre is not, so no transfer values were ever computed for it"
+  },
+  "per_profile": {
+    "coarse": [
+      {
+        "order": 0,
+        "legacy_binary_valid_area": 2454.9634668682247,
+        "fractional_active_area": 2475.2787686101765,
+        "ratio_fractional_over_binary": 1.0082751951367601,
+        "band_area_from_hulls": 2475.278768610176,
+        "band_area_inside_aperture_and_cell_domain": 2475.278768610176,
+        "band_area_outside": 0.0,
+        "captured_fraction": 1.0,
+        "active_fragments": 4096,
+        "fully_covered_fragments": 4043,
+        "partially_covered_fragments": 28,
+        "refinement_grid": [
+          231,
+          231
+        ],
+        "cut_fraction_is_a_diagnostic_not_a_weight": true,
+        "total_active_area": 2475.2787686101765,
+        "by_category": {
+          "SUPPORTED_BY_VALID_CENTRE_RAY": {
+            "fragments": 3992,
+            "area": 2453.257814584544,
+            "area_fraction": 0.9911036468680267
+          },
+          "CENTRE_OUTSIDE_DECLARED_EMISSION_ANNULUS": {
+            "fragments": 0,
+            "area": 0.0,
+            "area_fraction": 0.0
+          },
+          "CENTRE_SOLVER_UNRESOLVED": {
+            "fragments": 0,
+            "area": 0.0,
+            "area_fraction": 0.0
+          },
+          "MISSING_TRANSFER_SUPPORT": {
+            "fragments": 104,
+            "area": 22.020954025632008,
+            "area_fraction": 0.00889635313197324
+          }
+        },
+        "zero_emission_assumed_anywhere": false
+      },
+      {
+        "order": 1,
+        "legacy_binary_valid_area": 55.19360000000008,
+        "fractional_active_area": 71.96151373319626,
+        "ratio_fractional_over_binary": 1.303801776531992,
+        "band_area_from_hulls": 71.96151373319603,
+        "band_area_inside_aperture_and_cell_domain": 71.96151373319627,
+        "band_area_outside": -2.4158453015843406e-13,
+        "captured_fraction": 1.0000000000000033,
+        "active_fragments": 5343,
+        "fully_covered_fragments": 2524,
+        "partially_covered_fragments": 588,
+        "refinement_grid": [
+          200,
+          200
+        ],
+        "cut_fraction_is_a_diagnostic_not_a_weight": true,
+        "total_active_area": 71.96151373319626,
+        "by_category": {
+          "SUPPORTED_BY_VALID_CENTRE_RAY": {
+            "fragments": 2156,
+            "area": 54.6544717968596,
+            "area_fraction": 0.7594958605164414
+          },
+          "CENTRE_OUTSIDE_DECLARED_EMISSION_ANNULUS": {
+            "fragments": 600,
+            "area": 14.931861216550189,
+            "area_fraction": 0.20749787548815884
+          },
+          "CENTRE_SOLVER_UNRESOLVED": {
+            "fragments": 60,
+            "area": 0.9723146756213678,
+            "area_fraction": 0.013511592866519057
+          },
+          "MISSING_TRANSFER_SUPPORT": {
+            "fragments": 2527,
+            "area": 1.4028660441651057,
+            "area_fraction": 0.019494671128880876
+          }
+        },
+        "zero_emission_assumed_anywhere": false
+      },
+      {
+        "order": 2,
+        "legacy_binary_valid_area": 1.668721931675428,
+        "fractional_active_area": 2.0029223285918163,
+        "ratio_fractional_over_binary": 1.2002732693642042,
+        "band_area_from_hulls": 2.0029223285909836,
+        "band_area_inside_aperture_and_cell_domain": 2.0029223285918167,
+        "band_area_outside": -8.331113576787175e-13,
+        "captured_fraction": 1.000000000000416,
+        "active_fragments": 29939,
+        "fully_covered_fragments": 414,
+        "partially_covered_fragments": 1849,
+        "refinement_grid": [
+          629,
+          629
+        ],
+        "cut_fraction_is_a_diagnostic_not_a_weight": true,
+        "total_active_area": 2.0029223285918163,
+        "by_category": {
+          "SUPPORTED_BY_VALID_CENTRE_RAY": {
+            "fragments": 1037,
+            "area": 1.485281537422595,
+            "area_fraction": 0.741557231760876
+          },
+          "CENTRE_OUTSIDE_DECLARED_EMISSION_ANNULUS": {
+            "fragments": 95,
+            "area": 0.10670363343219681,
+            "area_fraction": 0.05327397468638555
+          },
+          "CENTRE_SOLVER_UNRESOLVED": {
+            "fragments": 112,
+            "area": 0.09903954053376243,
+            "area_fraction": 0.049447519317133794
+          },
+          "MISSING_TRANSFER_SUPPORT": {
+            "fragments": 28695,
+            "area": 0.3118976172032621,
+            "area_fraction": 0.15572127423560467
+          }
+        },
+        "zero_emission_assumed_anywhere": false
+      }
+    ],
+    "core": [
+      {
+        "order": 0,
+        "legacy_binary_valid_area": 2465.5199999999886,
+        "fractional_active_area": 2475.278768610176,
+        "ratio_fractional_over_binary": 1.0039580975251416,
+        "band_area_from_hulls": 2475.278768610176,
+        "band_area_inside_aperture_and_cell_domain": 2475.278768610176,
+        "band_area_outside": 0.0,
+        "captured_fraction": 1.0,
+        "active_fragments": 15876,
+        "fully_covered_fragments": 15691,
+        "partially_covered_fragments": 58,
+        "refinement_grid": [
+          322,
+          322
+        ],
+        "cut_fraction_is_a_diagnostic_not_a_weight": true,
+        "total_active_area": 2475.278768610176,
+        "by_category": {
+          "SUPPORTED_BY_VALID_CENTRE_RAY": {
+            "fragments": 15597,
+            "area": 2464.583721774934,
+            "area_fraction": 0.9956792556172381
+          },
+          "CENTRE_OUTSIDE_DECLARED_EMISSION_ANNULUS": {
+            "fragments": 0,
+            "area": 0.0,
+            "area_fraction": 0.0
+          },
+          "CENTRE_SOLVER_UNRESOLVED": {
+            "fragments": 0,
+            "area": 0.0,
+            "area_fraction": 0.0
+          },
+          "MISSING_TRANSFER_SUPPORT": {
+            "fragments": 279,
+            "area": 10.695046835242245,
+            "area_fraction": 0.004320744382761914
+          }
+        },
+        "zero_emission_assumed_anywhere": false
+      },
+      {
+        "order": 1,
+        "legacy_binary_valid_area": 55.03782197061289,
+        "fractional_active_area": 71.96151373319726,
+        "ratio_fractional_over_binary": 1.30749203287188,
+        "band_area_from_hulls": 71.96151373319603,
+        "band_area_inside_aperture_and_cell_domain": 71.96151373319728,
+        "band_area_outside": -1.2505552149377763e-12,
+        "captured_fraction": 1.0000000000000173,
+        "active_fragments": 26706,
+        "fully_covered_fragments": 10567,
+        "partially_covered_fragments": 1172,
+        "refinement_grid": [
+          475,
+          475
+        ],
+        "cut_fraction_is_a_diagnostic_not_a_weight": true,
+        "total_active_area": 71.96151373319726,
+        "by_category": {
+          "SUPPORTED_BY_VALID_CENTRE_RAY": {
+            "fragments": 8531,
+            "area": 54.84308456736032,
+            "area_fraction": 0.7621168833481629
+          },
+          "CENTRE_OUTSIDE_DECLARED_EMISSION_ANNULUS": {
+            "fragments": 2390,
+            "area": 15.27540737187213,
+            "area_fraction": 0.2122719017349587
+          },
+          "CENTRE_SOLVER_UNRESOLVED": {
+            "fragments": 224,
+            "area": 1.0959261967211293,
+            "area_fraction": 0.015229337737173766
+          },
+          "MISSING_TRANSFER_SUPPORT": {
+            "fragments": 15561,
+            "area": 0.7470955972436779,
+            "area_fraction": 0.010381877179704574
+          }
+        },
+        "zero_emission_assumed_anywhere": false
+      },
+      {
+        "order": 2,
+        "legacy_binary_valid_area": 1.6763862538144905,
+        "fractional_active_area": 2.002922328591959,
+        "ratio_fractional_over_binary": 1.194785702897802,
+        "band_area_from_hulls": 2.0029223285909836,
+        "band_area_inside_aperture_and_cell_domain": 2.002922328591959,
+        "band_area_outside": -9.752199048307375e-13,
+        "captured_fraction": 1.000000000000487,
+        "active_fragments": 79909,
+        "fully_covered_fragments": 2938,
+        "partially_covered_fragments": 4110,
+        "refinement_grid": [
+          1055,
+          1055
+        ],
+        "cut_fraction_is_a_diagnostic_not_a_weight": true,
+        "total_active_area": 2.002922328591959,
+        "by_category": {
+          "SUPPORTED_BY_VALID_CENTRE_RAY": {
+            "fragments": 4179,
+            "area": 1.6139677043343612,
+            "area_fraction": 0.8058064365725903
+          },
+          "CENTRE_OUTSIDE_DECLARED_EMISSION_ANNULUS": {
+            "fragments": 341,
+            "area": 0.11765882271543351,
+            "area_fraction": 0.05874357733988961
+          },
+          "CENTRE_SOLVER_UNRESOLVED": {
+            "fragments": 456,
+            "area": 0.10949056267087354,
+            "area_fraction": 0.05466540619567843
+          },
+          "MISSING_TRANSFER_SUPPORT": {
+            "fragments": 74933,
+            "area": 0.16180523887129059,
+            "area_fraction": 0.08078457989184164
+          }
+        },
+        "zero_emission_assumed_anywhere": false
+      }
+    ],
+    "fine": [
+      {
+        "order": 0,
+        "legacy_binary_valid_area": 2470.18193254946,
+        "fractional_active_area": 2475.278768610176,
+        "ratio_fractional_over_binary": 1.0020633444012992,
+        "band_area_from_hulls": 2475.278768610176,
+        "band_area_inside_aperture_and_cell_domain": 2475.2787686101765,
+        "band_area_outside": -4.547473508864641e-13,
+        "captured_fraction": 1.0000000000000002,
+        "active_fragments": 62448,
+        "fully_covered_fragments": 61832,
+        "partially_covered_fragments": 112,
+        "refinement_grid": [
+          501,
+          501
+        ],
+        "cut_fraction_is_a_diagnostic_not_a_weight": true,
+        "total_active_area": 2475.278768610176,
+        "by_category": {
+          "SUPPORTED_BY_VALID_CENTRE_RAY": {
+            "fragments": 61635,
+            "area": 2469.7517239951044,
+            "area_fraction": 0.9977671021603054
+          },
+          "CENTRE_OUTSIDE_DECLARED_EMISSION_ANNULUS": {
+            "fragments": 0,
+            "area": 0.0,
+            "area_fraction": 0.0
+          },
+          "CENTRE_SOLVER_UNRESOLVED": {
+            "fragments": 0,
+            "area": 0.0,
+            "area_fraction": 0.0
+          },
+          "MISSING_TRANSFER_SUPPORT": {
+            "fragments": 813,
+            "area": 5.527044615071466,
+            "area_fraction": 0.002232897839694557
+          }
+        },
+        "zero_emission_assumed_anywhere": false
+      },
+      {
+        "order": 1,
+        "legacy_binary_valid_area": 55.064839097032156,
+        "fractional_active_area": 71.96151373319717,
+        "ratio_fractional_over_binary": 1.3068505222795737,
+        "band_area_from_hulls": 71.96151373319603,
+        "band_area_inside_aperture_and_cell_domain": 71.96151373319715,
+        "band_area_outside": -1.1226575225009583e-12,
+        "captured_fraction": 1.0000000000000155,
+        "active_fragments": 83592,
+        "fully_covered_fragments": 43626,
+        "partially_covered_fragments": 2346,
+        "refinement_grid": [
+          817,
+          817
+        ],
+        "cut_fraction_is_a_diagnostic_not_a_weight": true,
+        "total_active_area": 71.96151373319717,
+        "by_category": {
+          "SUPPORTED_BY_VALID_CENTRE_RAY": {
+            "fragments": 34278,
+            "area": 54.99599082248045,
+            "area_fraction": 0.7642417171264949
+          },
+          "CENTRE_OUTSIDE_DECLARED_EMISSION_ANNULUS": {
+            "fragments": 9583,
+            "area": 15.364077894065318,
+            "area_fraction": 0.21350409541173376
+          },
+          "CENTRE_SOLVER_UNRESOLVED": {
+            "fragments": 936,
+            "area": 1.2395180342257563,
+            "area_fraction": 0.01722473541650839
+          },
+          "MISSING_TRANSFER_SUPPORT": {
+            "fragments": 38795,
+            "area": 0.3619269824256212,
+            "area_fraction": 0.0050294520452626
+          }
+        },
+        "zero_emission_assumed_anywhere": false
+      },
+      {
+        "order": 2,
+        "legacy_binary_valid_area": 1.6699821438632128,
+        "fractional_active_area": 2.002922328591407,
+        "ratio_fractional_over_binary": 1.199367511773506,
+        "band_area_from_hulls": 2.0029223285909836,
+        "band_area_inside_aperture_and_cell_domain": 2.002922328591407,
+        "band_area_outside": -4.2321701698710967e-13,
+        "captured_fraction": 1.0000000000002114,
+        "active_fragments": 158121,
+        "fully_covered_fragments": 15852,
+        "partially_covered_fragments": 8248,
+        "refinement_grid": [
+          1901,
+          1901
+        ],
+        "cut_fraction_is_a_diagnostic_not_a_weight": true,
+        "total_active_area": 2.002922328591407,
+        "by_category": {
+          "SUPPORTED_BY_VALID_CENTRE_RAY": {
+            "fragments": 16672,
+            "area": 1.6525361039761517,
+            "area_fraction": 0.825062500121175
+          },
+          "CENTRE_OUTSIDE_DECLARED_EMISSION_ANNULUS": {
+            "fragments": 1399,
+            "area": 0.1376261832858604,
+            "area_fraction": 0.06871269111201563
+          },
+          "CENTRE_SOLVER_UNRESOLVED": {
+            "fragments": 1976,
+            "area": 0.13655958970513354,
+            "area_fraction": 0.0681801724189533
+          },
+          "MISSING_TRANSFER_SUPPORT": {
+            "fragments": 138074,
+            "area": 0.07620045162426155,
+            "area_fraction": 0.038044636347856264
+          }
+        },
+        "zero_emission_assumed_anywhere": false
+      }
+    ]
+  }
+}
