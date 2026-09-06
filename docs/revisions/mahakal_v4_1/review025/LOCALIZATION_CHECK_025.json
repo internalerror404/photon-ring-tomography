@@ -1,0 +1,26 @@
+{
+  "schema": "mahakal-saved-mode-source-localization-review/1",
+  "scope": "Independent postprocessing of first two exported source coefficient vectors, not a physical operator/SVD or repository test-suite replay.",
+  "reviewed_commit": "1d99e99eec9c61eeece2d00b832b1e62e6047b2c",
+  "source_mode_export": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/mode_export.json",
+  "source_blob_reported_by_GitHub_connector": "c706f93a6df644fb7a001000d4a81b76c1466c25",
+  "local_input_method": "Explicit transcription of GitHub.fetch_file lines 1455-1603, first two RESOLVED_PHYSICAL source_coefficient_vectors. Not a claim of local full-file rehash. The companion script additionally checks saved right vectors when run on the full repository export.",
+  "source_basis": "Repository L224 four log-radius cubic B-splines, six nonconstant Fourier factors, three selected degree-one temporal hats.",
+  "model_norm": "r dr dphi dt, not proper-volume or a prior",
+  "target_union_M": [-128.82234649196255, -69.63896655747659],
+  "source_metric_independent_radial_refinements": [64, 128, 256],
+  "source_gram_relative_refinement_steps": [1.8413152332129242e-14, 4.061190115021237e-15],
+  "source_mode_inner_product_matrix": [[1.0000001824357936, 2.356058403929495e-09], [2.3560584594406464e-09, 1.00000017758311]],
+  "integration_note": "Gauss radial plus exact piecewise-quadratic temporal integration; slight normalization difference from archived midpoint quadrature is divided out in each energy fraction.",
+  "intervals": [
+    {"name": "oldest_third", "interval_M": [-128.82234649196255, -109.09455318046723], "source_energy_fraction": [0.024396455213855254, 0.023512175903906845], "subspace_fraction_min_max": [0.022995581414601368, 0.024913049707169312]},
+    {"name": "middle_third", "interval_M": [-109.09455318046723, -89.36675986897191], "source_energy_fraction": [0.4381078027023864, 0.43921537629618046], "subspace_fraction_min_max": [0.4374251302483703, 0.4398980487449874]},
+    {"name": "youngest_third", "interval_M": [-89.36675986897191, -69.63896655747659], "source_energy_fraction": [0.5374957420837585, 0.5372724477999129], "subspace_fraction_min_max": [0.5371058952023614, 0.5376622946825109]},
+    {"name": "original_hat2_support", "interval_M": [-109.09455318046723, -69.63896655747659], "source_energy_fraction": [0.9756035447861449, 0.9764878240960931], "subspace_fraction_min_max": [0.9750869502928309, 0.9770044185853988]},
+    {"name": "youngest_fifth_of_target_union", "interval_M": [-81.47564254437378, -69.63896655747659], "source_energy_fraction": [0.11609908029009179, 0.11605084872478115], "subspace_fraction_min_max": [0.11601487336371002, 0.11613505565142229]}
+  ],
+  "reconstructed_cholesky_coordinate_group_shares": [[6.218037185827638e-09, 0.0017936236608154655, 0.9982063701211473], [5.429066925335665e-09, 0.002208314717087311, 0.9977916798538458]],
+  "coordinate_vector_readback_max_abs": null,
+  "interpretation": "Normalized-coordinate shares are not source energy in original hats or physical time windows. The separate total-trace epoch diagnostic also groups transformed coordinates and requires relabeling, not a change to the accepted total traces or spectra.",
+  "local_environment": {"python": "3.13.5", "numpy": "2.3.5", "scipy": "1.17.0"}
+}

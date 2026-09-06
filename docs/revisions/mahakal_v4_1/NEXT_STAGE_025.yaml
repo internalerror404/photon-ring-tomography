@@ -1,0 +1,140 @@
+review_id: PAPER_I_R2_ACCEPTANCE_AND_LOCALIZATION_025
+reviewed_commit: 1d99e99eec9c61eeece2d00b832b1e62e6047b2c
+work_branch: research/mahakal_v4_1
+status: R2_REFERENCE_GEOMETRY_ACCEPTED_WITH_LOCALIZATION_CORRECTION
+accepted_replay_execution: b87390880a13e5967babb0ed876cdbe7a84fd416
+accepted_replay_directory: artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908
+accepted_input_files_count: 36
+
+preservation:
+  original_freeze_022: immutable
+  original_R0_R2_and_both_replay_outputs: immutable
+  old_input_freezes_and_targets: immutable
+  no_further_R2_spectrum_replay_just_for_this_review: true
+  new_outputs: unique_additive_directories
+  updates_to_governance: add_new_files_never_rewrite_pinned_inputs
+  repository_delivery: commit_all_handoffs_and_protocols_to_GitHub
+
+localization_correction:
+  scope: postprocessing_saved_source_coefficients_not_new_estimation
+  primary_inputs:
+    modes: artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/mode_export.json
+    manifest: artifacts/revisions/mahakal_v4_1/R2_REPLAY_TARGET_MANIFEST.json
+  companion_script: docs/revisions/mahakal_v4_1/review025/localize_saved_modes_025.py
+  script_review_execution: tested_locally_on_explicit_excerpts_no_physical_operator_run
+  execute_on_full_committed_exports: true
+  source_energy: c_transpose_H_interval_c_divided_by_c_transpose_H_c
+  source_cross_terms: retain_all
+  time_partition: three_disjoint_knot_intervals_of_selected_target_union
+  additional_window: youngest_fifth_of_explicit_target_union
+  original_hat2_support_window: report_separately_as_overlapping_window
+  normalized_coordinate_group_percentage: not_original_hat_or_time_energy
+  epoch_table_disposition: CHOLESKY_COORDINATE_GROUP_DIAGNOSTIC
+  original_epoch_table: preserve_add_interpretation_overlay
+  vector_reparameterization_readback: verify_R_times_c_matches_saved_v
+  covariance_or_prior_reinterpretation: forbidden
+  manuscript_numbers: promote_only_after_full_export_readback
+  optional_trace_localization:
+    formula: trace_of_F_times_R_inverse_transpose_H_interval_R_inverse
+    full_target_information_matrix: required_not_two_mode_approximation
+    partition_sum: equals_total_normalized_Fisher_trace
+    coordinate_invariance: test_with_consistent_basis_change
+    positivity: numerical_PSD_check
+    same_operator_metric_noise_nuisance: required
+    interpretation: physical_time_localization_diagnostic_not_separate_epoch_inference
+
+R3A:
+  status: authorized_construction_and_correctness_only
+  launch_condition: localization_overlay_committed_and_raw_map_inventory_verified
+  geometry: {spin: 0.5, inclination_degrees: 50}
+  orders: [0, 1, 2]
+  raw_map_source: authenticated_archived_HDF5_RayMap_files
+  required_fields: [alpha, beta, pixel_area, valid, coordinate_time, delay, source_r, source_phi, redshift]
+  target_nuisance_source_metric: keep_accepted_full_L224_and_exact_target_indices
+  target_reselection_due_to_acquisition_result: forbidden
+  observation_schedule: accepted_eight_observer_times
+  actual_sigma_reference: 0.011341986814407566
+  fixed_sigma_during_spatial_refinement: true
+  noise_label: report_actual_sigma_and_derived_reference_SNR_do_not_silently_recalibrate
+  raw_vs_reduced_maps:
+    full_raw_maps_preferred_for_geometry: true
+    retained_index_lineage: recover_verify_and_record_where_reduced_maps_used
+    stratum_weight_is_literal_screen_cell_area: do_not_assume
+    count_matching_is_registration: false
+    independent_row_permutations: must_not_change_physical_output
+  registration:
+    coordinate_frame: common_screen_alpha_beta_units_and_orientation
+    time_origin: verify_one_geometry_wide_origin_across_orders
+    invalid_and_out_of_domain_rays: explicit_mask_not_interpolated_as_signal
+    pixel_footprints: verify_cartesian_cell_shapes_and_area_from_raw_metadata
+    mapping: conservative_common_detector_cells_from_geometric_overlap
+    point_sampling_alternative: explicitly_register_quadrature_approximation_and_convergence
+    boundaries_and_padding: explicitly_account_for_flux_leaving_field_of_view
+    synthetic_index_sum: retain_only_as_named_nonphysical_control
+    physical_counterfactual_delay_spatial_ablation: not_implicitly_validated_by_registration
+
+  noise_models:
+    POSTPROCESSING_INHERITED_NOISE:
+      signal: A_sky_equals_L_times_A_resolved
+      covariance: L_C_resolved_L_transpose_full
+      purpose: data_processing_benchmark_with_matched_parent_experiment
+      PSD_information_contraction: required_for_fixed_target_and_source_metric
+      identity_mixing: exact_reexpression_control
+      redundant_noiseless_rows: handle_support_and_exact_constraints_explicitly
+      observational_forecast: false
+    SINGLE_SKY_DETECTOR_NOISE:
+      signal: sum_order_specific_flux_contributions_on_one_detector_screen
+      covariance: noise_assigned_once_after_physical_sum
+      example_integrated_white_noise: sigma_squared_times_detector_pixel_area_per_fixed_time
+      read_noise_or_correlations: absent_unless_explicitly_registered
+      same_covariance_as_inherited_postprocessing: not_assumed
+      PSD_comparison_to_ideal_order_stack: not_assumed_without_common_experiment_proof
+      telescope_feasibility_claim: forbidden
+
+  allowed_runs:
+    - metadata_and_geometry_alignment_checks
+    - constant_source_and_conservative_flux_checks
+    - small_synthetic_fields_and_exact_algebra_fixtures
+    - forward_adjoint_and_noise_covariance_checks
+    - deterministic_grid_convergence_for_declared_test_fields_at_fixed_sigma
+    - construction_of_common_sky_operator_without_target_spectrum_inspection
+  construction_canaries:
+    - same_screen_coordinates_not_just_equal_counts
+    - invariance_to_independent_input_row_permutations
+    - conservation_of_integrated_flux_with_boundary_accounting
+    - correct_single_sky_all_order_total_flux
+    - no_information_manufactured_by_quadrature_refinement
+    - block_forward_adjoint_consistency
+    - inherited_postprocessing_full_covariance_and_PSD_contraction
+    - physical_detector_noise_added_once_not_once_per_image_order
+    - no_cross_order_time_reference_drift
+  canary_tolerances:
+    well_conditioned_exact_algebra_relative: 1.0e-10
+    geometric_quadrature: register_scale_aware_error_metric_and_refinement_before_results
+  detector_design_freeze:
+    choose_grid_and_response_from_geometry_and_accuracy_only: true
+    target_singular_values_not_inspected: true
+    include: [map_hashes, coordinate_conventions, masks, interpolation_or_overlap_rule, detector_grid, noise_model, actual_sigma, target_indices, source_metric, code, tests]
+  outputs:
+    - localization_interpretation_overlay.md
+    - saved_mode_physical_localization.json
+    - raw_to_common_sky_mapping_manifest.json
+    - acquisition_noise_model_specification.json
+    - R3A_constructor_test_results.json
+    - R3A_ACQUISITION_INPUT_FREEZE.json
+    - R3A_RETURN_REPORT.md
+
+not_authorized:
+  - new_geodesics_or_geometry_mismatch
+  - nuisance_or_source_class_enrichment
+  - additional_geometry_grid
+  - common_sky_target_spectrum_or_operational_count_sweep
+  - selecting_detector_resolution_to_preserve_two_modes
+  - new_truth_banks_or_reconstruction_estimators
+  - new_submission_freeze
+
+return:
+  success: R3A_COMMON_SKY_CONSTRUCTION_READY_FOR_REVIEW
+  blocked: R3A_CONSTRUCTION_BLOCKED
+  include_every_NOT_RUN: true
+  stop_before_R3B_information_comparison: true
