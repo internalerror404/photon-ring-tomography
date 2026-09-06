@@ -1,0 +1,152 @@
+{
+  "scope": "Synthetic arithmetic and geometry checks only; no HDF5, Kerr operator, or 552-test suite was run.",
+  "reviewed_commit": "37cbb76ad8e00b8461e67dff68ddf5becd949e7e",
+  "checks": [
+    {
+      "name": "triple_intersection_is_not_fraction_times_overlap",
+      "passed": true
+    },
+    {
+      "name": "positive_cut_area_with_exterior_cell_center",
+      "passed": true
+    },
+    {
+      "name": "cut_flux_conserved_on_detector_partition",
+      "passed": true
+    },
+    {
+      "name": "same_field_fixed_detector_cut_cell_subdivision",
+      "passed": true
+    },
+    {
+      "name": "holes_not_filled_by_outer_hull",
+      "passed": true
+    },
+    {
+      "name": "all_cut_fractions_in_unit_interval",
+      "passed": true
+    },
+    {
+      "name": "band_domain_is_not_full_source_validity",
+      "passed": true
+    },
+    {
+      "name": "constant_extension_can_bias_nonconstant_transfer",
+      "passed": true
+    },
+    {
+      "name": "cut_parent_brightness_flux_covariance_identity",
+      "passed": true
+    },
+    {
+      "name": "detector_noise_uses_full_detector_area_not_emitting_fraction",
+      "passed": true
+    },
+    {
+      "name": "thin_band_amplifies_outer_boundary_error",
+      "passed": true
+    },
+    {
+      "name": "regular_polygon_60_shoelace_matches_formula",
+      "passed": true
+    },
+    {
+      "name": "regular_polygon_120_shoelace_matches_formula",
+      "passed": true
+    },
+    {
+      "name": "regular_polygon_240_shoelace_matches_formula",
+      "passed": true
+    },
+    {
+      "name": "regular_polygon_480_shoelace_matches_formula",
+      "passed": true
+    },
+    {
+      "name": "regular_polygon_960_shoelace_matches_formula",
+      "passed": true
+    },
+    {
+      "name": "sixty_vertex_exact_polygon_can_miss_hull_budget",
+      "passed": true
+    },
+    {
+      "name": "interpolating_old_polygon_edges_is_not_hull_refinement",
+      "passed": true
+    },
+    {
+      "name": "equal_total_polygon_area_hides_boundary_disagreement",
+      "passed": true
+    },
+    {
+      "name": "symmetric_difference_envelope_bounds_whitened_response",
+      "passed": true
+    },
+    {
+      "name": "total_area_ratio_not_pointwise_fisher_bound",
+      "passed": true
+    },
+    {
+      "name": "reported_binary_model_cost_arithmetic_reproduced",
+      "passed": true
+    }
+  ],
+  "n_checks": 22,
+  "all_passed": true,
+  "triple_intersection_fixture": {
+    "correct_flux": [
+      0.2,
+      0.0
+    ],
+    "incorrect_fraction_times_overlap": [
+      0.1,
+      0.1
+    ]
+  },
+  "missing_transfer_fixture": {
+    "true_linear_flux": 0.020000000000000004,
+    "outside_node_extension_flux": 0.1
+  },
+  "thin_band_fixture": {
+    "outer_relative_symmetric_difference": 0.00019999999999998898,
+    "band_relative_symmetric_difference": 0.048828124999997446
+  },
+  "unit_circle_polygon_errors_not_Kerr_hulls": [
+    {
+      "vertices": 60,
+      "area_error_against_unit_disk": 0.0018267026292002608
+    },
+    {
+      "vertices": 120,
+      "area_error_against_unit_disk": 0.0004568634993218357
+    },
+    {
+      "vertices": 240,
+      "area_error_against_unit_disk": 0.00011422761783053126
+    },
+    {
+      "vertices": 480,
+      "area_error_against_unit_disk": 2.8557638439008493e-05
+    },
+    {
+      "vertices": 960,
+      "area_error_against_unit_disk": 7.1394554861381465e-06
+    }
+  ],
+  "boundary_response_fixture": {
+    "measured_norm": 0.010951460124519249,
+    "upper_envelope_norm": 0.010951460124519264
+  },
+  "binary_cost_model": {
+    "fitted_order": 0.8453241466342846,
+    "estimated_calls": 2913014.6280105906,
+    "cap_multiple": 11.652058512042363,
+    "a_universal_lower_bound": false
+  },
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "shapely": "2.1.2"
+  },
+  "script_sha256": "7e6f5e7c22f0256089d9d4db4642c060fa8748b00d41ce958839f986ff16f654"
+}

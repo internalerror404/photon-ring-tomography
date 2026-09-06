@@ -1,0 +1,188 @@
+review_id: PAPER_I_FRACTIONAL_COVERAGE_RULING_027
+reviewed_commit: 37cbb76ad8e00b8461e67dff68ddf5becd949e7e
+work_branch: research/mahakal_v4_1
+status: FRACTIONAL_COVERAGE_AUTHORIZED_HULL_AND_TRANSFER_ACCURACY_SEPARATE
+base_defect: C13_QUADRATURE_GEOMETRY_MISMATCH_026
+precedence: narrow_extension_of_026_for_fractional_representation_and_hull_refinement
+preservation:
+  legacy_maps_runs_freezes_claims: immutable
+  old_failures: preserve_literal_results
+  old_binary_budget_projection: preserve_with_model_dependent_label
+  no_new_R2_spectrum: true
+  GitHub_delivery_only: true
+scope:
+  geometry: {id: a050_i050, spin: 0.5, inclination_degrees: 50}
+  orders: [0, 1, 2]
+  detector_name: D026
+  detector_bounds_M: {alpha: [-25.0, 25.0], beta: [-25.0, 25.0]}
+  detector_pitch_M: 0.4
+  detector_cells: [125, 125]
+  sigma: 0.011341986814407566
+  clock_reference_coordinate_time_M: -978.6055123201214
+  observer_times_source: artifacts/configs/R1_MAIN_FREEZE.json
+  observer_times: exact_inherited_eight_times
+  source_target_manifest: artifacts/revisions/mahakal_v4_1/R2_REPLAY_TARGET_MANIFEST.json
+  target_columns: exact_accepted_72
+  nuisance: same_remaining_152_full_L224_coefficients
+  per_profile_clock_recentering: forbidden
+  negative_delay_clipping: forbidden
+  sigma_recalibration: forbidden
+  target_spectra_operational_counts_or_estimators: forbidden
+fractional_measure:
+  cell: corrected_clipped_nodal_dual_rectangle
+  band: outer_hull_minus_inner_hull_with_pinned_order_conventions
+  effective_domain: intersection_of_band_and_declared_emission_validity_and_aperture
+  overlap: area_of_detector_intersect_cell_intersect_effective_domain
+  whole_cell_fraction_times_uncut_overlap: not_equivalent_in_general
+  old_valid_center_mask_as_candidate_cell_filter: forbidden
+  all_positive_fragments_including_invalid_center_cells: account_explicitly
+  invalid_center_transfer_values: missing_not_automatically_zero
+  holes_and_disconnected_fragments: retain
+  silent_snapping_convexification_or_polygon_repair: forbidden
+  geometric_fraction_is_transfer_accuracy: false
+validity:
+  pinned_predicate: src/phrt/geometry/raymap.py::validity
+  preserve: [band_membership, source_r_above_horizon, source_r_at_most_50, finite_source_coordinates_and_time]
+  finite_redshift_for_positive_contribution: required
+  solver_failure: unresolved_not_zero_emission
+  absent_boundary_nodes_certify_no_exterior_emission: false
+  missing_transfer_choices:
+    - verified_same_branch_interpolation_with_error_accounting
+    - targeted_interior_ray_queries_within_remaining_cap
+    - explicit_MISSING_TRANSFER_SUPPORT
+hull_hierarchy:
+  nominal_npointsS: [60, 120, 240, 480, 960, 1920]
+  actual_unique_vertices_and_solve_counts: report_per_boundary_and_order
+  finer_vertices: solve_defining_equations_at_new_parameters
+  linear_interpolation_of_existing_polygon_edges: not_refinement
+  stopping: first_two_successive_qualifying_pairs_plus_independent_checks
+  branches_symmetries_endpoints_and_parameterization: pinned_and_recorded
+  topology: valid_no_self_intersection_correct_holes_and_nesting
+  root_check:
+    tolerance: tenfold_tighter_than_candidate_level
+    geometry_and_response_discrepancy_max: 2.5e-5
+    unsupported_tightening: explicit_alternative_bracket_check_or_blocker
+  independent_check:
+    sampling: half_step_shift_in_native_curve_parameter_with_required_endpoints
+    same_geometry_and_response_tolerances: true
+    merely_resampling_same_polygon: forbidden
+hull_accuracy:
+  band_symdiff_relative: 2.5e-4
+  inner_plus_outer_symdiff_relative: 2.5e-4
+  denominator: area_of_compared_band_union_within_D026_per_order
+  denominator_outer_hull_or_whole_screen: forbidden
+  per_detector_symdiff_areas: retain
+  empty_band: explicit_no_division_floor
+  distance_only_acceptance: forbidden_without_validated_area_bound
+  hull_only_response_relative: 2.5e-4
+  response_rule: change_hull_only_hold_field_and_other_validity_fixed
+  response_fields: every_applicable_declared_field_and_time_plus_stacked_time_comparison
+  missing_or_unbounded_physical_field: geometry_only_status_not_full_pass
+  empirical_refinement_is_continuum_proof: false
+error_separation:
+  field_quadrature_and_emission_boundary_response_budget: 5.0e-4
+  aggregate_numerical_integration_relative_budget: 1.0e-6
+  small_exact_fixture_atol: 1.0e-12
+  small_exact_fixture_rtol: 1.0e-12
+  total_end_to_end_response_budget: 1.0e-3
+  total_mask_symdiff_budget: 1.0e-3
+  total_corrected_area_budget: 1.0e-3
+  successive_late_pairs: 2
+  per_order_per_field: required_not_average
+  same_polygon_on_all_profiles_proves_hull_convergence: false
+  same_transfer_samples_with_finer_hull_proves_field_convergence: false
+  final_joint_hull_and_transfer_refinement: required
+  independent_shift_or_holdout: required
+  old_Q2_checks_relabelled_pass: false
+  denominator: same_order_fine_response_norm_with_registered_constant_field_floor
+  zero_response: record_explicit_absolute_comparison_never_silent_relative_pass
+  tolerance_changes_after_results: forbidden
+noise_models:
+  NEW_FRACTIONAL_PARENT_INHERITED_NOISE:
+    parent_support: active_fragments
+    a: area_of_active_fragment
+    O: clipped_overlap_area
+    integrated_flux: a_times_brightness
+    parent_covariance: sigma_squared_diag_a
+    L: O_diag_inverse_a
+    inherited_covariance: sigma_squared_O_diag_inverse_a_O_transpose
+    zero_area_cells: omit_before_inversion
+    tiny_positive_area_flooring: forbidden
+    identical_to_archived_R2_parent_experiment: not_assumed
+  SINGLE_SKY_DETECTOR_NOISE:
+    covariance: sigma_squared_times_full_detector_cell_area_once_per_time
+    covariance_shrinks_with_emitting_fraction: forbidden
+    noise_per_order: forbidden
+  comparisons_between_different_noise_experiments: no_assumed_PSD_ordering
+phases:
+  H0:
+    work:
+      - Read archived hull arrays or regenerate the same baseline with pinned equations.
+      - Record source hashes and trace all region and source-validity boundaries.
+      - Build versioned polygon/cell/detector triple-intersection operator.
+      - Add cut_fraction_diagnostic_without_substituting_it_for_clipped_overlap.
+      - Classify missing transfer support in every positive clipped fragment.
+      - Run topology, hole, sliver, permutation, conservation and unit canaries.
+    transfer_ray_calls: zero
+    outputs: [HULL_SOURCE_AND_VALIDITY_MANIFEST_027.json, FRACTIONAL_CLIPPING_TESTS_027.json, MISSING_TRANSFER_SUPPORT_027.json]
+  H1:
+    work:
+      - Commit curve-refinement plan and inputs before boundary comparisons.
+      - Run geometric hierarchy and independent shifted/root checks.
+      - Integrate screen-polynomial fields exactly or with bounded quadrature.
+      - Keep transferred-field evidence limited to its actually available validated support.
+    transfer_ray_calls: zero_for_geometry_only
+    outputs: [HULL_CONVERGENCE_027.json, HULL_ERROR_BUDGET_027.json]
+  H2:
+    launch: H0_complete_and_H1_geometry_qualified_or_explicitly_separated_diagnostic
+    work:
+      - Hold qualified hull fixed while testing transfer and emission-boundary quadrature.
+      - Reuse the same eleven Q2 fields and eight times.
+      - Compare existing profiles and at most the permitted targeted refinements.
+      - Freeze query selection from geometry_and_declared_field_residuals_before_each_batch.
+      - Verify final joint hull_transfer response, area and mask budgets.
+    output: FRACTIONAL_FIXED_DETECTOR_VALIDATION_027.json
+resources:
+  existing_unspent_transfer_ray_cap_carried_forward: 250000
+  additive_new_transfer_ray_cap: 0
+  transfer_batches_max: 2
+  transfer_evaluations_per_batch_max: 125000
+  count_invalid_retries_and_internal_transfer_calls: true
+  boundary_point_solves_max: 30000
+  count_boundary_failures_repeats_and_all_orders: true
+  boundary_routine_full_transfer_calls_also_count_as_rays: true
+  combined_peak_memory_GiB: 8
+  combined_new_wall_clock_hours: 2
+  paid_resources_or_external_purchase: not_authorized
+  resource_projection: measured_or_model_based_never_universal_lower_bound_without_proof
+  stop_on_cap: true
+optional_R2_weights_readback:
+  allowed: effective_quadrature_ratio_inventory_only_no_operator_or_SVD
+  fixed_retained_indices_and_all_normalizations: verify
+  compare: q_new_i_over_q_old_i_after_stratification_and_common_count
+  per_order_total_ratios_bound_every_row: false
+  wider_adopted_measure_two_mode_count: hypothetical_until_row_bound_certified
+  legacy_R2_acceptance: preserved_under_legacy_measure
+completion:
+  separate_statuses: [kernel_and_units, hull_geometry, transferred_field_accuracy, total_quadrature, governance]
+  require_all_named_conditions_recorded: true
+  clean_pinned_execution_and_input_hashes: required
+  missing_or_skipped_physical_prerequisite: not_a_pass
+  files_written_after_outcomes: not_preexecution_registration
+  output_directories: fresh_no_overwrite
+  tests_and_actual_versions: record
+  geometry_only: FRACTIONAL_HULL_GEOMETRY_QUALIFIED_TRANSFER_PENDING
+  all_accuracy_checks_pass: R3A_FRACTIONAL_QUADRATURE_READY_FOR_REVIEW
+  insufficient: R3A_FRACTIONAL_QUADRATURE_NOT_YET_QUALIFIED
+  blockers: [HULL_TOPOLOGY_UNRESOLVED, HULL_ACCURACY_UNQUALIFIED, MISSING_TRANSFER_SUPPORT, TRANSFER_ACCURACY_UNQUALIFIED, BUDGET_EXHAUSTED, PINNED_BACKEND_CAPABILITY_BLOCKED]
+  R3B: not_authorized_stop_before_target_information
+outputs:
+  - FRACTIONAL_COVERAGE_027_INPUT_FREEZE.json
+  - HULL_SOURCE_AND_VALIDITY_MANIFEST_027.json
+  - HULL_CONVERGENCE_027.json
+  - FRACTIONAL_CLIPPING_TESTS_027.json
+  - MISSING_TRANSFER_SUPPORT_027.json
+  - FRACTIONAL_FIXED_DETECTOR_VALIDATION_027.json
+  - FRACTIONAL_COVERAGE_027_RETURN.md
+  - FRACTIONAL_COVERAGE_027_COMPLETION.json
+  - SHA256SUMS.txt
