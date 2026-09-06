@@ -1,0 +1,1097 @@
+{
+  "schema": "phrt-normalization-inventory/1",
+  "created_utc": "2026-09-06T07:08:30Z",
+  "ledger_item": "C02",
+  "method": "AST visitor over src/, scripts/ and tests/, with a textual cross-check; a file the two disagree about is reported",
+  "n_files_scanned": 237,
+  "n_files_with_calibration_shape": 30,
+  "n_mean_over_rows_definitions": 15,
+  "n_physical_runner_mean_definitions": 10,
+  "seed_runners_named_in_ledger": [
+    "scripts/reproduce_v01.py",
+    "scripts/run_e3c_operator_grid.py",
+    "scripts/run_e3d_source_class_stress.py",
+    "scripts/run_hmt1_validation.py",
+    "scripts/run_hmt2_sealed_main.py",
+    "scripts/run_hmt2_stage1.py",
+    "scripts/run_r1l_stage2r_b.py",
+    "src/phrt/operators/whitening.py"
+  ],
+  "physical_sites_discovered_beyond_the_seeds": [
+    "scripts/run_e3b_canary.py",
+    "scripts/run_hmt1_main.py",
+    "scripts/run_hmt2_stage1_completion.py",
+    "scripts/run_r1l_operator_audit.py"
+  ],
+  "mean_over_rows_definitions": [
+    {
+      "path": "scripts/run_e3b_canary.py",
+      "name": "return of snr_scale()",
+      "line": 91
+    },
+    {
+      "path": "scripts/run_e3c_operator_grid.py",
+      "name": "return of snr_scale()",
+      "line": 92
+    },
+    {
+      "path": "scripts/run_e3d_source_class_stress.py",
+      "name": "s_ref",
+      "line": 175
+    },
+    {
+      "path": "scripts/run_g1_reproduction.py",
+      "name": "y_scale",
+      "line": 105
+    },
+    {
+      "path": "scripts/run_hmt1_main.py",
+      "name": "s_ref",
+      "line": 177
+    },
+    {
+      "path": "scripts/run_hmt1_validation.py",
+      "name": "s_ref",
+      "line": 182
+    },
+    {
+      "path": "scripts/run_hmt2_sealed_main.py",
+      "name": "s_ref",
+      "line": 154
+    },
+    {
+      "path": "scripts/run_hmt2_stage1.py",
+      "name": "s_ref",
+      "line": 185
+    },
+    {
+      "path": "scripts/run_hmt2_stage1_completion.py",
+      "name": "s_ref",
+      "line": 166
+    },
+    {
+      "path": "scripts/run_r1l_operator_audit.py",
+      "name": "s_ref",
+      "line": 234
+    },
+    {
+      "path": "scripts/run_r1l_stage2_score.py",
+      "name": "s_ref",
+      "line": 89
+    },
+    {
+      "path": "scripts/run_r1l_stage2r_b.py",
+      "name": "s_ref",
+      "line": 209
+    },
+    {
+      "path": "src/phrt/inverse/background.py",
+      "name": "return of background_error()",
+      "line": 100
+    },
+    {
+      "path": "src/phrt/metrics/features.py",
+      "name": "return of aggregate()",
+      "line": 176
+    },
+    {
+      "path": "src/phrt/operators/whitening.py",
+      "name": "scale",
+      "line": 40
+    }
+  ],
+  "physical_mean_over_rows_definitions": [
+    {
+      "path": "scripts/run_e3b_canary.py",
+      "name": "return of snr_scale()",
+      "line": 91
+    },
+    {
+      "path": "scripts/run_e3c_operator_grid.py",
+      "name": "return of snr_scale()",
+      "line": 92
+    },
+    {
+      "path": "scripts/run_e3d_source_class_stress.py",
+      "name": "s_ref",
+      "line": 175
+    },
+    {
+      "path": "scripts/run_hmt1_main.py",
+      "name": "s_ref",
+      "line": 177
+    },
+    {
+      "path": "scripts/run_hmt1_validation.py",
+      "name": "s_ref",
+      "line": 182
+    },
+    {
+      "path": "scripts/run_hmt2_sealed_main.py",
+      "name": "s_ref",
+      "line": 154
+    },
+    {
+      "path": "scripts/run_hmt2_stage1.py",
+      "name": "s_ref",
+      "line": 185
+    },
+    {
+      "path": "scripts/run_hmt2_stage1_completion.py",
+      "name": "s_ref",
+      "line": 166
+    },
+    {
+      "path": "scripts/run_r1l_operator_audit.py",
+      "name": "s_ref",
+      "line": 234
+    },
+    {
+      "path": "scripts/run_r1l_stage2r_b.py",
+      "name": "s_ref",
+      "line": 209
+    }
+  ],
+  "textual_ast_disagreements": [
+    {
+      "path": "scripts/revision_v4_1/r0_normalization_inventory.py",
+      "reason": "text matched, AST did not"
+    },
+    {
+      "path": "scripts/run_r0_canary_reconstruction_pilot.py",
+      "reason": "text matched, AST did not"
+    },
+    {
+      "path": "scripts/run_r1l_stage2_validation.py",
+      "reason": "text matched, AST did not"
+    },
+    {
+      "path": "scripts/run_r1l_stage2r_a.py",
+      "reason": "text matched, AST did not"
+    },
+    {
+      "path": "src/phrt/inverse/uncertainty.py",
+      "reason": "text matched, AST did not"
+    },
+    {
+      "path": "src/phrt/pilot_r0.py",
+      "reason": "text matched, AST did not"
+    }
+  ],
+  "textual_ast_disagreements_adjudicated": {
+    "scripts/run_r0_canary_reconstruction_pilot.py": "NOT_A_CALIBRATION: mean over booleans, and a weighted per-age norm via einsum. No reference scale is formed",
+    "scripts/run_r1l_stage2_validation.py": "NOT_A_CALIBRATION: level fraction, a singular-value flatness check and a coverage mean",
+    "scripts/run_r1l_stage2r_a.py": "NOT_A_CALIBRATION: bootstrap and per-cell error means",
+    "src/phrt/inverse/uncertainty.py": "NOT_A_CALIBRATION: coverage and Mahalanobis diagnostics",
+    "src/phrt/pilot_r0.py": "NOT_A_CALIBRATION: reconstruction error norms and structure terms",
+    "scripts/revision_v4_1/r0_normalization_inventory.py": "NOT_A_CALIBRATION: this inventory's own pattern strings"
+  },
+  "textual_ast_disagreements_open": [],
+  "inventory_is_exhaustive": true,
+  "recorded_calibration_values": {
+    "scripts/run_e3c_operator_grid.py": [
+      {
+        "geometry": "a000_i020",
+        "s_ref": 0.9884304852730343,
+        "rays_per_order": 1483,
+        "observer_times": null,
+        "reference_snr": 100.0
+      },
+      {
+        "geometry": "a000_i050",
+        "s_ref": 1.125122564629503,
+        "rays_per_order": 1536,
+        "observer_times": null,
+        "reference_snr": 100.0
+      },
+      {
+        "geometry": "a000_i075",
+        "s_ref": 0.9727079288194624,
+        "rays_per_order": 1536,
+        "observer_times": null,
+        "reference_snr": 100.0
+      },
+      {
+        "geometry": "a050_i020",
+        "s_ref": 0.9791206288630971,
+        "rays_per_order": 1536,
+        "observer_times": null,
+        "reference_snr": 100.0
+      },
+      {
+        "geometry": "a050_i050",
+        "s_ref": 1.1341986814407568,
+        "rays_per_order": 1536,
+        "observer_times": null,
+        "reference_snr": 100.0
+      },
+      {
+        "geometry": "a050_i075",
+        "s_ref": 0.9753522203531676,
+        "rays_per_order": 1536,
+        "observer_times": null,
+        "reference_snr": 100.0
+      },
+      {
+        "geometry": "a090_i020",
+        "s_ref": 0.985621361811445,
+        "rays_per_order": 1536,
+        "observer_times": null,
+        "reference_snr": 100.0
+      },
+      {
+        "geometry": "a090_i050",
+        "s_ref": 1.1356352390826034,
+        "rays_per_order": 1536,
+        "observer_times": null,
+        "reference_snr": 100.0
+      },
+      {
+        "geometry": "a090_i075",
+        "s_ref": 0.9776250731850921,
+        "rays_per_order": 1536,
+        "observer_times": null,
+        "reference_snr": 100.0
+      },
+      {
+        "geometry": "a098_i020",
+        "s_ref": 0.9851679012252235,
+        "rays_per_order": 1536,
+        "observer_times": null,
+        "reference_snr": 100.0
+      },
+      {
+        "geometry": "a098_i050",
+        "s_ref": 1.1366521704105108,
+        "rays_per_order": 1536,
+        "observer_times": null,
+        "reference_snr": 100.0
+      },
+      {
+        "geometry": "a098_i075",
+        "s_ref": 0.9809867535911645,
+        "rays_per_order": 1536,
+        "observer_times": null,
+        "reference_snr": 100.0
+      }
+    ]
+  },
+  "recorded_values_status": "E3C records s_ref per geometry in artifacts/e3c/*.json. The HMT and R1L runners compute s_ref inline and do not serialize it; their values are UNRESOLVED from artifacts alone and are recoverable only by replay, which R1 does not require for them",
+  "sites": [
+    {
+      "path": "scripts/build_e3c_tables.py",
+      "blob": "fa336f19a7991088cf8e083c177da0a669c224a1",
+      "role": "SCRIPT_OTHER",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of relative_l2()",
+          "line": 72,
+          "kind": "return",
+          "enclosing": "relative_l2",
+          "reduction": "NORM",
+          "expression": "float(np.linalg.norm(a - b)) / max(1.0, float(np.linalg.norm(a)))",
+          "split_invariant": true
+        },
+        {
+          "name": "return of discrepancy()",
+          "line": 83,
+          "kind": "return",
+          "enclosing": "discrepancy",
+          "reduction": "NORM",
+          "expression": "float(np.linalg.norm(a - b)) / max(1.0, float(np.linalg.norm(a)))",
+          "split_invariant": true
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "scripts/run_e2_mode_atlas.py",
+      "blob": "751836e44a555b0b4db256f804314f3ca79c34f8",
+      "role": "SCRIPT_OTHER",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of label_mode()",
+          "line": 100,
+          "kind": "return",
+          "enclosing": "label_mode",
+          "reduction": "SUM",
+          "expression": "{ \"dominant_temporal_frequency\": dom_freq, \"dominant_temporal_frequency_normalised\": dom_freq / max(nyq, 1), \"temporal_centre_of_mass\": com, \"retarded_age\": float(com), \"temporal_spread\": spread, \"dominant_azimuthal_harm",
+          "split_invariant": true
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "scripts/run_e3b_canary.py",
+      "blob": "6a3cf0e6432d2df6305b1bfbfcb8c36fe0db5494",
+      "role": "PHYSICAL_RUNNER",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of snr_scale()",
+          "line": 91,
+          "kind": "return",
+          "enclosing": "snr_scale",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "max(float(np.sqrt(np.mean(clean ** 2))), 1e-300)",
+          "split_invariant": false
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "scripts/run_e3c_operator_grid.py",
+      "blob": "d2720e6812d7e9a47a741d232d2eb0857e8f6156",
+      "role": "PHYSICAL_RUNNER",
+      "is_seed": true,
+      "definitions": [
+        {
+          "name": "return of snr_scale()",
+          "line": 92,
+          "kind": "return",
+          "enclosing": "snr_scale",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "max(float(np.sqrt(np.mean(clean ** 2))), 1e-300)",
+          "split_invariant": false
+        },
+        {
+          "name": "return of log_information_volume()",
+          "line": 169,
+          "kind": "return",
+          "enclosing": "log_information_volume",
+          "reduction": "SUM",
+          "expression": "float(np.sum(np.log1p((snr ** 2) * np.clip(lam, 0.0, None))))",
+          "split_invariant": true
+        },
+        {
+          "name": "return of psd_summary()",
+          "line": 237,
+          "kind": "return",
+          "enclosing": "psd_summary",
+          "reduction": "SUM",
+          "expression": "{\"rank\": int(pos.size), \"trace\": float(lam.sum()), \"stable_rank\": fro2 / max(top ** 2, 1e-300), \"min_positive_eigenvalue\": float(pos.min()) if pos.size else float(\"nan\"), \"max_eigenvalue\": float(lam.max()), \"min_eigenval",
+          "split_invariant": true
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "scripts/run_e3d_source_class_stress.py",
+      "blob": "9836ee3db9008c80f21c929a88f5e31242387d02",
+      "role": "PHYSICAL_RUNNER",
+      "is_seed": true,
+      "definitions": [
+        {
+          "name": "s_ref",
+          "line": 175,
+          "kind": "assignment",
+          "enclosing": "main",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "max(float(np.sqrt(np.mean(ref_direct.matvec(unit_source(b224)) ** 2))), 1e-300)",
+          "split_invariant": false
+        }
+      ],
+      "consumers": [
+        {
+          "name": "s_ref",
+          "line": 221,
+          "source": "B = op.to_dense() * (REFERENCE_SNR / s_ref)"
+        },
+        {
+          "name": "s_ref",
+          "line": 252,
+          "source": "/ (probe_norms * s_ref)[None, :]"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_g10q_quadrature_invariance.py",
+      "blob": "dc6024b085fc900f868bde5eaa48c675217b62c5",
+      "role": "PHYSICAL_RUNNER",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "scale",
+          "line": 110,
+          "kind": "assignment",
+          "enclosing": "main",
+          "reduction": "NORM",
+          "expression": "max(1.0, float(np.linalg.norm(base, 2)))",
+          "split_invariant": true
+        },
+        {
+          "name": "fscale",
+          "line": 125,
+          "kind": "assignment",
+          "enclosing": "main",
+          "reduction": "NORM",
+          "expression": "max(1.0, float(np.linalg.norm(fb, 2)))",
+          "split_invariant": true
+        }
+      ],
+      "consumers": [
+        {
+          "name": "fscale",
+          "line": 129,
+          "source": "rel = float(np.linalg.norm(fs - fb, 2)) / fscale"
+        },
+        {
+          "name": "scale",
+          "line": 113,
+          "source": "rel_s = float(np.linalg.norm(sp - base, 2)) / scale"
+        },
+        {
+          "name": "scale",
+          "line": 116,
+          "source": "rel_m = float(np.linalg.norm(mg - base, 2)) / scale"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_g1_reproduction.py",
+      "blob": "aed051b0f4b81012227a1ca7f6d8c1ed500b8204",
+      "role": "SCRIPT_OTHER",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "y_scale",
+          "line": 105,
+          "kind": "assignment",
+          "enclosing": "oracle_ridge_rows",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "float(np.sqrt(np.mean(clean ** 2)))",
+          "split_invariant": false
+        }
+      ],
+      "consumers": [
+        {
+          "name": "y_scale",
+          "line": 113,
+          "source": "noisy = clean + local_rng.normal(scale=rel * y_scale, size=clean.shape)"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_g7b_field_convergence.py",
+      "blob": "70935493249b3929b895d31d7f746ab3b93ed318",
+      "role": "PHYSICAL_RUNNER",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "scale",
+          "line": 178,
+          "kind": "assignment",
+          "enclosing": "main",
+          "reduction": "NORM",
+          "expression": "max(float(np.linalg.norm(grams[\"fine\"], 2)), 1e-300)",
+          "split_invariant": true
+        }
+      ],
+      "consumers": [
+        {
+          "name": "scale",
+          "line": 179,
+          "source": "operator_discrepancy = float(np.linalg.norm(grams[\"fine\"] - grams[\"core\"], 2)) / scale"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_hmt1_main.py",
+      "blob": "d364c4fc3e251db96019f6f5e8ca32e9d2a08dc9",
+      "role": "PHYSICAL_RUNNER",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "s_ref",
+          "line": 177,
+          "kind": "assignment",
+          "enclosing": "main",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "float(np.sqrt(np.mean(PhysicalOperator( orders=[base[0]], observer_times=t_obs, design=ref_basis.design, dimension=ref_basis.dimension).matvec(unit_source(ref_basis)) ** 2)))",
+          "split_invariant": false
+        }
+      ],
+      "consumers": [
+        {
+          "name": "s_ref",
+          "line": 269,
+          "source": "scale = snr / s_ref"
+        },
+        {
+          "name": "s_ref",
+          "line": 365,
+          "source": "(snr_p / s_ref) * (s * (Vt @ ((target / pred) * delta)))))"
+        },
+        {
+          "name": "s_ref",
+          "line": 363,
+          "source": "pred = float(np.linalg.norm((snr_p / s_ref) * s[small] * w))"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_hmt1_validation.py",
+      "blob": "699a3b920db35c095c3b7c9e3b4680213b181953",
+      "role": "PHYSICAL_RUNNER",
+      "is_seed": true,
+      "definitions": [
+        {
+          "name": "s_ref",
+          "line": 182,
+          "kind": "assignment",
+          "enclosing": "main",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "float(np.sqrt(np.mean(PhysicalOperator( orders=[base[0]], observer_times=t_obs, design=ref_basis.design, dimension=ref_basis.dimension).matvec(unit_source(ref_basis)) ** 2)))",
+          "split_invariant": false
+        }
+      ],
+      "consumers": [
+        {
+          "name": "s_ref",
+          "line": 260,
+          "source": "ops=ops, bops=bops, svd=svd, D=D, bdes=bdes, s_ref=s_ref,"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_hmt2_sealed_main.py",
+      "blob": "0e65135fa2f4bfb83e36c7f65b23d4ef8c62704d",
+      "role": "PHYSICAL_RUNNER",
+      "is_seed": true,
+      "definitions": [
+        {
+          "name": "s_ref",
+          "line": 154,
+          "kind": "assignment",
+          "enclosing": "main",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "float(np.sqrt(np.mean(OPS[\"PhysicalOperator\"]( orders=[base[0]], observer_times=t_obs, design=basis_ref.design, dimension=basis_ref.dimension).matvec( np.array([1.0 if (j % (basis_ref.n_azimuthal * basis_ref.n_temporal))",
+          "split_invariant": false
+        }
+      ],
+      "consumers": [
+        {
+          "name": "s_ref",
+          "line": 186,
+          "source": "scale = snr / s_ref"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_hmt2_stage1.py",
+      "blob": "085c99dc8f43258bb84e8f20e872fd8b985eb8a9",
+      "role": "PHYSICAL_RUNNER",
+      "is_seed": true,
+      "definitions": [
+        {
+          "name": "s_ref",
+          "line": 185,
+          "kind": "assignment",
+          "enclosing": "main",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "float(np.sqrt(np.mean(PhysicalOperator( orders=[base[0]], observer_times=t_obs, design=ref_basis.design, dimension=ref_basis.dimension).matvec(unit_source(ref_basis)) ** 2)))",
+          "split_invariant": false
+        }
+      ],
+      "consumers": [
+        {
+          "name": "s_ref",
+          "line": 278,
+          "source": "scale = snr / s_ref"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_hmt2_stage1_completion.py",
+      "blob": "a23842d2c00088c0601c71f06cf093fe7fcdec9c",
+      "role": "PHYSICAL_RUNNER",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "s_ref",
+          "line": 166,
+          "kind": "assignment",
+          "enclosing": "main",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "float(np.sqrt(np.mean(PhysicalOperator( orders=[base[0]], observer_times=t_obs, design=basis_ref.design, dimension=basis_ref.dimension).matvec(unit_source(basis_ref)) ** 2)))",
+          "split_invariant": false
+        }
+      ],
+      "consumers": [
+        {
+          "name": "s_ref",
+          "line": 248,
+          "source": "scale = snr / s_ref"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_r1l_operator_audit.py",
+      "blob": "2c277d5594aff2f33f15600b0085bbdb8248b31c",
+      "role": "PHYSICAL_RUNNER",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "s_ref",
+          "line": 234,
+          "kind": "assignment",
+          "enclosing": "main",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "float(np.sqrt(np.mean(ref_direct.matvec(unit_source(ref_basis)) ** 2)))",
+          "split_invariant": false
+        }
+      ],
+      "consumers": [
+        {
+          "name": "s_ref",
+          "line": 235,
+          "source": "if not np.isfinite(s_ref) or s_ref < 1e-12:"
+        },
+        {
+          "name": "s_ref",
+          "line": 235,
+          "source": "if not np.isfinite(s_ref) or s_ref < 1e-12:"
+        },
+        {
+          "name": "s_ref",
+          "line": 236,
+          "source": "raise SystemExit(f\"reference noise density is degenerate ({s_ref:.3e}); \""
+        },
+        {
+          "name": "s_ref",
+          "line": 336,
+          "source": "B = op.to_dense() * (REFERENCE_SNR / s_ref)"
+        },
+        {
+          "name": "s_ref",
+          "line": 423,
+          "source": "P = P / np.sqrt(op.channel_variance())[:, None] / (pn * s_ref)[None, :]"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_r1l_stage2_score.py",
+      "blob": "6f5a94adbfd822012f237d130f2e481db464ceb6",
+      "role": "SCRIPT_OTHER",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "s_ref",
+          "line": 89,
+          "kind": "assignment",
+          "enclosing": "run_scoring",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "float(np.sqrt(np.mean( PhysicalOperator(orders=[base[0]], observer_times=t_obs, design=ref_basis.design, dimension=ref_basis.dimension ).matvec(unit_source(ref_basis)) ** 2)))",
+          "split_invariant": false
+        }
+      ],
+      "consumers": [
+        {
+          "name": "s_ref",
+          "line": 159,
+          "source": "scale = snr_ref / s_ref"
+        },
+        {
+          "name": "s_ref",
+          "line": 264,
+          "source": "scale = snr_ref / s_ref"
+        },
+        {
+          "name": "s_ref",
+          "line": 194,
+          "source": "scale = snr / s_ref"
+        },
+        {
+          "name": "s_ref",
+          "line": 239,
+          "source": "scale = snr_ref / s_ref"
+        }
+      ]
+    },
+    {
+      "path": "scripts/run_r1l_stage2r_b.py",
+      "blob": "02468b97b6ecb14cebafc3fc305c00f9aaf55616",
+      "role": "PHYSICAL_RUNNER",
+      "is_seed": true,
+      "definitions": [
+        {
+          "name": "s_ref",
+          "line": 209,
+          "kind": "assignment",
+          "enclosing": "main",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "float(np.sqrt(np.mean(PhysicalOperator( orders=[base[0]], observer_times=t_obs, design=ref_basis.design, dimension=ref_basis.dimension).matvec(unit_source(ref_basis)) ** 2)))",
+          "split_invariant": false
+        }
+      ],
+      "consumers": [
+        {
+          "name": "s_ref",
+          "line": 293,
+          "source": "scale = snr_p / s_ref"
+        },
+        {
+          "name": "s_ref",
+          "line": 322,
+          "source": "scale = snr / s_ref"
+        },
+        {
+          "name": "s_ref",
+          "line": 381,
+          "source": "(snr_p / s_ref) * (s * (Vt @ ((target / pred) * delta)))))"
+        },
+        {
+          "name": "s_ref",
+          "line": 379,
+          "source": "pred = float(np.linalg.norm((snr_p / s_ref) * s[small] * w))"
+        }
+      ]
+    },
+    {
+      "path": "src/phrt/audits/gates.py",
+      "blob": "5d2601eff36d956902e0a8cd42ba7086079e5eda",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "scale",
+          "line": 78,
+          "kind": "assignment",
+          "enclosing": "gate_kernel_injection",
+          "reduction": "NORM",
+          "expression": "max(float(np.linalg.norm(B @ x0)), 1e-300)",
+          "split_invariant": true
+        },
+        {
+          "name": "scale",
+          "line": 102,
+          "kind": "assignment",
+          "enclosing": "gate_gram_monotonicity",
+          "reduction": "NORM",
+          "expression": "max(1.0, float(np.linalg.norm(gram_by_order[i], 2)))",
+          "split_invariant": true
+        }
+      ],
+      "consumers": [
+        {
+          "name": "scale",
+          "line": 20,
+          "source": "return abs(a - b) / scale"
+        },
+        {
+          "name": "scale",
+          "line": 79,
+          "source": "measured = float(np.linalg.norm(dy)) / scale"
+        },
+        {
+          "name": "scale",
+          "line": 103,
+          "source": "worst = max(worst, max(0.0, -lam) / scale)"
+        },
+        {
+          "name": "scale",
+          "line": 104,
+          "source": "detail.append(round(lam / scale, 18))"
+        }
+      ]
+    },
+    {
+      "path": "src/phrt/audits/rank.py",
+      "blob": "136fcb5442cf5d46e2434e468c735e66e83a6f14",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of stable_rank()",
+          "line": 74,
+          "kind": "return",
+          "enclosing": "stable_rank",
+          "reduction": "SUM",
+          "expression": "float(np.sum(self.singular_values ** 2) / self.sigma_max ** 2)",
+          "split_invariant": true
+        },
+        {
+          "name": "return of trace_information()",
+          "line": 87,
+          "kind": "return",
+          "enclosing": "trace_information",
+          "reduction": "SUM",
+          "expression": "float(np.sum(self.singular_values ** 2))",
+          "split_invariant": true
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "src/phrt/inverse/background.py",
+      "blob": "eeb06fd2c281eac169e1dbb8e788c27e3591085c",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of background_error()",
+          "line": 100,
+          "kind": "return",
+          "enclosing": "background_error",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "{\"relative_error\": float(np.linalg.norm(a - t) / n), \"max_absolute_error\": float(np.abs(a - t).max()), \"bias\": float(np.mean(a - t)), \"min_estimate\": float(a.min())}",
+          "split_invariant": false
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "src/phrt/inverse/base.py",
+      "blob": "0193659e4f5f6cac096ee31b5aa36aff564b4994",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of nrmse()",
+          "line": 109,
+          "kind": "return",
+          "enclosing": "nrmse",
+          "reduction": "NORM",
+          "expression": "float(np.linalg.norm(estimate - truth) / max(denom, 1e-300))",
+          "split_invariant": true
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "src/phrt/metrics/age_error.py",
+      "blob": "a4e461452032fe2933331aea28b3823a5b43a7e5",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of windowed_norm()",
+          "line": 32,
+          "kind": "return",
+          "enclosing": "windowed_norm",
+          "reduction": "SUM",
+          "expression": "float(np.sqrt(np.sum((weights * values) ** 2)))",
+          "split_invariant": true
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "src/phrt/metrics/feature_sets.py",
+      "blob": "019e99cbb1853f485c33dd791b552d8de04cdbf7",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of blended_descriptors()",
+          "line": 126,
+          "kind": "return",
+          "enclosing": "blended_descriptors",
+          "reduction": "SUM",
+          "expression": "{\"centroid_r\": float(np.exp(clr)), \"centroid_phi\": cphi, \"total_contrast\": tot, \"second_moment_rr\": float((w * dlr ** 2).sum() / tot), \"second_moment_pp\": float((w * dph ** 2).sum() / tot), \"second_moment_rp\": float((w *",
+          "split_invariant": true
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "src/phrt/metrics/features.py",
+      "blob": "122fccac3f3b6397100c97f6f8efc55426ec3ee1",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of aggregate()",
+          "line": 176,
+          "kind": "return",
+          "enclosing": "aggregate",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "np.sqrt(np.mean(np.stack(stack) ** 2, axis=0))",
+          "split_invariant": false
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "src/phrt/operators/mixing.py",
+      "blob": "e3fb24b3c98a29769aa518ca377885e447311df7",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of noise_scale()",
+          "line": 99,
+          "kind": "return",
+          "enclosing": "noise_scale",
+          "reduction": "NORM",
+          "expression": "np.linalg.norm(self.L, axis=1)",
+          "split_invariant": true
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "src/phrt/operators/physical.py",
+      "blob": "cb26a08c3fe2f4836b6ca3edc3bdfbe441faa17c",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "scale",
+          "line": 280,
+          "kind": "assignment",
+          "enclosing": "equalize",
+          "reduction": "NORM",
+          "expression": "float(np.linalg.norm(o.whitened_coefficient()))",
+          "split_invariant": true
+        }
+      ],
+      "consumers": [
+        {
+          "name": "scale",
+          "line": 281,
+          "source": "ref = scale if ref is None else ref"
+        },
+        {
+          "name": "scale",
+          "line": 282,
+          "source": "o.amplitude = o.amplitude * (ref / max(scale, 1e-300))"
+        }
+      ]
+    },
+    {
+      "path": "src/phrt/operators/whitening.py",
+      "blob": "e8475a7a7ac0145453d4aae005875c38f079a894",
+      "role": "LIBRARY",
+      "is_seed": true,
+      "definitions": [
+        {
+          "name": "scale",
+          "line": 40,
+          "kind": "assignment",
+          "enclosing": "from_snr",
+          "reduction": "MEAN_OVER_ROWS",
+          "expression": "float(np.sqrt(np.mean(np.sum(ref ** 2, axis=1))))",
+          "split_invariant": false
+        }
+      ],
+      "consumers": [
+        {
+          "name": "scale",
+          "line": 41,
+          "source": "sigma = np.full(n_rows, max(scale, 1e-300) / float(snr))"
+        }
+      ]
+    },
+    {
+      "path": "src/phrt/sources/in_span.py",
+      "blob": "6902caabd4e13380c5a911215f1f5c7ef11c8bb0",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of in_span_residual()",
+          "line": 115,
+          "kind": "return",
+          "enclosing": "in_span_residual",
+          "reduction": "NORM",
+          "expression": "float(np.linalg.norm(j - design @ coef) / max(1.0, float(np.linalg.norm(j))))",
+          "split_invariant": true
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "src/phrt/sources/near_null.py",
+      "blob": "a052f7b903169c07037cdb25330ed5932afdd88f",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of direction_for_separation()",
+          "line": 34,
+          "kind": "return",
+          "enclosing": "direction_for_separation",
+          "reduction": "NORM",
+          "expression": "u / np.linalg.norm(u)",
+          "split_invariant": true
+        },
+        {
+          "name": "return of direction_for_separation()",
+          "line": 46,
+          "kind": "return",
+          "enclosing": "direction_for_separation",
+          "reduction": "NORM",
+          "expression": "u / np.linalg.norm(u)",
+          "split_invariant": true
+        },
+        {
+          "name": "return of realized_separation()",
+          "line": 51,
+          "kind": "return",
+          "enclosing": "realized_separation",
+          "reduction": "NORM",
+          "expression": "float(np.linalg.norm(op.s * (op.V.T @ delta_x)))",
+          "split_invariant": true
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "src/phrt/sources/structural.py",
+      "blob": "423ad9586fac12d88e56a53836b2dc2c72ba212a",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of structure_fraction()",
+          "line": 144,
+          "kind": "return",
+          "enclosing": "structure_fraction",
+          "reduction": "NORM",
+          "expression": "float(np.linalg.norm(v - lev) / max(n, 1e-300))",
+          "split_invariant": true
+        },
+        {
+          "name": "return of max_structure_fraction()",
+          "line": 199,
+          "kind": "return",
+          "enclosing": "max_structure_fraction",
+          "reduction": "NORM",
+          "expression": "{\"max_structure_fraction\": ns / max(float(np.linalg.norm(s + c_min)), 1e-300), \"c_min\": c_min, \"structure_norm\": ns}",
+          "split_invariant": true
+        },
+        {
+          "name": "return of frac()",
+          "line": 235,
+          "kind": "return",
+          "enclosing": "structure_balanced.frac",
+          "reduction": "NORM",
+          "expression": "ns / max(float(np.linalg.norm(s + c)), 1e-300)",
+          "split_invariant": true
+        }
+      ],
+      "consumers": []
+    },
+    {
+      "path": "src/phrt/sources/toy_classes.py",
+      "blob": "6caecbad4484d6c914f1244f800ca95aa09df0d4",
+      "role": "LIBRARY",
+      "is_seed": false,
+      "definitions": [
+        {
+          "name": "return of _dct_modes()",
+          "line": 44,
+          "kind": "return",
+          "enclosing": "_dct_modes",
+          "reduction": "NORM",
+          "expression": "M / np.linalg.norm(M, axis=0, keepdims=True)",
+          "split_invariant": true
+        }
+      ],
+      "consumers": []
+    }
+  ]
+}

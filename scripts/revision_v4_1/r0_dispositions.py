@@ -1,0 +1,440 @@
+#!/usr/bin/env python3
+"""The twelve R0 dispositions, each with the fields the protocol requires.
+
+Every status is one of: SOURCE_CONFIRMED (the code does what the ledger says),
+CORRECTED (the ledger's diagnosis needed changing), NEW_ANALYSIS_REQUIRED,
+INTERPRETATION_REPAIR, EXTENSION_GUARD or UNRESOLVED. A prose defect, a guard
+against a future extension, an open scientific question and a demonstrated
+numerical error are deliberately not the same status.
+"""
+from __future__ import annotations
+
+import json
+import subprocess
+import sys
+import time
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+FIELDS = ("status", "observed_ref", "file_paths", "blob_SHA_or_SHA256",
+          "runner_family", "old_claim_IDs", "observed_behavior",
+          "affected_claims", "surviving_claims", "new_alias", "required_test",
+          "test_status", "numerical_rerun_needed", "prose_overlay_needed",
+          "blocker")
+
+
+def blob(rel: str) -> str:
+    return subprocess.run(["git", "hash-object", rel], cwd=ROOT,
+                          capture_output=True, text=True).stdout.strip()
+
+
+def D(**kw) -> dict:
+    missing = [f for f in FIELDS if f not in kw]
+    if missing:
+        raise ValueError(f"disposition missing required fields: {missing}")
+    return {f: kw[f] for f in FIELDS}
+
+
+ITEMS = {
+
+"C01": D(
+    status="SOURCE_CONFIRMED_NOTATION_ONLY",
+    observed_ref="scripts/run_e3c_operator_grid.py::snr_scale and evaluate; "
+                 "src/phrt/pilot_r0.py::statistics_for",
+    file_paths=["scripts/run_e3c_operator_grid.py", "src/phrt/pilot_r0.py",
+                "scripts/run_hmt2_sealed_main.py"],
+    blob_SHA_or_SHA256={p: blob(p) for p in
+                        ["scripts/run_e3c_operator_grid.py",
+                         "src/phrt/pilot_r0.py"]},
+    runner_family=["E3C", "R0/R1", "HMT2"],
+    old_claim_IDs=["manuscript detectability equation", "E3C depth"],
+    observed_behavior="E3C forms a unit-reference operator and multiplies by "
+                      "REFERENCE_SNR / s_ref exactly once per use "
+                      "(op.to_dense() * (REFERENCE_SNR / s_ref)); the "
+                      "reconstruction path applies snr * forward_statistic(x) "
+                      "+ noise with unit-variance whitened noise. No second "
+                      "SNR factor was found on any inspected path",
+    affected_claims=["the printed detectability box, which reads as though an "
+                     "SNR-squared multiplier were applied on top of an "
+                     "already-whitened operator"],
+    surviving_claims=["every numerical E3C and HMT2 result inspected under "
+                      "this item"],
+    new_alias=None,
+    required_test="G01 amplitude and inverse-noise information scaling",
+    test_status="PENDING_R1",
+    numerical_rerun_needed=False,
+    prose_overlay_needed=True,
+    blocker=None),
+
+"C02": D(
+    status="CORRECTED_TARGET_CONFIRMED_SCOPE_NARROWED",
+    observed_ref="10 mean-over-rows reference definitions in physical "
+                 "runners; see normalization_site_inventory.json",
+    file_paths=["scripts/run_e3c_operator_grid.py",
+                "scripts/run_e3b_canary.py", "scripts/run_hmt1_main.py",
+                "scripts/run_hmt1_validation.py",
+                "scripts/run_hmt2_sealed_main.py",
+                "scripts/run_hmt2_stage1.py",
+                "scripts/run_hmt2_stage1_completion.py",
+                "scripts/run_r1l_operator_audit.py",
+                "scripts/run_r1l_stage2r_b.py",
+                "scripts/run_e3d_source_class_stress.py",
+                "src/phrt/operators/whitening.py",
+                "scripts/reproduce_v01.py"],
+    blob_SHA_or_SHA256={p: blob(p) for p in
+                        ["scripts/run_e3c_operator_grid.py",
+                         "src/phrt/operators/whitening.py"]},
+    runner_family=["E3B", "E3C", "E3D", "HMT1", "HMT2", "R1L", "toy v0.1"],
+    old_claim_IDs=["every SNR-labelled result"],
+    observed_behavior="s_ref = sqrt(mean(clean**2)) pins the RMS row to the "
+                      "SNR label, so a k-way equal-area pixel split preserves "
+                      "the total response but multiplies whitened information "
+                      "by k. NoiseModel.from_snr carries the same shape and a "
+                      "reference_rows slice, but the AST call-graph inventory "
+                      "finds its only call in scripts/reproduce_v01.py, so a "
+                      "repair confined to it reaches no physical result. The "
+                      "inventory adds 4 physical sites beyond the ledger's "
+                      "seeds: run_e3b_canary, run_hmt1_main, "
+                      "run_hmt2_stage1_completion, run_r1l_operator_audit",
+    affected_claims=["cross-geometry comparability of the SNR label; "
+                     "a000_i020 carries 1483 rays against 1536 elsewhere"],
+    surviving_claims=["within-geometry arm comparisons: E3C computes s_ref "
+                      "once from the direct arm and shares sigma across every "
+                      "arm, which is what the manuscript says it does"],
+    new_alias=None,
+    required_test="G02 legacy replay, G03 fixed-noise split, G04 common-count "
+                  "split, G05 legacy counterexample, G06 site coverage, "
+                  "G20 archived endpoint audit",
+    test_status="PENDING_R1",
+    numerical_rerun_needed=True,
+    prose_overlay_needed=True,
+    blocker=None),
+
+"C03": D(
+    status="SOURCE_CONFIRMED_COORDINATE_SPECTRA",
+    observed_ref="scripts/run_e3c_operator_grid.py:271,378 "
+                 "(probe_norms = age_probe_norms(...); probe_norms * s_ref)",
+    file_paths=["scripts/run_e3c_operator_grid.py",
+                "src/phrt/sources/physical_basis.py"],
+    blob_SHA_or_SHA256={"scripts/run_e3c_operator_grid.py":
+                        blob("scripts/run_e3c_operator_grid.py")},
+    runner_family=["E3C", "E3D"],
+    old_claim_IDs=["conditioning", "operational rank", "rank fraction"],
+    observed_behavior="each age probe is divided by its own L2 norm; the "
+                      "full source Gram H_ij = <q_i,q_j> is never formed, so "
+                      "overlapping probes are normalized but not "
+                      "orthogonalized and the reported spectra are "
+                      "coefficient-coordinate spectra",
+    affected_claims=["conditioning and operational-dimension statements, "
+                     "which are basis dependent as computed"],
+    surviving_claims=["structural support and exact-zero-column results, "
+                      "which are basis independent"],
+    new_alias="COEFFICIENT_COORDINATE_SPECTRUM",
+    required_test="G11 basis change with transformed Gram, G19 Gram "
+                  "quadrature convergence",
+    test_status="PENDING_R1",
+    numerical_rerun_needed=True,
+    prose_overlay_needed=True,
+    blocker=None),
+
+"C04": D(
+    status="EXTENSION_GUARD_ARCHIVED_CASES_VALID",
+    observed_ref="src/phrt/operators/physical.py::channel_variance",
+    file_paths=["src/phrt/operators/physical.py"],
+    blob_SHA_or_SHA256={"src/phrt/operators/physical.py":
+                        blob("src/phrt/operators/physical.py")},
+    runner_family=["all"],
+    old_claim_IDs=["derived-arm covariance propagation"],
+    observed_behavior="channel_variance returns one marginal variance per "
+                      "row; no cross-channel term is formed. Only two mixers "
+                      "are ever constructed, the identity and the all-ones "
+                      "single-output sum, and for both the marginal treatment "
+                      "is exact",
+    affected_claims=["any future partial or overlapping multi-output mixing"],
+    surviving_claims=["every archived arm, all of which use identity or "
+                      "single-output-sum mixing"],
+    new_alias=None,
+    required_test="G07 exact general mixing covariance and adjoint, "
+                  "G08 redundant outputs and noiseless constraints",
+    test_status="PENDING_R1",
+    numerical_rerun_needed=False,
+    prose_overlay_needed=False,
+    blocker=None),
+
+"C05a": D(
+    status="PHYSICAL_INTERPRETATION_WITHDRAWN",
+    observed_ref="src/phrt/geometry/sampling.py::stratified_subsample, "
+                 "common_count; src/phrt/operators/physical.py::OrderRays, "
+                 "PhysicalOperator.__post_init__",
+    file_paths=["src/phrt/geometry/sampling.py",
+                "src/phrt/operators/physical.py"],
+    blob_SHA_or_SHA256={p: blob(p) for p in
+                        ["src/phrt/geometry/sampling.py",
+                         "src/phrt/operators/physical.py"]},
+    runner_family=["E3C", "E3D", "HMT1", "HMT2", "R1", "R1L"],
+    old_claim_IDs=["order-resolution attribution", "23.7% retention"],
+    observed_behavior="OrderRays carries no alpha/beta. Each order is "
+                      "subsampled by an independent rng.choice and trimmed by "
+                      "a second independent rng.choice, so equal ray counts "
+                      "are equal cardinality and nothing more. The guard in "
+                      "__post_init__ checks only that the counts match while "
+                      "its comment asserts 'the same screen pixel is being "
+                      "summed across orders', an assumption the data "
+                      "structure cannot express. The all-ones mixer therefore "
+                      "sums by array index",
+    affected_claims=["the physical unresolved-image reading in 23 located "
+                     "attribution occurrences", "the 23.7% retention figure"],
+    surviving_claims=["the numbers as results for the index-sum linear map",
+                      "the all-order total-flux control, which integrates "
+                      "every pixel within an order and needs no inter-order "
+                      "correspondence"],
+    new_alias="INDEX_SUM_CONTROL",
+    required_test="G16 cardinality does not prove registration",
+    test_status="PENDING_R1",
+    numerical_rerun_needed=False,
+    prose_overlay_needed=True,
+    blocker="a physical common-sky result requires screen metadata the "
+            "archived OrderRays does not carry; deferred to R3"),
+
+"C05b": D(
+    status="PHYSICAL_INTERPRETATION_WITHDRAWN",
+    observed_ref="src/phrt/operators/physical.py::substitute_spatial, "
+                 "substitute_delay",
+    file_paths=["src/phrt/operators/physical.py",
+                "src/phrt/geometry/sampling.py"],
+    blob_SHA_or_SHA256={"src/phrt/operators/physical.py":
+                        blob("src/phrt/operators/physical.py")},
+    runner_family=["E3B", "E3C"],
+    old_claim_IDs=["delay diversity versus spatial remapping, 0.98 / 0.57"],
+    observed_behavior="both substitutions guard on n_rays equality and then "
+                      "transplant donor arrays by index, while the sampler "
+                      "docstring states the transplant 'is only defined "
+                      "pixel-for-pixel'. The donor value paired with a given "
+                      "ray is therefore an unrelated screen position's value",
+    affected_claims=["the mechanism split as a physical decomposition"],
+    surviving_claims=["the 0.98 / 0.57 contrast as a pairing-dependent "
+                      "counterfactual ablation",
+                      "PAIRING_DESTROYED, which permutes by design",
+                      "the flat-probe invariance, which is an algebraic "
+                      "identity and was never mechanism evidence"],
+    new_alias="INDEX_PAIRED_DELAY_SUBSTITUTION / "
+              "INDEX_PAIRED_SPATIAL_SUBSTITUTION",
+    required_test="G17 index substitution reindexing counterexample",
+    test_status="PENDING_R1",
+    numerical_rerun_needed=False,
+    prose_overlay_needed=True,
+    blocker=None),
+
+"C06": D(
+    status="SOURCE_CONFIRMED_SEMANTIC_SPLIT",
+    observed_ref="scripts/run_hmt2_sealed_main.py:127 (mixer=ones, "
+                 "collapse='total_flux') against E3C's collapse-only arm",
+    file_paths=["scripts/run_hmt2_sealed_main.py",
+                "scripts/run_e3c_operator_grid.py",
+                "src/phrt/operators/physical.py"],
+    blob_SHA_or_SHA256={"scripts/run_hmt2_sealed_main.py":
+                        blob("scripts/run_hmt2_sealed_main.py")},
+    runner_family=["E3C", "HMT2"],
+    old_claim_IDs=["TOTAL_FLUX operational rank 13"],
+    observed_behavior="E3C passes no mixer, so the identity keeps one light "
+                      "curve per order: 3 orders x 8 times = 24 rows, and a "
+                      "reported rank of 13 is consistent. HMT2 passes an "
+                      "all-ones mixer with the same collapse, giving 8 rows",
+    affected_claims=["any claim keyed by the arm string alone"],
+    surviving_claims=["both numerical results under their own runner"],
+    new_alias="E3C: ORDER_RESOLVED_FLUX_CONTROL; HMT2: ALL_ORDER_FLUX_CONTROL",
+    required_test="G18 runner-specific flux rows and permutation invariance",
+    test_status="PENDING_R1",
+    numerical_rerun_needed=False,
+    prose_overlay_needed=True,
+    blocker=None),
+
+"C07": D(
+    status="INTERPRETATION_REPAIR_CONFIRMED_AGAINST_ARTIFACTS",
+    observed_ref="artifacts/tables/e3d_class_spectra.parquet",
+    file_paths=["artifacts/tables/e3d_class_spectra.parquet",
+                "src/phrt/manuscript/sections.py"],
+    blob_SHA_or_SHA256={"src/phrt/manuscript/sections.py":
+                        blob("src/phrt/manuscript/sections.py")},
+    runner_family=["E3D"],
+    old_claim_IDs=["enrichment destroys identifiability", "the Shiva effect"],
+    observed_behavior="resolved numerical rank RISES with dimension: 224, "
+                      "448, 528, 1045 at dimensions 224, 448, 528, 1056. What "
+                      "falls is the operational rank FRACTION, 0.897, 0.815, "
+                      "0.835, 0.729. Absolute well-constrained directions "
+                      "increase; the constrained share of a larger model "
+                      "decreases",
+    affected_claims=["the unqualified phrase 'destroys identifiability' in "
+                     "the introduction's Shiva-effect paragraph and in the "
+                     "contribution list; the figure 2 annotation reads "
+                     "'identifiability falls' against a fraction axis"],
+    surviving_claims=["every fraction, conditioning and reach number as "
+                      "printed; the abstract, which already says "
+                      "'operational-rank fraction'"],
+    new_alias=None,
+    required_test="none; this is an artifact reading, already performed",
+    test_status="COMPLETE",
+    numerical_rerun_needed=False,
+    prose_overlay_needed=True,
+    blocker=None),
+
+"C08": D(
+    status="NEW_R2_ANALYSIS_REQUIRED",
+    observed_ref="J_old definition in the manuscript and "
+                 "artifacts/tables/e3c_historical_innovation.parquet",
+    file_paths=["scripts/run_e3c_operator_grid.py"],
+    blob_SHA_or_SHA256={"scripts/run_e3c_operator_grid.py":
+                        blob("scripts/run_e3c_operator_grid.py")},
+    runner_family=["E3C"],
+    old_claim_IDs=["J_old historical innovation", "recoverable depth"],
+    observed_behavior="||B q||^2 holds every other source component fixed, so "
+                      "the reported sensitivity is a known-remainder "
+                      "quantity. Nothing archived profiles out an unknown "
+                      "baseline or unknown remaining emission",
+    affected_claims=["any reading of J_old or depth as recoverable history "
+                     "when the rest of the source is unknown"],
+    surviving_claims=["J_old as an old-age sensitivity volume, which is what "
+                      "it is defined to be"],
+    new_alias="KNOWN_REMAINDER_SENSITIVITY",
+    required_test="R2 conditional spectra with G12, G13, G14, G15",
+    test_status="PENDING_R2",
+    numerical_rerun_needed=False,
+    prose_overlay_needed=True,
+    blocker=None),
+
+"C09": D(
+    status="RETAIN_WITH_PRECISE_SCOPE",
+    observed_ref="artifacts/tables/r1l_class_spectra.parquet exact-zero "
+                 "column counts; r1l_old_structural_support.parquet",
+    file_paths=["artifacts/tables/r1l_class_spectra.parquet"],
+    blob_SHA_or_SHA256={},
+    runner_family=["R1L"],
+    old_claim_IDs=["84 identically zero direct columns", "null-space fact"],
+    observed_behavior="a coefficient whose support contains no ray gives an "
+                      "identically zero column; that is exact. The step from "
+                      "a count of zero columns to a subspace nullity holds "
+                      "only for independent source functions, which the "
+                      "localized basis has not been shown to satisfy under "
+                      "the source metric",
+    affected_claims=["nullity phrased as a dimension rather than a count"],
+    surviving_claims=["the zero-column counts themselves; the distinction "
+                      "between structural zeros and small numerical values"],
+    new_alias=None,
+    required_test="G19 source Gram convergence establishes independence or "
+                  "does not",
+    test_status="PENDING_R1",
+    numerical_rerun_needed=False,
+    prose_overlay_needed=True,
+    blocker=None),
+
+"C10": D(
+    status="CLAIM_QUALIFICATION_MAPPED",
+    observed_ref="claim_dependency_map.csv, 459 occurrences over 38 files",
+    file_paths=["artifacts/manuscript/PAPER_I.md",
+                "docs/Paper_I_v1_Current_Evidence_Ledger.md",
+                "src/phrt/manuscript/sections.py",
+                "artifacts/reports/HMT2_SEALED_MAIN.md"],
+    blob_SHA_or_SHA256={"artifacts/manuscript/PAPER_I.md":
+                        blob("artifacts/manuscript/PAPER_I.md")},
+    runner_family=["HMT2", "E3C", "R1L"],
+    old_claim_IDs=["HMT2_MAIN_ORDER_RESOLUTION_ATTRIBUTION_SUPPORTED"],
+    observed_behavior="the attribution rests on two controls. The all-order "
+                      "flux control is physically valid and nonmaterial. The "
+                      "index-sum control is nonmaterial but is not a "
+                      "co-registered unresolved image, so the second leg does "
+                      "not support the stated conclusion",
+    affected_claims=["23 attribution occurrences; 2 retention-figure "
+                     "occurrences; 8 mechanism-split occurrences"],
+    surviving_claims=["the aggregate morphology error reduction itself",
+                      "failure of the tested all-order flux readout",
+                      "level dominance, family heterogeneity, baseline "
+                      "saturation, failed multi-feature recovery, zero stable "
+                      "morphology span and withdrawn posterior calibration, "
+                      "all preserved unchanged"],
+    new_alias=None,
+    required_test="none; textual",
+    test_status="COMPLETE",
+    numerical_rerun_needed=False,
+    prose_overlay_needed=True,
+    blocker=None),
+
+"C11": D(
+    status="SOURCE_CONFIRMED_SCOPE",
+    observed_ref="scripts/run_hmt2_sealed_main.py forwards bank[k]['fluct']; "
+                 "src/phrt/sources/separable_projection.py drop_m0=True",
+    file_paths=["scripts/run_hmt2_sealed_main.py",
+                "src/phrt/sources/separable_projection.py"],
+    blob_SHA_or_SHA256={"src/phrt/sources/separable_projection.py":
+                        blob("src/phrt/sources/separable_projection.py")},
+    runner_family=["HMT2"],
+    old_claim_IDs=["PHYSICAL_END_TO_END morphology score"],
+    observed_behavior="the analytic fluctuation field is forwarded and the "
+                      "m=0 block is excluded from the reconstruction, so the "
+                      "primary score assumes an absent or perfectly removed "
+                      "background. The reconstruction mask and the projection "
+                      "helper are two separate mechanisms and both do it",
+    affected_claims=["'physical end-to-end' read as unrestricted recovery"],
+    surviving_claims=["the contrast-reconstruction score under its declared "
+                      "object"],
+    new_alias="CONTRAST_ONLY_END_TO_END",
+    required_test="R2 nuisance manifest restores all baseline columns",
+    test_status="PENDING_R2",
+    numerical_rerun_needed=False,
+    prose_overlay_needed=True,
+    blocker=None),
+
+"C12": D(
+    status="DELIVERY_RESOLVED_PDF_LINEAGE_UNRESOLVED",
+    observed_ref="provenance.json",
+    file_paths=["docs/revisions/mahakal_v4_1/SHA256SUMS.txt",
+                "artifacts/configs/PAPER_I_SUBMISSION_FREEZE_022.json"],
+    blob_SHA_or_SHA256={"artifacts/configs/PAPER_I_SUBMISSION_FREEZE_022.json":
+                        blob("artifacts/configs/"
+                             "PAPER_I_SUBMISSION_FREEZE_022.json")},
+    runner_family=["governance"],
+    old_claim_IDs=["freeze 022 deliverables"],
+    observed_behavior="all four governing files verify against SHA256SUMS and "
+                      "all 13 freeze-022 deliverables re-hash to their pinned "
+                      "digests. The uploaded Mahakal PDF is a different "
+                      "document from the repository PDF and is not present on "
+                      "this machine",
+    affected_claims=["any claim of reproducing the uploaded PDF"],
+    surviving_claims=["the repository-based audit, which is pinned to "
+                      "7961e5bd and needs no uploaded document"],
+    new_alias=None,
+    required_test="none",
+    test_status="COMPLETE",
+    numerical_rerun_needed=False,
+    prose_overlay_needed=False,
+    blocker="uploaded-PDF lineage UNRESOLVED; no reproduction of that "
+            "document is claimed anywhere in this campaign"),
+}
+
+
+def main(run_dir: Path) -> int:
+    doc = {
+        "schema": "phrt-r0-dispositions/1",
+        "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+        "amendment": "PAPER_I_DEFECT_AMENDMENT_023",
+        "n_items": len(ITEMS),
+        "corrections_to_the_delivered_ledger": [
+            "C02: the ledger's repair target list omitted 4 physical sites "
+            "found by the call-graph inventory, and NoiseModel.from_snr is "
+            "toy-only, so the count is 10 physical sites not 6",
+            "C07: confirmed against e3d_class_spectra and found to bite on "
+            "the repository's own current introduction and contribution list, "
+            "not only on the uploaded paper's Table 5",
+        ],
+        "dispositions": ITEMS,
+    }
+    out = run_dir / "correction_dispositions.json"
+    out.write_text(json.dumps(doc, indent=2) + "\n")
+    print(f"wrote {out.relative_to(ROOT)}  ({len(ITEMS)} dispositions)")
+    for k, v in ITEMS.items():
+        print(f"  {k:5s} {v['status']:44s} rerun={v['numerical_rerun_needed']} "
+              f"overlay={v['prose_overlay_needed']}")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main((ROOT / sys.argv[1]).resolve()))
