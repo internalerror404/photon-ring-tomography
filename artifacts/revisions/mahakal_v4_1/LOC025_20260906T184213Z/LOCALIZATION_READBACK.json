@@ -1,0 +1,136 @@
+{
+  "schema": "mahakal-saved-mode-source-localization/1",
+  "scope": "Independent postprocessing of two saved coefficient vectors; no operator/SVD/test-suite replay.",
+  "reviewed_commit": "1d99e99eec9c61eeece2d00b832b1e62e6047b2c",
+  "model_norm": "r dr dphi dt, not proper-volume or source prior",
+  "target_union_M": [
+    -128.82234649196255,
+    -69.63896655747659
+  ],
+  "knot_times_M": [
+    -128.82234649196255,
+    -109.09455318046723,
+    -89.36675986897191,
+    -69.63896655747659
+  ],
+  "source_metric_independent_radial_refinements": [
+    64,
+    128,
+    256
+  ],
+  "source_gram_relative_refinement_steps": [
+    1.8346748276934313e-14,
+    4.332083858600331e-15
+  ],
+  "source_mode_inner_product_matrix": [
+    [
+      1.0000001824357871,
+      2.3560580847403756e-09
+    ],
+    [
+      2.3560580569848e-09,
+      1.0000001775831042
+    ]
+  ],
+  "integration_note": "Gauss radial plus exact piecewise-quadratic temporal integration; differs slightly from midpoint normalization used in archived modes.",
+  "intervals": [
+    {
+      "name": "oldest_third",
+      "interval_M": [
+        -128.82234649196255,
+        -109.09455318046723
+      ],
+      "source_energy_fraction": [
+        0.024396455213855257,
+        0.02351217590390685
+      ],
+      "subspace_fraction_min_max": [
+        0.022995581414601375,
+        0.02491304970716931
+      ]
+    },
+    {
+      "name": "middle_third",
+      "interval_M": [
+        -109.09455318046723,
+        -89.36675986897191
+      ],
+      "source_energy_fraction": [
+        0.4381078027023865,
+        0.43921537629618046
+      ],
+      "subspace_fraction_min_max": [
+        0.4374251302483704,
+        0.43989804874498734
+      ]
+    },
+    {
+      "name": "youngest_third",
+      "interval_M": [
+        -89.36675986897191,
+        -69.63896655747659
+      ],
+      "source_energy_fraction": [
+        0.5374957420837584,
+        0.5372724477999128
+      ],
+      "subspace_fraction_min_max": [
+        0.5371058952023613,
+        0.5376622946825107
+      ]
+    },
+    {
+      "name": "original_hat2_support",
+      "interval_M": [
+        -109.09455318046723,
+        -69.63896655747659
+      ],
+      "source_energy_fraction": [
+        0.9756035447861447,
+        0.976487824096093
+      ],
+      "subspace_fraction_min_max": [
+        0.9750869502928307,
+        0.9770044185853985
+      ]
+    },
+    {
+      "name": "youngest_fifth_of_target_union",
+      "interval_M": [
+        -81.47564254437378,
+        -69.63896655747659
+      ],
+      "source_energy_fraction": [
+        0.11609908029009176,
+        0.11605084872478108
+      ],
+      "subspace_fraction_min_max": [
+        0.11601487336370994,
+        0.11613505565142225
+      ]
+    }
+  ],
+  "reconstructed_cholesky_coordinate_group_shares": [
+    [
+      6.2180371858260345e-09,
+      0.0017936236608154714,
+      0.9982063701211474
+    ],
+    [
+      5.429066925330329e-09,
+      0.002208314717087319,
+      0.9977916798538456
+    ]
+  ],
+  "coordinate_vector_readback_max_abs": 1.1102230246251565e-15,
+  "note": "Coordinate shares are NOT energy in the original hats or time windows. The trace-by-coordinate diagnostic needs its own interpretation correction.",
+  "inputs": {
+    "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/mode_export.json": "c25785a8b84dd71d67a0b94e680295ece4fe8a86e183b5fecceba6d8be7ad287",
+    "artifacts/revisions/mahakal_v4_1/R2_REPLAY_TARGET_MANIFEST.json": "e6b6b0dac9f35dbb96405f6ab2dd76e139d8f9ad5838c638ffb72a3c04271273"
+  },
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4"
+  }
+}

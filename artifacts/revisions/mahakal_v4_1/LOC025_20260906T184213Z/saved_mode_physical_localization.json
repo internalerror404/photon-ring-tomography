@@ -1,0 +1,161 @@
+{
+  "schema": "phrt-localization-overlay/1",
+  "created_utc": "2026-09-06T18:44:29Z",
+  "review": "PAPER_I_R2_ACCEPTANCE_AND_LOCALIZATION_025",
+  "disposition_of_epoch_breakdown_addition": "CHOLESKY_COORDINATE_GROUP_DIAGNOSTIC",
+  "not": "PHYSICAL_EPOCH_PARTITION",
+  "numbers_preserved": true,
+  "mechanism_verified_here": {
+    "three_hat_temporal_gram_over_scale": [
+      [
+        2.0,
+        1.000000001,
+        0.0
+      ],
+      [
+        1.000000001,
+        4.0,
+        1.000000001
+      ],
+      [
+        0.0,
+        1.000000001,
+        4.0
+      ]
+    ],
+    "reviewer_claim": [
+      [
+        2,
+        1,
+        0
+      ],
+      [
+        1,
+        4,
+        1
+      ],
+      [
+        0,
+        1,
+        4
+      ]
+    ],
+    "third_column_of_R_inverse_in_hat_basis": [
+      0.142857143,
+      -0.285714286,
+      1.0
+    ],
+    "reviewer_claim_1_7_minus_2_7_1": [
+      0.14285714285714285,
+      -0.2857142857142857,
+      1.0
+    ],
+    "conclusion": "R^-1 mixes the overlapping hats, so a column group of B_o is not a time window"
+  },
+  "trace_localization": {
+    "DIRECT_PHYSICAL": {
+      "total_conditional_trace": 0.0,
+      "windows": {
+        "oldest_third": {
+          "interval_M": [
+            -128.82234649196255,
+            -109.09455318046723
+          ],
+          "trace_F_E": 0.0,
+          "fraction_of_total": null,
+          "E_min_eigenvalue": -4.0647302456332987e-16
+        },
+        "middle_third": {
+          "interval_M": [
+            -109.09455318046723,
+            -89.36675986897191
+          ],
+          "trace_F_E": 0.0,
+          "fraction_of_total": null,
+          "E_min_eigenvalue": -3.493797273999493e-16
+        },
+        "youngest_third": {
+          "interval_M": [
+            -89.36675986897191,
+            -69.63896655747659
+          ],
+          "trace_F_E": 0.0,
+          "fraction_of_total": null,
+          "E_min_eigenvalue": -2.5989059458818153e-16
+        },
+        "original_hat2_support": {
+          "interval_M": [
+            -109.09455318046723,
+            -69.63896655747659
+          ],
+          "trace_F_E": 0.0,
+          "fraction_of_total": null,
+          "E_min_eigenvalue": -2.29978733372542e-16
+        },
+        "youngest_fifth_of_union": {
+          "interval_M": [
+            -81.47564254437378,
+            -69.63896655747659
+          ],
+          "trace_F_E": 0.0,
+          "fraction_of_total": null,
+          "E_min_eigenvalue": -5.040228217589527e-17
+        }
+      },
+      "disjoint_partition_sum": 0.0,
+      "partition_sum_relative_error": null
+    },
+    "RESOLVED_PHYSICAL": {
+      "total_conditional_trace": 7.19831708687072,
+      "windows": {
+        "oldest_third": {
+          "interval_M": [
+            -128.82234649196255,
+            -109.09455318046723
+          ],
+          "trace_F_E": 0.24780615225756647,
+          "fraction_of_total": 0.03442556770797849,
+          "E_min_eigenvalue": -4.0647302456332987e-16
+        },
+        "middle_third": {
+          "interval_M": [
+            -109.09455318046723,
+            -89.36675986897191
+          ],
+          "trace_F_E": 3.1967787445056866,
+          "fraction_of_total": 0.4441008510637036,
+          "E_min_eigenvalue": -3.493797273999493e-16
+        },
+        "youngest_third": {
+          "interval_M": [
+            -89.36675986897191,
+            -69.63896655747659
+          ],
+          "trace_F_E": 3.753732190107472,
+          "fraction_of_total": 0.5214735812283186,
+          "E_min_eigenvalue": -2.5989059458818153e-16
+        },
+        "original_hat2_support": {
+          "interval_M": [
+            -109.09455318046723,
+            -69.63896655747659
+          ],
+          "trace_F_E": 6.950510934613158,
+          "fraction_of_total": 0.9655744322920221,
+          "E_min_eigenvalue": -2.29978733372542e-16
+        },
+        "youngest_fifth_of_union": {
+          "interval_M": [
+            -81.47564254437378,
+            -69.63896655747659
+          ],
+          "trace_F_E": 0.8108061530632115,
+          "fraction_of_total": 0.11263829354531647,
+          "E_min_eigenvalue": -5.040228217589527e-17
+        }
+      },
+      "disjoint_partition_sum": 7.198317086870725,
+      "partition_sum_relative_error": 6.661338147750939e-16
+    }
+  }
+}
