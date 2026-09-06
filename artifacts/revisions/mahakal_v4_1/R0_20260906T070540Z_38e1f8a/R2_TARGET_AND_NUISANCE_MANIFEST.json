@@ -1,0 +1,96 @@
+{
+  "schema": "phrt-r2-target-manifest/1",
+  "created_utc": "2026-09-06T07:27:22Z",
+  "frozen_before_any_spectrum": true,
+  "geometry": {
+    "id": "a050_i050",
+    "spin": 0.5,
+    "inclination_deg": 50.0
+  },
+  "orders": [
+    0,
+    1,
+    2
+  ],
+  "observer_times_M": [
+    0.0,
+    2.857142857142857,
+    5.714285714285714,
+    8.571428571428571,
+    11.428571428571429,
+    14.285714285714286,
+    17.142857142857142,
+    20.0
+  ],
+  "source_class": {
+    "id": "L224",
+    "dimension": 224,
+    "n_radial": 4,
+    "n_azimuthal": 7,
+    "n_temporal": 8,
+    "r_inner_M": 1.8660386527060988,
+    "r_outer_M": 49.98205255591607,
+    "t_min_M": -128.82234649196255,
+    "t_max_M": 29.0,
+    "full_model_includes_m0": true
+  },
+  "selection_rule": "target = azimuthal_m >= 1 AND the temporal hat's support contains no direct-order sample. Decided from ray support and basis geometry alone; no singular value, error or score enters",
+  "direct_footprint_M": [
+    -57.80751574810631,
+    19.99961781448451
+  ],
+  "temporal_supports_M": [
+    [
+      -128.82234649196255,
+      -109.09455318046723
+    ],
+    [
+      -128.82234649196255,
+      -89.36675986897191
+    ],
+    [
+      -109.09455318046723,
+      -69.63896655747659
+    ],
+    [
+      -89.36675986897191,
+      -49.911173245981274
+    ],
+    [
+      -69.63896655747659,
+      -30.183379934485956
+    ],
+    [
+      -49.911173245981274,
+      -10.455586622990637
+    ],
+    [
+      -30.183379934485956,
+      9.272206688504681
+    ],
+    [
+      -10.455586622990623,
+      29.0
+    ]
+  ],
+  "temporal_modes_covered_by_direct": [
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "temporal_modes_outside_direct_footprint": [
+    0,
+    1,
+    2
+  ],
+  "n_target_columns": 72,
+  "n_nuisance_columns": 152,
+  "nuisance_includes": [
+    "old axisymmetric baseline (m=0)",
+    "all recent emission",
+    "boundary-overlap temporal factors"
+  ],
+  "empty_target": false
+}

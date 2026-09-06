@@ -1,0 +1,51 @@
+{
+  "schema": "phrt-source-metric-convergence/1",
+  "measure": "r dr dphi dt, nondimensional, on the registered domain",
+  "separable": "H = H_r (x) H_phi (x) H_t, exact for this basis",
+  "refinements": [
+    {
+      "n_per_axis": 1600,
+      "cond_radial": 524.7723820673606,
+      "cond_azimuthal": 2.0000000000000657,
+      "cond_temporal": 3.9063566340116767,
+      "relative_change_from_previous": null
+    },
+    {
+      "n_per_axis": 3200,
+      "cond_radial": 524.7570932203035,
+      "cond_azimuthal": 2.0000000000000853,
+      "cond_temporal": 3.9063025179712265,
+      "relative_change_from_previous": 4.814777134974301e-06
+    },
+    {
+      "n_per_axis": 6400,
+      "cond_radial": 524.7532709820889,
+      "cond_azimuthal": 1.999999999999769,
+      "cond_temporal": 3.906288989279279,
+      "relative_change_from_previous": 1.2036928583062589e-06
+    },
+    {
+      "n_per_axis": 12800,
+      "cond_radial": 524.7523154208486,
+      "cond_azimuthal": 1.999999999999482,
+      "cond_temporal": 3.906285607126171,
+      "relative_change_from_previous": 3.009230378028781e-07
+    }
+  ],
+  "target_gram_condition": 1786.2821639978647,
+  "endpoint_stability_across_last_two_refinements": {
+    "DIRECT_PHYSICAL": {
+      "operational_conditional_stable": true,
+      "information_relative_change": 0.0,
+      "coarse_ops": 0,
+      "fine_ops": 0
+    },
+    "RESOLVED_PHYSICAL": {
+      "operational_conditional_stable": true,
+      "information_relative_change": 5.889005802822284e-07,
+      "coarse_ops": 2,
+      "fine_ops": 2
+    }
+  },
+  "promoted": true
+}
