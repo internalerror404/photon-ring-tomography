@@ -1,0 +1,23 @@
+{
+  "schema": "phrt-r1-code-freeze/1",
+  "created_utc": "2026-09-06T07:23:12Z",
+  "purpose": "code, config and test bytes frozen before any outcome-bearing R2 computation",
+  "amendment": "PAPER_I_DEFECT_AMENDMENT_023",
+  "e3c_reference_rows_frozen_before_outcomes": 12288,
+  "nuisance_rank_rtol_primary": 1e-12,
+  "files": {
+    "src/phrt/revision_v4_1/__init__.py": "877dc27a1171f3736b8c9c0936858eed2a6c419d45b04dc3f275187397fe1fb5",
+    "src/phrt/revision_v4_1/calibration.py": "5b59947c8ee3d62a80ee231df06d8cef81c40ce697ee24dd419fec70d309eea8",
+    "src/phrt/revision_v4_1/conditioning.py": "db932a21675ccf0465b1eb2cca7b92397caa720938eda092888f49791ad083b0",
+    "src/phrt/revision_v4_1/covariance.py": "ef3cfb7e7e5679fda7037daeeff7ce6a8a8658198dd4507338b3de4227893e04",
+    "src/phrt/revision_v4_1/source_metric.py": "612ef12af2d85690a3c2af532923e78e89a4581e1ae671b273dc5a7a05b61c3b",
+    "scripts/revision_v4_1/r0_claim_map.py": "21b9d219a464c0fe337e3250d503c2ec6aac8f893c2df9834ed2a24d27fad19b",
+    "scripts/revision_v4_1/r0_dispositions.py": "86aa4cc396d0b2e93e4ea8e6f9778a55bacefcbc4788849729e1c8ce98226c5a",
+    "scripts/revision_v4_1/r0_normalization_inventory.py": "d1502568197d2fdf4d88294fe726a3e24dfec689647feafdf9b6cbc8a40421ef",
+    "scripts/revision_v4_1/r0_provenance.py": "c3efaad3138c334924553c1562508d2bcfacffc0efc151b013fb13ef339fc070",
+    "scripts/revision_v4_1/r1_migration_and_freeze.py": "3f9ae62b0f43f75f4f771cf4f1935820857d6b28721ed6f8d6ea946611d9d696",
+    "scripts/revision_v4_1/r1_physical_calibration.py": "3833e0ab49373a1ad6c30fefe9e2173b7b7b91d4cc9328c1a31cc5c46e53f533",
+    "scripts/revision_v4_1/r1_stored_curve_audit.py": "770b731fdcfc4a9ef009118a8fa9de6a849103af467c95aba89b25134850d357",
+    "tests/revision_v4_1/test_r1_gates.py": "1d14c9c2f931ba0c3875e3e1f4c1fd4c053694bd928ee781b8afff0a7272ed48"
+  }
+}

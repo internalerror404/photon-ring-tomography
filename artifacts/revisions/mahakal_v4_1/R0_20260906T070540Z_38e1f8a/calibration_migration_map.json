@@ -1,0 +1,126 @@
+{
+  "schema": "phrt-calibration-migration/1",
+  "created_utc": "2026-09-06T07:23:12Z",
+  "ledger_item": "C02",
+  "versioned_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+  "modes": [
+    "LEGACY_REPLAY",
+    "LOCKED_LEGACY_NOISE",
+    "COMMON_REFERENCE_COUNT"
+  ],
+  "e3c_reference_rows": 12288,
+  "legacy_entry_points_left_intact": true,
+  "n_physical_sites_discovered": 10,
+  "n_physical_sites_covered": 10,
+  "uncovered_physical_sites": [],
+  "entries": [
+    {
+      "legacy_site": "scripts/reproduce_v01.py",
+      "symbol": "NoiseModel.from_snr",
+      "family": "toy",
+      "classification": "TOY_ONLY",
+      "integration_evidence": "the only caller of the toy helper",
+      "revised_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+      "integration_test": "tests/revision_v4_1/test_r1_gates.py"
+    },
+    {
+      "legacy_site": "scripts/run_e3b_canary.py",
+      "symbol": "snr_scale",
+      "family": "E3B",
+      "classification": "PHYSICAL",
+      "integration_evidence": "same constructor and formula as E3C; covered by the E3C replay and by G02",
+      "revised_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+      "integration_test": "tests/revision_v4_1/test_r1_gates.py"
+    },
+    {
+      "legacy_site": "scripts/run_e3c_operator_grid.py",
+      "symbol": "snr_scale",
+      "family": "E3C",
+      "classification": "PHYSICAL",
+      "integration_evidence": "physical_calibration_replay.json: all 12 geometries reproduce the archived s_ref through the versioned object, worst relative error 4.4e-16",
+      "revised_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+      "integration_test": "scripts/revision_v4_1/r1_physical_calibration.py"
+    },
+    {
+      "legacy_site": "scripts/run_e3d_source_class_stress.py",
+      "symbol": "s_ref",
+      "family": "E3D",
+      "classification": "PHYSICAL",
+      "integration_evidence": "shares the direct-arm reference construction; covered by G02, not separately replayed",
+      "revised_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+      "integration_test": "tests/revision_v4_1/test_r1_gates.py"
+    },
+    {
+      "legacy_site": "scripts/run_hmt1_main.py",
+      "symbol": "s_ref",
+      "family": "HMT1",
+      "classification": "PHYSICAL",
+      "integration_evidence": "HMT1 is closed with no standing result; migration recorded, replay not required",
+      "revised_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+      "integration_test": "tests/revision_v4_1/test_r1_gates.py"
+    },
+    {
+      "legacy_site": "scripts/run_hmt1_validation.py",
+      "symbol": "s_ref",
+      "family": "HMT1",
+      "classification": "PHYSICAL",
+      "integration_evidence": "as above",
+      "revised_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+      "integration_test": "tests/revision_v4_1/test_r1_gates.py"
+    },
+    {
+      "legacy_site": "scripts/run_hmt2_sealed_main.py",
+      "symbol": "s_ref",
+      "family": "HMT2",
+      "classification": "PHYSICAL",
+      "integration_evidence": "single geometry, single ray count, so the count convention cannot differ across cells within the run; migration recorded",
+      "revised_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+      "integration_test": "tests/revision_v4_1/test_r1_gates.py"
+    },
+    {
+      "legacy_site": "scripts/run_hmt2_stage1.py",
+      "symbol": "s_ref",
+      "family": "HMT2",
+      "classification": "PHYSICAL",
+      "integration_evidence": "as above",
+      "revised_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+      "integration_test": "tests/revision_v4_1/test_r1_gates.py"
+    },
+    {
+      "legacy_site": "scripts/run_hmt2_stage1_completion.py",
+      "symbol": "s_ref",
+      "family": "HMT2",
+      "classification": "PHYSICAL",
+      "integration_evidence": "as above; discovered by the inventory, absent from the delivered ledger's seed list",
+      "revised_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+      "integration_test": "tests/revision_v4_1/test_r1_gates.py"
+    },
+    {
+      "legacy_site": "scripts/run_r1l_operator_audit.py",
+      "symbol": "s_ref",
+      "family": "R1L",
+      "classification": "PHYSICAL",
+      "integration_evidence": "discovered by the inventory; migration recorded",
+      "revised_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+      "integration_test": "tests/revision_v4_1/test_r1_gates.py"
+    },
+    {
+      "legacy_site": "scripts/run_r1l_stage2r_b.py",
+      "symbol": "s_ref",
+      "family": "R1L",
+      "classification": "PHYSICAL",
+      "integration_evidence": "migration recorded",
+      "revised_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+      "integration_test": "tests/revision_v4_1/test_r1_gates.py"
+    },
+    {
+      "legacy_site": "src/phrt/operators/whitening.py",
+      "symbol": "NoiseModel.from_snr",
+      "family": "library",
+      "classification": "TOY_ONLY",
+      "integration_evidence": "AST call graph finds one caller, scripts/reproduce_v01.py. Left unchanged so the v0.1 reproduction keeps replaying; its reference_rows is a slice, not a count",
+      "revised_entry_point": "phrt.revision_v4_1.calibration.calibrate",
+      "integration_test": "tests/revision_v4_1/test_r1_gates.py"
+    }
+  ]
+}

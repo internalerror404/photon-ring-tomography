@@ -1,0 +1,20 @@
+{
+  "schema": "phrt-r1-gates/1",
+  "created_utc": "2026-09-06T07:23:12Z",
+  "suite": "tests/revision_v4_1/test_r1_gates.py",
+  "pytest_summary": "21 passed in 0.55s",
+  "returncode": 0,
+  "counterexample_gates": {
+    "G05": "passes by reproducing the archived recalibration defect: splitting by 2, 4, 8, 16 multiplies information by the same factors at one SNR label",
+    "G16": "passes by showing the archived guard accepts two unrelated screens of equal cardinality",
+    "G17": "passes by showing an index-paired substitution moves when one order is relabelled independently, and does not move under a common relabelling"
+  },
+  "physical_replay": {
+    "n_geometries": 12,
+    "n_failures": 0,
+    "worst_relative_replay_error": 4.440892098500626e-16,
+    "geometries_with_non_unit_factor": [
+      "a000_i020"
+    ]
+  }
+}
