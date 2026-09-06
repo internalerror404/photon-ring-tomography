@@ -1,0 +1,101 @@
+{
+  "schema": "phrt-raymap-readiness/1",
+  "purpose": "readiness check only. Screen metadata being present does not validate interpolation, common-sky summation or a detector noise model",
+  "file": "artifacts/raymaps/a050_i050_n0_core.h5",
+  "datasets": {
+    "rays/alpha": {
+      "shape": [
+        15876
+      ],
+      "dtype": "float64"
+    },
+    "rays/beta": {
+      "shape": [
+        15876
+      ],
+      "dtype": "float64"
+    },
+    "rays/coordinate_time": {
+      "shape": [
+        15876
+      ],
+      "dtype": "float64"
+    },
+    "rays/delay": {
+      "shape": [
+        15876
+      ],
+      "dtype": "float64"
+    },
+    "rays/pixel_area": {
+      "shape": [
+        15876
+      ],
+      "dtype": "float64"
+    },
+    "rays/radial_sign": {
+      "shape": [
+        15876
+      ],
+      "dtype": "float64"
+    },
+    "rays/redshift": {
+      "shape": [
+        15876
+      ],
+      "dtype": "float64"
+    },
+    "rays/source_phi": {
+      "shape": [
+        15876
+      ],
+      "dtype": "float64"
+    },
+    "rays/source_r": {
+      "shape": [
+        15876
+      ],
+      "dtype": "float64"
+    },
+    "rays/transfer_weight": {
+      "shape": [
+        15876
+      ],
+      "dtype": "float64"
+    },
+    "rays/valid": {
+      "shape": [
+        15876
+      ],
+      "dtype": "bool"
+    },
+    "rays/winding_phi": {
+      "shape": [
+        15876
+      ],
+      "dtype": "float64"
+    }
+  },
+  "requested_fields": {
+    "alpha": true,
+    "beta": true,
+    "pixel_area": true,
+    "valid": true,
+    "coordinate_time": true,
+    "delay": true
+  },
+  "reader_exposes": [
+    "alpha",
+    "beta",
+    "pixel_area",
+    "valid",
+    "source_r",
+    "source_phi",
+    "delay",
+    "redshift",
+    "coordinate_time"
+  ],
+  "reduction_discards": "OrderRays keeps source_r, source_phi, delay, redshift and quadrature only; alpha and beta are dropped by stratified_subsample",
+  "conclusion": "the archive retains screen coordinates, so the earlier statement that new geodesics would be required is withdrawn. The retained-index lineage is not stored but is reproducible from the recorded subsample seed",
+  "authorized": "inventory only; no common-sky operator, no R3"
+}

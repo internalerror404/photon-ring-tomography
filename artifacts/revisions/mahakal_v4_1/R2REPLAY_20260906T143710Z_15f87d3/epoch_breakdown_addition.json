@@ -1,0 +1,69 @@
+{
+  "note": "an addition beyond the listed mode-export contents, labelled as one",
+  "by_arm": {
+    "DIRECT_PHYSICAL": {
+      "0": {
+        "support_M": [
+          -128.82234649196255,
+          -109.09455318046723
+        ],
+        "n_columns": 24,
+        "known_fisher_trace": 0.0,
+        "conditional_fisher_trace": 0.0,
+        "retained_fraction": null
+      },
+      "1": {
+        "support_M": [
+          -128.82234649196255,
+          -89.36675986897191
+        ],
+        "n_columns": 24,
+        "known_fisher_trace": 0.0,
+        "conditional_fisher_trace": 0.0,
+        "retained_fraction": null
+      },
+      "2": {
+        "support_M": [
+          -109.09455318046723,
+          -69.63896655747659
+        ],
+        "n_columns": 24,
+        "known_fisher_trace": 0.0,
+        "conditional_fisher_trace": 0.0,
+        "retained_fraction": null
+      }
+    },
+    "RESOLVED_PHYSICAL": {
+      "0": {
+        "support_M": [
+          -128.82234649196255,
+          -109.09455318046723
+        ],
+        "n_columns": 24,
+        "known_fisher_trace": 0.0026390428358578147,
+        "conditional_fisher_trace": 0.0003697209463139469,
+        "retained_fraction": 0.14009660672816246
+      },
+      "1": {
+        "support_M": [
+          -128.82234649196255,
+          -89.36675986897191
+        ],
+        "n_columns": 24,
+        "known_fisher_trace": 0.25420670879481655,
+        "conditional_fisher_trace": 0.2267304823001755,
+        "retained_fraction": 0.8919138419874727
+      },
+      "2": {
+        "support_M": [
+          -109.09455318046723,
+          -69.63896655747659
+        ],
+        "n_columns": 24,
+        "known_fisher_trace": 10.796814390020812,
+        "conditional_fisher_trace": 6.971217894414994,
+        "retained_fraction": 0.6456735887632089
+      }
+    }
+  }
+}
