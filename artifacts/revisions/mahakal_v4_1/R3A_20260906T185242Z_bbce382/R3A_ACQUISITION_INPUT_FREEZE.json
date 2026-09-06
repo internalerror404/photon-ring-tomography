@@ -1,0 +1,25 @@
+{
+  "schema": "phrt-input-freeze/1",
+  "id": "R3A_ACQUISITION_INPUT_FREEZE",
+  "created_utc": "2026-09-06T18:53:08Z",
+  "detector_design_frozen_before_any_target_quantity": true,
+  "target_indices_unchanged": "the accepted 72 columns; reselection due to an acquisition result is forbidden",
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4"
+  },
+  "commit_at_freeze_time": "bbce3822bea48f3b5b2d793a632519853e5a4ce3",
+  "n_files": 9,
+  "files": {
+    "src/phrt/revision_v4_1/common_sky.py": "ce6ec1eb97efe4c19d4c119650202e54d7beb59968d49e9a9eff1b908cec01a8",
+    "scripts/revision_v4_1/r3a_build.py": "250174a8388b48a9c26810139a09b68eac13ee68acd735a2db6b673b74e4852f",
+    "scripts/revision_v4_1/r3a_localization_overlay.py": "3eabf7877e4cba3fe50061df79b499b00a1451c391ca9d0b0998f3b02f752327",
+    "tests/revision_v4_1/test_r3a_construction.py": "c33806162401f742e96325cba7eb9db2b5bc62fbf4750cff3a0aebff1005989e",
+    "artifacts/configs/R1_MAIN_FREEZE.json": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "artifacts/revisions/mahakal_v4_1/R2_REPLAY_TARGET_MANIFEST.json": "e6b6b0dac9f35dbb96405f6ab2dd76e139d8f9ad5838c638ffb72a3c04271273",
+    "artifacts/raymaps/a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+    "artifacts/raymaps/a050_i050_n1_core.h5": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+    "artifacts/raymaps/a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39"
+  }
+}

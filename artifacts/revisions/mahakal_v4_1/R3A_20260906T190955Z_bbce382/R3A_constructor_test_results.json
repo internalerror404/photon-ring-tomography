@@ -1,0 +1,23 @@
+{
+  "schema": "phrt-r3a-tests/1",
+  "suite": "tests/revision_v4_1/test_r3a_construction.py",
+  "summary": "15 passed in 3.78s",
+  "returncode": 0,
+  "canaries": {
+    "C1": "registration uses screen coordinates, not equal counts",
+    "C2": "invariance to independent input row permutations",
+    "C3": "flux conservation with explicit boundary accounting",
+    "C4": "single-sky all-order total flux equals the sum of orders",
+    "C5": "detector refinement converges on the real tiled geometry, on a lattice-aligned grid",
+    "C5b": "the two noise models are recorded as different, with no ordering asserted between them",
+    "C6": "block forward and adjoint consistency",
+    "C7": "inherited-noise postprocessing contracts information",
+    "C7b": "identity mixing is an exact re-expression",
+    "C8": "detector noise is assigned once, not once per order",
+    "C9": "one geometry-wide time origin, verified from the raw maps",
+    "C9b": "delay is non-negative and increases with image order",
+    "C10": "stored pixel_area is checked against the realized grid spacing, so no construction can adopt one silently",
+    "C11": "refinement approaches the ray-level ceiling and never passes it: no information manufactured by quadrature",
+    "C12": "the same overlap rule is exact to machine precision on a commensurate lattice, which locates the deficit"
+  }
+}

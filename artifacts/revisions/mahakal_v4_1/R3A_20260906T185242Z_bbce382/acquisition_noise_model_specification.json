@@ -1,0 +1,25 @@
+{
+  "schema": "phrt-acquisition-noise-models/2",
+  "created_utc": "2026-09-06T18:53:05Z",
+  "actual_sigma": 0.011341986814407566,
+  "derived_reference_snr": "the accepted normalized SNR 100 under the COMMON_REFERENCE_COUNT calibration; no silent recalibration is performed here",
+  "fixed_during_spatial_refinement": true,
+  "models_are_not_interchangeable": true,
+  "POSTPROCESSING_INHERITED_NOISE": {
+    "signal": "A_sky = L A_resolved",
+    "covariance": "C_sky = L C_resolved L^T, full, not its diagonal",
+    "question": "how much of the parent experiment's information survives a geometrically defined compression",
+    "information_contraction": "required and tested (C7)",
+    "identity_mixing": "exact re-expression, tested (C7b)",
+    "is_an_observational_forecast": false
+  },
+  "SINGLE_SKY_DETECTOR_NOISE": {
+    "signal": "the order contributions are summed on the screen first: y = sum_n L_n A_n c",
+    "covariance": "assigned once afterwards, sigma^2 times the detector cell area per cell per observer time",
+    "noise_per_order": "never; three orders landing on a cell do not triple its variance (C8)",
+    "read_noise_or_correlations": "absent, and absent by declaration rather than by oversight",
+    "comparable_to_the_ideal_stack": false,
+    "reason": "a different experiment with a different covariance. No positive-semidefinite ordering against the ideal order-labeled stack is assumed or tested",
+    "telescope_feasibility_claim": "forbidden"
+  }
+}

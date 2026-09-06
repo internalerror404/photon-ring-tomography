@@ -1,0 +1,489 @@
+{
+  "schema": "phrt-common-sky-mapping/1",
+  "created_utc": "2026-09-06T19:10:06Z",
+  "stage": "R3A",
+  "geometry": "a050_i050",
+  "orders": [
+    0,
+    1,
+    2
+  ],
+  "raw_maps": {
+    "0": {
+      "realized_grid_spacing": 0.4,
+      "realized_cell_area": 0.16000000000000003,
+      "stored_over_realized_cell_area": 1.0,
+      "footprint_tiles_its_own_lattice": true,
+      "path": "artifacts/raymaps/a050_i050_n0_core.h5",
+      "sha256": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+      "n_rays": 15876,
+      "n_valid": 15597,
+      "cell_area": 0.16000000000000003,
+      "cell_pitch": 0.4,
+      "alpha_range": [
+        -25.0,
+        25.0
+      ],
+      "beta_range": [
+        -24.6,
+        25.0
+      ],
+      "total_valid_solid_angle": 2495.5200000000004,
+      "time_origin_coordinate_time_plus_delay": -978.6055123201214,
+      "time_origin_spread": 0.0,
+      "median_delay_M": 31.455858415314424
+    },
+    "1": {
+      "realized_grid_spacing": 0.08032128514056225,
+      "realized_cell_area": 0.006451508846631506,
+      "stored_over_realized_cell_area": 0.992016,
+      "footprint_tiles_its_own_lattice": false,
+      "path": "artifacts/raymaps/a050_i050_n1_core.h5",
+      "sha256": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+      "n_rays": 62500,
+      "n_valid": 8531,
+      "cell_area": 0.0064,
+      "cell_pitch": 0.08,
+      "alpha_range": [
+        -5.421686746987952,
+        6.787148594377509
+      ],
+      "beta_range": [
+        -7.911646586345381,
+        5.421686746987952
+      ],
+      "total_valid_solid_angle": 54.598400000000005,
+      "time_origin_coordinate_time_plus_delay": -978.6055123201214,
+      "time_origin_spread": 0.0,
+      "median_delay_M": 54.736660973799076
+    },
+    "2": {
+      "realized_grid_spacing": 0.020028612303290415,
+      "realized_cell_area": 0.00040114531079551616,
+      "stored_over_realized_cell_area": 0.9971448979591837,
+      "footprint_tiles_its_own_lattice": false,
+      "path": "artifacts/raymaps/a050_i050_n2_core.h5",
+      "sha256": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39",
+      "n_rays": 490000,
+      "n_valid": 4179,
+      "cell_area": 0.0004,
+      "cell_pitch": 0.02,
+      "alpha_range": [
+        -4.356223175965665,
+        5.918454935622318
+      ],
+      "beta_range": [
+        -5.237482117310444,
+        5.177396280400572
+      ],
+      "total_valid_solid_angle": 1.6716,
+      "time_origin_coordinate_time_plus_delay": -978.6055123201214,
+      "time_origin_spread": 0.0,
+      "median_delay_M": 68.26915338907963
+    }
+  },
+  "registration": {
+    "coordinate_frame": "screen alpha, beta in M, as stored; no rotation or rescaling is applied",
+    "time_origin_rule": "coordinate_time + delay is one constant across every ray of every order; verified, not assumed",
+    "time_origin_value": -978.6055123201214,
+    "cross_order_origin_drift": 0.0,
+    "invalid_rays": "masked out of the mapping entirely; never interpolated into signal",
+    "pixel_footprints": "each order's cells are uniform and axis aligned, so the overlap of a ray cell with a detector cell is a product of interval intersections and is exact",
+    "mapping_rule": "conservative area overlap, not point sampling",
+    "boundary_accounting": "area leaving the field of view is measured per order and reported",
+    "index_sum_control": "retained only as a named nonphysical control; it is not this construction"
+  },
+  "detector_grid": {
+    "alpha_min": -25.4,
+    "alpha_max": 25.4,
+    "beta_min": -25.0,
+    "beta_max": 25.4,
+    "pitch": 0.02,
+    "n_alpha": 2540,
+    "n_beta": 2520,
+    "n_cells": 6400800,
+    "cell_area": 0.0004,
+    "field_of_view_rule": "the union of every valid ray cell plus a 0.2 M pad",
+    "resolution_rule": "the finest order's own cell pitch. Chosen from geometry alone; the convergence study below reports what that pitch does and does not achieve, and does not revise it",
+    "chosen_without_inspecting_any_target_quantity": true
+  },
+  "convergence": {
+    "registered_rtol": 1e-12,
+    "tolerance_unchanged_after_the_first_failure": true,
+    "refinement_factors_of_the_ray_pitch": [
+      4,
+      2,
+      1,
+      0.5,
+      0.25,
+      0.125,
+      0.0625
+    ],
+    "metric": "relative change in the declared-field whitened information proxy between successive detector pitches",
+    "per_order": {
+      "0": {
+        "ray_level_limit": 20221858.87284309,
+        "sequence": {
+          "1.6": {
+            "refinement_factor": 4,
+            "n_detector_cells": 1024,
+            "info": 19726158.10963195,
+            "relative_deficit_against_ray_level_limit": -0.02451311555125346,
+            "captured_fraction": 0.9999999999999952,
+            "area_outside_field_of_view": 1.1823431123048067e-11
+          },
+          "0.8": {
+            "refinement_factor": 2,
+            "n_detector_cells": 4032,
+            "info": 19947402.9904208,
+            "relative_deficit_against_ray_level_limit": -0.013572238049335383,
+            "captured_fraction": 0.9999999999999952,
+            "area_outside_field_of_view": 1.1823431123048067e-11
+          },
+          "0.4": {
+            "refinement_factor": 1,
+            "n_detector_cells": 16002,
+            "info": 20038375.425686594,
+            "relative_deficit_against_ray_level_limit": -0.00907352030840769,
+            "captured_fraction": 0.9999999999999952,
+            "area_outside_field_of_view": 1.1823431123048067e-11
+          },
+          "0.2": {
+            "refinement_factor": 0.5,
+            "n_detector_cells": 64008,
+            "info": 20221858.87284289,
+            "relative_deficit_against_ray_level_limit": -9.992007221626409e-15,
+            "captured_fraction": 0.9999999999999952,
+            "area_outside_field_of_view": 1.1823431123048067e-11
+          },
+          "0.1": {
+            "refinement_factor": 0.25,
+            "n_detector_cells": 256032,
+            "info": 20221858.872842897,
+            "relative_deficit_against_ray_level_limit": -9.547918011776346e-15,
+            "captured_fraction": 0.9999999999999952,
+            "area_outside_field_of_view": 1.1823431123048067e-11
+          },
+          "0.05": {
+            "refinement_factor": 0.125,
+            "n_detector_cells": 1024128,
+            "info": 20221858.872842923,
+            "relative_deficit_against_ray_level_limit": -8.326672684688674e-15,
+            "captured_fraction": 0.9999999999999952,
+            "area_outside_field_of_view": 1.1823431123048067e-11
+          },
+          "0.025": {
+            "refinement_factor": 0.0625,
+            "n_detector_cells": 4096512,
+            "info": 20221858.8728429,
+            "relative_deficit_against_ray_level_limit": -9.43689570931383e-15,
+            "captured_fraction": 0.9999999999999952,
+            "area_outside_field_of_view": 1.1823431123048067e-11
+          }
+        },
+        "last_pair_relative_change": 1.1102230246251565e-15,
+        "converged": true,
+        "monotone_non_decreasing_under_refinement": true,
+        "never_exceeds_ray_level_limit": true,
+        "residual_deficit_at_finest_pitch": -9.43689570931383e-15
+      },
+      "1": {
+        "ray_level_limit": 426016.4493880723,
+        "sequence": {
+          "0.32": {
+            "refinement_factor": 4,
+            "n_detector_cells": 25122,
+            "info": 392044.3538390756,
+            "relative_deficit_against_ray_level_limit": -0.0797436239792948,
+            "captured_fraction": 1.0000000000000018,
+            "area_outside_field_of_view": -9.947598300641403e-14
+          },
+          "0.16": {
+            "refinement_factor": 2,
+            "n_detector_cells": 100170,
+            "info": 406351.55754153116,
+            "relative_deficit_against_ray_level_limit": -0.04615993554893871,
+            "captured_fraction": 1.0000000000000018,
+            "area_outside_field_of_view": -9.947598300641403e-14
+          },
+          "0.08": {
+            "refinement_factor": 1,
+            "n_detector_cells": 400050,
+            "info": 413322.56011686916,
+            "relative_deficit_against_ray_level_limit": -0.029796711581058788,
+            "captured_fraction": 1.0000000000000018,
+            "area_outside_field_of_view": -9.947598300641403e-14
+          },
+          "0.04": {
+            "refinement_factor": 0.5,
+            "n_detector_cells": 1600200,
+            "info": 416885.05375204765,
+            "relative_deficit_against_ray_level_limit": -0.02143437336549081,
+            "captured_fraction": 1.0000000000000018,
+            "area_outside_field_of_view": -9.947598300641403e-14
+          },
+          "0.02": {
+            "refinement_factor": 0.25,
+            "n_detector_cells": 6400800,
+            "info": 420776.02210260223,
+            "relative_deficit_against_ray_level_limit": -0.012300997515465428,
+            "captured_fraction": 1.0000000000000018,
+            "area_outside_field_of_view": -9.237055564881302e-14
+          },
+          "0.01": {
+            "refinement_factor": 0.125,
+            "n_detector_cells": 25603200,
+            "info": 421739.50509653514,
+            "relative_deficit_against_ray_level_limit": -0.010039387675477185,
+            "captured_fraction": 1.0000000000000018,
+            "area_outside_field_of_view": -9.947598300641403e-14
+          },
+          "0.005": {
+            "refinement_factor": 0.0625,
+            "n_detector_cells": 102412800,
+            "info": 422333.9600331483,
+            "relative_deficit_against_ray_level_limit": -0.008644007432608514,
+            "captured_fraction": 1.0000000000000018,
+            "area_outside_field_of_view": -9.947598300641403e-14
+          }
+        },
+        "last_pair_relative_change": 0.001409531071738357,
+        "converged": false,
+        "monotone_non_decreasing_under_refinement": true,
+        "never_exceeds_ray_level_limit": true,
+        "residual_deficit_at_finest_pitch": -0.008644007432608514
+      },
+      "2": {
+        "ray_level_limit": 13029.813678097595,
+        "sequence": {
+          "0.08": {
+            "refinement_factor": 4,
+            "n_detector_cells": 400050,
+            "info": 7455.324214285164,
+            "relative_deficit_against_ray_level_limit": -0.42782572349310277,
+            "captured_fraction": 0.9999999999999684,
+            "area_outside_field_of_view": 5.284661597215745e-14
+          },
+          "0.04": {
+            "refinement_factor": 2,
+            "n_detector_cells": 1600200,
+            "info": 9535.735216585239,
+            "relative_deficit_against_ray_level_limit": -0.2681602782536876,
+            "captured_fraction": 0.9999999999999684,
+            "area_outside_field_of_view": 5.284661597215745e-14
+          },
+          "0.02": {
+            "refinement_factor": 1,
+            "n_detector_cells": 6400800,
+            "info": 10736.49992752712,
+            "relative_deficit_against_ray_level_limit": -0.1760051069974553,
+            "captured_fraction": 0.9999999999999684,
+            "area_outside_field_of_view": 5.284661597215745e-14
+          },
+          "0.01": {
+            "refinement_factor": 0.5,
+            "n_detector_cells": 25603200,
+            "info": 11756.08358524267,
+            "relative_deficit_against_ray_level_limit": -0.09775505040382848,
+            "captured_fraction": 0.9999999999999684,
+            "area_outside_field_of_view": 5.284661597215745e-14
+          },
+          "0.005": {
+            "refinement_factor": 0.25,
+            "n_detector_cells": 102412800,
+            "info": 12435.150247302188,
+            "relative_deficit_against_ray_level_limit": -0.04563867492556728,
+            "captured_fraction": 0.9999999999999684,
+            "area_outside_field_of_view": 5.284661597215745e-14
+          },
+          "0.0025": {
+            "refinement_factor": 0.125,
+            "n_detector_cells": 409651200,
+            "info": 12742.95888235298,
+            "relative_deficit_against_ray_level_limit": -0.022015264594827055,
+            "captured_fraction": 0.9999999999999684,
+            "area_outside_field_of_view": 5.284661597215745e-14
+          },
+          "0.00125": {
+            "refinement_factor": 0.0625,
+            "n_detector_cells": 1638604800,
+            "info": 12870.948551591851,
+            "relative_deficit_against_ray_level_limit": -0.012192432710897982,
+            "captured_fraction": 0.9999999999999684,
+            "area_outside_field_of_view": 5.284661597215745e-14
+          }
+        },
+        "last_pair_relative_change": 0.010043952148045987,
+        "converged": false,
+        "monotone_non_decreasing_under_refinement": true,
+        "never_exceeds_ray_level_limit": true,
+        "residual_deficit_at_finest_pitch": -0.012192432710897982
+      }
+    },
+    "all_converged": false,
+    "no_information_manufactured_by_quadrature_refinement": true
+  },
+  "lattice_commensurability": {
+    "why_it_matters": "the area overlap is exact arithmetic. The proxy is inexact only where a detector cell straddles two ray cells, so the mapping is exact when the detector lattice is commensurate with the ray lattice",
+    "measured_relative_deficit": {
+      "0": {
+        "stored_footprint_shared_origin": -0.00907352030840769,
+        "realized_footprint_shared_origin": -0.00907352030840769,
+        "realized_footprint_lattice_aligned_origin": -9.769962616701378e-15
+      },
+      "1": {
+        "stored_footprint_shared_origin": -0.029796711581058788,
+        "realized_footprint_shared_origin": -0.0215452580815626,
+        "realized_footprint_lattice_aligned_origin": -1.887379141862766e-14
+      },
+      "2": {
+        "stored_footprint_shared_origin": -0.1760051069974553,
+        "realized_footprint_shared_origin": -0.14010399976446464,
+        "realized_footprint_lattice_aligned_origin": 9.547918011776346e-15
+      }
+    },
+    "reading": "a shared origin leaves a deficit of order one percent that shrinks only like the pitch; aligning the detector to one order's own lattice makes the same mapping exact to about 1e-14 at every pitch tested. Misalignment, not the overlap rule, is the entire error",
+    "realized_grid_spacings": {
+      "0": 0.4,
+      "1": 0.08032128514056225,
+      "2": 0.020028612303290415
+    },
+    "a_single_shared_lattice_can_align_with_all_three_orders": false,
+    "obstruction": "the three realized spacings are mutually incommensurate at any feasible detector pitch, so no one uniform Cartesian detector is exact for more than one order at a time"
+  },
+  "stored_quadrature_weight_audit": {
+    "finding": "pixel_area is stored as the nominal dx squared, but the realized ray grid spacing is span/(points-1), which differs. The stored solid angle per ray is therefore wrong by an order-dependent and profile-dependent factor",
+    "scope": "an audit of archived inputs. No operator, weight, endpoint or archived result is altered here",
+    "per_profile_and_order": {
+      "coarse_n0": {
+        "grid_points_per_axis": 64,
+        "axis_span_M": 50.0,
+        "nominal_dx_M": 0.8,
+        "stored_pixel_area": 0.6400000000000001,
+        "realized_grid_spacing_M": 0.7936507936507936,
+        "realized_cell_area": 0.6298815822625345,
+        "realized_over_stored_cell_area": 0.98418997228521,
+        "n_valid": 3992,
+        "stored_total_solid_angle": 2554.8800000000006,
+        "agrees": false
+      },
+      "coarse_n1": {
+        "grid_points_per_axis": 126,
+        "axis_span_M": 20.0,
+        "nominal_dx_M": 0.16,
+        "stored_pixel_area": 0.0256,
+        "realized_grid_spacing_M": 0.16,
+        "realized_cell_area": 0.0256,
+        "realized_over_stored_cell_area": 1.0,
+        "n_valid": 2156,
+        "stored_total_solid_angle": 55.1936,
+        "agrees": true
+      },
+      "coarse_n2": {
+        "grid_points_per_axis": 350,
+        "axis_span_M": 14.0,
+        "nominal_dx_M": 0.04,
+        "stored_pixel_area": 0.0016,
+        "realized_grid_spacing_M": 0.04011461318051576,
+        "realized_cell_area": 0.001609182190622409,
+        "realized_over_stored_cell_area": 1.0057388691390055,
+        "n_valid": 1037,
+        "stored_total_solid_angle": 1.6592,
+        "agrees": false
+      },
+      "core_n0": {
+        "grid_points_per_axis": 126,
+        "axis_span_M": 50.0,
+        "nominal_dx_M": 0.4,
+        "stored_pixel_area": 0.16000000000000003,
+        "realized_grid_spacing_M": 0.4,
+        "realized_cell_area": 0.16000000000000003,
+        "realized_over_stored_cell_area": 1.0,
+        "n_valid": 15597,
+        "stored_total_solid_angle": 2495.5200000000004,
+        "agrees": true
+      },
+      "core_n1": {
+        "grid_points_per_axis": 250,
+        "axis_span_M": 20.0,
+        "nominal_dx_M": 0.08,
+        "stored_pixel_area": 0.0064,
+        "realized_grid_spacing_M": 0.08032128514056225,
+        "realized_cell_area": 0.006451508846631506,
+        "realized_over_stored_cell_area": 1.0080482572861729,
+        "n_valid": 8531,
+        "stored_total_solid_angle": 54.598400000000005,
+        "agrees": false
+      },
+      "core_n2": {
+        "grid_points_per_axis": 700,
+        "axis_span_M": 14.0,
+        "nominal_dx_M": 0.02,
+        "stored_pixel_area": 0.0004,
+        "realized_grid_spacing_M": 0.020028612303290415,
+        "realized_cell_area": 0.00040114531079551616,
+        "realized_over_stored_cell_area": 1.0028632769887904,
+        "n_valid": 4179,
+        "stored_total_solid_angle": 1.6716,
+        "agrees": false
+      },
+      "fine_n0": {
+        "grid_points_per_axis": 250,
+        "axis_span_M": 50.0,
+        "nominal_dx_M": 0.2,
+        "stored_pixel_area": 0.04000000000000001,
+        "realized_grid_spacing_M": 0.20080321285140562,
+        "realized_cell_area": 0.040321930291446914,
+        "realized_over_stored_cell_area": 1.0080482572861726,
+        "n_valid": 61635,
+        "stored_total_solid_angle": 2465.4000000000005,
+        "agrees": false
+      },
+      "fine_n1": {
+        "grid_points_per_axis": 500,
+        "axis_span_M": 20.0,
+        "nominal_dx_M": 0.04,
+        "stored_pixel_area": 0.0016,
+        "realized_grid_spacing_M": 0.04008016032064128,
+        "realized_cell_area": 0.0016064192513283078,
+        "realized_over_stored_cell_area": 1.0040120320801924,
+        "n_valid": 34278,
+        "stored_total_solid_angle": 54.8448,
+        "agrees": false
+      },
+      "fine_n2": {
+        "grid_points_per_axis": 1200,
+        "axis_span_M": 12.0,
+        "nominal_dx_M": 0.01,
+        "stored_pixel_area": 0.0001,
+        "realized_grid_spacing_M": 0.010008340283569641,
+        "realized_cell_area": 0.00010016687523172285,
+        "realized_over_stored_cell_area": 1.0016687523172285,
+        "n_valid": 16672,
+        "stored_total_solid_angle": 1.6672,
+        "agrees": false
+      }
+    },
+    "combinations_that_agree": [
+      "coarse_n1",
+      "core_n0"
+    ],
+    "n_combinations": 9,
+    "n_agreeing": 2,
+    "worst_relative_area_error": 0.01581002771479001
+  },
+  "observation": {
+    "observer_times_M": [
+      0.0,
+      2.857142857142857,
+      5.714285714285714,
+      8.571428571428571,
+      11.428571428571429,
+      14.285714285714286,
+      17.142857142857142,
+      20.0
+    ],
+    "n_times": 8
+  },
+  "status": "R3A_CONSTRUCTION_BLOCKED"
+}

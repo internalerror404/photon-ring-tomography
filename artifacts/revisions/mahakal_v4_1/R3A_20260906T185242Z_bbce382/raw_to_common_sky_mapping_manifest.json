@@ -1,0 +1,180 @@
+{
+  "schema": "phrt-common-sky-mapping/1",
+  "created_utc": "2026-09-06T18:53:05Z",
+  "stage": "R3A",
+  "geometry": "a050_i050",
+  "orders": [
+    0,
+    1,
+    2
+  ],
+  "raw_maps": {
+    "0": {
+      "path": "artifacts/raymaps/a050_i050_n0_core.h5",
+      "sha256": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+      "n_rays": 15876,
+      "n_valid": 15597,
+      "cell_area": 0.16000000000000003,
+      "cell_pitch": 0.4,
+      "alpha_range": [
+        -25.0,
+        25.0
+      ],
+      "beta_range": [
+        -24.6,
+        25.0
+      ],
+      "total_valid_solid_angle": 2495.5200000000004,
+      "time_origin_coordinate_time_plus_delay": -978.6055123201214,
+      "time_origin_spread": 0.0,
+      "median_delay_M": 31.455858415314424
+    },
+    "1": {
+      "path": "artifacts/raymaps/a050_i050_n1_core.h5",
+      "sha256": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+      "n_rays": 62500,
+      "n_valid": 8531,
+      "cell_area": 0.0064,
+      "cell_pitch": 0.08,
+      "alpha_range": [
+        -5.421686746987952,
+        6.787148594377509
+      ],
+      "beta_range": [
+        -7.911646586345381,
+        5.421686746987952
+      ],
+      "total_valid_solid_angle": 54.598400000000005,
+      "time_origin_coordinate_time_plus_delay": -978.6055123201214,
+      "time_origin_spread": 0.0,
+      "median_delay_M": 54.736660973799076
+    },
+    "2": {
+      "path": "artifacts/raymaps/a050_i050_n2_core.h5",
+      "sha256": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39",
+      "n_rays": 490000,
+      "n_valid": 4179,
+      "cell_area": 0.0004,
+      "cell_pitch": 0.02,
+      "alpha_range": [
+        -4.356223175965665,
+        5.918454935622318
+      ],
+      "beta_range": [
+        -5.237482117310444,
+        5.177396280400572
+      ],
+      "total_valid_solid_angle": 1.6716,
+      "time_origin_coordinate_time_plus_delay": -978.6055123201214,
+      "time_origin_spread": 0.0,
+      "median_delay_M": 68.26915338907963
+    }
+  },
+  "registration": {
+    "coordinate_frame": "screen alpha, beta in M, as stored; no rotation or rescaling is applied",
+    "time_origin_rule": "coordinate_time + delay is one constant across every ray of every order; verified, not assumed",
+    "time_origin_value": -978.6055123201214,
+    "cross_order_origin_drift": 0.0,
+    "invalid_rays": "masked out of the mapping entirely; never interpolated into signal",
+    "pixel_footprints": "each order's cells are uniform and axis aligned, so the overlap of a ray cell with a detector cell is a product of interval intersections and is exact",
+    "mapping_rule": "conservative area overlap, not point sampling",
+    "boundary_accounting": "area leaving the field of view is measured per order and reported",
+    "index_sum_control": "retained only as a named nonphysical control; it is not this construction"
+  },
+  "detector_grid": {
+    "alpha_min": -25.4,
+    "alpha_max": 25.4,
+    "beta_min": -25.0,
+    "beta_max": 25.4,
+    "pitch": 0.02,
+    "n_alpha": 2540,
+    "n_beta": 2520,
+    "n_cells": 6400800,
+    "cell_area": 0.0004,
+    "field_of_view_rule": "the union of every valid ray cell plus a 0.2 M pad",
+    "resolution_rule": "the finest order's own cell pitch, at which the declared-field mapping stops changing",
+    "chosen_without_inspecting_any_target_quantity": true
+  },
+  "convergence": {
+    "registered_rtol": 1e-12,
+    "per_order": {
+      "0": {
+        "sequence": {
+          "1.6": {
+            "info": 19726158.109631944,
+            "captured_fraction": 0.9999999999999952,
+            "area_outside_field_of_view": 1.1823431123048067e-11
+          },
+          "0.8": {
+            "info": 19947402.990420796,
+            "captured_fraction": 0.9999999999999952,
+            "area_outside_field_of_view": 1.1823431123048067e-11
+          },
+          "0.4": {
+            "info": 20038375.42568659,
+            "captured_fraction": 0.9999999999999952,
+            "area_outside_field_of_view": 1.1823431123048067e-11
+          }
+        },
+        "last_pair_relative_change": 0.0045606155001471915,
+        "converged": false
+      },
+      "1": {
+        "sequence": {
+          "0.32": {
+            "info": 392044.3538390756,
+            "captured_fraction": 1.0000000000000018,
+            "area_outside_field_of_view": -9.947598300641403e-14
+          },
+          "0.16": {
+            "info": 406351.5575415312,
+            "captured_fraction": 1.0000000000000018,
+            "area_outside_field_of_view": -9.947598300641403e-14
+          },
+          "0.08": {
+            "info": 413322.5601168693,
+            "captured_fraction": 1.0000000000000018,
+            "area_outside_field_of_view": -9.947598300641403e-14
+          }
+        },
+        "last_pair_relative_change": 0.01715510238846707,
+        "converged": false
+      },
+      "2": {
+        "sequence": {
+          "0.08": {
+            "info": 7455.324214285169,
+            "captured_fraction": 0.9999999999999684,
+            "area_outside_field_of_view": 5.284661597215745e-14
+          },
+          "0.04": {
+            "info": 9535.735216585235,
+            "captured_fraction": 0.9999999999999684,
+            "area_outside_field_of_view": 5.284661597215745e-14
+          },
+          "0.02": {
+            "info": 10736.499927527124,
+            "captured_fraction": 0.9999999999999684,
+            "area_outside_field_of_view": 5.284661597215745e-14
+          }
+        },
+        "last_pair_relative_change": 0.12592261463525456,
+        "converged": false
+      }
+    },
+    "all_converged": false
+  },
+  "observation": {
+    "observer_times_M": [
+      0.0,
+      2.857142857142857,
+      5.714285714285714,
+      8.571428571428571,
+      11.428571428571429,
+      14.285714285714286,
+      17.142857142857142,
+      20.0
+    ],
+    "n_times": 8
+  }
+}
