@@ -1,0 +1,38 @@
+{
+  "suite": [
+    "tests/revision_v4_1/test_c13_measure.py"
+  ],
+  "interpreter": "python3",
+  "returncode": 0,
+  "stderr_tail": [],
+  "passed": true,
+  "summary": "13 passed in 4.21s",
+  "collected": [
+    "test_P1_nodal_dual_cells_tile_the_declared_domain_exactly",
+    "test_P2_endpoint_inclusive_nodes_get_half_and_quarter_cells",
+    "test_P3_rectangular_grid_is_not_reduced_to_one_spacing",
+    "test_P4_non_uniform_axis_is_refused",
+    "test_P5_invalid_rays_are_dropped_not_smeared",
+    "test_P6_subdividing_cells_carrying_the_same_field_changes_nothing",
+    "test_P6b_subdivision_invariance_holds_on_a_real_order",
+    "test_P7_brightness_and_flux_representations_agree_on_unequal_areas",
+    "test_P8_inherited_covariance_matches_its_definition",
+    "test_P9_detector_noise_is_assigned_once_after_the_order_sum",
+    "test_P10_zero_area_parent_is_refused",
+    "test_P11_legacy_and_corrected_measures_are_both_available_and_differ",
+    "test_P12_real_maps_partition_their_declared_screen"
+  ],
+  "covers": {
+    "partition": "P1 clipped dual cells tile the declared domain",
+    "endpoint_semantics": "P2 half-width edges and quarter corners; full centre cells enlarge the domain",
+    "beta_axis_and_rectangular_cells": "P3 unequal alpha and beta spacing are carried separately",
+    "non_uniform_refusal": "P4 a non-uniform axis raises, never averages",
+    "invalid_mask": "P5 masking removes area and adds none",
+    "representation_invariance": "P6/P6b subdividing cells that carry the same field moves the fixed-detector response by less than 1e-12, on a fixture and on an archived order",
+    "acquisition_units": "P7 brightness and integrated-flux parents agree on unequal-area cells, and O in place of L is detectable",
+    "inherited_covariance": "P8 equals sigma^2 O diag(1/a) O^T, is symmetric PSD, and differs from the single-sky detector covariance",
+    "noise_assigned_once": "P9 per cell per time, after the order sum",
+    "zero_area": "P10 refused, not inverted",
+    "legacy_vs_corrected": "P11/P12 both measures available, different, and the corrected one partitions the real screens"
+  }
+}

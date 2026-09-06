@@ -1,0 +1,154 @@
+{
+  "defect": "C13",
+  "ruling": "PAPER_I_R3A_RULING_026",
+  "stage": "Q1",
+  "six_quantities_kept_distinct": {
+    "nominal_request_pitch": "the dx a generator was asked for; what pixel_area was built from",
+    "realized_nodes": "the coordinates the generator returned, spacing 2*lims/(N-1) per axis, audited separately on alpha and on beta",
+    "cell_edges": "four edges per ray; rectangular and of unequal area, not one scalar",
+    "geometric_area": "the product of the two edge widths",
+    "validity_mask": "a binary per-node flag, which cannot represent a band boundary that cuts through a cell",
+    "effective_quadrature_weight": "what a runner gives a retained ray after subsampling; stratified_subsample assigns stratum_area/n_taken and rescales to the order total, so it is not the ray's footprint"
+  },
+  "conventions": {
+    "LEGACY_NOMINAL_DX_SQUARED_SQUARE": {
+      "definition": "square of side sqrt(pixel_area) on each node",
+      "tiles": false,
+      "status": "the archive's own claim; preserved for replay, never used as the corrected measure"
+    },
+    "NODAL_DUAL_CLIPPED_TO_DECLARED_DOMAIN": {
+      "definition": "dual cell of each node clipped to the declared domain; half-width edges, quarter corners",
+      "tiles": true,
+      "total_equals": "the declared domain area exactly",
+      "status": "ADOPTED for the corrected records",
+      "justification": "both generators lay endpoint-inclusive nodes across a declared finite square domain, so the domain, not the node count, is the fixed thing. Clipped dual cells partition exactly that domain and keep it fixed as the pitch changes, which is what lets two profiles be compared on one footing"
+    },
+    "FULL_CENTER_CELL_ON_EXTENDED_DOMAIN": {
+      "definition": "a full cell for every node",
+      "tiles": true,
+      "total_equals": "an enlarged domain (2*lims + delta)^2",
+      "status": "available and measured, NOT adopted",
+      "why_not": "it integrates a domain that grows as the pitch shrinks, so a profile comparison would change the region as well as the resolution. Legitimate only with that extended domain declared as the intended one, which it is not here"
+    }
+  },
+  "generator_rules": {
+    "aart.lensingbands.grid_mask": "np.linspace(-lims, lims, round_up_to_even(2*lims/dx)); lims = ceil(hull extent + 5*dx), capped at limits",
+    "build_raymaps_schwarzschild.band_grid": "np.linspace(-lim, lim, int(ceil(2*lim/dx)))",
+    "samples_are": "endpoint-inclusive nodes, not cell centres",
+    "verified_by": "both rules reproduce every observed node count in all 63 archived maps"
+  },
+  "acquisition_units": {
+    "O[d,p]": "|D_d intersect P_p|, brightness to integrated flux",
+    "a[p]": "|P_p|, the geometric parent cell area",
+    "integrated_parent_signal": "z = a * f",
+    "integrated_parent_covariance": "sigma^2 diag(a)",
+    "postprocessing_L": "O diag(a)^-1, not O",
+    "inherited_covariance": "sigma^2 O diag(1/a) O^T",
+    "detector_covariance": "sigma^2 |D_d| per cell per observer time, assigned once after the order sum",
+    "two_models_share_a_covariance": false,
+    "monotonicity_claimed_only_for": "the matched inherited-noise experiment"
+  },
+  "integration_device": {
+    "chosen": "direct exact overlap of rectangular cells",
+    "why": "a ray cell and a detector cell are both axis-aligned rectangles, so the intersection is a product of interval intersections and is already exact. A nonuniform common refinement mesh is permitted but buys nothing here, so none is built",
+    "is_a_detector": false
+  },
+  "not_done_here": [
+    "no HDF5 archive rewritten",
+    "no operator rebuilt and no runner re-executed",
+    "no archived endpoint recomputed, rescaled or restated",
+    "no target spectrum, operational count or estimator touched"
+  ],
+  "generated_utc": "2026-09-06T20:21:26Z",
+  "commit": "383a72c59338f88f7d9726f97737bc517799ba18",
+  "scalar_spacing_only_diagnostic": {
+    "label": "INTERIOR_PITCH_ONLY",
+    "certified": true,
+    "scope": "the isolated uniform interior-cell correction. Excludes boundary clipping, changed masks, new rays, a different detector and any estimator error. This is the bound the ruling certifies",
+    "per_order_weight_ratio": {
+      "0": 1.0,
+      "1": 1.0080482572861729,
+      "2": 1.0028632769887904
+    },
+    "r_min": 1.0,
+    "r_max": 1.0080482572861729,
+    "bound": "r_min * F_cond <= F_cond_new <= r_max * F_cond, valid after profiling; the nuisance projection is allowed to change",
+    "archived_conditional_singular_values": [
+      1.4371649013558616,
+      1.3458732686433788,
+      0.8062804378838918
+    ],
+    "singular_value_intervals": [
+      [
+        1.4371649013558616,
+        1.4429366479476522
+      ],
+      [
+        1.3458732686433788,
+        1.351278382172067
+      ],
+      [
+        0.8062804378838918,
+        0.8095185119316183
+      ]
+    ],
+    "directions_certainly_above_rho": [
+      0,
+      1
+    ],
+    "n_directions_certainly_above_rho": 2,
+    "directions_straddling_rho": [],
+    "conditional_trace_archived": 7.198318097661488,
+    "conditional_trace_source": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv",
+    "conditional_trace_interval": [
+      7.198318097661488,
+      7.256252013739182
+    ],
+    "rho": 1.0
+  },
+  "adopted_measure_indicative_bound": {
+    "label": "NODAL_DUAL_CLIPPED_TOTALS",
+    "certified": false,
+    "scope": "the same inequality applied to the ratio of each order's TOTAL corrected solid angle. NOT certified: clipped dual cells are not uniform within an order, so the per-order reweighting they induce through stratified_subsample is only approximately uniform. Recorded because it is the direction the adopted measure points, and because it widens rather than narrows the interval",
+    "per_order_weight_ratio": {
+      "0": 0.9879784573956529,
+      "1": 1.008048257286162,
+      "2": 1.002863276988839
+    },
+    "r_min": 0.9879784573956529,
+    "r_max": 1.008048257286162,
+    "bound": "r_min * F_cond <= F_cond_new <= r_max * F_cond, valid after profiling; the nuisance projection is allowed to change",
+    "archived_conditional_singular_values": [
+      1.4371649013558616,
+      1.3458732686433788,
+      0.8062804378838918
+    ],
+    "singular_value_intervals": [
+      [
+        1.428500312644201,
+        1.4429366479476446
+      ],
+      [
+        1.3377590722002208,
+        1.35127838217206
+      ],
+      [
+        0.8014194171520812,
+        0.8095185119316141
+      ]
+    ],
+    "directions_certainly_above_rho": [
+      0,
+      1
+    ],
+    "n_directions_certainly_above_rho": 2,
+    "directions_straddling_rho": [],
+    "conditional_trace_archived": 7.198318097661488,
+    "conditional_trace_source": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv",
+    "conditional_trace_interval": [
+      7.111783209970808,
+      7.256252013739104
+    ],
+    "rho": 1.0
+  }
+}

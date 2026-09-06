@@ -153,19 +153,56 @@ class RayCells:
     alpha_hi: np.ndarray
     beta_lo: np.ndarray
     beta_hi: np.ndarray
-    axis_alpha: AxisMeasure
-    axis_beta: AxisMeasure
+    axis_alpha: AxisMeasure | None
+    axis_beta: AxisMeasure | None
     convention: str
 
     @property
     def area(self) -> np.ndarray:
         return (self.alpha_hi - self.alpha_lo) * (self.beta_hi - self.beta_lo)
 
+    @property
+    def domain_area(self) -> float:
+        if self.axis_alpha is None or self.axis_beta is None:
+            raise MeasureError("a refined cell set has no tensor-product axes; "
+                               "compare its total against the parent's")
+        return ((self.axis_alpha.domain_hi - self.axis_alpha.domain_lo)
+                * (self.axis_beta.domain_hi - self.axis_beta.domain_lo))
+
     def tiles_exactly(self, tol: float = 1e-9) -> bool:
         """Do the cells of every node partition the declared domain?"""
-        want = ((self.axis_alpha.domain_hi - self.axis_alpha.domain_lo)
-                * (self.axis_beta.domain_hi - self.axis_beta.domain_lo))
+        want = self.domain_area
         return bool(abs(float(self.area.sum()) - want) < tol * max(1.0, want))
+
+
+SUBDIVIDED = "SUBDIVIDED"
+
+
+def subdivide(cells: RayCells, k: int) -> tuple[RayCells, np.ndarray]:
+    """Split every cell into k x k equal children on the same footprint.
+
+    The children partition each parent exactly, so a field that is constant on
+    a parent is represented identically by its children. That is the premise of
+    the representation-invariance canary: refining the *integration* of an
+    unchanged field at an unchanged detector must move nothing, which is a
+    different statement from two different detectors agreeing.
+
+    Returns the children and, for each child, the index of its parent.
+    """
+    if k < 1:
+        raise MeasureError("a subdivision factor must be at least one")
+    t = np.arange(k + 1) / k
+    n = cells.alpha_lo.size
+    wa = (cells.alpha_hi - cells.alpha_lo)[:, None]
+    wb = (cells.beta_hi - cells.beta_lo)[:, None]
+    ea = cells.alpha_lo[:, None] + wa * t[None, :]        # (n, k+1)
+    eb = cells.beta_lo[:, None] + wb * t[None, :]
+    a_lo = np.repeat(ea[:, :-1], k, axis=1).reshape(-1)
+    a_hi = np.repeat(ea[:, 1:], k, axis=1).reshape(-1)
+    b_lo = np.tile(eb[:, :-1], (1, k)).reshape(-1)
+    b_hi = np.tile(eb[:, 1:], (1, k)).reshape(-1)
+    parent = np.repeat(np.arange(n), k * k)
+    return (RayCells(a_lo, a_hi, b_lo, b_hi, None, None, SUBDIVIDED), parent)
 
 
 def build_ray_cells(alpha: np.ndarray, beta: np.ndarray, convention: str,
