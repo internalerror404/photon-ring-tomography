@@ -1,0 +1,160 @@
+review_id: PAPER_I_PATH_DOMAIN_RULING_030
+reviewed_commit: b6c3873b22f945ce20c40c3c55e80f516954cb00
+work_branch: research/mahakal_v4_1
+status: G1_NUMERICAL_CLOSEOUT_ACCEPTED_T2_PATH_DOMAIN_VALIDATION_AUTHORIZED
+preservation:
+  old_source_maps_freezes_results: immutable
+  original_flags: preserve_with_interpretation_overlay
+  C13: full_physical_revalidation_remains_open
+  G1_same_candidate: numerically_accepted_under_registered_tests
+  new_hull_ladder_or_replay: not_required_not_authorized
+  delivery: GitHub_only
+fixed_experiment:
+  geometry: {id: a050_i050, spin: 0.5, inclination_degrees: 50}
+  orders: [0, 1, 2]
+  observer_radius_M: 1000
+  source_annulus: horizon_exclusive_to_50_inclusive
+  detector: D026
+  bounds_M: {alpha: [-25, 25], beta: [-25, 25]}
+  pitch_M: 0.4
+  sigma: 0.011341986814407566
+  clock_reference_M: -978.6055123201214
+  observer_times: exact_accepted_eight
+  source_target_and_nuisance: exact_accepted_full_L224_partition
+  source_metric_velocity_model_and_cutoffs: unchanged
+  mino_parameter_is_coordinate_delay: false
+record_dispositions:
+  marker_cause: FINAL_MASK_CONFIRMED_FOR_REPORTED_COHORT
+  negative_radius_proves_recoverable_event: false
+  positive_subhorizon_value_proves_capture: false
+  real_root_pattern_alone_proves_exterior_turn: false
+  G1: NUMERICALLY_QUALIFIED_UNDER_DECLARED_DIAGNOSTICS
+  transfer_event_existence: pending_independent_validation
+  old_instrumentation_physical_labels: retain_raw_alias_as_provisional
+  total_transfer_and_quadrature: not_qualified
+path_domain_candidate:
+  purpose: explicit_same_equation_existence_and_emission_predicate
+  root_branch_selection: observer_connected_allowed_radial_interval_and_root_order
+  formula_switch_based_on_raw_radius_sign: forbidden
+  force_positive_or_absolute_value_of_radius: forbidden
+  change_requested_order_to_existing_earlier_order: forbidden
+  extend_past_horizon_or_escape: forbidden
+  polar_crossing:
+    quantity: G_theta_for_exact_order_and_beta_polar_turn_convention
+    independent_crossing_count_check: required
+    energy_and_mino_normalization: match_radial_integrals
+  radial:
+    capture_endpoint: integral_horizon_to_actual_observer_dr_over_sqrt_R
+    simple_scattering_turn: largest_accessible_exterior_turn_on_observer_branch
+    J_definition: integral_turn_to_radius_dr_over_sqrt_R
+    scatter_escape_to_infinity: J_observer_plus_J_infinity
+    finite_outgoing_endpoint: distinct_documented_convention
+    critical_multiple_roots_or_sorting_uncertainty: unresolved_until_checked
+  source_intervals:
+    capture: integral_50_to_observer_inclusive_to_integral_horizon_to_observer_exclusive
+    scatter_turn_below_50: J_observer_minus_J50_to_J_observer_plus_J50
+    scatter_turn_above_50: no_annulus_intersection
+    exact_grazing: explicit_boundary_case
+    uncertain_endpoint_overlap: DOMAIN_UNRESOLVED
+  missing_event:
+    contribution: physical_zero_only_after_validated_domain_exclusion
+    source_coordinates_time_redshift: do_not_invent
+    lower_orders: not_automatically_excluded
+  valid_event_but_bad_closed_form:
+    action: isolate_same_branch_implementation_issue_and_validate_cause_specific_change
+    new_production_backend: not_authorized
+  inspect_finite_outputs_too: required
+status_codes:
+  - VALID_EMITTING_EVENT
+  - EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS
+  - NO_NTH_EXTERIOR_CROSSING_CAPTURE
+  - NO_NTH_EXTERIOR_CROSSING_ESCAPE
+  - NO_ANNULUS_INTERSECTION_ON_PATH
+  - DOMAIN_UNRESOLVED
+  - VALID_EVENT_NUMERICALLY_UNRESOLVED
+validation:
+  physical_comparator: independent_definite_quadrature_event_tracking_or_multiprecision_same_equations
+  comparator_is_production_replacement: false
+  error_enclosures: report_method_margins_and_rigorous_versus_convergence_estimated_scope
+  near_boundary_uncertainty: no_forced_boolean
+  development_cohort: all_reported_680_and_inspected_controls
+  development_cohort_is_fresh_holdout: false
+  holdout: precommitted_new_points_orders_and_boundary_cases_no_target_information
+  cases: [capture, scattering, inward_leg, outward_leg, near_critical, finite_outputs, near_horizon, r50_boundary, no_requested_crossing]
+  quantities_for_valid_events: [r, complex_azimuth_phase, common_origin_coordinate_time, radial_branch_sign, g_cubed]
+  finite_redshift_on_invalid_event: not_a_transfer_certificate_or_envelope
+  holdout_invented_or_missed_events_outside_uncertainty_regions: zero_required_on_tested_set
+  global_certification_from_finite_test: not_claimed
+  tolerance_policy: freeze_scale_aware_error_criteria_before_new_outcomes
+  response_budgets_unchanged: {hull: 2.5e-4, transfer_emission: 5.0e-4, total: 1.0e-3}
+  exact_fixture_atol: 1.0e-12
+  exact_fixture_rtol: 1.0e-12
+stages:
+  D0:
+    work: [derivation_and_units, record_overlays, input_counter_reconciliation, immutable_curve_input_selection, preexecution_candidate_and_holdout_freeze]
+    new_physical_calls: zero
+  D1:
+    work: [one_explicit_domain_wrapper, diagnostic_cohort_adjudication, full_reason_and_margin_exports]
+    new_charged_evaluations_max: 3000
+    phase: T2_domain_candidate_not_an_extra_T1_allowance
+    unresolved_design: stop_before_unplanned_retries
+  D2:
+    work: [independent_holdout_validation, healthy_and_invalid_event_checks, whole_transfer_checks_on_valid_events]
+    independent_validation_budget_reserve_min: 4000
+    actual_validation_calls: record_not_round_to_reservation
+    no_validated_existence: no_promoted_repair
+  D3:
+    launch: D2_passes_and_remaining_second_batch_budget_suffices
+    work: [core_mask_impact_inventory, source_contour_payload_rederivation_only_if_needed, partial_response_comparison_on_same_known_support]
+    whole_old_contour_replay_required: false
+    target_operator_or_spectrum: forbidden
+    no_lost_events_found: valid_outcome_no_positive_recovery_required
+resources:
+  transfer_first_pilot_closed_at: 17912
+  committed_second_batch_attempts:
+    T1_20260907T074951Z_3d42022: 480
+    T1_20260907T075031Z_c35cb34: 1080
+    T1_20260907T075138Z_1113f3e: 1080
+  second_batch_spent_before_030: 2640
+  transfer_lifetime_spent_before_030: 20552
+  second_batch_original_cap: 20000
+  second_batch_remaining: 17360
+  transfer_lifetime_cap: 250000
+  new_transfer_allowance: 0
+  independent_validator_and_retries: charged
+  unique_points_as_cost_count: forbidden
+  boundary_lifetime_spent: 33410
+  boundary_lifetime_cap: 34300
+  boundary_remaining: 890
+  new_boundary_calls_under_this_ruling: not_authorized
+  peak_GiB: 8
+  elapsed_time: reconcile_before_launch_use_remaining_inherited_cumulative_two_hours
+  paid_resources: forbidden
+  third_batch: not_authorized
+execution:
+  commit_code_backend_hashes_cohorts_policies_before_queries: required
+  verify_freeze_and_reserve_before_every_call: required
+  exception_accounting: persistent
+  genuine_cached_payloads: reuse_with_hashes
+  independent_recomputation_is_cached_read: false
+  prior_outputs: no_overwrite
+  source_or_target_model_change: forbidden
+outputs:
+  - PATH_DOMAIN_030_INPUT_FREEZE.json
+  - MARKER_AND_COUNTER_OVERLAY_030.md
+  - PATH_DOMAIN_DERIVATION_AND_CONVENTIONS_030.md
+  - PER_POINT_PATH_DOMAIN_ADJUDICATION_030.npz
+  - INDEPENDENT_DOMAIN_HOLDOUT_030.json
+  - PHYSICAL_MASK_IMPACT_030.json
+  - WHOLE_TRANSFER_VALIDATION_030.json
+  - CONTOUR_PAYLOAD_MANIFEST_030.json
+  - RESOURCE_LEDGER_030.json
+  - PATH_DOMAIN_030_RETURN.md
+  - PATH_DOMAIN_030_COMPLETION.json
+  - SHA256SUMS.txt
+completion:
+  separate: [marker_semantics, root_branch_classification, event_existence, source_domain_completeness, whole_transfer_accuracy, quadrature, governance]
+  ready_for_review: PATH_DOMAIN_030_REVIEW_READY
+  blocked: PATH_DOMAIN_030_BLOCKED
+  ready_is_physical_quadrature_qualified: false
+  R3B_new_R2_estimator_or_submission_freeze: not_authorized

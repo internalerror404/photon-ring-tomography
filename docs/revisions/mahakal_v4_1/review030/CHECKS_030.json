@@ -1,0 +1,176 @@
+{
+  "scope": "Review 030: radial-domain and accounting fixtures, not the 680 campaign rays.\n\nUses the scalar Schwarzschild radial potential (M=1) with chosen impact\nparameters to compare Jacobi inversion and independent definite quadrature.\nNo repository ray maps, source bank, full transfer evaluator or target SVD.",
+  "reviewed_commit": "b6c3873b22f945ce20c40c3c55e80f516954cb00",
+  "schwarzschild_scattering_fixture": {
+    "M": 1.0,
+    "impact_parameter": 6.0,
+    "observer_radius": 1000.0,
+    "source_outer_radius": 50.0,
+    "radial_roots": [
+      -6.822948255619545,
+      0.0,
+      2.369585061808191,
+      4.453363193811361
+    ],
+    "J_comparisons": [
+      {
+        "r": 4.453363193811361,
+        "elliptic": 0.0,
+        "quadrature": 0.0,
+        "absolute_error": 0.0
+      },
+      {
+        "r": 5.0,
+        "elliptic": 0.13523896844992123,
+        "quadrature": 0.13523896844992123,
+        "absolute_error": 0.0
+      },
+      {
+        "r": 10.0,
+        "elliptic": 0.299159249689056,
+        "quadrature": 0.2991592496890561,
+        "absolute_error": 1.1102230246251565e-16
+      },
+      {
+        "r": 50.0,
+        "elliptic": 0.3850348939067693,
+        "quadrature": 0.38503489390676937,
+        "absolute_error": 5.551115123125783e-17
+      },
+      {
+        "r": 1000.0,
+        "elliptic": 0.4040817409938993,
+        "quadrature": 0.4040817409938993,
+        "absolute_error": 0.0
+      },
+      {
+        "r": "infinity",
+        "elliptic": 0.4050817469849961,
+        "quadrature": 0.4050817469849962,
+        "absolute_error": 1.1102230246251565e-16
+      }
+    ],
+    "mino_to_turn": 0.4040817409938993,
+    "mino_to_escape_at_infinity": 0.8091634879788954,
+    "source_annulus_mino_interval": [
+      0.019046847087130003,
+      0.7891166349006686
+    ],
+    "tau_after_escape": 0.8101634879788954,
+    "negative_extension_radius": -1000.006009025511,
+    "periodic_extension_tau": 1.257209902112512,
+    "periodic_extension_radius": 999.999999999775,
+    "max_independent_radius_error": 8.526512829121202e-14
+  },
+  "schwarzschild_capture_fixture": {
+    "impact_parameter": 4.0,
+    "mino_to_r50": 0.019020748296093612,
+    "mino_to_r10": 0.10141143764572083,
+    "mino_to_horizon": 0.6336046494770908,
+    "mino_to_subhorizon_r1p9": 0.6585854023864443
+  },
+  "readback_accounting": {
+    "separate_T1_attempts": [
+      480,
+      1080,
+      1080
+    ],
+    "second_batch_spent": 2640,
+    "first_pilot_closed_at": 17912,
+    "lifetime_spent": 20552,
+    "second_batch_remaining": 17360,
+    "boundary_remaining": 890
+  },
+  "checks": [
+    {
+      "name": "scattering_fixture_has_exterior_accessible_turn",
+      "passed": true
+    },
+    {
+      "name": "elliptic_path_integrals_match_independent_quadrature",
+      "passed": true
+    },
+    {
+      "name": "finite_observer_origin_is_preserved",
+      "passed": true
+    },
+    {
+      "name": "turning_point_is_half_path_to_its_return_not_infinite_observer_limit",
+      "passed": true
+    },
+    {
+      "name": "annulus_interval_endpoints_invert_to_r50",
+      "passed": true
+    },
+    {
+      "name": "inside_annulus_mino_interval_gives_source_radii_in_range",
+      "passed": true
+    },
+    {
+      "name": "physical_branch_inversion_agrees_with_monotone_integral_root",
+      "passed": true
+    },
+    {
+      "name": "finite_negative_formula_value_can_mean_crossing_after_escape",
+      "passed": true
+    },
+    {
+      "name": "positive_formula_value_can_also_be_outside_original_path",
+      "passed": true
+    },
+    {
+      "name": "source_absence_does_not_require_a_new_radial_expression",
+      "passed": true
+    },
+    {
+      "name": "capture_has_possible_exterior_emission_before_termination",
+      "passed": true
+    },
+    {
+      "name": "positive_subhorizon_continuation_is_after_exterior_termination",
+      "passed": true
+    },
+    {
+      "name": "capture_type_does_not_remove_all_lower_order_contributions",
+      "passed": true
+    },
+    {
+      "name": "near_boundary_uncertainty_does_not_silently_become_zero",
+      "passed": true
+    },
+    {
+      "name": "disjoint_path_interval_can_certify_source_absence",
+      "passed": true
+    },
+    {
+      "name": "imaginary_root_test_alone_is_not_exterior_turn_test",
+      "passed": true
+    },
+    {
+      "name": "one_nan_sentinel_can_hide_distinct_physical_path_events",
+      "passed": true
+    },
+    {
+      "name": "mino_path_parameter_is_not_coordinate_delay",
+      "passed": true
+    },
+    {
+      "name": "all_committed_attempt_ledgers_are_counted_once",
+      "passed": true
+    },
+    {
+      "name": "same_second_batch_keeps_its_original_cap",
+      "passed": true
+    }
+  ],
+  "n_checks": 20,
+  "all_passed": true,
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "campaign_680_points_classified": false,
+  "repository_suite_executed": false,
+  "script_sha256": "82739695443365fc10bce1b8539fc59a6f8b27ba6ecd878d8ce72ffb3d5a6fec"
+}
