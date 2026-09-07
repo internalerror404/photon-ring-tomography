@@ -87,6 +87,7 @@ class Guard:
         return tok
 
     def complete(self, token: int, completed: int, failed: int = 0) -> None:
+        """``completed`` and ``failed`` partition the reservation."""
         e = self.events[token]
         if completed + failed > e["reserved"]:
             raise GuardFailure("more evaluations reported than reserved")
@@ -194,7 +195,8 @@ def trace_points(alpha: np.ndarray, beta: np.ndarray, order: int,
         guard.abort(tok, f"{type(exc).__name__}: {exc}")
         raise
     rs = np.asarray(rs, float).ravel()
-    guard.complete(tok, int(a.size), int((~np.isfinite(rs)).sum()))
+    nf = int((~np.isfinite(rs)).sum())
+    guard.complete(tok, int(a.size) - nf, nf)
     return {"alpha": a, "beta": b, "order": int(order),
             "source_r": rs, "radial_sign": np.asarray(sign, float).ravel(),
             "coordinate_time": np.asarray(t, float).ravel(),

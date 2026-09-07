@@ -1,0 +1,25 @@
+{
+  "freeze": "/home/user/photon-ring-tomography/artifacts/revisions/mahakal_v4_1/V0G_20260907T074922Z_093ea09/BOUNDARY_VALIDITY_028_INPUT_FREEZE.json",
+  "attempted": {
+    "transfer": 120,
+    "boundary": 0
+  },
+  "completed": {
+    "transfer": 120,
+    "boundary": 0
+  },
+  "failed": {
+    "transfer": 0,
+    "boundary": 0
+  },
+  "events": [
+    {
+      "token": 0,
+      "kind": "transfer",
+      "reserved": 120,
+      "why": "instrumented_failure_n1",
+      "outcome": "reserved"
+    }
+  ],
+  "note": "written after every reservation and completion, so an exception in the solver or the report cannot lose a charge"
+}

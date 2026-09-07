@@ -142,7 +142,8 @@ def main(out: Path, freeze: Path, t0: Path) -> int:
             except BaseException as exc:
                 guard.abort(tok, f"{type(exc).__name__}: {exc}")
                 raise
-            guard.complete(tok, a.size, int(rec["output_is_nan"].sum()))
+            nf = int(rec["output_is_nan"].sum())
+            guard.complete(tok, int(a.size) - nf, nf)
             lab = classify(rec)
             u, c = np.unique(lab, return_counts=True)
             rows.append({
