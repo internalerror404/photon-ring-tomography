@@ -1,0 +1,131 @@
+{
+  "schema": "phrt-input-freeze/1",
+  "id": "BOUNDARY_VALIDITY_028_INPUT_FREEZE",
+  "ruling": "PAPER_I_TRANSFER_AUDIT_RULING_029",
+  "written_before_any_new_physical_query": true,
+  "created_utc": "2026-09-07T07:48:29Z",
+  "commit_at_freeze_time": "e2074f9fc622de7359d145d3bc495d650dd1ecf7",
+  "detector": {
+    "name": "D026",
+    "alpha": [
+      -25.0,
+      25.0
+    ],
+    "beta": [
+      -25.0,
+      25.0
+    ],
+    "pitch_M": 0.4,
+    "cells": [
+      125,
+      125
+    ],
+    "sigma": 0.011341986814407566
+  },
+  "clock": {
+    "absolute_reference_coordinate_time_M": -978.6055123201214,
+    "per_profile_recentering": "forbidden",
+    "negative_offsets": "recorded, never clipped"
+  },
+  "solver_policy": {
+    "entry_point": "aart.raytracing_f.calculate_observables",
+    "spin": 0.5,
+    "inclination_deg": 50.0,
+    "d_obs": 1000.0,
+    "backend_substitution": "forbidden",
+    "failed_value_zero_fill": "forbidden",
+    "retry": "same physical equations, prospectively declared numeric configuration only",
+    "bracketing": "safeguarded bisection on a finite continuous branch; a sign change alone does not certify continuity, and equal signs do not exclude roots",
+    "screen_bracket_required": true,
+    "root_residual_alone_is_not_a_position_bound": true
+  },
+  "selection_rule": {
+    "contour": "seeds from cached samples and declared geometry; radial lines between an in-annulus and an out-of-annulus cached sample of the same order",
+    "target_information": "forbidden as a selection input",
+    "declared_before_any_query": true
+  },
+  "target": {
+    "indices": "the accepted 72, unchanged",
+    "reselection": "forbidden",
+    "spectra_counts_estimators": "not computed"
+  },
+  "accuracy": {
+    "band_symdiff": 0.00025,
+    "boundaries_symdiff": 0.00025,
+    "hull_only_response": 0.00025,
+    "shifted_hull_check": 0.00025,
+    "tighter_root_check": 2.5e-05,
+    "transfer_and_emission_boundary_response": 0.0005,
+    "total_response_mask_area": 0.001,
+    "integration_or_tessellation": 1e-06,
+    "exact_fixture": 1e-12,
+    "thinness_relaxes_geometry": false
+  },
+  "ledger": {
+    "boundary_spent_before_029": 26300,
+    "boundary_lifetime_cap": 34300,
+    "boundary_closeout_allowance": 8000,
+    "boundary_spent_lifetime": 26300,
+    "boundary_remaining": 8000,
+    "prior_spend_reconciled_from_run_records": {
+      "transfer": 0,
+      "boundary": 0
+    },
+    "runs_counted": [],
+    "boundary_independent_check_reserve_min": 4000,
+    "first_pilot_closed_at": 17912,
+    "first_pilot_unused_headroom_is_not_a_credit": true,
+    "transfer_spent_lifetime": 17912,
+    "transfer_lifetime_cap": 250000,
+    "transfer_remaining": 20000,
+    "transfer_second_batch_max": 20000,
+    "third_batch": "not authorized",
+    "transfer_initial_diagnostic_max": 4000,
+    "transfer_independent_validation_reserve_min": 4000,
+    "aborted_9000_boundary_solves_remain_charged": true,
+    "counts_failures_retries_and_vectorised_interior_calls": true
+  },
+  "n_files": 19,
+  "files": {
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/__init__.py": "a63ecfb794537b1436db910450c52bc4b4d47be0841dae642830ca327e1450ac",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/ellipi_f.py": "4f94331aacda68eb8e6bedd4b8ae74301b38379ebea0a68a8935e317cdede939",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/gfactor.py": "b5312b90c97d1007a79e8479806f7d37b62479592fd1f550bc689af46d8bdc48",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/iImages.py": "b8c5ce1cc72e0dcb72cb501ac488d3478fc3abe35a45b531b815af51d15a4bf9",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/iMovies.py": "0c2ace876fa146cb649bc0bcb923ce92b4df1180096783812a5a718fcf23aa90",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/intensity_f.py": "24380c557c57c7062b19b741c1a8c97d4bc74311b6cf888d086481f75ea961b4",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/lensingbands.py": "3cb4727a4f7a2d82cdcb914447ca54ee2ff894e4d911017fbecd3577cb963b3b",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/misc.py": "2be55712fa62d2139c6611c1c7bd3a2eddfca3722797e488cb0103312177d65b",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/mkplot.py": "a8aed03319242e977758cb22f4aaa55caaefa420a517532c61546aca968d0e75",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/parameters.py": "87ad34c160dbd984b84132719d2c1913ff11c3f3779066d0a0d13df004588906",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/polarization.py": "0f37323b9df4f1116c1d89b843aef4137c5441cd5f15a5eab5f050b616be1254",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/polarization_f.py": "27eb54bda045f1c065ec6ed9caf9e892929af996a9f3131552397df9c678a8b6",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/radialfit.py": "32a901ef01597b0b978fd60cd1fc2f7e0fdd0329a34e25f2f1fa11789d80a244",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/radialintensity.py": "8b5914e4ed612be3ee4a0abb81b8872787e6de45e438c648fa876e1b92987444",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/raytracing.py": "3be421e5de8312c734afeff0e9c2f2f0a978c47910a4bb77489a7d815f88abc0",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/raytracing_f.py": "7cfd7e5e03fa5309e9506c675f14922a18bf239236e2a9c84a5a731735c0f906",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/rprofs_f.py": "32a6e9c7f74b39eb3fd92e9c6a4af3ee9395f4ede10841f39b3c6b10884282d4",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/visamp.py": "7c9e6f5018e9b6a3a992f918aba14aa658b0942f369ab9c48901e2ad48a65558",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/visamp_f.py": "0132af5aa8fba4fdd8c9987e4975a7283975b6e2828f252817c01b4e70b41ef8",
+    "artifacts/configs/R1_MAIN_FREEZE.json": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "artifacts/revisions/mahakal_v4_1/R2_REPLAY_TARGET_MANIFEST.json": "e6b6b0dac9f35dbb96405f6ab2dd76e139d8f9ad5838c638ffb72a3c04271273",
+    "scripts/revision_v4_1/g1_closeout_029.py": "717f26ea05cd28024cef8680f95cb20397d83ef567881132f655fd0500743979",
+    "scripts/revision_v4_1/g1_curved_hull.py": "02cbe5941bba82dfa1bcece8e9ad8ef6aa903c5fefa6369c87ab7c275aea4d3c",
+    "scripts/revision_v4_1/t0_failure_census.py": "c91b7b399ef6d4a375a766cfd2834bef5e2b53ae89062d15f37fa1812c640f52",
+    "scripts/revision_v4_1/t1_first_invalid_primitive.py": "e28120445d618a80ee6a4ab0124d9a5c2219657600d065e9f7ca07fba1eb513a",
+    "scripts/revision_v4_1/v0_overlay_and_freeze.py": "10ab25fbc86bdff9ed5772d1b56accaf474b70df2694391264427bbcb61a88b6",
+    "scripts/revision_v4_1/v1_contour_pilot.py": "088977844e11ecd93e8f8b4ace29f23dc3431ea16e52ba6be6adeff76d28fa56",
+    "scripts/revision_v4_1/v2_partial_response.py": "a7375b36e8a1c40541e3c602697f6237dea5d2b2195e44bc6c8e333b3fdf68bd",
+    "src/phrt/revision_v4_1/acquisition.py": "437f93e945354941b0508ccd0c1c222d5ceb62922a24718aaa39e44bfa04d81d",
+    "src/phrt/revision_v4_1/domain.py": "c61445dc6e22c985ec22c9d64e94f0c8ce871e936c14a49b01610e49053347ba",
+    "src/phrt/revision_v4_1/fractional.py": "b0637cc12f1722fd6de632f928e81cdaf3be00377b2a6bae4c49c7d9dbc3669d",
+    "src/phrt/revision_v4_1/hulls.py": "362467068576e5f348e054e1c6e9f0d225423a693e575324db9bf74c54ea1d49",
+    "src/phrt/revision_v4_1/measure.py": "ed44131dedfa654d847dea5c3dd7fdeb588be1603037a3a34f221fa1a674df76",
+    "src/phrt/revision_v4_1/polyclip.py": "c90637271059890cc1e6cac25bb7a76aebf6d6cb9d8354fb1f87137a4f761e98",
+    "src/phrt/revision_v4_1/query.py": "2078a60cd09c1b7634529f57965e785a4f1710d8675aca1821208101e07c0036",
+    "tests/revision_v4_1/test_boundary_028.py": "ae5ebf356978f4ecab975d991c65269871a2c31f202bc65249d57259a3a2c830",
+    "tests/revision_v4_1/test_fractional_027.py": "778acc9f403442b752a1eae8841dece6343fe728394445981f2b4d658ef35e8f",
+    "tests/revision_v4_1/test_polyclip.py": "95b98f4d476060008b90ed4e77b51cf73230b61d5c479b55150f32c635c3c23c"
+  },
+  "registered_tree_clean": true,
+  "uncommitted": []
+}

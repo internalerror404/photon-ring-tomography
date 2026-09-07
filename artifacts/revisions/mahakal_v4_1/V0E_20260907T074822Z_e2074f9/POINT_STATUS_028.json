@@ -1,0 +1,361 @@
+{
+  "stage": "V0",
+  "new_physical_queries": 0,
+  "warning": "these are CENTRE-CLASSIFIED areas. A fragment is labelled by its centre ray, which certifies nothing about the fragment: a centre outside the emission annulus says nothing about the part of its cell inside, and a valid centre does not make the transfer accurate across the cell. Resolving that needs the contour, which is V1",
+  "states": [
+    "CERTIFIED_EMITTING",
+    "CERTIFIED_NON_EMITTING",
+    "UNRESOLVED"
+  ],
+  "certified_non_emitting_is_physics_not_a_gap": true,
+  "rows": [
+    {
+      "profile": "coarse",
+      "order": 0,
+      "n_samples": 4096,
+      "geometric_band_area": 2475.2787686101765,
+      "centre_classified": {
+        "total_area": 2475.2787686101765,
+        "by_state": {
+          "CERTIFIED_EMITTING": {
+            "n": 3992,
+            "area": 2453.257814584544,
+            "area_fraction": 0.9911036468680267
+          },
+          "CERTIFIED_NON_EMITTING": {
+            "n": 0,
+            "area": 0.0,
+            "area_fraction": 0.0
+          },
+          "UNRESOLVED": {
+            "n": 104,
+            "area": 22.020954025632008,
+            "area_fraction": 0.00889635313197324
+          }
+        },
+        "unresolved_by_primitive": {
+          "NO_PRIOR_EVALUATION": {
+            "n": 104,
+            "area": 22.020954025632008
+          }
+        },
+        "certified_non_emitting_is_not_a_defect": true,
+        "point_classified_not_fragment_certified": true
+      },
+      "fragments_with_positive_area": 4096,
+      "partially_cut_fragments": 28
+    },
+    {
+      "profile": "coarse",
+      "order": 1,
+      "n_samples": 15876,
+      "geometric_band_area": 71.96151373319627,
+      "centre_classified": {
+        "total_area": 71.96151373319627,
+        "by_state": {
+          "CERTIFIED_EMITTING": {
+            "n": 2156,
+            "area": 54.6544717968596,
+            "area_fraction": 0.7594958605164412
+          },
+          "CERTIFIED_NON_EMITTING": {
+            "n": 600,
+            "area": 14.931861216550189,
+            "area_fraction": 0.2074978754881588
+          },
+          "UNRESOLVED": {
+            "n": 13120,
+            "area": 2.3751807197864734,
+            "area_fraction": 0.03300626399539992
+          }
+        },
+        "unresolved_by_primitive": {
+          "RADIAL_ROOT_OR_EQUATORIAL_CROSSING": {
+            "n": 60,
+            "area": 0.9723146756213678
+          },
+          "NO_PRIOR_EVALUATION": {
+            "n": 13060,
+            "area": 1.4028660441651057
+          }
+        },
+        "certified_non_emitting_is_not_a_defect": true,
+        "point_classified_not_fragment_certified": true
+      },
+      "fragments_with_positive_area": 5343,
+      "partially_cut_fragments": 588
+    },
+    {
+      "profile": "coarse",
+      "order": 2,
+      "n_samples": 122500,
+      "geometric_band_area": 2.0029223285918167,
+      "centre_classified": {
+        "total_area": 2.0029223285918167,
+        "by_state": {
+          "CERTIFIED_EMITTING": {
+            "n": 1037,
+            "area": 1.485281537422595,
+            "area_fraction": 0.7415572317608758
+          },
+          "CERTIFIED_NON_EMITTING": {
+            "n": 95,
+            "area": 0.10670363343219681,
+            "area_fraction": 0.05327397468638553
+          },
+          "UNRESOLVED": {
+            "n": 121368,
+            "area": 0.41093715773702444,
+            "area_fraction": 0.20516879355273837
+          }
+        },
+        "unresolved_by_primitive": {
+          "RADIAL_ROOT_OR_EQUATORIAL_CROSSING": {
+            "n": 112,
+            "area": 0.09903954053376243
+          },
+          "NO_PRIOR_EVALUATION": {
+            "n": 121256,
+            "area": 0.31189761720326203
+          }
+        },
+        "certified_non_emitting_is_not_a_defect": true,
+        "point_classified_not_fragment_certified": true
+      },
+      "fragments_with_positive_area": 29939,
+      "partially_cut_fragments": 1849
+    },
+    {
+      "profile": "core",
+      "order": 0,
+      "n_samples": 15876,
+      "geometric_band_area": 2475.278768610176,
+      "centre_classified": {
+        "total_area": 2475.278768610176,
+        "by_state": {
+          "CERTIFIED_EMITTING": {
+            "n": 15597,
+            "area": 2464.583721774934,
+            "area_fraction": 0.9956792556172381
+          },
+          "CERTIFIED_NON_EMITTING": {
+            "n": 0,
+            "area": 0.0,
+            "area_fraction": 0.0
+          },
+          "UNRESOLVED": {
+            "n": 279,
+            "area": 10.695046835242245,
+            "area_fraction": 0.004320744382761914
+          }
+        },
+        "unresolved_by_primitive": {
+          "NO_PRIOR_EVALUATION": {
+            "n": 279,
+            "area": 10.695046835242245
+          }
+        },
+        "certified_non_emitting_is_not_a_defect": true,
+        "point_classified_not_fragment_certified": true
+      },
+      "fragments_with_positive_area": 15876,
+      "partially_cut_fragments": 58
+    },
+    {
+      "profile": "core",
+      "order": 1,
+      "n_samples": 62500,
+      "geometric_band_area": 71.96151373319725,
+      "centre_classified": {
+        "total_area": 71.96151373319725,
+        "by_state": {
+          "CERTIFIED_EMITTING": {
+            "n": 8531,
+            "area": 54.84308456736032,
+            "area_fraction": 0.7621168833481631
+          },
+          "CERTIFIED_NON_EMITTING": {
+            "n": 2390,
+            "area": 15.27540737187213,
+            "area_fraction": 0.21227190173495875
+          },
+          "UNRESOLVED": {
+            "n": 51579,
+            "area": 1.8430217939648077,
+            "area_fraction": 0.02561121491687835
+          }
+        },
+        "unresolved_by_primitive": {
+          "RADIAL_ROOT_OR_EQUATORIAL_CROSSING": {
+            "n": 224,
+            "area": 1.0959261967211293
+          },
+          "NO_PRIOR_EVALUATION": {
+            "n": 51355,
+            "area": 0.7470955972436781
+          }
+        },
+        "certified_non_emitting_is_not_a_defect": true,
+        "point_classified_not_fragment_certified": true
+      },
+      "fragments_with_positive_area": 26706,
+      "partially_cut_fragments": 1172
+    },
+    {
+      "profile": "core",
+      "order": 2,
+      "n_samples": 490000,
+      "geometric_band_area": 2.0029223285919593,
+      "centre_classified": {
+        "total_area": 2.0029223285919593,
+        "by_state": {
+          "CERTIFIED_EMITTING": {
+            "n": 4179,
+            "area": 1.6139677043343612,
+            "area_fraction": 0.8058064365725901
+          },
+          "CERTIFIED_NON_EMITTING": {
+            "n": 341,
+            "area": 0.11765882271543351,
+            "area_fraction": 0.058743577339889594
+          },
+          "UNRESOLVED": {
+            "n": 485480,
+            "area": 0.27129580154216415,
+            "area_fraction": 0.13544998608752004
+          }
+        },
+        "unresolved_by_primitive": {
+          "RADIAL_ROOT_OR_EQUATORIAL_CROSSING": {
+            "n": 456,
+            "area": 0.10949056267087354
+          },
+          "NO_PRIOR_EVALUATION": {
+            "n": 485024,
+            "area": 0.1618052388712906
+          }
+        },
+        "certified_non_emitting_is_not_a_defect": true,
+        "point_classified_not_fragment_certified": true
+      },
+      "fragments_with_positive_area": 79909,
+      "partially_cut_fragments": 4110
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "n_samples": 62500,
+      "geometric_band_area": 2475.278768610176,
+      "centre_classified": {
+        "total_area": 2475.278768610176,
+        "by_state": {
+          "CERTIFIED_EMITTING": {
+            "n": 61635,
+            "area": 2469.7517239951044,
+            "area_fraction": 0.9977671021603054
+          },
+          "CERTIFIED_NON_EMITTING": {
+            "n": 0,
+            "area": 0.0,
+            "area_fraction": 0.0
+          },
+          "UNRESOLVED": {
+            "n": 865,
+            "area": 5.527044615071466,
+            "area_fraction": 0.002232897839694557
+          }
+        },
+        "unresolved_by_primitive": {
+          "NO_PRIOR_EVALUATION": {
+            "n": 865,
+            "area": 5.527044615071466
+          }
+        },
+        "certified_non_emitting_is_not_a_defect": true,
+        "point_classified_not_fragment_certified": true
+      },
+      "fragments_with_positive_area": 62448,
+      "partially_cut_fragments": 112
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "n_samples": 250000,
+      "geometric_band_area": 71.96151373319715,
+      "centre_classified": {
+        "total_area": 71.96151373319715,
+        "by_state": {
+          "CERTIFIED_EMITTING": {
+            "n": 34278,
+            "area": 54.99599082248045,
+            "area_fraction": 0.7642417171264951
+          },
+          "CERTIFIED_NON_EMITTING": {
+            "n": 9583,
+            "area": 15.364077894065318,
+            "area_fraction": 0.21350409541173382
+          },
+          "UNRESOLVED": {
+            "n": 206139,
+            "area": 1.6014450166513776,
+            "area_fraction": 0.022254187461770998
+          }
+        },
+        "unresolved_by_primitive": {
+          "RADIAL_ROOT_OR_EQUATORIAL_CROSSING": {
+            "n": 936,
+            "area": 1.2395180342257563
+          },
+          "NO_PRIOR_EVALUATION": {
+            "n": 205203,
+            "area": 0.36192698242562116
+          }
+        },
+        "certified_non_emitting_is_not_a_defect": true,
+        "point_classified_not_fragment_certified": true
+      },
+      "fragments_with_positive_area": 83592,
+      "partially_cut_fragments": 2346
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "n_samples": 1440000,
+      "geometric_band_area": 2.0029223285914073,
+      "centre_classified": {
+        "total_area": 2.0029223285914073,
+        "by_state": {
+          "CERTIFIED_EMITTING": {
+            "n": 16672,
+            "area": 1.6525361039761517,
+            "area_fraction": 0.8250625001211748
+          },
+          "CERTIFIED_NON_EMITTING": {
+            "n": 1399,
+            "area": 0.1376261832858604,
+            "area_fraction": 0.06871269111201561
+          },
+          "UNRESOLVED": {
+            "n": 1421929,
+            "area": 0.21276004132939522,
+            "area_fraction": 0.10622480876680959
+          }
+        },
+        "unresolved_by_primitive": {
+          "RADIAL_ROOT_OR_EQUATORIAL_CROSSING": {
+            "n": 1976,
+            "area": 0.13655958970513354
+          },
+          "NO_PRIOR_EVALUATION": {
+            "n": 1419953,
+            "area": 0.07620045162426156
+          }
+        },
+        "certified_non_emitting_is_not_a_defect": true,
+        "point_classified_not_fragment_certified": true
+      },
+      "fragments_with_positive_area": 158121,
+      "partially_cut_fragments": 8248
+    }
+  ]
+}
