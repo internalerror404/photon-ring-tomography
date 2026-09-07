@@ -1,0 +1,153 @@
+{
+  "scope": "Review 033: interval arithmetic and source-derived cost checks only.\n\nNo real Kerr rays, path integrations, hull roots, source spectra or repository\nsuite execution. The bound routine propagates SUPPLIED leaf intervals; it does\nnot infer physical envelopes from midpoint samples or certify their provenance.",
+  "reviewed_commit": "303dfb640a6f5895641a82ae0aaa71bd1e0ae642",
+  "checks": [
+    {
+      "name": "negative_field_old_box_excludes_valid_emitting_value",
+      "passed": true
+    },
+    {
+      "name": "negative_field_correct_box_is_minus_half_to_zero",
+      "passed": true
+    },
+    {
+      "name": "nonnegative_occupancy_case_is_preserved",
+      "passed": true
+    },
+    {
+      "name": "magnitude_only_envelope_needs_symmetric_uncertainty",
+      "passed": true
+    },
+    {
+      "name": "exhaustive_validity_corner_000",
+      "passed": true
+    },
+    {
+      "name": "exhaustive_validity_corner_001",
+      "passed": true
+    },
+    {
+      "name": "exhaustive_validity_corner_010",
+      "passed": true
+    },
+    {
+      "name": "exhaustive_validity_corner_011",
+      "passed": true
+    },
+    {
+      "name": "exhaustive_validity_corner_100",
+      "passed": true
+    },
+    {
+      "name": "exhaustive_validity_corner_101",
+      "passed": true
+    },
+    {
+      "name": "exhaustive_validity_corner_110",
+      "passed": true
+    },
+    {
+      "name": "exhaustive_validity_corner_111",
+      "passed": true
+    },
+    {
+      "name": "random_signed_interval_samples_enclosed",
+      "passed": true
+    },
+    {
+      "name": "missing_field_envelope_rejected",
+      "passed": true
+    },
+    {
+      "name": "negative_overlap_rejected",
+      "passed": true
+    },
+    {
+      "name": "reversed_field_interval_rejected",
+      "passed": true
+    },
+    {
+      "name": "invalid_validity_interval_rejected",
+      "passed": true
+    },
+    {
+      "name": "source_derived_uniform_matrix_cost_reproduced",
+      "passed": true
+    },
+    {
+      "name": "convention_B_selected_balance",
+      "passed": true
+    },
+    {
+      "name": "primary_path_is_recorded_component_not_second_native_charge",
+      "passed": true
+    },
+    {
+      "name": "bounded_diagnostic_fits_without_new_batch",
+      "passed": true
+    },
+    {
+      "name": "diagnostic_cap_leaves_balance",
+      "passed": true
+    },
+    {
+      "name": "synthetic_single_boundary_localization_has_nonuniform_cost",
+      "passed": true
+    }
+  ],
+  "n_checks": 23,
+  "all_passed": true,
+  "negative_field_example": {
+    "overlap": 0.25,
+    "field": -2,
+    "old_interval": [
+      0.0,
+      0.5
+    ],
+    "correct_interval": [
+      -0.5,
+      0.0
+    ]
+  },
+  "cost_check": {
+    "transition_parents": [
+      331,
+      661,
+      1584,
+      3183,
+      5177,
+      11300
+    ],
+    "total": 22236,
+    "uniform_new_point_cost": 444720,
+    "ratio_to_native_spendable": 182.7115858668858,
+    "ratio_to_lifetime_cap": 1.77888,
+    "is_lower_bound_for_every_integration_scheme": false
+  },
+  "ledger_check": {
+    "native": 13566,
+    "primary_path_component": 10806,
+    "independent_reference": 4806,
+    "convention_B_spend": 18372,
+    "remaining": 1628,
+    "diagnostic_cap": 1024,
+    "remaining_at_full_diagnostic_cap": 604
+  },
+  "synthetic_boundary": {
+    "assumptions": "one monotone crossing of known topology",
+    "bracket": [
+      0.3712310791015625,
+      0.37123870849609375
+    ],
+    "midpoint_queries": 17,
+    "uniform_intervals_for_same_spacing": 100000,
+    "not_a_Kerr_cost_forecast": true
+  },
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5"
+  },
+  "actual_campaign_queries": 0,
+  "repository_suite_executed": false,
+  "script_sha256": "957d2c6ab2dee95007bf56f0c21a8603a498ec31b06619855a1c440dd6be1ab5"
+}

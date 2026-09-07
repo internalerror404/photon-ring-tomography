@@ -1,0 +1,170 @@
+review_id: PAPER_I_FEASIBILITY_AND_CLOSEOUT_RULING_033
+reviewed_commit: 303dfb640a6f5895641a82ae0aaa71bd1e0ae642
+work_branch: research/mahakal_v4_1
+status: REPAIRS_ACCEPTED_FIXED_MATRIX_RETIRED_COMPARATOR_CLOSEOUT_AUTHORIZED
+preservation:
+  old_source_maps_freezes_runs: immutable
+  G1_qualification: accepted_not_reopened
+  sampled_absences_and_legacy_R2: unchanged
+  C13: physical_quadrature_still_open
+  transfer_formula_repair: no_evidence_justifying_one
+  delivery: GitHub_only
+accepted:
+  leaf_overlap_partition: reported_numerical_geometry_scope
+  original_polynomial_residual: source_level_algebra_checks
+  indexed_simple_root_reduction: source_level_algebra_checks
+  zero_query_032_plan_block: accepted
+  cause_of_66_reference_failures: not_yet_diagnosed
+remaining_leaf_issue:
+  id: SIGNED_UNRESOLVED_INTERVAL_033
+  old_bounds: known_to_known_plus_abs_field_is_not_valid_for_negative_fields
+  fixed_point_field: weight_times_min_0_f_to_weight_times_max_0_f
+  magnitude_only_envelope: minus_weight_M_to_plus_weight_M
+  general_interval: extrema_of_four_chi_field_endpoint_products
+  midpoint_field_is_whole_cell_envelope: false
+  missing_finite_envelope: explicit_blocker
+  implementation: versioned_consumer_keep_032_code_unchanged
+  helper: docs/revisions/mahakal_v4_1/review033/signed_bounds_and_checks_033.py
+  helper_scope: supplied_interval_propagation_not_physical_envelope_inference
+  exact_fixture_atol: 1.0e-12
+  exact_fixture_rtol: 1.0e-12
+accounting_decision:
+  authoritative_convention: B_native_plus_independent_reference
+  native_spent: 13566
+  primary_path_component: 10806
+  independent_reference_spent: 4806
+  second_batch_spent: 18372
+  second_batch_cap: 20000
+  second_batch_remaining: 1628
+  primary_path_within_same_native_bundle: component_record_no_double_charge
+  standalone_primary_path_reevaluation: charged_one_unit
+  each_independent_end_to_end_reference: separately_charged
+  per_quadrature_abscissa_is_new_ray: false
+  cached_read_requires_real_payload_and_hash: true
+  fixed_integration_response_reserve_4000: suspended_for_unlaunched_closed_design
+  future_integration_validation: must_be_newly_funded_not_waived
+  new_allowance_or_third_batch: none
+fixed_physics:
+  geometry: {id: a050_i050, spin: 0.5, inclination_degrees: 50}
+  orders: [0, 1, 2]
+  detector: D026
+  bounds_M: {alpha: [-25, 25], beta: [-25, 25]}
+  pitch_M: 0.4
+  sigma: 0.011341986814407566
+  clock_reference_M: -978.6055123201214
+  observer_times: exact_accepted_eight
+  observer_radius_M: 1000
+  source_annulus: horizon_exclusive_to_50_inclusive
+  target_nuisance_norm_velocity_and_backend: unchanged
+comparator_closeout:
+  physical_permission: one_capped_registered_diagnostic_only
+  total_charged_max: 1024
+  total_point_order_ids_max: 258
+  development:
+    points: all_66_previously_unresolved_records
+    charged_max: 384
+    inputs_are_fresh_holdout: false
+    require_actual_failure_reason_and_numerical_margins: true
+    no_prospective_cause_demonstrated: stop_report_no_full_integration
+  confirmation:
+    points_max: 192
+    unused_before_freeze: required
+    charged_budget_reserved_min: 576
+    scopes: [near_turn, healthy, absent_requested_event, finite_outside_annulus]
+    no_comparator_tuning_after_panel_outcomes: true
+    declared_tolerance_and_reference_hierarchy: freeze_before_queries
+  nominal_costs:
+    point_ids: 258
+    native_plus_one_reference: 516
+    native_plus_two_references: 774
+    actual_usage: report_not_round_to_cap_or_reserve
+  prelaunch:
+    - signed_bound_consumer_fixtures_pass
+    - indexed_reduction_and_original_polynomial_fixtures_pass
+    - code_cohort_backend_numerical_policy_and_caps_committed
+    - budget_reserved_before_each_native_or_reference_evaluation
+    - time_envelope_reconciled_and_sufficient
+    - output_chunk_payloads_and_hashes_required
+  no_reference_resolution: explicit_blocked_return_no_forced_labels
+  comparator_pass_means: NUMERICALLY_VALIDATED_ON_TESTED_COHORTS
+  comparator_pass_authorizes_integration: false
+validation_design_change:
+  old_18_endpoint_matrix: retire_as_mandatory_future_layout_preserve_old_plan
+  reason: chosen_sufficient_layout_not_physical_requirement
+  uniform_point_cost: 444720
+  uniform_point_cost_is_algorithm_independent_lower_bound: false
+  wedge_failure_scope: declared_wedge_ladder_only
+  local_order_specific_boundary_patches: allowed_in_planning_with_explicit_scope
+  same_region_within_each_compared_pair: required
+  zero_transition_region: smooth_control_not_boundary_validation
+  intended_full_detector_domain_changes: forbidden
+adaptive_design_only:
+  new_physical_queries_for_design: 0
+  quantity: same_full_fixed_detector_transfer_integral
+  allowed:
+    - reuse_qualified_hull_and_archived_geometry_metadata
+    - one_domain_aware_adaptive_mesh_with_refinement_checkpoints
+    - core_fine_as_seeds_and_independent_checks_not_exhaustive_duplicate_runs
+    - target_free_boundary_and_field_error_selection
+    - explicit_contour_or_error_accounted_indicator_quadrature
+    - cache_deduplication_of_identical_physical_evaluations
+    - sparse_fragment_assembly
+  requirements:
+    - same_physical_quantity_across_refinement_levels
+    - all_orders_and_field_time_channels_accounted_for
+    - full_domain_coverage_or_explicit_unbounded_remainder
+    - sign_aware_response_envelopes
+    - domain_error_separate_from_field_quadrature_and_reference_error
+    - two_successive_late_refinement_comparisons
+    - independently_initialized_or_heldout_check
+    - expected_and_worst_case_costs_and_early_stop
+    - payload_cache_keys_include_physics_and_numeric_policy
+    - no_global_qualification_from_tiny_local_patch
+  targets_or_singular_modes_used_to_refine: forbidden
+  cache_of_6000_lost_I2_values: not_available_do_not_invent
+  generic_adaptive_method_guarantees_Kerr_budget: false
+  physical_execution_of_plan: requires_later_ruling
+accuracy_unchanged:
+  hull_band_and_response: 2.5e-4
+  transfer_emission_component: 5.0e-4
+  total_response_mask_area: 1.0e-3
+  numerical_integration_tessellation: 1.0e-6
+  construction_fields_certify_arbitrary_source_inversion: false
+coverage_labels:
+  order2_center_missing_fraction: missing_archived_center_tuple_not_proven_lost_photon_fraction
+  actual_positive_emission_without_supported_value: unresolved_response_not_zero
+  signed_intervals_certify_continuum: only_with_validated_function_envelopes
+resources:
+  at_full_diagnostic_cap_remaining: 604
+  native_lifetime_transfer_ceiling: 250000_not_raised
+  new_hull_queries: 0
+  boundary_spent: 33410
+  peak_GiB: 8
+  wall_time: remaining_inherited_two_hour_envelope_after_reconciliation
+  paid_resources: forbidden
+  post_diagnostic_remaining_spend: review_required
+execution_and_tests:
+  versioned_source_changes_only: true
+  no_pinned_artifact_overwrite: true
+  legacy_write_capable_tests: disposable_worktree_or_redirected_outputs
+  input_output_hash_check: before_and_after
+  byte_identity_not_equivalent_JSON_reserialization: required
+  aborted_and_repeated_evaluations: charged
+  scientific_and_governance_conditions: separate_evidence_derived
+  old_flags: preserve_with_additive_scope_overlay
+return:
+  ready: FEASIBILITY_CLOSEOUT_033_REVIEW_READY
+  blocked: FEASIBILITY_CLOSEOUT_033_BLOCKED
+  separate_statuses: [leaf_geometry, signed_envelopes, comparator, adaptive_design, physical_quadrature, governance]
+  R3B_target_spectrum_estimator_or_submission_freeze: not_authorized
+outputs:
+  - FEASIBILITY_CLOSEOUT_033_INPUT_FREEZE.json
+  - ACCOUNTING_AND_SCOPE_OVERLAY_033.md
+  - SIGNED_BOUND_CONSUMER_TESTS_033.json
+  - COMPARATOR_CAUSE_AND_CONFIRMATION_033.json
+  - COMPARATOR_PAYLOAD_MANIFEST_033.json
+  - ADAPTIVE_INTEGRATION_DESIGN_033.json
+  - RESOURCE_LEDGER_033.json
+  - FEASIBILITY_CLOSEOUT_033_RETURN.md
+  - FEASIBILITY_CLOSEOUT_033_COMPLETION.json
+  - SHA256SUMS.txt
