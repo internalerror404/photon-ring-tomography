@@ -1,0 +1,152 @@
+review_id: PAPER_I_TRANSFER_AUDIT_RULING_029
+reviewed_commit: 7067c4ed3a270648d54410d601dd63e053f780be
+work_branch: research/mahakal_v4_1
+status: TRANSFER_PRIMITIVE_AUDIT_AUTHORIZED_WITH_TARGETED_G1_CLOSEOUT
+preservation:
+  existing_code_maps_freezes_runs: immutable
+  old_tokens: preserve_with_additive_disposition_overlay
+  C13: physical_revalidation_still_pending
+  R2_legacy_acceptance: unchanged
+  new_R2_spectrum: forbidden
+  R3B: forbidden
+  new_estimator_or_submission_freeze: forbidden
+  delivery: GitHub_only
+fixed_experiment:
+  geometry: {id: a050_i050, spin: 0.5, inclination_degrees: 50}
+  orders: [0, 1, 2]
+  detector: D026
+  bounds_M: {alpha: [-25, 25], beta: [-25, 25]}
+  pitch_M: 0.4
+  sigma: 0.011341986814407566
+  clock_reference_M: -978.6055123201214
+  observer_times: exact_accepted_eight
+  target_indices: exact_accepted_72
+  nuisance: same_remaining_152_full_L224
+  source_norm_and_velocity_model: unchanged
+  field_suite: inherited_eleven_screen_and_transfer_fields
+  zero_filling_or_recalibration: forbidden
+record_dispositions:
+  curved_ladder: REFINEMENT_DEMONSTRATED
+  full_hull_geometry: QUALIFICATION_CLOSEOUT_PENDING
+  contour: LOCAL_BRACKETS_RESOLVED_DOMAIN_COMPLETENESS_PENDING
+  radius_replay: same_implementation_radius_only_not_independent_whole_transfer
+  zero_recovery: confirmed_under_same_policy_cause_not_yet_identified
+  V2_response: partial_and_still_center_classified_not_new_contour_integrated
+geometry_closeout:
+  candidate: same_237_mark_periodic_parametric_cubic_in_chord_length
+  original_outer_square: exact
+  new_hull_ladder_or_fit_family: forbidden
+  authenticated_saved_payloads: reuse_first
+  absent_payloads: disclose_then_recreate_only_needed_same_candidate_arrays
+  required:
+    - two_late_pairs_all_original_geometry_and_response_metrics
+    - shifted_candidate_band_and_inner_outer_symdiff_not_only_radius
+    - shifted_candidate_detector_response
+    - tenfold_tighter_root_geometry_and_response_comparison
+    - band_normalized_tessellation_and_detector_response_error
+    - actual_topology_holes_local_nesting_and_positive_width
+    - scale_aware_integration_error_check
+  required_arrays: [fit_roots, parameter_values, curve_coefficients, shifted_roots, tighter_roots, tessellations, comparisons]
+  hash_all_arrays: true
+  positive_total_area_certifies_local_width: false
+  final_boolean_must_include_every_requirement: true
+  new_roots_only_for_closeout: true
+transfer_audit:
+  T0:
+    new_queries: zero
+    tasks:
+      - Inventory every nonfinite component across archived maps, not radius only.
+      - Freeze failure and healthy-neighbor cohorts with screen_order_ids.
+      - Locate actual contour endpoints and query payloads; record missing arrays.
+      - Separate physical no_intersection from numerical_failure using explicit criteria.
+  T1:
+    new_evaluations_max: 4000
+    arithmetic_change: forbidden_during_instrumentation_parity_test
+    trace_first_invalid_primitive: required
+    record: [constants_of_motion, radial_roots_and_residuals, branch_class, elliptic_arguments, polar_order_and_available_path, source_r, source_phi, coordinate_time, radial_sign, redshift, g_cubed, exception_or_warning]
+    repeat_same_final_call_without_intermediate_evidence: not_sufficient
+    healthy_controls: include_all_orders_and_near_failure_boundaries
+    raw_nonfinite_values_and_masks: preserve_before_any_sanitization
+    output: FIRST_INVALID_PRIMITIVE_029.json
+  T2:
+    launch: reproducible_first_failure_identified_and_new_repair_holdout_freeze_committed
+    candidates_max: 1
+    scope: one_cause_specific_same_equation_numerical_repair
+    possible_methods_are_not_diagnoses: [stable_algebra, branch_safe_roots, safeguarded_brackets, precision_escalation]
+    forbidden: [arbitrary_radicand_clipping, forced_real_roots, altered_order, changed_source_cutoff, silent_package_upgrade, production_backend_substitution]
+    independent_comparator: registered_same_equations_multiprecision_or_independent_quadrature
+    comparator_is_production_substitution: false
+    check_every_component: [radius, wrapped_azimuth, common_origin_time, branch_or_radial_sign, redshift, g_cubed]
+    field_tolerances: commit_scale_aware_values_before_outcomes_and_link_to_response_budget
+    finite_output_alone_is_success: false
+    no_identified_cause: return_evidence_without_unplanned_retries
+  T3:
+    tasks:
+      - Export_resolved_contour_endpoints_failed_brackets_and_domain_uncertainty.
+      - Compare_repaired_partial_responses_on_identical_support.
+      - Integrate_contours_only_where_geometric_and_transfer_uncertainty_is_controlled.
+      - Record_missing_response_envelope_or_keep_blocker.
+    target_operator_or_SVD: forbidden
+accuracy:
+  hull_band_and_inner_outer_relative: 2.5e-4
+  shifted_hull_geometry_and_response: 2.5e-4
+  tighter_root_geometry_and_response: 2.5e-5
+  tessellation_integration: 1.0e-6
+  transfer_emission_component_response: 5.0e-4
+  total_response_mask_area: 1.0e-3
+  exact_fixture_atol: 1.0e-12
+  exact_fixture_rtol: 1.0e-12
+  all_orders_fields_and_times: required
+  missing_support_treated_as_zero: forbidden
+  point_classification_as_fragment_certificate: forbidden
+  thresholds_changed_after_results: forbidden
+resources:
+  boundary_already_spent: 26300
+  previous_boundary_cap: 30000
+  new_boundary_closeout_allowance_max: 8000
+  revised_boundary_lifetime_cap: 34300
+  explicit_increase_over_previous_cap: 4300
+  fit_or_geometry_sweep_allowance: 0
+  transfer_already_spent: 17912
+  transfer_lifetime_cap: 250000
+  first_pilot: close_with_actual_spend_not_assumed_20000
+  unused_first_pilot_budget_is_additive_credit: false
+  second_batch_max: 20000
+  second_batch_initial_diagnosis_max: 4000
+  second_batch_independent_validation_reserve_min: 4000
+  third_batch: not_authorized
+  count_baseline_comparator_invalid_failed_and_retry_evaluations: true
+  counts_for_vectorized_calls: number_of_screen_order_points_not_one_call
+  peak_GiB: 8
+  time_envelope: remaining_part_of_inherited_cumulative_two_hours
+  reconcile_past_runtime_before_launch: required
+  paid_resources: forbidden
+query_safety:
+  verify_committed_freeze_itself_and_all_inputs: true
+  include_installed_backend_source_hashes: true
+  reserve_before_uncached_boundary_or_transfer_evaluation: required
+  charge_after_boundary_solve_as_only_guard: forbidden
+  persist_attempt_ledger_even_on_exception: required
+  dirty_tree_or_fresh_output_failure: stop_before_query
+  instrumentation_freeze_before_T1: required
+  independent_repair_holdout_freeze_before_T2: required
+  demonstrate_over_budget_and_missing_gate_injections: required
+completion:
+  scientific_and_governance_checks: separate
+  not_run_is_not_pass: true
+  ready_for_review_token: TRANSFER_AUDIT_029_REVIEW_READY
+  blocked_token: TRANSFER_AUDIT_029_BLOCKED
+  both_tokens_stop_before_R3B: true
+  component_statuses: [curved_refinement, full_hull_qualification, contour_brackets, domain_completeness, primitive_diagnosis, repair_validation, transfer_accuracy, overall_quadrature, governance]
+outputs:
+  - INTERPRETATION_OVERLAY_029.md
+  - GEOMETRY_CLOSEOUT_029.json
+  - GEOMETRY_PAYLOAD_MANIFEST_029.json
+  - TRANSFER_FAILURE_CENSUS_029.json
+  - FIRST_INVALID_PRIMITIVE_029.json
+  - REPAIR_AND_HOLDOUT_VALIDATION_029.json
+  - CONTOUR_PAYLOAD_MANIFEST_029.json
+  - RESOURCE_LEDGER_029.json
+  - TRANSFER_AUDIT_029_RETURN.md
+  - TRANSFER_AUDIT_029_COMPLETION.json
+  - SHA256SUMS.txt

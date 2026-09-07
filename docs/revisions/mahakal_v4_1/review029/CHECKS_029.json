@@ -1,0 +1,112 @@
+{
+  "scope": "Review 029 checks: supplied G1 arithmetic and synthetic validation failures.\nNo real ray tracing, hull solving, or repository-suite execution.\nInputs transcribed from CURVED_HULL_VALIDATION_028.json at 7067c4e.",
+  "reviewed_commit": "7067c4ed3a270648d54410d601dd63e053f780be",
+  "source_path": "artifacts/revisions/mahakal_v4_1/G1_20260907T002858Z_ecddc92/CURVED_HULL_VALIDATION_028.json",
+  "source_blob": "4cc167114fe734d15d50f28e7b8002fa2719ad37",
+  "input_method": "Explicit transcription of four reported area values and summary counts, not a local full-file rehash.",
+  "tessellation_order2": {
+    "inner_area_n": 82.64000863188306,
+    "inner_area_2n": 82.64003294004084,
+    "outer_area_n": 84.64388204814033,
+    "outer_area_2n": 84.6439069465467,
+    "band_area_n": 2.003873416257264,
+    "band_area_2n": 2.0038740065058676,
+    "max_per_shape_relative_change": 2.941547392882777e-07,
+    "sum_absolute_boundary_area_changes": 4.920656415663416e-05,
+    "band_union_normalized_symdiff_lower_bound": 1.2277860594994486e-05,
+    "using_finer_band_area_denominator": 2.455571757349909e-05,
+    "net_band_area_relative_change": 2.9455375031308725e-07,
+    "not_a_direct_full_polygon_symdiff_computation": true
+  },
+  "radius_vs_band_fixture": {
+    "relative_radius_error": 1e-05,
+    "relative_band_symdiff": 0.004980104457639707
+  },
+  "deterministic_cancellation_fixture": {
+    "original_expression": 0.0,
+    "stable_equivalent": 5e-09
+  },
+  "whole_transfer_fixture_first_nonfinite": "coordinate_time",
+  "reported_brackets": {
+    "resolved": 1191,
+    "total": 1212,
+    "fraction": 0.9826732673267327
+  },
+  "counts_from_report": {
+    "boundary_lifetime_spent": 26300,
+    "boundary_left_under_30000": 3700,
+    "transfer_lifetime_spent": 17912,
+    "transfer_left_under_250000": 232088,
+    "first_pilot_left_under_20000": 2088
+  },
+  "checks": [
+    {
+      "name": "quoted_per_shape_tessellation_changes_below_1e_6",
+      "passed": true
+    },
+    {
+      "name": "band_normalized_boundary_change_need_not_be_below_1e_6",
+      "passed": true
+    },
+    {
+      "name": "small_relative_radius_error_can_fail_band_error",
+      "passed": true
+    },
+    {
+      "name": "repeating_an_expression_reproduces_its_numerical_defect",
+      "passed": true
+    },
+    {
+      "name": "equivalent_stable_expression_can_change_numeric_result",
+      "passed": true
+    },
+    {
+      "name": "radius_parity_does_not_certify_time_or_redshift",
+      "passed": true
+    },
+    {
+      "name": "wrapped_azimuth_comparison_uses_phase",
+      "passed": true
+    },
+    {
+      "name": "missing_geometry_checks_prevent_full_qualification",
+      "passed": true
+    },
+    {
+      "name": "one_good_late_pair_not_two_good_pairs",
+      "passed": true
+    },
+    {
+      "name": "positive_integrated_area_does_not_certify_local_band_width",
+      "passed": true
+    },
+    {
+      "name": "resolved_brackets_not_global_contour_certificate",
+      "passed": true
+    },
+    {
+      "name": "equal_sign_interval_can_hold_two_unsearched_crossings",
+      "passed": true
+    },
+    {
+      "name": "identical_partial_responses_do_not_bound_missing_signal",
+      "passed": true
+    },
+    {
+      "name": "over_budget_query_is_refused_before_execution",
+      "passed": true
+    },
+    {
+      "name": "failed_attempt_remains_charged",
+      "passed": true
+    }
+  ],
+  "n_checks": 15,
+  "all_passed": true,
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5"
+  },
+  "physical_execution": false,
+  "script_sha256": "778a7addec8bf587c81e61197db574b4ef0857848cb553e4f9c7389a8bb0123d"
+}
