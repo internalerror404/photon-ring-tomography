@@ -1,0 +1,156 @@
+review_id: PAPER_I_MATCHED_INTEGRATION_RULING_032
+reviewed_commit: e9924705285d04fd282758de640a916044e987c7
+work_branch: research/mahakal_v4_1
+status: BLOCK_ACCEPTED_LEAF_GEOMETRY_AND_COMPARISON_PREFLIGHT_REQUIRED
+preservation:
+  governing_defect: C13
+  G1_numerical_qualification: accepted_not_reopened
+  audited_680_absences: accepted_sample_scope_unchanged
+  legacy_R2_scope: unchanged
+  existing_maps_code_runs_freezes: immutable
+  old_blocked_return: preserve_literal_token_and_add_overlay
+  transfer_formula_repair: not_justified
+  delivery: GitHub_only
+current_authorization:
+  new_physical_queries: 0
+  new_path_integral_recomputations: 0
+  new_hull_roots: 0
+  allowed: [source_inspection, synthetic_fixtures, cached_payload_inventory, versioned_leaf_assembly, zero_query_plan_generation, record_overlays]
+  physical_recomputation_with_cached_coordinates_is_zero_query: false
+  target_operators_spectra_estimators_R3B: forbidden
+  paid_resources_or_new_allowance: none
+record_corrections:
+  I2_parent_fraction: UNQUALIFIED_PARENT_AVERAGED_OCCUPANCY_PROXY
+  I2_one_column_field: constant_occupancy_not_full_transferred_response
+  I2_area_change: difference_between_approximations_not_error_against_truth
+  I2_unknown_area: sampled_evaluator_proxy_not_between_sample_boundary_certificate
+  I2_missing_arms: NOT_EVALUATED_not_zero_error
+  I2_profile_scalar_metric: norm_difference_not_vector_error
+  I1_reference_status: 428_agree_66_unresolved_confirmation_incomplete
+  I1_point_limit: {allowed: 192, observed: 494, excess: 302}
+  I1_native_charge: 494
+  I1_1024: evaluation_ceiling_not_actual_recorded_native_charge
+  original_880_panel: PRECOMMITTED_PANEL_REUSED_AFTER_COMPARATOR_CORRECTION
+  new_494_panel: retain_its_actual_no_tuning_history_do_not_inherit_old_reuse_label
+  I1_polynomial_residual: self_root_product_tautology_not_independent_residual
+  governance: AUDIT_COMPLETE_WITH_PROTOCOL_DEVIATIONS
+leaf_assembly:
+  proposed_rule: sum_over_leaves_of_detector_leaf_hull_overlap_times_leaf_indicator_times_leaf_field
+  whole_parent_fraction_times_parent_overlap: forbidden
+  leaf_cells: true_partition_of_corrected_parent_with_own_detector_and_hull_intersections
+  finite_leaf_label_is_domain_certificate: false
+  zero_unknown_samples_means_zero_boundary_error: false
+  unresolved_contribution: explicit_partial_response_and_error_or_blocker
+  same_label_neighbors_exclude_all_internal_boundaries: false
+  nested_refinement_and_boundary_holdout: required_for_eventual_qualification
+  production_path_integration_tests: required_not_helper_only
+comparator_static_closeout:
+  reference_unresolved_reason_payload: actual_reasons_integral_values_and_estimates_not_generic_nonconvergence
+  validate_original_radial_polynomial: coefficients_from_conserved_quantities_not_returned_roots
+  polynomial_check: complex_Horner_and_scale_aware_backward_residual
+  residual_is_root_location_bound: false_without_conditioning_information
+  simple_turn_reduced_product: exclude_verified_root_index_not_Python_object_identity
+  degenerate_or_invalid_branch: explicit_unresolved
+  synthetic_endpoint_limit_and_perturbed_root_tests: required
+  tune_on_494_and_call_it_fresh: forbidden
+  physical_cause_of_66_established_by_this_review: false
+fixed_experiment:
+  geometry: {id: a050_i050, spin: 0.5, inclination_degrees: 50}
+  orders: [0, 1, 2]
+  profiles: [core, fine]
+  detector: D026
+  bounds_M: {alpha: [-25, 25], beta: [-25, 25]}
+  pitch_M: 0.4
+  sigma: 0.011341986814407566
+  clock_reference_M: -978.6055123201214
+  observer_times: exact_accepted_eight
+  source_target_nuisance_metric_velocity: unchanged
+  detector_noise: full_detector_area_once_per_time_not_emitting_fraction
+  inherited_noise_model: separate_matched_parent_convention
+accuracy_unchanged:
+  hull: 2.5e-4
+  transfer_emission_response_component: 5.0e-4
+  total_response_mask_area: 1.0e-3
+  numerical_integration_tessellation: 1.0e-6
+  exact_fixture_atol: 1.0e-12
+  exact_fixture_rtol: 1.0e-12
+  compare_vectors: norm_W_yfine_minus_W_ycore_not_difference_of_norms
+  preserve_fields_orders_times: per_entry_not_average_only
+  occupancy_only_qualifies_whole_transfer: false
+planning:
+  plan_choices: [local_feasibility_with_explicit_scope, full_domain_qualification]
+  one_costed_choice: required
+  required_profiles: [core, fine]
+  required_orders: [0, 1, 2]
+  required_integration_levels: [L0, L1, L2]
+  required_endpoint_count: 18
+  matched_identifiers: [physical_domain_id, representation_id, field_set_id, detector_id, clock_id, sigma_id]
+  same_intended_domain_with_refined_approximation: required
+  order2_or_fine_optional: false
+  allocation_unit: complete_per_order_profile_level_comparison_bundle
+  equal_six_way_quota_is_sufficient: false
+  compare_common_physical_regions: required
+  local_patch_implies_global_qualification: false
+  no_budget_baseline_substitution: required
+  bounds_or_domain_coverage_for_omitted_regions: explicit
+  runtime_reservation: complete_bundle_before_first_new_call
+  schedule: cover_all_orders_before_deep_refinement_of_one_order
+  prerequisite_66_reference_cases_ignored: forbidden
+  plans_inspect_target_information: forbidden
+  executable_schema_cost_preflight: docs/revisions/mahakal_v4_1/review032/checks_and_preflight_032.py
+  schema_pass_authorizes_execution: false
+  actual_cache_authentication_and_physics: additional_runtime_requirements
+payloads:
+  old_I2_summary_is_reusable_physical_sample_cache: false
+  inventory_any_external_cache: allowed_verify_bytes_before_reuse
+  reconstruct_coordinates_means_values_recovered: false
+  future_chunk_exports: [evaluation_ids, coordinates, roots_or_domain_margins, label_uncertainty, transfer_values, child_geometry, detector_vectors, counters, hashes]
+  required_count_fields: [found, eligible, selected, evaluated, cached, omitted, unresolved]
+accounting:
+  newly_found_aborted_attempts: 120
+  native_spent_before_031: 7072
+  native_spent_by_031: 6494
+  native_second_batch_spent: 13566
+  native_reported_remaining: 6434
+  authoritative_balance: unresolved_until_primary_reference_end_to_end_convention_reconciled
+  second_batch_cap: 20000
+  transfer_lifetime_cap: 250000
+  response_validation_reserve: 4000
+  new_stage_expansion_or_third_batch: none
+  component_counters: [native_trace, primary_path, independent_reference, retries, cached_algebra]
+  quadrature_abscissa_is_new_ray: false
+  independent_end_to_end_evaluation_is_cached_algebra: false
+  accounting_definition_changed_silently: forbidden
+  boundary_spent: 33410
+  new_boundary_calls: none
+  peak_GiB: 8
+  elapsed_time: reconcile_inherited_cumulative_envelope_no_reset
+fault_injection_requirements:
+  - 193_points_under_192_point_cap
+  - unresolved_reference_prerequisite
+  - missing_fine_or_order2_endpoint
+  - occupancy_only_pretending_full_transfer
+  - equal_norm_different_detector_vectors
+  - parent_fraction_assembly_in_actual_consumer
+  - missing_numerical_payload
+  - infeasible_complete_bundle_or_validation_reserve_invasion
+  - missing_prerequisite_record
+completion:
+  success: MATCHED_INTEGRATION_032_PLAN_READY_FOR_REVIEW
+  blocked: MATCHED_INTEGRATION_032_PLAN_BLOCKED
+  either_token_is_query_authorization: false
+  statuses: [leaf_kernel_tests, comparator_static_checks, payload_availability, complete_comparison_plan, resource_accounting, governance]
+  derive_conditions_from_evidence: true
+  old_results_or_flags_rewritten: false
+  stop_for_review_before_any_new_physical_query: true
+outputs:
+  - INTERPRETATION_OVERLAY_032.md
+  - LEAF_ASSEMBLY_CONSUMER_TESTS_032.json
+  - COMPARATOR_STATIC_DIAGNOSTICS_032.json
+  - CACHE_AND_PAYLOAD_INVENTORY_032.json
+  - MATCHED_COMPARISON_PLAN_032.json
+  - PLAN_PREFLIGHT_032.json
+  - FULL_COST_RESOURCE_LEDGER_032.json
+  - MATCHED_INTEGRATION_032_RETURN.md
+  - MATCHED_INTEGRATION_032_COMPLETION.json
+  - SHA256SUMS.txt

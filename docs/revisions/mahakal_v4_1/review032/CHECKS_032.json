@@ -1,0 +1,122 @@
+{
+  "scope": "Review 032: synthetic checks and a zero-query comparison-plan validator.\n\nNo Kerr rays, saved campaign arrays, source bank, or repository suite are run.\nThe preflight checks a DECLARED task/cost manifest, not physical correctness or\npermission to execute. It must be combined with runtime input/hash/budget guards.",
+  "reviewed_commit": "e9924705285d04fd282758de640a916044e987c7",
+  "n_checks": 20,
+  "checks": [
+    {
+      "name": "parent_fraction_preserves_total_but_moves_flux",
+      "passed": true
+    },
+    {
+      "name": "leaf_clipping_does_not_spread_left_flux_to_right_detector",
+      "passed": true
+    },
+    {
+      "name": "leaf_point_rule_is_still_approximation_not_exact_domain",
+      "passed": true
+    },
+    {
+      "name": "zero_unresolved_point_labels_not_zero_domain_error",
+      "passed": true
+    },
+    {
+      "name": "difference_of_norms_can_hide_image_difference",
+      "passed": true
+    },
+    {
+      "name": "unknown_sample_omission_needs_bound_not_false_full_response",
+      "passed": true
+    },
+    {
+      "name": "self_root_product_residual_is_tautologically_zero",
+      "passed": true
+    },
+    {
+      "name": "original_polynomial_detects_perturbed_root",
+      "passed": true
+    },
+    {
+      "name": "root_index_not_object_identity_for_reduced_product",
+      "passed": true
+    },
+    {
+      "name": "unreached_matrix_entries_are_missing_not_zero_observations",
+      "passed": true
+    },
+    {
+      "name": "complete_matched_plan_passes_schema_only",
+      "passed": true
+    },
+    {
+      "name": "greedy_partial_matrix_rejected_before_queries",
+      "passed": true
+    },
+    {
+      "name": "mixed_representation_rejected",
+      "passed": true
+    },
+    {
+      "name": "infeasible_complete_bundle_preserves_validation_reserve",
+      "passed": true
+    },
+    {
+      "name": "reference_incompleteness_blocks_auto_launch",
+      "passed": true
+    },
+    {
+      "name": "payload_omission_is_rejected",
+      "passed": true
+    },
+    {
+      "name": "point_cap_is_separate_from_evaluation_cap",
+      "passed": true
+    },
+    {
+      "name": "native_counter_correction_preserves_aborted_attempt",
+      "passed": true
+    },
+    {
+      "name": "pilot_allocation_matches_disclosed_consumption",
+      "passed": true
+    },
+    {
+      "name": "area_component_units_not_transfer_response_units",
+      "passed": true
+    }
+  ],
+  "all_passed": true,
+  "overlap_fixture": {
+    "exact": [
+      0.2,
+      0.0
+    ],
+    "parent_fraction": [
+      0.1,
+      0.1
+    ],
+    "leaf_midpoint_16": [
+      0.1875,
+      0.0
+    ]
+  },
+  "root_residual_fixture": {
+    "self_product_max": 0.0,
+    "original_polynomial_max": 8.25264014258419
+  },
+  "good_synthetic_plan": {
+    "status": "PLAN_SCHEMA_AND_COST_READY_FOR_REVIEW_NOT_EXECUTION",
+    "errors": [],
+    "new_charge_declared": 360,
+    "endpoint_count": 18,
+    "required_endpoint_count": 18,
+    "physical_execution_authorized": false,
+    "limitations": "Validates declared schema/cost only; does not authenticate cache bytes or certify physics."
+  },
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5"
+  },
+  "campaign_rays_evaluated": 0,
+  "repository_suite_executed": false,
+  "script_sha256": "27bd5de6c42ae917a2b5eee1a007fb7fab41c3c31ebe3799d91124ec6e734c8c"
+}
