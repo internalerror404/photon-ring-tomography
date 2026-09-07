@@ -1,0 +1,99 @@
+{
+  "schema": "phrt-completion/1",
+  "id": "BOUNDARY_VALIDITY_028_COMPLETION",
+  "ruling": "PAPER_I_BOUNDARY_VALIDITY_RULING_028",
+  "generated_utc": "2026-09-07T00:38:32Z",
+  "commit": "85ef3cb186c4a8121a84490457ec5b9c767ac904",
+  "fail_closed": true,
+  "required_conditions": [
+    "prerequisite_test_success",
+    "preregistration_satisfied",
+    "guard_enforced_at_the_query_entry_point",
+    "solver_failure_never_recorded_as_zero_emission",
+    "physical_non_emission_not_counted_as_missing",
+    "point_status_distinguished_from_fragment_certificate",
+    "boundary_cap_respected",
+    "transfer_cap_respected",
+    "initial_diagnostic_cap_respected",
+    "independent_validation_reserve_respected",
+    "no_backend_substitution",
+    "no_tolerance_adjusted_after_results",
+    "no_archive_rewritten",
+    "no_target_information_inspected",
+    "fresh_output_directories",
+    "not_run_checks_recorded_as_not_run"
+  ],
+  "conditions": {
+    "prerequisite_test_success": true,
+    "preregistration_satisfied": true,
+    "guard_enforced_at_the_query_entry_point": true,
+    "solver_failure_never_recorded_as_zero_emission": true,
+    "physical_non_emission_not_counted_as_missing": true,
+    "point_status_distinguished_from_fragment_certificate": true,
+    "boundary_cap_respected": true,
+    "transfer_cap_respected": true,
+    "initial_diagnostic_cap_respected": true,
+    "independent_validation_reserve_respected": true,
+    "no_backend_substitution": true,
+    "no_tolerance_adjusted_after_results": true,
+    "no_archive_rewritten": true,
+    "no_target_information_inspected": true,
+    "fresh_output_directories": true,
+    "not_run_checks_recorded_as_not_run": true
+  },
+  "failed_conditions": [],
+  "unrecorded_conditions": [],
+  "separate_statuses": {
+    "physical_contour": "RESOLVED_WITH_SCREEN_BRACKETS",
+    "solver_support": "UNRECOVERED_UNDER_THE_PINNED_POLICY",
+    "hull_geometry": "QUALIFIED",
+    "overall_quadrature": "NOT_QUALIFIED",
+    "governance": "COMPLETE"
+  },
+  "blockers": [
+    "TRANSFER_ACCURACY_UNQUALIFIED",
+    "MISSING_TRANSFER_SUPPORT"
+  ],
+  "return_status": "BOUNDARY_VALIDITY_028_REVIEW_READY",
+  "R3B_authorized": false,
+  "test_suite": {
+    "returncode": 0,
+    "passed": true,
+    "summary": "585 passed in 33.77s"
+  },
+  "ledger": {
+    "stage": "028",
+    "generated_utc": "2026-09-07T00:38:32Z",
+    "boundary": {
+      "charged_before_this_ruling": 18000,
+      "charged_by_028": 8300,
+      "lifetime_cap": 30000,
+      "remaining": 3700,
+      "independent_check_reserve_min": 4000,
+      "spent_on_independent_checks": 2370,
+      "aborted_9000_remain_charged": true
+    },
+    "transfer": {
+      "charged_by_028": 17912,
+      "pilot_max": 20000,
+      "lifetime_cap": 250000,
+      "remaining_of_pilot": 2088,
+      "initial_diagnostic": 1280,
+      "initial_diagnostic_max": 4000,
+      "independent_validation": 3300,
+      "independent_validation_reserve_min": 4000,
+      "reserve_available_when_validation_began": 4000
+    },
+    "counts_failures_retries_and_vectorised_calls": true,
+    "second_transfer_batch": "not taken; requires review",
+    "paid_resources": "none",
+    "registrations": [
+      "V0 (superseded)",
+      "V0B (superseded)",
+      "V0C for G1",
+      "V0D for V2"
+    ],
+    "guard_refusals_that_stopped_a_run": 2
+  },
+  "skipped_prerequisites": []
+}

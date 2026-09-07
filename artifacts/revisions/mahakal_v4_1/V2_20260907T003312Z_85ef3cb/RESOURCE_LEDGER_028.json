@@ -1,0 +1,34 @@
+{
+  "stage": "028",
+  "generated_utc": "2026-09-07T00:38:32Z",
+  "boundary": {
+    "charged_before_this_ruling": 18000,
+    "charged_by_028": 8300,
+    "lifetime_cap": 30000,
+    "remaining": 3700,
+    "independent_check_reserve_min": 4000,
+    "spent_on_independent_checks": 2370,
+    "aborted_9000_remain_charged": true
+  },
+  "transfer": {
+    "charged_by_028": 17912,
+    "pilot_max": 20000,
+    "lifetime_cap": 250000,
+    "remaining_of_pilot": 2088,
+    "initial_diagnostic": 1280,
+    "initial_diagnostic_max": 4000,
+    "independent_validation": 3300,
+    "independent_validation_reserve_min": 4000,
+    "reserve_available_when_validation_began": 4000
+  },
+  "counts_failures_retries_and_vectorised_calls": true,
+  "second_transfer_batch": "not taken; requires review",
+  "paid_resources": "none",
+  "registrations": [
+    "V0 (superseded)",
+    "V0B (superseded)",
+    "V0C for G1",
+    "V0D for V2"
+  ],
+  "guard_refusals_that_stopped_a_run": 2
+}

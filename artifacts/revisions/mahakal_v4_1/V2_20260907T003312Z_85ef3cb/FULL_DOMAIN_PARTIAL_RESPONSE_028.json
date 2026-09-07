@@ -1,0 +1,471 @@
+{
+  "stage": "V2",
+  "ruling": "PAPER_I_BOUNDARY_VALIDITY_RULING_028",
+  "generated_utc": "2026-09-07T00:34:14Z",
+  "commit": "85ef3cb186c4a8121a84490457ec5b9c767ac904",
+  "hull": {
+    "accepted_marks": 237,
+    "regenerated_from_pinned_equations": true,
+    "reproduction": {
+      "0": {
+        "band_area": 2475.2628356313035,
+        "g1_last_pair_eta_band": 1.6942252450484578e-10
+      },
+      "1": {
+        "band_area": 72.0052373100672,
+        "g1_last_pair_eta_band": 3.0674707602478764e-08
+      },
+      "2": {
+        "band_area": 2.003873416257264,
+        "g1_last_pair_eta_band": 1.1612992752491623e-07
+      }
+    }
+  },
+  "responses_are": "PARTIAL, on the support that has transfer data. They are not full physical response errors, and the missing contributions were not computed",
+  "certified_non_emitting_counted_as_missing": false,
+  "domain_states": {
+    "coarse_n0": {
+      "geometric_band_area": 2475.2628356313035,
+      "certified_emitting": 2453.249062928152,
+      "certified_non_emitting": 0.0,
+      "unresolved": 22.013772703151783
+    },
+    "coarse_n1": {
+      "geometric_band_area": 72.00523731006733,
+      "certified_emitting": 54.63964975045221,
+      "certified_non_emitting": 14.949183753568102,
+      "unresolved": 2.4164038060470237
+    },
+    "coarse_n2": {
+      "geometric_band_area": 2.0038734162576435,
+      "certified_emitting": 1.479092235650362,
+      "certified_non_emitting": 0.11157093466392937,
+      "unresolved": 0.41321024594335165
+    },
+    "core_n0": {
+      "geometric_band_area": 2475.2628356313035,
+      "certified_emitting": 2464.5751359982073,
+      "certified_non_emitting": 0.0,
+      "unresolved": 10.687699633096365
+    },
+    "core_n1": {
+      "geometric_band_area": 72.00523731006797,
+      "certified_emitting": 54.82856690551587,
+      "certified_non_emitting": 15.286008444786642,
+      "unresolved": 1.8906619597654513
+    },
+    "core_n2": {
+      "geometric_band_area": 2.0038734162578384,
+      "certified_emitting": 1.6010425165069884,
+      "certified_non_emitting": 0.12365125351275086,
+      "unresolved": 0.27917964623809943
+    },
+    "fine_n0": {
+      "geometric_band_area": 2475.2628356313035,
+      "certified_emitting": 2469.7444970542606,
+      "certified_non_emitting": 0.0,
+      "unresolved": 5.518338577042825
+    },
+    "fine_n1": {
+      "geometric_band_area": 72.0052373100681,
+      "certified_emitting": 54.98407287038784,
+      "certified_non_emitting": 15.369652627349936,
+      "unresolved": 1.651511812330323
+    },
+    "fine_n2": {
+      "geometric_band_area": 2.0038734162575924,
+      "certified_emitting": 1.638612116986299,
+      "certified_non_emitting": 0.1397407463693363,
+      "unresolved": 0.22552055290195652
+    }
+  },
+  "tolerances": {
+    "component": 0.0005,
+    "total": 0.001,
+    "area": 0.001
+  },
+  "comparisons": [
+    {
+      "pair": "coarse->core",
+      "order": 0,
+      "worst_field": "transferred:g^3*cos20",
+      "worst_relative": 0.0643592852180991,
+      "geometric_band_area_relative": 0.0,
+      "certified_emitting_area_relative": 0.004595547891652353,
+      "unresolved_area_relative": 0.5144994101094642,
+      "component_passes": false,
+      "emitting_area_passes": false
+    },
+    {
+      "pair": "coarse->core",
+      "order": 1,
+      "worst_field": "transferred:g^3*sin20",
+      "worst_relative": 0.2376257340217838,
+      "geometric_band_area_relative": 8.881138179301231e-15,
+      "certified_emitting_area_relative": 0.003445597171803113,
+      "unresolved_area_relative": 0.2175720154743629,
+      "component_passes": false,
+      "emitting_area_passes": false
+    },
+    {
+      "pair": "coarse->core",
+      "order": 2,
+      "worst_field": "transferred:g^3*cos20",
+      "worst_relative": 0.855277042765639,
+      "geometric_band_area_relative": 9.728916085340823e-14,
+      "certified_emitting_area_relative": 0.07616929569283809,
+      "unresolved_area_relative": 0.3243641730113994,
+      "component_passes": false,
+      "emitting_area_passes": false
+    },
+    {
+      "pair": "core->fine",
+      "order": 0,
+      "worst_field": "transferred:g^3*cos20",
+      "worst_relative": 0.02522808799280161,
+      "geometric_band_area_relative": 0.0,
+      "certified_emitting_area_relative": 0.0020930752400578,
+      "unresolved_area_relative": 0.4836738712272277,
+      "component_passes": false,
+      "emitting_area_passes": false
+    },
+    {
+      "pair": "core->fine",
+      "order": 1,
+      "worst_field": "transferred:g^3*sin20",
+      "worst_relative": 0.0775472077489164,
+      "geometric_band_area_relative": 1.7762276358602433e-15,
+      "certified_emitting_area_relative": 0.0028282001815060093,
+      "unresolved_area_relative": 0.12649016721360196,
+      "component_passes": false,
+      "emitting_area_passes": false
+    },
+    {
+      "pair": "core->fine",
+      "order": 2,
+      "worst_field": "transferred:g^3*cos20",
+      "worst_relative": 0.3827646055069191,
+      "geometric_band_area_relative": 1.2277493191979078e-13,
+      "certified_emitting_area_relative": 0.022927695999470518,
+      "unresolved_area_relative": 0.19220274135020413,
+      "component_passes": false,
+      "emitting_area_passes": false
+    }
+  ],
+  "per_field": {
+    "coarse->core_n0": {
+      "screen:1": {
+        "relative": 3.488173372506315e-16,
+        "zero_response": false
+      },
+      "screen:alpha/25": {
+        "relative": 0.007874034942849743,
+        "zero_response": false
+      },
+      "screen:beta/25": {
+        "relative": 0.007874015051291514,
+        "zero_response": false
+      },
+      "screen:(alpha/25)^2": {
+        "relative": 0.015826988488064603,
+        "zero_response": false
+      },
+      "screen:(beta/25)^2": {
+        "relative": 0.015826969031656438,
+        "zero_response": false
+      },
+      "screen:alpha*beta/625": {
+        "relative": 0.011136096556312909,
+        "zero_response": false
+      },
+      "transferred:g^3": {
+        "relative": 0.04509482647041342,
+        "zero_response": false
+      },
+      "transferred:g^3*cos20": {
+        "relative": 0.0643592852180991,
+        "zero_response": false
+      },
+      "transferred:g^3*sin20": {
+        "relative": 0.059943215065103105,
+        "zero_response": false
+      },
+      "transferred:g^3*cos40": {
+        "relative": 0.05253288508010082,
+        "zero_response": false
+      },
+      "transferred:g^3*sin40": {
+        "relative": 0.04706014916846245,
+        "zero_response": false
+      }
+    },
+    "coarse->core_n1": {
+      "screen:1": {
+        "relative": 7.942634382486841e-15,
+        "zero_response": false
+      },
+      "screen:alpha/25": {
+        "relative": 0.000161656006883907,
+        "zero_response": false
+      },
+      "screen:beta/25": {
+        "relative": 0.00011232509578315355,
+        "zero_response": false
+      },
+      "screen:(alpha/25)^2": {
+        "relative": 0.0003830538946720446,
+        "zero_response": false
+      },
+      "screen:(beta/25)^2": {
+        "relative": 0.00024291015387703784,
+        "zero_response": false
+      },
+      "screen:alpha*beta/625": {
+        "relative": 0.000129318619257852,
+        "zero_response": false
+      },
+      "transferred:g^3": {
+        "relative": 0.057375587281429996,
+        "zero_response": false
+      },
+      "transferred:g^3*cos20": {
+        "relative": 0.23603871194546977,
+        "zero_response": false
+      },
+      "transferred:g^3*sin20": {
+        "relative": 0.2376257340217838,
+        "zero_response": false
+      },
+      "transferred:g^3*cos40": {
+        "relative": 0.12439352915162558,
+        "zero_response": false
+      },
+      "transferred:g^3*sin40": {
+        "relative": 0.12241541429900618,
+        "zero_response": false
+      }
+    },
+    "coarse->core_n2": {
+      "screen:1": {
+        "relative": 7.747880482435404e-14,
+        "zero_response": false
+      },
+      "screen:alpha/25": {
+        "relative": 8.72585354986885e-05,
+        "zero_response": false
+      },
+      "screen:beta/25": {
+        "relative": 4.498803673501559e-05,
+        "zero_response": false
+      },
+      "screen:(alpha/25)^2": {
+        "relative": 0.000195904079818892,
+        "zero_response": false
+      },
+      "screen:(beta/25)^2": {
+        "relative": 9.611153254798671e-05,
+        "zero_response": false
+      },
+      "screen:alpha*beta/625": {
+        "relative": 4.246677404982002e-05,
+        "zero_response": false
+      },
+      "transferred:g^3": {
+        "relative": 0.13382609999251188,
+        "zero_response": false
+      },
+      "transferred:g^3*cos20": {
+        "relative": 0.855277042765639,
+        "zero_response": false
+      },
+      "transferred:g^3*sin20": {
+        "relative": 0.8410793927999026,
+        "zero_response": false
+      },
+      "transferred:g^3*cos40": {
+        "relative": 0.5060449530346203,
+        "zero_response": false
+      },
+      "transferred:g^3*sin40": {
+        "relative": 0.49410209103198693,
+        "zero_response": false
+      }
+    },
+    "core->fine_n0": {
+      "screen:1": {
+        "relative": 1.9811202671054724e-16,
+        "zero_response": false
+      },
+      "screen:alpha/25": {
+        "relative": 6.823020592468085e-05,
+        "zero_response": false
+      },
+      "screen:beta/25": {
+        "relative": 7.015370489843788e-05,
+        "zero_response": false
+      },
+      "screen:(alpha/25)^2": {
+        "relative": 7.479606181084464e-05,
+        "zero_response": false
+      },
+      "screen:(beta/25)^2": {
+        "relative": 7.403824440677811e-05,
+        "zero_response": false
+      },
+      "screen:alpha*beta/625": {
+        "relative": 2.855570265350062e-05,
+        "zero_response": false
+      },
+      "transferred:g^3": {
+        "relative": 0.022764143229617402,
+        "zero_response": false
+      },
+      "transferred:g^3*cos20": {
+        "relative": 0.02522808799280161,
+        "zero_response": false
+      },
+      "transferred:g^3*sin20": {
+        "relative": 0.022656131879461857,
+        "zero_response": false
+      },
+      "transferred:g^3*cos40": {
+        "relative": 0.024492525394994448,
+        "zero_response": false
+      },
+      "transferred:g^3*sin40": {
+        "relative": 0.021547816188809094,
+        "zero_response": false
+      }
+    },
+    "core->fine_n1": {
+      "screen:1": {
+        "relative": 8.939482977289386e-15,
+        "zero_response": false
+      },
+      "screen:alpha/25": {
+        "relative": 5.594035408584099e-05,
+        "zero_response": false
+      },
+      "screen:beta/25": {
+        "relative": 4.831357097898006e-05,
+        "zero_response": false
+      },
+      "screen:(alpha/25)^2": {
+        "relative": 0.00010997534021020722,
+        "zero_response": false
+      },
+      "screen:(beta/25)^2": {
+        "relative": 9.889110214533277e-05,
+        "zero_response": false
+      },
+      "screen:alpha*beta/625": {
+        "relative": 7.37155800885345e-05,
+        "zero_response": false
+      },
+      "transferred:g^3": {
+        "relative": 0.021074557492414398,
+        "zero_response": false
+      },
+      "transferred:g^3*cos20": {
+        "relative": 0.07455884500182419,
+        "zero_response": false
+      },
+      "transferred:g^3*sin20": {
+        "relative": 0.0775472077489164,
+        "zero_response": false
+      },
+      "transferred:g^3*cos40": {
+        "relative": 0.0407117884434732,
+        "zero_response": false
+      },
+      "transferred:g^3*sin40": {
+        "relative": 0.03971922300059682,
+        "zero_response": false
+      }
+    },
+    "core->fine_n2": {
+      "screen:1": {
+        "relative": 1.0279124461454015e-13,
+        "zero_response": false
+      },
+      "screen:alpha/25": {
+        "relative": 2.197118955342022e-05,
+        "zero_response": false
+      },
+      "screen:beta/25": {
+        "relative": 1.209135074358514e-05,
+        "zero_response": false
+      },
+      "screen:(alpha/25)^2": {
+        "relative": 5.313091438510063e-05,
+        "zero_response": false
+      },
+      "screen:(beta/25)^2": {
+        "relative": 2.6007605275930783e-05,
+        "zero_response": false
+      },
+      "screen:alpha*beta/625": {
+        "relative": 9.134358338929882e-06,
+        "zero_response": false
+      },
+      "transferred:g^3": {
+        "relative": 0.07779248057855553,
+        "zero_response": false
+      },
+      "transferred:g^3*cos20": {
+        "relative": 0.3827646055069191,
+        "zero_response": false
+      },
+      "transferred:g^3*sin20": {
+        "relative": 0.372281782553671,
+        "zero_response": false
+      },
+      "transferred:g^3*cos40": {
+        "relative": 0.27462019483517486,
+        "zero_response": false
+      },
+      "transferred:g^3*sin40": {
+        "relative": 0.2572223331484032,
+        "zero_response": false
+      }
+    }
+  },
+  "transferred_field_accuracy_qualified": false,
+  "guard": {
+    "freeze": "artifacts/revisions/mahakal_v4_1/V0D_20260907T003308Z_1dba8a6/BOUNDARY_VALIDITY_028_INPUT_FREEZE.json",
+    "commit_at_freeze_time": "1dba8a6c3299b6e53d31ca6aca7632ad29b74e43",
+    "verified_input_hashes": true,
+    "registered_tree_clean": true,
+    "spent_this_run": {
+      "transfer": 0,
+      "boundary": 2370
+    },
+    "remaining_after_run": {
+      "transfer": 2088,
+      "boundary": 3700
+    },
+    "lifetime": {
+      "aborted_9000_boundary_solves_remain_charged": true,
+      "boundary_independent_check_reserve_min": 4000,
+      "boundary_lifetime_cap": 30000,
+      "boundary_remaining": 6070,
+      "boundary_spent_lifetime": 23930,
+      "counts_failures_retries_and_vectorised_interior_calls": true,
+      "prior_spend_reconciled_from_run_records": {
+        "transfer": 17912,
+        "boundary": 5930
+      },
+      "runs_counted": [
+        "G1_20260907T002858Z_ecddc92",
+        "V1_20260907T002421Z_9a6cf49"
+      ],
+      "transfer_independent_validation_reserve_min": 4000,
+      "transfer_initial_diagnostic_max": 4000,
+      "transfer_lifetime_cap": 250000,
+      "transfer_pilot_max": 20000,
+      "transfer_remaining": 2088,
+      "transfer_spent_lifetime": 17912
+    }
+  },
+  "runtime_seconds": 62.00062155723572
+}
