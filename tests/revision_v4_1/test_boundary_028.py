@@ -119,9 +119,30 @@ def test_B8_guard_meters_and_stops_at_the_cap(tmp_path):
         "a refused call must not be charged")
 
 
-def test_B9_guard_refuses_a_freeze_from_another_commit(tmp_path):
-    fz = _freeze(tmp_path, {}, commit="0" * 40)
-    with pytest.raises(Q.GuardFailure, match="different commit"):
+def test_B9_guard_refuses_an_unreachable_freeze_commit(tmp_path):
+    """A freeze naming a commit this tree does not have cannot be checked."""
+    fz = _freeze(tmp_path, {"README.md": Q.sha(ROOT / "README.md")},
+                 commit="0" * 40)
+    with pytest.raises(Q.GuardFailure, match="cannot compare"):
+        Q.Guard(fz, allow_dirty=True)
+
+
+def test_B9b_guard_refuses_when_a_frozen_file_moved_since_the_freeze(tmp_path):
+    """Hashes alone would pass if a file were changed and changed back."""
+    import subprocess
+    head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
+                          capture_output=True, text=True).stdout.strip()
+    prev = subprocess.run(["git", "rev-parse", "HEAD~5"], cwd=ROOT,
+                          capture_output=True, text=True).stdout.strip()
+    changed = subprocess.run(["git", "diff", "--name-only", prev, head],
+                             cwd=ROOT, capture_output=True,
+                             text=True).stdout.split()
+    changed = [f for f in changed if (ROOT / f).exists()]
+    if not changed:
+        pytest.skip("no file changed in the last five commits")
+    fz = _freeze(tmp_path, {changed[0]: Q.sha(ROOT / changed[0])},
+                 commit=prev)
+    with pytest.raises(Q.GuardFailure, match="changed between the freeze"):
         Q.Guard(fz, allow_dirty=True)
 
 

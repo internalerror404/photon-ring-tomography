@@ -61,13 +61,23 @@ class Guard:
                   "ledger"):
             if k not in self.fz:
                 raise GuardFailure(f"the freeze does not pin {k!r}")
-        head = subprocess.run(["git", "rev-parse", "HEAD"], cwd=ROOT,
-                              capture_output=True, text=True).stdout.strip()
-        if self.fz.get("commit_at_freeze_time") not in (head, None):
-            raise GuardFailure(
-                "the freeze was registered against a different commit than "
-                f"HEAD ({self.fz['commit_at_freeze_time'][:12]} vs "
-                f"{head[:12]}); re-register before querying")
+        # HEAD must not have moved *under the frozen files*. Requiring HEAD
+        # to equal the freeze commit would be self-defeating: committing the
+        # freeze itself advances HEAD without changing a single input.
+        base = self.fz.get("commit_at_freeze_time")
+        if base:
+            moved = subprocess.run(
+                ["git", "diff", "--name-only", base, "HEAD", "--",
+                 *self.fz["files"]], cwd=ROOT, capture_output=True,
+                text=True)
+            if moved.returncode != 0:
+                raise GuardFailure(
+                    f"cannot compare against the freeze commit {base[:12]}: "
+                    f"{moved.stderr.strip()}")
+            if moved.stdout.strip():
+                raise GuardFailure(
+                    "frozen inputs changed between the freeze commit "
+                    f"{base[:12]} and HEAD:\n{moved.stdout.strip()}")
 
     def remaining(self, kind: str) -> int:
         led = self.fz["ledger"]
