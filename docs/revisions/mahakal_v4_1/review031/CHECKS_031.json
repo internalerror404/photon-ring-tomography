@@ -1,0 +1,154 @@
+{
+  "scope": "Review 031 synthetic quadrature, fail-closed and accounting checks.\nNot a run of the repository evaluator, its 680 rays, or its 597-test suite.\nThe endpoint-peaked integral below has an exact analytic answer. Source-level\ncontrol-flow fixtures reproduce only the quoted Boolean logic, not full rays.",
+  "reviewed_commit": "aa3d187039a8cceef458cecd6f608dc06264cd04",
+  "analytic_endpoint_peak": {
+    "integrand": "1/sqrt(x+delta) on [0,1]",
+    "delta": 1e-08,
+    "exact_integral": 1.99980001,
+    "global_gauss64": 1.9864998814649912,
+    "global_absolute_error": 0.013300128535008726,
+    "graded_panel_counts": [
+      16,
+      32,
+      64,
+      128
+    ],
+    "graded_values": [
+      1.999728804265874,
+      1.9997979084773148,
+      1.9998000097479753,
+      1.9998000099999997
+    ],
+    "graded_absolute_errors": [
+      7.120573412588982e-05,
+      2.101522685205026e-06,
+      2.520246233927992e-10,
+      2.220446049250313e-16
+    ],
+    "harder_delta": 1e-12,
+    "harder_64_panel_absolute_error": 2.441666853436608e-05,
+    "not_the_campaign_Kerr_integrand": true
+  },
+  "cut_cell_fixture": {
+    "domain": [
+      0,
+      0.3
+    ],
+    "field": "1+x",
+    "full_cell": [
+      0,
+      1
+    ],
+    "center_rule": 0.0,
+    "correct_integral": 0.345,
+    "clipped_quadrature": 0.345
+  },
+  "accounting_from_reported_ledger_totals": {
+    "prior_second_batch": 2640,
+    "first_030_run": 2156,
+    "revised_030_run": 2156,
+    "recorded_second_batch_spend": 6952,
+    "remaining_before_other_unmetered_comparator_reconciliation": 13048,
+    "recorded_lifetime_transfer_spend": 24864
+  },
+  "checks": [
+    {
+      "name": "global_rule_can_miss_resolved_endpoint_peak",
+      "passed": true
+    },
+    {
+      "name": "graded_panels_converge_against_exact_reference",
+      "passed": true
+    },
+    {
+      "name": "final_panel_error_against_exact_answer_is_small",
+      "passed": true
+    },
+    {
+      "name": "fixed_panel_count_is_not_universal_error_certificate",
+      "passed": true
+    },
+    {
+      "name": "nan_comparator_fallthrough_can_invent_valid_label",
+      "passed": true
+    },
+    {
+      "name": "finite_guards_prevent_nan_fallthrough",
+      "passed": true
+    },
+    {
+      "name": "horizon_error_overlap_is_not_physical_absence",
+      "passed": true
+    },
+    {
+      "name": "well_separated_absence_is_classified",
+      "passed": true
+    },
+    {
+      "name": "well_separated_emission_is_classified",
+      "passed": true
+    },
+    {
+      "name": "negative_mino_parameter_is_not_valid_event",
+      "passed": true
+    },
+    {
+      "name": "invalid_potential_zero_substitution_is_not_domain_proof",
+      "passed": true
+    },
+    {
+      "name": "absent_center_does_not_make_entire_cell_nonemitting",
+      "passed": true
+    },
+    {
+      "name": "domain_clipped_quadrature_can_resolve_same_cell",
+      "passed": true
+    },
+    {
+      "name": "same_cell_subdivision_preserves_exact_clipped_integral",
+      "passed": true
+    },
+    {
+      "name": "reported_absence_partition_adds_up",
+      "passed": true
+    },
+    {
+      "name": "reported_holdout_partition_adds_up",
+      "passed": true
+    },
+    {
+      "name": "shared_input_error_can_survive_two_quadrature_agreement",
+      "passed": true
+    },
+    {
+      "name": "finite_exterior_outside_annulus_is_not_missed_emission",
+      "passed": true
+    },
+    {
+      "name": "both_030_runs_must_be_charged",
+      "passed": true
+    },
+    {
+      "name": "recorded_second_batch_remaining_is_13048",
+      "passed": true
+    },
+    {
+      "name": "reported_unresolved_count_exceeds_inband_domain",
+      "passed": true
+    },
+    {
+      "name": "outside_envelope_and_inband_unknown_are_distinct",
+      "passed": true
+    }
+  ],
+  "n_checks": 22,
+  "all_passed": true,
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "campaign_rays_evaluated": 0,
+  "repository_suite_executed": false,
+  "script_sha256": "2957ef48e283e07628fe07a1cbe88a931ae9d97399807d22b000b758fd8a58c2"
+}

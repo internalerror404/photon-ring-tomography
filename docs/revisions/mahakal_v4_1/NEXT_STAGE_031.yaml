@@ -1,0 +1,182 @@
+review_id: PAPER_I_DOMAIN_INTEGRATION_RULING_031
+reviewed_commit: aa3d187039a8cceef458cecd6f608dc06264cd04
+work_branch: research/mahakal_v4_1
+status: SAMPLED_ABSENCES_ACCEPTED_DOMAIN_AWARE_INTEGRATION_PILOT_AUTHORIZED
+preservation:
+  governing_defect: C13
+  original_maps_code_freezes_results: immutable
+  G1_numerical_qualification: accepted_no_reopening
+  R2_legacy_acceptance: unchanged
+  transfer_formula_repair: no_evidence_justifying_repair
+  no_recovery_required_for_absent_events: true
+  delivery: GitHub_only
+  R3B_new_target_spectrum_estimator_or_submission_freeze: forbidden
+accepted_scope:
+  audited_core_point_order_absences: 680
+  split: {escape: 532, capture: 148}
+  healthy_controls: 596
+  comparison_panel: 880
+  claim: numerical_sample_level_adjudication_under_declared_shared_inputs
+  discharge_missing_support: enumerated_absent_point_order_ids_only
+  entire_cell_or_continuum_domain_certificate: false
+record_overlays:
+  original_panel_precommitment: preserve
+  final_panel_label: PRECOMMITTED_PANEL_REUSED_AFTER_COMPARATOR_CORRECTION
+  primary_predicate_changed_during_correction: false_same_blob_verified
+  primary_predicate_blob: 3f4cc4e4f641083474f3ac27feaac2e58398ae38
+  two_methods_share: [conserved_quantities, radial_roots, angular_crossing, path_classifier, asymptotic_tail]
+  independence_scope: radial_quadrature_only_not_whole_geodesic
+  sentinel_comparison_metric: restricted_panel_agreement_not_universal_event_detection
+  original_disagreements: preserve_57_development_and_30_panel
+  old_mask_impact_table: mismatched_domain_counts_rebuild_additively
+  old_governance_boolean: no_retroactive_compliance_claim
+fixed_experiment:
+  geometry: {id: a050_i050, spin: 0.5, inclination_degrees: 50}
+  orders: [0, 1, 2]
+  observer_radius_M: 1000
+  source_annulus: horizon_exclusive_to_50_inclusive
+  detector: D026
+  bounds_M: {alpha: [-25, 25], beta: [-25, 25]}
+  pitch_M: 0.4
+  detector_cells: [125, 125]
+  sigma: 0.011341986814407566
+  clock_reference_M: -978.6055123201214
+  observer_times: exact_accepted_eight
+  source_target_and_nuisance: exact_accepted_full_L224_partition
+  source_metric_velocity_model_and_cutoffs: unchanged
+  qualified_hull_arrays: reuse_029_payload_by_hash
+predicate_hardening:
+  implementation: new_versioned_wrapper_leave_frozen_030_code_unchanged
+  invalid_interior_radial_potential: unresolved_not_zero_integrand
+  simple_turn_limit: justified_analytic_reduced_product_not_silent_0_over_0_floor
+  integral_or_error_nonfinite: unresolved_before_comparison
+  negative_mino_parameter: unresolved
+  horizon_annulus_escape_margins: all_explicit
+  tail_correction: asymptotic_with_remainder_or_convergence_not_exact_closed_form
+  root_uncertainty_and_degenerate_cases: explicit_not_forced_classification
+  comparator_panel_and_tolerance_refinement: record_values_errors_status_changes
+  tests: [nan_integral, negative_potential, misordered_endpoints, escape_boundary_overlap, degenerate_root, reference_nonconvergence]
+  historical_finite_results_assumed_invalid: false
+  guard_trigger_on_saved_case: report_exact_point_and_margin_not_force_old_label
+fresh_confirmation:
+  points_max: 192
+  charged_evaluations_max: 1024
+  outcomes_unseen_before_freeze: required
+  select_by: geometry_and_declared_domain_margin_strata_not_target_information
+  strata: [emitting, capture_absence, escape_absence, finite_exterior_outside_annulus, boundary_uncertainty]
+  missing_stratum: disclose_do_not_invent
+  shared_roots_and_angles: declare
+  independent_shared_input_check: polynomial_residuals_and_registered_angular_or_event_subset
+  comparator_tuning_on_new_panel: forbidden
+  tested_set_error_requirement: zero_unsupported_forced_labels_and_agreement_outside_uncertainty
+  rigorous_continuum_guarantee: not_claimed
+integration_pilot:
+  launch: predicate_guards_confirmation_and_cost_reconciliation_pass
+  target: fixed_detector_transfer_integral_not_source_reconstruction
+  one_frozen_representation_choice:
+    explicit: physical_contour_brackets_and_correct_clipped_fragments
+    implicit: domain_indicator_cut_cell_quadrature_with_uncertain_area_response_budget
+  whole_dropped_V1_contour_replay: not_required
+  margins:
+    capture: [G_theta_minus_s50, sH_minus_G_theta]
+    scattering_entering_source: [G_theta_minus_Jo_plus_J50, Jo_plus_J50_minus_G_theta]
+    both_margins_include_numerical_uncertainty: true
+  sample_absence_implies_cell_absence: false
+  domain_states: [validated_emitting, validated_nonemitting, unresolved]
+  uncertainty_envelope: validated_bound_or_blocker_not_sample_maximum
+  topology_crossings_tangencies: explicit_checks
+  true_overlap: detector_intersect_cell_intersect_emitting_domain
+  missing_node_or_failed_quadrature_as_zero: forbidden
+  refinement_selection: geometry_and_declared_field_residuals_only
+  primary_fields: inherited_eleven_geometry_and_transfer_fields_with_scope_labels
+  all_orders_and_observer_times: report
+  valid_transfer_tuple_reuse_across_times: allowed_no_duplicate_ray_charge
+  interpolate_azimuth: periodic_phase_or_equivalent_valid_convention
+  interpolate_across_branch_discontinuity: forbidden
+  compare:
+    - identical_known_support_field_error
+    - domain_change_error
+    - combined_fixed_detector_response
+  output_payloads: points_brackets_fragments_or_implicit_cells_uncertainty_and_actual_transfer_arrays
+noise:
+  SINGLE_SKY_DETECTOR_NOISE: sigma_squared_full_detector_area_once_per_time
+  emitting_fraction_reduces_noise: false
+  inherited_parent_model: retain_separate_matched_covariance_and_units
+  different_noise_experiments_assumed_PSD_ordered: false
+accuracy_unchanged:
+  hull_band_and_hull_only_response: 2.5e-4
+  transferred_field_and_emission_boundary_component: 5.0e-4
+  total_response_mask_area: 1.0e-3
+  numerical_integration_or_tessellation: 1.0e-6
+  exact_fixture_atol: 1.0e-12
+  exact_fixture_rtol: 1.0e-12
+  two_late_pairs_and_independent_check: retain
+  per_order_per_field_per_time: required_not_average_only
+  construction_fields_certify_arbitrary_source_inverse: false
+  tolerance_or_detector_change_after_results: forbidden
+accounting:
+  first_pilot_closed_at: 17912
+  second_batch_spent_before_030: 2640
+  committed_native_030_attempts:
+    D1_20260907T101654Z_57fae0f: 2156
+    D1B_20260907T102020Z_5c1cb6a: 2156
+  native_030_total: 4312
+  recorded_second_batch_native_spend_min: 6952
+  recorded_lifetime_native_spend_min: 24864
+  recorded_second_batch_remaining_upper_bound: 13048
+  authoritative_remaining: reconcile_all_end_to_end_primary_and_reference_attempts_before_launch
+  unmetered_primary_reference_integrations: inventory_under_existing_030_policy
+  per_abscissa_is_new_ray: false
+  independent_end_to_end_recomputation_is_cache_read: false
+  phase_counter_reconciliation: monotonic_all_run_ledgers_not_prefix_of_last_stage_only
+  snapshot_repetition_is_duplicate_execution: distinguish_using_execution_and_event_ids
+  actual_repeated_runs: charge_each_attempt
+resources:
+  existing_second_batch_cap: 20000
+  transfer_lifetime_cap: 250000
+  new_allowance_or_third_batch: none
+  confirmation_evaluations_max: 1024
+  integration_pilot_new_evaluations_max: 6000
+  independent_response_validation_reserve_min: 4000
+  all_caps_inside_authoritative_remainder: required
+  insufficient_budget: return_blocker_before_queries
+  boundary_spent: 33410
+  boundary_lifetime_cap: 34300
+  new_hull_calls: not_authorized
+  peak_GiB: 8
+  time: remaining_inherited_cumulative_two_hours_after_runtime_reconciliation
+  paid_resources: forbidden
+stages:
+  I0: zero_query_overlays_guard_tests_input_inventory_accounting_and_freeze
+  I1: small_new_comparator_confirmation_and_wrapper_checks
+  I2: bounded_domain_aware_integration_pilot
+  I3: reserved_independent_response_validation_if_prerequisites_and_budget_allow
+execution:
+  new_code_cohorts_maps_masks_fields_backend_and_policy_frozen: required
+  old_input_bytes: do_not_rewrite
+  verify_freeze_and_reserve_before_call: required
+  persistent_exception_and_retry_accounting: required
+  new_output_directory: required
+  hardcoded_governance_or_holdout_freshness_true: forbidden
+  counters_from_all_attempt_ledgers: required
+  save_numerical_payloads_and_hashes: required
+completion:
+  separate: [sampled_absences, wrapper_guards, comparator_confirmation, emission_domain_integration, whole_transfer_accuracy, detector_quadrature, governance]
+  review_ready: DOMAIN_INTEGRATION_031_REVIEW_READY
+  blocked: DOMAIN_INTEGRATION_031_BLOCKED
+  not_run_is_pass: false
+  ready_implies_R3B_authorized: false
+  stop_before_R3B: true
+outputs:
+  - DOMAIN_INTEGRATION_031_INPUT_FREEZE.json
+  - COMPARATOR_AND_COUNTER_OVERLAY_031.md
+  - MATCHED_DOMAIN_MASK_INVENTORY_031.json
+  - PREDICATE_GUARD_AND_REFERENCE_TESTS_031.json
+  - FRESH_COMPARATOR_CONFIRMATION_031.json
+  - EMISSION_DOMAIN_INTEGRATION_031.json
+  - TRANSFER_PAYLOAD_MANIFEST_031.json
+  - FIXED_DETECTOR_CONVERGENCE_031.json
+  - RESOURCE_LEDGER_031.json
+  - DOMAIN_INTEGRATION_031_RETURN.md
+  - DOMAIN_INTEGRATION_031_COMPLETION.json
+  - SHA256SUMS.txt
