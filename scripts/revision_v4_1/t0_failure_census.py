@@ -31,7 +31,7 @@ BANDS = ROOT / ("artifacts/e3_pilot/aart_out/core/"
                 "LensingBands_a_0.5_i_50.0_dx0_0.4_dx1_0.08_dx2_0.02.h5")
 GEOMETRY, SPIN, R_OUTER = "a050_i050", 0.5, 50.0
 ORDERS, PROFILES = (0, 1, 2), ("coarse", "core", "fine")
-N_FAIL_COHORT, N_CTRL_COHORT = 120, 120
+N_FAIL_COHORT, N_CTRL_COHORT = 100000, 200
 COMPONENTS = ("source_r", "source_phi", "coordinate_time", "redshift",
               "radial_sign", "transfer_weight")
 
