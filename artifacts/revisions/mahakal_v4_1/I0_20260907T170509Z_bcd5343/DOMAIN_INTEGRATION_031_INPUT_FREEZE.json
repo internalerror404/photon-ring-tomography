@@ -1,0 +1,156 @@
+{
+  "schema": "phrt-input-freeze/1",
+  "id": "DOMAIN_INTEGRATION_031_INPUT_FREEZE",
+  "ruling": "PAPER_I_DOMAIN_INTEGRATION_RULING_031",
+  "written_before_any_new_physical_query": true,
+  "created_utc": "2026-09-07T17:06:39Z",
+  "commit_at_freeze_time": "bcd5343131748ada833644b594bb527dba9e8dfc",
+  "detector": {
+    "name": "D026",
+    "unchanged": true
+  },
+  "clock": {
+    "absolute_reference_coordinate_time_M": -978.6055123201214
+  },
+  "solver_policy": {
+    "entry_point": "aart.raytracing_f.calculate_observables",
+    "spin": 0.5,
+    "inclination_deg": 50.0,
+    "d_obs": 1000.0,
+    "predicate": "pathdomain2, hardened; pathdomain v1 unchanged",
+    "transfer_formula_repair": "none authorised, none made",
+    "missing_node_or_failed_quadrature_as_zero": "forbidden"
+  },
+  "selection_rule": {
+    "confirmation": "geometry and declared domain-margin strata: emitting, capture absence, escape absence, finite exterior outside the annulus, boundary uncertainty",
+    "integration": "validity-transition cells first, then known smooth interiors; refinement by geometry and declared field residuals only",
+    "target_information": "forbidden as a selection input"
+  },
+  "representation_choice": {
+    "chosen": "IMPLICIT_DOMAIN_INDICATOR_CUT_CELL_QUADRATURE",
+    "declared_before_the_pilot": true,
+    "why": "the V1 contour arrays are gone, so an explicit reconstruction would spend the batch rebuilding a boundary before testing the integral it serves",
+    "not_a_claim_to_have_reconstructed_the_contour": true
+  },
+  "qualified_hull": {
+    "file": "artifacts/revisions/mahakal_v4_1/G1C_20260907T075203Z_d252697/CLOSEOUT_ARRAYS_029.npz",
+    "sha256": "192eb9598c27ed2f96811ba8a8c27bbae2e09d2ac17769f4143a60771332e634",
+    "reused_by_hash_no_new_solves": true
+  },
+  "accuracy": {
+    "transfer_emission_component": 0.0005,
+    "total_response_mask_area": 0.001,
+    "integration_or_tessellation": 1e-06,
+    "exact_fixture": 1e-12
+  },
+  "ledger": {
+    "transfer_remaining": 12928,
+    "boundary_remaining": 0,
+    "confirmation_points_max": 192,
+    "confirmation_evaluations_max": 1024,
+    "integration_pilot_max": 6000,
+    "independent_validation_reserve_min": 4000,
+    "second_batch_runs": {
+      "D1B_20260907T102020Z_5c1cb6a": {
+        "source": "ATTEMPT_LEDGER_030.json",
+        "attempted": 2156,
+        "completed": 2156,
+        "failed": 840
+      },
+      "D1_20260907T101654Z_57fae0f": {
+        "source": "ATTEMPT_LEDGER_030.json",
+        "attempted": 2156,
+        "completed": 2156,
+        "failed": 840
+      },
+      "T1_20260907T074927Z_3b1e6b9": {
+        "source": "ATTEMPT_LEDGER_029.json",
+        "attempted": 120,
+        "completed": 120,
+        "failed": 0
+      },
+      "T1_20260907T074951Z_3d42022": {
+        "source": "ATTEMPT_LEDGER_029.json",
+        "attempted": 480,
+        "completed": 480,
+        "failed": 240
+      },
+      "T1_20260907T075031Z_c35cb34": {
+        "source": "ATTEMPT_LEDGER_029.json",
+        "attempted": 1080,
+        "completed": 1080,
+        "failed": 680
+      },
+      "T1_20260907T075138Z_1113f3e": {
+        "source": "ATTEMPT_LEDGER_029.json",
+        "attempted": 1080,
+        "completed": 1080,
+        "failed": 680
+      }
+    },
+    "second_batch_spent": 7072,
+    "second_batch_cap": 20000,
+    "second_batch_remaining_upper_bound": 12928,
+    "first_pilot_closed_at": 17912,
+    "lifetime_native_spend": 24984,
+    "counted_per_execution_not_per_unique_point": true,
+    "repeated_runs_each_charged": true,
+    "unmetered_reference_integrations": {
+      "status": "INVENTORIED",
+      "what": "the primary and reference radial quadratures run after the metered instrumented call and are not separately charged as rays",
+      "convention": "a quadrature abscissa is not a new ray; the metered unit is one screen/order evaluation of the pinned tracer",
+      "end_to_end_recomputations_that_were_charged": "each execution charged its own full cohort, so the two 030 runs are 2156 + 2156 = 4312"
+    }
+  },
+  "overlay": {
+    "final_panel_label": "PRECOMMITTED_PANEL_REUSED_AFTER_COMPARATOR_CORRECTION",
+    "panel_precommitted_before_first_run": true,
+    "panel_disagreements_seen_before_the_correction": true,
+    "original_disagreements_preserved": {
+      "development": 57,
+      "panel": 30
+    },
+    "primary_predicate_changed_during_correction": false,
+    "primary_predicate_blob": "3f4cc4e4f641083474f3ac27feaac2e58398ae38",
+    "independence_scope": "radial quadrature only. The two methods share the conserved quantities, the radial roots, the angular crossing parameter, the path classifier and the asymptotic tail, so their agreement is conditional on those inputs and is not a verification of the whole geodesic calculation",
+    "sentinel_metric": "restricted panel agreement, not universal event detection",
+    "tail_label": "truncated asymptotic correction with a remainder bound, not an exact closed form",
+    "fixed_order_gauss_error": "no a posteriori estimate; the reference reports a convergence estimate from successive panel refinements, which is not an enclosure",
+    "no_retroactive_compliance_claim": true
+  },
+  "files": {
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/__init__.py": "a63ecfb794537b1436db910450c52bc4b4d47be0841dae642830ca327e1450ac",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/ellipi_f.py": "4f94331aacda68eb8e6bedd4b8ae74301b38379ebea0a68a8935e317cdede939",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/gfactor.py": "b5312b90c97d1007a79e8479806f7d37b62479592fd1f550bc689af46d8bdc48",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/iImages.py": "b8c5ce1cc72e0dcb72cb501ac488d3478fc3abe35a45b531b815af51d15a4bf9",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/iMovies.py": "0c2ace876fa146cb649bc0bcb923ce92b4df1180096783812a5a718fcf23aa90",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/intensity_f.py": "24380c557c57c7062b19b741c1a8c97d4bc74311b6cf888d086481f75ea961b4",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/lensingbands.py": "3cb4727a4f7a2d82cdcb914447ca54ee2ff894e4d911017fbecd3577cb963b3b",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/misc.py": "2be55712fa62d2139c6611c1c7bd3a2eddfca3722797e488cb0103312177d65b",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/mkplot.py": "a8aed03319242e977758cb22f4aaa55caaefa420a517532c61546aca968d0e75",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/parameters.py": "87ad34c160dbd984b84132719d2c1913ff11c3f3779066d0a0d13df004588906",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/polarization.py": "0f37323b9df4f1116c1d89b843aef4137c5441cd5f15a5eab5f050b616be1254",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/polarization_f.py": "27eb54bda045f1c065ec6ed9caf9e892929af996a9f3131552397df9c678a8b6",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/radialfit.py": "32a901ef01597b0b978fd60cd1fc2f7e0fdd0329a34e25f2f1fa11789d80a244",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/radialintensity.py": "8b5914e4ed612be3ee4a0abb81b8872787e6de45e438c648fa876e1b92987444",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/raytracing.py": "3be421e5de8312c734afeff0e9c2f2f0a978c47910a4bb77489a7d815f88abc0",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/raytracing_f.py": "7cfd7e5e03fa5309e9506c675f14922a18bf239236e2a9c84a5a731735c0f906",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/rprofs_f.py": "32a6e9c7f74b39eb3fd92e9c6a4af3ee9395f4ede10841f39b3c6b10884282d4",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/visamp.py": "7c9e6f5018e9b6a3a992f918aba14aa658b0942f369ab9c48901e2ad48a65558",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/visamp_f.py": "0132af5aa8fba4fdd8c9987e4975a7283975b6e2828f252817c01b4e70b41ef8",
+    "scripts/revision_v4_1/i0_records_and_freeze_031.py": "097dadeb14581b5dce6155951123beed0b8037ab5a4aeb5ff522cb0889cd5174",
+    "scripts/revision_v4_1/i1_confirmation_031.py": "cf33d38e8cecdb545091ca1ebdb49297a40255dac639a97d8593d4d003b04896",
+    "scripts/revision_v4_1/i2_domain_integration_031.py": "49aaa704efb8bc9ef43ffd2ade95413953063fd9ad9537cc7f473ae1387c690d",
+    "scripts/revision_v4_1/t1_first_invalid_primitive.py": "6e052c12bd4e0cb796b8cd28ba63d6454a3db16e99a131181e3a09c2b3adb1eb",
+    "src/phrt/revision_v4_1/domain.py": "c61445dc6e22c985ec22c9d64e94f0c8ce871e936c14a49b01610e49053347ba",
+    "src/phrt/revision_v4_1/fractional.py": "b0637cc12f1722fd6de632f928e81cdaf3be00377b2a6bae4c49c7d9dbc3669d",
+    "src/phrt/revision_v4_1/pathdomain.py": "43a404d52408560af974f93bb01a259f7a3151fce91806573be3c56ed0e7c9a3",
+    "src/phrt/revision_v4_1/pathdomain2.py": "8502aeea1f2dd4e725f360949b00da3fb779d1f02cf0bf381243140fe83bc086",
+    "src/phrt/revision_v4_1/polyclip.py": "c90637271059890cc1e6cac25bb7a76aebf6d6cb9d8354fb1f87137a4f761e98",
+    "src/phrt/revision_v4_1/query.py": "afb6436ee6c31aea09a15cb5d0946b3a69076a380d07f8650730fb8e335e0913",
+    "tests/revision_v4_1/test_pathdomain2_031.py": "69638d3f377af87b15254124ca5a930303b0a32f747012af585213f188a77ed6",
+    "tests/revision_v4_1/test_pathdomain_030.py": "eb3df6cc0b7340f7f95d153bb748137ad10e6de935031b92f49e267896d45f3e"
+  },
+  "n_files": 31,
+  "registered_tree_clean": true
+}

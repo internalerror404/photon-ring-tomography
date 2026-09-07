@@ -1,0 +1,108 @@
+{
+  "new_physical_queries": 0,
+  "why": "the 030 table counted UNRESOLVED over the whole stored grid and reported in_band from a different mask, so its two columns were not a common domain. Each row below states its own denominator",
+  "denominators": [
+    "storage_grid",
+    "archived_band",
+    "band_and_qualified_hull",
+    "and_detector_aperture"
+  ],
+  "per_order": {
+    "0": {
+      "storage_grid": {
+        "n_samples": 15876,
+        "cell_area": 2499.999999999989,
+        "emitting": 15597,
+        "non_emitting": 0,
+        "unresolved": 279,
+        "note": "every sample the file stores, including the whole out-of-band remainder that was never evaluated. Its unresolved count is dominated by NO_PRIOR_EVALUATION and is not missing support inside the band"
+      },
+      "archived_band": {
+        "n_samples": 15597,
+        "cell_area": 2465.5199999999886,
+        "emitting": 15597,
+        "non_emitting": 0,
+        "unresolved": 0
+      },
+      "band_and_qualified_hull": {
+        "n_samples": 15597,
+        "cell_area": 2465.5199999999886,
+        "emitting": 15597,
+        "non_emitting": 0,
+        "unresolved": 0
+      },
+      "and_detector_aperture": {
+        "n_samples": 15597,
+        "cell_area": 2465.5199999999886,
+        "emitting": 15597,
+        "non_emitting": 0,
+        "unresolved": 0,
+        "note": "the qualified hull already lies inside D026 for this geometry, so this row equals the previous one and the aperture removes nothing"
+      }
+    },
+    "1": {
+      "storage_grid": {
+        "n_samples": 62500,
+        "cell_area": 399.9999999999993,
+        "emitting": 8531,
+        "non_emitting": 2390,
+        "unresolved": 51579,
+        "note": "every sample the file stores, including the whole out-of-band remainder that was never evaluated. Its unresolved count is dominated by NO_PRIOR_EVALUATION and is not missing support inside the band"
+      },
+      "archived_band": {
+        "n_samples": 11145,
+        "cell_area": 71.90206609570757,
+        "emitting": 8531,
+        "non_emitting": 2390,
+        "unresolved": 224
+      },
+      "band_and_qualified_hull": {
+        "n_samples": 11145,
+        "cell_area": 71.90206609570757,
+        "emitting": 8531,
+        "non_emitting": 2390,
+        "unresolved": 224
+      },
+      "and_detector_aperture": {
+        "n_samples": 11145,
+        "cell_area": 71.90206609570757,
+        "emitting": 8531,
+        "non_emitting": 2390,
+        "unresolved": 224,
+        "note": "the qualified hull already lies inside D026 for this geometry, so this row equals the previous one and the aperture removes nothing"
+      }
+    },
+    "2": {
+      "storage_grid": {
+        "n_samples": 490000,
+        "cell_area": 196.00000000000318,
+        "emitting": 4179,
+        "non_emitting": 341,
+        "unresolved": 485480,
+        "note": "every sample the file stores, including the whole out-of-band remainder that was never evaluated. Its unresolved count is dominated by NO_PRIOR_EVALUATION and is not missing support inside the band"
+      },
+      "archived_band": {
+        "n_samples": 4976,
+        "cell_area": 1.9960990665185223,
+        "emitting": 4179,
+        "non_emitting": 341,
+        "unresolved": 456
+      },
+      "band_and_qualified_hull": {
+        "n_samples": 4976,
+        "cell_area": 1.9960990665185223,
+        "emitting": 4179,
+        "non_emitting": 341,
+        "unresolved": 456
+      },
+      "and_detector_aperture": {
+        "n_samples": 4976,
+        "cell_area": 1.9960990665185223,
+        "emitting": 4179,
+        "non_emitting": 341,
+        "unresolved": 456,
+        "note": "the qualified hull already lies inside D026 for this geometry, so this row equals the previous one and the aperture removes nothing"
+      }
+    }
+  }
+}

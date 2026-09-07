@@ -1,0 +1,53 @@
+{
+  "second_batch_runs": {
+    "D1B_20260907T102020Z_5c1cb6a": {
+      "source": "ATTEMPT_LEDGER_030.json",
+      "attempted": 2156,
+      "completed": 2156,
+      "failed": 840
+    },
+    "D1_20260907T101654Z_57fae0f": {
+      "source": "ATTEMPT_LEDGER_030.json",
+      "attempted": 2156,
+      "completed": 2156,
+      "failed": 840
+    },
+    "T1_20260907T074927Z_3b1e6b9": {
+      "source": "ATTEMPT_LEDGER_029.json",
+      "attempted": 120,
+      "completed": 120,
+      "failed": 0
+    },
+    "T1_20260907T074951Z_3d42022": {
+      "source": "ATTEMPT_LEDGER_029.json",
+      "attempted": 480,
+      "completed": 480,
+      "failed": 240
+    },
+    "T1_20260907T075031Z_c35cb34": {
+      "source": "ATTEMPT_LEDGER_029.json",
+      "attempted": 1080,
+      "completed": 1080,
+      "failed": 680
+    },
+    "T1_20260907T075138Z_1113f3e": {
+      "source": "ATTEMPT_LEDGER_029.json",
+      "attempted": 1080,
+      "completed": 1080,
+      "failed": 680
+    }
+  },
+  "second_batch_spent": 7072,
+  "second_batch_cap": 20000,
+  "second_batch_remaining_upper_bound": 12928,
+  "first_pilot_closed_at": 17912,
+  "lifetime_native_spend": 24984,
+  "counted_per_execution_not_per_unique_point": true,
+  "repeated_runs_each_charged": true,
+  "unmetered_reference_integrations": {
+    "status": "INVENTORIED",
+    "what": "the primary and reference radial quadratures run after the metered instrumented call and are not separately charged as rays",
+    "convention": "a quadrature abscissa is not a new ray; the metered unit is one screen/order evaluation of the pinned tracer",
+    "end_to_end_recomputations_that_were_charged": "each execution charged its own full cohort, so the two 030 runs are 2156 + 2156 = 4312"
+  }
+}
