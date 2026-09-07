@@ -1,0 +1,94 @@
+{
+  "schema": "phrt-completion/1",
+  "id": "FEASIBILITY_CLOSEOUT_033_COMPLETION",
+  "ruling": "PAPER_I_FEASIBILITY_AND_CLOSEOUT_RULING_033",
+  "generated_utc": "2026-09-07T21:39:44Z",
+  "commit": "a861fd50dc1eb2707b64cf4a01fb02aa7dbb12ce",
+  "return_status": "FEASIBILITY_CLOSEOUT_033_REVIEW_READY",
+  "statuses": {
+    "leaf_geometry": "ACCEPTED_UNCHANGED_FROM_032",
+    "signed_envelopes": "CORRECTED_AND_TESTED",
+    "comparator": "NUMERICALLY_VALIDATED_ON_TESTED_COHORTS",
+    "adaptive_design": "COSTED_AND_UNFUNDED",
+    "physical_quadrature": "NOT_QUALIFIED",
+    "governance": "COMPLETE_WITH_ONE_DISCLOSED_GUARD_REFUSAL"
+  },
+  "comparator_pass_authorizes_integration": false,
+  "cause_of_the_66": {
+    "established": true,
+    "reason": "every one lies inside the graded reference's own decision margin: 47 at the upper annulus endpoint, 19 at the escape endpoint",
+    "what_resolves_them": "reference precision, not the indexed root reduction",
+    "root_separation_association": "the mechanism, not the cause"
+  },
+  "forced_labels": 0,
+  "ledger": {
+    "authoritative_convention": "B: native plus independent end-to-end reference evaluations",
+    "before": {
+      "native": 13566,
+      "primary_path_component": 10806,
+      "independent_reference": 4806,
+      "convention_B_spend": 18372,
+      "remaining": 1628
+    },
+    "charged": {
+      "point_order_ids": 258,
+      "native": 258,
+      "reference_A": 258,
+      "reference_B": 258,
+      "primary_path_integration_component": 258,
+      "development": 198,
+      "confirmation": 576,
+      "total": 774
+    },
+    "after": {
+      "native": 13824,
+      "primary_path_component": 11064,
+      "independent_reference": 5322,
+      "convention_B_spend": 19146,
+      "remaining": 854
+    },
+    "caps": {
+      "second_batch": 20000,
+      "diagnostic_total": 1024,
+      "development_charged": 384,
+      "confirmation_points": 192,
+      "confirmation_charged_reserved_min": 576,
+      "point_order_ids": 258
+    },
+    "within_every_cap": true,
+    "primary_path_within_the_native_bundle": "component record, not a second charge",
+    "per_quadrature_abscissa_is_a_new_ray": false,
+    "boundary_spent": 33410,
+    "boundary_remaining": 890,
+    "new_boundary_calls": 0,
+    "new_hull_queries": 0,
+    "suspended_full_response_reserve_4000": "suspended for the unlaunched integration design; not waived for any future campaign",
+    "new_allowance_or_third_batch": "none",
+    "adaptive_design_expected_cost": 101416,
+    "adaptive_design_worst_case_cost": 382580,
+    "adaptive_design_fits_the_remaining_balance": false
+  },
+  "adaptive_design": {
+    "expected_new_native_evaluations": 101416,
+    "worst_case_new_native_evaluations": 382580,
+    "independent_validation_calls": 5263,
+    "expected_total_with_validation": 106679,
+    "worst_case_total_with_validation": 387843,
+    "second_batch_remaining_after_this_ruling": 854,
+    "fits_the_remaining_balance": false,
+    "comparison_to_the_retired_uniform_layout": 444720,
+    "reduction_factor_expected": 4.385106886487339,
+    "note": "an expected cost is not a guarantee; the worst case is what an allowance has to cover"
+  },
+  "tests": {
+    "whole_repository": "686 passed, 2 warnings in 274.61s (0:04:34)",
+    "run_in_a_disposable_worktree": true
+  },
+  "old_results_or_flags_rewritten": false,
+  "preserved_tokens": [
+    "DOMAIN_INTEGRATION_031_BLOCKED",
+    "MATCHED_INTEGRATION_032_PLAN_BLOCKED"
+  ],
+  "R3B_target_spectrum_estimator_or_submission_freeze": "not authorized",
+  "runtime_seconds": 0.013610124588012695
+}

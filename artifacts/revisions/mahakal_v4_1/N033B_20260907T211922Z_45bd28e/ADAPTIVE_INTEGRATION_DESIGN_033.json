@@ -1,0 +1,304 @@
+{
+  "stage": "N3",
+  "ruling": "PAPER_I_FEASIBILITY_AND_CLOSEOUT_RULING_033",
+  "generated_utc": "2026-09-07T21:29:41Z",
+  "commit": "a861fd50dc1eb2707b64cf4a01fb02aa7dbb12ce",
+  "new_physical_queries": 0,
+  "new_sampling_to_prepare_this_plan": 0,
+  "measured_inputs": {
+    "n0": {
+      "core": {
+        "pitch_M": 0.3999999999999986,
+        "band_active_area": 2475.262825836023,
+        "transition_parents": 331,
+        "transition_area": 36.462825836022446,
+        "boundary_length_estimate_M": 45.57853229502822,
+        "unresolved_support_area": 10.687695363052717
+      },
+      "fine": {
+        "pitch_M": 0.20080321285140457,
+        "band_active_area": 2475.262825836023,
+        "transition_parents": 661,
+        "transition_area": 18.467774143307846,
+        "boundary_length_estimate_M": 45.98475761683678,
+        "unresolved_support_area": 5.518333418324406
+      },
+      "field_interpolation": {
+        "redshift": {
+          "comparable_nodes": 61276,
+          "coverage_of_emitting_nodes": 0.9941753873610774,
+          "median_relative_error": 3.7322321334537564e-06,
+          "p95_relative_error": 0.00012448208103511436,
+          "max_relative_error": 0.007032871740426112,
+          "nodes_above_the_component_budget": 1237,
+          "fraction_above_the_component_budget": 0.020187349043671258
+        },
+        "source_r": {
+          "comparable_nodes": 61276,
+          "coverage_of_emitting_nodes": 0.9941753873610774,
+          "median_relative_error": 2.071946223073379e-05,
+          "p95_relative_error": 6.708421315520094e-05,
+          "max_relative_error": 0.0001880712205340546,
+          "nodes_above_the_component_budget": 0,
+          "fraction_above_the_component_budget": 0.0
+        },
+        "coordinate_time": {
+          "comparable_nodes": 61276,
+          "coverage_of_emitting_nodes": 0.9941753873610774,
+          "median_relative_error": 1.2783341237557837e-07,
+          "p95_relative_error": 1.4298301767952484e-06,
+          "max_relative_error": 0.0023648607605317516,
+          "nodes_above_the_component_budget": 58,
+          "fraction_above_the_component_budget": 0.0009465369802206411
+        }
+      }
+    },
+    "n1": {
+      "core": {
+        "pitch_M": 0.08032128514056147,
+        "band_active_area": 72.0052658571605,
+        "transition_parents": 1584,
+        "transition_area": 8.067366177759176,
+        "boundary_length_estimate_M": 50.21935445655136,
+        "unresolved_support_area": 1.8906909688534344
+      },
+      "fine": {
+        "pitch_M": 0.04008016032064177,
+        "band_active_area": 72.0052658571607,
+        "transition_parents": 3183,
+        "transition_area": 4.228095632214652,
+        "boundary_length_estimate_M": 52.745493011877144,
+        "unresolved_support_area": 1.6515444602551892
+      },
+      "field_interpolation": {
+        "redshift": {
+          "comparable_nodes": 33338,
+          "coverage_of_emitting_nodes": 0.9725771631950523,
+          "median_relative_error": 0.00010016523588782303,
+          "p95_relative_error": 0.003744612496295553,
+          "max_relative_error": 0.08446265657504919,
+          "nodes_above_the_component_budget": 6212,
+          "fraction_above_the_component_budget": 0.1863339132521447
+        },
+        "source_r": {
+          "comparable_nodes": 33338,
+          "coverage_of_emitting_nodes": 0.9725771631950523,
+          "median_relative_error": 0.00025292213079991044,
+          "p95_relative_error": 0.010164567313253986,
+          "max_relative_error": 162.95560578206403,
+          "nodes_above_the_component_budget": 12181,
+          "fraction_above_the_component_budget": 0.3653788469614254
+        },
+        "coordinate_time": {
+          "comparable_nodes": 33338,
+          "coverage_of_emitting_nodes": 0.9725771631950523,
+          "median_relative_error": 1.8800269186460668e-05,
+          "p95_relative_error": 0.0005989545949478124,
+          "max_relative_error": 7.532923625139487,
+          "nodes_above_the_component_budget": 1914,
+          "fraction_above_the_component_budget": 0.057411962325274464
+        }
+      }
+    },
+    "n2": {
+      "core": {
+        "pitch_M": 0.02002861230329067,
+        "band_active_area": 2.003874200181517,
+        "transition_parents": 5177,
+        "transition_area": 1.285531397344171,
+        "boundary_length_estimate_M": 32.092373097984435,
+        "unresolved_support_area": 0.2791884422681007
+      },
+      "fine": {
+        "pitch_M": 0.01000834028356934,
+        "band_active_area": 2.0038742001814747,
+        "transition_parents": 11300,
+        "transition_area": 0.8461322706584462,
+        "boundary_length_estimate_M": 42.27135802164615,
+        "unresolved_support_area": 0.22553485861628209
+      },
+      "field_interpolation": {
+        "redshift": {
+          "comparable_nodes": 10284,
+          "coverage_of_emitting_nodes": 0.6168426103646834,
+          "median_relative_error": 0.003500814432185999,
+          "p95_relative_error": 0.04551997777786434,
+          "max_relative_error": 0.40798859004130106,
+          "nodes_above_the_component_budget": 9740,
+          "fraction_above_the_component_budget": 0.9471022948269155
+        },
+        "source_r": {
+          "comparable_nodes": 10284,
+          "coverage_of_emitting_nodes": 0.6168426103646834,
+          "median_relative_error": 0.006127100982276154,
+          "p95_relative_error": 0.269550358404471,
+          "max_relative_error": 45.93077777777883,
+          "nodes_above_the_component_budget": 10086,
+          "fraction_above_the_component_budget": 0.9807467911318553
+        },
+        "coordinate_time": {
+          "comparable_nodes": 10284,
+          "coverage_of_emitting_nodes": 0.6168426103646834,
+          "median_relative_error": 0.0004829143453555215,
+          "p95_relative_error": 0.012073057302636428,
+          "max_relative_error": 1.9846320910878554,
+          "nodes_above_the_component_budget": 5034,
+          "fraction_above_the_component_budget": 0.4894982497082847
+        }
+      }
+    }
+  },
+  "design": {
+    "id": "ADAPTIVE_DOMAIN_AWARE_D026_V1",
+    "quantity": "the same fixed detector transfer integral: y_d = sum over the emitting set of |D_d ^ dA| chi f, for all three orders, the eight accepted observer times and the declared field channels",
+    "unchanged": {
+      "detector": "D026",
+      "pitch_M": 0.4,
+      "sigma": 0.011341986814407566,
+      "clock_reference_M": -978.6055123201214,
+      "observer_times": 8,
+      "orders": [
+        0,
+        1,
+        2
+      ],
+      "source_annulus": "horizon exclusive to 50 inclusive",
+      "intended_full_detector_domain": "unchanged"
+    },
+    "field_channels": [
+      "emission_indicator_chi",
+      "redshift_cubed_g3",
+      "source_azimuth_phi_s",
+      "source_coordinate_time_t_s"
+    ],
+    "structure": {
+      "mesh": "one quadtree per order over the declared aperture, seeded by the archived core map and refined locally",
+      "seeds": "the core and fine maps supply initial data and a fixed independent check; neither is re-traced at every depth",
+      "boundary": "crossings localised as one-dimensional bracketed events on verified branches, with the version 3 comparator deciding each bracket",
+      "interior": "smooth interiors are not refined at boundary density; their refinement is driven by the measured field interpolation error",
+      "assembly": "leaf-clipped sparse fragments, ruling 032 rule, with the sign-aware envelopes of SIGN_AWARE_ENDPOINT_PRODUCT_ENVELOPE_V2",
+      "deduplication": "one native evaluation per distinct (alpha, beta, order); one valid transfer tuple serves all eight observer times and every declared test function algebraically",
+      "multiple_crossings": "each bracket is tested for sign changes at both ends and subdivided when more than one is present; tangencies and disconnected support stay detectable rather than assumed absent"
+    },
+    "error_budget_tracked_separately": {
+      "hull_geometry": {
+        "budget": 0.00025,
+        "status": "already qualified at 9.592e-08 band-normalised, ruling 029"
+      },
+      "emitting_boundary": {
+        "budget": 0.001,
+        "controlled_by": "bisection depth per order"
+      },
+      "field_quadrature_and_interpolation": {
+        "budget": 0.0005,
+        "controlled_by": "interior refinement driven by the measured core-to-fine interpolation error"
+      },
+      "numerical_reference": {
+        "status": "COMPARATOR_NUMERICALLY_VALIDATED_ON_TESTED_COHORTS",
+        "policy": {
+          "version": "PATHDOMAIN_V3_INDEXED_REDUCTION",
+          "imag_tol_for_a_real_root": 1e-13,
+          "cluster_rel_tol_for_the_turning_root": 1e-06,
+          "max_backward_residual_of_the_original_quartic": 1e-10,
+          "adaptive_quad_limit": 200,
+          "adaptive_quad_epsabs": 1e-12,
+          "adaptive_quad_epsrel": 1e-12,
+          "far_radius_for_the_escape_tail": 10000000.0,
+          "margin_factor": 10.0,
+          "reduced_potential": "index_excluded_product_no_division",
+          "ambiguous_cases": "refused_not_resolved_toward_the_archived_mask"
+        }
+      },
+      "unknown_support": {
+        "status": "carried as a sign-aware response envelope; where no envelope exists the result stays unqualified",
+        "note": "the order-2 missing-centre area is a coverage warning and is not a measured lost-light fraction"
+      }
+    },
+    "refinement_indicators": [
+      "emitting boundary uncertainty",
+      "declared field interpolation error",
+      "geometric cell size"
+    ],
+    "targets_or_singular_modes_used_to_refine": false,
+    "convergence_evidence": {
+      "two_successive_late_refinement_comparisons": "required; the last two depths of each order's boundary refinement",
+      "independent_check": "a held-out five per cent of the mesh plus the 192-point independent panel, evaluated with the alternate comparator",
+      "planned_independent_validation_calls": 5263
+    },
+    "coverage": "the full declared aperture for every order; any region left out is reported as an explicit unbounded remainder, never as agreement",
+    "stopping_rules": {
+      "early_stop": "when both late refinements agree inside every tracked budget",
+      "hard_stop": "when the worst-case remaining calls would breach the funded allowance; the run refuses to start rather than deliver partial arms",
+      "unfunded_endpoint": "the campaign does not start"
+    },
+    "payload_cache_key": [
+      "screen_alpha",
+      "screen_beta",
+      "order",
+      "geometry",
+      "observer_convention",
+      "backend",
+      "numerical_policy",
+      "precision"
+    ],
+    "lost_I2_cache": "not available; values are not reconstructed from coordinates and are not counted as reusable",
+    "cost": {
+      "per_order": {
+        "n0": {
+          "band_area": 2475.262825836023,
+          "boundary_length_M": 45.98475761683678,
+          "seed_pitch_M": 0.20080321285140457,
+          "required_boundary_resolution_M": 0.05382789763644931,
+          "bisection_depth": 2,
+          "boundary_segments": 230,
+          "expected_boundary_calls": 920,
+          "worst_case_boundary_calls": 2760,
+          "interior_calls_from_measured_field_error": 54,
+          "expected_total": 974,
+          "worst_case_total": 2976
+        },
+        "n1": {
+          "band_area": 72.0052658571607,
+          "boundary_length_M": 52.745493011877144,
+          "seed_pitch_M": 0.04008016032064177,
+          "required_boundary_resolution_M": 0.0013651453753773175,
+          "bisection_depth": 5,
+          "boundary_segments": 1317,
+          "expected_boundary_calls": 9219,
+          "worst_case_boundary_calls": 31608,
+          "interior_calls_from_measured_field_error": 4653,
+          "expected_total": 13872,
+          "worst_case_total": 50220
+        },
+        "n2": {
+          "band_area": 2.0038742001814747,
+          "boundary_length_M": 42.27135802164615,
+          "seed_pitch_M": 0.01000834028356934,
+          "required_boundary_resolution_M": 4.7405011193521124e-05,
+          "bisection_depth": 8,
+          "boundary_segments": 4224,
+          "expected_boundary_calls": 42240,
+          "worst_case_boundary_calls": 152064,
+          "interior_calls_from_measured_field_error": 44330,
+          "expected_total": 86570,
+          "worst_case_total": 329384
+        }
+      },
+      "expected_new_native_evaluations": 101416,
+      "worst_case_new_native_evaluations": 382580
+    },
+    "funding": {
+      "expected_new_native_evaluations": 101416,
+      "worst_case_new_native_evaluations": 382580,
+      "independent_validation_calls": 5263,
+      "expected_total_with_validation": 106679,
+      "worst_case_total_with_validation": 387843,
+      "second_batch_remaining_after_this_ruling": 854,
+      "fits_the_remaining_balance": false,
+      "comparison_to_the_retired_uniform_layout": 444720,
+      "reduction_factor_expected": 4.385106886487339,
+      "note": "an expected cost is not a guarantee; the worst case is what an allowance has to cover"
+    },
+    "physical_execution": "requires a later ruling; nothing here is a permission to sample"
+  }
+}

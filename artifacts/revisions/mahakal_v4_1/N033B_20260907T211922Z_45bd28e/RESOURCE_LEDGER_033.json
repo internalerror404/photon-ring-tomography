@@ -1,0 +1,47 @@
+{
+  "authoritative_convention": "B: native plus independent end-to-end reference evaluations",
+  "before": {
+    "native": 13566,
+    "primary_path_component": 10806,
+    "independent_reference": 4806,
+    "convention_B_spend": 18372,
+    "remaining": 1628
+  },
+  "charged": {
+    "point_order_ids": 258,
+    "native": 258,
+    "reference_A": 258,
+    "reference_B": 258,
+    "primary_path_integration_component": 258,
+    "development": 198,
+    "confirmation": 576,
+    "total": 774
+  },
+  "after": {
+    "native": 13824,
+    "primary_path_component": 11064,
+    "independent_reference": 5322,
+    "convention_B_spend": 19146,
+    "remaining": 854
+  },
+  "caps": {
+    "second_batch": 20000,
+    "diagnostic_total": 1024,
+    "development_charged": 384,
+    "confirmation_points": 192,
+    "confirmation_charged_reserved_min": 576,
+    "point_order_ids": 258
+  },
+  "within_every_cap": true,
+  "primary_path_within_the_native_bundle": "component record, not a second charge",
+  "per_quadrature_abscissa_is_a_new_ray": false,
+  "boundary_spent": 33410,
+  "boundary_remaining": 890,
+  "new_boundary_calls": 0,
+  "new_hull_queries": 0,
+  "suspended_full_response_reserve_4000": "suspended for the unlaunched integration design; not waived for any future campaign",
+  "new_allowance_or_third_batch": "none",
+  "adaptive_design_expected_cost": 101416,
+  "adaptive_design_worst_case_cost": 382580,
+  "adaptive_design_fits_the_remaining_balance": false
+}
