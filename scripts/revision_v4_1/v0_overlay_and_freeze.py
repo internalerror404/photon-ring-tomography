@@ -98,11 +98,33 @@ def main(out: Path) -> int:
                   f"{rows[-1]['centre_classified']['by_state'][D.UNRESOLVED]['area_fraction']:.4f}",
                   flush=True)
 
-    ledger = {"boundary_spent_lifetime": 18000, "boundary_lifetime_cap": 30000,
-              "boundary_remaining": 12000,
+    # Reconcile spend from the record rather than from a hand edit: every
+    # run that issued physical calls wrote its guard snapshot, so the ledger
+    # is summed from those instead of being asserted.
+    prior = {"transfer": 0, "boundary": 0}
+    seen = []
+    for f in sorted(REV.glob("*/*.json")):
+        try:
+            g = json.loads(f.read_text()).get("guard")
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            continue
+        if not isinstance(g, dict) or "spent_this_run" not in g:
+            continue
+        key = (f.parent.name, tuple(sorted(g["spent_this_run"].items())))
+        if key in seen:
+            continue
+        seen.append(key)
+        for k, v in g["spent_this_run"].items():
+            prior[k] = prior.get(k, 0) + int(v)
+    ledger = {"boundary_spent_lifetime": 18000 + prior["boundary"],
+              "boundary_lifetime_cap": 30000,
+              "boundary_remaining": 12000 - prior["boundary"],
+              "prior_spend_reconciled_from_run_records": prior,
+              "runs_counted": [k[0] for k in seen],
               "boundary_independent_check_reserve_min": 4000,
-              "transfer_spent_lifetime": 0, "transfer_lifetime_cap": 250000,
-              "transfer_remaining": 20000,
+              "transfer_spent_lifetime": prior["transfer"],
+              "transfer_lifetime_cap": 250000,
+              "transfer_remaining": 20000 - prior["transfer"],
               "transfer_pilot_max": 20000,
               "transfer_initial_diagnostic_max": 4000,
               "transfer_independent_validation_reserve_min": 4000,
