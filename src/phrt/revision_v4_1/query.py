@@ -109,9 +109,12 @@ class Guard:
                if not (ROOT / f).exists() or sha(ROOT / f) != h}
         if bad:
             raise GuardFailure(f"frozen inputs changed: {json.dumps(bad)}")
+        # Installed backend sources are pinned by hash but live outside the
+        # repository, so only the tracked files can be asked about git state.
+        tracked = [f for f in self.fz["files"] if not Path(f).is_absolute()]
         if not allow_dirty:
             dirty = subprocess.run(
-                ["git", "status", "--porcelain", "--", *self.fz["files"]],
+                ["git", "status", "--porcelain", "--", *tracked],
                 cwd=ROOT, capture_output=True, text=True).stdout.strip()
             if dirty:
                 raise GuardFailure(
@@ -127,9 +130,8 @@ class Guard:
         base = self.fz.get("commit_at_freeze_time")
         if base:
             moved = subprocess.run(
-                ["git", "diff", "--name-only", base, "HEAD", "--",
-                 *self.fz["files"]], cwd=ROOT, capture_output=True,
-                text=True)
+                ["git", "diff", "--name-only", base, "HEAD", "--", *tracked],
+                cwd=ROOT, capture_output=True, text=True)
             if moved.returncode != 0:
                 raise GuardFailure(
                     f"cannot compare against the freeze commit {base[:12]}: "
