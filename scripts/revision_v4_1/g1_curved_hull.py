@@ -26,6 +26,7 @@ from phrt.geometry.raymap import read                        # noqa: E402
 from phrt.revision_v4_1 import fractional as FR              # noqa: E402
 from phrt.revision_v4_1 import hulls as HU                   # noqa: E402
 from phrt.revision_v4_1 import measure as M                  # noqa: E402
+from phrt.revision_v4_1 import polyclip as PC                 # noqa: E402
 from phrt.revision_v4_1 import query as Q                    # noqa: E402
 from phrt.revision_v4_1.common_sky import DetectorGrid       # noqa: E402
 
@@ -135,33 +136,29 @@ def main(out: Path, freeze: Path) -> int:
 
     curved = {nm: build(nm) for nm in LADDER}
 
-    # tessellation budget: does doubling the sample change the area?
+    # tessellation budget: the polygon must stand in for the curve, so
+    # doubling the sample count must not move its area
     tess_check = {}
+    L = levels[LADDER[-1]]
     for n in ORDERS:
-        L = levels[LADDER[-1]]
-        h = L["hulls"][f"{n}e"] if n else L["hulls"]["0i"]
-        key = f"{n}e" if n else "0i"
-        sp = curve_from(L["hulls"][key], L["s"])
-        th = np.arctan2(L["hulls"][key][:, 1], L["hulls"][key][:, 0])
-        o = np.argsort(L["s"])
-        ths = CubicSpline(np.append(L["s"][o], L["s"][o][0] + 1.0),
-                          np.append(np.unwrap(th[o]),
-                                    np.unwrap(th[o])[0] + 2 * np.pi),
-                          bc_type="periodic")
-        a1 = abs(HU.region_measures(tessellate(sp, ths, TESS),
-                                    tessellate(sp, ths, TESS) * 0.999,
-                                    tessellate(sp, ths, 2 * TESS),
-                                    tessellate(sp, ths, 2 * TESS) * 0.999,
-                                    N_UNIFORM)["band_symmetric_difference"])
-        tess_check[str(n)] = {"relative": a1 / max(
-            abs(HU.region_measures(tessellate(sp, ths, TESS),
-                                   tessellate(sp, ths, TESS) * 0.999,
-                                   tessellate(sp, ths, TESS),
-                                   tessellate(sp, ths, TESS) * 0.999,
-                                   1000)["band_N"], 1e-30)),
-            "budget": TESS_TOL}
-        tess_check[str(n)]["passes"] = bool(
-            tess_check[str(n)]["relative"] < TESS_TOL)
+        for side in ("i", "e"):
+            key = f"{n}{side}"
+            if key == "0e":
+                continue
+            h = L["hulls"][key]
+            sp = curve_from(h, L["s"])
+            th = np.arctan2(h[:, 1], h[:, 0])
+            o = np.argsort(L["s"])
+            thu = np.unwrap(th[o])
+            ths = CubicSpline(np.append(L["s"][o], L["s"][o][0] + 1.0),
+                              np.append(thu, thu[0] + 2 * np.pi),
+                              bc_type="periodic")
+            a1 = abs(PC.signed_area(tessellate(sp, ths, TESS)))
+            a2 = abs(PC.signed_area(tessellate(sp, ths, 2 * TESS)))
+            rel = abs(a2 - a1) / max(a2, 1e-30)
+            tess_check[key] = {"area_at_n": a1, "area_at_2n": a2,
+                               "relative": rel, "budget": TESS_TOL,
+                               "passes": bool(rel < TESS_TOL)}
 
     def response(hs, n):
         ov = FR.triple_overlap(cells[n], grid, hs[f"{n}e"], hs[f"{n}i"])

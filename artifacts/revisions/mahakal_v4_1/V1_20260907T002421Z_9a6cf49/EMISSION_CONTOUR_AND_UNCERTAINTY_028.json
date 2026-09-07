@@ -1,0 +1,139 @@
+{
+  "stage": "V1",
+  "ruling": "PAPER_I_BOUNDARY_VALIDITY_RULING_028",
+  "generated_utc": "2026-09-07T00:24:28Z",
+  "commit": "9a6cf4939ccbea2784531c50232bbd8d160cd76b",
+  "guard": {
+    "freeze": "artifacts/revisions/mahakal_v4_1/V0_20260907T002405Z_763ea4e/BOUNDARY_VALIDITY_028_INPUT_FREEZE.json",
+    "commit_at_freeze_time": "763ea4ecd5a00f23605aa3061e389cae5647a428",
+    "verified_input_hashes": true,
+    "registered_tree_clean": true,
+    "spent_this_run": {
+      "transfer": 17912,
+      "boundary": 0
+    },
+    "remaining_after_run": {
+      "transfer": 2088,
+      "boundary": 12000
+    },
+    "lifetime": {
+      "aborted_9000_boundary_solves_remain_charged": true,
+      "boundary_independent_check_reserve_min": 4000,
+      "boundary_lifetime_cap": 30000,
+      "boundary_remaining": 12000,
+      "boundary_spent_lifetime": 18000,
+      "counts_failures_retries_and_vectorised_interior_calls": true,
+      "transfer_independent_validation_reserve_min": 4000,
+      "transfer_initial_diagnostic_max": 4000,
+      "transfer_lifetime_cap": 250000,
+      "transfer_pilot_max": 20000,
+      "transfer_remaining": 20000,
+      "transfer_spent_lifetime": 0
+    }
+  },
+  "solver_failure_is_not_a_physical_boundary": true,
+  "diagnostic": {
+    "0": {
+      "cache_reproduction": {
+        "n": 200,
+        "max_abs_diff": 0.0,
+        "reproduces_to_1e_12": true
+      },
+      "solver_recovery": {
+        "attempted": 0,
+        "recovered": 0
+      },
+      "recovery_used_same_equations_and_policy": true
+    },
+    "1": {
+      "cache_reproduction": {
+        "n": 200,
+        "max_abs_diff": 0.0,
+        "reproduces_to_1e_12": true
+      },
+      "solver_recovery": {
+        "attempted": 224,
+        "recovered": 0,
+        "still_unresolved": 224,
+        "recovered_inside_annulus": 0,
+        "recovered_outside_annulus": 0
+      },
+      "recovery_used_same_equations_and_policy": true
+    },
+    "2": {
+      "cache_reproduction": {
+        "n": 200,
+        "max_abs_diff": 0.0,
+        "reproduces_to_1e_12": true
+      },
+      "solver_recovery": {
+        "attempted": 456,
+        "recovered": 0,
+        "still_unresolved": 456,
+        "recovered_inside_annulus": 0,
+        "recovered_outside_annulus": 0
+      },
+      "recovery_used_same_equations_and_policy": true
+    }
+  },
+  "contour": {
+    "1": {
+      "brackets": 595,
+      "resolved": 595,
+      "unresolved": 0,
+      "unresolved_reasons": {
+        "NO_SIGN_CHANGE": 595
+      },
+      "screen_bracket_max_M": 0.00015687751004023198,
+      "residual_max": 0.09770231410015384,
+      "one_root_per_line_assumed": false,
+      "equal_signs_treated_as_no_root": "recorded as NO_SIGN_CHANGE, which does not prove absence of a contour in that interval"
+    },
+    "2": {
+      "brackets": 617,
+      "resolved": 596,
+      "unresolved": 21,
+      "unresolved_reasons": {
+        "BRANCH_CHANGE": 21,
+        "NO_SIGN_CHANGE": 596
+      },
+      "screen_bracket_max_M": 3.9118383405423174e-05,
+      "residual_max": 0.4708487321603272,
+      "one_root_per_line_assumed": false,
+      "equal_signs_treated_as_no_root": "recorded as NO_SIGN_CHANGE, which does not prove absence of a contour in that interval"
+    }
+  },
+  "independent_validation": {
+    "1": {
+      "run": true,
+      "n": 150,
+      "reresolved": 125,
+      "max_position_difference_M": 0.001247666447038774,
+      "median_position_difference_M": 0.00029169412023132365,
+      "bracket_is_a_different_segment_not_a_resample": true
+    },
+    "2": {
+      "run": true,
+      "n": 150,
+      "reresolved": 148,
+      "max_position_difference_M": 0.000249990918944606,
+      "median_position_difference_M": 2.0170416443277335e-05,
+      "bracket_is_a_different_segment_not_a_resample": true
+    }
+  },
+  "uncertain_support": {
+    "1": {
+      "unresolved_bracket_cells_area_M2": 0.0,
+      "validated_field_envelope_available": false,
+      "why": "an envelope has to bound g^3 over the uncertain tube, and a maximum over nearby samples is not a bound. None was established, so no response bound is claimed",
+      "blocker": null
+    },
+    "2": {
+      "unresolved_bracket_cells_area_M2": 0.00842405152670584,
+      "validated_field_envelope_available": false,
+      "why": "an envelope has to bound g^3 over the uncertain tube, and a maximum over nearby samples is not a bound. None was established, so no response bound is claimed",
+      "blocker": "UNCERTAIN_SUPPORT_RESPONSE_ENVELOPE_NOT_VALIDATED"
+    }
+  },
+  "runtime_seconds": 7.293246030807495
+}
