@@ -99,6 +99,9 @@ def instrument(alpha, beta, mbar, theta_o=None, a=SPIN, distance=D_OBS):
         "clamped_to_horizon": clamped, "r_p": r_p,
         "delta_t_finite": np.isfinite(dt), "delta_phi_finite": np.isfinite(dphi),
         "warnings": sorted({str(w.message)[:120] for w in caught}),
+        # ruling 030 needs the roots and the angular crossing parameter
+        "roots": np.stack([r1, r2, r3, r4]), "G_theta": G_theta,
+        "lam_eta": np.stack([lam, eta]),
     })
     rec["arcsin_arg_finite"][mask2] = np.isfinite(arg)
     # the emitted NaN: exactly the library's own final mask
