@@ -36,7 +36,7 @@ MAPS = ROOT / "artifacts" / "raymaps"
 GEOMETRY, SPIN, INC, LIMITS = "a050_i050", 0.5, 50.0, 25.0
 ORDERS, MARKS, SIGMA = (0, 1, 2), 237, 0.011341986814407566
 SHIFT_TOL, ROOT_TOL, TESS_TOL, BAND_TOL = 2.5e-4, 2.5e-5, 1.0e-6, 2.5e-4
-N_UNIFORM, TESS_LADDER = 400_000, (4096, 16384, 65536, 262144)
+N_UNIFORM, TESS_LADDER = 400_000, (4096, 16384, 65536)
 FIELDS = ("1", "alpha/25", "beta/25", "(alpha/25)^2", "(beta/25)^2",
           "alpha*beta/625")
 

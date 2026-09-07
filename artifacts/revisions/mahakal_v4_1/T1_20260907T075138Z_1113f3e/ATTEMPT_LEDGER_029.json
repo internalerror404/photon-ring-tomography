@@ -1,0 +1,54 @@
+{
+  "freeze": "/home/user/photon-ring-tomography/artifacts/revisions/mahakal_v4_1/V0J_20260907T075134Z_b3b0b04/BOUNDARY_VALIDITY_028_INPUT_FREEZE.json",
+  "attempted": {
+    "transfer": 1080,
+    "boundary": 0
+  },
+  "completed": {
+    "transfer": 1080,
+    "boundary": 0
+  },
+  "failed": {
+    "transfer": 680,
+    "boundary": 0
+  },
+  "events": [
+    {
+      "token": 0,
+      "kind": "transfer",
+      "reserved": 224,
+      "why": "instrumented_failure_n1",
+      "outcome": "completed",
+      "completed": 0,
+      "failed": 224
+    },
+    {
+      "token": 1,
+      "kind": "transfer",
+      "reserved": 200,
+      "why": "instrumented_control_n1",
+      "outcome": "completed",
+      "completed": 200,
+      "failed": 0
+    },
+    {
+      "token": 2,
+      "kind": "transfer",
+      "reserved": 456,
+      "why": "instrumented_failure_n2",
+      "outcome": "completed",
+      "completed": 0,
+      "failed": 456
+    },
+    {
+      "token": 3,
+      "kind": "transfer",
+      "reserved": 200,
+      "why": "instrumented_control_n2",
+      "outcome": "completed",
+      "completed": 200,
+      "failed": 0
+    }
+  ],
+  "note": "written after every reservation and completion, so an exception in the solver or the report cannot lose a charge"
+}
