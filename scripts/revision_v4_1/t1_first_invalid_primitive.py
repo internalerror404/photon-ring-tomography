@@ -27,6 +27,7 @@ SPIN, INC, D_OBS = 0.5, 50.0, 1000.0
 
 NO_INTERSECTION = "PHYSICAL_NO_ALLOWED_INTERSECTION"
 PLUNGE = "PHYSICAL_LANDING_AT_OR_INSIDE_HORIZON"
+NONPHYSICAL_FINITE = "NUMERICAL_FINITE_BUT_NONPHYSICAL_SOURCE_RADIUS"
 RADIAL_NONFINITE = "NUMERICAL_SOURCE_RADIUS_NONFINITE"
 ROOTS_NONFINITE = "NUMERICAL_RADIAL_ROOTS_NONFINITE"
 ELLIPTIC_NONFINITE = "NUMERICAL_ELLIPTIC_ARGUMENT_NONFINITE"
@@ -118,9 +119,13 @@ def classify(rec):
     rest = rest & rec["G_theta_finite"]
     out[rest & rec["raw_nonfinite"]] = RADIAL_NONFINITE
     rest = rest & ~rec["raw_nonfinite"]
-    # a finite radius that the library itself clamps: a physical landing at
-    # or inside the horizon, which is not a solver failure at all
-    out[rest] = PLUNGE
+    # A finite radius the library clamps is not automatically physics. A
+    # value at or just below the horizon is a plausible plunge; a large
+    # negative one is the analytic expression evaluated outside its domain,
+    # returning a finite number that means nothing. The clamp turns both into
+    # the same NaN, which is why the archive cannot tell them apart.
+    out[rest & (rec["raw_source_radius"] > 0)] = PLUNGE
+    out[rest & (rec["raw_source_radius"] <= 0)] = NONPHYSICAL_FINITE
     return out
 
 
@@ -157,6 +162,9 @@ def main(out: Path, freeze: Path, t0: Path) -> int:
                 "angular_integral_nonfinite":
                     int((~rec["G_theta_finite"]).sum()),
                 "turning_branch_mask2": int(rec["turning_branch"].sum()),
+                "on_real_turning_branch": int(rec["turning_branch"].sum()),
+                "raw_radius_negative":
+                    int((rec["raw_source_radius"] <= 0).sum()),
                 "raw_radius_range_where_clamped": [
                     float(np.nanmin(rec["raw_source_radius"]
                                     [rec["clamped_to_horizon"]]))
@@ -185,9 +193,15 @@ def main(out: Path, freeze: Path, t0: Path) -> int:
         "arithmetic_changed": False,
         "method": "calculate_observables reproduced expression for "
                   "expression, with every intermediate retained",
-        "primitive_vocabulary": [NO_INTERSECTION, PLUNGE, RADIAL_NONFINITE,
-                                 ROOTS_NONFINITE, ELLIPTIC_NONFINITE,
-                                 ANGULAR_NONFINITE, HEALTHY],
+        "primitive_vocabulary": [NO_INTERSECTION, PLUNGE, NONPHYSICAL_FINITE,
+                                 RADIAL_NONFINITE, ROOTS_NONFINITE,
+                                 ELLIPTIC_NONFINITE, ANGULAR_NONFINITE,
+                                 HEALTHY],
+        "finding": "the archived NaN is emitted by the library's own horizon "
+                   "clamp, not by an exception. Every sampled failure has "
+                   "finite roots, finite elliptic arguments, finite angular "
+                   "integrals and a finite source radius; what differs is "
+                   "whether that radius is physical",
         "cohorts": rows, "arrays": arrays,
         "guard": guard.snapshot(),
         "runtime_seconds": time.time() - t_start,
