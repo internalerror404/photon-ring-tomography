@@ -1,0 +1,213 @@
+{
+  "stage": "G1",
+  "ruling": "PAPER_I_BOUNDARY_VALIDITY_RULING_028",
+  "generated_utc": "2026-09-07T00:31:09Z",
+  "commit": "ecddc92cfaf483d0397551360b7ccfbb84e8b976",
+  "candidate": "periodic cubic radius in the pinned arclength parameter, tessellated for the clipping kernel",
+  "outer_square_kept_exact": true,
+  "densified_old_polygon": false,
+  "ladder_marks": [
+    60,
+    119,
+    237
+  ],
+  "ladder_provenance": {
+    "60": {
+      "source": "archived level-60 roots",
+      "solves": 0
+    },
+    "119": {
+      "source": "fresh solves of the pinned equations",
+      "solves": 1190
+    },
+    "237": {
+      "source": "fresh solves of the pinned equations",
+      "solves": 2370
+    }
+  },
+  "tessellation_check": {
+    "0i": {
+      "area_at_n": 24.737164368696668,
+      "area_at_2n": 24.737171743966677,
+      "relative": 2.98145240097409e-07,
+      "budget": 1e-06,
+      "passes": true
+    },
+    "1i": {
+      "area_at_n": 75.32984514101705,
+      "area_at_2n": 75.3298672996057,
+      "relative": 2.941540911144856e-07,
+      "budget": 1e-06,
+      "passes": true
+    },
+    "1e": {
+      "area_at_n": 147.33508245108425,
+      "area_at_2n": 147.33512610395388,
+      "relative": 2.962828402826365e-07,
+      "budget": 1e-06,
+      "passes": true
+    },
+    "2i": {
+      "area_at_n": 82.64000863188306,
+      "area_at_2n": 82.64003294004084,
+      "relative": 2.941450639796836e-07,
+      "budget": 1e-06,
+      "passes": true
+    },
+    "2e": {
+      "area_at_n": 84.64388204814033,
+      "area_at_2n": 84.6439069465467,
+      "relative": 2.941547392882777e-07,
+      "budget": 1e-06,
+      "passes": true
+    }
+  },
+  "tessellation_samples": 4096,
+  "tolerances": {
+    "band": 0.00025,
+    "boundaries": 0.00025,
+    "hull_only_response": 0.00025,
+    "shifted": 0.00025,
+    "tighter_root": 2.5e-05,
+    "tessellation": 1e-06
+  },
+  "pairs": [
+    {
+      "pair": "60->119",
+      "order": 0,
+      "eta_band": 1.0033384015841206e-09,
+      "eta_boundaries": 1.0033383031597047e-09,
+      "hull_only_response": 2.0505527483718553e-08,
+      "band_width_positive": true,
+      "all_pass": true
+    },
+    {
+      "pair": "60->119",
+      "order": 1,
+      "eta_band": 1.922954688344482e-07,
+      "eta_boundaries": 1.922954686572786e-07,
+      "hull_only_response": 3.7643326549428446e-07,
+      "band_width_positive": true,
+      "all_pass": true
+    },
+    {
+      "pair": "60->119",
+      "order": 2,
+      "eta_band": 1.8433238100753707e-06,
+      "eta_boundaries": 1.8433238107236736e-06,
+      "hull_only_response": 3.562934405143548e-07,
+      "band_width_positive": true,
+      "all_pass": true
+    },
+    {
+      "pair": "119->237",
+      "order": 0,
+      "eta_band": 1.6942252450484578e-10,
+      "eta_boundaries": 1.6942255277731247e-10,
+      "hull_only_response": 1.297140698237017e-09,
+      "band_width_positive": true,
+      "all_pass": true
+    },
+    {
+      "pair": "119->237",
+      "order": 1,
+      "eta_band": 3.0674707602478764e-08,
+      "eta_boundaries": 3.067470753688898e-08,
+      "hull_only_response": 2.2871755123493998e-08,
+      "band_width_positive": true,
+      "all_pass": true
+    },
+    {
+      "pair": "119->237",
+      "order": 2,
+      "eta_band": 1.1612992752491623e-07,
+      "eta_boundaries": 1.1612992733618936e-07,
+      "hull_only_response": 2.093566567492659e-08,
+      "band_width_positive": true,
+      "all_pass": true
+    }
+  ],
+  "accepted_marks": 237,
+  "independent_checks": {
+    "shifted_samples": {
+      "run": true,
+      "tolerance": 0.00025,
+      "rows": [
+        {
+          "order": 0,
+          "boundary": "i",
+          "n_fresh_points": 474,
+          "max_relative_radius_error": 4.98105095680306e-07,
+          "passes": true
+        },
+        {
+          "order": 1,
+          "boundary": "i",
+          "n_fresh_points": 474,
+          "max_relative_radius_error": 3.029797273048854e-07,
+          "passes": true
+        },
+        {
+          "order": 1,
+          "boundary": "e",
+          "n_fresh_points": 474,
+          "max_relative_radius_error": 3.6820040401165164e-07,
+          "passes": true
+        },
+        {
+          "order": 2,
+          "boundary": "i",
+          "n_fresh_points": 474,
+          "max_relative_radius_error": 2.9975605109587084e-07,
+          "passes": true
+        },
+        {
+          "order": 2,
+          "boundary": "e",
+          "n_fresh_points": 474,
+          "max_relative_radius_error": 3.0119116911133016e-07,
+          "passes": true
+        }
+      ],
+      "points_are_not_fit_knots": true,
+      "passes": true
+    }
+  },
+  "hull_geometry_qualified": true,
+  "guard": {
+    "freeze": "artifacts/revisions/mahakal_v4_1/V0C_20260907T002855Z_178f960/BOUNDARY_VALIDITY_028_INPUT_FREEZE.json",
+    "commit_at_freeze_time": "178f960c32edbab64cf145e9f54e39837dd14d5a",
+    "verified_input_hashes": true,
+    "registered_tree_clean": true,
+    "spent_this_run": {
+      "transfer": 0,
+      "boundary": 5930
+    },
+    "remaining_after_run": {
+      "transfer": 2088,
+      "boundary": 6070
+    },
+    "lifetime": {
+      "aborted_9000_boundary_solves_remain_charged": true,
+      "boundary_independent_check_reserve_min": 4000,
+      "boundary_lifetime_cap": 30000,
+      "boundary_remaining": 12000,
+      "boundary_spent_lifetime": 18000,
+      "counts_failures_retries_and_vectorised_interior_calls": true,
+      "prior_spend_reconciled_from_run_records": {
+        "transfer": 17912,
+        "boundary": 0
+      },
+      "runs_counted": [
+        "V1_20260907T002421Z_9a6cf49"
+      ],
+      "transfer_independent_validation_reserve_min": 4000,
+      "transfer_initial_diagnostic_max": 4000,
+      "transfer_lifetime_cap": 250000,
+      "transfer_pilot_max": 20000,
+      "transfer_remaining": 2088,
+      "transfer_spent_lifetime": 17912
+    }
+  },
+  "runtime_seconds": 130.35540962219238
+}
