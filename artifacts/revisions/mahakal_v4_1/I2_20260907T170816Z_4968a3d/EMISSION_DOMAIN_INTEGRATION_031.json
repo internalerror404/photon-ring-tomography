@@ -1,0 +1,199 @@
+{
+  "stage": "I2",
+  "ruling": "PAPER_I_DOMAIN_INTEGRATION_RULING_031",
+  "generated_utc": "2026-09-07T17:12:04Z",
+  "commit": "4968a3dbbb934c1167edde084f2ffa2f3a2c77f5",
+  "representation": "IMPLICIT_DOMAIN_INDICATOR_CUT_CELL_QUADRATURE",
+  "claim_to_have_reconstructed_the_contour": false,
+  "sample_absence_implies_cell_absence": false,
+  "unresolved_treated_as_zero": false,
+  "sub_cells_per_transition_cell": 4,
+  "per_order": {
+    "core_n0": {
+      "transition_cells_found": 331,
+      "sub_cells_evaluated": 1324,
+      "emitting_area_centre_indicator": 2464.57513047297,
+      "emitting_area_cut_cell": 2474.0709395160275,
+      "unresolved_boundary_area": 0.0,
+      "domain_change_relative": 0.003852919282373425,
+      "unresolved_area_fraction": 0.0,
+      "response_whitened_norm": 4383.913695783634,
+      "response_change_vs_centre_indicator": 0.04556979302938818
+    },
+    "core_n1": {
+      "transition_cells_found": 1169,
+      "sub_cells_evaluated": 4676,
+      "emitting_area_centre_indicator": 54.82855440942835,
+      "emitting_area_cut_cell": 54.726911094964855,
+      "unresolved_boundary_area": 0.0,
+      "domain_change_relative": 0.0018538390362160609,
+      "unresolved_area_fraction": 0.0,
+      "response_whitened_norm": 623.4101009730014,
+      "response_change_vs_centre_indicator": 0.01435979115881978
+    },
+    "core_n2": {
+      "transition_cells_found": 0,
+      "sub_cells_evaluated": 0,
+      "emitting_area_centre_indicator": 1.6010300100697472,
+      "emitting_area_cut_cell": 1.6010300100697472,
+      "unresolved_boundary_area": 0.0,
+      "domain_change_relative": 0.0,
+      "unresolved_area_fraction": 0.0,
+      "response_whitened_norm": 45.2545315868378,
+      "response_change_vs_centre_indicator": 0.0
+    },
+    "fine_n0": {
+      "transition_cells_found": 0,
+      "sub_cells_evaluated": 0,
+      "emitting_area_centre_indicator": 2469.744492417698,
+      "emitting_area_cut_cell": 2469.744492417698,
+      "unresolved_boundary_area": 0.0,
+      "domain_change_relative": 0.0,
+      "unresolved_area_fraction": 0.0,
+      "response_whitened_norm": 4377.3139918979105,
+      "response_change_vs_centre_indicator": 0.0
+    },
+    "fine_n1": {
+      "transition_cells_found": 0,
+      "sub_cells_evaluated": 0,
+      "emitting_area_centre_indicator": 54.984062679734734,
+      "emitting_area_cut_cell": 54.984062679734734,
+      "unresolved_boundary_area": 0.0,
+      "domain_change_relative": 0.0,
+      "unresolved_area_fraction": 0.0,
+      "response_whitened_norm": 625.7222561490777,
+      "response_change_vs_centre_indicator": 0.0
+    },
+    "fine_n2": {
+      "transition_cells_found": 0,
+      "sub_cells_evaluated": 0,
+      "emitting_area_centre_indicator": 1.6385978883248364,
+      "emitting_area_cut_cell": 1.6385978883248364,
+      "unresolved_boundary_area": 0.0,
+      "domain_change_relative": 0.0,
+      "unresolved_area_fraction": 0.0,
+      "response_whitened_norm": 45.86985595294107,
+      "response_change_vs_centre_indicator": 0.0
+    }
+  },
+  "profile_pairs": [
+    {
+      "order": 0,
+      "pair": "core->fine",
+      "emitting_area_relative": 0.0017517792272083207,
+      "response_relative": 0.0015077063006991669,
+      "domain_change_error_core": 0.003852919282373425,
+      "domain_change_error_fine": 0.0,
+      "unresolved_budget_core": 0.0,
+      "unresolved_budget_fine": 0.0
+    },
+    {
+      "order": 1,
+      "pair": "core->fine",
+      "emitting_area_relative": 0.004676838564434717,
+      "response_relative": 0.00369517809755747,
+      "domain_change_error_core": 0.0018538390362160609,
+      "domain_change_error_fine": 0.0,
+      "unresolved_budget_core": 0.0,
+      "unresolved_budget_fine": 0.0
+    },
+    {
+      "order": 2,
+      "pair": "core->fine",
+      "emitting_area_relative": 0.022926844055374342,
+      "response_relative": 0.01341456940118906,
+      "domain_change_error_core": 0.0,
+      "domain_change_error_fine": 0.0,
+      "unresolved_budget_core": 0.0,
+      "unresolved_budget_fine": 0.0
+    }
+  ],
+  "tolerances": {
+    "component": 0.0005,
+    "total": 0.001
+  },
+  "qualified": false,
+  "guard": {
+    "freeze": "artifacts/revisions/mahakal_v4_1/I0_20260907T170509Z_bcd5343/DOMAIN_INTEGRATION_031_INPUT_FREEZE.json",
+    "commit_at_freeze_time": "bcd5343131748ada833644b594bb527dba9e8dfc",
+    "verified_input_hashes": true,
+    "registered_tree_clean": true,
+    "spent_this_run": {
+      "transfer": 6000,
+      "boundary": 0
+    },
+    "attempted_this_run": {
+      "transfer": 6000,
+      "boundary": 0
+    },
+    "failed_this_run": {
+      "transfer": 313,
+      "boundary": 0
+    },
+    "reserved_before_every_physical_call": true,
+    "remaining_after_run": {
+      "transfer": 6928,
+      "boundary": 0
+    },
+    "lifetime": {
+      "boundary_remaining": 0,
+      "confirmation_evaluations_max": 1024,
+      "confirmation_points_max": 192,
+      "counted_per_execution_not_per_unique_point": true,
+      "first_pilot_closed_at": 17912,
+      "independent_validation_reserve_min": 4000,
+      "integration_pilot_max": 6000,
+      "lifetime_native_spend": 24984,
+      "repeated_runs_each_charged": true,
+      "second_batch_cap": 20000,
+      "second_batch_remaining_upper_bound": 12928,
+      "second_batch_runs": {
+        "D1B_20260907T102020Z_5c1cb6a": {
+          "source": "ATTEMPT_LEDGER_030.json",
+          "attempted": 2156,
+          "completed": 2156,
+          "failed": 840
+        },
+        "D1_20260907T101654Z_57fae0f": {
+          "source": "ATTEMPT_LEDGER_030.json",
+          "attempted": 2156,
+          "completed": 2156,
+          "failed": 840
+        },
+        "T1_20260907T074927Z_3b1e6b9": {
+          "source": "ATTEMPT_LEDGER_029.json",
+          "attempted": 120,
+          "completed": 120,
+          "failed": 0
+        },
+        "T1_20260907T074951Z_3d42022": {
+          "source": "ATTEMPT_LEDGER_029.json",
+          "attempted": 480,
+          "completed": 480,
+          "failed": 240
+        },
+        "T1_20260907T075031Z_c35cb34": {
+          "source": "ATTEMPT_LEDGER_029.json",
+          "attempted": 1080,
+          "completed": 1080,
+          "failed": 680
+        },
+        "T1_20260907T075138Z_1113f3e": {
+          "source": "ATTEMPT_LEDGER_029.json",
+          "attempted": 1080,
+          "completed": 1080,
+          "failed": 680
+        }
+      },
+      "second_batch_spent": 7072,
+      "transfer_remaining": 12928,
+      "unmetered_reference_integrations": {
+        "status": "INVENTORIED",
+        "what": "the primary and reference radial quadratures run after the metered instrumented call and are not separately charged as rays",
+        "convention": "a quadrature abscissa is not a new ray; the metered unit is one screen/order evaluation of the pinned tracer",
+        "end_to_end_recomputations_that_were_charged": "each execution charged its own full cohort, so the two 030 runs are 2156 + 2156 = 4312"
+      }
+    }
+  },
+  "runtime_seconds": 227.876957654953
+}
