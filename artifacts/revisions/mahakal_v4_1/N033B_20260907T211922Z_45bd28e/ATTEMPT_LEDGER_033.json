@@ -1,0 +1,153 @@
+{
+  "freeze": "/home/user/photon-ring-tomography/artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/FEASIBILITY_CLOSEOUT_033_INPUT_FREEZE.json",
+  "attempted": {
+    "transfer": 774,
+    "boundary": 0
+  },
+  "completed": {
+    "transfer": 774,
+    "boundary": 0
+  },
+  "failed": {
+    "transfer": 57,
+    "boundary": 0
+  },
+  "events": [
+    {
+      "token": 0,
+      "kind": "transfer",
+      "reserved": 4,
+      "why": "development_native_n1",
+      "outcome": "completed",
+      "completed": 3,
+      "failed": 1
+    },
+    {
+      "token": 1,
+      "kind": "transfer",
+      "reserved": 4,
+      "why": "development_referenceA_n1",
+      "outcome": "completed",
+      "completed": 4,
+      "failed": 0
+    },
+    {
+      "token": 2,
+      "kind": "transfer",
+      "reserved": 4,
+      "why": "development_referenceB_n1",
+      "outcome": "completed",
+      "completed": 4,
+      "failed": 0
+    },
+    {
+      "token": 3,
+      "kind": "transfer",
+      "reserved": 62,
+      "why": "development_native_n2",
+      "outcome": "completed",
+      "completed": 54,
+      "failed": 8
+    },
+    {
+      "token": 4,
+      "kind": "transfer",
+      "reserved": 62,
+      "why": "development_referenceA_n2",
+      "outcome": "completed",
+      "completed": 62,
+      "failed": 0
+    },
+    {
+      "token": 5,
+      "kind": "transfer",
+      "reserved": 62,
+      "why": "development_referenceB_n2",
+      "outcome": "completed",
+      "completed": 62,
+      "failed": 0
+    },
+    {
+      "token": 6,
+      "kind": "transfer",
+      "reserved": 42,
+      "why": "confirmation_native_n0",
+      "outcome": "completed",
+      "completed": 42,
+      "failed": 0
+    },
+    {
+      "token": 7,
+      "kind": "transfer",
+      "reserved": 42,
+      "why": "confirmation_referenceA_n0",
+      "outcome": "completed",
+      "completed": 42,
+      "failed": 0
+    },
+    {
+      "token": 8,
+      "kind": "transfer",
+      "reserved": 42,
+      "why": "confirmation_referenceB_n0",
+      "outcome": "completed",
+      "completed": 42,
+      "failed": 0
+    },
+    {
+      "token": 9,
+      "kind": "transfer",
+      "reserved": 83,
+      "why": "confirmation_native_n1",
+      "outcome": "completed",
+      "completed": 72,
+      "failed": 11
+    },
+    {
+      "token": 10,
+      "kind": "transfer",
+      "reserved": 83,
+      "why": "confirmation_referenceA_n1",
+      "outcome": "completed",
+      "completed": 83,
+      "failed": 0
+    },
+    {
+      "token": 11,
+      "kind": "transfer",
+      "reserved": 83,
+      "why": "confirmation_referenceB_n1",
+      "outcome": "completed",
+      "completed": 83,
+      "failed": 0
+    },
+    {
+      "token": 12,
+      "kind": "transfer",
+      "reserved": 67,
+      "why": "confirmation_native_n2",
+      "outcome": "completed",
+      "completed": 30,
+      "failed": 37
+    },
+    {
+      "token": 13,
+      "kind": "transfer",
+      "reserved": 67,
+      "why": "confirmation_referenceA_n2",
+      "outcome": "completed",
+      "completed": 67,
+      "failed": 0
+    },
+    {
+      "token": 14,
+      "kind": "transfer",
+      "reserved": 67,
+      "why": "confirmation_referenceB_n2",
+      "outcome": "completed",
+      "completed": 67,
+      "failed": 0
+    }
+  ],
+  "note": "written after every reservation and completion, so an exception in the solver or the report cannot lose a charge"
+}
