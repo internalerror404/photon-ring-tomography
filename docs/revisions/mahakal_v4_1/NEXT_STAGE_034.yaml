@@ -1,0 +1,150 @@
+review_id: PAPER_I_RESPONSE_ERROR_RULING_034
+reviewed_commit: d1617963d93713053a4ea374a8c78fcfa013448a
+work_branch: research/mahakal_v4_1
+status: COMPARATOR_CLOSEOUT_ACCEPTED_CACHED_RESPONSE_AUDIT_AUTHORIZED
+preservation:
+  signed_interval_assembly: accepted_for_valid_supplied_intervals
+  comparator: accepted_tested_cohorts_and_shared_input_scope
+  G1_and_sampled_absences: accepted_not_reopened
+  legacy_R2: unchanged_scope
+  C13: complete_physical_revalidation_pending
+  historical_source_maps_freezes_results: immutable
+  delivery: GitHub_only
+  physical_replay_required_here: false
+current_authorization:
+  new_rays: 0
+  new_path_quadratures: 0
+  new_hull_roots: 0
+  new_target_operator_or_spectrum: 0
+  comparator_rerun_or_tuning: not_authorized
+  cached_array_geometry_and_algebra_audit: authorized
+  physical_integration_or_R3B: not_authorized
+  new_estimator_or_submission_freeze: not_authorized
+record_corrections:
+  comparator_A: error_margin_refusal_not_conflicting_physics
+  integral_equality: by_quantity_not_blanket_3e_16
+  summary_statistics: derive_from_saved_rows_not_hardcoded_narrative
+  estimated_endpoint_distance: not_ground_truth_distance
+  root_separation: consistent_association_not_controlled_unique_cause
+  node_error_metric: GLOBAL_MAX_SCALED_PRIMITIVE_BILINEAR_DISCREPANCY
+  order2_node_coverage: 0.6168426103646834
+  pointwise_fraction_is_response_error: false
+  unisolated_stencils_called_smooth_interior: false
+  expected_101416: heuristic_cost_scenario_not_measured_calls
+  worst_382580: stress_scenario_not_certified_worst_case
+  ratio_4p385: projected_work_ratio_not_measured_speedup
+fixed_experiment:
+  geometry: {id: a050_i050, spin: 0.5, inclination_degrees: 50}
+  orders: [0, 1, 2]
+  detector: D026
+  bounds_M: {alpha: [-25, 25], beta: [-25, 25]}
+  pitch_M: 0.4
+  sigma: 0.011341986814407566
+  clock_reference_M: -978.6055123201214
+  observer_times: exact_accepted_eight
+  source_annulus_norm_target_nuisance_velocity: unchanged
+  comparator_payload_root: artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e
+  hull: accepted_029_cached_payload_no_regeneration
+box_error_report:
+  interval_propagation: preserve_sign_aware_endpoint_products
+  reference_response: explicit_nominal_array_required
+  component_radius: max_abs_lower_minus_nominal_and_upper_minus_nominal
+  halfwidth_valid_for: midpoint_reference_only
+  primary_norm: per_channel_Euclidean_over_whitened_detector_rows
+  joint_stack: explicitly_label_separate_aggregation
+  matrix_ord1_is_joint_Euclidean: false
+  missing_field_envelope: unresolved_not_zero
+  helper: docs/revisions/mahakal_v4_1/review034/response_checks_034.py
+cached_stencil_audit:
+  original_method: tensor_grid_bilinear_n3_field_error
+  reproduce_old_diagnostic_first: true
+  verify: [coordinate_to_array_index, alpha_beta_orientation, realized_axes, in_cell_weights, no_unreported_extrapolation]
+  stencil_categories: [raw_finite, same_emission_domain, same_branch_where_verified, boundary_crossing, missing_value, unknown_branch]
+  finite_corners_alone_certify_source_validity: false
+  candidate_count: two_total_original_and_strict_valid_stencil_bilinear
+  additional_fit_families_or_learning: not_authorized
+  select_stencils_from_target_modes: forbidden
+  coverage_selection_change_vs_approximation_change: separate
+  fine_map_is_exact_continuum_truth: false
+  archive_previously_inspected: development_comparison_not_new_holdout
+composite_response_audit:
+  representation: common_fine_or_common_refinement_geometry_both_sides_same_support
+  overlap_units: area_maps_brightness_to_integrated_flux
+  noise: single_sky_sigma_squared_full_detector_area_once
+  other_noise_models: no_silent_interchange
+  screen_fields: ['1', 'alpha/25', 'beta/25', '(alpha/25)^2', '(beta/25)^2', 'alpha*beta/625']
+  transferred_fields: ['g^3', 'g^3*cos(2*pi*(t_obs-delay)/20)', 'g^3*sin(2*pi*(t_obs-delay)/20)', 'g^3*cos(2*pi*(t_obs-delay)/40)', 'g^3*sin(2*pi*(t_obs-delay)/40)']
+  field_manifest: confirm_exact_inherited_definition_and_validity_placement
+  source_r_and_phi: ancillary_or_future_source_dependent_diagnostics_not_substitute_test_fields
+  raw_time_relative_to_absolute_zero: not_temporal_accuracy_criterion
+  redshift_g: not_interchangeable_with_g_cubed
+  evaluate_only_available_tuples: true
+  uncomputed_or_unknown_contribution: retain_coverage_gap_and_envelope_or_blocker
+  output_vectors: required_per_order_field_and_time
+  norm: norm_W_yhat_minus_yref_not_difference_of_norms
+  absolute_weight_bound: norm_W_O_abs_field_difference
+  supplied_field_L2_bound: valid_only_for_same_support_and_verified_overlap_partition
+  support_omissions: report_node_and_area_fractions_no_full_domain_claim
+  signed_cancellation_hides_unbounded_missing_support: forbidden
+  small_cached_partial_residual_qualifies_R3A: false
+accuracy_unchanged:
+  hull: 2.5e-4
+  transfer_emission_response_component: 5.0e-4
+  total_response_mask_area: 1.0e-3
+  integration_tessellation: 1.0e-6
+  exact_fixture_atol: 1.0e-12
+  exact_fixture_rtol: 1.0e-12
+  raw_primitive_threshold_equal_number_means_same_budget: false
+  numerical_budget_relaxation: forbidden
+stages:
+  C0:
+    tasks: [saved_comparator_quantity_readback, derived_statistics_overlay, nominal_aware_box_bound_fixture]
+    new_physical_evaluations: 0
+  C1:
+    tasks: [old_bilinear_reproduction, stencil_identity_checks, domain_branch_coverage_partition]
+    new_physical_evaluations: 0
+  C2:
+    tasks: [cached_composite_fields, matching_supported_detector_responses, omitted_support_accounting, revised_cost_scenario]
+    new_physical_evaluations: 0
+  manuscript_route:
+    task: additive_claim_map_retained_discrete_claims_vs_required_revalidation_vs_deferred_common_sky
+    frozen_manuscript_overwrite: forbidden
+    draft_is_submission_ready: false
+resources:
+  convention: B_native_plus_independent_reference
+  second_batch_spent: 19146
+  second_batch_remaining: 854
+  remaining_spend_under_this_ruling: 0
+  boundary_spent: 33410
+  new_allowance_or_third_batch: none
+  peak_GiB: 8
+  cached_processing: blocked_or_sparse_no_full_dense_data_space_matrix
+  elapsed_time: retain_cumulative_record_no_silent_reset
+  paid_resources: forbidden
+execution:
+  archive_audit_code_and_metric_specification: commit_before_new_diagnostic_outcomes
+  all_cached_inputs: authenticated_and_hashed
+  save_arrays_before_summary: required
+  old_report_renderer: keep_bytes_new_overlay_only
+  legacy_write_capable_tests: disposable_worktree
+  pre_post_authoritative_hashes: record
+  skipped_missing_inputs: explicit_not_pass
+return:
+  ready: CACHED_RESPONSE_AUDIT_034_REVIEW_READY
+  blocked: CACHED_RESPONSE_AUDIT_034_BLOCKED
+  separate_statuses: [comparator_closed, interval_report, stencil_diagnostics, partial_response_comparison, missing_support, cost_scenarios, physical_quadrature, manuscript_claim_routes]
+  ready_authorizes_R3B: false
+  stop_before_any_new_physical_query: true
+outputs:
+  - CACHED_RESPONSE_034_INPUT_MANIFEST.json
+  - COMPARATOR_QUANTITY_READBACK_034.json
+  - INTERPRETATION_OVERLAY_034.md
+  - BOX_REFERENCE_NORM_TESTS_034.json
+  - STENCIL_AND_COVERAGE_AUDIT_034.json
+  - CACHED_COMPOSITE_RESPONSE_034.npz
+  - RESPONSE_ERROR_AND_OMITTED_SUPPORT_034.json
+  - RESPONSE_BASED_COST_SCENARIOS_034.json
+  - MANUSCRIPT_CLAIM_ROUTES_034.md
+  - CACHED_RESPONSE_AUDIT_034_RETURN.md
+  - CACHED_RESPONSE_AUDIT_034_COMPLETION.json
+  - SHA256SUMS.txt
