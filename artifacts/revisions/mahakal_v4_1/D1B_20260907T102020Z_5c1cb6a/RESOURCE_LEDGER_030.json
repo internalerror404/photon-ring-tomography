@@ -1,0 +1,26 @@
+{
+  "committed_second_batch_attempts": {
+    "T1_20260907T074951Z_3d42022": 480,
+    "T1_20260907T075031Z_c35cb34": 1080,
+    "T1_20260907T075138Z_1113f3e": 1080
+  },
+  "second_batch_spent_before_030": 2640,
+  "second_batch_original_cap": 20000,
+  "second_batch_remaining": 17360,
+  "summary_file_previously_reported": 18920,
+  "correction": "the 029 return summarised only the last of three executed T1 runs. All three are separately recorded attempts and all three count, including the two that revisited the same points",
+  "old_records_rewritten": false,
+  "first_pilot_closed_at": 17912,
+  "transfer_lifetime_spent_before_030": 20552,
+  "boundary_lifetime_spent": 33410,
+  "boundary_remaining": 890,
+  "new_boundary_calls_authorised": 0,
+  "second_batch_spent_by_030": 2156,
+  "second_batch_remaining_after_030": 15204,
+  "d1_decision_point_max": 3000,
+  "independent_validation_reserve_min": 4000,
+  "independent_validation_actual": 880,
+  "reserve_not_rounded_up_to": 4000,
+  "new_boundary_calls": 0,
+  "third_batch": "not authorized"
+}

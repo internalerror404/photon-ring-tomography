@@ -1,0 +1,87 @@
+{
+  "schema": "phrt-completion/1",
+  "id": "PATH_DOMAIN_030_COMPLETION",
+  "ruling": "PAPER_I_PATH_DOMAIN_RULING_030",
+  "generated_utc": "2026-09-07T10:22:52Z",
+  "commit": "5c1cb6af62c5987477ed8b38f501ba3847d6bfed",
+  "fail_closed": true,
+  "required_conditions": [
+    "prerequisite_test_success",
+    "preregistration_before_every_query",
+    "reservation_precedes_every_physical_call",
+    "counter_reconciliation_recorded",
+    "no_expression_switch_or_sign_forcing",
+    "no_requested_order_changed",
+    "no_backend_substitution",
+    "independent_comparator_is_not_a_production_replacement",
+    "holdout_precommitted_and_not_previously_inspected",
+    "transfer_cap_respected",
+    "d1_decision_point_cap_respected",
+    "no_new_boundary_calls",
+    "no_target_information_inspected",
+    "not_run_recorded_as_not_run"
+  ],
+  "conditions": {
+    "prerequisite_test_success": true,
+    "preregistration_before_every_query": true,
+    "reservation_precedes_every_physical_call": true,
+    "counter_reconciliation_recorded": true,
+    "no_expression_switch_or_sign_forcing": true,
+    "no_requested_order_changed": true,
+    "no_backend_substitution": true,
+    "independent_comparator_is_not_a_production_replacement": true,
+    "holdout_precommitted_and_not_previously_inspected": true,
+    "transfer_cap_respected": true,
+    "d1_decision_point_cap_respected": true,
+    "no_new_boundary_calls": true,
+    "no_target_information_inspected": true,
+    "not_run_recorded_as_not_run": true
+  },
+  "failed_conditions": [],
+  "separate_statuses": {
+    "marker_semantics": "CONFIRMED",
+    "root_branch_classification": "CORRECTED",
+    "event_existence": "VALIDATED_ABSENCES_NO_REPAIR_JUSTIFIED",
+    "source_domain_completeness": "PENDING_CONTOUR_ARRAYS",
+    "whole_transfer_accuracy": "NOT_QUALIFIED",
+    "quadrature": "NOT_QUALIFIED",
+    "governance": "COMPLETE"
+  },
+  "return_status": "PATH_DOMAIN_030_REVIEW_READY",
+  "ready_is_physical_quadrature_qualified": false,
+  "R3B_authorized": false,
+  "test_suite": {
+    "returncode": 0,
+    "passed": true,
+    "summary": "597 passed in 41.91s"
+  },
+  "ledger": {
+    "committed_second_batch_attempts": {
+      "T1_20260907T074951Z_3d42022": 480,
+      "T1_20260907T075031Z_c35cb34": 1080,
+      "T1_20260907T075138Z_1113f3e": 1080
+    },
+    "second_batch_spent_before_030": 2640,
+    "second_batch_original_cap": 20000,
+    "second_batch_remaining": 17360,
+    "summary_file_previously_reported": 18920,
+    "correction": "the 029 return summarised only the last of three executed T1 runs. All three are separately recorded attempts and all three count, including the two that revisited the same points",
+    "old_records_rewritten": false,
+    "first_pilot_closed_at": 17912,
+    "transfer_lifetime_spent_before_030": 20552,
+    "boundary_lifetime_spent": 33410,
+    "boundary_remaining": 890,
+    "new_boundary_calls_authorised": 0,
+    "second_batch_spent_by_030": 2156,
+    "second_batch_remaining_after_030": 15204,
+    "d1_decision_point_max": 3000,
+    "independent_validation_reserve_min": 4000,
+    "independent_validation_actual": 880,
+    "reserve_not_rounded_up_to": 4000,
+    "new_boundary_calls": 0,
+    "third_batch": "not authorized"
+  },
+  "skipped": [
+    "D3 contour re-derivation: deferred, as the ruling directs, until the domain decision is validated -- and now that it is, the arrays are still absent and re-deriving them is a separate decision"
+  ]
+}

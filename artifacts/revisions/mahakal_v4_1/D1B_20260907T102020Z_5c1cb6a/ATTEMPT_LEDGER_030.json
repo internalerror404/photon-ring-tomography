@@ -1,0 +1,72 @@
+{
+  "freeze": "/home/user/photon-ring-tomography/artifacts/revisions/mahakal_v4_1/D0B_20260907T102018Z_bdcc851/PATH_DOMAIN_030_INPUT_FREEZE.json",
+  "attempted": {
+    "transfer": 2156,
+    "boundary": 0
+  },
+  "completed": {
+    "transfer": 2156,
+    "boundary": 0
+  },
+  "failed": {
+    "transfer": 840,
+    "boundary": 0
+  },
+  "events": [
+    {
+      "token": 0,
+      "kind": "transfer",
+      "reserved": 200,
+      "why": "D1_dev_n0",
+      "outcome": "completed",
+      "completed": 200,
+      "failed": 0
+    },
+    {
+      "token": 1,
+      "kind": "transfer",
+      "reserved": 423,
+      "why": "D1_dev_n1",
+      "outcome": "completed",
+      "completed": 199,
+      "failed": 224
+    },
+    {
+      "token": 2,
+      "kind": "transfer",
+      "reserved": 653,
+      "why": "D1_dev_n2",
+      "outcome": "completed",
+      "completed": 197,
+      "failed": 456
+    },
+    {
+      "token": 3,
+      "kind": "transfer",
+      "reserved": 240,
+      "why": "D2_holdout_n0",
+      "outcome": "completed",
+      "completed": 240,
+      "failed": 0
+    },
+    {
+      "token": 4,
+      "kind": "transfer",
+      "reserved": 320,
+      "why": "D2_holdout_n1",
+      "outcome": "completed",
+      "completed": 240,
+      "failed": 80
+    },
+    {
+      "token": 5,
+      "kind": "transfer",
+      "reserved": 320,
+      "why": "D2_holdout_n2",
+      "outcome": "completed",
+      "completed": 240,
+      "failed": 80
+    }
+  ],
+  "note": "written after every reservation and completion, so an exception in the solver or the report cannot lose a charge"
+}
