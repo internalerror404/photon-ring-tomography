@@ -188,11 +188,48 @@ def bind(a: BoundedAssembly, counts: dict) -> BoundedAssembly:
     return a
 
 
-def envelope_response_bound(a: BoundedAssembly, whiten: float = 1.0) -> float:
-    """The triangle-inequality bound ||W (y - y_hat)|| <= sum_l e_l.
+def box_radius_about(a: BoundedAssembly, nominal: np.ndarray,
+                     whitening: np.ndarray | float = 1.0):
+    """Error radius of the enclosure about an EXPLICIT reference response.
 
-    Reported as the half-width of the enclosure, which is what the local
-    envelopes actually supply. It holds on the domain the envelopes cover and
-    says nothing about anything outside it.
+    Ruling 034. The half-width of a box bounds the error about its midpoint
+    and about nothing else: for [0, 2] the largest error about a nominal of
+    zero is 2, not 1. The reference response therefore has to be supplied,
+    and the radius per detector row is
+
+        max(|lower - nominal|, |upper - nominal|)
+
+    whitened, then reduced per channel. The per-channel Euclidean norm over
+    the whitened detector rows is the primary figure; the joint norm over the
+    whole stack is a different aggregation and is returned separately, labelled
+    as such. A matrix one-norm is neither of them -- for a one-row half-width
+    of [1, 1] it returns 1 while the joint Euclidean radius is sqrt(2).
     """
-    return float(np.linalg.norm(0.5 * a.width * whiten, ord=1))
+    lo, hi = a.lower, a.upper
+    nom = np.asarray(nominal, float)
+    if nom.shape != lo.shape:
+        raise LeafError(
+            f"the reference response is {nom.shape} and the enclosure is "
+            f"{lo.shape}: a bound needs the response it is about")
+    w = np.asarray(whitening, float)
+    if w.ndim == 0:
+        w = np.full(lo.shape[0], float(w))
+    if w.shape != (lo.shape[0],) or np.any(w < 0):
+        raise LeafError("whitening must be one nonnegative value per detector "
+                        "row")
+    if not (np.isfinite(nom).all() and np.isfinite(lo).all()
+            and np.isfinite(hi).all()):
+        raise EnvelopeMissing("a non-finite bound or reference response: an "
+                              "unbounded contribution is a blocker, not a zero")
+    rad = np.maximum(np.abs(lo - nom), np.abs(hi - nom)) * w[:, None]
+    return {
+        "per_channel_euclidean": np.linalg.norm(rad, axis=0),
+        "joint_euclidean_over_the_whole_stack": float(np.linalg.norm(rad)),
+        "reference": "supplied nominal response",
+        "half_width_would_be_valid_only_about_the_midpoint": True,
+    }
+
+
+def midpoint(a: BoundedAssembly) -> np.ndarray:
+    """The one reference for which the half-width IS the error radius."""
+    return 0.5 * (a.lower + a.upper)

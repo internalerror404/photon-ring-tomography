@@ -1,0 +1,310 @@
+{
+  "stage": "C2",
+  "ruling": "PAPER_I_RESPONSE_ERROR_RULING_034",
+  "generated_utc": "2026-09-07T23:18:49Z",
+  "commit": "ff6250da3c461b6dbc17302c90c954f9b5ceb76e",
+  "new_rays": 0,
+  "new_path_quadratures": 0,
+  "field_manifest": {
+    "screen": [
+      "1",
+      "alpha/25",
+      "beta/25",
+      "(alpha/25)^2",
+      "(beta/25)^2",
+      "alpha*beta/625"
+    ],
+    "transferred": [
+      "g^3",
+      "g^3*cos20",
+      "g^3*sin20",
+      "g^3*cos40",
+      "g^3*sin40"
+    ],
+    "observer_times": [
+      0.0,
+      2.857142857142857,
+      5.714285714285714,
+      8.571428571428571,
+      11.428571428571429,
+      14.285714285714286,
+      17.142857142857142,
+      20.0
+    ],
+    "channels": 46,
+    "source": "scripts/revision_v4_1/v2_partial_response.py, the inherited definitions, copied not re-invented",
+    "delay": "T_REF - coordinate_time, absolute clock reference -978.6055123201214",
+    "g_cubed_from_the_carried_primitive_g": true,
+    "g_is_not_interchangeable_with_g_cubed": true
+  },
+  "comparison": {
+    "utility": "docs/revisions/mahakal_v4_1/review034/response_checks_034.py::compare_cached",
+    "same_support_both_sides": true,
+    "same_overlap_operator_both_sides": true,
+    "noise": "single-sky sigma^2 over the full detector area once per pixel",
+    "metric": "norm(W(y_hat - y_ref)) / norm(W y_ref), per channel; never a difference of norms"
+  },
+  "per_order": {
+    "n0": {
+      "order": 0,
+      "channels": 46,
+      "labels": [
+        "screen:1",
+        "screen:alpha/25",
+        "screen:beta/25",
+        "screen:(alpha/25)^2",
+        "screen:(beta/25)^2",
+        "screen:alpha*beta/625",
+        "transferred:g^3@t=0.000000",
+        "transferred:g^3*cos20@t=0.000000",
+        "transferred:g^3*sin20@t=0.000000",
+        "transferred:g^3*cos40@t=0.000000",
+        "transferred:g^3*sin40@t=0.000000",
+        "transferred:g^3@t=2.857143",
+        "transferred:g^3*cos20@t=2.857143",
+        "transferred:g^3*sin20@t=2.857143",
+        "transferred:g^3*cos40@t=2.857143",
+        "transferred:g^3*sin40@t=2.857143",
+        "transferred:g^3@t=5.714286",
+        "transferred:g^3*cos20@t=5.714286",
+        "transferred:g^3*sin20@t=5.714286",
+        "transferred:g^3*cos40@t=5.714286",
+        "transferred:g^3*sin40@t=5.714286",
+        "transferred:g^3@t=8.571429",
+        "transferred:g^3*cos20@t=8.571429",
+        "transferred:g^3*sin20@t=8.571429",
+        "transferred:g^3*cos40@t=8.571429",
+        "transferred:g^3*sin40@t=8.571429",
+        "transferred:g^3@t=11.428571",
+        "transferred:g^3*cos20@t=11.428571",
+        "transferred:g^3*sin20@t=11.428571",
+        "transferred:g^3*cos40@t=11.428571",
+        "transferred:g^3*sin40@t=11.428571",
+        "transferred:g^3@t=14.285714",
+        "transferred:g^3*cos20@t=14.285714",
+        "transferred:g^3*sin20@t=14.285714",
+        "transferred:g^3*cos40@t=14.285714",
+        "transferred:g^3*sin40@t=14.285714",
+        "transferred:g^3@t=17.142857",
+        "transferred:g^3*cos20@t=17.142857",
+        "transferred:g^3*sin20@t=17.142857",
+        "transferred:g^3*cos40@t=17.142857",
+        "transferred:g^3*sin40@t=17.142857",
+        "transferred:g^3@t=20.000000",
+        "transferred:g^3*cos20@t=20.000000",
+        "transferred:g^3*sin20@t=20.000000",
+        "transferred:g^3*cos40@t=20.000000",
+        "transferred:g^3*sin40@t=20.000000"
+      ],
+      "support": {
+        "fine_emitting_nodes": 61635,
+        "nodes_compared": 61276,
+        "node_coverage_of_emitting": 0.9941753873610774,
+        "compared_overlap_area": 2455.746681505137,
+        "emitting_overlap_area": 2469.744492417698,
+        "band_overlap_area": 2475.262825836023,
+        "area_coverage_of_emitting": 0.9943322837825794,
+        "area_omitted_from_the_comparison": 13.997810912560908,
+        "omitted_support_has_no_response_bound": true
+      },
+      "whitened_relative_error": {
+        "screen_channels": {
+          "max": 0.0,
+          "median": 0.0
+        },
+        "transferred_channels": {
+          "max": 0.00959392601984124,
+          "median": 0.003731771419463039,
+          "p95": 0.009303911126859332,
+          "above_component_budget": 40,
+          "of": 40
+        },
+        "worst_channel": "transferred:g^3*cos20@t=17.142857",
+        "worst_value": 0.00959392601984124
+      },
+      "absolute_whitened_error": {
+        "max": 26.041233531223316,
+        "reference_norm_max": 4365.696895827074
+      },
+      "supplied_field_L2_upper_bound": {
+        "max": 31.76476885905639,
+        "note": "discrete Cauchy-Schwarz on the supplied piecewise field; an upper bound on this comparison, not a certificate for the sky"
+      }
+    },
+    "n1": {
+      "order": 1,
+      "channels": 46,
+      "labels": [
+        "screen:1",
+        "screen:alpha/25",
+        "screen:beta/25",
+        "screen:(alpha/25)^2",
+        "screen:(beta/25)^2",
+        "screen:alpha*beta/625",
+        "transferred:g^3@t=0.000000",
+        "transferred:g^3*cos20@t=0.000000",
+        "transferred:g^3*sin20@t=0.000000",
+        "transferred:g^3*cos40@t=0.000000",
+        "transferred:g^3*sin40@t=0.000000",
+        "transferred:g^3@t=2.857143",
+        "transferred:g^3*cos20@t=2.857143",
+        "transferred:g^3*sin20@t=2.857143",
+        "transferred:g^3*cos40@t=2.857143",
+        "transferred:g^3*sin40@t=2.857143",
+        "transferred:g^3@t=5.714286",
+        "transferred:g^3*cos20@t=5.714286",
+        "transferred:g^3*sin20@t=5.714286",
+        "transferred:g^3*cos40@t=5.714286",
+        "transferred:g^3*sin40@t=5.714286",
+        "transferred:g^3@t=8.571429",
+        "transferred:g^3*cos20@t=8.571429",
+        "transferred:g^3*sin20@t=8.571429",
+        "transferred:g^3*cos40@t=8.571429",
+        "transferred:g^3*sin40@t=8.571429",
+        "transferred:g^3@t=11.428571",
+        "transferred:g^3*cos20@t=11.428571",
+        "transferred:g^3*sin20@t=11.428571",
+        "transferred:g^3*cos40@t=11.428571",
+        "transferred:g^3*sin40@t=11.428571",
+        "transferred:g^3@t=14.285714",
+        "transferred:g^3*cos20@t=14.285714",
+        "transferred:g^3*sin20@t=14.285714",
+        "transferred:g^3*cos40@t=14.285714",
+        "transferred:g^3*sin40@t=14.285714",
+        "transferred:g^3@t=17.142857",
+        "transferred:g^3*cos20@t=17.142857",
+        "transferred:g^3*sin20@t=17.142857",
+        "transferred:g^3*cos40@t=17.142857",
+        "transferred:g^3*sin40@t=17.142857",
+        "transferred:g^3@t=20.000000",
+        "transferred:g^3*cos20@t=20.000000",
+        "transferred:g^3*sin20@t=20.000000",
+        "transferred:g^3*cos40@t=20.000000",
+        "transferred:g^3*sin40@t=20.000000"
+      ],
+      "support": {
+        "fine_emitting_nodes": 34278,
+        "nodes_compared": 33338,
+        "node_coverage_of_emitting": 0.9725771631950523,
+        "compared_overlap_area": 53.55462493380132,
+        "emitting_overlap_area": 54.98406267973474,
+        "band_overlap_area": 72.0052658571607,
+        "area_coverage_of_emitting": 0.9740026895746235,
+        "area_omitted_from_the_comparison": 1.42943774593342,
+        "omitted_support_has_no_response_bound": true
+      },
+      "whitened_relative_error": {
+        "screen_channels": {
+          "max": 0.0,
+          "median": 0.0
+        },
+        "transferred_channels": {
+          "max": 0.0427435147361119,
+          "median": 0.02845257124912426,
+          "p95": 0.04240771507882101,
+          "above_component_budget": 40,
+          "of": 40
+        },
+        "worst_channel": "transferred:g^3*sin20@t=2.857143",
+        "worst_value": 0.0427435147361119
+      },
+      "absolute_whitened_error": {
+        "max": 7.953284536043373,
+        "reference_norm_max": 616.6010601082675
+      },
+      "supplied_field_L2_upper_bound": {
+        "max": 76.2235010658795,
+        "note": "discrete Cauchy-Schwarz on the supplied piecewise field; an upper bound on this comparison, not a certificate for the sky"
+      }
+    },
+    "n2": {
+      "order": 2,
+      "channels": 46,
+      "labels": [
+        "screen:1",
+        "screen:alpha/25",
+        "screen:beta/25",
+        "screen:(alpha/25)^2",
+        "screen:(beta/25)^2",
+        "screen:alpha*beta/625",
+        "transferred:g^3@t=0.000000",
+        "transferred:g^3*cos20@t=0.000000",
+        "transferred:g^3*sin20@t=0.000000",
+        "transferred:g^3*cos40@t=0.000000",
+        "transferred:g^3*sin40@t=0.000000",
+        "transferred:g^3@t=2.857143",
+        "transferred:g^3*cos20@t=2.857143",
+        "transferred:g^3*sin20@t=2.857143",
+        "transferred:g^3*cos40@t=2.857143",
+        "transferred:g^3*sin40@t=2.857143",
+        "transferred:g^3@t=5.714286",
+        "transferred:g^3*cos20@t=5.714286",
+        "transferred:g^3*sin20@t=5.714286",
+        "transferred:g^3*cos40@t=5.714286",
+        "transferred:g^3*sin40@t=5.714286",
+        "transferred:g^3@t=8.571429",
+        "transferred:g^3*cos20@t=8.571429",
+        "transferred:g^3*sin20@t=8.571429",
+        "transferred:g^3*cos40@t=8.571429",
+        "transferred:g^3*sin40@t=8.571429",
+        "transferred:g^3@t=11.428571",
+        "transferred:g^3*cos20@t=11.428571",
+        "transferred:g^3*sin20@t=11.428571",
+        "transferred:g^3*cos40@t=11.428571",
+        "transferred:g^3*sin40@t=11.428571",
+        "transferred:g^3@t=14.285714",
+        "transferred:g^3*cos20@t=14.285714",
+        "transferred:g^3*sin20@t=14.285714",
+        "transferred:g^3*cos40@t=14.285714",
+        "transferred:g^3*sin40@t=14.285714",
+        "transferred:g^3@t=17.142857",
+        "transferred:g^3*cos20@t=17.142857",
+        "transferred:g^3*sin20@t=17.142857",
+        "transferred:g^3*cos40@t=17.142857",
+        "transferred:g^3*sin40@t=17.142857",
+        "transferred:g^3@t=20.000000",
+        "transferred:g^3*cos20@t=20.000000",
+        "transferred:g^3*sin20@t=20.000000",
+        "transferred:g^3*cos40@t=20.000000",
+        "transferred:g^3*sin40@t=20.000000"
+      ],
+      "support": {
+        "fine_emitting_nodes": 16672,
+        "nodes_compared": 10284,
+        "node_coverage_of_emitting": 0.6168426103646834,
+        "compared_overlap_area": 1.0293692897210054,
+        "emitting_overlap_area": 1.638597888324837,
+        "band_overlap_area": 2.0038742001814733,
+        "area_coverage_of_emitting": 0.6282012793104139,
+        "area_omitted_from_the_comparison": 0.6092285986038317,
+        "omitted_support_has_no_response_bound": true
+      },
+      "whitened_relative_error": {
+        "screen_channels": {
+          "max": 0.0,
+          "median": 0.0
+        },
+        "transferred_channels": {
+          "max": 0.511602956726496,
+          "median": 0.2629626499643507,
+          "p95": 0.47567054243876294,
+          "above_component_budget": 40,
+          "of": 40
+        },
+        "worst_channel": "transferred:g^3*sin40@t=8.571429",
+        "worst_value": 0.511602956726496
+      },
+      "absolute_whitened_error": {
+        "max": 1.9601153610836481,
+        "reference_norm_max": 35.20611761000294
+      },
+      "supplied_field_L2_upper_bound": {
+        "max": 29.163646283024946,
+        "note": "discrete Cauchy-Schwarz on the supplied piecewise field; an upper bound on this comparison, not a certificate for the sky"
+      }
+    }
+  },
+  "small_residual_on_available_support_qualifies_full_quadrature": false,
+  "signed_cancellation_does_not_bound_omitted_support": true,
+  "runtime_seconds": 112.68763136863708
+}

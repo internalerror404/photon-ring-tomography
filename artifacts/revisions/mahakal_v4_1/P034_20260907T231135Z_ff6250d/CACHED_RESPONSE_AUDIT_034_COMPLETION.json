@@ -1,0 +1,84 @@
+{
+  "schema": "phrt-completion/1",
+  "id": "CACHED_RESPONSE_AUDIT_034_COMPLETION",
+  "ruling": "PAPER_I_RESPONSE_ERROR_RULING_034",
+  "generated_utc": "2026-09-07T23:30:42Z",
+  "commit": "ff6250da3c461b6dbc17302c90c954f9b5ceb76e",
+  "return_status": "CACHED_RESPONSE_AUDIT_034_REVIEW_READY",
+  "ready_authorizes_R3B": false,
+  "statuses": {
+    "comparator_closed": "CLOSED_AT_TESTED_COHORT_SCOPE",
+    "interval_report": "CORRECTED_NOMINAL_AND_NORM_EXPLICIT",
+    "stencil_diagnostics": "REPRODUCED_AND_PARTITIONED_033_ATTRIBUTION_WITHDRAWN",
+    "partial_response_comparison": "MEASURED_AND_OUTSIDE_BUDGET",
+    "missing_support": "CARRIED_AS_A_COVERAGE_GAP_WITH_NO_BOUND",
+    "cost_scenarios": "SCENARIOS_NOT_MEASURED_EFFICIENCY",
+    "physical_quadrature": "NOT_QUALIFIED",
+    "manuscript_claim_routes": "DRAFTED_ADDITIVE_NO_OVERWRITE"
+  },
+  "withdrawn_from_033": [
+    "the blanket 3e-16 integral equality statement",
+    "the attribution of the order-2 cost to interior sampling",
+    "the sentence that adaptivity fixes the boundary cost",
+    "envelope_response_bound as an error figure"
+  ],
+  "measured_whitened_response_relative_error": {
+    "n0": 0.00959392601984124,
+    "n1": 0.0427435147361119,
+    "n2": 0.511602956726496
+  },
+  "coverage": {
+    "n0": {
+      "fine_emitting_nodes": 61635,
+      "nodes_compared": 61276,
+      "node_coverage_of_emitting": 0.9941753873610774,
+      "compared_overlap_area": 2455.746681505137,
+      "emitting_overlap_area": 2469.744492417698,
+      "band_overlap_area": 2475.262825836023,
+      "area_coverage_of_emitting": 0.9943322837825794,
+      "area_omitted_from_the_comparison": 13.997810912560908,
+      "omitted_support_has_no_response_bound": true
+    },
+    "n1": {
+      "fine_emitting_nodes": 34278,
+      "nodes_compared": 33338,
+      "node_coverage_of_emitting": 0.9725771631950523,
+      "compared_overlap_area": 53.55462493380132,
+      "emitting_overlap_area": 54.98406267973474,
+      "band_overlap_area": 72.0052658571607,
+      "area_coverage_of_emitting": 0.9740026895746235,
+      "area_omitted_from_the_comparison": 1.42943774593342,
+      "omitted_support_has_no_response_bound": true
+    },
+    "n2": {
+      "fine_emitting_nodes": 16672,
+      "nodes_compared": 10284,
+      "node_coverage_of_emitting": 0.6168426103646834,
+      "compared_overlap_area": 1.0293692897210054,
+      "emitting_overlap_area": 1.638597888324837,
+      "band_overlap_area": 2.0038742001814733,
+      "area_coverage_of_emitting": 0.6282012793104139,
+      "area_omitted_from_the_comparison": 0.6092285986038317,
+      "omitted_support_has_no_response_bound": true
+    }
+  },
+  "resources": {
+    "convention": "B",
+    "second_batch_spent": 19146,
+    "second_batch_remaining": 854,
+    "spent_under_this_ruling": 0,
+    "boundary_spent": 33410,
+    "new_allowance_or_third_batch": "none"
+  },
+  "tests": {
+    "whole_repository": "691 passed, 2 warnings in 273.98s (0:04:33)",
+    "run_in_a_disposable_worktree": true
+  },
+  "old_results_or_flags_rewritten": false,
+  "preserved_tokens": [
+    "DOMAIN_INTEGRATION_031_BLOCKED",
+    "MATCHED_INTEGRATION_032_PLAN_BLOCKED",
+    "FEASIBILITY_CLOSEOUT_033_REVIEW_READY"
+  ],
+  "runtime_seconds": 0.003179788589477539
+}

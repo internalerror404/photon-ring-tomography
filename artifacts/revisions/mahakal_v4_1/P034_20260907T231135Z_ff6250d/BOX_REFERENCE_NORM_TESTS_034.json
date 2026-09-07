@@ -1,0 +1,16 @@
+{
+  "stage": "C0",
+  "new_physical_evaluations": 0,
+  "corrected_helper": "leaf2.box_radius_about",
+  "replaces": "leaf2.envelope_response_bound (033), which reduced a half-width with a matrix one-norm about no stated reference",
+  "radius_about_zero_for_the_interval_0_to_2": 2.0,
+  "radius_about_the_midpoint": 1.0,
+  "per_channel_for_a_unit_two_channel_row": [
+    1.0,
+    1.0
+  ],
+  "joint_euclidean": 1.4142135623730951,
+  "matrix_one_norm_of_the_same_half_width": 1.0,
+  "max_disagreement_with_the_reviewer_helper": 0.0,
+  "agrees_with_the_reviewer_helper": true
+}

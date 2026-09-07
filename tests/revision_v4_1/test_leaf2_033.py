@@ -234,3 +234,64 @@ def test_S9_signed_field_enclosure_on_the_real_order_zero_band():
     escaped = int(np.count_nonzero((y < old.lower - 1e-9)
                                    | (y > old.upper + 1e-9)))
     assert escaped > 0, "on a signed field the 032 box must fail somewhere"
+
+
+# ---- ruling 034: the error radius needs an explicit reference and norm ----
+def test_S10_half_width_is_the_radius_about_the_midpoint_only():
+    a = L2.BoundedAssembly(np.zeros((1, 1)), np.full((1, 1), 2.0))
+    about_zero = L2.box_radius_about(a, np.zeros((1, 1)))
+    about_mid = L2.box_radius_about(a, L2.midpoint(a))
+    assert about_zero["per_channel_euclidean"][0] == 2.0
+    assert about_mid["per_channel_euclidean"][0] == 1.0
+
+
+def test_S10b_per_channel_and_joint_are_different_aggregations():
+    a = L2.BoundedAssembly(-np.ones((1, 2)), np.ones((1, 2)))
+    r = L2.box_radius_about(a, np.zeros((1, 2)))
+    assert np.array_equal(r["per_channel_euclidean"], np.ones(2))
+    assert r["joint_euclidean_over_the_whole_stack"] == pytest.approx(
+        np.sqrt(2.0))
+    # the 033 helper reduced this stack with a matrix one-norm, which is
+    # neither figure
+    assert float(np.linalg.norm(0.5 * (a.upper - a.lower), ord=1)) == 1.0
+
+
+def test_S10c_the_reference_response_must_match_the_enclosure():
+    a = L2.BoundedAssembly(np.zeros((2, 1)), np.ones((2, 1)))
+    with pytest.raises(LF.LeafError, match="the response it is about"):
+        L2.box_radius_about(a, np.zeros((3, 1)))
+    with pytest.raises(L2.EnvelopeMissing):
+        L2.box_radius_about(a, np.full((2, 1), np.nan))
+
+
+def test_S10d_whitening_is_one_nonnegative_value_per_detector_row():
+    a = L2.BoundedAssembly(np.zeros((2, 1)), np.ones((2, 1)))
+    r = L2.box_radius_about(a, np.zeros((2, 1)), whitening=np.array([1.0, 3.0]))
+    assert r["per_channel_euclidean"][0] == pytest.approx(np.sqrt(1.0 + 9.0))
+    with pytest.raises(LF.LeafError, match="one nonnegative value"):
+        L2.box_radius_about(a, np.zeros((2, 1)), whitening=np.array([-1.0, 1.0]))
+
+
+def test_S10e_agrees_with_the_reviewers_box_helper():
+    helper_mod = helper() if HELPER.is_file() else None
+    if helper_mod is None:
+        pytest.skip("review helper not present")
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "rev034", ROOT / "docs/revisions/mahakal_v4_1/review034/"
+                        "response_checks_034.py")
+    if not spec or not spec.loader:
+        pytest.skip("034 helper not present")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    rng = np.random.default_rng(34)
+    for _ in range(25):
+        lo = rng.normal(size=(4, 3))
+        hi = lo + rng.uniform(0, 2, (4, 3))
+        nom = rng.normal(size=(4, 3))
+        w = rng.uniform(0, 2, 4)
+        per, joint = mod.box_radius_about(lo, hi, nom, w)
+        got = L2.box_radius_about(L2.BoundedAssembly(lo, hi), nom, w)
+        assert np.allclose(got["per_channel_euclidean"], per, rtol=1e-12)
+        assert got["joint_euclidean_over_the_whole_stack"] == pytest.approx(
+            joint, rel=1e-12)

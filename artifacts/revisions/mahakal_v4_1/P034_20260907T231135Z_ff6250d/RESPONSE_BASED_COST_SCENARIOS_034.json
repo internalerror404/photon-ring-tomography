@@ -1,0 +1,159 @@
+{
+  "stage": "C2b",
+  "ruling": "PAPER_I_RESPONSE_ERROR_RULING_034",
+  "generated_utc": "2026-09-07T23:21:49Z",
+  "commit": "ff6250da3c461b6dbc17302c90c954f9b5ceb76e",
+  "new_rays": 0,
+  "method": "per-node contribution c_p = ||W O[:,p]||_2 * |F_hat[p] - F_ref[p]|, ranked; the tail sum bounds what is left after refining the head. A bound, not a forecast: the true error is smaller because contributions cancel.",
+  "measured_response_error": {
+    "n0": {
+      "screen_channels": {
+        "max": 0.0,
+        "median": 0.0
+      },
+      "transferred_channels": {
+        "max": 0.00959392601984124,
+        "median": 0.003731771419463039,
+        "p95": 0.009303911126859332,
+        "above_component_budget": 40,
+        "of": 40
+      },
+      "worst_channel": "transferred:g^3*cos20@t=17.142857",
+      "worst_value": 0.00959392601984124
+    },
+    "n1": {
+      "screen_channels": {
+        "max": 0.0,
+        "median": 0.0
+      },
+      "transferred_channels": {
+        "max": 0.0427435147361119,
+        "median": 0.02845257124912426,
+        "p95": 0.04240771507882101,
+        "above_component_budget": 40,
+        "of": 40
+      },
+      "worst_channel": "transferred:g^3*sin20@t=2.857143",
+      "worst_value": 0.0427435147361119
+    },
+    "n2": {
+      "screen_channels": {
+        "max": 0.0,
+        "median": 0.0
+      },
+      "transferred_channels": {
+        "max": 0.511602956726496,
+        "median": 0.2629626499643507,
+        "p95": 0.47567054243876294,
+        "above_component_budget": 40,
+        "of": 40
+      },
+      "worst_channel": "transferred:g^3*sin40@t=8.571429",
+      "worst_value": 0.511602956726496
+    }
+  },
+  "per_order": {
+    "n0": {
+      "order": 0,
+      "supported_nodes": 61276,
+      "triangle_bound_on_the_worst_transferred_channel": 253.99355939908833,
+      "measured_worst_transferred_absolute_error": 26.041233531223316,
+      "reference_norm": 3900.5412164527897,
+      "bound_is_conservative_by": 9.753514905296297,
+      "budget_absolute": 1.950270608226395,
+      "concentration": {
+        "0.50": {
+          "nodes": 126,
+          "fraction_of_support": 0.0020562699915138063
+        },
+        "0.90": {
+          "nodes": 3370,
+          "fraction_of_support": 0.05499706247144069
+        },
+        "0.99": {
+          "nodes": 35738,
+          "fraction_of_support": 0.5832299758469874
+        }
+      },
+      "nodes_whose_refinement_brings_the_tail_bound_inside_budget": 38519,
+      "fraction_of_support_needing_refinement": 0.6286147920882564,
+      "already_inside_budget": false
+    },
+    "n1": {
+      "order": 1,
+      "supported_nodes": 33338,
+      "triangle_bound_on_the_worst_transferred_channel": 452.64795084970706,
+      "measured_worst_transferred_absolute_error": 7.953284536043373,
+      "reference_norm": 380.8046636355551,
+      "bound_is_conservative_by": 56.913335465160145,
+      "budget_absolute": 0.19040233181777755,
+      "concentration": {
+        "0.50": {
+          "nodes": 502,
+          "fraction_of_support": 0.015057891895134682
+        },
+        "0.90": {
+          "nodes": 5103,
+          "fraction_of_support": 0.153068570400144
+        },
+        "0.99": {
+          "nodes": 17747,
+          "fraction_of_support": 0.5323354730337753
+        }
+      },
+      "nodes_whose_refinement_brings_the_tail_bound_inside_budget": 28987,
+      "fraction_of_support_needing_refinement": 0.8694882716419702,
+      "already_inside_budget": false
+    },
+    "n2": {
+      "order": 2,
+      "supported_nodes": 10284,
+      "triangle_bound_on_the_worst_transferred_channel": 55.763305190374126,
+      "measured_worst_transferred_absolute_error": 1.9601153610836481,
+      "reference_norm": 13.574972494239603,
+      "bound_is_conservative_by": 28.44899147137209,
+      "budget_absolute": 0.006787486247119802,
+      "concentration": {
+        "0.50": {
+          "nodes": 899,
+          "fraction_of_support": 0.08741734733566706
+        },
+        "0.90": {
+          "nodes": 3204,
+          "fraction_of_support": 0.3115519253208868
+        },
+        "0.99": {
+          "nodes": 6530,
+          "fraction_of_support": 0.6349669389342668
+        }
+      },
+      "nodes_whose_refinement_brings_the_tail_bound_inside_budget": 9658,
+      "fraction_of_support_needing_refinement": 0.9391287436795022,
+      "already_inside_budget": false
+    }
+  },
+  "scenario_at_2x2": {
+    "n0": {
+      "nodes_to_refine": 38519,
+      "at_2x2_per_node": 154076,
+      "note": "a scenario at one declared refinement factor, not a measured call count"
+    },
+    "n1": {
+      "nodes_to_refine": 28987,
+      "at_2x2_per_node": 115948,
+      "note": "a scenario at one declared refinement factor, not a measured call count"
+    },
+    "n2": {
+      "nodes_to_refine": 9658,
+      "at_2x2_per_node": 38632,
+      "note": "a scenario at one declared refinement factor, not a measured call count"
+    }
+  },
+  "scenario_total_at_2x2": 308656,
+  "compare_033_interior_scenario": 49037,
+  "compare_033_expected_total": 101416,
+  "these_are_scenarios_not_measured_efficiency": true,
+  "boundary_term_is_not_negligible_in_either_model": true,
+  "omitted_support_is_not_covered_by_any_of_these_numbers": true,
+  "runtime_seconds": 112.54322504997253
+}

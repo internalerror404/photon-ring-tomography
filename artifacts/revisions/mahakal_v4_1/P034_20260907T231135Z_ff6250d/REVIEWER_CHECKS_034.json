@@ -1,0 +1,134 @@
+{
+  "scope": "Review 034: cached-response utilities and independent synthetic checks.\n\nNo campaign ray, path integral, hull root, or repository test suite is evaluated.\nSource numbers below are explicit excerpts, not a full-file local rehash.\nThe utilities evaluate supplied finite arrays; they do not validate field\ninterpolation, source-domain coverage, or continuous field envelopes.",
+  "reviewed_commit": "d1617963d93713053a4ea374a8c78fcfa013448a",
+  "source_excerpt": {
+    "file": "CHUNK_development_rows_033.json",
+    "order": 1,
+    "index": 65785,
+    "A": {
+      "Jo": 0.5200302838631,
+      "J50": 0.5009986917817276,
+      "escape": 1.0410604990353791,
+      "err": 3.762317256050807e-05
+    },
+    "B": {
+      "Jo": 0.5200302838630997,
+      "J50": 0.5009986917817275,
+      "escape": 1.0410605717591273,
+      "err": 1.7770814292392525e-13
+    },
+    "absolute_differences": {
+      "Jo": 3.3306690738754696e-16,
+      "J50": 1.1102230246251565e-16,
+      "escape": 7.272374813460658e-08
+    },
+    "local_method": "explicit connector excerpt; not full file rehash"
+  },
+  "synthetic_pointwise_vs_response": {
+    "fraction_above_5e_4": 1.0,
+    "detector_relative_error": 0.0,
+    "field_L2_response_upper": 0.07071067811865477
+  },
+  "cost_arithmetic": {
+    "boundary_projection": 52379,
+    "interior_projection": 49037,
+    "expected_total": 101416,
+    "ratio": 4.385106886487339
+  },
+  "checks": [
+    {
+      "name": "near_machine_precision_agreement_applies_to_finite_path_values_in_excerpt",
+      "passed": true
+    },
+    {
+      "name": "escape_quantity_is_not_equal_at_3e_16_in_excerpt",
+      "passed": true
+    },
+    {
+      "name": "refinement_difference_and_observed_A_B_difference_are_distinct",
+      "passed": true
+    },
+    {
+      "name": "authoritative_remaining_balance_854",
+      "passed": true
+    },
+    {
+      "name": "order2_diagnostic_is_not_full_emitting_node_coverage",
+      "passed": true
+    },
+    {
+      "name": "global_max_scaled_error_is_not_pointwise_relative_error",
+      "passed": true
+    },
+    {
+      "name": "raw_coordinate_time_normalization_depends_on_zero_point",
+      "passed": true
+    },
+    {
+      "name": "composite_temporal_response_can_preserve_common_clock",
+      "passed": true
+    },
+    {
+      "name": "g_relative_error_does_not_equal_g_cubed_relative_error",
+      "passed": true
+    },
+    {
+      "name": "large_pointwise_failure_fraction_does_not_lower_bound_detector_error",
+      "passed": true
+    },
+    {
+      "name": "discrete_Cauchy_bound_holds_for_oscillatory_fixture",
+      "passed": true
+    },
+    {
+      "name": "discrete_Cauchy_bound_holds_for_all_signed_channels",
+      "passed": true
+    },
+    {
+      "name": "same_sign_field_error_survives_detector_averaging",
+      "passed": true
+    },
+    {
+      "name": "missing_fields_are_refused_not_zero_filled",
+      "passed": true
+    },
+    {
+      "name": "half_width_is_radius_about_midpoint_not_arbitrary_response",
+      "passed": true
+    },
+    {
+      "name": "matrix_one_norm_is_not_joint_Euclidean_box_radius",
+      "passed": true
+    },
+    {
+      "name": "per_channel_box_radii_remain_one",
+      "passed": true
+    },
+    {
+      "name": "finite_only_stencil_is_not_same_emitting_domain_stencil",
+      "passed": true
+    },
+    {
+      "name": "reported_expected_cost_components_sum",
+      "passed": true
+    },
+    {
+      "name": "model_does_not_show_zero_or_negligible_boundary_cost",
+      "passed": true
+    },
+    {
+      "name": "fourfold_ratio_is_projection_arithmetic_not_measured_execution",
+      "passed": true
+    }
+  ],
+  "n_checks": 21,
+  "all_passed": true,
+  "environment": {
+    "python": "3.11.15",
+    "numpy": "1.26.4",
+    "scipy": "1.11.4"
+  },
+  "campaign_queries": 0,
+  "repository_suite_run": false,
+  "script_sha256": "0fef46e7cbe2f5b128b7d38232a83f3cd9a8aba52fe700f5079712d3593a0879"
+}

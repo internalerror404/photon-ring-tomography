@@ -1,0 +1,21 @@
+{
+  "stage": "C0",
+  "ruling": "PAPER_I_RESPONSE_ERROR_RULING_034",
+  "generated_utc": "2026-09-07T23:11:45Z",
+  "commit": "ff6250da3c461b6dbc17302c90c954f9b5ceb76e",
+  "new_rays": 0,
+  "new_path_quadratures": 0,
+  "new_hull_roots": 0,
+  "cached_inputs": {
+    "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/CHUNK_development_rows_033.json": "4afeba3354300ab17ed7523e4ee1973a98cee591e2a8a1ccbe844399cd6cb5ae",
+    "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/CHUNK_confirmation_rows_033.json": "8403b79a86b27414fcb153098abec39bebbd34623b5ecec34464b4f5a0c306bd",
+    "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/CHUNK_development_033.npz": "0d80aceaa2970b6547dd4d9639abe3829f3bae493627fa3d4c2d13163f160770",
+    "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/CHUNK_confirmation_033.npz": "06555ba7b628214d08272852bd6c7101644d701b906ba3b5ba39892fd21b1e7f",
+    "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/COMPARATOR_CAUSE_AND_CONFIRMATION_033.json": "45adb0e3baef041c660956665ef68e94cffa25ad48548aacadaff0b1f06789d7",
+    "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/FEASIBILITY_CLOSEOUT_033_INPUT_FREEZE.json": "2ae7f8021c153877b3d99fa33b143672d6ef127a284482406d750f5bfeceefdc",
+    "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/ADAPTIVE_INTEGRATION_DESIGN_033.json": "ef946645d8cad9363601b656573026083bef96fcb6272000fd62670a6364d6f2",
+    "artifacts/revisions/mahakal_v4_1/G1C_20260907T075203Z_d252697/CLOSEOUT_ARRAYS_029.npz": "192eb9598c27ed2f96811ba8a8c27bbae2e09d2ac17769f4143a60771332e634"
+  },
+  "missing_inputs": [],
+  "skipped_missing_inputs_are_explicit_not_a_pass": true
+}

@@ -1,0 +1,434 @@
+{
+  "stage": "C1",
+  "ruling": "PAPER_I_RESPONSE_ERROR_RULING_034",
+  "generated_utc": "2026-09-07T23:15:44Z",
+  "commit": "ff6250da3c461b6dbc17302c90c954f9b5ceb76e",
+  "new_rays": 0,
+  "new_path_quadratures": 0,
+  "reproduces_the_033_diagnostic_first": true,
+  "metric_names": {
+    "global_max_scaled": "|z_interp - z_fine| / max over the selected nodes |z_fine|; this is what 033 reported",
+    "pointwise_relative": "|z_interp - z_fine| / |z_fine| at the node",
+    "neither_is_the_whitened_detector_response_error": true
+  },
+  "stencil_categories": {
+    "RAW_FINITE_CORNERS_ONLY": "four corners carry finite radius and redshift; this is the only condition 033 imposed",
+    "ALL_FOUR_CORNERS_CERTIFIED_EMITTING": "all four corners certified emitting",
+    "SAME_EMITTING_DOMAIN_AND_SAME_RADIAL_LEG": "all four emitting and the archived source radius spans less than a quarter of its own mean across the stencil, an observable proxy for one radial leg",
+    "STENCIL_CROSSES_THE_EMITTING_BOUNDARY": "finite corners that are not all emitting",
+    "A_CORNER_HAS_NO_VALUE": "a corner has no usable value",
+    "EMITTING_CORNERS_BUT_THE_LEG_IS_NOT_VERIFIED": "all four emitting but the leg proxy is not met"
+  },
+  "finite_corners_certify_source_validity": false,
+  "fine_map_is_exact_continuum_truth": false,
+  "coarse_and_fine_are_two_discretisations_not_truth_and_estimate": true,
+  "per_order": {
+    "n0": {
+      "order": 0,
+      "mechanics": {
+        "coarse_axes": {
+          "n_alpha": 126,
+          "n_beta": 126,
+          "alpha_min": -25.0,
+          "alpha_max": 25.0,
+          "beta_min": -25.0,
+          "beta_max": 25.0,
+          "alpha_spacing_unique": 1,
+          "beta_spacing_unique": 1
+        },
+        "raster_is_alpha_major": true,
+        "weights_in_the_unit_square": true,
+        "weight_range": [
+          0.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "fine_nodes_outside_the_coarse_hull": 0,
+        "extrapolation_was_silently_clamped": false,
+        "orientation_check": "each fine node's own coordinates recovered from the coarse axes it indexes"
+      },
+      "fine_emitting_nodes": 61635,
+      "relative_source_radius_span_across_emitting_stencils": {
+        "min": 0.0159483982721812,
+        "p05": 0.018449417297867605,
+        "median": 0.02847658855260055,
+        "p95": 0.09285920278673954,
+        "max": 0.3413275326811888
+      },
+      "same_leg_proxy_threshold": 0.25,
+      "same_leg_proxy_is_a_declared_heuristic_not_a_proof": true,
+      "categories": {
+        "A_CORNER_HAS_NO_VALUE": {
+          "nodes": 359,
+          "fraction_of_fine_emitting_nodes": 0.00582461263892269
+        },
+        "RAW_FINITE_CORNERS_ONLY": {
+          "nodes": 0,
+          "fraction_of_fine_emitting_nodes": 0.0
+        },
+        "STENCIL_CROSSES_THE_EMITTING_BOUNDARY": {
+          "nodes": 0,
+          "fraction_of_fine_emitting_nodes": 0.0
+        },
+        "EMITTING_CORNERS_BUT_THE_LEG_IS_NOT_VERIFIED": {
+          "nodes": 104,
+          "fraction_of_fine_emitting_nodes": 0.0016873529650360997
+        },
+        "SAME_EMITTING_DOMAIN_AND_SAME_RADIAL_LEG": {
+          "nodes": 61172,
+          "fraction_of_fine_emitting_nodes": 0.9924880343960412
+        }
+      },
+      "metrics": {
+        "redshift": {
+          "033_comparable_stencils": {
+            "nodes": 61276,
+            "coverage_of_fine_emitting_nodes": 0.9941753873610774,
+            "global_max_scaled_median": 3.7322321334537564e-06,
+            "global_max_scaled_fraction_above_5e_4": 0.020187349043671258,
+            "pointwise_relative_median": 4.51740794304686e-06,
+            "pointwise_relative_fraction_above_5e_4": 0.028134995756903192,
+            "absolute_median": 4.2624017317915985e-06
+          },
+          "strict_same_domain": {
+            "nodes": 61172,
+            "coverage_of_fine_emitting_nodes": 0.9924880343960412,
+            "global_max_scaled_median": 3.7204191471113388e-06,
+            "global_max_scaled_fraction_above_5e_4": 0.018586935199110706,
+            "pointwise_relative_median": 4.505333756604661e-06,
+            "pointwise_relative_fraction_above_5e_4": 0.026482704505329236,
+            "absolute_median": 4.248910691673213e-06
+          },
+          "boundary_crossing_only": {
+            "nodes": 0
+          }
+        },
+        "source_r": {
+          "033_comparable_stencils": {
+            "nodes": 61276,
+            "coverage_of_fine_emitting_nodes": 0.9941753873610774,
+            "global_max_scaled_median": 2.071946223073379e-05,
+            "global_max_scaled_fraction_above_5e_4": 0.0,
+            "pointwise_relative_median": 3.9841951919400564e-05,
+            "pointwise_relative_fraction_above_5e_4": 0.04158234871727919,
+            "absolute_median": 0.0009157544594291522
+          },
+          "strict_same_domain": {
+            "nodes": 61172,
+            "coverage_of_fine_emitting_nodes": 0.9924880343960412,
+            "global_max_scaled_median": 2.0686399329326823e-05,
+            "global_max_scaled_fraction_above_5e_4": 0.0,
+            "pointwise_relative_median": 3.973425460008766e-05,
+            "pointwise_relative_fraction_above_5e_4": 0.03995291963643497,
+            "absolute_median": 0.000914293152225909
+          },
+          "boundary_crossing_only": {
+            "nodes": 0
+          }
+        },
+        "coordinate_time": {
+          "033_comparable_stencils": {
+            "nodes": 61276,
+            "coverage_of_fine_emitting_nodes": 0.9941753873610774,
+            "global_max_scaled_median": 1.2783341237557837e-07,
+            "global_max_scaled_fraction_above_5e_4": 0.0009465369802206411,
+            "pointwise_relative_median": 1.3230470110840242e-07,
+            "pointwise_relative_fraction_above_5e_4": 0.000979176186435146,
+            "absolute_median": 0.00013249829430606042
+          },
+          "strict_same_domain": {
+            "nodes": 61172,
+            "coverage_of_fine_emitting_nodes": 0.9924880343960412,
+            "global_max_scaled_median": 1.2753552338129644e-07,
+            "global_max_scaled_fraction_above_5e_4": 0.0007356306807035899,
+            "pointwise_relative_median": 1.3200485891898107e-07,
+            "pointwise_relative_fraction_above_5e_4": 0.0007683253776237495,
+            "absolute_median": 0.00013218953478144613
+          },
+          "boundary_crossing_only": {
+            "nodes": 0
+          }
+        }
+      }
+    },
+    "n1": {
+      "order": 1,
+      "mechanics": {
+        "coarse_axes": {
+          "n_alpha": 250,
+          "n_beta": 250,
+          "alpha_min": -10.0,
+          "alpha_max": 10.0,
+          "beta_min": -10.0,
+          "beta_max": 10.0,
+          "alpha_spacing_unique": 1,
+          "beta_spacing_unique": 1
+        },
+        "raster_is_alpha_major": true,
+        "weights_in_the_unit_square": true,
+        "weight_range": [
+          0.0,
+          1.0,
+          0.0,
+          1.0
+        ],
+        "fine_nodes_outside_the_coarse_hull": 0,
+        "extrapolation_was_silently_clamped": false,
+        "orientation_check": "each fine node's own coordinates recovered from the coarse axes it indexes"
+      },
+      "fine_emitting_nodes": 34278,
+      "relative_source_radius_span_across_emitting_stencils": {
+        "min": 0.07309217076330583,
+        "p05": 0.08368411388647616,
+        "median": 0.13588649274716358,
+        "p95": 0.5775519225809503,
+        "max": 1.4826481271966299
+      },
+      "same_leg_proxy_threshold": 0.25,
+      "same_leg_proxy_is_a_declared_heuristic_not_a_proof": true,
+      "categories": {
+        "A_CORNER_HAS_NO_VALUE": {
+          "nodes": 940,
+          "fraction_of_fine_emitting_nodes": 0.02742283680494778
+        },
+        "RAW_FINITE_CORNERS_ONLY": {
+          "nodes": 0,
+          "fraction_of_fine_emitting_nodes": 0.0
+        },
+        "STENCIL_CROSSES_THE_EMITTING_BOUNDARY": {
+          "nodes": 1470,
+          "fraction_of_fine_emitting_nodes": 0.04288464904603536
+        },
+        "EMITTING_CORNERS_BUT_THE_LEG_IS_NOT_VERIFIED": {
+          "nodes": 5164,
+          "fraction_of_fine_emitting_nodes": 0.15065056304335142
+        },
+        "SAME_EMITTING_DOMAIN_AND_SAME_RADIAL_LEG": {
+          "nodes": 26704,
+          "fraction_of_fine_emitting_nodes": 0.7790419511056654
+        }
+      },
+      "metrics": {
+        "redshift": {
+          "033_comparable_stencils": {
+            "nodes": 33338,
+            "coverage_of_fine_emitting_nodes": 0.9725771631950523,
+            "global_max_scaled_median": 0.00010016523588782303,
+            "global_max_scaled_fraction_above_5e_4": 0.1863339132521447,
+            "pointwise_relative_median": 0.00014417046923812229,
+            "pointwise_relative_fraction_above_5e_4": 0.278421021057052,
+            "absolute_median": 0.00010369135414239894
+          },
+          "strict_same_domain": {
+            "nodes": 26704,
+            "coverage_of_fine_emitting_nodes": 0.7790419511056654,
+            "global_max_scaled_median": 7.719316793356728e-05,
+            "global_max_scaled_fraction_above_5e_4": 0.10039694427801078,
+            "pointwise_relative_median": 0.00010416152479927144,
+            "pointwise_relative_fraction_above_5e_4": 0.2000449370880767,
+            "absolute_median": 7.991060014611584e-05
+          },
+          "boundary_crossing_only": {
+            "nodes": 1470,
+            "coverage_of_fine_emitting_nodes": 0.04288464904603536,
+            "global_max_scaled_median": 6.456264622984655e-05,
+            "global_max_scaled_fraction_above_5e_4": 0.2680272108843537,
+            "pointwise_relative_median": 6.575237219944985e-05,
+            "pointwise_relative_fraction_above_5e_4": 0.2727891156462585,
+            "absolute_median": 6.333932226787464e-05
+          }
+        },
+        "source_r": {
+          "033_comparable_stencils": {
+            "nodes": 33338,
+            "coverage_of_fine_emitting_nodes": 0.9725771631950523,
+            "global_max_scaled_median": 0.00025292213079991044,
+            "global_max_scaled_fraction_above_5e_4": 0.3653788469614254,
+            "pointwise_relative_median": 0.0011265131452690485,
+            "pointwise_relative_fraction_above_5e_4": 0.8704181414601956,
+            "absolute_median": 0.01264571276601778
+          },
+          "strict_same_domain": {
+            "nodes": 26704,
+            "coverage_of_fine_emitting_nodes": 0.7790419511056654,
+            "global_max_scaled_median": 0.00017054760637154592,
+            "global_max_scaled_fraction_above_5e_4": 0.2371929298981426,
+            "pointwise_relative_median": 0.000903175317575555,
+            "pointwise_relative_fraction_above_5e_4": 0.8382264829239066,
+            "absolute_median": 0.00806180529945566
+          },
+          "boundary_crossing_only": {
+            "nodes": 1470,
+            "coverage_of_fine_emitting_nodes": 0.04288464904603536,
+            "global_max_scaled_median": 0.0088960192801502,
+            "global_max_scaled_fraction_above_5e_4": 1.0,
+            "pointwise_relative_median": 0.010312570113674296,
+            "pointwise_relative_fraction_above_5e_4": 1.0,
+            "absolute_median": 0.44478711381224656
+          }
+        },
+        "coordinate_time": {
+          "033_comparable_stencils": {
+            "nodes": 33338,
+            "coverage_of_fine_emitting_nodes": 0.9725771631950523,
+            "global_max_scaled_median": 1.8800269186460668e-05,
+            "global_max_scaled_fraction_above_5e_4": 0.057411962325274464,
+            "pointwise_relative_median": 1.9616289449471393e-05,
+            "pointwise_relative_fraction_above_5e_4": 0.05897174395584618,
+            "absolute_median": 0.02033841517095425
+          },
+          "strict_same_domain": {
+            "nodes": 26704,
+            "coverage_of_fine_emitting_nodes": 0.7790419511056654,
+            "global_max_scaled_median": 1.2677165941370715e-05,
+            "global_max_scaled_fraction_above_5e_4": 0.005242660275614141,
+            "pointwise_relative_median": 1.3114731449313855e-05,
+            "pointwise_relative_fraction_above_5e_4": 0.005692031156381066,
+            "absolute_median": 0.01355747534648799
+          },
+          "boundary_crossing_only": {
+            "nodes": 1470,
+            "coverage_of_fine_emitting_nodes": 0.04288464904603536,
+            "global_max_scaled_median": 0.0004193709134856093,
+            "global_max_scaled_fraction_above_5e_4": 0.4884353741496599,
+            "pointwise_relative_median": 0.00042273283740225636,
+            "pointwise_relative_fraction_above_5e_4": 0.4891156462585034,
+            "absolute_median": 0.45368178851583707
+          }
+        }
+      }
+    },
+    "n2": {
+      "order": 2,
+      "mechanics": {
+        "coarse_axes": {
+          "n_alpha": 700,
+          "n_beta": 700,
+          "alpha_min": -7.0,
+          "alpha_max": 7.0,
+          "beta_min": -7.0,
+          "beta_max": 7.0,
+          "alpha_spacing_unique": 1,
+          "beta_spacing_unique": 1
+        },
+        "raster_is_alpha_major": true,
+        "weights_in_the_unit_square": true,
+        "weight_range": [
+          0.07142857142859044,
+          0.9285714285714096,
+          0.07142857142859044,
+          0.9285714285714096
+        ],
+        "fine_nodes_outside_the_coarse_hull": 0,
+        "extrapolation_was_silently_clamped": false,
+        "orientation_check": "each fine node's own coordinates recovered from the coarse axes it indexes"
+      },
+      "fine_emitting_nodes": 16672,
+      "relative_source_radius_span_across_emitting_stencils": {
+        "min": 0.36752044713145904,
+        "p05": 0.4482711904788382,
+        "median": 0.8144962754656478,
+        "p95": 1.6773574054808844,
+        "max": 2.7921744933191333
+      },
+      "same_leg_proxy_threshold": 0.25,
+      "same_leg_proxy_is_a_declared_heuristic_not_a_proof": true,
+      "categories": {
+        "A_CORNER_HAS_NO_VALUE": {
+          "nodes": 6388,
+          "fraction_of_fine_emitting_nodes": 0.3831573896353167
+        },
+        "RAW_FINITE_CORNERS_ONLY": {
+          "nodes": 0,
+          "fraction_of_fine_emitting_nodes": 0.0
+        },
+        "STENCIL_CROSSES_THE_EMITTING_BOUNDARY": {
+          "nodes": 1140,
+          "fraction_of_fine_emitting_nodes": 0.06837811900191938
+        },
+        "EMITTING_CORNERS_BUT_THE_LEG_IS_NOT_VERIFIED": {
+          "nodes": 9144,
+          "fraction_of_fine_emitting_nodes": 0.5484644913627639
+        },
+        "SAME_EMITTING_DOMAIN_AND_SAME_RADIAL_LEG": {
+          "nodes": 0,
+          "fraction_of_fine_emitting_nodes": 0.0
+        }
+      },
+      "metrics": {
+        "redshift": {
+          "033_comparable_stencils": {
+            "nodes": 10284,
+            "coverage_of_fine_emitting_nodes": 0.6168426103646834,
+            "global_max_scaled_median": 0.003500814432185999,
+            "global_max_scaled_fraction_above_5e_4": 0.9471022948269155,
+            "pointwise_relative_median": 0.006200551604281337,
+            "pointwise_relative_fraction_above_5e_4": 0.9710229482691559,
+            "absolute_median": 0.0035644594003548524
+          },
+          "strict_same_domain": {
+            "nodes": 0
+          },
+          "boundary_crossing_only": {
+            "nodes": 1140,
+            "coverage_of_fine_emitting_nodes": 0.06837811900191938,
+            "global_max_scaled_median": 0.0036107399598449613,
+            "global_max_scaled_fraction_above_5e_4": 0.9377192982456141,
+            "pointwise_relative_median": 0.004049452937234844,
+            "pointwise_relative_fraction_above_5e_4": 0.9429824561403509,
+            "absolute_median": 0.003522920654514927
+          }
+        },
+        "source_r": {
+          "033_comparable_stencils": {
+            "nodes": 10284,
+            "coverage_of_fine_emitting_nodes": 0.6168426103646834,
+            "global_max_scaled_median": 0.006127100982276154,
+            "global_max_scaled_fraction_above_5e_4": 0.9807467911318553,
+            "pointwise_relative_median": 0.054835176611803566,
+            "pointwise_relative_fraction_above_5e_4": 1.0,
+            "absolute_median": 0.2873603273287153
+          },
+          "strict_same_domain": {
+            "nodes": 0
+          },
+          "boundary_crossing_only": {
+            "nodes": 1140,
+            "coverage_of_fine_emitting_nodes": 0.06837811900191938,
+            "global_max_scaled_median": 0.22695735658932026,
+            "global_max_scaled_fraction_above_5e_4": 1.0,
+            "pointwise_relative_median": 0.6522055741629401,
+            "pointwise_relative_fraction_above_5e_4": 1.0,
+            "absolute_median": 10.644273771205093
+          }
+        },
+        "coordinate_time": {
+          "033_comparable_stencils": {
+            "nodes": 10284,
+            "coverage_of_fine_emitting_nodes": 0.6168426103646834,
+            "global_max_scaled_median": 0.0004829143453555215,
+            "global_max_scaled_fraction_above_5e_4": 0.4894982497082847,
+            "pointwise_relative_median": 0.0005027004795650592,
+            "pointwise_relative_fraction_above_5e_4": 0.5015558148580319,
+            "absolute_median": 0.5250321217446299
+          },
+          "strict_same_domain": {
+            "nodes": 0
+          },
+          "boundary_crossing_only": {
+            "nodes": 1140,
+            "coverage_of_fine_emitting_nodes": 0.06837811900191938,
+            "global_max_scaled_median": 0.010138151639706596,
+            "global_max_scaled_fraction_above_5e_4": 1.0,
+            "pointwise_relative_median": 0.010415126064258696,
+            "pointwise_relative_fraction_above_5e_4": 1.0,
+            "absolute_median": 11.02235896936395
+          }
+        }
+      }
+    }
+  },
+  "candidate_count": 2,
+  "runtime_seconds": 5.001565217971802
+}
