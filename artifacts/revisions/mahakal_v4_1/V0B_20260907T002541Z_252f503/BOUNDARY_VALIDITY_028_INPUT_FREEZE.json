@@ -1,0 +1,103 @@
+{
+  "schema": "phrt-input-freeze/1",
+  "id": "BOUNDARY_VALIDITY_028_INPUT_FREEZE",
+  "ruling": "PAPER_I_BOUNDARY_VALIDITY_RULING_028",
+  "written_before_any_new_physical_query": true,
+  "created_utc": "2026-09-07T00:25:44Z",
+  "commit_at_freeze_time": "252f5033daf406859c4cbc8ed1e2f3c3176aa378",
+  "detector": {
+    "name": "D026",
+    "alpha": [
+      -25.0,
+      25.0
+    ],
+    "beta": [
+      -25.0,
+      25.0
+    ],
+    "pitch_M": 0.4,
+    "cells": [
+      125,
+      125
+    ],
+    "sigma": 0.011341986814407566
+  },
+  "clock": {
+    "absolute_reference_coordinate_time_M": -978.6055123201214,
+    "per_profile_recentering": "forbidden",
+    "negative_offsets": "recorded, never clipped"
+  },
+  "solver_policy": {
+    "entry_point": "aart.raytracing_f.calculate_observables",
+    "spin": 0.5,
+    "inclination_deg": 50.0,
+    "d_obs": 1000.0,
+    "backend_substitution": "forbidden",
+    "failed_value_zero_fill": "forbidden",
+    "retry": "same physical equations, prospectively declared numeric configuration only",
+    "bracketing": "safeguarded bisection on a finite continuous branch; a sign change alone does not certify continuity, and equal signs do not exclude roots",
+    "screen_bracket_required": true,
+    "root_residual_alone_is_not_a_position_bound": true
+  },
+  "selection_rule": {
+    "contour": "seeds from cached samples and declared geometry; radial lines between an in-annulus and an out-of-annulus cached sample of the same order",
+    "target_information": "forbidden as a selection input",
+    "declared_before_any_query": true
+  },
+  "target": {
+    "indices": "the accepted 72, unchanged",
+    "reselection": "forbidden",
+    "spectra_counts_estimators": "not computed"
+  },
+  "accuracy": {
+    "band_symdiff": 0.00025,
+    "boundaries_symdiff": 0.00025,
+    "hull_only_response": 0.00025,
+    "shifted_hull_check": 0.00025,
+    "tighter_root_check": 2.5e-05,
+    "transfer_and_emission_boundary_response": 0.0005,
+    "total_response_mask_area": 0.001,
+    "integration_or_tessellation": 1e-06,
+    "exact_fixture": 1e-12,
+    "thinness_relaxes_geometry": false
+  },
+  "ledger": {
+    "boundary_spent_lifetime": 18000,
+    "boundary_lifetime_cap": 30000,
+    "boundary_remaining": 12000,
+    "boundary_independent_check_reserve_min": 4000,
+    "transfer_spent_lifetime": 17912,
+    "transfer_lifetime_cap": 250000,
+    "transfer_remaining": 2088,
+    "transfer_pilot_max": 20000,
+    "transfer_initial_diagnostic_max": 4000,
+    "transfer_independent_validation_reserve_min": 4000,
+    "aborted_9000_boundary_solves_remain_charged": true,
+    "counts_failures_retries_and_vectorised_interior_calls": true
+  },
+  "n_files": 15,
+  "files": {
+    "artifacts/configs/R1_MAIN_FREEZE.json": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "artifacts/revisions/mahakal_v4_1/R2_REPLAY_TARGET_MANIFEST.json": "e6b6b0dac9f35dbb96405f6ab2dd76e139d8f9ad5838c638ffb72a3c04271273",
+    "scripts/revision_v4_1/g1_curved_hull.py": "43cd1d71d320f87725ac8ae20bd57a84acd1f2fc77db8479092e9678fb963d60",
+    "scripts/revision_v4_1/v0_overlay_and_freeze.py": "864f7c656a01338567b575a5670c58b399c0e6c828abf408b221bf331d1d87a5",
+    "scripts/revision_v4_1/v1_contour_pilot.py": "088977844e11ecd93e8f8b4ace29f23dc3431ea16e52ba6be6adeff76d28fa56",
+    "src/phrt/revision_v4_1/acquisition.py": "437f93e945354941b0508ccd0c1c222d5ceb62922a24718aaa39e44bfa04d81d",
+    "src/phrt/revision_v4_1/domain.py": "c61445dc6e22c985ec22c9d64e94f0c8ce871e936c14a49b01610e49053347ba",
+    "src/phrt/revision_v4_1/fractional.py": "b0637cc12f1722fd6de632f928e81cdaf3be00377b2a6bae4c49c7d9dbc3669d",
+    "src/phrt/revision_v4_1/hulls.py": "362467068576e5f348e054e1c6e9f0d225423a693e575324db9bf74c54ea1d49",
+    "src/phrt/revision_v4_1/measure.py": "ed44131dedfa654d847dea5c3dd7fdeb588be1603037a3a34f221fa1a674df76",
+    "src/phrt/revision_v4_1/polyclip.py": "c90637271059890cc1e6cac25bb7a76aebf6d6cb9d8354fb1f87137a4f761e98",
+    "src/phrt/revision_v4_1/query.py": "c34aeab483331f42fb7d7afc653c6263b47939352aad736c12199445b34249c3",
+    "tests/revision_v4_1/test_boundary_028.py": "6cf2e3752a516edecafe7e44278964c1379e369037d44599833255fdcd5691d7",
+    "tests/revision_v4_1/test_fractional_027.py": "778acc9f403442b752a1eae8841dece6343fe728394445981f2b4d658ef35e8f",
+    "tests/revision_v4_1/test_polyclip.py": "95b98f4d476060008b90ed4e77b51cf73230b61d5c479b55150f32c635c3c23c"
+  },
+  "registered_tree_clean": true,
+  "uncommitted": [],
+  "re_registration": {
+    "reason": "the G1 tessellation check was corrected after the first registration, and the guard refused to run against a changed frozen file. This is the second registration of the same campaign, not a relaxation",
+    "supersedes": "V0_20260907T002405Z_763ea4e",
+    "V1_ran_under_the_first_registration": true
+  }
+}
