@@ -30,22 +30,46 @@ MAPS = ROOT / "artifacts" / "raymaps"
 GEOMETRY, SPIN, D_OBS, R_OUTER = "a050_i050", 0.5, 1000.0, 50.0
 
 
-def gauss_J(a, b, roots, turn=None, n=400):
-    """The same integral by fixed-order Gauss-Legendre: an independent method."""
+def gauss_J(a, b, roots, turn=None, n=64, panels=64):
+    """The same integral by panelled Gauss-Legendre: an independent method.
+
+    A single fixed-order rule across the whole interval is not an adequate
+    comparator for a capture path. When the largest interior root sits just
+    below the horizon the integrand is sharply peaked at the lower endpoint,
+    and a global rule simply misses it -- which is what produced the first
+    round's disagreements, at separations far too large to be boundary
+    cases. Geometrically graded panels resolve the peak with the same
+    arithmetic and no adaptivity, so the two methods differ in their
+    quadrature and in nothing else.
+    """
     if b <= a:
         return 0.0
     x, w = np.polynomial.legendre.leggauss(n)
     if turn is not None and abs(a - turn) < 1e-12:
         U = np.sqrt(b - turn)
-        u = 0.5 * U * (x + 1)
-        ww = 0.5 * U * w
-        r = turn + u * u
-        q = PD.radial_potential(r, roots) / (r - turn)
-        return float(np.sum(ww * 2.0 / np.sqrt(np.where(q > 0, q, np.nan))))
-    u = 0.5 * (b - a) * (x + 1) + a
-    ww = 0.5 * (b - a) * w
-    q = PD.radial_potential(u, roots)
-    return float(np.sum(ww / np.sqrt(np.where(q > 0, q, np.nan))))
+        edges = a + 0.0 + U * np.linspace(0.0, 1.0, panels + 1) ** 2
+        edges = np.sqrt(np.linspace(0.0, U * U, panels + 1))
+        total = 0.0
+        for lo, hi in zip(edges[:-1], edges[1:]):
+            u = 0.5 * (hi - lo) * (x + 1) + lo
+            ww = 0.5 * (hi - lo) * w
+            r = turn + u * u
+            q = PD.radial_potential(r, roots) / (r - turn)
+            total += float(np.sum(ww * 2.0 / np.sqrt(np.where(q > 0, q,
+                                                              np.nan))))
+        return total
+    # graded panels towards the lower endpoint, where a near-root peaks
+    t = np.linspace(0.0, 1.0, panels + 1) ** 3
+    edges = a + (b - a) * t
+    total = 0.0
+    for lo, hi in zip(edges[:-1], edges[1:]):
+        if hi <= lo:
+            continue
+        u = 0.5 * (hi - lo) * (x + 1) + lo
+        ww = 0.5 * (hi - lo) * w
+        q = PD.radial_potential(u, roots)
+        total += float(np.sum(ww / np.sqrt(np.where(q > 0, q, np.nan))))
+    return total
 
 
 def independent_code(roots, s_n, rh, r_obs):

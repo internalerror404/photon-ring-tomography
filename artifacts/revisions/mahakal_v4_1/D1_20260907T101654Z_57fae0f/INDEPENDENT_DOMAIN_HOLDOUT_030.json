@@ -1,0 +1,748 @@
+{
+  "stage": "D1_D2",
+  "ruling": "PAPER_I_PATH_DOMAIN_RULING_030",
+  "generated_utc": "2026-09-07T10:18:34Z",
+  "commit": "57fae0f55f73ea7412ff72244e0822529cc2ca40",
+  "status_codes": [
+    "VALID_EMITTING_EVENT",
+    "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+    "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+    "NO_NTH_EXTERIOR_CROSSING_ESCAPE",
+    "NO_ANNULUS_INTERSECTION_ON_PATH",
+    "DOMAIN_UNRESOLVED",
+    "VALID_EVENT_NUMERICALLY_UNRESOLVED"
+  ],
+  "expression_switched_or_sign_forced": false,
+  "development": {
+    "all": {
+      "n": 1276,
+      "by_code": {
+        "VALID_EMITTING_EVENT": 596,
+        "NO_NTH_EXTERIOR_CROSSING_ESCAPE": 532,
+        "NO_NTH_EXTERIOR_CROSSING_CAPTURE": 148
+      },
+      "methods_agree": 1219,
+      "methods_disagree": [
+        {
+          "order": 1,
+          "index": 27182,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 118781,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 120886,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 127901,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 132109,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 138420,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 206389,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 288494,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 295305,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 300204,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 307902,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 314200,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 321897,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 405122,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 408284,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 409315,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 413894,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 418398,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 419795,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 422589,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        }
+      ]
+    },
+    "archived_failures": {
+      "n": 680,
+      "by_code": {
+        "NO_NTH_EXTERIOR_CROSSING_ESCAPE": 532,
+        "NO_NTH_EXTERIOR_CROSSING_CAPTURE": 148
+      },
+      "methods_agree": 643,
+      "methods_disagree": [
+        {
+          "order": 1,
+          "index": 27182,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 118781,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 120886,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 127901,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 132109,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 138420,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 206389,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 288494,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 295305,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 300204,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 307902,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 314200,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 321897,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 405122,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 408284,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 409315,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 413894,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 418398,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 419795,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 422589,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        }
+      ]
+    },
+    "healthy_controls": {
+      "n": 596,
+      "by_code": {
+        "VALID_EMITTING_EVENT": 596
+      },
+      "methods_agree": 576,
+      "methods_disagree": [
+        {
+          "order": 2,
+          "index": 94822,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 94878,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 95586,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 98292,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 99112,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 110358,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 160449,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 169260,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 179330,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 243696,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 248595,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 265393,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 277993,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 354322,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 357576,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 365969,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 367633,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 369735,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 371837,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 382348,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        }
+      ]
+    }
+  },
+  "holdout": {
+    "all": {
+      "n": 880,
+      "by_code": {
+        "VALID_EMITTING_EVENT": 720,
+        "NO_NTH_EXTERIOR_CROSSING_ESCAPE": 118,
+        "NO_NTH_EXTERIOR_CROSSING_CAPTURE": 42
+      },
+      "methods_agree": 850,
+      "methods_disagree": [
+        {
+          "order": 2,
+          "index": 1331675,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 1359969,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 374159,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 203357,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 204654,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 210690,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 212900,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 214095,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 216715,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 252807,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 257616,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 265570,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 266768,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 267966,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 409413,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 431803,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 432197,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 487036,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 502644,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 703294,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        }
+      ]
+    },
+    "archived_failures": {
+      "n": 160,
+      "by_code": {
+        "NO_NTH_EXTERIOR_CROSSING_ESCAPE": 118,
+        "NO_NTH_EXTERIOR_CROSSING_CAPTURE": 42
+      },
+      "methods_agree": 157,
+      "methods_disagree": [
+        {
+          "order": 2,
+          "index": 1331675,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 1359969,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        },
+        {
+          "order": 2,
+          "index": 374159,
+          "primary": "NO_NTH_EXTERIOR_CROSSING_CAPTURE",
+          "independent": "VALID_EMITTING_EVENT"
+        }
+      ]
+    },
+    "healthy_controls": {
+      "n": 720,
+      "by_code": {
+        "VALID_EMITTING_EVENT": 720
+      },
+      "methods_agree": 693,
+      "methods_disagree": [
+        {
+          "order": 2,
+          "index": 203357,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 204654,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 210690,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 212900,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 214095,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 216715,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 252807,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 257616,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 265570,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 266768,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 267966,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 409413,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 431803,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 432197,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 487036,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 502644,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 703294,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 718709,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 734490,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        },
+        {
+          "order": 2,
+          "index": 756088,
+          "primary": "VALID_EMITTING_EVENT",
+          "independent": "NO_NTH_EXTERIOR_CROSSING_CAPTURE"
+        }
+      ]
+    }
+  },
+  "holdout_invented_events": 0,
+  "holdout_missed_events": 0,
+  "invented_examples": [],
+  "missed_examples": [],
+  "independent_method": "fixed-order Gauss-Legendre after the same turning-point substitution, replacing adaptive quadrature in every integral",
+  "guard": {
+    "freeze": "artifacts/revisions/mahakal_v4_1/D0_20260907T101636Z_dbb54f7/PATH_DOMAIN_030_INPUT_FREEZE.json",
+    "commit_at_freeze_time": "dbb54f76f2d7b20bc09ba5f5ea8fd39dd86f5ed4",
+    "verified_input_hashes": true,
+    "registered_tree_clean": true,
+    "spent_this_run": {
+      "transfer": 2156,
+      "boundary": 0
+    },
+    "attempted_this_run": {
+      "transfer": 2156,
+      "boundary": 0
+    },
+    "failed_this_run": {
+      "transfer": 840,
+      "boundary": 0
+    },
+    "reserved_before_every_physical_call": true,
+    "remaining_after_run": {
+      "transfer": 15204,
+      "boundary": 890
+    },
+    "lifetime": {
+      "boundary_lifetime_spent": 33410,
+      "boundary_remaining": 890,
+      "committed_second_batch_attempts": {
+        "T1_20260907T074951Z_3d42022": 480,
+        "T1_20260907T075031Z_c35cb34": 1080,
+        "T1_20260907T075138Z_1113f3e": 1080
+      },
+      "correction": "the 029 return summarised only the last of three executed T1 runs. All three are separately recorded attempts and all three count, including the two that revisited the same points",
+      "d1_decision_point_max": 3000,
+      "first_pilot_closed_at": 17912,
+      "independent_validation_reserve_min": 4000,
+      "new_boundary_calls_authorised": 0,
+      "old_records_rewritten": false,
+      "second_batch_original_cap": 20000,
+      "second_batch_remaining": 17360,
+      "second_batch_spent_before_030": 2640,
+      "summary_file_previously_reported": 18920,
+      "transfer_lifetime_spent_before_030": 20552,
+      "transfer_remaining": 17360
+    }
+  },
+  "runtime_seconds": 99.48346519470215
+}
