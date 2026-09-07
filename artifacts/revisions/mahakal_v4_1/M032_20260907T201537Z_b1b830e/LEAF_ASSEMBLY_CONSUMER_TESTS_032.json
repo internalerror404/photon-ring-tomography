@@ -1,0 +1,81 @@
+{
+  "stage": "M1",
+  "ruling": "PAPER_I_MATCHED_INTEGRATION_RULING_032",
+  "generated_utc": "2026-09-07T20:26:31Z",
+  "commit": "b1b830e16b2fc55569a3ef0211c67cb036105510",
+  "physical_queries": 0,
+  "rule": "y_d = sum_p sum_leaf |D_d ^ C_leaf ^ B_n| chi(xi_leaf) f(xi_leaf)",
+  "representation_id": "LEAF_CLIPPED_MIDPOINT_INDICATOR_V1",
+  "forbidden_representation_id": "PARENT_AVERAGED_OCCUPANCY_PROXY",
+  "leaf_label_is_a_domain_certificate": false,
+  "zero_unresolved_samples_bounds_the_boundary": false,
+  "unresolved_carried_as": "explicit (lower, known, upper) response",
+  "counterexample": {
+    "exact": [
+      0.2,
+      0.0
+    ],
+    "parent_fraction": [
+      0.1,
+      0.1
+    ],
+    "leaf_rule": [
+      0.2,
+      0.0
+    ],
+    "totals_agree": true,
+    "images_agree": false
+  },
+  "archived_geometry": {
+    "map": "a050_i050_n0_core",
+    "parents": 15876,
+    "leaves_at_k2": 63504,
+    "leaf_overlap_total": 2475.2628258360223,
+    "parent_overlap_total": 2475.2628258360223,
+    "per_detector_cell_and_parent_max_residual": 6.938893903907228e-18,
+    "refinement_moves_geometry": false,
+    "leaf_vs_parent_fraction": {
+      "total_relative_difference": 0.0,
+      "max_absolute_pixel_difference": 0.05000000000000057,
+      "whitened_vector_residual": 0.08219956873800727,
+      "norm_difference_metric_used_by_031": 0.01232313313537087,
+      "declared_test_domain": "disc r < 7.313 M about (0.137, -0.291)",
+      "note": "the total agrees to rounding and the image does not; the 031 metric reports the smaller of the two"
+    }
+  },
+  "fault_injections_required_by_the_ruling": [
+    "193_points_under_192_point_cap",
+    "unresolved_reference_prerequisite",
+    "missing_fine_or_order2_endpoint",
+    "occupancy_only_pretending_full_transfer",
+    "equal_norm_different_detector_vectors",
+    "parent_fraction_assembly_in_actual_consumer",
+    "missing_numerical_payload",
+    "infeasible_complete_bundle_or_validation_reserve_invasion",
+    "missing_prerequisite_record"
+  ],
+  "fault_injections_implemented": [
+    "193_points_under_192_point_cap",
+    "unresolved_reference_prerequisite",
+    "missing_fine_or_order2_endpoint",
+    "occupancy_only_pretending_full_transfer",
+    "equal_norm_different_detector_vectors",
+    "parent_fraction_assembly_in_actual_consumer",
+    "missing_numerical_payload",
+    "infeasible_complete_bundle_or_validation_reserve_invasion",
+    "missing_prerequisite_record"
+  ],
+  "tests": {
+    "files": [
+      "tests/revision_v4_1/test_leaf_032.py",
+      "tests/revision_v4_1/test_plan032.py",
+      "tests/revision_v4_1/test_rootcheck_032.py"
+    ],
+    "interpreter": "python3",
+    "returncode": 0,
+    "summary": "51 passed in 97.26s (0:01:37)",
+    "passed": true,
+    "in_the_launch_and_report_path_not_a_helper": true
+  },
+  "runtime_seconds": 146.5243058204651
+}

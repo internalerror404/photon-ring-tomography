@@ -1,0 +1,416 @@
+{
+  "stage": "M3",
+  "ruling": "PAPER_I_MATCHED_INTEGRATION_RULING_032",
+  "generated_utc": "2026-09-07T20:15:38Z",
+  "commit": "b1b830e16b2fc55569a3ef0211c67cb036105510",
+  "physical_queries": 0,
+  "search_roots": [
+    "/home/user/photon-ring-tomography/artifacts/revisions/mahakal_v4_1",
+    "/home/user/photon-ring-tomography/artifacts/raymaps",
+    "/tmp"
+  ],
+  "i2_payload_status": {
+    "run_directories": [
+      {
+        "dir": "I2_20260907T170816Z_4968a3d",
+        "files": [
+          "ATTEMPT_LEDGER_031.json",
+          "DOMAIN_INTEGRATION_031_COMPLETION.json",
+          "DOMAIN_INTEGRATION_031_RETURN.md",
+          "EMISSION_DOMAIN_INTEGRATION_031.json",
+          "RESOURCE_LEDGER_031.json",
+          "SHA256SUMS.txt"
+        ],
+        "payload_arrays": [],
+        "subpoint_labels_saved": false,
+        "transfer_values_saved": false,
+        "detector_vectors_saved": false
+      }
+    ],
+    "sub_evaluations_charged": 6000,
+    "recoverable_values": 0,
+    "conclusion": "the 031 integration pilot wrote summaries and ledgers only. The 6000 charged sub-evaluations left no labels, no transfer values and no detector vectors, so none of them is reusable. Their screen coordinates are reconstructible from the frozen selection rule; that recovers where the evaluations were, not what they returned. Any re-evaluation is a new charge.",
+    "old_I2_summary_is_a_reusable_physical_sample_cache": false
+  },
+  "d030_adjudication_cache": {
+    "files": [
+      {
+        "path": "artifacts/revisions/mahakal_v4_1/D1B_20260907T102020Z_5c1cb6a/PER_POINT_PATH_DOMAIN_ADJUDICATION_030.npz",
+        "sha256": "621064ff1efdebd8375936d4be91007ac52749a22149a05f966311fc925c4694",
+        "rows": 1276,
+        "keys": [
+          "dev",
+          "holdout"
+        ]
+      },
+      {
+        "path": "artifacts/revisions/mahakal_v4_1/D1_20260907T101654Z_57fae0f/PER_POINT_PATH_DOMAIN_ADJUDICATION_030.npz",
+        "sha256": "fd3e9b15c2d222f5e58aeee7fff196f5b6e99634517f905050b9a21a81741278",
+        "rows": 1276,
+        "keys": [
+          "dev",
+          "holdout"
+        ]
+      }
+    ],
+    "unique_points": 2552,
+    "usable_as_labels": true,
+    "caveat": "these are 030 adjudications on the 030 cohort. They are labels for those points, not leaf labels on any refinement of the 032 matrix, and they are not a substitute for evaluating a leaf."
+  },
+  "archived_arrays_hashed": [
+    {
+      "path": "artifacts/revisions/mahakal_v4_1/D1B_20260907T102020Z_5c1cb6a/PER_POINT_PATH_DOMAIN_ADJUDICATION_030.npz",
+      "bytes": 354987,
+      "sha256": "621064ff1efdebd8375936d4be91007ac52749a22149a05f966311fc925c4694",
+      "arrays": {
+        "dev": {
+          "shape": [
+            1276
+          ],
+          "dtype": "<U672"
+        },
+        "holdout": {
+          "shape": [
+            880
+          ],
+          "dtype": "<U674"
+        }
+      },
+      "run": "D1B_20260907T102020Z_5c1cb6a"
+    },
+    {
+      "path": "artifacts/revisions/mahakal_v4_1/D1_20260907T101654Z_57fae0f/PER_POINT_PATH_DOMAIN_ADJUDICATION_030.npz",
+      "bytes": 355481,
+      "sha256": "fd3e9b15c2d222f5e58aeee7fff196f5b6e99634517f905050b9a21a81741278",
+      "arrays": {
+        "dev": {
+          "shape": [
+            1276
+          ],
+          "dtype": "<U672"
+        },
+        "holdout": {
+          "shape": [
+            880
+          ],
+          "dtype": "<U674"
+        }
+      },
+      "run": "D1_20260907T101654Z_57fae0f"
+    },
+    {
+      "path": "artifacts/revisions/mahakal_v4_1/G1C_20260907T075203Z_d252697/CLOSEOUT_ARRAYS_029.npz",
+      "bytes": 4644404,
+      "sha256": "192eb9598c27ed2f96811ba8a8c27bbae2e09d2ac17769f4143a60771332e634",
+      "arrays": {
+        "base_0i": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "base_1i": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "base_1e": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "base_2i": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "base_2e": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "base_0e": {
+          "shape": [
+            4,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "shifted_0i": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "shifted_1i": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "shifted_1e": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "shifted_2i": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "shifted_2e": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "shifted_0e": {
+          "shape": [
+            4,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "tighter_0i": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "tighter_1i": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "tighter_1e": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "tighter_2i": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "tighter_2e": {
+          "shape": [
+            474,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "tighter_0e": {
+          "shape": [
+            4,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "tess_0i": {
+          "shape": [
+            65536,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "tess_1i": {
+          "shape": [
+            65536,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "tess_1e": {
+          "shape": [
+            65536,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "tess_2i": {
+          "shape": [
+            65536,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "tess_2e": {
+          "shape": [
+            65536,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "tess_0e": {
+          "shape": [
+            4,
+            2
+          ],
+          "dtype": "float64"
+        },
+        "marks": {
+          "shape": [
+            237
+          ],
+          "dtype": "float64"
+        },
+        "marks_beta": {
+          "shape": [
+            237
+          ],
+          "dtype": "float64"
+        },
+        "marks_shifted": {
+          "shape": [
+            237
+          ],
+          "dtype": "float64"
+        },
+        "arclength": {
+          "shape": [
+            237
+          ],
+          "dtype": "float64"
+        }
+      },
+      "run": "G1C_20260907T075203Z_d252697"
+    },
+    {
+      "path": "artifacts/revisions/mahakal_v4_1/R0_20260906T070540Z_38e1f8a/nuisance_adjusted_spectra.npz",
+      "bytes": 3454,
+      "sha256": "5a881b73c12f81949da5eaad306a9ea7c6f8897a1a63e902e61108821632386a",
+      "arrays": {
+        "DIRECT_PHYSICAL_known": {
+          "shape": [
+            72
+          ],
+          "dtype": "float64"
+        },
+        "DIRECT_PHYSICAL_conditional": {
+          "shape": [
+            72
+          ],
+          "dtype": "float64"
+        },
+        "RESOLVED_PHYSICAL_known": {
+          "shape": [
+            72
+          ],
+          "dtype": "float64"
+        },
+        "RESOLVED_PHYSICAL_conditional": {
+          "shape": [
+            72
+          ],
+          "dtype": "float64"
+        }
+      },
+      "run": "R0_20260906T070540Z_38e1f8a"
+    },
+    {
+      "path": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T143710Z_15f87d3/nuisance_adjusted_spectra.npz",
+      "bytes": 3454,
+      "sha256": "a5d640f4ba8d7d80ccf0f15f5da61ed42d27d69930aa1305b0c673b762ac8e9d",
+      "arrays": {
+        "DIRECT_PHYSICAL_known": {
+          "shape": [
+            72
+          ],
+          "dtype": "float64"
+        },
+        "DIRECT_PHYSICAL_conditional": {
+          "shape": [
+            72
+          ],
+          "dtype": "float64"
+        },
+        "RESOLVED_PHYSICAL_known": {
+          "shape": [
+            72
+          ],
+          "dtype": "float64"
+        },
+        "RESOLVED_PHYSICAL_conditional": {
+          "shape": [
+            72
+          ],
+          "dtype": "float64"
+        }
+      },
+      "run": "R2REPLAY_20260906T143710Z_15f87d3"
+    },
+    {
+      "path": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/nuisance_adjusted_spectra.npz",
+      "bytes": 3454,
+      "sha256": "a5d640f4ba8d7d80ccf0f15f5da61ed42d27d69930aa1305b0c673b762ac8e9d",
+      "arrays": {
+        "DIRECT_PHYSICAL_known": {
+          "shape": [
+            72
+          ],
+          "dtype": "float64"
+        },
+        "DIRECT_PHYSICAL_conditional": {
+          "shape": [
+            72
+          ],
+          "dtype": "float64"
+        },
+        "RESOLVED_PHYSICAL_known": {
+          "shape": [
+            72
+          ],
+          "dtype": "float64"
+        },
+        "RESOLVED_PHYSICAL_conditional": {
+          "shape": [
+            72
+          ],
+          "dtype": "float64"
+        }
+      },
+      "run": "R2REPLAY_20260906T144528Z_b873908"
+    }
+  ],
+  "external_cache_outside_the_repository": {
+    "searched": true,
+    "found": [],
+    "note": "nothing outside the repository holds the 031 sub-evaluation values; the only matches under /tmp are fixtures written by this ruling's own tests"
+  },
+  "counts_required_of_every_future_stage": [
+    "evaluation_ids",
+    "coordinates",
+    "roots_or_domain_margins",
+    "label_uncertainty",
+    "transfer_values",
+    "child_geometry",
+    "detector_vectors",
+    "counters",
+    "hashes"
+  ],
+  "chunk_write_order": "payload and hash first, summary afterwards, so an aborted run leaves recoverable values rather than a count of what it destroyed",
+  "runtime_seconds": 0.1404705047607422
+}

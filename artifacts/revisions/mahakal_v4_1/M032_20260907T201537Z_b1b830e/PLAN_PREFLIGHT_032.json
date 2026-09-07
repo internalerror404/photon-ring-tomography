@@ -1,0 +1,71 @@
+{
+  "stage": "M4",
+  "ruling": "PAPER_I_MATCHED_INTEGRATION_RULING_032",
+  "generated_utc": "2026-09-07T20:24:32Z",
+  "physical_queries": 0,
+  "preflight_script_sha256": "27bd5de6c42ae917a2b5eee1a007fb7fab41c3c31ebe3799d91124ec6e734c8c",
+  "schema_pass_authorizes_execution": false,
+  "results": {
+    "as_returned": {
+      "status": "PLAN_BLOCKED",
+      "errors": [
+        "PLAN_PLUS_VALIDATION_EXCEEDS_RECONCILED_BUDGET",
+        "PREREQUISITE_NOT_READY"
+      ],
+      "new_charge_declared": 11860,
+      "endpoint_count": 18,
+      "required_endpoint_count": 18,
+      "physical_execution_authorized": false,
+      "limitations": "Validates declared schema/cost only; does not authenticate cache bytes or certify physics.",
+      "script_sha256": "27bd5de6c42ae917a2b5eee1a007fb7fab41c3c31ebe3799d91124ec6e734c8c"
+    },
+    "prerequisite_stipulated_met": {
+      "status": "PLAN_BLOCKED",
+      "errors": [
+        "PLAN_PLUS_VALIDATION_EXCEEDS_RECONCILED_BUDGET"
+      ],
+      "new_charge_declared": 11860,
+      "endpoint_count": 18,
+      "required_endpoint_count": 18,
+      "physical_execution_authorized": false,
+      "limitations": "Validates declared schema/cost only; does not authenticate cache bytes or certify physics.",
+      "script_sha256": "27bd5de6c42ae917a2b5eee1a007fb7fab41c3c31ebe3799d91124ec6e734c8c"
+    },
+    "full_domain_matrix": {
+      "status": "PLAN_BLOCKED",
+      "errors": [
+        "PLAN_PLUS_VALIDATION_EXCEEDS_RECONCILED_BUDGET",
+        "PREREQUISITE_NOT_READY"
+      ],
+      "new_charge_declared": 444720,
+      "endpoint_count": 18,
+      "required_endpoint_count": 18,
+      "physical_execution_authorized": false,
+      "limitations": "Validates declared schema/cost only; does not authenticate cache bytes or certify physics.",
+      "script_sha256": "27bd5de6c42ae917a2b5eee1a007fb7fab41c3c31ebe3799d91124ec6e734c8c"
+    }
+  },
+  "reviewer_synthetic_checks": {
+    "n_checks": 20,
+    "all_passed": true
+  },
+  "in_process_gate_agrees": {
+    "as_returned": [
+      "PLAN_PLUS_VALIDATION_EXCEEDS_RECONCILED_BUDGET",
+      "PREREQUISITE_NOT_READY"
+    ],
+    "full_domain_matrix": [
+      "PLAN_PLUS_VALIDATION_EXCEEDS_RECONCILED_BUDGET",
+      "PREREQUISITE_NOT_READY"
+    ]
+  },
+  "costs": {
+    "full_domain_new_evaluations": 444720,
+    "local_new_evaluations": 11860,
+    "spendable_after_reserve": 2434,
+    "reported_native_remaining": 6434,
+    "validation_reserve_preserved": 4000,
+    "lifetime_transfer_cap": 250000
+  },
+  "runtime_seconds": 185.02794671058655
+}

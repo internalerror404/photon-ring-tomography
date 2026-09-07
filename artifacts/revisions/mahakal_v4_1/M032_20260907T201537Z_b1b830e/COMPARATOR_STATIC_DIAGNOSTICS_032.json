@@ -1,0 +1,155 @@
+{
+  "stage": "M2",
+  "ruling": "PAPER_I_MATCHED_INTEGRATION_RULING_032",
+  "generated_utc": "2026-09-07T20:15:59Z",
+  "commit": "b1b830e16b2fc55569a3ef0211c67cb036105510",
+  "physical_queries": 0,
+  "path_integrals_recomputed": 0,
+  "rays_traced": 0,
+  "tautological_residual": {
+    "what_031_reported": "max_i |prod_j (z_i - z_j)| = 0",
+    "max_over_2000_random_quadruples": 0.0,
+    "conclusion": "zero for an arbitrary wrong root list; it is not a check",
+    "original_quartic_at_the_returned_roots": 4.0056147796401856e-16,
+    "original_quartic_at_a_root_perturbed_by_0.05": 0.013655929208388179,
+    "coefficients_from_conserved_quantities": [
+      1.0,
+      0.0,
+      -12.75,
+      20.5,
+      -1.0
+    ],
+    "backward_residual_is_a_root_location_bound": false
+  },
+  "perturbed_roots": {
+    "delta_1e-08": {
+      "cases": 200,
+      "median_backward_residual": 1.6000641567129775e-09,
+      "detected_above_unperturbed": 200
+    },
+    "delta_1e-06": {
+      "cases": 200,
+      "median_backward_residual": 1.567480981666074e-07,
+      "detected_above_unperturbed": 200
+    },
+    "delta_0.0001": {
+      "cases": 200,
+      "median_backward_residual": 1.5526672815896746e-05,
+      "detected_above_unperturbed": 200
+    },
+    "delta_0.01": {
+      "cases": 200,
+      "median_backward_residual": 0.0015867049783776736,
+      "detected_above_unperturbed": 200
+    }
+  },
+  "endpoint_limit": {
+    "roots": [
+      "(-3+0j)",
+      "(0.2+0j)",
+      "(1.1+0j)",
+      "(4.7+0j)"
+    ],
+    "turning_index": 3,
+    "turn": 4.7,
+    "analytic_limit": 124.74,
+    "031_identity_excluded_product_at_the_turn": 0.0,
+    "index_excluded_product_at_the_turn": 124.74,
+    "approach": [
+      {
+        "epsilon": 0.01,
+        "R_over_r_minus_turn": 125.52728099999997,
+        "error_against_analytic_limit": 0.7872809999999788
+      },
+      {
+        "epsilon": 0.0001,
+        "R_over_r_minus_turn": 124.74785715800098,
+        "error_against_analytic_limit": 0.007857158000987852
+      },
+      {
+        "epsilon": 1e-06,
+        "R_over_r_minus_turn": 124.74007857001583,
+        "error_against_analytic_limit": 7.857001583033707e-05
+      },
+      {
+        "epsilon": 1e-08,
+        "R_over_r_minus_turn": 124.74000078569999,
+        "error_against_analytic_limit": 7.856999957311928e-07
+      }
+    ],
+    "why_it_matters": "classify_path returns max(ext) as a plain float, so `q is not turn` is true for every element and the factor (r - turn) is kept. The reduced potential then vanishes at u = 0, the guard substitutes a zero integrand, and the quadrature samples a hole at the endpoint where the integrand is largest.",
+    "multiplicity_guard_tested": true
+  },
+  "multiplicity_guard": {
+    "clustered_turning_root_refused": true,
+    "message": "root 1 is within 1.000e-12 of another root; the reduced product is not the analytic limit at a multiple or clustered turning point",
+    "branch_checked_by_index_not_object_identity": true
+  },
+  "frozen_031_reduction": {
+    "file": "src/phrt/revision_v4_1/pathdomain2.py",
+    "expression_present": true,
+    "disposition": "NAMED_NOT_REPAIRED_IN_PLACE",
+    "why": "version 2 is the frozen 031 record; the corrected reduction lives in rootcheck.reduced_product and is validated on analytic fixtures here, ready for a next ruling to adopt",
+    "tuned_on_the_494_panel": false,
+    "physical_cause_of_the_66_established": false
+  },
+  "unresolved_reference_conditioning": {
+    "reference_reason_codes_available": false,
+    "reference_integral_values_available": false,
+    "why": "I1 wrote only the label, the margin and the error estimate; the reference's reason code and integral value were discarded at write time",
+    "lam_eta_source": "closed form of the archived alpha, beta",
+    "profile_sampled_by_I1": "fine",
+    "groups": {
+      "unresolved_reference": {
+        "n": 66,
+        "by_order": {
+          "1": 4,
+          "2": 62
+        },
+        "kind": {
+          "SIMPLE": 264
+        },
+        "no_turning_root": 0,
+        "min_separation_quantiles": {
+          "min": 0.24868776209568066,
+          "p05": 0.2640725119035361,
+          "median": 0.5393503667338444,
+          "p95": 1.110838107714403,
+          "max": 1.5135726848873472
+        },
+        "max_backward_residual": 2.4772407081110014e-15,
+        "turn_separation_quantiles": {
+          "min": 0.24868776209568066,
+          "median": 0.5393503667338444,
+          "max": 1.5135726848873472
+        }
+      },
+      "agreeing_control": {
+        "n": 428,
+        "by_order": {
+          "0": 114,
+          "1": 186,
+          "2": 128
+        },
+        "kind": {
+          "SIMPLE": 1712
+        },
+        "no_turning_root": 140,
+        "min_separation_quantiles": {
+          "min": 0.06180774338316638,
+          "p05": 0.1847278100614639,
+          "median": 1.7829718057482133,
+          "p95": 2.3480798895642043,
+          "max": 2.679244251499118
+        },
+        "max_backward_residual": 2.75765132388816e-15,
+        "turn_separation_quantiles": {
+          "min": 0.08485779488813794,
+          "median": 4.321261004529944,
+          "max": 31.599301910496113
+        }
+      }
+    }
+  },
+  "runtime_seconds": 0.5639820098876953
+}

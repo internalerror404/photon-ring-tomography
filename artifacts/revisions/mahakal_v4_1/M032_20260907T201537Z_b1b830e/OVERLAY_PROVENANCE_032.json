@@ -1,0 +1,9 @@
+{
+  "stage": "M0",
+  "ruling": "PAPER_I_MATCHED_INTEGRATION_RULING_032",
+  "generated_utc": "2026-09-07T20:15:37Z",
+  "commit": "b1b830e16b2fc55569a3ef0211c67cb036105510",
+  "physical_queries": 0,
+  "files_modified_under_previous_rulings": [],
+  "old_blocked_token_preserved": "DOMAIN_INTEGRATION_031_BLOCKED"
+}

@@ -1,0 +1,116 @@
+{
+  "executions": [
+    {
+      "run": "T1_20260907T074927Z_3b1e6b9",
+      "ruling": "029",
+      "native_trace": 120,
+      "primary_path": 0,
+      "independent_reference": 0,
+      "outcome": "aborted on a guard error; ledger written, no result file"
+    },
+    {
+      "run": "T1_20260907T074951Z_3d42022",
+      "ruling": "029",
+      "native_trace": 480,
+      "primary_path": 0,
+      "independent_reference": 0,
+      "outcome": "completed"
+    },
+    {
+      "run": "T1_20260907T075031Z_c35cb34",
+      "ruling": "029",
+      "native_trace": 1080,
+      "primary_path": 0,
+      "independent_reference": 0,
+      "outcome": "completed; revisited the cohort of the previous execution"
+    },
+    {
+      "run": "T1_20260907T075138Z_1113f3e",
+      "ruling": "029",
+      "native_trace": 1080,
+      "primary_path": 0,
+      "independent_reference": 0,
+      "outcome": "completed; revisited the cohort of the previous execution"
+    },
+    {
+      "run": "D1_20260907T101654Z_57fae0f",
+      "ruling": "030",
+      "native_trace": 2156,
+      "primary_path": 2156,
+      "independent_reference": 2156,
+      "outcome": "completed; 1276 development and 880 holdout points"
+    },
+    {
+      "run": "D1B_20260907T102020Z_5c1cb6a",
+      "ruling": "030",
+      "native_trace": 2156,
+      "primary_path": 2156,
+      "independent_reference": 2156,
+      "outcome": "completed; re-executed the same cohort after the comparator correction"
+    },
+    {
+      "run": "I1_20260907T170719Z_a9d3f1d",
+      "ruling": "031",
+      "native_trace": 494,
+      "primary_path": 494,
+      "independent_reference": 494,
+      "outcome": "completed; 988 reference quadrature calls inventoried"
+    },
+    {
+      "run": "I2_20260907T170816Z_4968a3d",
+      "ruling": "031",
+      "native_trace": 6000,
+      "primary_path": 6000,
+      "independent_reference": 0,
+      "outcome": "completed; cap exhausted on core orders 0 and 1"
+    }
+  ],
+  "component_counters": {
+    "native_trace": 13566,
+    "primary_path_integration": 10806,
+    "independent_reference_integration": 4806,
+    "re_executions_over_an_already_evaluated_cohort": [
+      "T1_20260907T075031Z_c35cb34",
+      "T1_20260907T075138Z_1113f3e",
+      "D1B_20260907T102020Z_5c1cb6a"
+    ],
+    "cached_algebra_this_ruling": {
+      "quartic_root_solves_on_archived_screen_coordinates": 494,
+      "synthetic_fixture_solves": 1000,
+      "note": "algebra on archived coordinates; no ray, no path integral, not charged against the transfer batch"
+    },
+    "quadrature_abscissa_counted_as_a_new_ray": false,
+    "independent_end_to_end_evaluation_counted_as_cached_algebra": false
+  },
+  "convention_A_native_only": {
+    "definition": "one metered evaluation = one screen/order evaluation of the pinned tracer; the primary path integration and any reference quadrature ride inside it",
+    "second_batch_spent": 13566,
+    "second_batch_remaining": 6434,
+    "spendable_after_the_reserve": 2434,
+    "status": "the convention in force through 029-031"
+  },
+  "convention_B_independent_reference_metered": {
+    "definition": "an independent end-to-end reference evaluation is its own metered evaluation, per ruling 032's 'independent_end_to_end_evaluation_is_cached_algebra: false'",
+    "second_batch_spent": 18372,
+    "second_batch_remaining": 1628,
+    "spendable_after_the_reserve": -2372,
+    "consequence": "under this convention the second batch has 1628 left, which is less than the 4000 response-validation reserve: nothing is spendable at all"
+  },
+  "authoritative_balance": "UNRESOLVED_PENDING_REVIEWER_CHOICE_OF_CONVENTION",
+  "reported_native_balance_is_not_a_spending_authorization": true,
+  "validation_reserve_preserved": 4000,
+  "validation_reserve_touched_this_ruling": false,
+  "second_batch_cap": 20000,
+  "transfer_lifetime_cap": 250000,
+  "boundary_spent": 33410,
+  "boundary_remaining": 890,
+  "new_boundary_calls": 0,
+  "new_physical_queries_this_ruling": 0,
+  "new_path_integral_recomputations_this_ruling": 0,
+  "new_hull_roots_this_ruling": 0,
+  "third_batch": "not authorized",
+  "new_allowance_granted_by_032": "none",
+  "accounting_definition_changed_silently": false,
+  "peak_GiB_envelope": 8,
+  "elapsed_time_envelope": "inherited cumulative; not reset by this ruling"
+}

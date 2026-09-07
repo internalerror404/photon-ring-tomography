@@ -1,0 +1,106 @@
+{
+  "schema": "phrt-completion/1",
+  "id": "MATCHED_INTEGRATION_032_COMPLETION",
+  "ruling": "PAPER_I_MATCHED_INTEGRATION_RULING_032",
+  "generated_utc": "2026-09-07T20:42:26Z",
+  "commit": "b1b830e16b2fc55569a3ef0211c67cb036105510",
+  "return_status": "MATCHED_INTEGRATION_032_PLAN_BLOCKED",
+  "token_is_query_authorization": false,
+  "statuses": {
+    "leaf_kernel_tests": "IMPLEMENTED_AND_VERIFIED_ON_ARCHIVED_GEOMETRY",
+    "comparator_static_checks": "TAUTOLOGY_REPLACED_REDUCTION_CORRECTED_CAUSE_NOT_ESTABLISHED",
+    "payload_availability": "031_SUB_EVALUATION_VALUES_ARE_UNRECOVERABLE",
+    "complete_comparison_plan": "COSTED_BOTH_SCOPES_NEITHER_LAUNCHABLE",
+    "resource_accounting": "RECONCILED_UNDER_TWO_CONVENTIONS_BALANCE_UNRESOLVED",
+    "governance": "AUDIT_COMPLETE_WITH_PROTOCOL_DEVIATIONS"
+  },
+  "blockers": [
+    {
+      "id": "REFERENCE_CONFIRMATION_INCOMPLETE",
+      "what": "66 of 494 primary-reference comparisons did not resolve, 62 of them at order 2, and no validated bound or prospectively justified scope exclusion exists",
+      "why_it_blocks": "order 2 is a required endpoint of the matrix; the launch condition cannot be met for any compliant plan",
+      "cost_to_clear": {
+        "re_adjudication_of_the_66": 66,
+        "fresh_holdout_within_the_192_point_cap": 192,
+        "total_new_evaluations": 258
+      },
+      "authorization_needed": "new physical queries; forbidden by 032"
+    },
+    {
+      "id": "ORDER2_MISSING_TRANSFER_SUPPORT",
+      "what": "cells whose dual overlaps the order-2 band but whose archived centre ray has no usable transfer datum carry 13.9% of the core band area and 11.3% of the fine band area",
+      "why_it_blocks": "an unresolved support fraction of that size is orders of magnitude above the 1e-3 area budget and the 5e-4 response budget, so no order-2 comparison could be qualified even if it ran",
+      "cost_to_clear": "not costable without new sampling of those cells",
+      "authorization_needed": "new physical queries; forbidden by 032"
+    },
+    {
+      "id": "ACCOUNTING_CONVENTION_UNRESOLVED",
+      "what": "the second batch has 6434 left under the native-only convention and 1628 under the convention 032 states for independent end-to-end reference evaluations",
+      "why_it_blocks": "under the second convention the remaining balance is already below the 4000 validation reserve, so nothing is spendable; which convention governs is the reviewer's call",
+      "cost_to_clear": 0,
+      "authorization_needed": "a ruling on the convention"
+    },
+    {
+      "id": "NO_AFFORDABLE_NON_DEGENERATE_LOCAL_REGION",
+      "what": "on the declared wedge ladder, every region that fits the 2434 spendable evaluations contains zero transition parents at order 0, and the smallest region that has something to measure at all six endpoints (half-width 5.0 deg) costs 11860",
+      "why_it_blocks": "a local diagnostic that measures nothing at an endpoint is not a cheaper comparison, it is an empty one; the fallback scope is therefore not available either",
+      "cost_to_clear": 11860,
+      "authorization_needed": "an allowance 032 does not grant"
+    },
+    {
+      "id": "FULL_DOMAIN_MATRIX_EXCEEDS_EVERY_ALLOWANCE",
+      "what": "the 18-endpoint full-domain matrix costs 444720 new evaluations",
+      "why_it_blocks": "that is 183 times the 2434 spendable under the more generous convention, and 1.78 times the entire 250000 lifetime transfer cap",
+      "cost_to_clear": 444720,
+      "authorization_needed": "an allowance 032 explicitly does not grant"
+    }
+  ],
+  "costs": {
+    "full_domain_matrix": 444720,
+    "local_feasibility_matrix": 11860,
+    "local_matrix_fits_spendable": false,
+    "smallest_non_degenerate_wedge_deg": 5.0,
+    "spendable_convention_A": 2434,
+    "spendable_convention_B": -2372,
+    "lifetime_transfer_cap": 250000
+  },
+  "preflight": {
+    "as_returned": "PLAN_BLOCKED",
+    "as_returned_errors": [
+      "PLAN_PLUS_VALIDATION_EXCEEDS_RECONCILED_BUDGET",
+      "PREREQUISITE_NOT_READY"
+    ],
+    "prerequisite_stipulated_met": "PLAN_BLOCKED",
+    "full_domain_matrix": [
+      "PLAN_PLUS_VALIDATION_EXCEEDS_RECONCILED_BUDGET",
+      "PREREQUISITE_NOT_READY"
+    ],
+    "schema_pass_authorizes_execution": false
+  },
+  "tests": {
+    "new_032_files": {
+      "files": [
+        "tests/revision_v4_1/test_leaf_032.py",
+        "tests/revision_v4_1/test_plan032.py",
+        "tests/revision_v4_1/test_rootcheck_032.py"
+      ],
+      "interpreter": "python3",
+      "returncode": 0,
+      "summary": "51 passed in 97.26s (0:01:37)",
+      "passed": true,
+      "in_the_launch_and_report_path_not_a_helper": true
+    },
+    "whole_repository": {
+      "command": "python3 -m pytest tests -q",
+      "summary": "658 passed, 2 warnings in 141.07s (0:02:21)",
+      "passed": true,
+      "transcript": "PYTEST_FULL_SUITE_032.txt",
+      "tests_this_ruling_added_are_included": true
+    }
+  },
+  "new_physical_queries": 0,
+  "old_results_or_flags_rewritten": false,
+  "old_blocked_token_preserved": "DOMAIN_INTEGRATION_031_BLOCKED",
+  "stop_for_review_before_any_new_physical_query": true,
+  "runtime_seconds": 0.003431081771850586
+}
