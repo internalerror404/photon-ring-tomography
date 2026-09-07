@@ -46,6 +46,9 @@ CODE = ["src/phrt/revision_v4_1/domain.py",
         "scripts/revision_v4_1/v1_contour_pilot.py",
         "scripts/revision_v4_1/g1_curved_hull.py",
         "scripts/revision_v4_1/v2_partial_response.py",
+        "scripts/revision_v4_1/t0_failure_census.py",
+        "scripts/revision_v4_1/t1_first_invalid_primitive.py",
+        "scripts/revision_v4_1/g1_closeout_029.py",
         "tests/revision_v4_1/test_polyclip.py",
         "tests/revision_v4_1/test_fractional_027.py",
         "tests/revision_v4_1/test_boundary_028.py",
@@ -104,7 +107,10 @@ def main(out: Path) -> int:
     # is summed from those instead of being asserted.
     prior = {"transfer": 0, "boundary": 0}
     seen = []
-    for f in sorted(REV.glob("*/*.json")):
+    # only this ruling's own runs; earlier campaigns are already rolled into
+    # the opening balances below
+    for f in sorted(REV.glob("T1_*/*.json")) + sorted(
+            REV.glob("G1C_*/*.json")) + sorted(REV.glob("T2_*/*.json")):
         try:
             g = json.loads(f.read_text()).get("guard")
         except (json.JSONDecodeError, UnicodeDecodeError):
@@ -117,16 +123,25 @@ def main(out: Path) -> int:
         seen.append(key)
         for k, v in g["spent_this_run"].items():
             prior[k] = prior.get(k, 0) + int(v)
-    ledger = {"boundary_spent_lifetime": 18000 + prior["boundary"],
-              "boundary_lifetime_cap": 30000,
-              "boundary_remaining": 12000 - prior["boundary"],
+    # Ruling 029 balances: 26,300 boundary solves already spent, the lifetime
+    # ceiling raised to 34,300 for this candidate's missing validation only,
+    # and the first transfer pilot closed at its actual 17,912 rather than a
+    # notional 20,000 -- its unused headroom is not a credit.
+    ledger = {"boundary_spent_before_029": 26300,
+              "boundary_lifetime_cap": 34300,
+              "boundary_closeout_allowance": 8000,
+              "boundary_spent_lifetime": 26300 + prior["boundary"],
+              "boundary_remaining": 8000 - prior["boundary"],
               "prior_spend_reconciled_from_run_records": prior,
               "runs_counted": [k[0] for k in seen],
               "boundary_independent_check_reserve_min": 4000,
-              "transfer_spent_lifetime": prior["transfer"],
+              "first_pilot_closed_at": 17912,
+              "first_pilot_unused_headroom_is_not_a_credit": True,
+              "transfer_spent_lifetime": 17912 + prior["transfer"],
               "transfer_lifetime_cap": 250000,
               "transfer_remaining": 20000 - prior["transfer"],
-              "transfer_pilot_max": 20000,
+              "transfer_second_batch_max": 20000,
+              "third_batch": "not authorized",
               "transfer_initial_diagnostic_max": 4000,
               "transfer_independent_validation_reserve_min": 4000,
               "aborted_9000_boundary_solves_remain_charged": True,
@@ -134,7 +149,7 @@ def main(out: Path) -> int:
     freeze = {
         "schema": "phrt-input-freeze/1",
         "id": "BOUNDARY_VALIDITY_028_INPUT_FREEZE",
-        "ruling": "PAPER_I_BOUNDARY_VALIDITY_RULING_028",
+        "ruling": "PAPER_I_TRANSFER_AUDIT_RULING_029",
         "written_before_any_new_physical_query": True,
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "commit_at_freeze_time": None,
@@ -177,6 +192,10 @@ def main(out: Path) -> int:
         "n_files": len(CODE),
         "files": {},
     }
+    import aart
+    backend = Path(aart.__file__).parent
+    for b in sorted(backend.glob("*.py")):
+        CODE.append(str(b))
     missing = [f for f in CODE if not (ROOT / f).exists()]
     if missing:
         raise SystemExit(f"cannot freeze, files absent: {missing}")

@@ -161,3 +161,68 @@ def test_B10_every_sample_lands_in_exactly_one_state():
     assert counts == n, "the states must partition, not overlap"
     u = st == D.UNRESOLVED
     assert (pr[u] != "").all(), "every gap must name the primitive that failed"
+
+
+# ---- 029: the guard must refuse BEFORE the physical call ----------------
+def test_B11_reservation_precedes_the_call_and_over_budget_never_runs(tmp_path):
+    """An oversized batch must be refused before it can execute.
+
+    Charging after the solver returns is not a budget: the work is already
+    done by the time the refusal arrives.
+    """
+    fz = _freeze(tmp_path, {}, {"transfer_remaining": 4,
+                                "boundary_remaining": 4}, commit=None)
+    g = Q.Guard(fz, allow_dirty=True, ledger_path=tmp_path / "led.json")
+    ran = []
+
+    def pretend_solver(n):
+        tok = g.reserve(Q.BOUNDARY, n, "batch")
+        ran.append(n)
+        g.complete(tok, n)
+
+    with pytest.raises(Q.GuardFailure, match="before the call"):
+        pretend_solver(9)
+    assert ran == [], "the refused batch must not have run"
+    pretend_solver(4)
+    assert ran == [4]
+    assert g.remaining(Q.BOUNDARY) == 0
+
+
+def test_B12_the_attempt_ledger_survives_an_exception(tmp_path):
+    fz = _freeze(tmp_path, {}, {"transfer_remaining": 10,
+                                "boundary_remaining": 10}, commit=None)
+    led = tmp_path / "led.json"
+    g = Q.Guard(fz, allow_dirty=True, ledger_path=led)
+    tok = g.reserve(Q.TRANSFER, 6, "will blow up")
+    try:
+        raise RuntimeError("solver died")
+    except RuntimeError as exc:
+        g.abort(tok, str(exc))
+    d = json.loads(led.read_text())
+    assert d["attempted"][Q.TRANSFER] == 6
+    assert d["failed"][Q.TRANSFER] == 6
+    assert d["events"][0]["outcome"] == "aborted"
+    assert g.remaining(Q.TRANSFER) == 4, (
+        "a failed attempt is still an attempt and stays charged")
+
+
+def test_B13_a_missing_gate_is_detected(tmp_path):
+    """The injection the ruling asks for: a path that skips the reservation."""
+    fz = _freeze(tmp_path, {}, {"transfer_remaining": 2,
+                                "boundary_remaining": 2}, commit=None)
+    g = Q.Guard(fz, allow_dirty=True, ledger_path=tmp_path / "led.json")
+    g.spent[Q.TRANSFER] += 50          # as an ungated path would leave it
+    assert g.remaining(Q.TRANSFER) < 0, (
+        "an ungated call leaves the ledger negative, which the completion "
+        "gate must treat as a failure rather than round up to zero")
+    with pytest.raises(Q.GuardFailure, match="cap reached"):
+        g.reserve(Q.TRANSFER, 1, "after the leak")
+
+
+def test_B14_a_wrong_cost_model_is_refused_not_absorbed(tmp_path):
+    fz = _freeze(tmp_path, {}, {"transfer_remaining": 0,
+                                "boundary_remaining": 100}, commit=None)
+    g = Q.Guard(fz, allow_dirty=True, ledger_path=tmp_path / "led.json")
+    tok = g.reserve(Q.BOUNDARY, 10, "ten")
+    with pytest.raises(Q.GuardFailure, match="more evaluations reported"):
+        g.complete(tok, 11)

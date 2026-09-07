@@ -33,14 +33,74 @@ def sha(p: Path) -> str:
 class Guard:
     """Verifies the freeze, then meters every physical call against it."""
 
-    def __init__(self, freeze_path: Path, allow_dirty: bool = False):
+    def __init__(self, freeze_path: Path, allow_dirty: bool = False,
+                 ledger_path: Path | None = None):
         self.path = Path(freeze_path)
         if not self.path.exists():
             raise GuardFailure(f"no committed freeze at {self.path}")
         self.fz = json.loads(self.path.read_text())
         self.spent = {TRANSFER: 0, BOUNDARY: 0}
+        self.attempted = {TRANSFER: 0, BOUNDARY: 0}
+        self.failed = {TRANSFER: 0, BOUNDARY: 0}
+        self.events: list[dict] = []
+        self.ledger_path = Path(ledger_path) if ledger_path else None
         self._verify(allow_dirty)
         self.armed = True
+        self._persist()
+
+    def _persist(self) -> None:
+        """Write the attempt ledger now, so a crash cannot erase a charge."""
+        if self.ledger_path is None:
+            return
+        self.ledger_path.parent.mkdir(parents=True, exist_ok=True)
+        self.ledger_path.write_text(json.dumps({
+            "freeze": str(self.path), "attempted": self.attempted,
+            "completed": self.spent, "failed": self.failed,
+            "events": self.events,
+            "note": "written after every reservation and completion, so an "
+                    "exception in the solver or the report cannot lose a "
+                    "charge"}, indent=2) + "\n")
+
+    def reserve(self, kind: str, n: int, why: str) -> int:
+        """Take the allowance BEFORE the physical call, not after it.
+
+        Charging after the solver returns lets an oversized batch run to
+        completion and only then be refused, which is not a budget.
+        """
+        if not self.armed:
+            raise GuardFailure("the guard is closed")
+        if kind not in self.spent:
+            raise GuardFailure(f"unknown ledger {kind!r}")
+        if n < 0:
+            raise GuardFailure("a query count cannot be negative")
+        if n > self.remaining(kind):
+            raise GuardFailure(
+                f"{kind} cap reached before the call: {why} needs {n}, "
+                f"{self.remaining(kind)} left of "
+                f"{self.fz['ledger'][f'{kind}_remaining']}")
+        self.attempted[kind] += n
+        self.spent[kind] += n            # reserved, hence already charged
+        tok = len(self.events)
+        self.events.append({"token": tok, "kind": kind, "reserved": n,
+                            "why": why, "outcome": "reserved"})
+        self._persist()
+        return tok
+
+    def complete(self, token: int, completed: int, failed: int = 0) -> None:
+        e = self.events[token]
+        if completed + failed > e["reserved"]:
+            raise GuardFailure("more evaluations reported than reserved")
+        self.failed[e["kind"]] += failed
+        e.update({"outcome": "completed", "completed": completed,
+                  "failed": failed})
+        self._persist()
+
+    def abort(self, token: int, reason: str) -> None:
+        """The reservation stays charged; a failed attempt is still an attempt."""
+        e = self.events[token]
+        self.failed[e["kind"]] += e["reserved"]
+        e.update({"outcome": "aborted", "reason": reason})
+        self._persist()
 
     def _verify(self, allow_dirty: bool) -> None:
         bad = {f: {"frozen": h,
@@ -84,19 +144,8 @@ class Guard:
         return int(led[f"{kind}_remaining"]) - self.spent[kind]
 
     def charge(self, kind: str, n: int, why: str) -> None:
-        """Count every evaluation, including failures and retries."""
-        if not self.armed:
-            raise GuardFailure("the guard is closed")
-        if kind not in self.spent:
-            raise GuardFailure(f"unknown ledger {kind!r}")
-        if n < 0:
-            raise GuardFailure("a query count cannot be negative")
-        if n > self.remaining(kind):
-            raise GuardFailure(
-                f"{kind} cap reached: {why} needs {n}, "
-                f"{self.remaining(kind)} left of "
-                f"{self.fz['ledger'][f'{kind}_remaining']}")
-        self.spent[kind] += n
+        """Reserve and immediately close, for a call already made atomically."""
+        self.complete(self.reserve(kind, n, why), n)
 
     def snapshot(self) -> dict:
         led = self.fz["ledger"]
@@ -109,6 +158,9 @@ class Guard:
                 "verified_input_hashes": True,
                 "registered_tree_clean": True,
                 "spent_this_run": dict(self.spent),
+                "attempted_this_run": dict(self.attempted),
+                "failed_this_run": dict(self.failed),
+                "reserved_before_every_physical_call": True,
                 "remaining_after_run": {k: self.remaining(k)
                                         for k in self.spent},
                 "lifetime": {k: led[k] for k in sorted(led)}}
@@ -128,16 +180,49 @@ def trace_points(alpha: np.ndarray, beta: np.ndarray, order: int,
     if a.shape != b.shape:
         raise GuardFailure("alpha and beta must match")
     d = guard.fz["solver_policy"]
-    guard.charge(TRANSFER, int(a.size), why)
+    tok = guard.reserve(TRANSFER, int(a.size), why)
     grid = np.stack([a, b], axis=1)
     mask = np.ones(a.size, bool)
     thetao = float(d["inclination_deg"]) * np.pi / 180.0
-    rs, sign, t, phi = calculate_observables(
-        grid, mask, thetao, float(d["spin"]), int(order),
-        distance=float(d["d_obs"]))
+    try:
+        rs, sign, t, phi = calculate_observables(
+            grid, mask, thetao, float(d["spin"]), int(order),
+            distance=float(d["d_obs"]))
+    except BaseException as exc:
+        guard.abort(tok, f"{type(exc).__name__}: {exc}")
+        raise
     rs = np.asarray(rs, float).ravel()
+    guard.complete(tok, int(a.size), int((~np.isfinite(rs)).sum()))
     return {"alpha": a, "beta": b, "order": int(order),
             "source_r": rs, "radial_sign": np.asarray(sign, float).ravel(),
             "coordinate_time": np.asarray(t, float).ravel(),
             "source_phi": np.asarray(phi, float).ravel(),
             "n_evaluations": int(a.size), "why": why}
+
+
+def solve_boundary(marks_a, marks_b, order_count: int, guard: Guard, why: str,
+                   **kw) -> dict:
+    """The pinned boundary equations, reserved before they are solved.
+
+    ``solve_hulls`` performs ``5`` root solves per direction and ``2 *
+    len(marks)`` directions, so the cost is known before the call and the
+    allowance is taken first. Charging afterwards would let an oversized batch
+    finish and only then be refused.
+    """
+    from phrt.revision_v4_1.hulls import solve_hulls, SOLVES_PER_DIRECTION
+    n = int(2 * np.asarray(marks_a).size * order_count)
+    del SOLVES_PER_DIRECTION
+    tok = guard.reserve(BOUNDARY, n, why)
+    try:
+        hs, st = solve_hulls(marks_a, marks_b, **kw)
+    except BaseException as exc:
+        guard.abort(tok, f"{type(exc).__name__}: {exc}")
+        raise
+    if st["solves"] != n:
+        guard.abort(tok, f"expected {n} solves, the routine made "
+                         f"{st['solves']}")
+        raise GuardFailure(
+            f"boundary cost model is wrong: reserved {n}, performed "
+            f"{st['solves']}. The reservation must bound the call.")
+    guard.complete(tok, st["solves"], st["failures"])
+    return hs, st

@@ -1,0 +1,28 @@
+{
+  "stage": "T0",
+  "runs": {
+    "V1_20260907T002421Z_9a6cf49": {
+      "summary_present": true,
+      "resolved_by_order": {
+        "1": 595,
+        "2": 596
+      },
+      "brackets_by_order": {
+        "1": 595,
+        "2": 617
+      },
+      "point_arrays_present": false,
+      "missing_arrays": [
+        "contour endpoint coordinates",
+        "per-bracket screen brackets",
+        "failed-bracket coordinates and reasons",
+        "residuals"
+      ],
+      "why": "the V1 writer removed its internal point arrays before serialising, so only counts survive. A cut-cell integrator cannot consume counts",
+      "consequence": "the located contour cannot be integrated without re-deriving it, which would cost a further transfer batch",
+      "disclosed_not_reconstructed": true
+    }
+  },
+  "resolved_contour_arrays_available": false,
+  "action": "disclosed. Re-deriving the contour is a second transfer batch and this ruling's batch is committed to the primitive audit, so the arrays are not reconstructed here"
+}
