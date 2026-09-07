@@ -1,0 +1,23 @@
+{
+  "boundary": {
+    "spent_before_029": 26300,
+    "spent_by_029": 7110,
+    "lifetime_cap": 34300,
+    "closeout_allowance": 8000,
+    "remaining_of_allowance": 890,
+    "no_fit_or_geometry_sweep_allowance": 0
+  },
+  "transfer": {
+    "first_pilot_closed_at": 17912,
+    "unused_first_pilot_headroom_is_not_a_credit": true,
+    "second_batch_max": 20000,
+    "spent_by_029": 1080,
+    "initial_diagnosis_max": 4000,
+    "independent_validation_reserve_min": 4000,
+    "remaining_of_second_batch": 18920,
+    "third_batch": "not authorized"
+  },
+  "counts_failed_and_retried_evaluations": true,
+  "vectorised_calls_counted_per_point": true,
+  "paid_resources": "none"
+}

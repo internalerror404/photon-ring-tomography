@@ -1,0 +1,260 @@
+{
+  "stage": "G1_CLOSEOUT",
+  "ruling": "PAPER_I_TRANSFER_AUDIT_RULING_029",
+  "generated_utc": "2026-09-07T08:07:30Z",
+  "commit": "d252697d64cc4016b36085e3386829a673efd95f",
+  "candidate": "unchanged: 237 marks, periodic cubic in chord length, outer square exact",
+  "new_ladder_or_fit_family": false,
+  "tessellation_ladder": [
+    {
+      "samples": 4096,
+      "n0_band_normalised": 2.9795906619468338e-09,
+      "n1_band_normalised": 9.139812755008948e-07,
+      "n2_band_normalised": 2.455571757349909e-05,
+      "worst": 2.455571757349909e-05,
+      "passes": false,
+      "worst_response": 4.606414377171917e-06,
+      "response_passes": false
+    },
+    {
+      "samples": 16384,
+      "n0_band_normalised": 1.86224457989e-10,
+      "n1_band_normalised": 5.712383218570995e-08,
+      "n2_band_normalised": 1.5347324495215717e-06,
+      "worst": 1.5347324495215717e-06,
+      "passes": false,
+      "worst_response": 2.8793856696340237e-07,
+      "response_passes": true
+    },
+    {
+      "samples": 65536,
+      "n0_band_normalised": 1.1639030149982756e-11,
+      "n1_band_normalised": 3.570240403574676e-09,
+      "n2_band_normalised": 9.592089455614218e-08,
+      "worst": 9.592089455614218e-08,
+      "passes": true,
+      "worst_response": 1.7995599293501435e-08,
+      "response_passes": true
+    }
+  ],
+  "tessellation_chosen": 65536,
+  "tessellation_previously_reported_wrongly": "the 028 check normalised each shape's area change by that shape's own area. Band-normalised, order 2 was 2.46e-5 against a 1e-6 budget, so the reported pass was wrong",
+  "two_late_pairs_from_028": [
+    {
+      "pair": "119->237",
+      "order": 0,
+      "eta_band": 1.6942252450484578e-10,
+      "eta_boundaries": 1.6942255277731247e-10,
+      "hull_only_response": 1.297140698237017e-09,
+      "band_width_positive": true,
+      "all_pass": true
+    },
+    {
+      "pair": "119->237",
+      "order": 1,
+      "eta_band": 3.0674707602478764e-08,
+      "eta_boundaries": 3.067470753688898e-08,
+      "hull_only_response": 2.2871755123493998e-08,
+      "band_width_positive": true,
+      "all_pass": true
+    },
+    {
+      "pair": "119->237",
+      "order": 2,
+      "eta_band": 1.1612992752491623e-07,
+      "eta_boundaries": 1.1612992733618936e-07,
+      "hull_only_response": 2.093566567492659e-08,
+      "band_width_positive": true,
+      "all_pass": true
+    },
+    {
+      "pair": "60->119",
+      "order": 0,
+      "eta_band": 1.0033384015841206e-09,
+      "eta_boundaries": 1.0033383031597047e-09,
+      "hull_only_response": 2.0505527483718553e-08,
+      "band_width_positive": true,
+      "all_pass": true
+    },
+    {
+      "pair": "60->119",
+      "order": 1,
+      "eta_band": 1.922954688344482e-07,
+      "eta_boundaries": 1.922954686572786e-07,
+      "hull_only_response": 3.7643326549428446e-07,
+      "band_width_positive": true,
+      "all_pass": true
+    },
+    {
+      "pair": "60->119",
+      "order": 2,
+      "eta_band": 1.8433238100753707e-06,
+      "eta_boundaries": 1.8433238107236736e-06,
+      "hull_only_response": 3.562934405143548e-07,
+      "band_width_positive": true,
+      "all_pass": true
+    }
+  ],
+  "shifted": [
+    {
+      "order": 0,
+      "eta_band": 4.12260485900103e-12,
+      "eta_boundaries": 4.122625908266418e-12,
+      "band_N": 2475.2628260250995,
+      "band_M": 2475.262826022928,
+      "response": 1.1888584096200487e-10,
+      "tolerance": 0.00025,
+      "passes": true
+    },
+    {
+      "order": 1,
+      "eta_band": 7.142567681727545e-10,
+      "eta_boundaries": 7.142563988404751e-10,
+      "band_N": 72.00526586375636,
+      "band_M": 72.00526586030918,
+      "response": 1.2029111946616302e-09,
+      "tolerance": 0.00025,
+      "passes": true
+    },
+    {
+      "order": 2,
+      "eta_band": 9.382952557346571e-09,
+      "eta_boundaries": 9.382953363917457e-09,
+      "band_N": 2.0038742003505283,
+      "band_M": 2.003874200251721,
+      "response": 5.717747355290348e-10,
+      "tolerance": 0.00025,
+      "passes": true
+    }
+  ],
+  "tighter_root": [
+    {
+      "order": 0,
+      "eta_band": 3.67433588147061e-16,
+      "eta_boundaries": 1.3615450035331646e-16,
+      "band_N": 2475.262826023715,
+      "band_M": 2475.2628260237148,
+      "response": 3.458735184443643e-15,
+      "tolerance": 2.5e-05,
+      "passes": true
+    },
+    {
+      "order": 1,
+      "eta_band": 5.841813019425146e-14,
+      "eta_boundaries": 5.825009714820681e-14,
+      "band_N": 72.00526586031862,
+      "band_M": 72.00526586031478,
+      "response": 3.695203550019396e-13,
+      "tolerance": 2.5e-05,
+      "passes": true
+    },
+    {
+      "order": 2,
+      "eta_band": 1.6645082994070195e-11,
+      "eta_boundaries": 1.6644903703087436e-11,
+      "band_N": 2.003874200284594,
+      "band_M": 2.0038742002518877,
+      "response": 4.986982546863717e-11,
+      "tolerance": 2.5e-05,
+      "passes": true
+    }
+  ],
+  "topology": {
+    "0": {
+      "min_local_width_M": 21.226922116299423,
+      "positive_everywhere": true,
+      "angles_tested": 200000,
+      "total_area_positive": true,
+      "outer_simple": true,
+      "inner_simple": true,
+      "simple_tested_on_subsample": true
+    },
+    "1": {
+      "min_local_width_M": 0.46973854694095785,
+      "positive_everywhere": true,
+      "angles_tested": 200000,
+      "total_area_positive": true,
+      "outer_simple": true,
+      "inner_simple": true,
+      "simple_tested_on_subsample": true
+    },
+    "2": {
+      "min_local_width_M": 0.02590370044981416,
+      "positive_everywhere": true,
+      "angles_tested": 200000,
+      "total_area_positive": true,
+      "outer_simple": true,
+      "inner_simple": true,
+      "simple_tested_on_subsample": true
+    }
+  },
+  "checks": {
+    "two_late_pairs_all_metrics": true,
+    "shifted_band_and_response": true,
+    "tighter_root_executed": true,
+    "tighter_root_passes": true,
+    "tessellation_band_normalised": true,
+    "tessellation_response": true,
+    "local_nesting_positive_width": true,
+    "topology_simple": true,
+    "arrays_exported": true
+  },
+  "hull_geometry_qualified": true,
+  "final_boolean_is_the_conjunction_of_every_requirement": true,
+  "arrays": {
+    "file": "CLOSEOUT_ARRAYS_029.npz",
+    "sha256": "192eb9598c27ed2f96811ba8a8c27bbae2e09d2ac17769f4143a60771332e634"
+  },
+  "guard": {
+    "freeze": "artifacts/revisions/mahakal_v4_1/V0K_20260907T075159Z_a50b260/BOUNDARY_VALIDITY_028_INPUT_FREEZE.json",
+    "commit_at_freeze_time": "a50b2601d20162d718b009e06358e0fec94fb9e2",
+    "verified_input_hashes": true,
+    "registered_tree_clean": true,
+    "spent_this_run": {
+      "transfer": 0,
+      "boundary": 7110
+    },
+    "attempted_this_run": {
+      "transfer": 0,
+      "boundary": 7110
+    },
+    "failed_this_run": {
+      "transfer": 0,
+      "boundary": 0
+    },
+    "reserved_before_every_physical_call": true,
+    "remaining_after_run": {
+      "transfer": 17360,
+      "boundary": 890
+    },
+    "lifetime": {
+      "aborted_9000_boundary_solves_remain_charged": true,
+      "boundary_closeout_allowance": 8000,
+      "boundary_independent_check_reserve_min": 4000,
+      "boundary_lifetime_cap": 34300,
+      "boundary_remaining": 8000,
+      "boundary_spent_before_029": 26300,
+      "boundary_spent_lifetime": 26300,
+      "counts_failures_retries_and_vectorised_interior_calls": true,
+      "first_pilot_closed_at": 17912,
+      "first_pilot_unused_headroom_is_not_a_credit": true,
+      "prior_spend_reconciled_from_run_records": {
+        "transfer": 2640,
+        "boundary": 0
+      },
+      "runs_counted": [
+        "T1_20260907T074951Z_3d42022",
+        "T1_20260907T075031Z_c35cb34",
+        "T1_20260907T075138Z_1113f3e"
+      ],
+      "third_batch": "not authorized",
+      "transfer_independent_validation_reserve_min": 4000,
+      "transfer_initial_diagnostic_max": 4000,
+      "transfer_lifetime_cap": 250000,
+      "transfer_remaining": 17360,
+      "transfer_second_batch_max": 20000,
+      "transfer_spent_lifetime": 20552
+    }
+  },
+  "runtime_seconds": 925.9728019237518
+}

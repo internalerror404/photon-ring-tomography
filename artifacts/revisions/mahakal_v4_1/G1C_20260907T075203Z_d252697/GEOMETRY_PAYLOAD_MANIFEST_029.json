@@ -1,0 +1,13 @@
+{
+  "stage": "G1_CLOSEOUT",
+  "file": "CLOSEOUT_ARRAYS_029.npz",
+  "sha256": "192eb9598c27ed2f96811ba8a8c27bbae2e09d2ac17769f4143a60771332e634",
+  "contents": [
+    "fit roots at 237 marks",
+    "shifted roots",
+    "tighter-root roots",
+    "tessellated curves",
+    "mark parameters and arclength"
+  ],
+  "reusable_without_new_physical_solves": true
+}

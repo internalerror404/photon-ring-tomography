@@ -1,0 +1,90 @@
+{
+  "schema": "phrt-completion/1",
+  "id": "TRANSFER_AUDIT_029_COMPLETION",
+  "ruling": "PAPER_I_TRANSFER_AUDIT_RULING_029",
+  "generated_utc": "2026-09-07T08:16:54Z",
+  "commit": "d252697d64cc4016b36085e3386829a673efd95f",
+  "fail_closed": true,
+  "required_conditions": [
+    "prerequisite_test_success",
+    "preregistration_before_every_query",
+    "reservation_precedes_every_physical_call",
+    "attempt_ledger_persisted_on_exception",
+    "over_budget_and_missing_gate_injections_demonstrated",
+    "whole_transfer_quantity_inventoried_not_radius_only",
+    "physical_and_numerical_separated_by_evidence_not_by_nan",
+    "boundary_cap_respected",
+    "transfer_cap_respected",
+    "initial_diagnosis_cap_respected",
+    "no_arithmetic_changed_in_T1",
+    "no_backend_substitution",
+    "no_tolerance_adjusted_after_results",
+    "no_archive_rewritten",
+    "no_target_information_inspected",
+    "not_run_recorded_as_not_run"
+  ],
+  "conditions": {
+    "prerequisite_test_success": true,
+    "preregistration_before_every_query": true,
+    "reservation_precedes_every_physical_call": true,
+    "attempt_ledger_persisted_on_exception": true,
+    "over_budget_and_missing_gate_injections_demonstrated": true,
+    "whole_transfer_quantity_inventoried_not_radius_only": true,
+    "physical_and_numerical_separated_by_evidence_not_by_nan": true,
+    "boundary_cap_respected": true,
+    "transfer_cap_respected": true,
+    "initial_diagnosis_cap_respected": true,
+    "no_arithmetic_changed_in_T1": true,
+    "no_backend_substitution": true,
+    "no_tolerance_adjusted_after_results": true,
+    "no_archive_rewritten": true,
+    "no_target_information_inspected": true,
+    "not_run_recorded_as_not_run": true
+  },
+  "failed_conditions": [],
+  "unrecorded_conditions": [],
+  "separate_statuses": {
+    "curved_refinement": "DEMONSTRATED",
+    "full_hull_qualification": "QUALIFIED",
+    "contour_brackets": "LOCAL_BRACKETS_RESOLVED",
+    "domain_completeness": "PENDING_ARRAYS_NOT_PRESERVED",
+    "primitive_diagnosis": "CAUSE_IDENTIFIED",
+    "repair_validation": "NOT_RUN",
+    "transfer_accuracy": "NOT_QUALIFIED",
+    "overall_quadrature": "NOT_QUALIFIED",
+    "governance": "COMPLETE"
+  },
+  "return_status": "TRANSFER_AUDIT_029_REVIEW_READY",
+  "R3B_authorized": false,
+  "test_suite": {
+    "returncode": 0,
+    "passed": true,
+    "summary": "589 passed in 120.35s (0:02:00)"
+  },
+  "ledger": {
+    "boundary": {
+      "spent_before_029": 26300,
+      "spent_by_029": 7110,
+      "lifetime_cap": 34300,
+      "closeout_allowance": 8000,
+      "remaining_of_allowance": 890,
+      "no_fit_or_geometry_sweep_allowance": 0
+    },
+    "transfer": {
+      "first_pilot_closed_at": 17912,
+      "unused_first_pilot_headroom_is_not_a_credit": true,
+      "second_batch_max": 20000,
+      "spent_by_029": 1080,
+      "initial_diagnosis_max": 4000,
+      "independent_validation_reserve_min": 4000,
+      "remaining_of_second_batch": 18920,
+      "third_batch": "not authorized"
+    },
+    "counts_failed_and_retried_evaluations": true,
+    "vectorised_calls_counted_per_point": true,
+    "paid_resources": "none"
+  },
+  "skipped": [
+    "T2 repair not attempted: a cause was identified but the repair and its holdout freeze are a separate authorized step, and the finding changes what a repair should be"
+  ]
+}
