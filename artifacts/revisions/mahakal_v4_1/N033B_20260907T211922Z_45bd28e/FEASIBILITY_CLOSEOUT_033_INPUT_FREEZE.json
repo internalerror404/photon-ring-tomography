@@ -1,0 +1,2354 @@
+{
+  "schema": "phrt-input-freeze/1",
+  "id": "FEASIBILITY_CLOSEOUT_033_INPUT_FREEZE",
+  "ruling": "PAPER_I_FEASIBILITY_AND_CLOSEOUT_RULING_033",
+  "written_before_any_new_physical_query": true,
+  "created_utc": "2026-09-07T21:19:47Z",
+  "commit_at_freeze_time": "45bd28e9645d5c800a65b00fbe83e21772666574",
+  "detector": {
+    "name": "D026",
+    "unchanged": true,
+    "alpha_M": [
+      -25.0,
+      25.0
+    ],
+    "beta_M": [
+      -25.0,
+      25.0
+    ],
+    "pitch_M": 0.4,
+    "sigma": 0.011341986814407566,
+    "observer_times": [
+      0.0,
+      2.857142857142857,
+      5.714285714285714,
+      8.571428571428571,
+      11.428571428571429,
+      14.285714285714286,
+      17.142857142857142,
+      20.0
+    ]
+  },
+  "clock": {
+    "absolute_reference_coordinate_time_M": -978.6055123201214
+  },
+  "solver_policy": {
+    "entry_point": "aart.raytracing_f.calculate_observables, reproduced expression for expression",
+    "spin": 0.5,
+    "inclination_deg": 50.0,
+    "d_obs": 1000.0,
+    "source_annulus": "horizon exclusive to 50 inclusive",
+    "predicate": "path-domain, Mino parameter, backward from the observer",
+    "transfer_formula_repair": "none; no evidence justifies one",
+    "missing_node_or_failed_quadrature_as_zero": false,
+    "comparator_primary": "pathdomain2.adjudicate (frozen 031)",
+    "reference_A": "pathdomain2.adjudicate(reference=True), graded panels; run to recover the ACTUAL 031 failure reason, which I1 discarded",
+    "reference_B": "pathdomain3.adjudicate (PATHDOMAIN_V3_INDEXED_REDUCTION)",
+    "reference_hierarchy": [
+      "primary",
+      "reference_A",
+      "reference_B"
+    ],
+    "numerical_policy": {
+      "version": "PATHDOMAIN_V3_INDEXED_REDUCTION",
+      "imag_tol_for_a_real_root": 1e-13,
+      "cluster_rel_tol_for_the_turning_root": 1e-06,
+      "max_backward_residual_of_the_original_quartic": 1e-10,
+      "adaptive_quad_limit": 200,
+      "adaptive_quad_epsabs": 1e-12,
+      "adaptive_quad_epsrel": 1e-12,
+      "far_radius_for_the_escape_tail": 10000000.0,
+      "margin_factor": 10.0,
+      "reduced_potential": "index_excluded_product_no_division",
+      "ambiguous_cases": "refused_not_resolved_toward_the_archived_mask"
+    },
+    "ambiguity_rule": "a case inside the decision margin is returned unresolved; it is never resolved toward the archived mask"
+  },
+  "selection_rule": {
+    "development": "the 66 records ruling 031 left unresolved; these are development inputs, not a holdout",
+    "confirmation": "192 previously unused point/order IDs on the fine profile, 48 per declared scope, frozen before any outcome",
+    "strata": [
+      "near_turn",
+      "healthy",
+      "absent_requested_event",
+      "finite_outside_annulus"
+    ],
+    "target_information_used": false,
+    "excluded_prior_ids": 3262,
+    "excluded_provenance": {
+      "I1_031_fine": 494,
+      "D1B_20260907T102020Z_5c1cb6a:dev:core": 1276,
+      "D1B_20260907T102020Z_5c1cb6a:holdout:fine": 880,
+      "D1_20260907T101654Z_57fae0f:dev:core": 1276,
+      "D1_20260907T101654Z_57fae0f:holdout:fine": 880,
+      "T1_20260907T074951Z_3d42022:029": 480,
+      "T1_20260907T075031Z_c35cb34:029": 1080,
+      "T1_20260907T075138Z_1113f3e:029": 1080
+    },
+    "audit": {
+      "order0": {
+        "eligible_in_band_and_unused": 61281,
+        "turn_separation_subsample": 20000,
+        "with_an_accessible_turn": 19560
+      },
+      "order1": {
+        "eligible_in_band_and_unused": 44287,
+        "turn_separation_subsample": 20000,
+        "with_an_accessible_turn": 17852
+      },
+      "order2": {
+        "eligible_in_band_and_unused": 19537,
+        "turn_separation_subsample": 19537,
+        "with_an_accessible_turn": 15026
+      },
+      "pool_sizes": {
+        "near_turn": 5245,
+        "healthy": 15337,
+        "absent_requested_event": 2676,
+        "finite_outside_annulus": 10906
+      },
+      "selected": 192,
+      "selection_used_target_information": false
+    }
+  },
+  "ledger": {
+    "convention": "B: native evaluations plus independent end-to-end reference evaluations",
+    "transfer_remaining": 1628,
+    "boundary_remaining": 0,
+    "diagnostic_total_max": 1024,
+    "development_charged_max": 384,
+    "confirmation_points_max": 192,
+    "confirmation_charged_reserved_min": 576,
+    "point_order_ids_max": 258,
+    "planned_development_charged": 198,
+    "planned_confirmation_charged": 576,
+    "planned_total_charged": 774,
+    "primary_path_within_the_native_bundle": "component record, not a second charge",
+    "standalone_primary_path_reevaluation": "charged one unit",
+    "each_independent_end_to_end_reference": "separately charged",
+    "per_quadrature_abscissa_is_a_new_ray": false,
+    "second_batch_cap": 20000,
+    "second_batch_spent_before_033": 18372,
+    "suspended_full_response_reserve_4000": "suspended for the unlaunched integration design; any future integration campaign must fund its own validation",
+    "new_allowance": "none"
+  },
+  "development_gate": {
+    "declared_before_any_query": true,
+    "continue_to_confirmation_requires_all_of": [
+      "reference_B resolves every one of the 66 development cases",
+      "reference_B agrees with the primary label on every one",
+      "reference_A's failures concentrate at 90% or more in one identified cause"
+    ],
+    "otherwise": "report exactly which cases remain unresolved and stop; the confirmation reserve is not spent"
+  },
+  "stopping_rules": {
+    "development_unresolved_after_reference_B": "report exactly which cases remain and stop; do not continue to confirmation and do not launch any integration",
+    "confirmation_unresolved": "return blocked with all evidence; no forced labels",
+    "comparator_pass_means": "COMPARATOR_NUMERICALLY_VALIDATED_ON_TESTED_COHORTS",
+    "comparator_pass_authorizes_integration": false,
+    "no_tuning_after_the_confirmation_outcome": true,
+    "retries": "must fit the committed cap; no refreeze resets a counter"
+  },
+  "payload_requirements": {
+    "write_order": "chunk payload and hash before the summary",
+    "fields": [
+      "evaluation_ids",
+      "coordinates",
+      "roots",
+      "lam_eta",
+      "G_theta",
+      "integral_values",
+      "error_estimates",
+      "decision_margins",
+      "endpoint_limits",
+      "root_residuals_and_conditioning",
+      "failure_reasons",
+      "codes"
+    ],
+    "cache_identity": [
+      "screen_alpha",
+      "screen_beta",
+      "order",
+      "geometry",
+      "observer_convention",
+      "backend",
+      "numerical_policy",
+      "precision"
+    ]
+  },
+  "development_ids": [
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 65785,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.7347350146751594e-08,
+      "prior_error_estimate": 2.7347350146751594e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 68300,
+      "prior_primary": "NO_NTH_EXTERIOR_CROSSING_ESCAPE",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.6234957102930093e-08,
+      "prior_error_estimate": 2.6234957102930093e-09,
+      "strata": [
+        "absence_candidates"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 74318,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.69094692328671e-08,
+      "prior_error_estimate": 3.6909469232867102e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 82840,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.1364521353582845e-07,
+      "prior_error_estimate": 1.1364521353582845e-08,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 197420,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.2817737301618667e-07,
+      "prior_error_estimate": 1.2817737301618667e-08,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 197424,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 7.280352215741624e-08,
+      "prior_error_estimate": 7.280352215741624e-09,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 197426,
+      "prior_primary": "NO_NTH_EXTERIOR_CROSSING_ESCAPE",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 5.046970793788326e-08,
+      "prior_error_estimate": 5.046970793788326e-09,
+      "strata": [
+        "absence_candidates"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 198636,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.92220249419319e-08,
+      "prior_error_estimate": 2.92220249419319e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 206897,
+      "prior_primary": "NO_NTH_EXTERIOR_CROSSING_ESCAPE",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.6089194580530156e-08,
+      "prior_error_estimate": 2.6089194580530156e-09,
+      "strata": [
+        "absence_candidates"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 215267,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.4003454263905118e-08,
+      "prior_error_estimate": 2.4003454263905118e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 231168,
+      "prior_primary": "NO_NTH_EXTERIOR_CROSSING_ESCAPE",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.7329600640061663e-08,
+      "prior_error_estimate": 2.7329600640061663e-09,
+      "strata": [
+        "absence_candidates"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 238005,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.094183146665227e-08,
+      "prior_error_estimate": 3.094183146665227e-09,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 239587,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.9256014396071526e-08,
+      "prior_error_estimate": 2.9256014396071526e-09,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 243194,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.1178178924031683e-08,
+      "prior_error_estimate": 3.1178178924031683e-09,
+      "strata": [
+        "emitting"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 246389,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.184359643617074e-08,
+      "prior_error_estimate": 3.1843596436170743e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 270346,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.4926690194878573e-08,
+      "prior_error_estimate": 2.4926690194878573e-09,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 291916,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.5433274140859463e-08,
+      "prior_error_estimate": 2.5433274140859463e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 317085,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.1578902510023683e-08,
+      "prior_error_estimate": 2.1578902510023683e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 332668,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.9537027162938186e-08,
+      "prior_error_estimate": 1.9537027162938186e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 445377,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.0324622042944875e-08,
+      "prior_error_estimate": 1.0324622042944875e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 449817,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 4.444699860657424e-08,
+      "prior_error_estimate": 4.444699860657424e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 493349,
+      "prior_primary": "NO_NTH_EXTERIOR_CROSSING_ESCAPE",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 5.1963838000705574e-09,
+      "prior_error_estimate": 5.196383800070557e-10,
+      "strata": [
+        "absence_candidates"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 493350,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 8.250855659738626e-09,
+      "prior_error_estimate": 8.250855659738626e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 499347,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 8.046140195129547e-09,
+      "prior_error_estimate": 8.046140195129547e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 516139,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 7.499731563787576e-09,
+      "prior_error_estimate": 7.499731563787576e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 559321,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 6.37909092667333e-09,
+      "prior_error_estimate": 6.37909092667333e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 582112,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.6795993818338418e-09,
+      "prior_error_estimate": 3.679599381833842e-10,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 588110,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.5694872178507497e-09,
+      "prior_error_estimate": 3.5694872178507497e-10,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 603486,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.7367834680027634e-08,
+      "prior_error_estimate": 2.7367834680027634e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 603706,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 5.491166497747608e-09,
+      "prior_error_estimate": 5.491166497747608e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 636097,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 4.68184341375487e-09,
+      "prior_error_estimate": 4.68184341375487e-10,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 673288,
+      "prior_primary": "NO_NTH_EXTERIOR_CROSSING_ESCAPE",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.6237257691721626e-09,
+      "prior_error_estimate": 2.6237257691721626e-10,
+      "strata": [
+        "absence_candidates"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 678088,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 4.46877202929329e-09,
+      "prior_error_estimate": 4.46877202929329e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 736713,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.688740217353963e-08,
+      "prior_error_estimate": 2.688740217353963e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 769277,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.739606906420921e-09,
+      "prior_error_estimate": 3.739606906420921e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 789676,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.3613593241315086e-09,
+      "prior_error_estimate": 3.3613593241315086e-10,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 820875,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.9646091822700445e-09,
+      "prior_error_estimate": 1.9646091822700445e-10,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 828076,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.4698691129437093e-09,
+      "prior_error_estimate": 3.469869112943709e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 853277,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.366198342827515e-09,
+      "prior_error_estimate": 3.366198342827515e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 879679,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.3255948912645006e-09,
+      "prior_error_estimate": 3.3255948912645006e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 932485,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.786832970909624e-09,
+      "prior_error_estimate": 1.786832970909624e-10,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 944488,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.2485670940425964e-09,
+      "prior_error_estimate": 3.2485670940425964e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1018905,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.7829127361973976e-09,
+      "prior_error_estimate": 1.7829127361973976e-10,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1044114,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.4244808216817927e-09,
+      "prior_error_estimate": 3.4244808216817927e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1074125,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 3.5291464536637575e-09,
+      "prior_error_estimate": 3.5291464536637575e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1150960,
+      "prior_primary": "NO_NTH_EXTERIOR_CROSSING_ESCAPE",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.182304192295038e-09,
+      "prior_error_estimate": 2.182304192295038e-10,
+      "strata": [
+        "absence_candidates"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1154563,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 4.059480460987164e-09,
+      "prior_error_estimate": 4.059480460987164e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1184213,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.993302728511644e-08,
+      "prior_error_estimate": 1.993302728511644e-09,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1241772,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 7.482203284492383e-08,
+      "prior_error_estimate": 7.482203284492383e-09,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1295071,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 6.940854248200409e-09,
+      "prior_error_estimate": 6.940854248200409e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1303480,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 7.228401410701622e-09,
+      "prior_error_estimate": 7.228401410701622e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1307084,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 7.40677086983626e-09,
+      "prior_error_estimate": 7.40677086983626e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1307709,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 8.539084666125247e-08,
+      "prior_error_estimate": 8.539084666125247e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1333516,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 8.764789345249665e-09,
+      "prior_error_estimate": 8.764789345249665e-10,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1346061,
+      "prior_primary": "NO_NTH_EXTERIOR_CROSSING_ESCAPE",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.9528991249329875e-08,
+      "prior_error_estimate": 1.9528991249329875e-09,
+      "strata": [
+        "absence_candidates"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1352743,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.0062131985757118e-08,
+      "prior_error_estimate": 1.0062131985757118e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1363560,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.0888549558232026e-08,
+      "prior_error_estimate": 1.0888549558232026e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1364762,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.1033852512328312e-08,
+      "prior_error_estimate": 1.1033852512328312e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1365964,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.1108532446201889e-08,
+      "prior_error_estimate": 1.1108532446201889e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1369570,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.0902534954474212e-08,
+      "prior_error_estimate": 1.0902534954474212e-09,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1380803,
+      "prior_primary": "EXTERIOR_EVENT_OUTSIDE_SOURCE_ANNULUS",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.915228271565229e-08,
+      "prior_error_estimate": 1.915228271565229e-09,
+      "strata": [
+        "finite_exterior_outside_annulus"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1414318,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 1.4231573800326602e-08,
+      "prior_error_estimate": 1.4231573800326602e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1427338,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.195347873104531e-08,
+      "prior_error_estimate": 2.195347873104531e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1428645,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.06421167382258e-08,
+      "prior_error_estimate": 2.06421167382258e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1428649,
+      "prior_primary": "NO_NTH_EXTERIOR_CROSSING_ESCAPE",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.3118147826853776e-08,
+      "prior_error_estimate": 2.3118147826853776e-09,
+      "strata": [
+        "absence_candidates"
+      ]
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1430980,
+      "prior_primary": "VALID_EMITTING_EVENT",
+      "prior_reference": "DOMAIN_UNRESOLVED",
+      "prior_margin": 2.3091140945947215e-08,
+      "prior_error_estimate": 2.3091140945947215e-09,
+      "strata": [
+        "boundary_uncertainty_near_r50"
+      ]
+    }
+  ],
+  "confirmation_ids": [
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 20855,
+      "stratum": "near_turn",
+      "turn_separation": 6.201956636483859
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 22095,
+      "stratum": "near_turn",
+      "turn_separation": 6.406019208321577
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 22363,
+      "stratum": "near_turn",
+      "turn_separation": 4.43467795628429
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 23891,
+      "stratum": "near_turn",
+      "turn_separation": 3.6612118779442886
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 24136,
+      "stratum": "near_turn",
+      "turn_separation": 2.998780423654039
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 24656,
+      "stratum": "near_turn",
+      "turn_separation": 5.177821137087468
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 26667,
+      "stratum": "near_turn",
+      "turn_separation": 6.2109019289598955
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 28577,
+      "stratum": "near_turn",
+      "turn_separation": 6.645985964163693
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 29350,
+      "stratum": "near_turn",
+      "turn_separation": 1.1087153311614988
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 29900,
+      "stratum": "near_turn",
+      "turn_separation": 1.1857096782715946
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 30911,
+      "stratum": "near_turn",
+      "turn_separation": 3.942928574238186
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 34591,
+      "stratum": "near_turn",
+      "turn_separation": 3.6106043862363046
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 37896,
+      "stratum": "near_turn",
+      "turn_separation": 2.7804640072197992
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 39367,
+      "stratum": "near_turn",
+      "turn_separation": 2.351263638165101
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 41854,
+      "stratum": "near_turn",
+      "turn_separation": 5.892324202610389
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 41873,
+      "stratum": "near_turn",
+      "turn_separation": 4.767700040389377
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 42365,
+      "stratum": "near_turn",
+      "turn_separation": 5.471125923656782
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 68765,
+      "stratum": "near_turn",
+      "turn_separation": 0.8549954272357994
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 69736,
+      "stratum": "near_turn",
+      "turn_separation": 0.6449939481165741
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 70731,
+      "stratum": "near_turn",
+      "turn_separation": 0.47626532933434174
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 72288,
+      "stratum": "near_turn",
+      "turn_separation": 0.6511884089469251
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 75806,
+      "stratum": "near_turn",
+      "turn_separation": 0.6493904814451565
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 77690,
+      "stratum": "near_turn",
+      "turn_separation": 0.30841515784271945
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 81326,
+      "stratum": "near_turn",
+      "turn_separation": 0.7207053434162431
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 91851,
+      "stratum": "near_turn",
+      "turn_separation": 0.8745655434291759
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 101363,
+      "stratum": "near_turn",
+      "turn_separation": 0.7424061056724436
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 105630,
+      "stratum": "near_turn",
+      "turn_separation": 0.8618865312613551
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 106368,
+      "stratum": "near_turn",
+      "turn_separation": 0.7045379772238274
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 125380,
+      "stratum": "near_turn",
+      "turn_separation": 0.7670806893687203
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 127119,
+      "stratum": "near_turn",
+      "turn_separation": 0.69863733548077
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 128381,
+      "stratum": "near_turn",
+      "turn_separation": 0.8055724769468786
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 138117,
+      "stratum": "near_turn",
+      "turn_separation": 0.8912712297468266
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 142379,
+      "stratum": "near_turn",
+      "turn_separation": 0.5611240892693892
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 170360,
+      "stratum": "near_turn",
+      "turn_separation": 0.8069853792916568
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 188674,
+      "stratum": "near_turn",
+      "turn_separation": 0.9400630786632531
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 198764,
+      "stratum": "near_turn",
+      "turn_separation": 0.4979840833996083
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 308705,
+      "stratum": "near_turn",
+      "turn_separation": 0.13603357901083868
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 325486,
+      "stratum": "near_turn",
+      "turn_separation": 0.09237326009207747
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 357853,
+      "stratum": "near_turn",
+      "turn_separation": 0.10916689585844352
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 509848,
+      "stratum": "near_turn",
+      "turn_separation": 0.02367458621292773
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 688705,
+      "stratum": "near_turn",
+      "turn_separation": 0.0776406709340085
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 778884,
+      "stratum": "near_turn",
+      "turn_separation": 0.07824625277986419
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 807516,
+      "stratum": "near_turn",
+      "turn_separation": 0.13712077117410848
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1046522,
+      "stratum": "near_turn",
+      "turn_separation": 0.11921881568608672
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1113450,
+      "stratum": "near_turn",
+      "turn_separation": 0.0648382727884651
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1167778,
+      "stratum": "near_turn",
+      "turn_separation": 0.1266616383334931
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1421324,
+      "stratum": "near_turn",
+      "turn_separation": 0.10836786990489111
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1427424,
+      "stratum": "near_turn",
+      "turn_separation": 0.12453190798629388
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 110,
+      "stratum": "healthy",
+      "turn_separation": 22.23478229906956
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 1043,
+      "stratum": "healthy",
+      "turn_separation": 26.289017373630795
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 1260,
+      "stratum": "healthy",
+      "turn_separation": 30.318015583021882
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 5438,
+      "stratum": "healthy",
+      "turn_separation": 21.456421492808463
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 6198,
+      "stratum": "healthy",
+      "turn_separation": 22.077724051786163
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 7197,
+      "stratum": "healthy",
+      "turn_separation": 21.312444339491236
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 8748,
+      "stratum": "healthy",
+      "turn_separation": 27.832711122569275
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 9511,
+      "stratum": "healthy",
+      "turn_separation": 25.740889532372268
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 10229,
+      "stratum": "healthy",
+      "turn_separation": 24.06888890140199
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 21247,
+      "stratum": "healthy",
+      "turn_separation": 22.98505429544408
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 45526,
+      "stratum": "healthy",
+      "turn_separation": 19.86549593387757
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 48249,
+      "stratum": "healthy",
+      "turn_separation": 25.43967498839372
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 51029,
+      "stratum": "healthy",
+      "turn_separation": 21.902487660039668
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 51488,
+      "stratum": "healthy",
+      "turn_separation": 24.922686736777717
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 54052,
+      "stratum": "healthy",
+      "turn_separation": 20.34852748787336
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 55316,
+      "stratum": "healthy",
+      "turn_separation": 19.541709093493758
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 56774,
+      "stratum": "healthy",
+      "turn_separation": 25.784416862766
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 58012,
+      "stratum": "healthy",
+      "turn_separation": 28.221171479367914
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 58095,
+      "stratum": "healthy",
+      "turn_separation": 19.234737588407302
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 58560,
+      "stratum": "healthy",
+      "turn_separation": 22.424340012097996
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 58757,
+      "stratum": "healthy",
+      "turn_separation": 29.370155093274875
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 60205,
+      "stratum": "healthy",
+      "turn_separation": 25.203557284526617
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 60483,
+      "stratum": "healthy",
+      "turn_separation": 28.93833907941608
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 61236,
+      "stratum": "healthy",
+      "turn_separation": 29.79338312535869
+    },
+    {
+      "profile": "fine",
+      "order": 0,
+      "index": 61807,
+      "stratum": "healthy",
+      "turn_separation": 25.00533878870969
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 65132,
+      "stratum": "healthy",
+      "turn_separation": 3.5310286051104836
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 84085,
+      "stratum": "healthy",
+      "turn_separation": 4.142176608705492
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 100569,
+      "stratum": "healthy",
+      "turn_separation": 4.21775652784121
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 104574,
+      "stratum": "healthy",
+      "turn_separation": 3.8964521077310135
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 132055,
+      "stratum": "healthy",
+      "turn_separation": 4.43709279140651
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 144563,
+      "stratum": "healthy",
+      "turn_separation": 4.169197266643058
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 146069,
+      "stratum": "healthy",
+      "turn_separation": 3.9133263529027422
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 154559,
+      "stratum": "healthy",
+      "turn_separation": 4.534404506757697
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 169084,
+      "stratum": "healthy",
+      "turn_separation": 3.87781117475214
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 171087,
+      "stratum": "healthy",
+      "turn_separation": 3.8296433649209276
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 174100,
+      "stratum": "healthy",
+      "turn_separation": 3.3958452871040383
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 187118,
+      "stratum": "healthy",
+      "turn_separation": 3.4024608880594305
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 188622,
+      "stratum": "healthy",
+      "turn_separation": 3.3475749196801248
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 192628,
+      "stratum": "healthy",
+      "turn_separation": 3.4074111794663486
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 248786,
+      "stratum": "healthy",
+      "turn_separation": 0.40650982486022835
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 453774,
+      "stratum": "healthy",
+      "turn_separation": 0.4833341280496102
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 558124,
+      "stratum": "healthy",
+      "turn_separation": 0.48516829769729464
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 600108,
+      "stratum": "healthy",
+      "turn_separation": 0.5579313709873297
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 601309,
+      "stratum": "healthy",
+      "turn_separation": 0.5020579091062114
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 709285,
+      "stratum": "healthy",
+      "turn_separation": 0.5202416873060676
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 903684,
+      "stratum": "healthy",
+      "turn_separation": 0.51233033770878
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1046517,
+      "stratum": "healthy",
+      "turn_separation": 0.5172803461038762
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1120949,
+      "stratum": "healthy",
+      "turn_separation": 0.44549673713446314
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 53671,
+      "stratum": "absent_requested_event",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 53699,
+      "stratum": "absent_requested_event",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 65100,
+      "stratum": "absent_requested_event",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 75074,
+      "stratum": "absent_requested_event",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 84058,
+      "stratum": "absent_requested_event",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 89669,
+      "stratum": "absent_requested_event",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 96543,
+      "stratum": "absent_requested_event",
+      "turn_separation": 5.405624720353325
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 134026,
+      "stratum": "absent_requested_event",
+      "turn_separation": 5.72352039171107
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 139527,
+      "stratum": "absent_requested_event",
+      "turn_separation": 5.712846213085874
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 190801,
+      "stratum": "absent_requested_event",
+      "turn_separation": Infinity
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 204621,
+      "stratum": "absent_requested_event",
+      "turn_separation": 4.511849362674729
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 203442,
+      "stratum": "absent_requested_event",
+      "turn_separation": Infinity
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 216460,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.42485991315078
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 266751,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.4853637421418431
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 345336,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.2794884863489959
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 370559,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.261940856232326
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 376561,
+      "stratum": "absent_requested_event",
+      "turn_separation": Infinity
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 396981,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.2781512604168972
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 425802,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.28293799507715844
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 471773,
+      "stratum": "absent_requested_event",
+      "turn_separation": Infinity
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 484953,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.6065852698479413
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 523056,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.265496917378099
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 542262,
+      "stratum": "absent_requested_event",
+      "turn_separation": Infinity
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 763276,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.6683329352013612
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 812486,
+      "stratum": "absent_requested_event",
+      "turn_separation": Infinity
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 854314,
+      "stratum": "absent_requested_event",
+      "turn_separation": Infinity
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 884314,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.30354155143793626
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 913282,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.6592534618476065
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 922709,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.2855661832926968
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 928884,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.6736590646914173
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 940886,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.6757130346150588
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1005701,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.6648623265128637
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1007891,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.31126726427083806
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1142238,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.3437307758205721
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1160228,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.33697255118196345
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1161766,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.643159540375692
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1221805,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.6388221323795364
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1222587,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.3229004719127264
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1224207,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.6308722428814661
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1262155,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.3385915155519372
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1287331,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.33090092091035617
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1332879,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.34466358150426357
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1359242,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.38466086821511203
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1397224,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.5448181888549799
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1402356,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.4022823268732054
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1415305,
+      "stratum": "absent_requested_event",
+      "turn_separation": Infinity
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1430963,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.48909369134947633
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1432189,
+      "stratum": "absent_requested_event",
+      "turn_separation": 0.47852583453291775
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 55196,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 57638,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 3.863455965411612
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 61135,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 66125,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 3.6814705668505896
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 67595,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 4.572092052560164
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 73090,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 73586,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 75086,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 4.509868645924379
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 86569,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 91565,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 97560,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 109046,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 114544,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 115540,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 5.182132213881845
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 129527,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 5.670832977210605
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 135542,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 138532,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 5.488439317892483
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 139550,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 143048,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 4.827714058367944
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 151035,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 159552,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 160040,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 162049,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 165565,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 168556,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 5.058069365359026
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 170556,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 5.126050405916087
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 172069,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 178060,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 187078,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 4.949461051126286
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 195320,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 1.75121743656534
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 195603,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 4.50760786179573
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 197622,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 199127,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 200625,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 4.0965050723620475
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 201633,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 3.913975885202565
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 202114,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 202639,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 3.8044402572458282
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 205132,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": null
+    },
+    {
+      "profile": "fine",
+      "order": 1,
+      "index": 207133,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 4.334072242149394
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 301503,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 0.4933349845352488
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 506248,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 0.2543442159677278
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1054917,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 0.6468402128889905
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1110140,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 0.6250487542768774
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1160566,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 0.6174111942050353
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1215392,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 0.3035030401382701
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1238619,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 0.5967273424642872
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1253031,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 0.5885010733169103
+    },
+    {
+      "profile": "fine",
+      "order": 2,
+      "index": 1308908,
+      "stratum": "finite_outside_annulus",
+      "turn_separation": 0.33459109414764887
+    }
+  ],
+  "files": {
+    "src/phrt/revision_v4_1/pathdomain.py": "43a404d52408560af974f93bb01a259f7a3151fce91806573be3c56ed0e7c9a3",
+    "src/phrt/revision_v4_1/pathdomain2.py": "8502aeea1f2dd4e725f360949b00da3fb779d1f02cf0bf381243140fe83bc086",
+    "src/phrt/revision_v4_1/pathdomain3.py": "d62d14074955e488e480d8b4cbdbd524550e2e5985db8d06803975d3a4bdeabb",
+    "src/phrt/revision_v4_1/rootcheck.py": "9c432bba2a61998486052a736db2a752fc320e34c0edc786ae222eb4da1f2627",
+    "src/phrt/revision_v4_1/leaf.py": "b36aa560e3baf2e2b3feb164b91b4653399ba1bcd80ec48f05810462fced360e",
+    "src/phrt/revision_v4_1/leaf2.py": "ad364a2af52a68fb52129d3a754e5aeb25b2337c379b3150fd8bd9571f9d9030",
+    "src/phrt/revision_v4_1/domain.py": "c61445dc6e22c985ec22c9d64e94f0c8ce871e936c14a49b01610e49053347ba",
+    "src/phrt/revision_v4_1/query.py": "afb6436ee6c31aea09a15cb5d0946b3a69076a380d07f8650730fb8e335e0913",
+    "scripts/revision_v4_1/t1_first_invalid_primitive.py": "6e052c12bd4e0cb796b8cd28ba63d6454a3db16e99a131181e3a09c2b3adb1eb",
+    "scripts/revision_v4_1/n0_freeze_033.py": "f8b691dae648dbdfe8343e38281d7ecaf5f7abc087475dd3c5d305de276f15f2",
+    "scripts/revision_v4_1/n2_comparator_closeout_033.py": "359627932f064d442b6d9a5d34929f6d44052ed5e009dac330c1c5ff8f97207f",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/__init__.py": "a63ecfb794537b1436db910450c52bc4b4d47be0841dae642830ca327e1450ac",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/ellipi_f.py": "4f94331aacda68eb8e6bedd4b8ae74301b38379ebea0a68a8935e317cdede939",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/gfactor.py": "b5312b90c97d1007a79e8479806f7d37b62479592fd1f550bc689af46d8bdc48",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/iImages.py": "b8c5ce1cc72e0dcb72cb501ac488d3478fc3abe35a45b531b815af51d15a4bf9",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/iMovies.py": "0c2ace876fa146cb649bc0bcb923ce92b4df1180096783812a5a718fcf23aa90",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/intensity_f.py": "24380c557c57c7062b19b741c1a8c97d4bc74311b6cf888d086481f75ea961b4",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/lensingbands.py": "3cb4727a4f7a2d82cdcb914447ca54ee2ff894e4d911017fbecd3577cb963b3b",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/misc.py": "2be55712fa62d2139c6611c1c7bd3a2eddfca3722797e488cb0103312177d65b",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/mkplot.py": "a8aed03319242e977758cb22f4aaa55caaefa420a517532c61546aca968d0e75",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/parameters.py": "87ad34c160dbd984b84132719d2c1913ff11c3f3779066d0a0d13df004588906",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/polarization.py": "0f37323b9df4f1116c1d89b843aef4137c5441cd5f15a5eab5f050b616be1254",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/polarization_f.py": "27eb54bda045f1c065ec6ed9caf9e892929af996a9f3131552397df9c678a8b6",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/radialfit.py": "32a901ef01597b0b978fd60cd1fc2f7e0fdd0329a34e25f2f1fa11789d80a244",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/radialintensity.py": "8b5914e4ed612be3ee4a0abb81b8872787e6de45e438c648fa876e1b92987444",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/raytracing.py": "3be421e5de8312c734afeff0e9c2f2f0a978c47910a4bb77489a7d815f88abc0",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/raytracing_f.py": "7cfd7e5e03fa5309e9506c675f14922a18bf239236e2a9c84a5a731735c0f906",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/rprofs_f.py": "32a6e9c7f74b39eb3fd92e9c6a4af3ee9395f4ede10841f39b3c6b10884282d4",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/visamp.py": "7c9e6f5018e9b6a3a992f918aba14aa658b0942f369ab9c48901e2ad48a65558",
+    "/tmp/aartvenv/lib/python3.11/site-packages/aart/visamp_f.py": "0132af5aa8fba4fdd8c9987e4975a7283975b6e2828f252817c01b4e70b41ef8",
+    "artifacts/raymaps/a050_i050_n0_fine.h5": "5ec970f9581e7d237f44b3241ee848f378b59b5fe62101f3a87e7c406fad9b7c",
+    "artifacts/raymaps/a050_i050_n1_fine.h5": "855cf6794699d7690a1804098719b07a998f3d0a702af883a2a9e94f21fa395e",
+    "artifacts/raymaps/a050_i050_n2_fine.h5": "820fbab07abcc51de7eb561d3c9acdc346408d948dff0571aef474db4f119ee9"
+  }
+}
