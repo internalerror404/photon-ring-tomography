@@ -63,19 +63,30 @@ def solve_at(mx, my, guard, why):
     return hs
 
 
-def curve_from(hull, s_dir):
-    """Periodic cubic radius against the direction parameter."""
-    r = np.hypot(hull[:, 0], hull[:, 1])
-    o = np.argsort(s_dir)
-    return CubicSpline(np.append(s_dir[o], s_dir[o][0] + 1.0),
-                       np.append(r[o], r[o][0]), bc_type="periodic")
+def fit_closed_curve(hull):
+    """A periodic cubic through the root solutions, in chord length.
+
+    The mirrored direction list closes on itself, so the natural parameter is
+    cumulative chord length round the loop: it is monotone, it is periodic,
+    and unlike the folded arclength index it does not crowd at the two points
+    where the upper critical curve turns back on itself. Both coordinates are
+    fitted, so the curve is not forced to be star-shaped by its own
+    representation.
+    """
+    P = np.vstack([hull, hull[:1]])
+    d = np.concatenate([[0.0], np.cumsum(np.hypot(*np.diff(P, axis=0).T))])
+    if np.any(np.diff(d) <= 0):
+        raise SystemExit("repeated hull vertices; the chord parameter is not "
+                         "monotone and the fit would be ill-posed")
+    u = d / d[-1]
+    return (CubicSpline(u, P[:, 0], bc_type="periodic"),
+            CubicSpline(u, P[:, 1], bc_type="periodic"))
 
 
-def tessellate(spline, th_of_s, n):
-    s = np.linspace(0.0, 1.0, n, endpoint=False)
-    th = th_of_s(s)
-    r = spline(s)
-    return np.stack([r * np.cos(th), r * np.sin(th)], axis=1)
+def tessellate(curve, n):
+    u = np.linspace(0.0, 1.0, n, endpoint=False)
+    fx, fy = curve
+    return np.stack([fx(u), fy(u)], axis=1)
 
 
 def main(out: Path, freeze: Path) -> int:
@@ -107,9 +118,7 @@ def main(out: Path, freeze: Path) -> int:
             hs = solve_at(mx, my, guard, f"curved_ladder_{nm}")
             prov[nm] = {"source": "fresh solves of the pinned equations",
                         "solves": 10 * nm}
-        # direction parameter: the mirrored mark index, matching hulls()
-        sd = np.concatenate([s, s[::-1] + smax]) / (2 * smax)
-        levels[nm] = {"hulls": hs, "s": sd % 1.0}
+        levels[nm] = {"hulls": hs}
         print(f"  marks {nm}: {prov[nm]['source']}, boundary spent "
               f"{guard.spent[Q.BOUNDARY]}", flush=True)
 
@@ -123,15 +132,8 @@ def main(out: Path, freeze: Path) -> int:
                 if key == "0e":
                     out_[key] = square      # a real corner set: keep exact
                     continue
-                h = L["hulls"][key]
-                sp = curve_from(h, L["s"])
-                th = np.arctan2(h[:, 1], h[:, 0])
-                o = np.argsort(L["s"])
-                thu = np.unwrap(th[o])
-                ths = CubicSpline(np.append(L["s"][o], L["s"][o][0] + 1.0),
-                                  np.append(thu, thu[0] + 2 * np.pi),
-                                  bc_type="periodic")
-                out_[key] = tessellate(sp, ths, TESS)
+                out_[key] = tessellate(fit_closed_curve(L["hulls"][key]),
+                                       TESS)
         return out_
 
     curved = {nm: build(nm) for nm in LADDER}
@@ -145,16 +147,9 @@ def main(out: Path, freeze: Path) -> int:
             key = f"{n}{side}"
             if key == "0e":
                 continue
-            h = L["hulls"][key]
-            sp = curve_from(h, L["s"])
-            th = np.arctan2(h[:, 1], h[:, 0])
-            o = np.argsort(L["s"])
-            thu = np.unwrap(th[o])
-            ths = CubicSpline(np.append(L["s"][o], L["s"][o][0] + 1.0),
-                              np.append(thu, thu[0] + 2 * np.pi),
-                              bc_type="periodic")
-            a1 = abs(PC.signed_area(tessellate(sp, ths, TESS)))
-            a2 = abs(PC.signed_area(tessellate(sp, ths, 2 * TESS)))
+            c = fit_closed_curve(L["hulls"][key])
+            a1 = abs(PC.signed_area(tessellate(c, TESS)))
+            a2 = abs(PC.signed_area(tessellate(c, 2 * TESS)))
             rel = abs(a2 - a1) / max(a2, 1e-30)
             tess_check[key] = {"area_at_n": a1, "area_at_2n": a2,
                                "relative": rel, "budget": TESS_TOL,
@@ -212,20 +207,20 @@ def main(out: Path, freeze: Path) -> int:
             hs = solve_at(mx2, my2, guard, "independent_shifted")
             rows = []
             for n in ORDERS:
-                r_fit = np.hypot(*curved[accepted][f"{n}e"].T)
-                th_fit = np.arctan2(curved[accepted][f"{n}e"][:, 1],
-                                    curved[accepted][f"{n}e"][:, 0])
-                hh = hs[f"{n}e"]
-                th_new = np.arctan2(hh[:, 1], hh[:, 0])
-                r_new = np.hypot(hh[:, 0], hh[:, 1])
-                pred = np.interp(np.unwrap(th_new),
-                                 np.unwrap(th_fit[np.argsort(th_fit)]),
-                                 r_fit[np.argsort(th_fit)], period=2 * np.pi)
-                rel = float(np.abs(pred - r_new).max()
-                            / max(np.abs(r_new).mean(), 1e-30))
-                rows.append({"order": n, "boundary": "outer",
-                             "max_relative_radius_error": rel,
-                             "passes": bool(rel < SHIFT_TOL)})
+                for side in ("i", "e"):
+                    key = f"{n}{side}"
+                    if key == "0e":
+                        continue
+                    hh = hs[key]
+                    th_new = np.arctan2(hh[:, 1], hh[:, 0])
+                    r_new = np.hypot(hh[:, 0], hh[:, 1])
+                    pred = HU.star_radius(curved[accepted][key], th_new)
+                    rel = float(np.abs(pred - r_new).max()
+                                / max(float(np.abs(r_new).mean()), 1e-30))
+                    rows.append({"order": n, "boundary": side,
+                                 "n_fresh_points": int(hh.shape[0]),
+                                 "max_relative_radius_error": rel,
+                                 "passes": bool(rel < SHIFT_TOL)})
             checks["shifted_samples"] = {
                 "run": True, "tolerance": SHIFT_TOL, "rows": rows,
                 "points_are_not_fit_knots": True,
