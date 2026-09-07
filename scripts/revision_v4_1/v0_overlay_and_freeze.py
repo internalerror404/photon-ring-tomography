@@ -200,6 +200,9 @@ def main(out: Path) -> int:
     if missing:
         raise SystemExit(f"cannot freeze, files absent: {missing}")
     freeze["files"] = {f: sha(ROOT / f) for f in sorted(CODE)}
+    freeze["n_files"] = len(freeze["files"])
+    freeze["backend_sources_pinned"] = sum(
+        1 for f in freeze["files"] if "site-packages/aart" in f)
     freeze["commit_at_freeze_time"] = subprocess.run(
         ["git", "rev-parse", "HEAD"], cwd=ROOT, capture_output=True,
         text=True).stdout.strip()
