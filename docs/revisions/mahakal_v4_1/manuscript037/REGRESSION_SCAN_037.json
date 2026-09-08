@@ -1,0 +1,160 @@
+{
+  "ruling": "PAPER_I_MANUSCRIPT_REVIEW_037",
+  "draft": "Photon_Ring_Retarded_Time_Tomography_Mahakal_Working_Draft_037.md",
+  "draft_sha256": "a3718d95bcda5c0c51e10cff2884dc64b644a800403429324dd06b18d47097d6",
+  "rule": "a forbidden pattern inside a withdrawal or scope statement is preservation, not a regression; only an unqualified assertion fails",
+  "checks": [
+    {
+      "id": "R01",
+      "regression": "the Cholesky-coordinate localization",
+      "forbidden_pattern": "99\\.8\\s*%",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [
+        75
+      ],
+      "still_asserted": false,
+      "replacement_pattern": "2\\.44%",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R02",
+      "regression": "the zero-oldest-epoch claim",
+      "forbidden_pattern": "exactly zero in hat 0|zero in the oldest",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [
+        75
+      ],
+      "still_asserted": false,
+      "replacement_pattern": "oldest-third contribution is not zero",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R03",
+      "regression": "144 M named as recoverable depth",
+      "forbidden_pattern": "recoverable depth",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "oldest detectable age probe",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R04",
+      "regression": "spin independence inferred from a supremum",
+      "forbidden_pattern": "set by inclination rather than spin",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [
+        57
+      ],
+      "still_asserted": false,
+      "replacement_pattern": "does not establish physical spin independence",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R05",
+      "regression": "the delay/spatial mechanism sentence",
+      "forbidden_pattern": "carried by \\*?when\\*?, not|history is carried by",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [
+        59
+      ],
+      "still_asserted": false,
+      "replacement_pattern": "index-paired counterfactuals",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R06",
+      "regression": "the universal enrichment slogan",
+      "forbidden_pattern": "destroys identifiability",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "Proposition 4\\.1",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R07",
+      "regression": "the unsupported duration",
+      "forbidden_pattern": "sixteen-month",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "Working draft 037",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R08",
+      "regression": "the metric misidentification",
+      "forbidden_pattern": "coefficient-space result",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "baseline-inclusive field metric",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R09",
+      "regression": "the structure onset error",
+      "forbidden_pattern": "cleared at ten times",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [
+        86
+      ],
+      "still_asserted": false,
+      "replacement_pattern": "first becomes nonzero at `SNR_0 = 30000`|30000",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R10",
+      "regression": "the causal attribution sentence",
+      "forbidden_pattern": "so the gain is attributable to resolving the orders",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "does not establish how a physically unresolved image would perform",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R11",
+      "regression": "the Shiva-era title and slogan",
+      "forbidden_pattern": "Shiva Effect|Shiva effect",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "Mahakal Phenomenon",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R12",
+      "regression": "the four-endpoint enclosure claimed unique",
+      "forbidden_pattern": "the only valid form",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "is \\*a\\* valid enclosure",
+      "replacement_present": true,
+      "clean": true
+    }
+  ],
+  "all_clean": true,
+  "still_asserted": [],
+  "quoted_only": [
+    "R01",
+    "R02",
+    "R04",
+    "R05",
+    "R09"
+  ],
+  "replacement_missing": []
+}

@@ -1,0 +1,8 @@
+{
+  "status": "SCHEMA_READY_FOR_SEMANTIC_REVIEW",
+  "errors": [],
+  "claim_count": 16,
+  "semantic_support_verified": false,
+  "physical_queries": 0,
+  "script_sha256": "694fd13cc603e64e453494f66a8b2adc7d96cf3104f2b2a4c78a0d48c41c4a92"
+}

@@ -1,0 +1,58 @@
+{
+  "schema": "phrt-completion/1",
+  "id": "MANUSCRIPT_037_COMPLETION",
+  "ruling": "PAPER_I_MANUSCRIPT_REVIEW_037",
+  "generated_utc": "2026-09-08T03:29:29Z",
+  "commit": "d1ace8f0c0ac6f005bc2320d54ace9c047d9aa09",
+  "return_status": "MANUSCRIPT_037_READY_FOR_SEMANTIC_REVIEW",
+  "draft": "Photon_Ring_Retarded_Time_Tomography_Mahakal_Working_Draft_037.md",
+  "draft_sha256": "a3718d95bcda5c0c51e10cff2884dc64b644a800403429324dd06b18d47097d6",
+  "draft_words": 3572,
+  "title": "Photon-Ring Retarded-Time Tomography: The Mahakal Phenomenon",
+  "regression_scan": {
+    "all_clean": true,
+    "checks": 12,
+    "still_asserted": [],
+    "quoted_only": [
+      "R01",
+      "R02",
+      "R04",
+      "R05",
+      "R09"
+    ]
+  },
+  "claim_matrix": {
+    "status": "SCHEMA_READY_FOR_SEMANTIC_REVIEW",
+    "claims": 16,
+    "schema_errors": 0,
+    "pinned_bytes_verified_by_git_show": true,
+    "semantic_support_verified": false,
+    "headline_allowed": 10
+  },
+  "restored_scientific_content": [
+    "Proposition 4.1 with proof and Corollary 4.2",
+    "target/nuisance and normalised Fisher definitions",
+    "per-experiment source spaces, metrics, estimators, noise",
+    "three rank notions and three reach statistics",
+    "R1 regime table and HMT-2 estimator/draw detail"
+  ],
+  "outstanding": [
+    "external bibliography",
+    "figures",
+    "reconciliation with the supplied 42-page PDF",
+    "author review"
+  ],
+  "supplied_PDF_available_to_this_session": false,
+  "physical_claims_supported": 0,
+  "resources": {
+    "convention": "B",
+    "second_batch_spent": 19146,
+    "second_batch_remaining": 854,
+    "spent_under_this_ruling": 0,
+    "boundary_spent": 33410
+  },
+  "old_results_or_flags_rewritten": false,
+  "manuscript036_overwritten": false,
+  "R3B_or_submission_freeze": "not authorized",
+  "runtime_seconds": 0.007832765579223633
+}
