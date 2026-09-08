@@ -1,0 +1,226 @@
+{
+  "ruling": "PAPER_I_SEMANTIC_REVIEW_038",
+  "draft": "Photon_Ring_Retarded_Time_Tomography_Working_Revision_038.md",
+  "draft_sha256": "999bb80b1b4c2b09445ffb64338872380bbfe265ab15cc9a62417c62b23b26dd",
+  "rule": "a forbidden pattern inside a withdrawal or scope statement is preservation, not a regression; only an unqualified assertion fails",
+  "checks": [
+    {
+      "id": "R01",
+      "regression": "the Cholesky-coordinate localization",
+      "forbidden_pattern": "99\\.8\\s*%",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [
+        76
+      ],
+      "still_asserted": false,
+      "replacement_pattern": "2\\.44%",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R02",
+      "regression": "the zero-oldest-epoch claim",
+      "forbidden_pattern": "exactly zero in hat 0|zero in the oldest",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [
+        76
+      ],
+      "still_asserted": false,
+      "replacement_pattern": "oldest-third contribution is not zero",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R03",
+      "regression": "144 M named as recoverable depth",
+      "forbidden_pattern": "recoverable depth",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "oldest detectable age probe",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R04",
+      "regression": "spin independence inferred from a supremum",
+      "forbidden_pattern": "set by inclination rather than spin",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [
+        58
+      ],
+      "still_asserted": false,
+      "replacement_pattern": "does not establish physical spin independence",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R05",
+      "regression": "the delay/spatial mechanism sentence",
+      "forbidden_pattern": "carried by \\*?when\\*?, not|history is carried by",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [
+        60
+      ],
+      "still_asserted": false,
+      "replacement_pattern": "index-paired counterfactuals",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R06",
+      "regression": "the universal enrichment slogan",
+      "forbidden_pattern": "destroys identifiability",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "Proposition 4\\.1",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R07",
+      "regression": "the unsupported duration",
+      "forbidden_pattern": "sixteen-month",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "Working revision 038",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R08",
+      "regression": "the metric misidentification",
+      "forbidden_pattern": "coefficient-space result",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "baseline-inclusive field metric",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R09",
+      "regression": "the structure onset error",
+      "forbidden_pattern": "cleared at ten times",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [
+        92
+      ],
+      "still_asserted": false,
+      "replacement_pattern": "first becomes nonzero at `SNR_0 = 30000`|30000",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R10",
+      "regression": "the causal attribution sentence",
+      "forbidden_pattern": "so the gain is attributable to resolving the orders",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "does not establish how a physically unresolved image would perform",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R11",
+      "regression": "the Shiva-era title and slogan",
+      "forbidden_pattern": "Shiva Effect|Shiva effect",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "Mahakal Phenomenon",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R13",
+      "regression": "recovery counted as a rank notion",
+      "forbidden_pattern": "stable recovery.{0,40}rank|three rank notions.{0,200}stable recovery",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "Estimator recovery\\*?\\*? is a separate criterion",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R14",
+      "regression": "the anchor described as the present",
+      "forbidden_pattern": "continuous history from the present",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "contiguous passing interval beginning at the geometry-specific anchor",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R15",
+      "regression": "the E3D ladder called temporal enrichment",
+      "forbidden_pattern": "enriching the declared temporal class",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "C528_S",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R16",
+      "regression": "source cell in a screen intersection",
+      "forbidden_pattern": "source cell `C_p`",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "screen integration cell",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R17",
+      "regression": "per-order maxima stated as an all-channel value",
+      "forbidden_pattern": "on all 40 transferred diagnostic channels",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "maximum relative same-support discrepancy over the 40",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R18",
+      "regression": "the term prior-free",
+      "forbidden_pattern": "both prior-free",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "non-Bayesian spectral estimators",
+      "replacement_present": true,
+      "clean": true
+    },
+    {
+      "id": "R12",
+      "regression": "the four-endpoint enclosure claimed unique",
+      "forbidden_pattern": "the only valid form",
+      "asserted_paragraphs": [],
+      "quoted_in_a_withdrawal_paragraphs": [],
+      "still_asserted": false,
+      "replacement_pattern": "is \\*a\\* valid enclosure",
+      "replacement_present": true,
+      "clean": true
+    }
+  ],
+  "all_clean": true,
+  "still_asserted": [],
+  "quoted_only": [
+    "R01",
+    "R02",
+    "R04",
+    "R05",
+    "R09"
+  ],
+  "replacement_missing": []
+}

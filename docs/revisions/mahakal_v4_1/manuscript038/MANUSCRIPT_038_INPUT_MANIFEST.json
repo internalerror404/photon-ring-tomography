@@ -1,0 +1,38 @@
+{
+  "ruling": "PAPER_I_SEMANTIC_REVIEW_038",
+  "generated_utc": "2026-09-08T04:28:10Z",
+  "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+  "new_rays": 0,
+  "new_path_integrals": 0,
+  "new_hull_roots": 0,
+  "new_operator_spectra_estimators_or_truths": 0,
+  "cited_artifacts": {
+    "artifacts/configs/R1_MAIN_FREEZE.json": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+    "artifacts/reports/E3C_GEOMETRY_WIDE_OPERATOR_AUDIT.md": "e7406f9f550f3d23747ab6f8533afe711838e8b7ecb452bbca86ab82ec830c6c",
+    "artifacts/reports/E3C_MECHANISM_DECOMPOSITION.md": "65273c538d8987b8a4f32bbe635761c2947da154f6592cf4d5509d5128e954e8",
+    "artifacts/reports/E3D_SOURCE_CLASS_STRESS.md": "d6c7757007cd2193319e0f0e9d958f6fc756406447e863baac7f9e01157eae49",
+    "artifacts/reports/R1_HELD_OUT_MAIN.md": "dde24b52d62eeaf3f0cd0db17013eda08cad7a08068cf485c98b7823bba2d413",
+    "artifacts/revisions/mahakal_v4_1/G1C_20260907T075203Z_d252697/GEOMETRY_CLOSEOUT_029.json": "7ef875f8edd745ef2ade399f24700b00ab6a18342b680444c6b3f4c5373803c6",
+    "artifacts/revisions/mahakal_v4_1/LOC025_20260906T184213Z/LOCALIZATION_READBACK.json": "5347313ea05de1d8600bbe110b5110119f5b713229bc9f718f1ccf83cd091753",
+    "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/COMPARATOR_CAUSE_AND_CONFIRMATION_033.json": "45adb0e3baef041c660956665ef68e94cffa25ad48548aacadaff0b1f06789d7",
+    "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json": "d5367a3103ab8ddecd1142819ef55c3c75544eff9b325e4de8a680802111f3b2",
+    "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md": "e4450a96e4ccbbf1c14c067348251971cc7da6ce9936e1d9ca5fc98e4cf61273",
+    "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv": "e26d3cad61f273d3357be710757b9ce8b524cd28a4015a95e1269556e13cff4b",
+    "docs/Paper_I_v1_Current_Evidence_Ledger.md": "2189c43718eae0e4faaea8d0de6a53a93fe9a3e3dde888cc8e92bc2c41765539",
+    "docs/revisions/mahakal_v4_1/NEXT_STAGE_037.yaml": "b3f34137386bcb6c204870ab550b852b5921abda1050633673d0ce9dbe38124b",
+    "docs/revisions/mahakal_v4_1/PAPER_I_MANUSCRIPT_REVIEW_037.md": "9f199a3c39ff946fc7647dd55c6cf840488a046dbaa5bcb88d14dff4b078ba92",
+    "docs/revisions/mahakal_v4_1/review037/REPLACEMENT_PASSAGES_037.md": "427c562bd45c0e52ec2265ca5519b13b5dfd9e36d8d775b168b20b0d27839811",
+    "src/phrt/metrics/morphology.py": "0bd46530cc2ee3d3ac62adbe3b8bc2ee8060ca1836abeaf44989adea2f58468c",
+    "src/phrt/metrics/scoring.py": "2754875886f5e50c68667b3b6b77ea5e75307db85304e3c2242521358aa23f17"
+  },
+  "missing_artifacts": [],
+  "supplied_PDF": {
+    "sha256": "152b099fc09994e917f629bda90de19bfd388ee19e96f754a0dfc4b763e61148",
+    "pages": 42,
+    "available_to_this_session": false,
+    "reference_extract": "docs/revisions/mahakal_v4_1/review038/SOURCE_PDF_BIBLIOGRAPHY_038.txt",
+    "extract_is_verified_bibliography": false
+  },
+  "pinned_manuscripts_overwritten": false,
+  "manuscript036_and_037_unchanged": true
+}

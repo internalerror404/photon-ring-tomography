@@ -1,0 +1,37 @@
+{
+  "ruling": "PAPER_I_SEMANTIC_REVIEW_038",
+  "generated_utc": "2026-09-08T04:26:11Z",
+  "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+  "pin_status_counts": {
+    "RESOLVED": 152,
+    "NOT_APPLICABLE": 77,
+    "UNRESOLVED": 1
+  },
+  "claims": 23,
+  "pins_per_claim": 10,
+  "unresolved_pins": [
+    [
+      "C05b",
+      "evaluation_metric"
+    ]
+  ],
+  "unresolved_pins_barred_from_headline": true,
+  "corrections_applied": {
+    "C04": "own quadrature (source-norm integration), own source Gram, evaluation metric is the interval source-energy fraction not a Fisher trace; covariance and rays marked NOT_APPLICABLE",
+    "C05": "legacy-measure headline allowed at its scoped evidence level",
+    "C05b": "split out; the corrected-measure count is UNRESOLVED and therefore barred from a headline",
+    "C09_C11": "covariance is the noise-from-standard law and readouts; the four draws are replication metadata; source Gram is NOT_APPLICABLE with a reason; source basis carries nominal and active dimensions",
+    "C13": "band-normalised tessellation discrepancy against the 1e-6 component budget; the detector-response norm is removed",
+    "C14": "path-domain predicate, cohorts and numerical policy; detector noise and source basis marked NOT_APPLICABLE with reasons"
+  },
+  "new_claims": [
+    "C05b",
+    "C17 E3D ladder and fields",
+    "C18 localized-directional depth separated from the E3C probe",
+    "C19 pairing control, 12 geometries and 16 seeds",
+    "C20 family heterogeneity from the real per-family table",
+    "C21 R1 field-metric method",
+    "C22 HMT-2 morphology method"
+  ],
+  "structural_checker_pass_is_semantic_pass": false
+}
