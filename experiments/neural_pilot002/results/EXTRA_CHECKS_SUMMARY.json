@@ -1,0 +1,9 @@
+{
+  "checks": {"fixed_response_superposition":true,"common_time_origin_invariance":true},
+  "superposition_max_absolute_difference":1.3877787807814457e-16,
+  "common_time_origin_max_absolute_difference":0.0,
+  "new_physical_evaluations":0,
+  "new_model_fits":0,
+  "scope":"Two additional cached-array algebra checks, not new geodesic validation. The full package also stores per-fit noisy-data chi-square and true-background-relative event-norm diagnostics.",
+  "reproduce_after_main_suite":"python source/extra_checks.py"
+}
