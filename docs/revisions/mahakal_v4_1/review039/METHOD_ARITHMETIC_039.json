@@ -1,0 +1,19 @@
+{
+  "scope": "Independent arithmetic illustrations of the source-read method, not execution of campaign code, bank, estimator, bootstrap or source model.",
+  "grid_point_count": 4800,
+  "history_median_reduction": 0.5,
+  "population_mean_relative_reduction": 0.7692307692307692,
+  "example_direct": [
+    1,
+    2,
+    10
+  ],
+  "example_comparison": [
+    0.5,
+    1.5,
+    1
+  ],
+  "hmt2_median_bootstrap_seed": 20260954,
+  "second_batch_remaining": 854,
+  "physical_evaluations": 0
+}

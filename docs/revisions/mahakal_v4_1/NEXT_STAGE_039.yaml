@@ -1,0 +1,123 @@
+review_id: PAPER_I_FINAL_TEXT_REVIEW_039
+reviewed_commit: 1a6075512f714ca2b8a52173227b88a73cdad19b
+work_branch: research/mahakal_v4_1
+status: METHODS_SUBSTANTIALLY_ACCEPTED_ARCHIVAL_DEPENDENCIES_NARROWED_RELEASE_PREPARATION_AUTHORIZED
+preservation:
+  manuscripts036_037_038_and_freeze022: immutable
+  accepted_hull_comparator_sampled_absence_and_legacy_R2_scopes: not_reopened
+  closed_negative_template_test: preserve_no_new_candidate
+  C13: full_physical_quadrature_still_unqualified
+  delivery: GitHub_only
+resolved_method_definitions:
+  R1_grid:
+    evidence: execution_manifest_plus_same_commit_caller_and_callee
+    execution_commit: 5f557fb606b76a95093cbf8e98d89d6f1dab9664
+    caller: scripts/run_r1_main.py
+    caller_git_blob: 291adbf720007a300000ea570e6acbfceaacd3e1
+    callee: src/phrt/metrics/scoring.py
+    callee_git_blob: 0b04245c73ac80d63e3a6b8c2d2e67c2fef17dbc
+    call_size_overrides: none
+    shape: [10, 12, 40]
+    point_count: 4800
+    radial_bounds_M: [1.8660386527060988, 49.98205255591607]
+    source_time_bounds_M: [-128.82234649196255, 29.0]
+    axes: log_radius_inclusive_uniform_azimuth_endpoint_excluded_uniform_time_inclusive
+    indexing: ij_then_C_order_flatten
+    provenance_class: source_resolved_definition_not_newly_hashed_grid_payload
+  HMT2_aggregation:
+    execution_commit: 9713af2caf3f1035622b09c8026ea31f75c0275e
+    matching_source_blobs:
+      scripts/run_hmt2_sealed_main.py: 0e65135fa2f4bfb83e36c7f65b23d4ef8c62704d
+      scripts/run_hmt2_sealed_main_score.py: 3b1f5f983a9204b856bbabcbd446dc629c9dc01f
+      scripts/run_hmt1_score.py: 03f13ef1a2c1e47807f125feaf4785f871df0fda
+    order: mean_state_errors_over_ages_then_mean_draws_then_paired_relative_per_history_then_median_histories
+    ratio: direct_minus_comparison_over_max_abs_direct_1e_minus300
+    helper_output_for_headline: median_and_median_ci_low
+    separate_helper_estimand: cell_balanced_mean_not_headline
+    bootstrap_unit: history_after_its_draw_scores_aggregated
+    median_bootstrap_resamples: 10000
+    median_bootstrap_seed: 20260954
+    interval_percentiles: [2.5, 97.5]
+    finite_pair_filter: retain_and_check_recorded_pair_count_no_unverified_no_exclusion_claim
+    actual_endpoints_or_bootstrap_recomputed_by_review: false
+remaining_eta_dependency:
+  status: numerical_scalar_not_located_in_inspected_records
+  definition_and_fit_split_rule: source_resolved
+  frozen_eta_value_field: null
+  allowed_lookup: saved_logs_sidecars_or_authenticated_prior_fit_norms
+  new_truth_generation_or_main_replay: forbidden
+  derived_from_cached_norms: label_as_derived_readback_not_contemporaneous_value
+  not_found_after_bounded_search: exact_dependency_and_affected_claims_retained
+  schema_unresolved_count_exhausts_all_dependencies: false
+text_consistency:
+  tuning_lineage:
+    R1: R0C_repair_validation_selection
+    HMT2: own_stage1_selection_inherited_by_sealed_main
+    one_global_R0C_statement: replace
+  HMT2_table_noise_cell: observation_noise_readout_law_not_replication_count
+  nonzero_column_caveat: need_not_be_independent_or_recoverable_not_are_never_independent
+  matrix_links: current_revision_not_stale_037
+  source_spaces_probe_and_SNR: state_actual_existing_definitions_in_methods
+  posterior_calibration_failure: scope_to_R1_probabilistic_estimator_program
+  withdrawal_history: preserve_in_ledger_not_mandatory_main_text_transcript
+bibliography:
+  provided_audit: docs/revisions/mahakal_v4_1/review039/CORE_BIBLIOGRAPHY_AUDIT_039.md
+  verified_scope: seven_primary_arXiv_metadata_and_abstract_records
+  full_text_or_all_26_old_entries_verified: false
+  task: complete_relevant_sentence_level_citations_and_related_work
+  stronger_than_abstract_supported_claim: inspect_relevant_full_text_first
+  novel_or_first_claim_from_limited_audit: forbidden
+figures:
+  regenerate_saved_data_only: true
+  new_output_paths: required_do_not_overwrite_canonical_figures
+  assets_to_correct:
+    - fig1_depth_inclination_not_spin.png
+    - fig2_shiva_effect.png
+  in_figure_titles_and_panels: correct_along_with_captions
+  plotted_statistics_and_aggregation: exact_source_selectors_required
+  new_operator_or_reconstruction_inside_builder: forbidden
+  rendering_and_caption_review: required_before_final_artifact_hash
+publication_preparation:
+  output_root: docs/revisions/mahakal_v4_1/manuscript039
+  retain: Mahakal_title_authors_reach_dimension_recovery_organization
+  complete_reader_facing_candidate: editable_source_plus_rendered_document
+  status_only_packet: insufficient
+  matrix_or_dependencies: reconcile_actual_values_provenance_and_remaining_eta_status
+  gap_report: separate_editorial_archival_author_approval_and_deferred_physical_scope
+  finite_model_candidate_requires_every_future_instrument_experiment: false
+  physical_claim_without_validation: forbidden
+  author_scope_and_submission_approval: required
+current_authorization:
+  source_readback_document_editing_and_rendering: allowed
+  cached_table_summary_and_elementary_algebra: allowed_with_recorded_scope
+  new_rays_physical_integrals_hull_roots: 0
+  new_target_matrices_spectra_estimators_truths_interpolants: 0
+  corrected_measure_R2_replay: not_authorized
+  R3B_new_batch_or_submission_freeze: not_authorized
+resources:
+  convention: B_native_plus_independent_reference
+  second_batch_spent: 19146
+  second_batch_remaining: 854
+  new_authorized_physical_spend: 0
+  boundary_spent: 33410
+  paid_resources: forbidden
+  full_numerical_suite_replay_for_document_task: not_required
+  legacy_writers: disposable_worktree_or_redirected_output
+return:
+  ready: PUBLICATION_CANDIDATE_039_READY_FOR_AUTHOR_REVIEW
+  blocked: PUBLICATION_CANDIDATE_039_BLOCKED
+  ready_is_permission_to_submit: false
+  stop_after: rendered_candidate_and_honest_remaining_dependency_report
+outputs:
+  - PUBLICATION_039_INPUT_MANIFEST.json
+  - Photon_Ring_Retarded_Time_Tomography_Candidate_039.md_or_tex
+  - Photon_Ring_Retarded_Time_Tomography_Candidate_039.pdf
+  - CLAIM_EVIDENCE_MATRIX_039.json
+  - METHOD_DEPENDENCY_STATUS_039.json
+  - BIBLIOGRAPHY_VERIFICATION_039.json
+  - FIGURE_MANIFEST_039.json
+  - MANUSCRIPT_CORRECTION_LEDGER_039.md
+  - SUBMISSION_GAPS_039.md
+  - PUBLICATION_CANDIDATE_039_RETURN.md
+  - PUBLICATION_CANDIDATE_039_COMPLETION.json
+  - SHA256SUMS.txt

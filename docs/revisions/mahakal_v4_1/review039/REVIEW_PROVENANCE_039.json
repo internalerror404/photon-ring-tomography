@@ -1,0 +1,49 @@
+{
+  "schema": "mahakal-review039-provenance/1",
+  "reviewed_commit": "1a6075512f714ca2b8a52173227b88a73cdad19b",
+  "scope": "Connected manuscript and selected evidence/code inspection; archived-execution caller/callee comparison; limited external metadata/abstract audit; elementary arithmetic only.",
+  "R1_execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+  "HMT2_execution_commit": "9713af2caf3f1035622b09c8026ea31f75c0275e",
+  "connector_reported_source_blobs": {
+    "scripts/run_r1_main.py": "291adbf720007a300000ea570e6acbfceaacd3e1",
+    "src/phrt/metrics/scoring.py": "0b04245c73ac80d63e3a6b8c2d2e67c2fef17dbc",
+    "scripts/run_hmt2_sealed_main.py": "0e65135fa2f4bfb83e36c7f65b23d4ef8c62704d",
+    "scripts/run_hmt2_sealed_main_score.py": "3b1f5f983a9204b856bbabcbd446dc629c9dc01f",
+    "scripts/run_hmt1_score.py": "03f13ef1a2c1e47807f125feaf4785f871df0fda"
+  },
+  "source_blob_identity_scope": "The named caller/helper blobs were read at the relevant execution commit and reviewed head; no full local git clone or source-file SHA256 rehash was performed.",
+  "grid_identity": "Source-resolved dimensions and domain, not an independently rehashed persisted grid array.",
+  "eta_status": "Rule known; realized scalar not located in inspected freeze/manifest; no exhaustive absence claim.",
+  "matrix_validation": {
+    "reported_by_user": "23 claims, 230 pins, 152 resolved, 77 not applicable, 1 unresolved; checker zero errors",
+    "independently_rerun": false,
+    "complete_230_pin_semantic_audit": false
+  },
+  "external_sources": {
+    "verified_scope": "primary arXiv metadata and abstract pages only",
+    "ids": [
+      "1910.12873",
+      "1907.04329",
+      "2211.07469",
+      "2010.03683",
+      "2002.05735",
+      "1711.01357",
+      "2310.07687"
+    ],
+    "full_text_read_in_this_review": false,
+    "all_26_old_references_checked": false,
+    "novelty_claim_established": false
+  },
+  "local_arithmetic": {
+    "file": "METHOD_ARITHMETIC_039.json",
+    "scope": "Synthetic ratio-order example, grid cardinality, budget and seed arithmetic; not imported repository code."
+  },
+  "new_PDF_hash_or_render_in_this_review": false,
+  "physical_evaluations": 0,
+  "target_or_estimator_executions": 0,
+  "repository_suite_executed": false,
+  "environment": {
+    "python": "3.13.5"
+  },
+  "preservation": "All delivered review files are additive; no manuscript or scientific record overwritten."
+}
