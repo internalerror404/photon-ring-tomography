@@ -1,0 +1,180 @@
+{
+  "title": "Photon-Ring Retarded-Time Tomography: The Mahakal Phenomenon",
+  "revision": "041: directly authored complete manuscript",
+  "authors": [
+    "Hina Dixit",
+    "Abhinav Chauhan"
+  ],
+  "source_basis": {
+    "submitted_pdf": {
+      "sha256": "152b099fc09994e917f629bda90de19bfd388ee19e96f754a0dfc4b763e61148",
+      "pages": 42,
+      "local_bytes_hashed": true
+    },
+    "repository": "internalerror404/photon-ring-tomography",
+    "branch": "research/mahakal_v4_1",
+    "base_commit": "9b592dd4bcde20187922ef9d067b72abeaf12cdb",
+    "basis_policy": "Submitted scientific structure plus later accepted corrections. Older prose is not evidence overriding a later amendment."
+  },
+  "numerical_sources": [
+    {
+      "result": "Twelve-geometry reach",
+      "paths": [
+        "artifacts/reports/E3C_GEOMETRY_WIDE_OPERATOR_AUDIT.md",
+        "artifacts/tables/e3c_depth_curves.parquet",
+        "scripts/run_e3c_operator_grid.py"
+      ],
+      "use": "Reported scalar reach, anchor spans, conditioning and innovation; exact implemented direct-reference normalization. Table arrays were not re-evaluated in this writing task."
+    },
+    {
+      "result": "Three-anchor enrichment",
+      "paths": [
+        "artifacts/reports/E3D_SOURCE_CLASS_STRESS.md",
+        "artifacts/tables/e3d_class_spectra.parquet",
+        "artifacts/tables/e3d_depth_by_class.parquet"
+      ],
+      "use": "Report summaries across three anchors, not twelve. Figure plots the explicit report values; no new parquet aggregation or spectrum."
+    },
+    {
+      "result": "Nuisance-adjusted R2",
+      "paths": [
+        "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv",
+        "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md"
+      ],
+      "use": "72 target, 152 nuisance, legacy-measure traces and singular values. The older localization prose in the report is superseded by LOC025."
+    },
+    {
+      "result": "Source-function mode localization",
+      "paths": [
+        "artifacts/revisions/mahakal_v4_1/LOC025_20260906T184213Z/LOCALIZATION_READBACK.json"
+      ],
+      "use": "Disjoint interval source-energy fractions, not Cholesky-coordinate weights."
+    },
+    {
+      "result": "R1 recovery and metric",
+      "execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+      "paths": [
+        "artifacts/reports/R1_HELD_OUT_MAIN.md",
+        "artifacts/configs/R1_MAIN_FREEZE.json",
+        "scripts/run_r1_main.py",
+        "src/phrt/metrics/scoring.py"
+      ],
+      "use": "Archived regime results and source-defined finite-grid metric; realized eta remains unlocated."
+    },
+    {
+      "result": "HMT2 morphology and aggregation",
+      "execution_commit": "9713af2caf3f1035622b09c8026ea31f75c0275e",
+      "paths": [
+        "artifacts/configs/HMT2_SEALED_MAIN_V1.json",
+        "artifacts/tables/hmt2_main_endpoint.parquet",
+        "artifacts/tables/hmt2_main_per_family.parquet",
+        "scripts/run_hmt2_sealed_main.py",
+        "scripts/run_hmt2_sealed_main_score.py",
+        "scripts/run_hmt1_score.py",
+        "src/phrt/metrics/morphology.py",
+        "src/phrt/metrics/feature_sets.py"
+      ],
+      "use": "Archived endpoint and family results; mean-ages/mean-draws/paired-ratio/median-histories method. Source-identified exact-assignment threshold and recorded greedy fallback are disclosed without inferring their experimental frequency."
+    },
+    {
+      "result": "Detector discrepancy and failed template candidate",
+      "paths": [
+        "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/RESPONSE_ERROR_AND_OMITTED_SUPPORT_034.json",
+        "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json"
+      ],
+      "use": "Same-support maxima, omitted support, and negative maximum-channel result. Not continuum errors or newly reproduced array calculations."
+    },
+    {
+      "result": "Interpretation and manuscript dependencies",
+      "paths": [
+        "docs/revisions/mahakal_v4_1/manuscript039/METHOD_DEPENDENCY_STATUS_039.json",
+        "docs/revisions/mahakal_v4_1/PAPER_I_PUBLICATION_READINESS_040.md",
+        "docs/revisions/mahakal_v4_1/review040/MEASUREMENT_TEXT_040.md"
+      ],
+      "use": "Separate experiment normalizations and population labels; no physical claims restored by editorial changes."
+    }
+  ],
+  "literature_check": {
+    "arxiv_ids": [
+      "1910.12873",
+      "1907.04329",
+      "2009.06641",
+      "2010.03683",
+      "2211.07469",
+      "2002.05735",
+      "1711.01357",
+      "2310.07687",
+      "1907.02210"
+    ],
+    "publisher_identifiers": [
+      "10.1137/1.9780898719697",
+      "10.1017/S0962492910000061"
+    ],
+    "scope": "Primary metadata/abstract or publisher-summary checks for narrow background uses; relevant Kerr-lensing and AART HTML sections inspected. Not all references fully read, not all 26 old entries audited, and no novelty certification."
+  },
+  "figures": [
+    {
+      "number": 1,
+      "values": [
+        40,
+        24,
+        4
+      ],
+      "meaning": "Added scalar anchor-connected span, four prescribed spins at each of three inclinations; no population error bars."
+    },
+    {
+      "number": 2,
+      "values": [
+        1.4371649,
+        1.3458733,
+        0.8062804
+      ],
+      "meaning": "Legacy-measure nuisance-adjusted leading singular values, threshold 1."
+    },
+    {
+      "number": 3,
+      "values": [
+        0.897,
+        0.815,
+        0.835,
+        0.729
+      ],
+      "labels": [
+        201,
+        365,
+        441,
+        770
+      ],
+      "meaning": "Three-anchor report medians; alternative enrichment branches shown as unconnected points."
+    },
+    {
+      "number": 4,
+      "values": [
+        0.133,
+        0.164
+      ],
+      "lower_endpoints": [
+        0.101,
+        0.116
+      ],
+      "meaning": "Paired history-level morphology median reductions, lower endpoint stems only, not invented full error bars."
+    }
+  ],
+  "limitations": [
+    "Realized R1 eta not located; no value reconstructed.",
+    "Full continuous detector quadrature unqualified.",
+    "Index-sum and delay/position substitutions are not matched physical controls.",
+    "Finite-model source/norm/noise dependence retained.",
+    "Final scope, affiliations, venue, release and submission require author approval."
+  ],
+  "physical_queries": 0,
+  "new_operators_spectra_estimators_truths": 0,
+  "repository_suite_executed": false,
+  "accounting": {
+    "convention": "B",
+    "spent": 19146,
+    "unspent": 854,
+    "boundary_spent": 33410,
+    "new_spend": 0
+  }
+}

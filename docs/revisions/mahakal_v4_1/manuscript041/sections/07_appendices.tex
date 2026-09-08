@@ -1,0 +1,137 @@
+\section{Proof details and fixed-row reweighting}\label{app:reweight}
+\subsection{Null-space intersection and information monotonicity}
+A stacked vector $A_{0:N}h$ is zero exactly when each block $A_nh$ is zero, proving \eqref{eq:nullintersection}. With independent whitened blocks, the squared data norm is the sum of block squared norms, giving \eqref{eq:grammonotonicity}. A nonzero added block may increase the norm of a previously visible direction without increasing rank. The identities therefore distinguish additional sensitivity from additional dimension.
+
+A common spatial bottleneck is sufficient only under an additional separable construction. If every order factors through the same spatial sampler $P$, a vector in $\ker P$ remains invisible under all subsequent order-dependent temporal operations. The actual ray maps use different source positions, so that common-sampler statement is not a factorization theorem for the Kerr operator used here.
+
+\subsection{Nuisance profiling}
+For a fixed target vector $u$ in source-normalized coordinates,
+\begin{equation}
+u^TF_{\rm cond}u=\min_v\norm{B_TR_T^{-1}u+B_Nv}_2^2.
+\label{eq:minnuisance}
+\end{equation}
+The minimization subtracts the orthogonal projection onto the nuisance image. It remains valid when $B_N$ is rank deficient, provided the projector is defined on its column space at the specified numerical rank. The source dimension, nuisance column count, and numerical nuisance rank need not be equal.
+
+Suppose a weight change acts on exactly the same whitened rows by a positive diagonal matrix $D$, with squared row multipliers between $r_{\min}$ and $r_{\max}$. With source metric, noise convention, and target/nuisance partition fixed,
+\begin{equation}
+r_{\min}\norm{x}_2^2\leq\norm{Dx}_2^2\leq r_{\max}\norm{x}_2^2.
+\end{equation}
+Apply this to every vector in the minimization \eqref{eq:minnuisance} and minimize over the same nuisance coefficients. It follows that
+\begin{equation}
+r_{\min}F_{\rm cond}\preceq F'_{\rm cond}\preceq r_{\max}F_{\rm cond}.
+\label{eq:reweightloewner}
+\end{equation}
+The corresponding ordered singular values satisfy
+\begin{equation}
+\sqrt{r_{\min}}\,s_j\leq s'_j\leq\sqrt{r_{\max}}\,s_j.
+\label{eq:weylbound}
+\end{equation}
+For the recorded range approximately $[0.500081,1.008048]$, the first singular value in \eqref{eq:r2singular} remains above one under this bound, the third remains below one, and the second is not decided. Hence the one-to-two statement. It is not a new measurement of $F'_{\rm cond}$. If the correction changes domain support, adds rows, alters the noise experiment, or changes the source norm, this fixed-row argument no longer supplies a complete acquisition bound.
+
+\subsection{Restricted source stability}
+For a truth $x_\star\in\mathcal C$ and estimate $\widehat x\in\mathcal C$, let $y=Bx_\star+\epsilon_w$. If $\norm{B\widehat x-y}_2\leq\norm{\epsilon_w}_2$, then
+\begin{equation}
+\norm{B(\widehat x-x_\star)}_2
+\leq\norm{B\widehat x-y}_2+\norm{\epsilon_w}_2
+\leq2\norm{\epsilon_w}_2.
+\end{equation}
+The definition of $\alpha$ in \eqref{eq:secant} yields the stated source-error bound when $\alpha>0$. Compactness of a declared source set does not itself imply positivity of that constant. Nor does a finite held-out bank establish the same bound for a surrounding continuum of histories.
+
+\section{Detailed reconstruction metrics}\label{app:metrics}
+\subsection{R1 quadratic-form evaluation}
+For the field loss \eqref{eq:r1loss}, define
+\begin{equation}
+M_a=D^TW_a^2D,\qquad p_a(v)=D^TW_a^2v,\qquad s_a(v)=v^TW_a^2v.
+\end{equation}
+Then
+\begin{equation}
+\norm{W_a(D\widehat c-v)}_2^2
+=\widehat c^TM_a\widehat c-2\widehat c^Tp_a(v)+s_a(v).
+\label{eq:quadraticloss}
+\end{equation}
+This exact algebraic identity is why coefficient-space operations can evaluate a field loss. $M_a$ is an age-window scoring matrix, not the R2 Gram $H_T$ and not a screen-cell quadrature.
+
+The source-code-defined R1 grid uses logarithmically spaced radii with both radial endpoints included, azimuths on $[0,2\pi)$, and source times with both endpoints included. The archived mesh uses \texttt{indexing=ij} and C-order flattening, so time varies fastest, then azimuth, then radius. The shape follows from the actual caller without size overrides and the imported function at the same execution commit; it is not guessed from a standalone default. No separately persisted grid-array hash is claimed by this source readback.
+
+The floor rule is applied to prior-fit windowed norms, not test-bank norms. Its missing realized scalar is not repaired by dividing the separately stored median absolute and median normalized errors: the denominator varies across evaluations and a ratio of medians is not the median of per-evaluation denominators. The recorded bootstrap seed for the R1 endpoint is 20260901. These method definitions do not change the archived R1 tables.
+
+\subsection{State-dependent HMT-2 error}\label{app:morphloss}
+The feature metric uses source-evaluation cells. For radial and azimuthal axes with $N_r$ and $N_\phi$ points, set
+\begin{equation}
+\delta_{\log r}=\frac{\log(r_{\max}/r_{\min})}{N_r-1},\quad
+\delta_\phi=\frac{2\pi}{N_\phi},\quad
+u=\sqrt{(N_r-1)^2+(N_\phi/2)^2}.
+\end{equation}
+For feature locations $x=(r,\phi)$ and $x'=(r',\phi')$, the distance in cells is
+\begin{equation}
+d(x,x')=\left[\left(\frac{\log(r/r')}{\delta_{\log r}}\right)^2+
+\left(\frac{\operatorname{wrap}(\phi-\phi')}{\delta_\phi}\right)^2\right]^{1/2}.
+\end{equation}
+Let the smaller feature set have cardinality $n_s$ and the larger $n_l$. The unbalanced cost is the matched distance sum plus $u|n_l-n_s|$ for unmatched features. The implementation enumerates injective assignments when the larger set has at most seven features; its larger-set fallback is greedy and records that status. No assertion that all experimental cases used exact enumeration is inferred without the corresponding event records. The normalized resolved-state error is
+\begin{equation}
+e_{\rm resolved}=\min\!\left\{1,
+\frac{C_{\rm assign}}{u\max(n_l,n_s,1)}\right\}.
+\end{equation}
+The raw assignment diagnostic and this capped state error are distinct quantities.
+
+For blended or ambiguous states, descriptors are computed from the positive part of the contrast field. They include a log-radius centroid, a circular azimuthal centroid, radial and angular second moments, normalized $m=1,2$ mode amplitudes, and total positive contrast. Define the symmetric discrepancy
+\begin{equation}
+\mathcal R(x,y)=\begin{cases}
+|x-y|/(|x|+|y|),&|x|+|y|>10^{-300},\\
+0,&\text{otherwise}.
+\end{cases}
+\end{equation}
+The positional discrepancy is centroid distance in cells, normalized by $u$ and capped at one. The size discrepancy is the mean $\mathcal R$ applied to the square roots of the two nonnegative second moments. The mode discrepancy is the mean for the two mode amplitudes, and the contrast discrepancy applies $\mathcal R$ to total positive contrast. The blended-state loss is
+\begin{equation}
+e_{\rm blend}=\tfrac14(e_{\rm position}+e_{\rm size}+e_{\rm modes}+e_{\rm contrast}).
+\end{equation}
+A nonfinite centroid yields the recorded unit-error branch. Dead-state loss is $\mathcal R$ applied to the peak absolute truth and reconstructed amplitudes. The primary endpoint averages over all state types using \eqref{eq:hmtestimand}; state-dependent diagnostics are retained to show what that mean conceals.
+
+For HMT-2, with already scaled singular values $s_i$ and $s_{\max}=\max_i s_i$, the implemented filters use $s_i\geq h_{\rm TSVD}s_{\max}$ for truncation and $s_i/(s_i^2+h_{\rm ridge}s_{\max}^2)$ for ridge. The dimensionless hyperparameters are inherited from its stage-1 selection. This documents the convention rather than substituting generic regularization parameters or retuning them.
+
+\section{Detector residuals, cancellation, and supplied envelopes}\label{app:bounds}
+For a fixed order, common known support, nonnegative overlap $O$, and positive diagonal whitening $W$, write $K=WO$ and $\delta_c=F_{{\rm approx},c}-F_{{\rm ref},c}$. The exact finite-array hierarchy is
+\begin{align}
+E_c&=\norm{K\delta_c}_2,
+&A_c&=\norm{K|\delta_c|}_2,\nonumber\\
+T_c&=\sum_p\norm{K_{:,p}}_2|\delta_{pc}|,
+&U&=\sum_p\norm{K_{:,p}}_2\max_c|\delta_{pc}|,\nonumber\\[-0.3em]
+&&E_c&\leq A_c\leq T_c\leq U.
+\label{eq:boundhierarchy}
+\end{align}
+The first inequality removes sign cancellation within detector pixels. The second additionally loses detector-vector structure. The third can select different worst channels at different nodes. Thus a ratio of the old aggregate $U$ to the largest measured $E_c$ is not a pure cancellation factor. Every relative criterion uses its own channel's reference norm; separate maxima over channels do not factor as if they referred to one channel.
+
+The measured $E_c$ already includes cancellation. Tightening an upper bound changes neither that residual nor the represented field. Likewise, removing a large signed contribution can break an existing cancellation. A refinement-cost calculation that assumes selected errors become exactly zero while all other terms stay fixed is an oracle-edit scenario, not a guarantee about four new child samples.
+
+The forty transferred diagnostics have the exact representation
+\begin{equation}
+H_0=g^3,\qquad H_T=g^3\exp(-2\pi i\Delta/T),\quad T\in\{20M,40M\}.
+\end{equation}
+At observer time $t_o$, the sine and cosine fields are the imaginary and real parts of $e^{2\pi i t_o/T}H_T$. Five real templates therefore reproduce the declared columns, and their expansion commutes with a fixed linear detector. This is an algebraic identity for these test functions, not a reduction of the full source operator. The audited composite-first interpolation changes the approximation to those templates and failed its maximum-error comparison in \cref{tab:audit}.
+
+A supplied signed field envelope must also preserve signs. If $0\leq\chi\leq1$ and a fixed field value is $f$, then a nonnegative overlap $w$ contributes an interval $[w\min(0,f),w\max(0,f)]$. For general supplied intervals on $\chi$ and $f$, use the extrema of the four endpoint products. A point value is not an envelope over an entire cell. Missing finite envelopes remain unknown contributions, not zero signal.
+
+These statements concern known arrays or valid supplied envelopes. A continuum error certificate must also control the reference representation's error and any omitted support. Favorable cancellation on a compared subset does not establish those missing bounds. The full correlated-noise case requires an appropriate bound for its whitening operator rather than an automatic reuse of \eqref{eq:boundhierarchy}.
+
+\section{Numerical-source index}\label{app:records}
+The following index links the main quantitative statements to the versioned archive \cite{archive}. The paper's tables are transcriptions or elementary summaries of these existing records, not new operator or estimator executions. The companion source map gives the full paths and the distinction between source reads, inherited records, and literature verification. Records containing earlier interpretations are read together with their later scope corrections.
+
+\small
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.14\linewidth}>{\raggedright\arraybackslash}p{0.33\linewidth}>{\raggedright\arraybackslash}p{0.43\linewidth}}
+\caption{Source records for the numerical statements. Short identifiers are archive names, not evidence of additional independent experiments.}\label{tab:records}\\
+\toprule
+Result&Primary record family&Scope used here\\
+\midrule\endfirsthead
+\toprule Result&Primary record family&Scope used here\\\midrule\endhead
+E3C reach&E3C geometry-wide operator report; \texttt{e3c\_depth\_curves}&Twelve prescribed geometries; actual direct-reference normalization; scalar masks, oldest centers, and anchor-connected spans.\\
+E3D enrichment&E3D source-class report; \texttt{e3d\_class\_spectra}; \texttt{e3d\_depth\_by\_class}&Three anchors; operational fractions/counts and separately numerical ranks/directional endpoints.\\
+R2 information&\texttt{R2REPLAY} at execution \texttt{b873908}; reference-geometry information table&72 target and 152 nuisance coefficients; source-Gram-normalized spectra under frozen legacy screen measure.\\
+R2 localization&\texttt{LOC025}; \texttt{LOCALIZATION\_READBACK.json}&Synthesized source-energy intervals supersede Cholesky-coordinate epoch interpretations.\\
+R1 level&\texttt{R1\_HELD\_OUT\_MAIN}; execution \texttt{5f557fb6}; frozen caller and scorer&640-history regime table, finite-grid field metric and high-SNR structural endpoint; realized floor not located.\\
+HMT-2 morphology&\texttt{HMT2M}; execution \texttt{9713af2c}; endpoint and family tables&60 histories, four draws; history-level median paired reductions; finite analytic-source and in-class targets.\\
+Detector response&\texttt{P034}, \texttt{Q035} response/support records&Same-support discrepancy to a fine numerical comparator, not full continuous response error.\\
+Control corrections&Defect amendment 023 and subsequent measurement records&Index-sum and index-transplant semantics, runner-specific flux readouts, area/noise corrections.\\
+\bottomrule
+\end{longtable}
+
+\normalsize

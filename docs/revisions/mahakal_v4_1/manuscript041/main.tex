@@ -1,0 +1,65 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext}
+\usepackage[a4paper,margin=25mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amsthm,mathtools,bm}
+\usepackage{newtxmath}
+\usepackage{microtype,graphicx,booktabs,tabularx,array,longtable}
+\usepackage{caption,subcaption,float,placeins}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,calc,patterns}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[hidelinks,breaklinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\hypersetup{pdftitle={Photon-Ring Retarded-Time Tomography: The Mahakal Phenomenon},pdfauthor={Hina Dixit and Abhinav Chauhan},pdfsubject={Historical reach, identifiability, and bounded recovery from higher-order images}}
+\captionsetup{font=small,labelfont=bf,labelsep=period}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0.25em}
+\setlength{\emergencystretch}{2em}
+\renewcommand{\arraystretch}{1.17}
+\setlist{nosep,leftmargin=*}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\R}{\mathbb R}
+\newcommand{\A}{\mathcal A}
+\newcommand{\I}{\mathcal I}
+\newcommand{\SNR}{\mathrm{SNR}_0}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\med}{\operatorname{median}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{arXiv:#1}}
+\newcommand{\doi}[1]{\href{https://doi.org/#1}{doi:#1}}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Dixit and Chauhan}
+\fancyhead[R]{\small Photon-ring retarded-time tomography}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\title{\vspace{-1.1em}\textbf{Photon-Ring Retarded-Time Tomography:\\The Mahakal Phenomenon}\\[0.6em]\large Historical reach, identifiability, and bounded recovery\\from higher-order images}
+\author{Hina Dixit\qquad Abhinav Chauhan}
+\date{8 September 2026}
+\begin{document}
+\maketitle
+\input{sections/01_introduction}
+\input{sections/02_forward}
+\input{sections/03_information}
+\input{sections/04_results}
+\input{sections/05_recovery}
+\input{sections/06_validation_discussion}
+\appendix
+\input{sections/07_appendices}
+\clearpage
+\input{references}
+\end{document}

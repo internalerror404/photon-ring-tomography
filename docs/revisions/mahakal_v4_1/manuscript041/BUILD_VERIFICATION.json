@@ -1,0 +1,70 @@
+{
+  "revision": "041",
+  "pdf_pages": 24,
+  "pdf_bytes": 320246,
+  "pdf_sha256": "4b0e112b321c2c1de7bcbe0aeb7aac39db776385884eeab08b1ca6a1a17d8b1f",
+  "display_equations_numbered": 43,
+  "figures": 4,
+  "tables_including_source_index": 8,
+  "compile_engine": "pdfLaTeX",
+  "compile_success": true,
+  "unresolved_references_or_citations": false,
+  "overfull_text_boxes": false,
+  "page_rendering": "pdftoppm final PDF, all 24 pages; contact sheets inspected, earlier enlarged equation/figure/page checks also performed",
+  "scope": "Document rendering and source compilation only, not validation of physical results.",
+  "source_modules": {
+    "Photon_Ring_Retarded_Time_Tomography_041.tex": {
+      "sha256": "2d3423888621e1cec670bc7e4f93aa3f145919aa31578ab076dbb1db5e97bd2a",
+      "bytes": 89479,
+      "git_blob": "45adea7ca26fdb770573559c15e0f708b943a8ef"
+    },
+    "main.tex": {
+      "sha256": "a0725e1f7707413948856825f03bd4763d80ead67f5278d17cefd8bfad0dd033",
+      "bytes": 2686,
+      "git_blob": "b062d984c5611ab57dee1dc94da287c1173597c5"
+    },
+    "references.tex": {
+      "sha256": "19ef9db1a69dd3b30ce8b3e975ee83f9e0f1da304fe9edd752ce129dbff85b41",
+      "bytes": 2571,
+      "git_blob": "6a3b93a6913cb3795cb46d151f749e426d596fc6"
+    },
+    "sections/01_introduction.tex": {
+      "sha256": "2aa5deec869b0bbdf73fb47c419c9d31f2e4da5e44fad13fb592e84f93a29bed",
+      "bytes": 8792,
+      "git_blob": "f9058ae1c971df665b447f9e4ebd2ca0f299e038"
+    },
+    "sections/02_forward.tex": {
+      "sha256": "cc14d628cf867a5d72e6ce4e48973b1b1fc37467e007cd7e9779699201882b7e",
+      "bytes": 9681,
+      "git_blob": "af31e14e0d90119f13728485cdc086c29cc315f7"
+    },
+    "sections/03_information.tex": {
+      "sha256": "32e5ffa830db3ffa18d6c545c41c13f32cc16010b94d1f37a380f00bb7b63f10",
+      "bytes": 8849,
+      "git_blob": "bfed6502166e8a9b77f97efea5e1fdf520599dd9"
+    },
+    "sections/04_results.tex": {
+      "sha256": "7a687836156510458c458693f9974ce935c9ff1f734efd9e80d3ed9832e3bfa7",
+      "bytes": 14956,
+      "git_blob": "4a844447577e4056b0f39778b1ef82fb09b0f952"
+    },
+    "sections/05_recovery.tex": {
+      "sha256": "bb520cf1ba0b130bd4f74b776f92f5a5f4e8ff04c057d19d26e182388c35c492",
+      "bytes": 14542,
+      "git_blob": "e882e1cb8532869f292091e7c6ad0fe9a6325ce4"
+    },
+    "sections/06_validation_discussion.tex": {
+      "sha256": "af1e783c7a748bafe3582d1604d6abca165d8eaf6d6288ec0bdf23819cd29d34",
+      "bytes": 14416,
+      "git_blob": "b2bbe23c2bc9fc7a77e87e73d908499fd350c39a"
+    },
+    "sections/07_appendices.tex": {
+      "sha256": "c672446c8b74f30650944111386fc2a9881844f5d1a959eda0fd6a11417b3ce6",
+      "bytes": 13220,
+      "git_blob": "4a9512119a57bb4506f303907acd6c6ab54267bb"
+    }
+  },
+  "physical_queries": 0,
+  "repository_suite_executed": false,
+  "python": "3.13.5"
+}
