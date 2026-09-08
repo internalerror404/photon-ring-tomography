@@ -1,0 +1,41 @@
+{
+  "schema": "mahakal-review040-provenance/1",
+  "reviewed_commit": "5985fe90f523d7cc3b0b1e11da9fa3897f6708c2",
+  "scope": "Connected manuscript/HTML/source/manifest reading and synthetic-array normalization arithmetic; no campaign experiment or full PDF visual verification.",
+  "source_blobs": {
+    "manuscript039_markdown": "40471319a3fbb72d0e50e605bfdc0de279cbfe93",
+    "manuscript039_html": "f9655c24501b3b31052eaf4995370f397e6c0bda",
+    "manuscript039_pdf": "b0c4950deb99212ddda09b55d5b8c4e42dfe047c",
+    "E3C_runner": "d2720e6812d7e9a47a741d232d2eb0857e8f6156",
+    "physical_operator_source": "cb26a08c3fe2f4836b6ca3edc3bdfbe441faa17c",
+    "figure_builder": "35e13d9fe53d7c88333fb5f7194a4d314a53cd85",
+    "E3D_report": "79b93e938cd6e8846dd38f962122f400345fc8cb"
+  },
+  "PDF_inspection": {
+    "repository_file_existence_confirmed": true,
+    "tree_reported_bytes": 593312,
+    "encoded_content_returned": true,
+    "independent_full_binary_local_retrieval": false,
+    "independent_page_render": false,
+    "reported_pages_by_authoring_agent": 23,
+    "limitations": "Direct binary retrieval unavailable in this runtime. User-reported visual checks were not independently repeated."
+  },
+  "actual_checks": {
+    "per_snr2_and_actual_information_are_equivalent": true,
+    "extra_S_squared_would_double_scale_already_actual_information": true,
+    "same_reference_SNR_allows_geometry_dependent_absolute_noise": true,
+    "stored_budget_unchanged": true
+  },
+  "normalization_relative_residual": 0.0,
+  "E3D_table_geometry_count_directly_recomputed": false,
+  "eta_archive_search_independently_repeated": false,
+  "external_literature_newly_verified": false,
+  "full_claim_matrix_checker_rerun": false,
+  "repository_suite_executed": false,
+  "campaign_evaluations": 0,
+  "local_environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5"
+  },
+  "next_stage_yaml_unique_keys_checked": true
+}

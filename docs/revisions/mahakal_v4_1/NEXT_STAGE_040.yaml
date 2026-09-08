@@ -1,0 +1,94 @@
+review_id: PAPER_I_PUBLICATION_READINESS_040
+reviewed_commit: 5985fe90f523d7cc3b0b1e11da9fa3897f6708c2
+work_branch: research/mahakal_v4_1
+status: CANDIDATE_ACCEPTED_FOR_AUTHOR_REVIEW_TWO_RELEASE_CORRECTIONS_REQUIRED
+preservation:
+  manuscript039_and_all_prior_drafts: immutable
+  canonical_source_maps_tables_and_freeze022: immutable
+  accepted_scientific_closeouts: no_replay_required
+  closed_negative_template_test: no_successor_candidate_authorized
+  delivery: GitHub_only
+accepted:
+  actual_editable_and_rendered_artifacts: delivered
+  R1_grid_and_HMT2_aggregation_exposition: source_resolved
+  eta_status: REALIZED_ETA_NOT_LOCATED_in_inspected_records
+  author_review_scope: finite_model_information_and_recovery
+  no_new_scientific_result_from_rendering: true
+release_corrections:
+  E3C_normalization:
+    source: scripts/run_e3c_operator_grid.py
+    fixed_noise_scope: same_geometry_support_setting_and_SNR_shared_across_arms
+    one_identical_density_all_geometries: false
+    s_ref: norm_unit_density_direct_reference_response_over_sqrt_actual_direct_row_count
+    sigma_at_S: s_ref_over_S
+    information_per_snr2: norm_unit_density_arm_probe_squared_over_s_ref_squared
+    actual_information: S_squared_times_information_per_snr2
+    double_count_SNR: forbidden
+    row_coefficient: sqrt_declared_screen_weight_times_abs_g_cubed_over_sigma
+    legacy_weights_silently_replaced_with_C13: forbidden
+    documented_ambiguity_proves_old_numerical_bug: false
+  E3D_figure_population:
+    current_manifest: says_12_geometries
+    primary_report: names_3_anchors
+    expected_report_anchors: [a000_i020, a050_i050, a098_i075]
+    action: read_unique_ids_and_counts_from_existing_filtered_tables_and_record_actual_population
+    aggregate_scope: name_population_for_each_panel_not_assume_reference_geometry
+    recompute_new_spectra: forbidden
+    values_changed_without_selector_evidence: forbidden
+    new_figure_render: only_if_actual_label_or_verified_selector_changes
+presentation:
+  mathematical_typesetting: conventional_readable_subscripts_superscripts_norms_and_fractions
+  HTML_plain_text_display_equals_typesetting_certification: false
+  PDF_visual_review: actual_final_pdf_not_only_source_or_page_count
+  review040_independent_full_PDF_render: not_performed
+  first_paragraph: ray_dependent_distributed_overlapping_delays_not_one_epoch_per_order
+  internal_audit_history: cover_note_or_supplement_not_the_scientific_opening
+  scientific_limitations: retained
+  bibliography: retain_only_supported_verified_claim_scope_no_invented_metadata
+  all_26_old_references_mandatory: false
+eta_author_decision:
+  scientific_rerun_automatically_required: false
+  option_A: retain_archived_R1_result_with_rule_and_explicit_missing_scalar_limitation
+  option_B: separately_authorize_fit_only_normalization_reconstruction
+  option_B_executed_by_this_ruling: false
+  eta_insensitivity_established: false
+  code_defined_value_missing_log_means_fundamental_nonreproducibility: false
+  effect_on_independent_R2_or_HMT2_automatically_assumed: false
+scope_decision:
+  author_approval_required: true
+  two_deferred_physical_workstreams: necessary_for_their_stronger_claims_not_every_finite_model_statement
+  submission_or_journal_acceptance_guaranteed: false
+  original_index_sum_as_physical_control: forbidden
+current_authorization:
+  new_rays_path_integrals_hull_roots: 0
+  new_target_operators_spectra_estimators_truths: 0
+  new_interpolant_or_optimization_campaign: 0
+  eta_recomputation: not_authorized
+  allowed: existing_source_table_readback_elementary_algebra_and_final_document_edits_rendering
+  R3B_or_actual_submission_action: not_authorized
+resources:
+  second_batch_spent: 19146
+  second_batch_unspent: 854
+  boundary_spent: 33410
+  paid_resources_or_new_allowance: none
+execution:
+  output_root: docs/revisions/mahakal_v4_1/release040
+  new_general_rewrite_or_schema: not_requested
+  old_files_overwritten: false
+  record_actual_visual_and_source_checks: required
+  full_repository_suite_for_copy_edits: not_required
+  old_write_capable_tools: disposable_worktree_or_redirected_outputs
+return:
+  ready: RELEASE_COPY_040_READY_FOR_AUTHOR_SIGNOFF
+  blocked: RELEASE_COPY_040_BLOCKED
+  required: amended_editable_and_rendered_candidate_with_explicit_author_decisions_and_evidence
+  ready_is_submission_action_or_physical_validation: false
+  stop_after: final_release_copy_and_author_signoff_packet
+outputs:
+  - Photon_Ring_Retarded_Time_Tomography_Release_040.md_or_tex
+  - Photon_Ring_Retarded_Time_Tomography_Release_040.pdf
+  - RELEASE_CORRECTIONS_040.json
+  - FIGURE_POPULATION_READBACK_040.json
+  - AUTHOR_DECISIONS_AND_REMAINING_LIMITATIONS_040.md
+  - RELEASE_COPY_040_RETURN.md
+  - SHA256SUMS.txt
