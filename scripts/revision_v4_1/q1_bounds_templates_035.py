@@ -243,7 +243,7 @@ def summarise(mod, O, whiten, F_ref, F_base, F_cand) -> dict:
 def main(out: Path) -> int:
     t0 = time.time()
     mod = helper()
-    per, store = {}, {}
+    per, blobs = {}, []
     for n in (0, 1, 2):
         info, arrays, O, whiten, F_ref, F_base, F_cand = build_order(n, mod)
         s = summarise(mod, O, whiten, F_ref, F_base, F_cand)
@@ -256,32 +256,47 @@ def main(out: Path) -> int:
                        "geometry validation",
         }
         per[f"n{n}"] = {"summary": info, "channels": s}
-        for k, v in arrays.items():
-            store[f"n{n}_{k}"] = v
-        store[f"n{n}_resid_base"] = np.asarray(
-            O.multiply(whiten[:, None]) @ (F_base - F_ref))
-        store[f"n{n}_resid_cand"] = np.asarray(
-            O.multiply(whiten[:, None]) @ (F_cand - F_ref))
-        store[f"n{n}_y_ref"] = np.asarray(
-            O.multiply(whiten[:, None]) @ F_ref)
+        K = O.multiply(whiten[:, None])
+        arrays["y_ref"] = np.asarray(K @ F_ref)
+        arrays["y_base"] = np.asarray(K @ F_base)
+        arrays["y_cand"] = np.asarray(K @ F_cand)
+        arrays["resid_base"] = arrays["y_base"] - arrays["y_ref"]
+        arrays["resid_cand"] = arrays["y_cand"] - arrays["y_ref"]
+        arrays["reference_norm"] = np.linalg.norm(arrays["y_ref"], axis=0)
+        # one file per order: the whole set exceeds the 100 MB the remote
+        # accepts, and splitting keeps every array rather than dropping any
+        b = out / f"COMPOSITE_FIRST_COMPARISON_035_n{n}.npz"
+        np.savez_compressed(b, **arrays)
+        blobs.append(b)
         print(f"  order {n}: baseline {info['baseline']['max_relative_E']:.4e}"
               f", candidate {info['candidate']['max_relative_E']:.4e}"
               f", A/E {info['baseline']['max_A_over_E']:.2f}"
               f", T/A {info['baseline']['max_T_over_A']:.2f}"
               f", identity {info['identity_max_pointwise']:.2e}", flush=True)
 
-    store["channel_labels"] = np.array(labels(), dtype=object).astype("U64")
-    store["observer_times"] = np.array(T_OBS)
-    blob = out / "COMPOSITE_FIRST_COMPARISON_035.npz"
-    np.savez_compressed(blob, **store)
-    with np.load(blob, allow_pickle=False) as z:
-        readback = {k: [int(x) for x in z[k].shape] for k in z.files}
-        ok = all(np.isfinite(z[k]).all() for k in z.files
-                 if z[k].dtype.kind == "f")
+    idx = out / "COMPOSITE_FIRST_COMPARISON_035_index.npz"
+    np.savez_compressed(
+        idx, channel_labels=np.array(labels(), dtype="U64"),
+        observer_times=np.array(T_OBS),
+        screen_channels=np.array(SCREEN, dtype="U32"),
+        transferred_channels=np.array(TRANSFER, dtype="U32"),
+        per_order_files=np.array([b.name for b in blobs], dtype="U64"))
+    blobs.append(idx)
+    files = {}
+    ok = True
+    for b in blobs:
+        with np.load(b, allow_pickle=False) as z:
+            files[b.name] = {
+                "sha256": sha(b), "bytes": b.stat().st_size,
+                "keys": {k: [int(x) for x in z[k].shape] for k in z.files}}
+            ok &= all(np.isfinite(z[k]).all() for k in z.files
+                      if z[k].dtype.kind == "f")
     (out / "PAIRED_PAYLOAD_MANIFEST_035.json").write_text(json.dumps({
-        "stage": "S0/S2", "file": blob.name, "sha256": sha(blob),
-        "keys": readback, "readback_validated": True,
+        "stage": "S0/S2", "files": files, "readback_validated": True,
         "all_float_arrays_finite": bool(ok),
+        "split_reason": "one file per order; the combined archive is 102.6 MB "
+                        "and the remote rejects a blob over 100 MB. Every "
+                        "array is kept; none is downcast or dropped.",
         "written_before_the_summary": True,
         "regenerated_from_cached_inputs_not_a_new_physical_run": True,
     }, indent=2) + "\n")

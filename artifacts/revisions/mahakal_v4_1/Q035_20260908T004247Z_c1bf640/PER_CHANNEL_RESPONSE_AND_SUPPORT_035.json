@@ -1,0 +1,162 @@
+{
+  "stage": "S1/S2",
+  "ruling": "PAPER_I_CANCELLATION_RULING_035",
+  "generated_utc": "2026-09-08T00:54:47Z",
+  "commit": "c1bf64023fe70b40753b3d2c4b383c7e463062b9",
+  "new_rays": 0,
+  "physical_path_integrals": 0,
+  "bound_definitions": {
+    "E": "||K delta_c||, the actual signed detector residual",
+    "A": "||K |delta_c| ||, cancellation removed inside each pixel",
+    "T": "sum_p ||K[:,p]|| |delta_pc|, detector structure replaced",
+    "U": "sum_p ||K[:,p]|| max_c |delta_pc|, the 034 aggregate",
+    "order": "E <= A <= T <= U",
+    "each_channel_uses_its_own_reference_norm": true
+  },
+  "redshift_convention": "g = |archived redshift|; delay = T_REF - coordinate_time",
+  "candidate": "five templates formed at the coarse nodes, then bilinearly interpolated, then expanded",
+  "baseline": "redshift and coordinate time interpolated, then cubed and phased",
+  "support_identical_between_baseline_and_candidate": true,
+  "favourable_outcome_required": false,
+  "runtime_seconds": 108.01439309120178,
+  "per_order": {
+    "n0": {
+      "order": 0,
+      "supported_nodes": 61276,
+      "fine_emitting_nodes": 61635,
+      "node_coverage": 0.9941753873610774,
+      "compared_area": 2455.746681505137,
+      "emitting_area": 2469.744492417698,
+      "area_coverage": 0.9943322837825794,
+      "omitted_area": 13.997810912560908,
+      "identity_max_pointwise": 6.078471059822732e-15,
+      "identity_max_after_the_detector": 1.1191048088221578e-13,
+      "support_identical_for_both_candidates": true,
+      "baseline": {
+        "max_relative_E": 0.009593926019841242,
+        "median_relative_E": 0.00373177141946304,
+        "channels_above_budget": 40,
+        "of": 40,
+        "worst_channel": "transferred:g^3*cos20@t=17.142857",
+        "max_A_over_E": 1.1015099071264431,
+        "max_T_over_A": 20.015057536251767,
+        "U_over_max_E": 9.753514905296381,
+        "max_T_over_E": 20.628656941744644
+      },
+      "candidate": {
+        "max_relative_E": 0.009717724310099523,
+        "median_relative_E": 0.003854746871573399,
+        "channels_above_budget": 40,
+        "of": 40,
+        "worst_channel": "transferred:g^3*cos20@t=17.142857",
+        "max_A_over_E": 1.0706530241721626,
+        "max_T_over_A": 67.12138234225407,
+        "U_over_max_E": 35.63414844601152,
+        "max_T_over_E": 69.60555502942576
+      },
+      "screen_control": {
+        "baseline": {
+          "max_relative_E": 0.0,
+          "max_absolute_E": 0.0
+        },
+        "candidate": {
+          "max_relative_E": 0.0,
+          "max_absolute_E": 0.0
+        },
+        "meaning": "equal-input consistency control, not an absolute geometry validation"
+      }
+    },
+    "n1": {
+      "order": 1,
+      "supported_nodes": 33338,
+      "fine_emitting_nodes": 34278,
+      "node_coverage": 0.9725771631950523,
+      "compared_area": 53.55462493380132,
+      "emitting_area": 54.98406267973474,
+      "area_coverage": 0.9740026895746235,
+      "omitted_area": 1.42943774593342,
+      "identity_max_pointwise": 6.679552744248696e-15,
+      "identity_max_after_the_detector": 3.907985046680551e-14,
+      "support_identical_for_both_candidates": true,
+      "baseline": {
+        "max_relative_E": 0.04274351473611188,
+        "median_relative_E": 0.02845257124912427,
+        "channels_above_budget": 40,
+        "of": 40,
+        "worst_channel": "transferred:g^3*sin20@t=2.857143",
+        "max_A_over_E": 4.569057718344865,
+        "max_T_over_A": 9.023017418644352,
+        "U_over_max_E": 56.913335465160245,
+        "max_T_over_E": 41.04532593548384
+      },
+      "candidate": {
+        "max_relative_E": 0.08479504940405201,
+        "median_relative_E": 0.04430425103859163,
+        "channels_above_budget": 40,
+        "of": 40,
+        "worst_channel": "transferred:g^3*sin20@t=20.000000",
+        "max_A_over_E": 3.8868103631444346,
+        "max_T_over_A": 11.159279920189737,
+        "U_over_max_E": 62.02256249336437,
+        "max_T_over_E": 43.32404867653759
+      },
+      "screen_control": {
+        "baseline": {
+          "max_relative_E": 0.0,
+          "max_absolute_E": 0.0
+        },
+        "candidate": {
+          "max_relative_E": 0.0,
+          "max_absolute_E": 0.0
+        },
+        "meaning": "equal-input consistency control, not an absolute geometry validation"
+      }
+    },
+    "n2": {
+      "order": 2,
+      "supported_nodes": 10284,
+      "fine_emitting_nodes": 16672,
+      "node_coverage": 0.6168426103646834,
+      "compared_area": 1.0293692897210054,
+      "emitting_area": 1.638597888324837,
+      "area_coverage": 0.6282012793104139,
+      "omitted_area": 0.6092285986038317,
+      "identity_max_pointwise": 6.404599073306372e-15,
+      "identity_max_after_the_detector": 4.954370247389761e-15,
+      "support_identical_for_both_candidates": true,
+      "baseline": {
+        "max_relative_E": 0.5116029567264959,
+        "median_relative_E": 0.2629626499643508,
+        "channels_above_budget": 40,
+        "of": 40,
+        "worst_channel": "transferred:g^3*sin40@t=8.571429",
+        "max_A_over_E": 4.708960202106982,
+        "max_T_over_A": 6.725847197904428,
+        "U_over_max_E": 28.448991471372246,
+        "max_T_over_E": 31.353133225918388
+      },
+      "candidate": {
+        "max_relative_E": 0.6536382198807053,
+        "median_relative_E": 0.169999185864314,
+        "channels_above_budget": 40,
+        "of": 40,
+        "worst_channel": "transferred:g^3*cos20@t=11.428571",
+        "max_A_over_E": 6.580988419948161,
+        "max_T_over_A": 6.717244589079803,
+        "U_over_max_E": 36.21531219500581,
+        "max_T_over_E": 44.00540419300599
+      },
+      "screen_control": {
+        "baseline": {
+          "max_relative_E": 0.0,
+          "max_absolute_E": 0.0
+        },
+        "candidate": {
+          "max_relative_E": 0.0,
+          "max_absolute_E": 0.0
+        },
+        "meaning": "equal-input consistency control, not an absolute geometry validation"
+      }
+    }
+  }
+}

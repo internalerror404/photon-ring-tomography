@@ -1,0 +1,77 @@
+{
+  "stage": "S0",
+  "ruling": "PAPER_I_CANCELLATION_RULING_035",
+  "generated_utc": "2026-09-08T00:42:48Z",
+  "commit": "c1bf64023fe70b40753b3d2c4b383c7e463062b9",
+  "new_rays": 0,
+  "physical_path_integrals": 0,
+  "hull_root_solves": 0,
+  "prior_run_directory": "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d",
+  "actual_034_npz_keys": {
+    "n0_reference": {
+      "shape": [
+        15625,
+        46
+      ],
+      "dtype": "float64"
+    },
+    "n1_reference": {
+      "shape": [
+        15625,
+        46
+      ],
+      "dtype": "float64"
+    },
+    "n2_reference": {
+      "shape": [
+        15625,
+        46
+      ],
+      "dtype": "float64"
+    }
+  },
+  "estimated_vectors_present_in_034": false,
+  "export_defect": {
+    "line": "arrays[f\"n{n}_reference\"] = r.pop(\"vectors\")[\"reference\"]",
+    "effect": "the dictionary holding both vectors is popped and only its reference member is stored; the estimated vectors and signed residuals were never written",
+    "repair": "regenerate from cached inputs into a new directory; the 034 directory is left byte-identical"
+  },
+  "required_arrays_for_this_ruling": [
+    "reference_vectors",
+    "baseline_vectors",
+    "candidate_vectors",
+    "signed_residual_vectors",
+    "channel_labels_and_times",
+    "supported_node_ids_and_coordinates",
+    "template_arrays",
+    "CSR_overlap_data_indices_indptr_shape",
+    "reference_norms_and_bound_hierarchy",
+    "omitted_node_and_area_masks"
+  ],
+  "cached_inputs": {
+    "artifacts/revisions/mahakal_v4_1/G1C_20260907T075203Z_d252697/CLOSEOUT_ARRAYS_029.npz": "192eb9598c27ed2f96811ba8a8c27bbae2e09d2ac17769f4143a60771332e634",
+    "docs/revisions/mahakal_v4_1/review035/cancellation_and_templates_035.py": "5d14747f1f67030dd189e73b7b6144e98e5212ad87d903ebc509c5cf431bc39c",
+    "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/COMPARATOR_CAUSE_AND_CONFIRMATION_033.json": "45adb0e3baef041c660956665ef68e94cffa25ad48548aacadaff0b1f06789d7",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/BOX_REFERENCE_NORM_TESTS_034.json": "69c274b111e034bd641298a4a1ef79f6b907ad1f3745803f843017732aa8da77",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/CACHED_COMPOSITE_RESPONSE_034.npz": "0e6b92e8e4b9198d8aa1e30d9e6fa237a1dfb9f357aeff0898a7a7a2e695e37d",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/CACHED_RESPONSE_034_INPUT_MANIFEST.json": "423e28e63e78aec07d4c2a5c6735c53b490d1970338921ae354d4923b4f00768",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/CACHED_RESPONSE_AUDIT_034_COMPLETION.json": "d533f958d9c6bfe17c629f57473768f27b7516119e88eef3aaa7fc9ad9835743",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/CACHED_RESPONSE_AUDIT_034_RETURN.md": "d905ed75b2c67cf56d76c9898790e4937e39a28d0e76fef1ef6eea6b5933c745",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/COMPARATOR_QUANTITY_READBACK_034.json": "78807ff1632bbe3c623fa491f84cbbf7ceed97af9f649fd07ad5be6a39f165a6",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/INTERPRETATION_OVERLAY_034.md": "7b0c2d098d41ebb83b58719d6379921402cfc3d85e5b23acec30c8e7bdf4cd52",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/MANUSCRIPT_CLAIM_ROUTES_034.md": "c4784b4ed7931dac51b7df56d4f3eeae5b2f423975c84f49f1ec6282c4d0219b",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/PYTEST_FULL_SUITE_034.txt": "6edddbb4e1e55c87d99277e810661cdef34159770daa11a3251ce3d95d3b7369",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/RESPONSE_BASED_COST_SCENARIOS_034.json": "a2596599a153845cc565671315921baaecbd0fca4de8956d82543d59d22a06d2",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/RESPONSE_ERROR_AND_OMITTED_SUPPORT_034.json": "b4d62c75d1d346b9616d7383de5a929f6b46cb9b1c55e5e5e20b91bb34654d23",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/REVIEWER_CHECKS_034.json": "aa6ba7260146f19b7e3f384cc46e544e004ce2020bc5b32a33f0b03b3542c126",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/SHA256SUMS.txt": "156a97fb6d81b9a5bd38c2c536d6c08fc0f1faf0f0ba7876ac659eb66873fe36",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/STENCIL_AND_COVERAGE_AUDIT_034.json": "85f8b166ae0a7f5d5177143554123a47a40e5674ca1efbb3919ae254d38f780d",
+    "artifacts/raymaps/a050_i050_n0_core.h5": "78e77e81f399c552192e9606d74038959e8666ee8eb1b5097ce1561cb2eab499",
+    "artifacts/raymaps/a050_i050_n0_fine.h5": "5ec970f9581e7d237f44b3241ee848f378b59b5fe62101f3a87e7c406fad9b7c",
+    "artifacts/raymaps/a050_i050_n1_core.h5": "8d0b047a9dc2ecdd9652e17c44c3fe886005401b42585cfeafb9b79698bc705e",
+    "artifacts/raymaps/a050_i050_n1_fine.h5": "855cf6794699d7690a1804098719b07a998f3d0a702af883a2a9e94f21fa395e",
+    "artifacts/raymaps/a050_i050_n2_core.h5": "a1fc26b81c9143ca29f8a63f9dd44e76605323beb78db80391729c209a7fdb39",
+    "artifacts/raymaps/a050_i050_n2_fine.h5": "820fbab07abcc51de7eb561d3c9acdc346408d948dff0571aef474db4f119ee9"
+  },
+  "missing_inputs": []
+}

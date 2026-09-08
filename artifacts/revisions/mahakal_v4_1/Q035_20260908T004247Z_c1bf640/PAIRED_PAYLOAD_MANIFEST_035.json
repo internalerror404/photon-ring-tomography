@@ -1,0 +1,277 @@
+{
+  "stage": "S0/S2",
+  "files": {
+    "COMPOSITE_FIRST_COMPARISON_035_n0.npz": {
+      "sha256": "0468deebbc8e7d1ae35f6bc09891f0ba20402479a75eee0463ff84425d0a995f",
+      "bytes": 76169533,
+      "keys": {
+        "uniq": [
+          61276
+        ],
+        "alpha": [
+          61276
+        ],
+        "beta": [
+          61276
+        ],
+        "F_ref": [
+          61276,
+          46
+        ],
+        "F_base": [
+          61276,
+          46
+        ],
+        "F_cand": [
+          61276,
+          46
+        ],
+        "H_ref": [
+          61276,
+          5
+        ],
+        "H_hat": [
+          61276,
+          5
+        ],
+        "O_data": [
+          137411
+        ],
+        "O_indices": [
+          137411
+        ],
+        "O_indptr": [
+          15626
+        ],
+        "O_shape": [
+          2
+        ],
+        "whiten": [
+          15625
+        ],
+        "emit_mask": [
+          62500
+        ],
+        "support_mask": [
+          62500
+        ],
+        "active_area": [
+          62500
+        ],
+        "y_ref": [
+          15625,
+          46
+        ],
+        "y_base": [
+          15625,
+          46
+        ],
+        "y_cand": [
+          15625,
+          46
+        ],
+        "resid_base": [
+          15625,
+          46
+        ],
+        "resid_cand": [
+          15625,
+          46
+        ],
+        "reference_norm": [
+          46
+        ]
+      }
+    },
+    "COMPOSITE_FIRST_COMPARISON_035_n1.npz": {
+      "sha256": "78e577db614ca47b7c5bfb91997ef46c5f5a6330564681f62087dcb30669c791",
+      "bytes": 30366218,
+      "keys": {
+        "uniq": [
+          33338
+        ],
+        "alpha": [
+          33338
+        ],
+        "beta": [
+          33338
+        ],
+        "F_ref": [
+          33338,
+          46
+        ],
+        "F_base": [
+          33338,
+          46
+        ],
+        "F_cand": [
+          33338,
+          46
+        ],
+        "H_ref": [
+          33338,
+          5
+        ],
+        "H_hat": [
+          33338,
+          5
+        ],
+        "O_data": [
+          40319
+        ],
+        "O_indices": [
+          40319
+        ],
+        "O_indptr": [
+          15626
+        ],
+        "O_shape": [
+          2
+        ],
+        "whiten": [
+          15625
+        ],
+        "emit_mask": [
+          250000
+        ],
+        "support_mask": [
+          250000
+        ],
+        "active_area": [
+          250000
+        ],
+        "y_ref": [
+          15625,
+          46
+        ],
+        "y_base": [
+          15625,
+          46
+        ],
+        "y_cand": [
+          15625,
+          46
+        ],
+        "resid_base": [
+          15625,
+          46
+        ],
+        "resid_cand": [
+          15625,
+          46
+        ],
+        "reference_norm": [
+          46
+        ]
+      }
+    },
+    "COMPOSITE_FIRST_COMPARISON_035_n2.npz": {
+      "sha256": "e1f1edb9f914c25975d0665f6c68c64c9d3774c66d22e5e9aaf2dab2c139bf35",
+      "bytes": 9423181,
+      "keys": {
+        "uniq": [
+          10284
+        ],
+        "alpha": [
+          10284
+        ],
+        "beta": [
+          10284
+        ],
+        "F_ref": [
+          10284,
+          46
+        ],
+        "F_base": [
+          10284,
+          46
+        ],
+        "F_cand": [
+          10284,
+          46
+        ],
+        "H_ref": [
+          10284,
+          5
+        ],
+        "H_hat": [
+          10284,
+          5
+        ],
+        "O_data": [
+          10794
+        ],
+        "O_indices": [
+          10794
+        ],
+        "O_indptr": [
+          15626
+        ],
+        "O_shape": [
+          2
+        ],
+        "whiten": [
+          15625
+        ],
+        "emit_mask": [
+          1440000
+        ],
+        "support_mask": [
+          1440000
+        ],
+        "active_area": [
+          1440000
+        ],
+        "y_ref": [
+          15625,
+          46
+        ],
+        "y_base": [
+          15625,
+          46
+        ],
+        "y_cand": [
+          15625,
+          46
+        ],
+        "resid_base": [
+          15625,
+          46
+        ],
+        "resid_cand": [
+          15625,
+          46
+        ],
+        "reference_norm": [
+          46
+        ]
+      }
+    },
+    "COMPOSITE_FIRST_COMPARISON_035_index.npz": {
+      "sha256": "bf8c224cbf8ee6c850ba11b3b08f021fdd691d377536dde7aad8f96b864659ef",
+      "bytes": 1693,
+      "keys": {
+        "channel_labels": [
+          46
+        ],
+        "observer_times": [
+          8
+        ],
+        "screen_channels": [
+          6
+        ],
+        "transferred_channels": [
+          5
+        ],
+        "per_order_files": [
+          3
+        ]
+      }
+    }
+  },
+  "readback_validated": true,
+  "all_float_arrays_finite": true,
+  "split_reason": "one file per order; the combined archive is 102.6 MB and the remote rejects a blob over 100 MB. Every array is kept; none is downcast or dropped.",
+  "written_before_the_summary": true,
+  "regenerated_from_cached_inputs_not_a_new_physical_run": true
+}

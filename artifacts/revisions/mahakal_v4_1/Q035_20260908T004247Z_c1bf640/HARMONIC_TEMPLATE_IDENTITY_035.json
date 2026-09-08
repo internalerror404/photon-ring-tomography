@@ -1,0 +1,23 @@
+{
+  "stage": "S2",
+  "identity": "H0, Re H20, Im H20, Re H40, Im H40 reconstruct all 40 transferred columns at the eight observer times",
+  "screen_channels_retained_separately": 6,
+  "per_order": {
+    "n0": {
+      "max_pointwise": 6.078471059822732e-15,
+      "max_after_the_detector": 1.1191048088221578e-13
+    },
+    "n1": {
+      "max_pointwise": 6.679552744248696e-15,
+      "max_after_the_detector": 3.907985046680551e-14
+    },
+    "n2": {
+      "max_pointwise": 6.404599073306372e-15,
+      "max_after_the_detector": 4.954370247389761e-15
+    }
+  },
+  "is_a_ray_speedup": false,
+  "reduces_the_L224_source_space": false,
+  "applies_to_arbitrary_source_movies": false,
+  "applies_only_to_the_declared_diagnostic_fields": true
+}

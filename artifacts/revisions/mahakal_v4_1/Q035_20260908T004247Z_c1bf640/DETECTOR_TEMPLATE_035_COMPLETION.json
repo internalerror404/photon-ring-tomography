@@ -1,0 +1,98 @@
+{
+  "schema": "phrt-completion/1",
+  "id": "DETECTOR_TEMPLATE_035_COMPLETION",
+  "ruling": "PAPER_I_CANCELLATION_RULING_035",
+  "generated_utc": "2026-09-08T00:55:09Z",
+  "commit": "c1bf64023fe70b40753b3d2c4b383c7e463062b9",
+  "return_status": "DETECTOR_TEMPLATE_035_REVIEW_READY",
+  "statuses": {
+    "cached_discrepancy": "MEASURED_AND_OUTSIDE_BUDGET_UNCHANGED",
+    "bound_decomposition": "E_A_T_U_MEASURED_PER_CHANNEL",
+    "template_identity": "VERIFIED",
+    "candidate_comparison": "WORSE_AT_ALL_THREE_ORDERS_TEST_CLOSED",
+    "missing_support": "UNBOUNDED_AT_ORDER_2",
+    "physical_quadrature": "NOT_QUALIFIED",
+    "claim_routes": "SECTION_10_1_CORRECTED_NOT_MERELY_PENDING",
+    "governance": "COMPLETE"
+  },
+  "withdrawn_from_034": [
+    "that the 10x-to-57x gap was conservatism from sign cancellation",
+    "the largest-reference-norm denominator as a per-channel test",
+    "308,656 as a sufficient physical sampling budget",
+    "'no same-leg stencil' as a branch statement rather than a heuristic"
+  ],
+  "bound_decomposition": {
+    "n0": {
+      "max_A_over_E": 1.1015099071264431,
+      "max_T_over_A": 20.015057536251767,
+      "max_T_over_E": 20.628656941744644,
+      "U_over_max_E": 9.753514905296381
+    },
+    "n1": {
+      "max_A_over_E": 4.569057718344865,
+      "max_T_over_A": 9.023017418644352,
+      "max_T_over_E": 41.04532593548384,
+      "U_over_max_E": 56.913335465160245
+    },
+    "n2": {
+      "max_A_over_E": 4.708960202106982,
+      "max_T_over_A": 6.725847197904428,
+      "max_T_over_E": 31.353133225918388,
+      "U_over_max_E": 28.448991471372246
+    }
+  },
+  "candidate_result": {
+    "n0": {
+      "baseline": 0.009593926019841242,
+      "candidate": 0.009717724310099523
+    },
+    "n1": {
+      "baseline": 0.04274351473611188,
+      "candidate": 0.08479504940405201
+    },
+    "n2": {
+      "baseline": 0.5116029567264959,
+      "candidate": 0.6536382198807053
+    }
+  },
+  "candidate_is_an_improvement": false,
+  "further_interpolant_search": "not authorized and not attempted",
+  "coverage": {
+    "n0": {
+      "node_coverage": 0.9941753873610774,
+      "area_coverage": 0.9943322837825794,
+      "omitted_area": 13.997810912560908
+    },
+    "n1": {
+      "node_coverage": 0.9725771631950523,
+      "area_coverage": 0.9740026895746235,
+      "omitted_area": 1.42943774593342
+    },
+    "n2": {
+      "node_coverage": 0.6168426103646834,
+      "area_coverage": 0.6282012793104139,
+      "omitted_area": 0.6092285986038317
+    }
+  },
+  "resources": {
+    "convention": "B",
+    "second_batch_spent": 19146,
+    "second_batch_remaining": 854,
+    "spent_under_this_ruling": 0,
+    "boundary_spent": 33410,
+    "new_allowance_or_third_batch": "none"
+  },
+  "tests": {
+    "whole_repository": "691 passed, 2 warnings in 228.54s (0:03:48)",
+    "run_in_a_disposable_worktree": true
+  },
+  "old_results_or_flags_rewritten": false,
+  "preserved_tokens": [
+    "DOMAIN_INTEGRATION_031_BLOCKED",
+    "MATCHED_INTEGRATION_032_PLAN_BLOCKED",
+    "FEASIBILITY_CLOSEOUT_033_REVIEW_READY",
+    "CACHED_RESPONSE_AUDIT_034_REVIEW_READY"
+  ],
+  "R3B_or_submission_freeze": "not authorized",
+  "runtime_seconds": 0.0025637149810791016
+}

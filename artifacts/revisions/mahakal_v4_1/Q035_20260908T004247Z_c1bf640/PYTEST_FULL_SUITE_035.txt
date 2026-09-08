@@ -1,0 +1,26 @@
+........................................................................ [ 10%]
+........................................................................ [ 20%]
+........................................................................ [ 31%]
+........................................................................ [ 41%]
+........................................................................ [ 52%]
+........................................................................ [ 62%]
+........................................................................ [ 72%]
+........................................................................ [ 83%]
+........................................................................ [ 93%]
+...........................................                              [100%]
+=============================== warnings summary ===============================
+tests/revision_v4_1/test_pathdomain2_031.py::test_G5_a_degenerate_root_at_the_turn_is_not_forced
+  /tmp/claude-0/-home-user-quantumsensing/7b92320c-3ca1-5c73-b641-46e98f0511b6/scratchpad/wt035/src/phrt/revision_v4_1/pathdomain2.py:59: RuntimeWarning: invalid value encountered in scalar divide
+    red = radial_potential(r, roots) / (r - turn) if u != 0 else red
+
+tests/revision_v4_1/test_pathdomain2_031.py::test_G5_a_degenerate_root_at_the_turn_is_not_forced
+  /tmp/claude-0/-home-user-quantumsensing/7b92320c-3ca1-5c73-b641-46e98f0511b6/scratchpad/wt035/src/phrt/revision_v4_1/pathdomain2.py:65: IntegrationWarning: The maximum number of subdivisions (200) has been achieved.
+    If increasing the limit yields no improvement it is advised to analyze 
+    the integrand in order to determine the difficulties.  If the position of a 
+    local difficulty can be determined (singularity, discontinuity) one will 
+    probably gain from splitting up the interval and calling the integrator 
+    on the subranges.  Perhaps a special-purpose integrator should be used.
+    v, e = quad(f, 0.0, np.sqrt(b - turn), limit=limit)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+691 passed, 2 warnings in 228.54s (0:03:48)
