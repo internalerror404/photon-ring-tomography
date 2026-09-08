@@ -1,0 +1,65 @@
+{
+  "experiment": "Mahakal neural-physics feasibility, manufactured problems only",
+  "version": 1,
+  "created_before_training": true,
+  "external_preregistration": false,
+  "production_base_commit": "518c255e25b404da70960e96b914c4167938f691",
+  "scope": "CPU controlled simulations, not Kerr geodesics, not repaired production maps, not a reproduction of BH-NeRF, PI-DEF, FNO or the Kiran runtime",
+  "seeds": [11, 22, 33],
+  "inverse": {
+    "domain": "periodic angle [0,2pi), dimensionless time [-0.98,0.25]",
+    "source_velocity": 0.8,
+    "sources": ["advected smooth contrast", "same source plus compact old transient violating source-free advection"],
+    "models": ["coordinate neural field, data only", "same field plus advection PINN loss", "hard characteristic neural field"],
+    "orders": [[0], [0,1,2]],
+    "pixels": 16, "observer_times": 5, "observer_window": [0,0.24],
+    "training_pixel_quadrature": 8,
+    "reference_pixel_quadrature": [48,96],
+    "noise_density": 0.01,
+    "shared_noise_per_order": true,
+    "old_region": [-0.95,-0.38],
+    "old_metric": "relative L2 error of contrast j-1, not baseline-dominated j",
+    "adam_steps": 1000,
+    "lbfgs_max_iter": 80,
+    "pde_scale": 0.05,
+    "collocation_points": 256,
+    "width": 32,
+    "hyperparameter_search": false,
+    "direct_matched_and_transient_share_identical_training_data": true
+  },
+  "forward": {
+    "truth": "tau(x)=-log(x)+0.08*(x-1), x in [exp(-8),1]",
+    "equation": "x*tau'(x)=-1+0.08*x, tau(1)=0",
+    "models": ["raw-coordinate supervised MLP", "raw-coordinate PINN", "log-factorized residual PINN"],
+    "non_neural_comparator": "cubic spline in log(x) on same labels",
+    "labels": 24, "collocation_points": 256,
+    "adam_steps": 1500, "lbfgs_max_iter": 120,
+    "detector_metric": "actual integrated cos(3*tau) on 12 log-spaced screen pixels with area whitening",
+    "no_true_Kerr_accuracy_claim": true
+  },
+  "operator_learning": {
+    "family": "linear periodic advection, 4 Fourier modes, velocity 0.8",
+    "model": "low-rank Fourier-input neural operator with learned continuous temporal multipliers; not a full FNO implementation",
+    "models": ["coarse-data-only", "coarse data plus differential residual at fine time points"],
+    "training_time_points": 5,
+    "physics_time_points": 128,
+    "test_fields": 96,
+    "test_grid": [127,37],
+    "out_of_basis_test": "sixth Fourier mode explicitly not represented",
+    "adam_steps": 1200, "lbfgs_max_iter": 100
+  },
+  "routing": {
+    "scope": "Kiran-inspired bounded support access, not Kiran model deployment",
+    "field": "piecewise bilinear two-dimensional latent grid",
+    "grid": [64,32], "samples": 1000,
+    "full_support_route": 4,
+    "destructive_control": "drop two of four nonzero geometric contributions",
+    "claim": "algebraic equivalence and approximation error, not measured production speedup"
+  },
+  "mathematical_checks": [
+    "exact direct-image nullspace twin", "data and PDE invariant to compensating common-delay/source-time shift",
+    "pointwise sensitivity not identifiable subspace", "shared biased labels cannot certify a forward surrogate"
+  ],
+  "preservation": "No production code or maps changed, no paid resources, no production ray budget used",
+  "evaluation": "Record all fixed candidates and seeds including failures; no sealed-main or publication-readiness claim"
+}
