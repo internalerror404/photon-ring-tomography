@@ -1,0 +1,22 @@
+{
+ "experiment":"Euler-inspired learn-freeze-verify follow-up 002",
+ "source":"https://anima-ai.org/wp-content/uploads/2026/09/Euler.pdf",
+ "scope":"Manufactured scalar forward delay; no Euler PDE reproduction, no Kerr trace, no source inverse or deployed Kiran",
+ "written_before_training":true,
+ "externally_preregistered":false,
+ "seeds":[11,22,33],
+ "equation":"r'(s)=3/25+(3/10)/(1+400(s-37/100)^2)+(1/10)/(1+1600(s-39/50)^2), r(0)=0, s in [0,1]",
+ "physical_coordinate":"x=exp(-8s), tau(x)=8s+r(s)",
+ "training":{"width":32,"layers":2,"dtype":"float64","initial_collocation":192,"labels":24,"label_coordinates":"uniform x in [exp(-8),1]","initial_adam":900,"initial_lbfgs":100,"successor_adam":900,"successor_lbfgs":140,"adaptive_pool":2049,"adaptive_uniform":96,"adaptive_top_residual":96},
+ "arms":["continued single structured PINN","frozen-base plus correction PINN, fixed collocation","frozen-base plus correction PINN, residual-refined collocation"],
+ "matching":"Same base per seed; matched iteration ceilings, NOT matched FLOPs or parameters; all timings/evaluations recorded",
+ "optimizer":"Adam then PyTorch L-BFGS; NOT SS-eSOAP or SS-Broyden from Euler paper",
+ "spline":{"type":"piecewise cubic Hermite, rational coefficients from exact binary64 knot values/derivatives","cell_counts":[32,64,128],"certificate_subdivisions_per_cell":8},
+ "certificate":"Exact Fraction polynomial residual numerator Bernstein bounds over rational positive denominators; integrate error from exact boundary; bound relative whitened response for 2+cos(3*tau) and 2+sin(3*tau) by 3*global_delay_bound",
+ "criterion":0.0005,
+ "evaluation":{"pixels":12,"quadrature_reference":[64,128],"dense_s_grid":8193,"per_seed_reporting":true},
+ "classical_controls":["cubic spline through same 24 delay labels in s","Hermite ODE solver at same spline cell counts, with knot values computed independently from known rational forcing"],
+ "fidelity":"Certificate is for frozen polynomial surrogate, not the original neural net; does not infer PDE model validity or source identifiability",
+ "controls_disclosure":"Classical forcing is analytically integrable; no neural superiority presumed",
+ "production_physical_budget_used":0
+}

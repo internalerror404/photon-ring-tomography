@@ -1,0 +1,36 @@
+{
+  "experiment": "Euler-inspired follow-up 002",
+  "date": "2026-09-08",
+  "base_commit": "292cb6c29d899bc2549cc27680efd878ecf802e4",
+  "executed": {
+    "initial_neural_fits": 3,
+    "successor_neural_fits": 9,
+    "frozen_surrogate_certificates": 30,
+    "seeds": [
+      11,
+      22,
+      33
+    ],
+    "checks_passed": 11
+  },
+  "protocol": "Written before training locally; not externally preregistered",
+  "added_diagnostic": "Joint signed cosine/sine detector readback after original fits; no retraining; original positive-channel maximum errors retained",
+  "certificate": "Exact Fraction polynomial residual enclosures for the explicit cubic under the manufactured rational ODE; analytic propagation to exact pixel integrals; not neural-network or Kerr certification",
+  "floating_detector_integrals": "Numerical convergence checked, not interval certified",
+  "optimizer": "Adam plus L-BFGS, not SS-eSOAP or SS-Broyden",
+  "reference_max_abs_64_128": 2.220446049250313e-15,
+  "spline_max_abs_128_256": 2.8097801862969618e-11,
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": "2.10.0+cpu",
+    "dtype": "float64",
+    "cpu_threads": 1
+  },
+  "production_physical_queries": 0,
+  "production_suite_executed": false,
+  "production_remaining_untouched": 854,
+  "full_arrays_and_checkpoints": "Included in conversation experiment package; source regenerates them",
+  "paper_inspection": "Methods and selected certification sections via web text and screenshots; no whole-proof verification or local PDF-byte hash"
+}
