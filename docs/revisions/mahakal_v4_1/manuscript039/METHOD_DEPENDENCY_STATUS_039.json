@@ -1,0 +1,161 @@
+{
+  "ruling": "PAPER_I_FINAL_TEXT_REVIEW_039",
+  "generated_utc": "2026-09-08T05:32:37Z",
+  "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+  "document": "docs/revisions/mahakal_v4_1/manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+  "rule": "a method formula can be source-resolved while one realized scalar remains unlocated; a schema pass does not close an unresolved execution input, and a count of unresolved pins is not an inventory of scientific dependencies",
+  "dependencies": [
+    {
+      "id": "R1_EVALUATION_GRID",
+      "status": "SOURCE_RESOLVED",
+      "resolved_in": "PAPER_I_FINAL_TEXT_REVIEW_039",
+      "what": "shape and axes of the fixed R1 source evaluation grid",
+      "value": {
+        "shape": [
+          10,
+          12,
+          40
+        ],
+        "point_count": 4800,
+        "radial_bounds_M": [
+          1.8660386527060988,
+          49.98205255591607
+        ],
+        "azimuth": "[0, 2pi), endpoint excluded, 12 points",
+        "source_time_bounds_M": [
+          -128.82234649196255,
+          29.0
+        ],
+        "axes": "log radius inclusive; uniform azimuth endpoint-excluded; uniform time inclusive",
+        "flatten": "meshgrid(indexing='ij') then C order"
+      },
+      "evidence": {
+        "execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+        "caller": "scripts/run_r1_main.py",
+        "caller_git_blob": "291adbf720007a300000ea570e6acbfceaacd3e1",
+        "callee": "src/phrt/metrics/scoring.py",
+        "callee_git_blob": "0b04245c73ac80d63e3a6b8c2d2e67c2fef17dbc",
+        "call_size_overrides": "none",
+        "manifest": "artifacts/manifests/R1_20260826T022951Z_2ba66f02.json"
+      },
+      "provenance_class": "source-resolved definition; no independent hash of a persisted evaluation-array payload is claimed",
+      "document_location": "Appendix A.1",
+      "affected_claims": [
+        "C06",
+        "C07",
+        "C08",
+        "C21"
+      ]
+    },
+    {
+      "id": "HMT2_PAIRED_REDUCTION_AGGREGATION_ORDER",
+      "status": "SOURCE_RESOLVED",
+      "resolved_in": "PAPER_I_FINAL_TEXT_REVIEW_039",
+      "what": "the order of aggregation in the paired reduction and the interval convention of the declared headline",
+      "value": {
+        "order": "mean over declared ages within a draw, then mean over the four draws within a history, then a paired direct-relative reduction per history, then the median across histories",
+        "ratio": "(ebar_direct - ebar_arm) / max(|ebar_direct|, 1e-300)",
+        "headline_fields": [
+          "median",
+          "median_ci_low"
+        ],
+        "separate_estimand_not_used": "cell/family-balanced mean",
+        "bootstrap_unit": "history, with its four draws already inside its score",
+        "median_bootstrap_resamples": 10000,
+        "median_bootstrap_seed": 20260954,
+        "seed_derivation": "HMT2 bank seed 20260953 plus one",
+        "interval_percentiles": [
+          2.5,
+          97.5
+        ]
+      },
+      "evidence": {
+        "execution_commit": "9713af2caf3f1035622b09c8026ea31f75c0275e",
+        "blobs": {
+          "scripts/run_hmt2_sealed_main.py": "0e65135fa2f4bfb83e36c7f65b23d4ef8c62704d",
+          "scripts/run_hmt2_sealed_main_score.py": "3b1f5f983a9204b856bbabcbd446dc629c9dc01f",
+          "scripts/run_hmt1_score.py": "03f13ef1a2c1e47807f125feaf4785f871df0fda"
+        },
+        "manifest": "artifacts/manifests/HMT2M_20260828T064757Z_2ba66f02.json"
+      },
+      "not_established_here": "the reported main pair count of 60 was not independently recomputed from the stored arrays; no missing-pair claim is made in either direction",
+      "document_location": "Appendix A.2",
+      "affected_claims": [
+        "C09",
+        "C11",
+        "C20",
+        "C22"
+      ]
+    },
+    {
+      "id": "R1_REALIZED_ETA",
+      "status": "REALIZED_ETA_NOT_LOCATED",
+      "rule_status": "SOURCE_RESOLVED",
+      "what": "the realized numerical value of the common metric floor eta used by the R1 sealed main",
+      "rule": "0.05 times the median, over prior-fit truths and ages with ||W_a x|| > 0, of ||W_a x||_2; frozen before scoring; common to all truths; not taken from the test set",
+      "searched_and_not_found": [
+        {
+          "where": "artifacts/configs/R1_MAIN_FREEZE.json",
+          "field": "metrics.eta_value",
+          "found": null
+        },
+        {
+          "where": "artifacts/configs/R0C_REPAIRED_SOURCE_AND_CALIBRATION_FREEZE.json",
+          "field": "metrics.eta_value",
+          "found": null
+        },
+        {
+          "where": "artifacts/manifests/R1_20260826T022951Z_2ba66f02.json",
+          "field": "any eta field",
+          "found": null
+        },
+        {
+          "where": "saved stdout, run sidecars and log files under artifacts/",
+          "field": "the runner's printed '%.6g' eta",
+          "found": null,
+          "note": "the runner holds eta only in an in-process dict and prints it; no capture of that stream is stored in the repository"
+        },
+        {
+          "where": "artifacts/tables/r1_age_errors.parquet",
+          "field": "derived readback from saved errors",
+          "found": null,
+          "note": "the table stores median_normalized_error and median_absolute_error as separate medians over the truth/draw population; the quotient of two independent medians is not the per-row denominator, so eta cannot be recovered from it"
+        },
+        {
+          "where": "cached prior-fit windowed norms",
+          "field": "the inputs to the registered rule",
+          "found": null,
+          "note": "not cached; regenerating them would be truth generation, which this ruling forbids"
+        }
+      ],
+      "not_asserted": "that no copy exists anywhere in the archive; this is the result of a bounded search of the inspected records",
+      "consequence": "exact reproducibility of the R1 normalisation is limited. The archived benchmark values are unchanged: they were computed with the frozen scalar, and the floor binds only where the windowed truth norm falls below it",
+      "document_location": "section 9 item 4 and Appendix A.1",
+      "affected_claims": [
+        "C06",
+        "C07",
+        "C08",
+        "C21"
+      ],
+      "closed_by": "a genuine recorded value, or an authorized recomputation of the prior-fit norms"
+    }
+  ],
+  "unresolved_count": 1,
+  "unresolved_count_is_not_a_full_dependency_inventory": true,
+  "deferred_physical_workstreams": [
+    {
+      "id": "TRANSFER_QUADRATURE_QUALIFICATION",
+      "status": "NOT_QUALIFIED",
+      "blocks": "any continuum-acquisition accuracy claim",
+      "blocks_this_candidate": false,
+      "why": "the candidate makes no qualified continuum claim"
+    },
+    {
+      "id": "PHYSICAL_ORDER_RESOLUTION_CONTROL",
+      "status": "NOT_PERFORMED",
+      "blocks": "any physical order-resolution attribution",
+      "blocks_this_candidate": false,
+      "why": "the candidate makes no such attribution and labels the index-sum arm a compression control"
+    }
+  ]
+}

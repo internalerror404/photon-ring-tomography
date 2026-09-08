@@ -1,0 +1,24 @@
+{
+  "html": {
+    "path": "docs/revisions/mahakal_v4_1/manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.html",
+    "sha256": "332ffb8edaee00809284f3ee801be93ecba2d152aec5e7072089ec635beada02",
+    "bytes": 59720
+  },
+  "pdf": {
+    "path": "docs/revisions/mahakal_v4_1/manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.pdf",
+    "sha256": "5691f39f551fcf777525a018684fd1134484c177dc6cbb48b065c739bab93ee2",
+    "bytes": 593312
+  },
+  "markdown": {
+    "path": "docs/revisions/mahakal_v4_1/manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+    "sha256": "5c4069e23c9fb2c2adad083afb52704593d9a5d7e15ba49c56ac72ca4a217846"
+  },
+  "display_equations": 14,
+  "figures_embedded": [
+    "fig1_reach_two_statistics_039.png",
+    "fig2_enrichment_three_panels_039.png"
+  ],
+  "renderer": "src/phrt/manuscript/render.py (imported unmodified)",
+  "pdf_engine": "chromium headless print-to-pdf",
+  "runtime_seconds": 1.8414983749389648
+}

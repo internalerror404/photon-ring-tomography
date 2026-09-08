@@ -1,0 +1,111 @@
+{
+  "ruling": "PAPER_I_FINAL_TEXT_REVIEW_039",
+  "generated_utc": "2026-09-08T05:32:37Z",
+  "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+  "audit_source": "docs/revisions/mahakal_v4_1/review039/CORE_BIBLIOGRAPHY_AUDIT_039.md",
+  "audit_scope": "seven primary arXiv records, metadata and author-posted abstracts",
+  "full_text_read": false,
+  "all_archived_references_audited": false,
+  "systematic_novelty_survey_performed": false,
+  "rule": "a citation may support only what the verified level of that entry supports; a stronger claim needs the relevant full text",
+  "entries": [
+    {
+      "key": "GL2020",
+      "authors": "S. E. Gralla and A. Lupsasca",
+      "title": "Lensing by Kerr Black Holes",
+      "arxiv": "arXiv:1910.12873v2",
+      "journal": "Phys. Rev. D 101, 044031 (2020)",
+      "doi": "10.1103/PhysRevD.101.044031",
+      "narrow_supported_use": "the highly bent Kerr-image hierarchy has demagnification, rotation and relative-delay structure",
+      "verification_level": "METADATA_AND_ABSTRACT_VERIFIED",
+      "cited_in": "section 1.2 and section 11"
+    },
+    {
+      "key": "J2020",
+      "authors": "M. D. Johnson et al.",
+      "title": "Universal Interferometric Signatures of a Black Hole's Photon Ring",
+      "arxiv": "arXiv:1907.04329v2",
+      "journal": "Science Advances 6, eaaz1310 (2020)",
+      "doi": "10.1126/sciadv.aaz1310",
+      "narrow_supported_use": "photon subrings have characteristic long-baseline interferometric signatures",
+      "verification_level": "METADATA_AND_ABSTRACT_VERIFIED",
+      "cited_in": "section 1.2 and section 11"
+    },
+    {
+      "key": "AART2023",
+      "authors": "A. Cardenas-Avendano, A. Lupsasca and H. Zhu",
+      "title": "Adaptive Analytical Ray Tracing of Black Hole Photon Rings",
+      "arxiv": "arXiv:2211.07469v4",
+      "journal": "Phys. Rev. D 107, 043030 (2023)",
+      "doi": "10.1103/PhysRevD.107.043030",
+      "narrow_supported_use": "the analytic Kerr ray-tracing framework with adaptive image sampling underlying the archived maps",
+      "verification_level": "METADATA_AND_ABSTRACT_VERIFIED",
+      "cited_in": "section 1.2 and section 11"
+    },
+    {
+      "key": "H2021",
+      "authors": "S. Hadar, M. D. Johnson, A. Lupsasca and G. N. Wong",
+      "title": "Photon Ring Autocorrelations",
+      "arxiv": "arXiv:2010.03683v3",
+      "journal": "Phys. Rev. D 103, 104038 (2021)",
+      "doi": "10.1103/PhysRevD.103.104038",
+      "narrow_supported_use": "a photon-ring intensity-correlation observable for stochastic equatorial emission whose structure contains lens and source information",
+      "verification_level": "METADATA_AND_ABSTRACT_VERIFIED",
+      "cited_in": "section 1.2 and section 11"
+    },
+    {
+      "key": "T2020",
+      "authors": "P. Tiede, H.-Y. Pu, A. E. Broderick, R. Gold, M. Karami and J. A. Preciado-Lopez",
+      "title": "Spacetime Tomography Using The Event Horizon Telescope",
+      "arxiv": "arXiv:2002.05735v2",
+      "journal": null,
+      "doi": "10.3847/1538-4357/ab744c",
+      "narrow_supported_use": "related tomography work using a constrained hotspot model in simulated recovery and spacetime inference",
+      "verification_level": "ARXIV_IDENTITY_ABSTRACT_AND_LINKED_DOI_VERIFIED_JOURNAL_PAGINATION_NOT",
+      "cited_in": "section 1.2 and section 11"
+    },
+    {
+      "key": "B2018",
+      "authors": "K. L. Bouman, M. D. Johnson, A. V. Dalca, A. A. Chael, F. Roelofs, S. S. Doeleman and W. T. Freeman",
+      "title": "Reconstructing Video from Interferometric Measurements of Time-Varying Sources",
+      "arxiv": "arXiv:1711.01357v2",
+      "journal": null,
+      "doi": null,
+      "narrow_supported_use": "related dynamic VLBI imaging of evolving sources under a Gaussian Markov model",
+      "verification_level": "ARXIV_IDENTITY_AND_ABSTRACT_VERIFIED_JOURNAL_METADATA_NOT",
+      "cited_in": "section 1.2 and section 11"
+    },
+    {
+      "key": "L2024",
+      "authors": "A. Levis, A. A. Chael, K. L. Bouman, M. Wielgus and P. P. Srinivasan",
+      "title": "Orbital Polarimetric Tomography of a Flare Near the Sagittarius A* Supermassive Black Hole",
+      "arxiv": "arXiv:2310.07687v2",
+      "journal": null,
+      "doi": null,
+      "narrow_supported_use": "model-dependent 3-D flare-emission reconstruction combining a neural representation with a gravitational model",
+      "verification_level": "ARXIV_IDENTITY_AND_ABSTRACT_VERIFIED_JOURNAL_METADATA_NOT",
+      "cited_in": "section 1.2 and section 11"
+    }
+  ],
+  "pages_opened": [
+    "https://arxiv.org/abs/1910.12873",
+    "https://arxiv.org/abs/1907.04329",
+    "https://arxiv.org/abs/2211.07469",
+    "https://arxiv.org/abs/2010.03683",
+    "https://arxiv.org/abs/2002.05735",
+    "https://arxiv.org/abs/1711.01357",
+    "https://arxiv.org/abs/2310.07687"
+  ],
+  "claims_resting_on_this_audit": [
+    "the background paragraph in section 1.2"
+  ],
+  "claims_not_resting_on_this_audit": [
+    "every numerical result in sections 5 to 8",
+    "any novelty or priority statement -- none is made"
+  ],
+  "outstanding": [
+    "the remaining entries of the archived manuscript's older reference list have not been re-audited against this text",
+    "journal volume and pagination for T2020, B2018 and L2024",
+    "a full-text reading for any citation used more strongly than the narrow use recorded above"
+  ]
+}

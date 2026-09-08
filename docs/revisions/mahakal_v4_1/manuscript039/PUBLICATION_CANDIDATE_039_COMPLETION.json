@@ -1,0 +1,159 @@
+{
+  "ruling": "PAPER_I_FINAL_TEXT_REVIEW_039",
+  "return_token": "PUBLICATION_CANDIDATE_039_READY_FOR_AUTHOR_REVIEW",
+  "ready_is_permission_to_submit": false,
+  "R3B_started": false,
+  "generated_utc": "2026-09-08T05:37:16Z",
+  "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+  "branch": "research/mahakal_v4_1",
+  "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+  "deliverable": {
+    "editable_source": "Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+    "rendered_html": "Photon_Ring_Retarded_Time_Tomography_Candidate_039.html",
+    "rendered_pdf": "Photon_Ring_Retarded_Time_Tomography_Candidate_039.pdf",
+    "pdf_pages": 23,
+    "display_equations": 14,
+    "tables": 8,
+    "figures": 2,
+    "status_only_packet": false
+  },
+  "method_dependencies": {
+    "R1_EVALUATION_GRID": "SOURCE_RESOLVED",
+    "HMT2_PAIRED_REDUCTION_AGGREGATION_ORDER": "SOURCE_RESOLVED",
+    "R1_REALIZED_ETA": "REALIZED_ETA_NOT_LOCATED"
+  },
+  "eta_affected_claims": [
+    "C06",
+    "C07",
+    "C08",
+    "C21"
+  ],
+  "eta_marked_complete_anywhere": false,
+  "eta_value_invented": false,
+  "text_consistency_edits": [
+    "tuning lineage split R1 <- R0C, HMT2 <- its own stage-1",
+    "HMT2 noise cell states the readout law, not the draw count",
+    "internal references name this revision, not the 037 matrix",
+    "nonzero columns need not be independent or recoverable",
+    "posterior-calibration failure scoped to the R1 probabilistic estimator program",
+    "family heterogeneity reports its measured estimates and intervals"
+  ],
+  "exposition_added": [
+    "C224 factorization, support and column order",
+    "reference observer schedule, eight samples 0 to 20 M",
+    "age probe form and unit-L2 normalisation",
+    "detectability rule sup { a : SNR_0^2 I(a) >= rho^2 }, rho = 1"
+  ],
+  "figures": {
+    "regenerated_from_saved_tables_only": true,
+    "new_operator_or_reconstruction_inside_builder": false,
+    "canonical_assets_overwritten": false,
+    "in_figure_titles_and_labels_corrected": true
+  },
+  "bibliography": {
+    "verified_records": 7,
+    "verification_level": "metadata_and_abstract",
+    "full_text_audited": false,
+    "all_archived_references_audited": false,
+    "novelty_or_priority_claim_made": false
+  },
+  "rendering_check": {
+    "performed_before_hashing": true,
+    "figures_numbered_captioned_and_cited_in_text": true,
+    "equation_delimiters_leaked": false,
+    "stale_037_or_038_record_references": 0,
+    "cross_references_resolve": true,
+    "tables_within_page_width": true
+  },
+  "preservation": {
+    "manuscripts_036_037_038_unchanged": true,
+    "freeze_022_unchanged": true,
+    "canonical_figures_unchanged": true,
+    "run_directories_unchanged": true,
+    "shared_renderer_modified": false,
+    "reset_rebase_or_force_push": false
+  },
+  "resources": {
+    "new_rays": 0,
+    "new_path_integrals": 0,
+    "new_hull_roots": 0,
+    "new_target_matrices_spectra_estimators_truths_interpolants": 0,
+    "convention_B_units_spent_this_stage": 0,
+    "convention_B_second_batch_spent": 19146,
+    "convention_B_second_batch_remaining": 854,
+    "boundary_spent": 33410,
+    "paid_resources_used": false
+  },
+  "outputs": [
+    {
+      "file": "BIBLIOGRAPHY_VERIFICATION_039.json",
+      "sha256": "f5fc08a54b92ed7dc1beeeb5633880a2318c407e0d2bf0828a3eeb561405a3b6",
+      "bytes": 5342
+    },
+    {
+      "file": "CLAIM_EVIDENCE_MATRIX_039.json",
+      "sha256": "942183a83bb4e4a17b893499453cc37d02f64619dbe54c50c3ba41f0bb8322a5",
+      "bytes": 94973
+    },
+    {
+      "file": "FIGURE_MANIFEST_039.json",
+      "sha256": "76ce60c100bc56650e54fa88bd9e81e1e178dfbf6278d68efb882ff4e01afa60",
+      "bytes": 3885
+    },
+    {
+      "file": "MANUSCRIPT_CORRECTION_LEDGER_039.md",
+      "sha256": "88c2fe17f96abf3a8984b5f6ce0d6e053608e16068452ab38b300d932c887469",
+      "bytes": 9271
+    },
+    {
+      "file": "METHOD_DEPENDENCY_STATUS_039.json",
+      "sha256": "75c2043b38c2f120bfda160be03a888872a22dad6ab62b5ddc98fec318b1026e",
+      "bytes": 7029
+    },
+    {
+      "file": "PUBLICATION_039_INPUT_MANIFEST.json",
+      "sha256": "a2ff4467809091c3832d10ac2f5f8d2493c59a44bbe8ef58ae5e71ba3ae5c764",
+      "bytes": 4380
+    },
+    {
+      "file": "PUBLICATION_CANDIDATE_039_RETURN.md",
+      "sha256": "3dbc8b0cececb5138e2e8383b88048d2d7aff6ca43417e6c04efdac049b0f46d",
+      "bytes": 10660
+    },
+    {
+      "file": "Photon_Ring_Retarded_Time_Tomography_Candidate_039.html",
+      "sha256": "332ffb8edaee00809284f3ee801be93ecba2d152aec5e7072089ec635beada02",
+      "bytes": 59720
+    },
+    {
+      "file": "Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "sha256": "5c4069e23c9fb2c2adad083afb52704593d9a5d7e15ba49c56ac72ca4a217846",
+      "bytes": 45319
+    },
+    {
+      "file": "Photon_Ring_Retarded_Time_Tomography_Candidate_039.pdf",
+      "sha256": "5691f39f551fcf777525a018684fd1134484c177dc6cbb48b065c739bab93ee2",
+      "bytes": 593312
+    },
+    {
+      "file": "RENDER_039.json",
+      "sha256": "906d04838cf9323b0b71b60e619608c26132846a9b901541132b69d90b2b9788",
+      "bytes": 977
+    },
+    {
+      "file": "SUBMISSION_GAPS_039.md",
+      "sha256": "3c3b938afa5b54b7ef6f93193238a9673ecd35fc6d0a6555152da5a4405f4bc9",
+      "bytes": 5046
+    },
+    {
+      "file": "figures/fig1_reach_two_statistics_039.png",
+      "sha256": "9f209f523607f9197b2308f7dc21106a9b42227b6b1855dddc0ec0bad32c2e55",
+      "bytes": 68006
+    },
+    {
+      "file": "figures/fig2_enrichment_three_panels_039.png",
+      "sha256": "6567d8540555d0d71389d41343f98f7b54d16aab7867b6a54a2079b856dc8838",
+      "bytes": 103417
+    }
+  ]
+}

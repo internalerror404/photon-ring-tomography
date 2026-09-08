@@ -1,0 +1,1830 @@
+{
+  "ruling": "PAPER_I_FINAL_TEXT_REVIEW_039",
+  "generated_utc": "2026-09-08T05:32:37Z",
+  "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+  "document": "docs/revisions/mahakal_v4_1/manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+  "supersedes": "CLAIM_EVIDENCE_MATRIX_038.json",
+  "pins": [
+    "operator",
+    "source_basis",
+    "source_Gram",
+    "sampled_rays",
+    "quadrature",
+    "covariance",
+    "noise_normalisation",
+    "target_nuisance_partition",
+    "estimator",
+    "evaluation_metric"
+  ],
+  "per_experiment_pins": true,
+  "global_single_sky_pin_for_all_experiments": false,
+  "hash_pass_is_semantic_validation": false,
+  "schema_pass_closes_an_unresolved_execution_input": false,
+  "claims": [
+    {
+      "claim_id": "C01",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 abstract: 'median recoverable depth 60, 84 and 144 M ... a single value across four spins', read as recoverable depth",
+      "revised_text_and_location": "section 5.2: 60, 84, 144 M is the oldest detectable age probe, a supremum of a threshold mask; the anchor-connected spans are 60, 84 and 112/116 M",
+      "disposition": "CORRECTED_STATISTIC_AND_INTERPRETATION",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/reports/E3C_GEOMETRY_WIDE_OPERATOR_AUDIT.md",
+          "sha256": "e7406f9f550f3d23747ab6f8533afe711838e8b7ecb452bbca86ab82ec830c6c",
+          "selector": "Oldest detectable age probe, resolved stack (M) table; Contiguous detectable span from the anchor, resolved stack (M) table"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled ideal stack, n = 0,1,2, matrix-free whitened, 12 registered geometries",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "declared temporal/spatial product class on the common age grid",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "detectability masks are computed per probe age; no source-norm Gram enters the threshold statistic"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen E3C ray set per geometry",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, sqrt(dOmega) g^3 whitened row",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "diagonal whitened, per-geometry SNR sweep",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "reference SNR_0 with the corrected sqrt(dOmega) g^3 row convention",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling in the detectability audit"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "threshold detectability, not an estimator"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "age_threshold_mask; oldest probe, longest run and anchor-connected span reported separately",
+          "evidence_ref": "artifacts/reports/E3C_GEOMETRY_WIDE_OPERATOR_AUDIT.md"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "note": "the 036 draft used the supremum under the name 'recoverable depth' and inferred spin independence from it",
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C02",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 abstract: 'retarded-time diversity supplies more of that reach than spatial remapping ... the history is carried by when, not where, the orders sample'",
+      "revised_text_and_location": "section 5.3: retained as index-paired counterfactuals; the mechanism sentence is withdrawn",
+      "disposition": "RETAINED_AS_COUNTERFACTUAL_MECHANISM_CLAIM_WITHDRAWN",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/reports/E3C_MECHANISM_DECOMPOSITION.md",
+          "sha256": "65273c538d8987b8a4f32bbe635761c2947da154f6592cf4d5509d5128e954e8",
+          "selector": "delay and spatial substitution rows, 0.98 and 0.57"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled ideal stack, n = 0,1,2, matrix-free whitened, 12 registered geometries",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "declared temporal/spatial product class on the common age grid",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "detectability masks are computed per probe age; no source-norm Gram enters the threshold statistic"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen E3C ray set per geometry",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, sqrt(dOmega) g^3 whitened row",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "diagonal whitened, per-geometry SNR sweep",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "reference SNR_0 with the corrected sqrt(dOmega) g^3 row convention",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling in the detectability audit"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "threshold detectability, not an estimator"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "age_threshold_mask; oldest probe, longest run and anchor-connected span reported separately",
+          "evidence_ref": "artifacts/reports/E3C_GEOMETRY_WIDE_OPERATOR_AUDIT.md"
+        }
+      },
+      "unresolved_scientific_dependency": "an experiment that co-registers delay and spatial remapping rather than transplanting arrays by index",
+      "candidate_abstract_or_headline_allowed": false,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C03",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 section 5.1: 'source enrichment destroys identifiability' and 'compact support makes the direct image blind'",
+      "revised_text_and_location": "section 4, Proposition 4.1 with proof and Corollary 4.2, both conditional on support disjointness",
+      "disposition": "REPLACED_BY_THE_CONDITIONAL_THEOREM",
+      "evidence_level": "STRUCTURAL_MATHEMATICS",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "docs/revisions/mahakal_v4_1/review037/REPLACEMENT_PASSAGES_037.md",
+          "sha256": "427c562bd45c0e52ec2265ca5519b13b5dfd9e36d8d775b168b20b0d27839811",
+          "selector": "Proposition (sampled support-nullity) and its proof"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled ideal stack, n = 0,1,2, matrix-free whitened, 12 registered geometries",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "declared temporal/spatial product class on the common age grid",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "detectability masks are computed per probe age; no source-norm Gram enters the threshold statistic"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen E3C ray set per geometry",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, sqrt(dOmega) g^3 whitened row",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "covariance": {
+          "status": "NOT_APPLICABLE",
+          "reason": "a statement about the transfer map, independent of the noise model"
+        },
+        "noise_normalisation": {
+          "status": "NOT_APPLICABLE",
+          "reason": "as above"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling in the detectability audit"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "threshold detectability, not an estimator"
+        },
+        "evaluation_metric": {
+          "status": "NOT_APPLICABLE",
+          "reason": "a theorem, not a measured quantity"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "note": "the slogan is universal; the theorem is conditional",
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C04",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 section 5.3: 'the surviving directions have 99.8% of squared weight in temporal hat 2 ... exactly zero in hat 0'",
+      "revised_text_and_location": "section 6.3: 2.44%/2.35% oldest third, 43.81%/43.92% middle, 53.75%/53.73% youngest; the oldest-third contribution is not zero",
+      "disposition": "WITHDRAWN_AND_REPLACED_FROM_THE_PRIMARY_RECORD",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/revisions/mahakal_v4_1/LOC025_20260906T184213Z/LOCALIZATION_READBACK.json",
+          "sha256": "5347313ea05de1d8600bbe110b5110119f5b713229bc9f718f1ccf83cd091753",
+          "selector": "intervals[*].source_energy_fraction for oldest_third, middle_third, youngest_third"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "sampled order-labelled operator at a050_i050; ideal order-labelled observations, NOT the later D026 single-sky detector experiment",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "full L224; 72-dim old-contrast target, 152-dim nuisance",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv"
+        },
+        "source_Gram": {
+          "status": "RESOLVED",
+          "value": "source Gram retained with its cross terms; relative refinement steps 1.83e-14 and 4.33e-15 across 64/128/256 radial refinements",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/LOC025_20260906T184213Z/LOCALIZATION_READBACK.json"
+        },
+        "sampled_rays": {
+          "status": "NOT_APPLICABLE",
+          "reason": "postprocessing of two saved vectors; no ray set is read"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "Gauss radial plus exact piecewise-quadratic temporal integration of the saved coefficient vectors; a source-norm integration, not the spectral calculation's screen quadrature",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/LOC025_20260906T184213Z/LOCALIZATION_READBACK.json"
+        },
+        "covariance": {
+          "status": "NOT_APPLICABLE",
+          "reason": "a localization of saved coefficient vectors; no observation noise enters"
+        },
+        "noise_normalisation": {
+          "status": "NOT_APPLICABLE",
+          "reason": "as above"
+        },
+        "target_nuisance_partition": {
+          "status": "RESOLVED",
+          "value": "orthogonal projector onto range(B_N), nuisance rank 152",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an information calculation, not a reconstruction estimator"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "interval source-energy fraction of the squared source norm; NOT a Fisher trace",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/LOC025_20260906T184213Z/LOCALIZATION_READBACK.json"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "note": "the 99.8% figure grouped Cholesky-normalised coordinates and is not an energy fraction in a physical time interval",
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C05",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 section 5.3: two operational directions",
+      "revised_text_and_location": "section 6.2: two under the frozen legacy measure, with the one-to-two reweighting interval stated",
+      "disposition": "RETAINED_LEGACY_MEASURE_WITH_INTERVAL",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv",
+          "sha256": "e26d3cad61f273d3357be710757b9ce8b524cd28a4015a95e1269556e13cff4b",
+          "selector": "RESOLVED_PHYSICAL rows, n_operational_conditional, all three rtol values"
+        },
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md",
+          "sha256": "e4450a96e4ccbbf1c14c067348251971cc7da6ce9936e1d9ca5fc98e4cf61273",
+          "selector": "singular values and margins against rho = 1"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "sampled order-labelled operator at a050_i050; ideal order-labelled observations, NOT the later D026 single-sky detector experiment",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "full L224; 72-dim old-contrast target, 152-dim nuisance",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv"
+        },
+        "source_Gram": {
+          "status": "RESOLVED",
+          "value": "target Gram condition 1.786e+03; Gram relative change 3.009e-07 across refinements",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen R2 replay input set, 36 hashed files",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "legacy screen/ray quadrature of the spectral calculation; the source-norm integration used for the localization readback is a SEPARATE quadrature and is pinned on C04",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "declared positive-definite noise model C with sigma = 0.011341986814407566 inside C",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "sigma inside C; singular values are NOT multiplied by an SNR label a second time",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md"
+        },
+        "target_nuisance_partition": {
+          "status": "RESOLVED",
+          "value": "orthogonal projector onto range(B_N), nuisance rank 152",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an information calculation, not a reconstruction estimator"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "traces of the normalised Fisher matrices; operational count at rho = 1; frozen legacy measure",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "note": "the scoped legacy-measure fact does not wait on an unperformed corrected-measure run; the corrected-measure count is a separate claim, C05b",
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C05b",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036/037: the corrected-measure operational count",
+      "revised_text_and_location": "section 6.2: not stated; only the one-to-two reweighting interval is given, under its fixed row-noise and metric assumptions",
+      "disposition": "DEFERRED_PENDING_A_CORRECTED_MEASURE_RUN",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md",
+          "sha256": "e4450a96e4ccbbf1c14c067348251971cc7da6ce9936e1d9ca5fc98e4cf61273",
+          "selector": "operational counts and the reweighting discussion"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "sampled order-labelled operator at a050_i050; ideal order-labelled observations, NOT the later D026 single-sky detector experiment",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "full L224; 72-dim old-contrast target, 152-dim nuisance",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv"
+        },
+        "source_Gram": {
+          "status": "RESOLVED",
+          "value": "target Gram condition 1.786e+03; Gram relative change 3.009e-07 across refinements",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen R2 replay input set, 36 hashed files",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "legacy screen/ray quadrature of the spectral calculation; the source-norm integration used for the localization readback is a SEPARATE quadrature and is pinned on C04",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "declared positive-definite noise model C with sigma = 0.011341986814407566 inside C",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "sigma inside C; singular values are NOT multiplied by an SNR label a second time",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md"
+        },
+        "target_nuisance_partition": {
+          "status": "RESOLVED",
+          "value": "orthogonal projector onto range(B_N), nuisance rank 152",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an information calculation, not a reconstruction estimator"
+        },
+        "evaluation_metric": {
+          "status": "UNRESOLVED",
+          "note": "the corrected-measure operational count has not been computed"
+        }
+      },
+      "unresolved_scientific_dependency": "a corrected-measure recomputation, not authorised",
+      "candidate_abstract_or_headline_allowed": false,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C06",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 abstract: 'on 640 truths ... stacking orders extends the anchored stable span from 48 to 80 M'",
+      "revised_text_and_location": "section 7.1: 48 to 80 M in IN_CLASS_ID, IN_CLASS_OOD and the mild OFF_GRID_OOD diagnostic; OFF_GRID_ID remains 0 to 0 M",
+      "disposition": "CORRECTED_REGIMES_RESTORED",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/reports/R1_HELD_OUT_MAIN.md",
+          "sha256": "dde24b52d62eeaf3f0cd0db17013eda08cad7a08068cf485c98b7823bba2d413",
+          "selector": "regime table rows IN_CLASS_ID, IN_CLASS_OOD, OFF_GRID_ID, OFF_GRID_OOD"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled arms DIRECT_PHYSICAL, RESOLVED_PHYSICAL, UNRESOLVED_IMAGE, TOTAL_FLUX",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "C224",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "source_Gram": {
+          "status": "RESOLVED",
+          "value": "C224 source norm as registered in the R1 freeze",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen R1 ray set at a050_i050",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, corrected row convention",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "whitened diagonal at SNR_0 = 100; eight noisy draws per truth plus one excluded noiseless control; independent unit is the truth",
+          "evidence_ref": "artifacts/configs/R1_MAIN_FREEZE.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "SNR_0 = 100 reference; onset sweep to 30000",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling; the level and structure projectors are a deterministic diagnostic split"
+        },
+        "estimator": {
+          "status": "RESOLVED",
+          "value": "prior-free TSVD and ridge",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "baseline-inclusive field loss ||W_a(D c_hat - v)|| / max(||W_a v||, eta) on the fixed evaluation grid, normalised Gaussian window h = 3 M; anchored span at epsilon 0.25, q 0.95, floor 8 M. NOT a coefficient-space metric",
+          "evidence_ref": "src/phrt/metrics/scoring.py"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "note": "'640 truths' describes the bank, not uniform success",
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json",
+      "affected_by_unresolved_method_input": {
+        "id": "R1_REALIZED_ETA",
+        "status": "REALIZED_ETA_NOT_LOCATED",
+        "effect": "limits exact reproducibility of the R1 normalisation; does not change the archived benchmark values"
+      }
+    },
+    {
+      "claim_id": "C07",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 section 6.1: 'a coefficient-space result under the declared source norm'",
+      "revised_text_and_location": "section 7.1: the registered baseline-inclusive field metric, level dominated with level fraction 0.9838",
+      "disposition": "CORRECTED_METRIC_IDENTITY",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/reports/R1_HELD_OUT_MAIN.md",
+          "sha256": "dde24b52d62eeaf3f0cd0db17013eda08cad7a08068cf485c98b7823bba2d413",
+          "selector": "level/structure split table, level fraction of truth; registered baseline-inclusive field metric"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled arms DIRECT_PHYSICAL, RESOLVED_PHYSICAL, UNRESOLVED_IMAGE, TOTAL_FLUX",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "C224",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "source_Gram": {
+          "status": "RESOLVED",
+          "value": "C224 source norm as registered in the R1 freeze",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen R1 ray set at a050_i050",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, corrected row convention",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "whitened diagonal at SNR_0 = 100; eight noisy draws per truth plus one excluded noiseless control; independent unit is the truth",
+          "evidence_ref": "artifacts/configs/R1_MAIN_FREEZE.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "SNR_0 = 100 reference; onset sweep to 30000",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling; the level and structure projectors are a deterministic diagnostic split"
+        },
+        "estimator": {
+          "status": "RESOLVED",
+          "value": "prior-free TSVD and ridge",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "baseline-inclusive field loss ||W_a(D c_hat - v)|| / max(||W_a v||, eta) on the fixed evaluation grid, normalised Gaussian window h = 3 M; anchored span at epsilon 0.25, q 0.95, floor 8 M. NOT a coefficient-space metric",
+          "evidence_ref": "src/phrt/metrics/scoring.py"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "note": "an estimator operating on coefficients does not determine what its evaluation loss measures",
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json",
+      "affected_by_unresolved_method_input": {
+        "id": "R1_REALIZED_ETA",
+        "status": "REALIZED_ETA_NOT_LOCATED",
+        "effect": "limits exact reproducibility of the R1 normalisation; does not change the archived benchmark values"
+      }
+    },
+    {
+      "claim_id": "C08",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 section 6.2: 'cleared at ten times the reference SNR'",
+      "revised_text_and_location": "section 7.2: the structure-only stable span is zero at SNR_0 = 100 and first nonzero at 30000, with 40 M direct and 76 M resolved; R1L stage-2R at 1000 is a separate aggregate result",
+      "disposition": "CORRECTED_ONSET_AND_EXPERIMENT_SEPARATION",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/reports/R1_HELD_OUT_MAIN.md",
+          "sha256": "dde24b52d62eeaf3f0cd0db17013eda08cad7a08068cf485c98b7823bba2d413",
+          "selector": "Structural recovery onset table, onset SNR_0 column"
+        },
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "docs/Paper_I_v1_Current_Evidence_Ledger.md",
+          "sha256": "2189c43718eae0e4faaea8d0de6a53a93fe9a3e3dde888cc8e92bc2c41765539",
+          "selector": "R1L stage 2R section"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled arms DIRECT_PHYSICAL, RESOLVED_PHYSICAL, UNRESOLVED_IMAGE, TOTAL_FLUX",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "C224",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "source_Gram": {
+          "status": "RESOLVED",
+          "value": "C224 source norm as registered in the R1 freeze",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen R1 ray set at a050_i050",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, corrected row convention",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "whitened diagonal at SNR_0 = 100; eight noisy draws per truth plus one excluded noiseless control; independent unit is the truth",
+          "evidence_ref": "artifacts/configs/R1_MAIN_FREEZE.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "SNR_0 = 100 reference; onset sweep to 30000",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling; the level and structure projectors are a deterministic diagnostic split"
+        },
+        "estimator": {
+          "status": "RESOLVED",
+          "value": "prior-free TSVD and ridge",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "baseline-inclusive field loss ||W_a(D c_hat - v)|| / max(||W_a v||, eta) on the fixed evaluation grid, normalised Gaussian window h = 3 M; anchored span at epsilon 0.25, q 0.95, floor 8 M. NOT a coefficient-space metric",
+          "evidence_ref": "src/phrt/metrics/scoring.py"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json",
+      "affected_by_unresolved_method_input": {
+        "id": "R1_REALIZED_ETA",
+        "status": "REALIZED_ETA_NOT_LOCATED",
+        "effect": "limits exact reproducibility of the R1 normalisation; does not change the archived benchmark values"
+      }
+    },
+    {
+      "claim_id": "C09",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 abstract: 'reduces morphology error ... by 0.164 and 0.133, lower bounds 0.116 and 0.101'",
+      "revised_text_and_location": "section 7.3, with estimators named, four paired draws, and the materiality criteria stated",
+      "disposition": "RETAINED_WITH_ESTIMATORS_AND_DRAWS_NAMED",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "docs/Paper_I_v1_Current_Evidence_Ledger.md",
+          "sha256": "2189c43718eae0e4faaea8d0de6a53a93fe9a3e3dde888cc8e92bc2c41765539",
+          "selector": "HMT-2 sealed main table, L896_radial_enriched / RESOLVED_PHYSICAL / Ridge and TSVD rows"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled arms with UNRESOLVED_IMAGE and TOTAL_FLUX controls",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "L896_radial_enriched 8x7x16 nominal 896, 768 fitted contrast coefficients after m=0 removal; L448_contrast 4x7x16 nominal 448, 384 fitted",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "the morphology loss is a state-dependent error on reconstructed maps, not a source-norm quadratic form; no Gram matrix enters the endpoint"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen HMT-2 ray set",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, corrected row convention",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "a common standard-normal order/ray/time tensor per truth/draw, mapped through each arm's noise_from_standard readout; the TOTAL_FLUX control uses an all-ones order mixer plus a total-flux collapse. Four paired draws per truth is REPLICATION, not the covariance",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "as registered in HMT2_SEALED_MAIN_V1",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling in the morphology benchmark"
+        },
+        "estimator": {
+          "status": "RESOLVED",
+          "value": "prior-free TSVD and ridge, reported separately",
+          "evidence_ref": "docs/Paper_I_v1_Current_Evidence_Ledger.md"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "state-dependent morphology error: assignment cost for SINGLE_RESOLVED/MULTI_RESOLVED, descriptor discrepancies for BLENDED/AMBIGUOUS, amplitude for DEAD; all_state_error is their mean. Materiality median >= 0.10 and bootstrap lower bound >= 0.05",
+          "evidence_ref": "src/phrt/metrics/morphology.py"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C10",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 section 6.3: 'neither an unresolved second image nor total flux reaches materiality, so the gain is attributable to resolving the orders'",
+      "revised_text_and_location": "section 7.3: the labelled-stack estimates improve; the tested flux readout does not reproduce the gain; the index-sum control does not establish how a physically unresolved image would perform",
+      "disposition": "CAUSAL_FRAMING_REMOVED",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "docs/Paper_I_v1_Current_Evidence_Ledger.md",
+          "sha256": "2189c43718eae0e4faaea8d0de6a53a93fe9a3e3dde888cc8e92bc2c41765539",
+          "selector": "HMT-2 sealed main table, UNRESOLVED_IMAGE and TOTAL_FLUX control rows"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled arms with UNRESOLVED_IMAGE and TOTAL_FLUX controls",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "L896_radial_enriched 8x7x16 nominal 896, 768 fitted contrast coefficients after m=0 removal; L448_contrast 4x7x16 nominal 448, 384 fitted",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "the morphology loss is a state-dependent error on reconstructed maps, not a source-norm quadratic form; no Gram matrix enters the endpoint"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen HMT-2 ray set",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, corrected row convention",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "a common standard-normal order/ray/time tensor per truth/draw, mapped through each arm's noise_from_standard readout; the TOTAL_FLUX control uses an all-ones order mixer plus a total-flux collapse. Four paired draws per truth is REPLICATION, not the covariance",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "as registered in HMT2_SEALED_MAIN_V1",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling in the morphology benchmark"
+        },
+        "estimator": {
+          "status": "RESOLVED",
+          "value": "prior-free TSVD and ridge, reported separately",
+          "evidence_ref": "docs/Paper_I_v1_Current_Evidence_Ledger.md"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "state-dependent morphology error: assignment cost for SINGLE_RESOLVED/MULTI_RESOLVED, descriptor discrepancies for BLENDED/AMBIGUOUS, amplitude for DEAD; all_state_error is their mean. Materiality median >= 0.10 and bootstrap lower bound >= 0.05",
+          "evidence_ref": "src/phrt/metrics/morphology.py"
+        }
+      },
+      "unresolved_scientific_dependency": "a comparison against an appropriate physical control",
+      "candidate_abstract_or_headline_allowed": false,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C11",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 section 6.4 qualifications",
+      "revised_text_and_location": "section 7.4: 5 of 12 family-estimator cells material on the physical end-to-end target, 4 of 12 on both; circular_hotspot_trajectory negative under both estimators; the measured point estimates and intervals are reported as measured, while no strong universal family claim follows in either direction",
+      "disposition": "RETAINED_AND_EXPANDED",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "docs/Paper_I_v1_Current_Evidence_Ledger.md",
+          "sha256": "2189c43718eae0e4faaea8d0de6a53a93fe9a3e3dde888cc8e92bc2c41765539",
+          "selector": "HMT-2 sealed main table, L448_contrast rows; Preserved literal failures section"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled arms with UNRESOLVED_IMAGE and TOTAL_FLUX controls",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "L896_radial_enriched 8x7x16 nominal 896, 768 fitted contrast coefficients after m=0 removal; L448_contrast 4x7x16 nominal 448, 384 fitted",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "the morphology loss is a state-dependent error on reconstructed maps, not a source-norm quadratic form; no Gram matrix enters the endpoint"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen HMT-2 ray set",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, corrected row convention",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "a common standard-normal order/ray/time tensor per truth/draw, mapped through each arm's noise_from_standard readout; the TOTAL_FLUX control uses an all-ones order mixer plus a total-flux collapse. Four paired draws per truth is REPLICATION, not the covariance",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "as registered in HMT2_SEALED_MAIN_V1",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling in the morphology benchmark"
+        },
+        "estimator": {
+          "status": "RESOLVED",
+          "value": "prior-free TSVD and ridge, reported separately",
+          "evidence_ref": "docs/Paper_I_v1_Current_Evidence_Ledger.md"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "state-dependent morphology error: assignment cost for SINGLE_RESOLVED/MULTI_RESOLVED, descriptor discrepancies for BLENDED/AMBIGUOUS, amplitude for DEAD; all_state_error is their mean. Materiality median >= 0.10 and bootstrap lower bound >= 0.05",
+          "evidence_ref": "src/phrt/metrics/morphology.py"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C12",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 section 8.2 detector-response error",
+      "revised_text_and_location": "section 8: 9.594e-03, 4.274e-02, 5.116e-01, described as a discrepancy between two discretisations rather than a continuum error",
+      "disposition": "RETAINED_WITH_SCOPE_CORRECTED",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json",
+          "sha256": "d5367a3103ab8ddecd1142819ef55c3c75544eff9b325e4de8a680802111f3b2",
+          "selector": "per_order.nX.baseline.max_relative_E and node_coverage, area_coverage, omitted_area"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "D026 detector, alpha,beta in [-25,25] M, pitch 0.4 M",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "six screen channels and five transferred channels at each of eight observer times",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "a response comparison on identical support; no source norm enters"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "archived core and fine ray maps at a050_i050",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "nodal dual clipped cell measure; qualified hull tessellation",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "single-sky sigma^2 over the full pixel area once per observer time",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "sigma = 0.011341986814407566; whitening 1/(sigma sqrt(cell area))",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no target/nuisance split in a response comparison"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no estimator; a representation comparison"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "per-channel norm(W(y_hat - y_ref)) / norm(W y_ref)",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C13",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 section 7: hull qualified at 9.592e-08",
+      "revised_text_and_location": "section 8: the tessellation component at 9.592e-08, not the entire hull error",
+      "disposition": "SCOPE_NARROWED_AND_METRIC_CORRECTED",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/revisions/mahakal_v4_1/G1C_20260907T075203Z_d252697/GEOMETRY_CLOSEOUT_029.json",
+          "sha256": "7ef875f8edd745ef2ade399f24700b00ab6a18342b680444c6b3f4c5373803c6",
+          "selector": "band-normalised tessellation discrepancy between the named refinement levels"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "curved band hull boundary at the qualified candidate",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/G1C_20260907T075203Z_d252697/GEOMETRY_CLOSEOUT_029.json"
+        },
+        "source_basis": {
+          "status": "NOT_APPLICABLE",
+          "reason": "a hull boundary, not a source representation"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "as above"
+        },
+        "sampled_rays": {
+          "status": "NOT_APPLICABLE",
+          "reason": "a boundary geometry, not a ray set"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "polygon tessellation of the fitted boundary, compared between refinement levels",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/G1C_20260907T075203Z_d252697/GEOMETRY_CLOSEOUT_029.json"
+        },
+        "covariance": {
+          "status": "NOT_APPLICABLE",
+          "reason": "a geometric qualification; no noise model"
+        },
+        "noise_normalisation": {
+          "status": "NOT_APPLICABLE",
+          "reason": "as above"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no target/nuisance split"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no estimator"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "band-normalised geometric discrepancy 9.592e-08 against the 1e-6 numerical integration component budget; NOT the detector-response norm",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/G1C_20260907T075203Z_d252697/GEOMETRY_CLOSEOUT_029.json"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C14",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 section 7: comparator validated",
+      "revised_text_and_location": "section 8: validated on 66 development and 192 confirmation IDs with bounded independence",
+      "disposition": "RETAINED_COHORT_SCOPE",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/COMPARATOR_CAUSE_AND_CONFIRMATION_033.json",
+          "sha256": "45adb0e3baef041c660956665ef68e94cffa25ad48548aacadaff0b1f06789d7",
+          "selector": "development.tally and confirmation.tally"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "path-domain predicate: the requested crossing located in Mino parameter against the source annulus and escape endpoints",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/COMPARATOR_CAUSE_AND_CONFIRMATION_033.json"
+        },
+        "source_basis": {
+          "status": "NOT_APPLICABLE",
+          "reason": "a per-ray domain predicate; no source representation enters"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "as above"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "66 development point/order IDs and 192 previously unused confirmation IDs, frozen before the phase ran",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/COMPARATOR_CAUSE_AND_CONFIRMATION_033.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "adaptive radial quadrature with the index-excluded reduced product, epsabs and epsrel 1e-12; graded panel reference; margin factor 10",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/COMPARATOR_CAUSE_AND_CONFIRMATION_033.json"
+        },
+        "covariance": {
+          "status": "NOT_APPLICABLE",
+          "reason": "a domain predicate, not a measurement; no observation noise model applies"
+        },
+        "noise_normalisation": {
+          "status": "NOT_APPLICABLE",
+          "reason": "as above"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no target/nuisance split"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "adjudication, not estimation"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "label agreement between the primary and two references, zero forced labels; shared inputs are the roots, the angular crossing and the path classification",
+          "evidence_ref": "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/COMPARATOR_CAUSE_AND_CONFIRMATION_033.json"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": false,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C17",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "037 section 6.4: 'enriching the declared temporal class from 224 to 1056 dimensions'",
+      "revised_text_and_location": "section 6.4: the four-class ladder C224, C448_T, C528_S, C1056_ST, changing both spatial and temporal factors; median operational-rank fraction 0.897 to 0.729 while the rank itself rises 201 to 770; sigma_min+ 1.635e-02 to 1.332e-07",
+      "disposition": "CORRECTED_LADDER_AND_FIELDS",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/reports/E3D_SOURCE_CLASS_STRESS.md",
+          "sha256": "d6c7757007cd2193319e0f0e9d958f6fc756406447e863baac7f9e01157eae49",
+          "selector": "class ladder table (radial/azimuthal/temporal/dimension) and the richness table columns 'operational rank (median)', 'as a fraction', 'sigma_min+'"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled ideal stack, n = 0,1,2, matrix-free whitened, 12 registered geometries",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "C224 4x7x8, C448_T 4x7x16, C528_S 6x11x8, C1056_ST 6x11x16",
+          "evidence_ref": "artifacts/reports/E3D_SOURCE_CLASS_STRESS.md"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "detectability masks are computed per probe age; no source-norm Gram enters the threshold statistic"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen E3C ray set per geometry",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, sqrt(dOmega) g^3 whitened row",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "diagonal whitened, per-geometry SNR sweep",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "reference SNR_0 with the corrected sqrt(dOmega) g^3 row convention",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling in the detectability audit"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "threshold detectability, not an estimator"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "median operational rank and its fraction of class dimension, and sigma_min+, at the operational threshold at SNR_0 = 100",
+          "evidence_ref": "artifacts/reports/E3D_SOURCE_CLASS_STRESS.md"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C18",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "037 section 5.2 / 1.2: the localized-directional depth quoted beside the E3C scalar probe",
+      "revised_text_and_location": "section 6.4: the deepest retarded age whose best-determined localized mode clears the operational threshold moves by at most one grid step of 4 M among physical and mechanism arms, and every move appears at a spatial enrichment step and none at the temporal one; this is not the E3C scalar detectability probe",
+      "disposition": "SEPARATED_FROM_THE_E3C_PROBE",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/reports/E3D_SOURCE_CLASS_STRESS.md",
+          "sha256": "d6c7757007cd2193319e0f0e9d958f6fc756406447e863baac7f9e01157eae49",
+          "selector": "'Recoverable depth against class richness' table and the asymmetry paragraph following it"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled ideal stack, n = 0,1,2, matrix-free whitened, 12 registered geometries",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "declared temporal/spatial product class on the common age grid",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "detectability masks are computed per probe age; no source-norm Gram enters the threshold statistic"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen E3C ray set per geometry",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, sqrt(dOmega) g^3 whitened row",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "diagonal whitened, per-geometry SNR sweep",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "reference SNR_0 with the corrected sqrt(dOmega) g^3 row convention",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling in the detectability audit"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "threshold detectability, not an estimator"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "deepest retarded age whose best-determined localized mode clears the operational threshold at SNR_0 = 100",
+          "evidence_ref": "artifacts/reports/E3D_SOURCE_CLASS_STRESS.md"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": false,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C19",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "037 section 1.2: 'a pairing-permuted control is better conditioned than the physical operator at 12 of 12 geometries across 16 frozen seeds'",
+      "revised_text_and_location": "section 1.2, unchanged, with the seed count and the worst-seed statement sourced",
+      "disposition": "RETAINED_WITH_EVIDENCE_ADDED",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/reports/E3C_GEOMETRY_WIDE_OPERATOR_AUDIT.md",
+          "sha256": "e7406f9f550f3d23747ab6f8533afe711838e8b7ecb452bbca86ab82ec830c6c",
+          "selector": "'Negative control: PAIRING_DESTROYED over 16 frozen seeds' section, including the worst-of-sixteen statement"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "PAIRING_DESTROYED: each order's delays, positions and weights permuted independently, preserving all three marginals",
+          "evidence_ref": "artifacts/reports/E3C_GEOMETRY_WIDE_OPERATOR_AUDIT.md"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "declared temporal/spatial product class on the common age grid",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "detectability masks are computed per probe age; no source-norm Gram enters the threshold statistic"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen E3C ray set per geometry",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, sqrt(dOmega) g^3 whitened row",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "diagonal whitened, per-geometry SNR sweep",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "reference SNR_0 with the corrected sqrt(dOmega) g^3 row convention",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling in the detectability audit"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "threshold detectability, not an estimator"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "conditioning of the whitened operator, compared against the physical resolved operator at each geometry",
+          "evidence_ref": "artifacts/reports/E3C_GEOMETRY_WIDE_OPERATOR_AUDIT.md"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C20",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "037 section 7.4: FAMILY_HETEROGENEITY supported by an L448 vs L896 row",
+      "revised_text_and_location": "section 7.4: 5 of 12 family-estimator cells material on the physical target and 4 of 12 on both; circular_hotspot_trajectory negative under both estimators; class dependence recorded separately as CLASS_DEPENDENCE",
+      "disposition": "CORRECTED_A_CLASS_RESULT_WAS_LABELLED_A_FAMILY_RESULT",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "docs/Paper_I_v1_Current_Evidence_Ledger.md",
+          "sha256": "2189c43718eae0e4faaea8d0de6a53a93fe9a3e3dde888cc8e92bc2c41765539",
+          "selector": "HMT-2 per-family table and the HMT2_MAIN_FAMILY_HETEROGENEITY_PRESERVED entry"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled arms with UNRESOLVED_IMAGE and TOTAL_FLUX controls",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "L896_radial_enriched 8x7x16 nominal 896, 768 fitted contrast coefficients after m=0 removal; L448_contrast 4x7x16 nominal 448, 384 fitted",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "the morphology loss is a state-dependent error on reconstructed maps, not a source-norm quadratic form; no Gram matrix enters the endpoint"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen HMT-2 ray set",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, corrected row convention",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "a common standard-normal order/ray/time tensor per truth/draw, mapped through each arm's noise_from_standard readout; the TOTAL_FLUX control uses an all-ones order mixer plus a total-flux collapse. Four paired draws per truth is REPLICATION, not the covariance",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "as registered in HMT2_SEALED_MAIN_V1",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling in the morphology benchmark"
+        },
+        "estimator": {
+          "status": "RESOLVED",
+          "value": "prior-free TSVD and ridge, reported separately",
+          "evidence_ref": "docs/Paper_I_v1_Current_Evidence_Ledger.md"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "state-dependent morphology error: assignment cost for SINGLE_RESOLVED/MULTI_RESOLVED, descriptor discrepancies for BLENDED/AMBIGUOUS, amplitude for DEAD; all_state_error is their mean. Materiality median >= 0.10 and bootstrap lower bound >= 0.05",
+          "evidence_ref": "src/phrt/metrics/morphology.py"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": true,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C21",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "no equivalent in 036 or 037",
+      "revised_text_and_location": "Appendix A.1: the baseline-inclusive field metric, its normalised Gaussian window (h = 3 M), its quadratic-form implementation, and the source-resolved 10 x 12 x 40 = 4,800-point evaluation grid with its declared axes and flattening order",
+      "disposition": "METHOD_DEFINITION_GRID_RESOLVED_ETA_STILL_UNLOCATED",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "src/phrt/metrics/scoring.py",
+          "sha256": "2754875886f5e50c68667b3b6b77ea5e75307db85304e3c2242521358aa23f17",
+          "selector": "AgeScorer.build, truth_terms, errors, evaluation_grid"
+        },
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+          "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+          "selector": "/primary, /noise, /bootstrap, /metrics, /sealed_bank/n_per_regime, /estimators"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled arms DIRECT_PHYSICAL, RESOLVED_PHYSICAL, UNRESOLVED_IMAGE, TOTAL_FLUX",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "C224",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "source_Gram": {
+          "status": "RESOLVED",
+          "value": "C224 source norm as registered in the R1 freeze",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen R1 ray set at a050_i050",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, corrected row convention",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "whitened diagonal at SNR_0 = 100; eight noisy draws per truth plus one excluded noiseless control; independent unit is the truth",
+          "evidence_ref": "artifacts/configs/R1_MAIN_FREEZE.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "SNR_0 = 100 reference; onset sweep to 30000",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling; the level and structure projectors are a deterministic diagnostic split"
+        },
+        "estimator": {
+          "status": "RESOLVED",
+          "value": "prior-free TSVD and ridge",
+          "evidence_ref": "artifacts/reports/R1_HELD_OUT_MAIN.md"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "E_jb(a) = ||W_a(D c_hat - v)|| / max(||W_a v||, eta), h = 3 M, on the fixed evaluation grid with equal spatial weights",
+          "evidence_ref": "src/phrt/metrics/scoring.py"
+        }
+      },
+      "unresolved_scientific_dependency": "the realized eta scalar; the evaluation-grid shape is now resolved from the archived caller and callee at execution commit 5f557fb6",
+      "candidate_abstract_or_headline_allowed": false,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json",
+      "method_dependency_refs": [
+        "R1_EVALUATION_GRID",
+        "R1_REALIZED_ETA"
+      ],
+      "affected_by_unresolved_method_input": {
+        "id": "R1_REALIZED_ETA",
+        "status": "REALIZED_ETA_NOT_LOCATED",
+        "effect": "limits exact reproducibility of the R1 normalisation; does not change the archived benchmark values"
+      }
+    },
+    {
+      "claim_id": "C22",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "no equivalent in 036 or 037",
+      "revised_text_and_location": "Appendix A.2: the state-dependent morphology error and the paired reduction -- mean over ages within a draw, mean over the four draws within a history, paired direct-relative reduction per history, median across histories, with a 10,000-resample history bootstrap at helper seed 20260954",
+      "disposition": "METHOD_DEFINITION_AGGREGATION_ORDER_RESOLVED",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "src/phrt/metrics/morphology.py",
+          "sha256": "0bd46530cc2ee3d3ac62adbe3b8bc2ee8060ca1836abeaf44989adea2f58468c",
+          "selector": "state_error, assignment_error, blended_error, dead_error, aggregate_all_states"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "RESOLVED",
+          "value": "order-labelled arms with UNRESOLVED_IMAGE and TOTAL_FLUX controls",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "L896_radial_enriched 8x7x16 nominal 896, 768 fitted contrast coefficients after m=0 removal; L448_contrast 4x7x16 nominal 448, 384 fitted",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "the morphology loss is a state-dependent error on reconstructed maps, not a source-norm quadratic form; no Gram matrix enters the endpoint"
+        },
+        "sampled_rays": {
+          "status": "RESOLVED",
+          "value": "frozen HMT-2 ray set",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "quadrature": {
+          "status": "RESOLVED",
+          "value": "pixel-integrated, corrected row convention",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "covariance": {
+          "status": "RESOLVED",
+          "value": "a common standard-normal order/ray/time tensor per truth/draw, mapped through each arm's noise_from_standard readout; the TOTAL_FLUX control uses an all-ones order mixer plus a total-flux collapse. Four paired draws per truth is REPLICATION, not the covariance",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "as registered in HMT2_SEALED_MAIN_V1",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "no nuisance profiling in the morphology benchmark"
+        },
+        "estimator": {
+          "status": "RESOLVED",
+          "value": "prior-free TSVD and ridge, reported separately",
+          "evidence_ref": "docs/Paper_I_v1_Current_Evidence_Ledger.md"
+        },
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "state-dependent morphology error: assignment cost for SINGLE_RESOLVED/MULTI_RESOLVED, descriptor discrepancies for BLENDED/AMBIGUOUS, amplitude for DEAD; all_state_error is their mean. Materiality median >= 0.10 and bootstrap lower bound >= 0.05",
+          "evidence_ref": "src/phrt/metrics/morphology.py"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": false,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json",
+      "method_dependency_refs": [
+        "HMT2_PAIRED_REDUCTION_AGGREGATION_ORDER"
+      ]
+    },
+    {
+      "claim_id": "C15",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 abstract: 'a sixteen-month numerical audit'",
+      "revised_text_and_location": "removed; no duration is asserted anywhere",
+      "disposition": "REMOVED_UNSUPPORTED",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "docs/revisions/mahakal_v4_1/PAPER_I_MANUSCRIPT_REVIEW_037.md",
+          "sha256": "9f199a3c39ff946fc7647dd55c6cf840488a046dbaa5bcb88d14dff4b078ba92",
+          "selector": "unsupported_sixteen_month_duration disposition"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial removal; no experiment is cited"
+        },
+        "source_basis": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial removal; no experiment is cited"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial removal; no experiment is cited"
+        },
+        "sampled_rays": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial removal; no experiment is cited"
+        },
+        "quadrature": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial removal; no experiment is cited"
+        },
+        "covariance": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial removal; no experiment is cited"
+        },
+        "noise_normalisation": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial removal; no experiment is cited"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial removal; no experiment is cited"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial removal; no experiment is cited"
+        },
+        "evaluation_metric": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial removal; no experiment is cited"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": false,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C16",
+      "original_document_identity": "artifacts/manuscript/PAPER_I.md (archived Shiva-era source) and docs/revisions/mahakal_v4_1/manuscript036 working revision",
+      "original_exact_text_and_location": "036 title: the long Shiva-effect title",
+      "revised_text_and_location": "the author-facing title 'Photon-Ring Retarded-Time Tomography: The Mahakal Phenomenon'",
+      "disposition": "TITLE_RECONCILED",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "af2e2c5f8f6429f993d4ff4f5a07d2d312d3a7c2",
+          "path": "docs/revisions/mahakal_v4_1/NEXT_STAGE_037.yaml",
+          "sha256": "b3f34137386bcb6c204870ab550b852b5921abda1050633673d0ce9dbe38124b",
+          "selector": "source_reconciliation.author_facing_title"
+        }
+      ],
+      "pins": {
+        "operator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial reconciliation; no experiment is cited"
+        },
+        "source_basis": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial reconciliation; no experiment is cited"
+        },
+        "source_Gram": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial reconciliation; no experiment is cited"
+        },
+        "sampled_rays": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial reconciliation; no experiment is cited"
+        },
+        "quadrature": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial reconciliation; no experiment is cited"
+        },
+        "covariance": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial reconciliation; no experiment is cited"
+        },
+        "noise_normalisation": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial reconciliation; no experiment is cited"
+        },
+        "target_nuisance_partition": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial reconciliation; no experiment is cited"
+        },
+        "estimator": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial reconciliation; no experiment is cited"
+        },
+        "evaluation_metric": {
+          "status": "NOT_APPLICABLE",
+          "reason": "an editorial reconciliation; no experiment is cited"
+        }
+      },
+      "unresolved_scientific_dependency": "the supplied 42-page PDF was not available to this session, so repository and uploaded document identities are recorded separately and only the reviewer's recorded hash is carried",
+      "candidate_abstract_or_headline_allowed": false,
+      "document_version": "manuscript039/Photon_Ring_Retarded_Time_Tomography_Candidate_039.md",
+      "carried_from": "CLAIM_EVIDENCE_MATRIX_038.json"
+    },
+    {
+      "claim_id": "C23",
+      "original_document_identity": "manuscript038 section 3 (source-space table only)",
+      "original_exact_text_and_location": "038 section 3 left C224/L224 as unexplained identifiers and named a reference SNR without an observation schedule",
+      "revised_text_and_location": "section 3.1: C224 is 4 x 7 x 8 = 224 -- four cubic B-splines in log r, seven real Fourier modes (|m| <= 3), eight DCT modes in source time, radial-major ordering -- on r in [1.8660386527060988, 49.98205255591607] M and t in [-128.82234649196255, 29.0] M; the reference observer schedule is eight samples uniformly spaced 0 to 20 M with 1536 retained rays per order at n = 0, 1, 2; the localized L-classes keep their own temporal definition",
+      "disposition": "EXPOSITION_COMPLETED_FROM_THE_EXECUTED_FREEZE",
+      "evidence_level": "SOURCE_RESOLVED_DEFINITION",
+      "evidence": [
+        {
+          "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+          "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+          "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+          "selector": "source_class.*, observation.*"
+        }
+      ],
+      "pins": {
+        "source_basis": {
+          "status": "RESOLVED",
+          "value": "C224 = 4 x 7 x 8",
+          "evidence_ref": "artifacts/configs/R1_MAIN_FREEZE.json"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": false,
+      "note": "a definition, not a new source class"
+    },
+    {
+      "claim_id": "C24",
+      "original_document_identity": "manuscript038 sections 3 and 5",
+      "original_exact_text_and_location": "038 gave the age-threshold detectability masks and a reference SNR without the probe function, its normalisation or the threshold rule",
+      "revised_text_and_location": "section 3.2: the localized probe is Gaussian in retarded age and flat in the emission annulus with half width h = 3.0 M, normalised to unit L2 norm over the emission region; detectability is sup { a : SNR_0^2 I(a) >= rho^2 } with rho = 1, on the operator scaled to the reference SNR, with one noise density sigma_Omega fixed from the direct arm's clean response and no arm-specific sigma",
+      "disposition": "EXPOSITION_COMPLETED_FROM_THE_EXECUTED_FREEZE",
+      "evidence_level": "SOURCE_RESOLVED_DEFINITION",
+      "evidence": [
+        {
+          "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+          "path": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json",
+          "sha256": "7ab28bcd14674fb6544b577f19c00301f09e45ffec805cfcc29896c53634bf1b",
+          "selector": "localized_probe.*, depth_contract.*, measurement_model.*, rank_conventions.*"
+        }
+      ],
+      "pins": {
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "age_threshold_mask at rho = 1",
+          "evidence_ref": "artifacts/configs/E3C_OPERATOR_GRID_FREEZE.json"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": false
+    },
+    {
+      "claim_id": "C25",
+      "original_document_identity": "manuscript038 section 3",
+      "original_exact_text_and_location": "038 section 3: 'TSVD and ridge ... tuned on the R0C repair-validation bank and frozen before any main-test truth', stated once for every recovery program",
+      "revised_text_and_location": "section 3.3: R1 reuses its R0C validation-selected hyperparameters; HMT-2 reuses its own stage-1 selection, inherited unchanged through the sealed-main freeze whose runner performs no sweep; neither main experiment tunes on its held-out bank",
+      "disposition": "PROVENANCE_OVERGENERALIZATION_CORRECTED",
+      "evidence_level": "SOURCE_RESOLVED_DEFINITION",
+      "evidence": [
+        {
+          "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+          "path": "artifacts/configs/R1_MAIN_FREEZE.json",
+          "sha256": "4ef162320e09086a16f1e130b09a507d399438740647147560f339cd2aa60069",
+          "selector": "estimators.hyperparameters"
+        },
+        {
+          "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+          "path": "artifacts/configs/HMT2_SEALED_MAIN_V1.json",
+          "sha256": "bb65f5615e2dff7ad89ea541b89a68a81295dfc087634dba8a2c7cf1d179bf88",
+          "selector": "sealed_hyperparameters.*, gates.HMT2M_G11_sealed_hyperparameters_used_unchanged"
+        }
+      ],
+      "pins": {
+        "estimator": {
+          "status": "RESOLVED",
+          "value": "TSVD and RIDGE_IDENTITY, per-experiment selection lineage",
+          "evidence_ref": "artifacts/configs/HMT2_SEALED_MAIN_V1.json"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": false,
+      "note": "no estimator and no selected hyperparameter changed"
+    },
+    {
+      "claim_id": "C26",
+      "original_document_identity": "manuscript038 section 3 table",
+      "original_exact_text_and_location": "038 section 3, HMT-2 noise-convention cell: 'four paired noise draws per truth' -- a replication count in a noise column",
+      "revised_text_and_location": "section 3: one standard-normal tensor of shape (orders, rays, observer times) per truth and draw, mapped to sigma_Omega sqrt(dOmega) z on each order's pixels and then through each arm's declared readout, whitened by the channel variance; the four paired draws are stated as replication",
+      "disposition": "NOISE_CONVENTION_CELL_CORRECTED",
+      "evidence_level": "SOURCE_RESOLVED_DEFINITION",
+      "evidence": [
+        {
+          "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+          "path": "src/phrt/operators/physical.py",
+          "sha256": "2aa3c9a176bd75055e5562319f166f991af301a79afb6f0a47b34e603f585762",
+          "selector": "PhysicalOperator.noise_from_standard"
+        }
+      ],
+      "pins": {
+        "noise_normalisation": {
+          "status": "RESOLVED",
+          "value": "shared standard-normal draw through each arm's linear readout",
+          "evidence_ref": "src/phrt/operators/physical.py"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": false,
+      "note": "a consistency edit, not a new noise model"
+    },
+    {
+      "claim_id": "C27",
+      "original_document_identity": "artifacts/manuscript/figures/fig1_depth_inclination_not_spin.png and artifacts/manuscript/figures/fig2_shiva_effect.png",
+      "original_exact_text_and_location": "the canonical assets asserted 'recoverable depth ... flat across four spins' and 'enriching the declared temporal class' in their own in-figure titles",
+      "revised_text_and_location": "figures 1 and 2, regenerated to new filenames under manuscript039/figures with corrected in-figure titles, axis labels and panels",
+      "disposition": "FIGURE_ASSETS_REGENERATED_CANONICAL_UNTOUCHED",
+      "evidence_level": "REPRODUCED_DISCRETE_BENCHMARK",
+      "evidence": [
+        {
+          "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+          "path": "artifacts/tables/e3c_depth_curves.parquet",
+          "sha256": "90fe0b235cbaf0fa92d39b678d814575ab9e325ebaa440acd625f272b2416ebd",
+          "selector": "snr0 == 100, arm in (DIRECT_PHYSICAL, RESOLVED_PHYSICAL), median over source_class"
+        },
+        {
+          "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+          "path": "artifacts/tables/e3d_class_spectra.parquet",
+          "sha256": "4c4df9f8060195a33e2a03174aa1f38fd449176fbd60a291040f75574b959827",
+          "selector": "arm == RESOLVED_PHYSICAL, median over the 12 geometries by source_class"
+        },
+        {
+          "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+          "path": "artifacts/tables/e3d_depth_by_class.parquet",
+          "sha256": "a974f06dd446f2fc06f3f18045928ac5108a42d173ea8b9d09aa009da1783be8",
+          "selector": "snr0 == 100, arm in (DIRECT_PHYSICAL, RESOLVED_PHYSICAL), median over geometries"
+        }
+      ],
+      "pins": {
+        "evaluation_metric": {
+          "status": "RESOLVED",
+          "value": "archived table columns, selected and aggregated only",
+          "evidence_ref": "FIGURE_MANIFEST_039.json"
+        }
+      },
+      "unresolved_scientific_dependency": null,
+      "candidate_abstract_or_headline_allowed": false,
+      "note": "no operator, reconstruction or new sampling is invoked inside the figure builder"
+    },
+    {
+      "claim_id": "C28",
+      "original_document_identity": "manuscript038 references section",
+      "original_exact_text_and_location": "038: 'A full external bibliography is outstanding ... no reference is carried over unread'",
+      "revised_text_and_location": "section 1.2 and section 11: seven primary arXiv records verified at metadata and abstract level, each cited only for the narrow background use its verified level supports, with the unverified journal fields named",
+      "disposition": "EXTERNAL_AUDIT_STARTED_SCOPE_STATED",
+      "evidence_level": "EXTERNAL_METADATA_AND_ABSTRACT",
+      "evidence": [
+        {
+          "commit": "46873d964a96c30fc546593011d0dbe1f1677826",
+          "path": "docs/revisions/mahakal_v4_1/review039/CORE_BIBLIOGRAPHY_AUDIT_039.md",
+          "sha256": "3f3ca0bdb75482a3fbd641f14910264cd2bb614c1ff251419b9decbcf4c92a14",
+          "selector": "the seven-entry verification table"
+        }
+      ],
+      "pins": {},
+      "unresolved_scientific_dependency": "full-text verification for any stronger use, and the remaining archived references",
+      "candidate_abstract_or_headline_allowed": false,
+      "note": "no novelty or priority claim rests on this audit"
+    }
+  ],
+  "n_claims": 29,
+  "claims_affected_by_unresolved_eta": [
+    "C06",
+    "C07",
+    "C08",
+    "C21"
+  ],
+  "unreadable_evidence": [],
+  "seed_index": "artifacts/manuscript/CLAIM_LEDGER.json (276 entries) used as an index; every claim here is resolved to its own primary artifact and later amendments applied"
+}
