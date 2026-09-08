@@ -1,0 +1,10 @@
+{
+ "registration":"895e43913086137642842f156fff66ae0e75e0af",
+ "failure":"Point-validation JSON attempted to serialize NumPy bool scalars. It aborted after 192 charged evaluations, before emitting reference summary or starting inverse training.",
+ "counts":{"engineering":86,"failed_export_evaluations":192,"total_so_far":278,"separate_cap":6000},
+ "repair":"Cast gate Booleans to Python bool; persist point reference arrays before the JSON summary. No physical formula, selection, tolerance or training objective changed.",
+ "old_build_source_sha256":"9720c254371b0cd94ba862d15661ff8050a8074d789442b256a119a112d80afe",
+ "new_build_source_sha256":"646d88a8c4a3c1492885aecb68d9ee4fa13348a213ff974d8a2986ccd1cc2de5",
+ "preservation":"Old source, exception log and complete attempted-query ledger retained. Lost runtime point values will be recomputed and charged; no claim of fresh holdout or free cache replay. The fixed selected cohort is reused.",
+ "scientific_preregistration_scope":"Development protocol; this is a disclosed non-numerical output repair, not a clean first-run claim."
+}
