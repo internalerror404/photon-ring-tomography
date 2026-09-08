@@ -1,0 +1,124 @@
+review_id: PAPER_I_SEMANTIC_REVIEW_038
+reviewed_commit: 2dd9ea1ad950001f8350faf9ec8fb957d532065e
+work_branch: research/mahakal_v4_1
+status: MAIN_INTERPRETIVE_REPAIRS_ACCEPTED_TARGETED_METHOD_AND_PIN_CLOSEOUT_REQUIRED
+accepted_037:
+  - Mahakal_title_and_support_disjointness_theorem
+  - conditional_continuum_statement_not_discretization_validation
+  - physical_source_energy_localization
+  - oldest_probe_vs_anchor_span_numbers
+  - R1_regime_split_and_separate_R1L_onset_claim
+  - removal_of_physical_index_sum_attribution
+  - structured_evidence_references_as_schema_improvement
+preservation:
+  manuscript036_manuscript037_and_freeze022: immutable
+  accepted_G1_comparator_sampled_absences_legacy_R2_scopes: not_reopened
+  C13: physical_quadrature_remains_unqualified
+  delivery: GitHub_only
+current_authorization:
+  document_and_existing_source_work: allowed
+  new_physical_rays_path_integrals_hull_roots: 0
+  new_target_operators_spectra_estimators_truths: 0
+  new_interpolants_or_numerical_search: 0
+  R3B_submission_freeze_or_paid_resources: not_authorized
+method_closeout:
+  insertion_source: docs/revisions/mahakal_v4_1/review038/METHODS_AND_PIN_CLOSEOUT_038.md
+  R1_loss:
+    source: src/phrt/metrics/scoring.py
+    archived_execution_commit: 5f557fb606b76a95093cbf8e98d89d6f1dab9664
+    matching_git_blob: 0b04245c73ac80d63e3a6b8c2d2e67c2fef17dbc
+    norm: normalized_Gaussian_window_on_equal_weight_source_evaluation_grid
+    continuum_emission_L2_norm: not_implied
+    threshold_parameters: {epsilon: 0.25, quantile: 0.95, gain_floor_M: 8}
+    grid: {age_step_M: 4, age_window_h_M: 3}
+    draws_per_truth: 8
+    bootstrap: paired_truth_cluster_10000_resamples_95_percent
+    actual_eta_and_grid_identity: resolve_execution_records_not_default_values
+  HMT2:
+    loss: assignment_or_blended_descriptors_or_amplitude_by_reconciled_state
+    normalized_error_aggregation_and_reduction_formula: identify_actual_runner_definitions
+    class_identifier_vs_active_dimension:
+      L896_radial_enriched: {nominal: 896, active_after_m0_removal: 768}
+      L448_contrast: {nominal: 448, active_after_m0_removal: 384}
+    draws_per_truth: 4
+    independent_resampling_unit: truth_not_draw
+    covariance_from_draw_count: forbidden
+    family_heterogeneity_from_class_change: false
+  rank_and_recovery:
+    rank_notions: [algebraic_where_exactly_supported, numerical, operational]
+    estimator_recovery: separate_not_a_rank
+    operational_requires_nuisance_profiling_in_every_experiment: false
+  E3D:
+    ladder: [C224, C448_T, C528_S, C1056_ST]
+    C1056_enrichment: spatial_and_temporal_not_temporal_only
+    metric_selectors_for_16p8_and_sigma_min: required
+    local_directional_reach_equals_E3C_scalar_probe: false
+  acquisition:
+    overlap_cells: same_screen_coordinate_space_as_detector
+    inherited_parent_covariance_and_single_sky_covariance: distinct_experiments
+    reference_clock: only_where_applied_no_retrospective_all_run_recenter_claim
+pin_closeout:
+  C04_C05:
+    screen_quadrature_vs_source_localization_quadrature: separate
+    C04_metric: interval_source_energy_fraction_not_Fisher_trace
+    C05_legacy_headline: allowed_at_scoped_evidence_level_not_blocked_by_unperformed_corrected_measure_run
+  C09_C11:
+    covariance: actual_observation_noise_law_and_readout_not_four_draws
+    source_Gram: resolved_object_or_correct_NA_not_family_norm_placeholder
+    primary_endpoint_and_family_tables: follow_summary_ledger_links
+  C13:
+    metric: geometric_band_normalized_tessellation
+    component_budget: 1.0e-6
+    detector_response_metric_inherited_here: remove
+  C14:
+    domain_comparator: not_D026_measurement_or_harmonic_source_model
+    observation_covariance: not_applicable_with_reason
+    cohort_numeric_policy_and_shared_inputs: actual_evidence
+  evidence_ref_paths:
+    resolve_through_hashed_sources_or_unique_manifest: required
+    duplicate_hashes_per_pin: not_required
+  missing_draft_claims: [E3D_enrichment_statistics, pairing_control_geometry_seed_count, remaining_numeric_headlines]
+  structural_checker_pass_is_semantic_pass: false
+local_text_fixes:
+  anchor_connected: continuous_from_geometry_anchor_not_always_present
+  R2_dimension_vs_rank: 152_nuisance_columns_140_direct_rank_152_stacked_rank
+  error_summary: per_order_maxima_over_40_correlated_diagnostic_channels
+  group_remainder_certificate: possible_method_not_universal_requirement
+  prior_free_term: use_non_Bayesian_with_fixed_representation_and_validation_selected_tuning
+  historical_withdrawals: preserve_in_ledger_not_mandatory_every_main_text_box
+source_pdf:
+  sha256: 152b099fc09994e917f629bda90de19bfd388ee19e96f754a0dfc4b763e61148
+  pages: 42
+  source_reference_extract: docs/revisions/mahakal_v4_1/review038/SOURCE_PDF_BIBLIOGRAPHY_038.txt
+  extract_is_independently_verified_external_bibliography: false
+  bibliography_and_claim_support_verification: complete_before_submission_draft
+  original_PDF_claims_override_amendments: false
+execution:
+  output_root: docs/revisions/mahakal_v4_1/manuscript038
+  edit_the_actual_manuscript_not_only_audit_flags: required
+  unknown_values: explicit_dependencies_not_invention
+  full_physical_suite_replay_for_text_edits: not_required
+  legacy_write_capable_tests: disposable_worktree_only
+  author_scope_approval: still_required
+resources:
+  convention: B_native_plus_independent_reference
+  second_batch_spent: 19146
+  second_batch_remaining: 854
+  new_authorized_physical_spend: 0
+  boundary_spent: 33410
+return:
+  ready: MANUSCRIPT_038_READY_FOR_FINAL_TEXT_REVIEW
+  blocked: MANUSCRIPT_038_BLOCKED
+  ready_is_submission_authorization: false
+  dependencies: distinguish_method_lineage_editorial_author_review_and_deferred_physical_work
+outputs:
+  - MANUSCRIPT_038_INPUT_MANIFEST.json
+  - Photon_Ring_Retarded_Time_Tomography_Working_Revision_038.md_or_tex
+  - CLAIM_EVIDENCE_MATRIX_038.json
+  - PIN_SEMANTIC_CLOSEOUT_038.json
+  - MANUSCRIPT_CORRECTION_LEDGER_038.md
+  - BIBLIOGRAPHY_AND_FIGURE_STATUS_038.md
+  - SUBMISSION_GAPS_038.md
+  - MANUSCRIPT_038_RETURN.md
+  - MANUSCRIPT_038_COMPLETION.json
+  - SHA256SUMS.txt

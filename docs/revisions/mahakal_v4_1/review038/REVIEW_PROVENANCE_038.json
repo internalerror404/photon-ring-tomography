@@ -1,0 +1,54 @@
+{
+  "schema": "mahakal-semantic-review038-provenance/1",
+  "reviewed_commit": "2dd9ea1ad950001f8350faf9ec8fb957d532065e",
+  "review_scope": "Connector-based manuscript and selected-source reading; local PDF hashing/rendering/extraction. No campaign or numerical-suite execution.",
+  "pdf": {
+    "filename": "photon-ring-retarded-time-tomography.pdf",
+    "sha256": "152b099fc09994e917f629bda90de19bfd388ee19e96f754a0dfc4b763e61148",
+    "pages": 42,
+    "bibliography_extract_pages": [
+      40,
+      41
+    ],
+    "external_bibliography_independently_verified": false
+  },
+  "r1_scorer_connector_blob_comparison": {
+    "path": "src/phrt/metrics/scoring.py",
+    "execution_commit": "5f557fb606b76a95093cbf8e98d89d6f1dab9664",
+    "reviewed_commit": "2dd9ea1ad950001f8350faf9ec8fb957d532065e",
+    "git_blob_at_both": "0b04245c73ac80d63e3a6b8c2d2e67c2fef17dbc",
+    "full_local_repository_rehash": false
+  },
+  "reported_user_schema_pass": {
+    "status": "SCHEMA_READY_FOR_SEMANTIC_REVIEW",
+    "claims": 16,
+    "errors": 0,
+    "independently_rerun_in_review": false
+  },
+  "physical_evaluations": 0,
+  "source_mode_integrations": 0,
+  "operator_or_estimator_executions": 0,
+  "repository_suite_executed": false,
+  "file_identities": {
+    "PAPER_I_SEMANTIC_REVIEW_038.md": {
+      "sha256": "62b1f59a268460ac5a3dfa64693127c9cbfa7fab2bbd3b99d778c27cc42131c0",
+      "git_blob": "d2e909eac8d36a9d5119206ce1457c61e9e82153",
+      "bytes": 15000
+    },
+    "NEXT_STAGE_038.yaml": {
+      "sha256": "abebc30738cfb0266735736b48a88a68b9e94e53afafa53795e68190c3e4027d",
+      "git_blob": "e3bf282ef142f9c3e5a5aeb8bfcb76670a210b44",
+      "bytes": 6075
+    },
+    "METHODS_AND_PIN_CLOSEOUT_038.md": {
+      "sha256": "0e6594041f578be9bb8d6cbf6d614ed2fdba292013d02d8dedab04aedef6f93c",
+      "git_blob": "b64aa5e28ee897da40271453575a0b80590872af",
+      "bytes": 11811
+    },
+    "SOURCE_PDF_BIBLIOGRAPHY_038.txt": {
+      "sha256": "93e703ac07bc0dd4f24a53cabc2cf2eb699e24d65127f82da08c7330f35879a6",
+      "git_blob": "c3732239414c679a676319b71d4987de8b084ab7",
+      "bytes": 6611
+    }
+  }
+}

@@ -1,0 +1,111 @@
+# Bibliography copied from the supplied manuscript — NOT independently verified
+
+Source: Photon-Ring Retarded-Time Tomography: The Mahakal Phenomenon.
+PDF SHA256: 152b099fc09994e917f629bda90de19bfd388ee19e96f754a0dfc4b763e61148
+42 pages; this extract contains printed PDF pages 40 and 41.
+Extraction: PyMuPDF text extraction; line order and PDF typography retained.
+This is source material for the bibliography audit, not an endorsement that the
+listed titles, identifiers, publication details, dates, or supporting claims are
+correct. Do not cite an external work as read or verified merely because it
+appears here. The older manuscript's claims do not override later amendments.
+
+## PDF page 40
+
+References
+[1]
+Samuel E. Gralla and Alexandru Lupsasca. “Lensing by Kerr Black Holes”. In: Physical Review D
+101.4 (2020), p. 044031. doi: 10.1103/PhysRevD.101.044031. arXiv: 1910.12873.
+[2]
+Michael D. Johnson, Alexandru Lupsasca, Andrew Strominger, George N. Wong, Shahar Hadar,
+Daniel Kapec, Ramesh Narayan, Andrew Chael, Charles F. Gammie, Peter Galison, Daniel C. M.
+Palumbo, Sheperd S. Doeleman, et al. “Universal Interferometric Signatures of a Black Hole’s Photon
+Ring”. In: Science Advances 6.12 (2020), eaaz1310. doi: 10.1126/sciadv.aaz1310. arXiv: 1907.04329.
+[3]
+George N. Wong. “Black Hole Glimmer Signatures of Mass, Spin, and Inclination”. In: The Astrophysical
+Journal 909.2 (2021), p. 217. arXiv: 2009.06641.
+[4]
+Shahar Hadar, Michael D. Johnson, Alexandru Lupsasca, and George N. Wong. “Photon Ring
+Autocorrelations”. In: Physical Review D 103.10 (2021), p. 104038. doi: 10.1103/PhysRevD.103.104038.
+arXiv: 2010.03683.
+[5]
+Paul M. Chesler, Lindy Blackburn, Sheperd S. Doeleman, Michael D. Johnson, James M. Moran,
+Ramesh Narayan, and Maciek Wielgus. “Light Echos and Coherent Autocorrelations in a Black
+Hole Spacetime”. In: Classical and Quantum Gravity (2021). arXiv: 2012.11778.
+[6]
+Shahar Hadar, Sreehari Harikesh, and Doron Chelouche. “Extreme Lensing Induces Spectro-temporal
+Correlations in Black-Hole Signals”. In: Physical Review D 107 (2023), p. 124057. arXiv: 2305.11247.
+[7]
+Daniel Rojas-Paternina and Alejandro Cárdenas-Avendaño. “Light Propagation Prescriptions for Black
+Hole Movies”. In: Physical Review D 114 (2026), p. 023031. doi: 10.1103/nsg2-hy9p. arXiv: 2605.12659.
+[8]
+Alejandro Cárdenas-Avendaño, Charles F. Gammie, and Alexandru Lupsasca. “Explanation for
+the Absence of Secondary Peaks in Black Hole Light Curve Autocorrelations”. In: Physical Review
+Letters 133 (2024), p. 131402. doi: 10.1103/PhysRevLett.133.131402. arXiv: 2406.04176.
+[9]
+George N. Wong, Lia Medeiros, Alejandro Cárdenas-Avendaño, and James M. Stone. “Measuring
+Black Hole Light Echoes with Very Long Baseline Interferometry”. In: The Astrophysical Journal
+Letters 975 (2024), p. L40. arXiv: 2410.10950.
+[10]
+Barbora Bezděková, Shahar Hadar, George N. Wong, and Maciek Wielgus. “Extreme Lensing Signatures
+Revealed by Correlations of Simulated Black Hole Movies”. In: Nature Astronomy 10 (2026), pp.
+1199–1207. doi: 10.1038/s41550-026-02874-x. arXiv: 2512.09641.
+[11]
+Zhenyu Zhang, Yehui Hou, Minyong Guo, Yosuke Mizuno, and Bin Chen. “Exploring the Secondary Peaks of
+Autocorrelation in Black Hole Flare Movies”. In: arXiv preprint arXiv:2503.17200 (2025). arXiv: 2503.17200.
+[12]
+Alejandro Cárdenas-Avendaño, Alexandru Lupsasca, and Hengrui Zhu. “Adaptive Analytical Ray Tracing of
+Black Hole Photon Rings”. In: Physical Review D 107 (2023), p. 043030. doi: 10.1103/PhysRevD.107.043030.
+arXiv: 2211.07469.
+
+
+## PDF page 41
+
+[13]
+Oleg Yu. Tsupko, Fabio Aratore, and Volker Perlick. “Overlapping of Photon Rings in Black Hole Imaging”.
+In: Physical Review D 113 (2026), p. 024017. doi: 10.1103/3brg-8sqr. arXiv: 2510.22804 [gr-qc].
+[14]
+Paul Tiede, Hung-Yi Pu, Avery E. Broderick, Roman Gold, Mansour Karami, and Jorge A. Preciado-
+López. “Spacetime Tomography Using the Event Horizon Telescope”. In: The Astrophysical Journal
+892 (2020), p. 132. arXiv: 2002.05735.
+[15]
+Aviad Levis, Andrew A. Chael, Katherine L. Bouman, Maciek Wielgus, and Pratul P. Srinivasan.
+“Orbital Polarimetric Tomography of a Flare Near the Sagittarius A* Supermassive Black Hole”. In:
+Nature Astronomy 8 (2024), pp. 765–774. doi: 10.1038/s41550-024-02238-3. arXiv: 2310.07687.
+[16]
+Katherine L. Bouman, Michael D. Johnson, Adrian V. Dalca, Andrew A. Chael, Freek Roelofs, Sheperd S.
+Doeleman, and William T. Freeman. “Reconstructing Video from Interferometric Measurements of Time-
+Varying Sources”. In: IEEE Transactions on Computational Imaging 4.4 (2018), pp. 512–527. arXiv: 1711.01357.
+[17]
+Bingliang Zhang, Zihui Wu, Berthy T. Feng, Yang Song, Yisong Yue, and Katherine L. Bouman.
+“STeP: A General and Scalable Framework for Solving Video Inverse Problems with Spatiotemporal
+Diffusion Priors”. In: arXiv preprint arXiv:2504.07549 (2025). arXiv: 2504.07549.
+[18]
+Zihui Wu, Yu Sun, Yifan Chen, Bingliang Zhang, Yisong Yue, and Katherine L. Bouman. “Principled
+Probabilistic Imaging Using Diffusion Models as Plug-and-Play Priors”. In: Advances in Neural
+Information Processing Systems. 2024. arXiv: 2405.18782.
+[19]
+Matti Lassas, Lauri Oksanen, Plamen Stefanov, and Gunther Uhlmann. “The Light Ray Transform
+on Lorentzian Manifolds”. In: Communications in Mathematical Physics (2020). arXiv: 1907.02210.
+[20]
+Yaroslav Kurylev, Matti Lassas, and Gunther Uhlmann. “Inverse Problems for Lorentzian Manifolds and Non-
+Linear Hyperbolic Equations”. In: Inventiones Mathematicae 212 (2018), pp. 781–857. arXiv: 1405.3386.
+[21]
+Heinz W. Engl, Martin Hanke, and Andreas Neubauer. Regularization of Inverse Problems. Kluwer
+Academic Publishers, 1996.
+[22]
+Per Christian Hansen. Rank-Deficient and Discrete Ill-Posed Problems: Numerical Aspects of Linear
+Inversion. SIAM, 1998.
+[23]
+Jari Kaipio and Erkki Somersalo. Statistical and Computational Inverse Problems. Springer, 2005.
+[24]
+Andrew M. Stuart. “Inverse Problems: A Bayesian Perspective”. In: Acta Numerica 19 (2010), pp. 451–559.
+[25]
+Event Horizon Telescope Collaboration. “First Sagittarius A* Event Horizon Telescope Results. IV.
+Variability, Morphology, and Black Hole Mass”. In: The Astrophysical Journal Letters 930 (2022),
+p. L15. doi: 10.3847/2041-8213/ac6736.
+[26]
+Event Horizon Telescope Collaboration. “First M87 Event Horizon Telescope Results. VI. The Shadow
+and Mass of the Central Black Hole”. In: The Astrophysical Journal Letters 875 (2019), p. L6.
+doi: 10.3847/2041-8213/ab1141.
+Photon-Ring Retarded-Time Tomography
+Dixit and Chauhan
