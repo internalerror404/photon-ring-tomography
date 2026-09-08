@@ -1,0 +1,161 @@
+review_id: PAPER_I_CANCELLATION_RULING_035
+reviewed_commit: 67f3523c33d21468ad962a7fe19cd806ad76e53b
+work_branch: research/mahakal_v4_1
+status: CACHED_RESPONSE_AUDIT_ACCEPTED_DETERMINISTIC_BOUND_AND_TEMPLATE_TEST_AUTHORIZED
+preservation:
+  C13: physical_quadrature_remains_open
+  G1_comparator_and_sampled_absences: accepted_not_reopened
+  legacy_R2: same_declared_discrete_scope
+  old_source_freezes_results: immutable
+  delivery: GitHub_only
+  new_R2_hull_or_comparator_replay: not_required
+scope:
+  new_rays: 0
+  physical_path_integrals: 0
+  hull_root_solves: 0
+  new_target_operator_or_spectrum: 0
+  new_estimators_or_R3B: not_authorized
+  allowed: cached_array_geometry_algebra_and_one_composite_interpolation_comparison
+  statistical_cancellation_model_or_covariance_fit: not_authorized
+fixed_experiment:
+  geometry: {id: a050_i050, spin: 0.5, inclination_degrees: 50}
+  orders: [0, 1, 2]
+  detector: D026
+  bounds_M: {alpha: [-25, 25], beta: [-25, 25]}
+  pitch_M: 0.4
+  sigma: 0.011341986814407566
+  clock_reference_M: -978.6055123201214
+  observer_times: exact_accepted_eight
+  source_norm_target_nuisance_velocity: unchanged
+  source_annulus: unchanged_horizon_exclusive_to_50_inclusive
+  noise: single_sky_sigma_squared_full_detector_area_once
+  known_support: exact_034_primary_comparison_support_for_primary_paired_test
+  other_noise_models_share_this_bound: not_assumed
+record_overlays:
+  response_numbers: cached_same_support_discrepancies_not_continuum_error
+  cancellation_already_in_measured_signed_norm: true
+  10_to_57_gap: mixed_channel_detector_and_sign_effects_not_pure_cancellation
+  308656_scenario: ORACLE_ZERO_HEAD_CACHED_DEFECT_NOT_REFINEMENT_GUARANTEE
+  same_leg_flag: SMALL_RADIUS_SPAN_HEURISTIC
+  physical_branch_without_metadata: UNVERIFIED
+  screen_zero: equal_input_consistency_not_absolute_geometry_validation
+  unchanged_discrete_artifacts: not_automatic_physical_revalidation
+  original_index_sum: never_relabel_as_physical_image_after_constructor_pass
+bound_hierarchy:
+  K: W_times_nonnegative_O
+  delta_c: F_hat_c_minus_F_fine_c
+  E_c: Euclidean_norm_K_delta_c
+  A_c: Euclidean_norm_K_absolute_delta_c
+  T_c: sum_p_norm_K_column_p_times_absolute_delta_pc
+  U: sum_p_norm_K_column_p_times_max_channel_absolute_delta_pc
+  exact_order: E_c_le_A_c_le_T_c_le_U
+  all_channels_have_individual_denominators: required
+  max_reference_norm_is_per_channel_test: false
+  zero_reference_or_zero_error_ratio: explicit_undefined_or_absolute_case
+  missing_support_covered_by_this_bound: false
+  fine_reference_is_continuum_truth: false
+  exact_algebra_tolerances: {atol: 1.0e-12, rtol: 1.0e-12}
+harmonic_identity:
+  H0: g_cubed
+  HT: g_cubed_times_exp_minus_i_2pi_delay_over_T
+  periods_M: [20, 40]
+  real_templates: [H0, real_H20, imag_H20, real_H40, imag_H40]
+  at_observer_t: real_and_imag_of_exp_i_2pi_t_over_T_times_HT
+  transferred_channels_reconstructed: 40
+  screen_channels_retained: 6
+  per_original_channel_reporting: required
+  source_operator_L224_reduced_to_five: false
+  physical_ray_speedup_measured: false
+  arbitrary_source_movies_supported_by_identity: false
+candidate_comparison:
+  baseline: interpolate_redshift_and_time_then_form_harmonic_fields
+  candidate: form_five_templates_at_core_nodes_then_bilinearly_interpolate
+  candidate_count_new: 1
+  reselect_periods_times_or_field_weights: forbidden
+  support_change_confounded_with_candidate_change: forbidden
+  primary_support: same_as_baseline
+  all_corners_emitting_sensitivity: optional_separate_coverage_diagnostic
+  proxy_smoothness_threshold: retain_original_for_diagnostics_not_tune
+  NaN_or_invalid_tuple_zero_filling: forbidden
+  inherited_redshift_convention: verify_and_retain_no_silent_change
+  fine_archive_fresh_holdout: false
+  favorable_outcome_required: false
+  reduce_reported_budget_to_get_pass: forbidden
+  repeated_interpolant_search: not_authorized
+payload_closeout:
+  actual_034_NPZ_keys: inspect_before_claiming_pair_present
+  old_writer_evidence: estimated_vectors_popped_and_not_saved
+  reconstruction: cached_array_reprocessing_only_not_new_physical_run
+  required_arrays:
+    - reference_vectors
+    - baseline_vectors
+    - candidate_vectors
+    - signed_residual_vectors
+    - channel_labels_and_times
+    - supported_node_ids_and_coordinates
+    - template_arrays
+    - CSR_overlap_data_indices_indptr_shape
+    - reference_norms_and_bound_hierarchy
+    - omitted_node_and_area_masks
+  readback_validation: required_before_summary
+  source_and_result_hashes: required
+  full_dense_data_space_covariance: not_allowed
+  local_peak_GiB: 8
+conditional_future_error_model:
+  form: norm_sum_signed_estimates_plus_sum_valid_remainders_plus_fine_error_plus_missing_support_error
+  valid_remainder_bounds: not_supplied_by_current_pair_alone
+  omitted_or_fine_error_unknown: blocker_not_zero
+  fit_correlations_on_observed_pair_as_certificate: forbidden
+  correction_must_change_estimate_or_add_evidence: tighter_bound_alone_does_not_reduce_measured_residual
+accuracy_unchanged:
+  hull: 2.5e-4
+  transfer_emission_response_component: 5.0e-4
+  total_response_mask_area: 1.0e-3
+  integration_tessellation: 1.0e-6
+  partial_comparison_pass_implies_R3A_qualified: false
+stages:
+  S0: payload_readback_and_scope_overlays_zero_queries
+  S1: deterministic_bound_gap_decomposition_per_order_and_channel
+  S2: template_identity_and_one_composite_first_archive_comparison
+  S3: finite_decision_table_and_corrected_claim_routes_then_stop
+publication:
+  claims_key: manuscript_hash_plus_exact_claim_not_unverified_section_numbers
+  attached_PDF: support_theorem_section4p2_level_section9_morphology_section10
+  old_index_sum_attribution_restored_by_low_quadrature_error: false
+  discrete_result_retention_requires_explicit_operator_norm_and_limitations: true
+  revised_working_claim_overlay: authorized
+  submission_freeze_or_R3B: not_authorized
+resources:
+  convention: B_native_plus_independent_reference
+  second_batch_spent: 19146
+  second_batch_remaining: 854
+  use_of_remaining_units: 0
+  boundary_spent: 33410
+  new_allowance_or_third_batch: none
+  paid_resources: forbidden
+  runtime: record_cached_processing_and_keep_prior_cumulative_accounting
+execution:
+  commit_code_and_measurement_definitions_before_archive_outcomes: required
+  old_files_overwrite: forbidden
+  actual_numerical_outputs_not_only_summaries: required
+  legacy_test_writers: disposable_worktree
+  holdout_claim_for_previously_inspected_data: forbidden
+  missing_input: explicit_blocker
+return:
+  ready: DETECTOR_TEMPLATE_035_REVIEW_READY
+  blocked: DETECTOR_TEMPLATE_035_BLOCKED
+  statuses: [cached_discrepancy, bound_decomposition, template_identity, candidate_comparison, missing_support, physical_quadrature, claim_routes, governance]
+  stop_before_physical_queries_and_R3B: true
+outputs:
+  - DETECTOR_TEMPLATE_035_INPUT_MANIFEST.json
+  - INTERPRETATION_OVERLAY_035.md
+  - PAIRED_PAYLOAD_MANIFEST_035.json
+  - DETERMINISTIC_BOUND_HIERARCHY_035.json
+  - HARMONIC_TEMPLATE_IDENTITY_035.json
+  - COMPOSITE_FIRST_COMPARISON_035.npz
+  - PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json
+  - CONDITIONAL_ERROR_MODEL_AND_DECISION_035.md
+  - MANUSCRIPT_CLAIM_ROUTES_035.md
+  - DETECTOR_TEMPLATE_035_RETURN.md
+  - DETECTOR_TEMPLATE_035_COMPLETION.json
+  - SHA256SUMS.txt

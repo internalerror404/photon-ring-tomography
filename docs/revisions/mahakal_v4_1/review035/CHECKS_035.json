@@ -1,0 +1,181 @@
+{
+  "scope": "Review 035: exact cached-residual algebra and harmonic diagnostic templates.\n\nNo campaign maps, geodesics, path quadratures, target operators, or repository\nsuite are run. Bounds describe supplied finite arrays, not an unknown sky.\nThe 40-to-5 template identity applies ONLY to the declared diagnostic fields.",
+  "reviewed_commit": "67f3523c33d21468ad962a7fe19cd806ad76e53b",
+  "checks": [
+    {
+      "name": "signed_sum_bounded_by_pixel_absolute_sum",
+      "passed": true
+    },
+    {
+      "name": "pixel_absolute_sum_bounded_by_column_triangle",
+      "passed": true
+    },
+    {
+      "name": "per_channel_triangle_bounded_by_channel_max_sum",
+      "passed": true
+    },
+    {
+      "name": "orthogonal_detector_rows_create_large_gap_without_sign_cancellation",
+      "passed": true
+    },
+    {
+      "name": "columnwise_channel_max_creates_additional_gap",
+      "passed": true
+    },
+    {
+      "name": "same_pixel_opposite_signs_create_real_cancellation",
+      "passed": true
+    },
+    {
+      "name": "oracle_removal_of_largest_error_can_break_cancellation",
+      "passed": true
+    },
+    {
+      "name": "refinement_does_not_promise_zero_selected_error",
+      "passed": true
+    },
+    {
+      "name": "max_reference_denominator_can_hide_failed_channel",
+      "passed": true
+    },
+    {
+      "name": "zero_reference_is_reported_not_silent_relative_pass",
+      "passed": true
+    },
+    {
+      "name": "nonfinite_cached_difference_rejected",
+      "passed": true
+    },
+    {
+      "name": "small_pair_difference_cannot_certify_reference_accuracy",
+      "passed": true
+    },
+    {
+      "name": "signed_estimate_plus_valid_remainder_bounds_total",
+      "passed": true
+    },
+    {
+      "name": "unknown_fine_reference_error_is_not_zero",
+      "passed": true
+    },
+    {
+      "name": "unknown_omitted_support_error_is_not_zero",
+      "passed": true
+    },
+    {
+      "name": "five_real_templates_reconstruct_forty_transferred_channels",
+      "passed": true
+    },
+    {
+      "name": "template_expansion_commutes_with_fixed_detector_map",
+      "passed": true
+    },
+    {
+      "name": "static_g3_channel_is_reused_not_new_information",
+      "passed": true
+    },
+    {
+      "name": "redshift_cubing_and_interpolation_do_not_commute",
+      "passed": true
+    },
+    {
+      "name": "phase_interpolation_can_alias_even_with_matching_endpoint_phases",
+      "passed": true
+    },
+    {
+      "name": "one_composite_interpolant_is_not_guaranteed_better",
+      "passed": true
+    },
+    {
+      "name": "radius_span_heuristic_is_not_branch_or_accuracy_certificate",
+      "passed": true
+    },
+    {
+      "name": "reported_signed_residuals_already_exceed_budget",
+      "passed": true
+    },
+    {
+      "name": "unchanged_second_batch_balance",
+      "passed": true
+    },
+    {
+      "name": "identical_screen_control_does_not_certify_absolute_operator",
+      "passed": true
+    }
+  ],
+  "n_checks": 25,
+  "all_passed": true,
+  "hierarchy_fixture": {
+    "E": [
+      9.44837997915412,
+      14.461673070633832,
+      10.583692569663983,
+      13.255439055681174,
+      7.696663286373889,
+      14.176890010127904,
+      11.261674788940965,
+      8.979042229957912,
+      12.961115669595504
+    ],
+    "A": [
+      21.064656428358095,
+      31.089750946023926,
+      27.75433897748043,
+      29.114606092396006,
+      27.02588188200255,
+      31.900716310500147,
+      26.825739677366062,
+      29.54062557642002,
+      29.386286248406968
+    ],
+    "T": [
+      46.4175467896334,
+      68.22736765661139,
+      63.79475635766129,
+      65.99757753997764,
+      61.611710707444665,
+      72.20101566157612,
+      61.962008129889234,
+      66.9473764652467,
+      67.08707155209964
+    ],
+    "U": 142.72441198579028
+  },
+  "no_cancellation_fixture": {
+    "detector_rows": 324,
+    "column_triangle_over_error": 18.0,
+    "pixel_absolute_over_error": 1.0
+  },
+  "removal_fixture": {
+    "original_error": 0.010000000000000009,
+    "after_perfect_removal_of_one_contribution": 0.99
+  },
+  "harmonic_identity": {
+    "max_point_error": 1.6431300764452317e-14,
+    "max_detector_error": 2.6645352591003757e-15,
+    "real_templates": 5,
+    "original_transferred_columns": 40,
+    "physical_ray_savings_measured": false
+  },
+  "reported_034_numbers_used_as_arithmetic_inputs": {
+    "max_signed_relative": [
+      0.00959392601984124,
+      0.0427435147361119,
+      0.511602956726496
+    ],
+    "ratio_to_5e_4": [
+      19.187852039682483,
+      85.4870294722238,
+      1023.205913452992
+    ],
+    "not_independently_recomputed_from_campaign_arrays": true
+  },
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0"
+  },
+  "campaign_queries": 0,
+  "repository_suite_executed": false,
+  "script_sha256": "5d14747f1f67030dd189e73b7b6144e98e5212ad87d903ebc509c5cf431bc39c"
+}
