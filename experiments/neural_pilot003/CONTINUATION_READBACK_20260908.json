@@ -1,0 +1,22 @@
+{
+  "scope": "Final readback of the completed pilot003, plus a separately counted supplementary geometry check. Not a second neural experiment.",
+  "canonical_experiment_commit": "fbb48b8b7f987894dcd824da1432fcdfdf8530e0",
+  "canonical_compact_result_blob": "06454158fbf2798262772b93f0b92cff13c90d68",
+  "canonical_physical_evaluations": 2054,
+  "additional_geometry_evaluations": 90,
+  "additional_by_method": {"boundary_angle": 78, "ray_quadrature": 9, "ray_ode": 3},
+  "combined_count_under_same_6000_envelope": 2144,
+  "new_neural_training_in_readback": 0,
+  "new_source_reconstructions_in_readback": 0,
+  "preservation": "Completed canonical pilot records and Paper I remain unchanged; no physical-query charge against Paper I.",
+  "Paper_I_remaining": 854,
+  "supplementary_script_sha256": "793b50deadef286c36350c815ddc164a7256704be9ad5da7b1ce10e356577964",
+  "supplementary_scope": "This diagnostic has its own clock metadata and is not merged with canonical source-time histories. It was executed before recovering the already completed experiment branch. Its ledger retains all 90 attempts.",
+  "result_summary": "Thirty-six all-order records were transcribed from the canonical nine-significant-figure CSV and their medians recomputed. No original checkpoints or full scientific arrays were re-evaluated in the readback.",
+  "report_sha256": "e0ce7d4512e17fc2adc63893055ff07ea5f3d7288738b0947e344b02ebf5c461",
+  "report_package": "Mahakal_II_Pilot003_Report_and_Readback.zip",
+  "report_package_sha256": "82d4e82bc79993f0ff30604d00777b1bec997481deb0999d2c2a9743c11f7b31",
+  "package_scope": "Report, compact summary tables, figure, supplementary geometry-check source and ledger; not the original training checkpoint archive.",
+  "Euler_reading_scope": "Relevant methods, pipeline figure, boosting discussion and Remaining Work to Complete the Proof; not all 107 pages or a proof audit.",
+  "plot_export": "A permissions error was corrected and export retried without retraining or changing results."
+}
