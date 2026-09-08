@@ -1,0 +1,68 @@
+{
+  "id": "MAHAKAL_II_PILOT003_PHYSICAL_SOURCE_BRIDGE",
+  "base_commit": "b24ed2a4bad9e30bc08d31a82a52652dbb242ec8",
+  "phase": "After 86 declared engineering boundary/point evaluations; before independent validation, source-data rendering or inverse training",
+  "scope": "Face-on Schwarzschild, static observer r=100M, circular emitting material on equatorial surface annulus [6,12]M, crossing angles pi/2+n*pi for n=0,1,2. Specific surface intensity times g^3, no absorption. Exact finite-observer rescaled solid-angle measure. Not Kerr, volumetric NeRF, VLBI, PSF, interval proof or real observing forecast.",
+  "physics_and_budget": {
+    "separate_physical_cap": 6000,
+    "count": "Every b/order native, reference and boundary residual evaluation including failures; 86 pre-registration engineering calls included",
+    "Paper_I_budget_used": 0,
+    "paid_resources": false,
+    "source_radius_max_abs_M": 2e-7,
+    "time_max_abs_M": 2e-6,
+    "redshift_max_abs": 1e-8,
+    "independent_formulations": "Turning-point regularized radial quadrature versus observer-initialized u(psi),uprime,coordinate-time ODE",
+    "validation_points_per_order": 32,
+    "validation_seed": 803,
+    "radial_quadrature_levels": [4,8,16,32,64],
+    "reference_response_relative_criterion": 2e-6,
+    "stop_before_inverse_if_physical_gate_fails": true
+  },
+  "detector": {
+    "radial_pixels_per_order": 4,
+    "azimuth_pixels": 12,
+    "observer_times_M": [0,2,4,6,8],
+    "clock_subtraction_M": 100,
+    "primary_direct_reference_SNR": 1000,
+    "sensitivity_companion_SNR": 100,
+    "noise": "One fixed absolute white-noise density calibrated on unit-source direct reference, shared across all orders/pixels; integrated variance equals sigma^2 times exact rescaled solid-angle area",
+    "scope": "Geometry-located emitting image annuli, distinct order windows, ideal resolution"
+  },
+  "source_and_inverse": {
+    "one_background_two_transient_variants": true,
+    "event_centers_M": [-26,-43],
+    "event_halfwidth_M": 5,
+    "event_peak": 0.5,
+    "source_twins": "Matched, first event, both events; same direct data expected by support separation, to be checked",
+    "seeds": [11,22,33],
+    "methods": ["comoving_data","comoving_robust_PINN","staged_residual_PINN","fourier_spline_ridge"],
+    "coordinate": "phi-r^(-3/2)*t, explicit time retained",
+    "joint_width": 32,
+    "stage_widths": [16,24],
+    "joint_Adam_LBFGS": [600,60],
+    "staged_base_Adam_LBFGS": [200,20],
+    "staged_residual_Adam_LBFGS": [400,40],
+    "PINN": "Huber residual (d_t+Omega*d_phi)j/0.03, fixed multiplier 0.03, 256 collocation points",
+    "old_source_region_M": [-52,-12],
+    "primary_source_metric": "Radially weighted relative L2 of contrast j-1 over declared old-source grid",
+    "event_increment_metric": "Difference of paired reconstructed event and matched-source fields versus true transient, with shared noise",
+    "classical_selection": "Training-only generalized cross-validation over fixed ridge grid",
+    "registered_parameter_count_equality": false,
+    "staging_interpretation": "Package of additive representation and training order, not isolated causal effect of boosting",
+    "no_tuning_using_test_source_error": true
+  },
+  "Euler_paper": {
+    "url": "https://anima-ai.org/wp-content/uploads/2026/09/Euler.pdf",
+    "borrowed_for_test": "Structured coordinates, staged residual correction, separation of candidate from independent validation",
+    "not_implemented": ["SS-eSOAP","SS-Broyden","adaptive collocation","rigorous interval certification","Euler singularity replication"]
+  },
+  "hash_commitments": {
+    "protocol.json": "06ac4c38a5f89270d1427b3b6fdaa9479d85a3b4886672eed354d3678312b925",
+    "source/build003.py": "9720c254371b0cd94ba862d15661ff8050a8074d789442b256a119a112d80afe",
+    "source/geodesics003.py": "51735385fead5ba7090acaa2aca99fe43ccb94fbafcbb0ed935524753c52cd41",
+    "source/inverse003.py": "70efbad94bcf3bbb3b97b11ec51ef494578a4e2475ce7b2b9f25cb330fbf79bd",
+    "engineering_preflight.json": "e4191350c066ec8c6ee7daf8b8275b4db5eed6feb1bc96f7c9955ed6d31d5b56",
+    "preflight_physical_ledger.jsonl": "7cb40dd91d7fd8e593c1786fe245f3d265df5f50b5517d4dabe89efbc640e521"
+  },
+  "delivery": "Full sources and final results will be additive; exact committed file digests checked before their launch. This is development registration, not an externally sealed main. Every failed attempt, any implementation correction and all candidate outcomes are retained."
+}
