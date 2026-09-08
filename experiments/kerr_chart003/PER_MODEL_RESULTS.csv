@@ -1,0 +1,10 @@
+method,seed,physical_calibration_nodes,max_channel_relative_error,median_channel_relative_error,failed_columns_of64,supplement_split_q4_vs_q8,source
+data,11.0,81,0.00304115162149036,0.0009430186126209404,35,6.147689803397219e-15,fixed coefficients; supplementary knot-split detector integration
+physics,11.0,81,0.0009762244662105997,0.00025276523491763337,22,1.11499469031493e-14,fixed coefficients; supplementary knot-split detector integration
+data,22.0,81,0.002629194636640553,0.0009267205438026863,37,7.043490406685284e-15,fixed coefficients; supplementary knot-split detector integration
+physics,22.0,81,0.0023211404214324737,0.000874971256398491,37,1.0187551538261542e-14,fixed coefficients; supplementary knot-split detector integration
+data,33.0,81,0.002344168661743322,0.0007102955460532288,44,6.172688258323675e-15,fixed coefficients; supplementary knot-split detector integration
+physics,33.0,81,0.0015300941120704582,0.0005995431011423518,34,1.0419642255309535e-14,fixed coefficients; supplementary knot-split detector integration
+classical,,81,0.00024993230008214513,7.674086144650874e-05,0,6.715979408236685e-15,fixed coefficients; supplementary knot-split detector integration
+classical,,289,1.0886366063476361e-05,2.8033087071072007e-06,0,9.569527450439142e-15,fixed coefficients; supplementary knot-split detector integration
+classical,,1089,3.237450367507732e-07,7.044707556973287e-08,0,1.1699735007984224e-14,fixed coefficients; supplementary knot-split detector integration

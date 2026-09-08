@@ -1,0 +1,160 @@
+{
+  "experiment": "Mahakal II Kerr transfer-chart pilot003",
+  "registration_commit": "9d9972a60469b57c80a66454b699cba366513cdc",
+  "status": "LOCAL_CLASSICAL_CHART_COMPARISON_PASS_NEURAL_CANDIDATES_NOT_PROMOTED",
+  "units": "M=1; detector errors dimensionless; every column own reference norm",
+  "methods": [
+    {
+      "method": "data",
+      "seed": 11,
+      "physical_calibration_nodes": 81,
+      "max_channel_relative_error": 0.00304115162149036,
+      "median_channel_relative_error": 0.0009430186126209404,
+      "failed_columns_of64": 35,
+      "supplement_split_q4_vs_q8": 6.147689803397219e-15,
+      "source": "fixed coefficients; supplementary knot-split detector integration"
+    },
+    {
+      "method": "physics",
+      "seed": 11,
+      "physical_calibration_nodes": 81,
+      "max_channel_relative_error": 0.0009762244662105997,
+      "median_channel_relative_error": 0.00025276523491763337,
+      "failed_columns_of64": 22,
+      "supplement_split_q4_vs_q8": 1.11499469031493e-14,
+      "source": "fixed coefficients; supplementary knot-split detector integration"
+    },
+    {
+      "method": "data",
+      "seed": 22,
+      "physical_calibration_nodes": 81,
+      "max_channel_relative_error": 0.002629194636640553,
+      "median_channel_relative_error": 0.0009267205438026863,
+      "failed_columns_of64": 37,
+      "supplement_split_q4_vs_q8": 7.043490406685284e-15,
+      "source": "fixed coefficients; supplementary knot-split detector integration"
+    },
+    {
+      "method": "physics",
+      "seed": 22,
+      "physical_calibration_nodes": 81,
+      "max_channel_relative_error": 0.0023211404214324737,
+      "median_channel_relative_error": 0.000874971256398491,
+      "failed_columns_of64": 37,
+      "supplement_split_q4_vs_q8": 1.0187551538261542e-14,
+      "source": "fixed coefficients; supplementary knot-split detector integration"
+    },
+    {
+      "method": "data",
+      "seed": 33,
+      "physical_calibration_nodes": 81,
+      "max_channel_relative_error": 0.002344168661743322,
+      "median_channel_relative_error": 0.0007102955460532288,
+      "failed_columns_of64": 44,
+      "supplement_split_q4_vs_q8": 6.172688258323675e-15,
+      "source": "fixed coefficients; supplementary knot-split detector integration"
+    },
+    {
+      "method": "physics",
+      "seed": 33,
+      "physical_calibration_nodes": 81,
+      "max_channel_relative_error": 0.0015300941120704582,
+      "median_channel_relative_error": 0.0005995431011423518,
+      "failed_columns_of64": 34,
+      "supplement_split_q4_vs_q8": 1.0419642255309535e-14,
+      "source": "fixed coefficients; supplementary knot-split detector integration"
+    },
+    {
+      "method": "classical",
+      "seed": null,
+      "physical_calibration_nodes": 81,
+      "max_channel_relative_error": 0.00024993230008214513,
+      "median_channel_relative_error": 7.674086144650874e-05,
+      "failed_columns_of64": 0,
+      "supplement_split_q4_vs_q8": 6.715979408236685e-15,
+      "source": "fixed coefficients; supplementary knot-split detector integration"
+    },
+    {
+      "method": "classical",
+      "seed": null,
+      "physical_calibration_nodes": 289,
+      "max_channel_relative_error": 1.0886366063476361e-05,
+      "median_channel_relative_error": 2.8033087071072007e-06,
+      "failed_columns_of64": 0,
+      "supplement_split_q4_vs_q8": 9.569527450439142e-15,
+      "source": "fixed coefficients; supplementary knot-split detector integration"
+    },
+    {
+      "method": "classical",
+      "seed": null,
+      "physical_calibration_nodes": 1089,
+      "max_channel_relative_error": 3.237450367507732e-07,
+      "median_channel_relative_error": 7.044707556973287e-08,
+      "failed_columns_of64": 0,
+      "supplement_split_q4_vs_q8": 1.1699735007984224e-14,
+      "source": "fixed coefficients; supplementary knot-split detector integration"
+    }
+  ],
+  "per_seed_physics_reduction_vs_data": [
+    0.6789951348324466,
+    0.11716675932432855,
+    0.34727644088008963
+  ],
+  "median_paired_reduction": 0.34727644088008963,
+  "checks": {
+    "independent_primitive_tolerances": true,
+    "independent_classifications": true,
+    "B64_B96_converged": true,
+    "reference_detector_q10_q16": true,
+    "reference_detector_q6_q16": true,
+    "independent_detector_same_rule": true,
+    "source_linearity": true,
+    "chart_jacobian_finite_difference": true,
+    "common_clock_shift_invariance": true,
+    "source_timelike_unit_norm": true,
+    "outside_chart_refused": true,
+    "physical_caps": true
+  },
+  "all_12_checks_pass": true,
+  "frozen_coefficient_readback_error": 0.0,
+  "models_unchanged": true,
+  "physical_attempt_counts": {
+    "separated_quadrature": 7859,
+    "compactified_ode": 198,
+    "equation_precompute": 1522
+  },
+  "training_integral_evaluations_completed_fits": 2358529,
+  "additional_freeze_and_native_physics_integrals": 4083,
+  "incomplete_training_attempt": "partial seed33 physics fit terminated by tool timeout; work not fully counted; conservative upper bound one extra full fit; no endpoint/calibration replay",
+  "total_completed_training_seconds": 31.0677844249999,
+  "evaluation_seconds": 10.490092941999933,
+  "supplement_seconds": 2.2995315530000653,
+  "reference_validation": [
+    2.8670399387920042e-12,
+    3.3023006551502476e-10,
+    2.1129267224750947e-09,
+    2.7755575615628914e-14
+  ],
+  "reference_detector_q10_q16": 3.3686406059730096e-14,
+  "independent_matched_q3_detector_error": 1.645453513196435e-10,
+  "new_physical_PaperII_evaluations_not_charged_to_PaperI854": true,
+  "PaperI_modified": false,
+  "PaperI_remaining": 854,
+  "full_Kerr_acquisition_qualified": false,
+  "rigorous_global_interval_certificate": false,
+  "source_inverse_experiment": false,
+  "limitations": [
+    "One geometrically selected patch; no claim of whole lensing-band coverage.",
+    "Impact-plane detector differs from original D026.",
+    "No global interval residual bound or continuum certificate.",
+    "One fixed geometry/order/source velocity; shared equations/redshift across numerical algorithms."
+  ],
+  "protocol_differences": [
+    "Geometry-only scouting and pre-registration solver repair disclosed.",
+    "Partial training timeout resumed only incomplete seed without changed hyperparameters.",
+    "Knot-split detector quadrature supplement applied after primary results; both retained; no new candidate.",
+    "Native-vs-frozen conversion checked on common q3 detector nodes, not global sup norm.",
+    "Independent solver uses same metric/constants and redshift prescription but different numerical path/angle evolution.",
+    "Endpoint integral-equation PINN rather than differential source-dynamics PINN."
+  ]
+}
