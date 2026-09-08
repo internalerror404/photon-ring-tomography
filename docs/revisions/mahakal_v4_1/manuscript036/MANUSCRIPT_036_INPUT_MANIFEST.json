@@ -1,0 +1,28 @@
+{
+  "ruling": "PAPER_I_TEMPLATE_CLOSEOUT_AND_REVISION_036",
+  "generated_utc": "2026-09-08T02:38:57Z",
+  "commit": "218cb1d468726b19b20cc7d0bce25c75911932e3",
+  "new_rays": 0,
+  "new_path_integrals": 0,
+  "new_hull_roots": 0,
+  "new_target_operators_or_spectra": 0,
+  "cited_artifacts": {
+    "artifacts/manuscript/PAPER_I.md": "e04d3dc14f41dc004e3d3af4a1f144fdbeaeaae4512d019cbcaaf5256dc56fcc",
+    "artifacts/manuscript/CLAIM_LEDGER.json": "8d195ce597ad8892c6b3b199315c5b7e7d6c46d630b05bc2967bc1ee7035a1ed",
+    "artifacts/CANONICAL_ARTIFACT_FREEZE_V2.json": "471a0da7a06e5f89f90f01672db5c96b169e009ebdd3d52e3d1a6636e5192c2b",
+    "docs/Paper_I_v1_Current_Evidence_Ledger.md": "2189c43718eae0e4faaea8d0de6a53a93fe9a3e3dde888cc8e92bc2c41765539",
+    "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/R2_CLOSEOUT_REPORT.md": "e4450a96e4ccbbf1c14c067348251971cc7da6ce9936e1d9ca5fc98e4cf61273",
+    "artifacts/revisions/mahakal_v4_1/R2REPLAY_20260906T144528Z_b873908/reference_geometry_information.csv": "e26d3cad61f273d3357be710757b9ce8b524cd28a4015a95e1269556e13cff4b",
+    "artifacts/revisions/mahakal_v4_1/G1C_20260907T075203Z_d252697/GEOMETRY_CLOSEOUT_029.json": "7ef875f8edd745ef2ade399f24700b00ab6a18342b680444c6b3f4c5373803c6",
+    "artifacts/revisions/mahakal_v4_1/N033B_20260907T211922Z_45bd28e/COMPARATOR_CAUSE_AND_CONFIRMATION_033.json": "45adb0e3baef041c660956665ef68e94cffa25ad48548aacadaff0b1f06789d7",
+    "artifacts/revisions/mahakal_v4_1/P034_20260907T231135Z_ff6250d/RESPONSE_ERROR_AND_OMITTED_SUPPORT_034.json": "b4d62c75d1d346b9616d7383de5a929f6b46cb9b1c55e5e5e20b91bb34654d23",
+    "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json": "d5367a3103ab8ddecd1142819ef55c3c75544eff9b325e4de8a680802111f3b2",
+    "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/HARMONIC_TEMPLATE_IDENTITY_035.json": "425e9c1e20d88e0ed3202f6f38c1bc885d58fba31a9e9e841f6f18d323b82625"
+  },
+  "missing_artifacts": [],
+  "claims_with_unresolvable_source": [],
+  "repository_document_identity": "e04d3dc14f41dc004e3d3af4a1f144fdbeaeaae4512d019cbcaaf5256dc56fcc",
+  "uploaded_document_identity": "NOT_VERIFIED_BY_THIS_STAGE: the reviewer's attached PDF was not supplied to this session, so repository and uploaded identities are recorded separately and only the repository copy is hashed here",
+  "pinned_manuscript_overwritten": false,
+  "canonical_tables_overwritten": false
+}

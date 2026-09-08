@@ -1,0 +1,63 @@
+{
+  "schema": "phrt-completion/1",
+  "id": "MANUSCRIPT_REVISION_036_COMPLETION",
+  "ruling": "PAPER_I_TEMPLATE_CLOSEOUT_AND_REVISION_036",
+  "generated_utc": "2026-09-08T02:38:57Z",
+  "commit": "218cb1d468726b19b20cc7d0bce25c75911932e3",
+  "return_status": "MANUSCRIPT_REVISION_036_READY_FOR_AUTHOR_REVIEW",
+  "ready_is_submission_or_R3B_authorization": false,
+  "draft": "Photon_Ring_Retarded_Time_Tomography_Working_Revision_036.md",
+  "draft_sha256": "7c866b31b6198a6b42d67ad3b1ee7b6016eee29cd979adeb5c5b68dbce53921f",
+  "draft_lines": 521,
+  "organisation": [
+    "historical_reach",
+    "historical_dimension",
+    "historical_recovery"
+  ],
+  "claims": {
+    "total": 18,
+    "headline_allowed": [
+      "C01",
+      "C02",
+      "C04",
+      "C05",
+      "C07",
+      "C08",
+      "C09",
+      "C11",
+      "C12",
+      "C16",
+      "C18"
+    ],
+    "withdrawn": [
+      "C10"
+    ],
+    "corrected_scope": [
+      "C03"
+    ],
+    "legacy_measure_only": [
+      "C06"
+    ],
+    "unresolvable_source": []
+  },
+  "physical_claims_supported": 0,
+  "author_review_required_before_scope_and_submission": true,
+  "author_verification_claimed": false,
+  "resources": {
+    "convention": "B",
+    "second_batch_spent": 19146,
+    "second_batch_remaining": 854,
+    "spent_under_this_ruling": 0,
+    "boundary_spent": 33410
+  },
+  "old_results_or_flags_rewritten": false,
+  "preserved_tokens": [
+    "DOMAIN_INTEGRATION_031_BLOCKED",
+    "MATCHED_INTEGRATION_032_PLAN_BLOCKED",
+    "FEASIBILITY_CLOSEOUT_033_REVIEW_READY",
+    "CACHED_RESPONSE_AUDIT_034_REVIEW_READY",
+    "DETECTOR_TEMPLATE_035_REVIEW_READY"
+  ],
+  "R3B_or_submission_freeze": "not authorized",
+  "runtime_seconds": 0.005559682846069336
+}
