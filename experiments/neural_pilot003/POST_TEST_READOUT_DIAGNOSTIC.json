@@ -1,0 +1,11 @@
+{
+ "stage":"Supplementary post-test diagnostic, not preregistered primary comparison",
+ "motivation":"Primary physical camera checks passed; unexpected-event neural fits have noisy residuals well above the noise level. Need distinguish optimizer/readout limitations from a proven information deficit.",
+ "action":"Freeze all learned hidden features and any staged base. Refit only the affine output weights by training-data least squares, SVD rcond=1e-10, for event1/event2 all-order cases at seeds 11,22,33.",
+ "selection":"No hidden retraining, no data or physics weight retuning, no selection against true source error. Source errors are evaluated and retained after the solve.",
+ "scope":"Measures attainable measurement loss in frozen features; not optimization of the full robust PINN objective, not a promoted reconstruction, not an independent heldout test.",
+ "script_sha256":"028c0d49af4e2d2f9d3ac9281c37fb91870fde66912c87fb3d1f12e77ceb034c",
+ "new_physical_calls":0,
+ "expected_linear_diagnostic_solves":18,
+ "primary_protocol_and_results":"unchanged and preserved"
+}
