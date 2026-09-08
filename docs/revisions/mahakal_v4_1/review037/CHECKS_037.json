@@ -1,0 +1,29 @@
+{
+  "scope": "Review 037: algebra/summary arithmetic and claim-record schema fixtures.\nNo campaign operator, spectrum, ray, source-mode integral, or repository suite.\nOptional --matrix validates structure only; --repo additionally reads pinned\nsource bytes using git show. Neither mode proves semantic support for prose.\n",
+  "checks": {
+    "enrichment_need_not_destroy_injectivity": true,
+    "compact_support_alone_does_not_imply_direct_null": true,
+    "disjoint_compact_temporal_support_gives_zero_samples": true,
+    "saved_localization_partition_sums_to_one": true,
+    "oldest_interval_is_not_zero_in_saved_modes": true,
+    "known_and_conditional_trace_ratio_is_not_epoch_energy": true,
+    "sampled_oldest_age_is_not_anchor_span": true,
+    "high_SNR_results_use_different_multipliers": true,
+    "structured_fixture_accepted": true,
+    "path_only_and_global_pin_list_rejected": true,
+    "missing_row_selector_rejected": true,
+    "unresolved_covariance_cannot_be_promoted": true
+  },
+  "n_checks": 12,
+  "all_passed": true,
+  "source_values": "Explicit transcription from LOCALIZATION_READBACK.json and reference_geometry_information.csv at 8c309ff; no source-mode recomputation.",
+  "reviewed_commit": "8c309ff6736e8933df37b9f8e61bcdb495980aec",
+  "environment": {
+    "python": "3.13.5",
+    "numpy": "2.3.5"
+  },
+  "campaign_queries": 0,
+  "repository_suite_executed": false,
+  "original_036_matrix_run_through_script": false,
+  "script_sha256": "694fd13cc603e64e453494f66a8b2adc7d96cf3104f2b2a4c78a0d48c41c4a92"
+}

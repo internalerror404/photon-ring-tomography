@@ -1,0 +1,134 @@
+review_id: PAPER_I_MANUSCRIPT_REVIEW_037
+reviewed_commit: 8c309ff6736e8933df37b9f8e61bcdb495980aec
+work_branch: research/mahakal_v4_1
+status: WORKING_DRAFT_RECEIVED_SCIENTIFIC_AND_LINEAGE_REPAIR_REQUIRED
+preservation:
+  manuscript036: immutable_working_draft
+  original_freeze_022_and_canonical_artifacts: immutable
+  G1_comparator_sampled_absences_and_R2: accepted_scopes_not_reopened
+  C13: physical_revalidation_still_pending
+  delivery: GitHub_only
+source_reconciliation:
+  author_facing_title: 'Photon-Ring Retarded-Time Tomography: The Mahakal Phenomenon'
+  authors: [Hina Dixit, Abhinav Chauhan]
+  supplied_PDF_sha256: 152b099fc09994e917f629bda90de19bfd388ee19e96f754a0dfc4b763e61148
+  supplied_PDF_pages: 42
+  older_repository_manuscript: artifacts/manuscript/PAPER_I.md
+  older_repository_sha256_reported_by_036: e04d3dc14f41dc004e3d3af4a1f144fdbeaeaae4512d019cbcaaf5256dc56fcc
+  source_versions_equal: false
+  older_prose_overrides_later_corrections: false
+  unsupported_sixteen_month_duration: remove
+manuscript_repairs:
+  theoretical_framing:
+    universal_enrichment_destroys_identifiability: remove
+    compact_support_alone_causes_nullity: remove
+    support_disjointness_condition: state_and_prove
+    continuum_structural_theorems: allowed_under_explicit_assumptions_not_measurement_validation
+    column_nonzero_implies_independent_recovery: false
+  R2:
+    target_dimension: 72
+    nuisance_dimension: 152
+    legacy_measure_count: 2
+    reweighting_bound: one_to_two_under_its_fixed_row_noise_and_metric_assumptions
+    restore_localization_source: artifacts/revisions/mahakal_v4_1/LOC025_20260906T184213Z/LOCALIZATION_READBACK.json
+    cholesky_coordinate_weight_as_epoch_energy: forbidden
+    replay_or_new_source_mode_integration: not_required
+  reach:
+    oldest_age_vs_longest_run_vs_anchor_span: define_and_report_separately
+    oldest_144_M_as_recovered_or_anchored_interval: forbidden
+    high_inclination_resolved_anchor_spans: [112, 116, 116, 116]
+    high_inclination_direct_anchor_spans: [108, 112, 112, 112]
+    flat_sampled_supremum_proves_spin_independence: false
+  mechanisms:
+    delay_spatial_098_057: index_paired_counterfactuals_only
+    index_sum: named_compression_control_not_physical_unresolved_image
+    flux_control: preserve_runner_specific_scope
+    old_causal_sentence_restored_by_disclaimer: false
+  recovery:
+    R1_regimes: include_three_48_to_80_and_severe_0_to_0
+    four_family_count_equals_four_successful_regimes: false
+    R1_structure_stable_span_onset: 30000
+    R1L_aggregate_validation_SNR: 1000
+    R1L_is_sealed_main_or_stable_history_pass: false
+    metric_formula_and_evaluation_map: recover_from_registered_runner_config
+    before_scoring_commitment_implies_before_operator_existence: false
+    morphology: name_estimators_draws_thresholds_and_truth_cluster_units
+    posterior_calibration_failure: preserve
+  numerical_validation:
+    hull_9592e_8: tessellation_component_not_entire_hull_error
+    four_product_interval_is_only_valid_enclosure: false
+    core_fine_discrepancy_is_continuum_error: false
+    G10q_C02_and_C13: separate_conventions_and_impacts
+    C13_repaired_sidecars_reweighted_all_historical_results: false
+    group_remainder_radii: one_possible_method_not_universal_requirement
+required_scientific_content:
+  - Full_retarded_time_transfer_operator_with_domain_mask_and_time_convention
+  - Per_experiment_source_bases_and_source_norm_or_loss_definition
+  - Whitened_measurement_covariance_and_reference_SNR_definition_without_double_scaling
+  - Support_theorem_proof_and_conditional_continuum_corollary
+  - Target_nuisance_projection_and_normalized_Fisher_definition
+  - Numerical_rank_operational_rank_and_stable_recovery_definitions
+  - Actual_estimator_and_regime_level_outcome_tables
+  - Scientific_citations_bibliography_figures_and_captions_with_current_claim_scope
+claim_matrix:
+  structured_evidence: [commit, path, sha256, selector]
+  manifest_lookup_allowed: uniquely_resolved_and_hash_verified
+  primary_numeric_source_required: true
+  old_manuscript_hash_alone_proves_numeric_claim: false
+  seed_index: artifacts/manuscript/CLAIM_LEDGER.json
+  apply_all_later_amendments: required
+  ten_pins:
+    - operator
+    - source_basis
+    - source_Gram
+    - sampled_rays
+    - quadrature
+    - covariance
+    - noise_normalisation
+    - target_nuisance_partition
+    - estimator
+    - evaluation_metric
+  per_pin: resolved_value_and_evidence_or_justified_not_applicable_or_unresolved
+  global_single_sky_covariance_and_sigma_for_all_experiments: forbidden
+  unresolved_pin_in_abstract: not_promoted
+  quantitative_structural_statement: separate_formula_from_numerical_instantiation
+  hash_pass_is_semantic_validation: false
+  checker: docs/revisions/mahakal_v4_1/review037/checks_037.py
+  checker_scope: schema_and_optional_git_bytes_not_semantic_truth
+editorial_execution:
+  output_root: docs/revisions/mahakal_v4_1/manuscript037
+  new_complete_draft: required
+  supplied_replacement_text: docs/revisions/mahakal_v4_1/review037/REPLACEMENT_PASSAGES_037.md
+  original_organization: [historical_reach, historical_dimension, historical_recovery]
+  tags_belong_in_audit_matrix: prose_may_use_clear_scope_instead
+  bibliography_audit: actual_sources_not_fabricated_references
+  source_hash_precedence_and_known_regression_scan: required
+  figures: match_new_text_and_statistic_definitions
+  new_experiment_for_editorial_regression: not_required
+resources:
+  new_rays_path_integrals_hull_roots: 0
+  new_operator_spectra_estimators_or_truths: 0
+  second_batch_spent: 19146
+  second_batch_remaining: 854
+  authorized_spend: 0
+  boundary_spent: 33410
+  paid_resources: forbidden
+  full_repository_suite_for_document_edits: not_required
+  write_capable_tests: disposable_worktree_only
+return:
+  ready: MANUSCRIPT_037_READY_FOR_SEMANTIC_REVIEW
+  blocked: MANUSCRIPT_037_BLOCKED
+  completion_requires: complete_draft_actual_claim_pins_and_cross_checked_scope
+  author_scope_approval_and_submission: still_required
+  physical_workstream_count_exhaustive_before_claim_audit: not_established
+  R3B_or_submission_freeze: not_authorized
+outputs:
+  - MANUSCRIPT_037_INPUT_MANIFEST.json
+  - Photon_Ring_Retarded_Time_Tomography_Working_Revision_037.md_or_tex
+  - CLAIM_EVIDENCE_MATRIX_037.json
+  - MANUSCRIPT_CORRECTION_LEDGER_037.md
+  - CLAIM_SCOPE_AND_REGRESSION_CHECK_037.json
+  - SUBMISSION_GAPS_037.md
+  - MANUSCRIPT_037_RETURN.md
+  - MANUSCRIPT_037_COMPLETION.json
+  - SHA256SUMS.txt
