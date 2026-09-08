@@ -1,0 +1,35 @@
+{
+  "phase": "after 86 declared engineering evaluations, before validation or training",
+  "files": {
+    "protocol.json": {
+      "sha256": "06ac4c38a5f89270d1427b3b6fdaa9479d85a3b4886672eed354d3678312b925",
+      "git_blob": "0191bae75d3253568935ad9e9382e7d999a5d4ca",
+      "bytes": 5146
+    },
+    "source/build003.py": {
+      "sha256": "9720c254371b0cd94ba862d15661ff8050a8074d789442b256a119a112d80afe",
+      "git_blob": "e41ef15e408fdf86c32fb9cf37709fa13dfa35df",
+      "bytes": 7443
+    },
+    "source/geodesics003.py": {
+      "sha256": "51735385fead5ba7090acaa2aca99fe43ccb94fbafcbb0ed935524753c52cd41",
+      "git_blob": "637b0c9cd7400d2f2f4a2e5cb886b5d94f3fe696",
+      "bytes": 4417
+    },
+    "source/inverse003.py": {
+      "sha256": "70efbad94bcf3bbb3b97b11ec51ef494578a4e2475ce7b2b9f25cb330fbf79bd",
+      "git_blob": "452751e34558b36520cbad747d66f9033a4c68cf",
+      "bytes": 9948
+    },
+    "results/engineering_preflight.json": {
+      "sha256": "e4191350c066ec8c6ee7daf8b8275b4db5eed6feb1bc96f7c9955ed6d31d5b56",
+      "git_blob": "b79c52275773fad90164460ce3d3f377b0e3ceed",
+      "bytes": 1487
+    },
+    "results/physical_ledger.jsonl": {
+      "sha256": "7cb40dd91d7fd8e593c1786fe245f3d265df5f50b5517d4dabe89efbc640e521",
+      "git_blob": "3f50be54a41542de988af323ef5459f100adcfc5",
+      "bytes": 8478
+    }
+  }
+}

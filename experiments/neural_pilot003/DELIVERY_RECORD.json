@@ -1,0 +1,288 @@
+{
+  "scope": "Executed physical face-on Schwarzschild camera and synthetic-source inverse pilot; not Kerr, NeRF/FNO/Kiran reproduction or continuum interval certification",
+  "base_commit": "b24ed2a4bad9e30bc08d31a82a52652dbb242ec8",
+  "registration_commit": "895e43913086137642842f156fff66ae0e75e0af",
+  "export_amendment_commit": "b2729ea0b2dce394da24c4db9cc9c2a6b557b70b",
+  "post_test_readout_commit": "a9630dd06e263c2331cb53922dde26c7a8825b77",
+  "physical_count": 2054,
+  "physical_by_method": {
+    "boundary_angle": 80,
+    "radial_quad": 1683,
+    "orbital_ode": 291
+  },
+  "cap": 6000,
+  "pre_registration_engineering": 86,
+  "failed_JSON_export_calls_included": 192,
+  "neural_reconstructions": 36,
+  "optimizer_stages": 48,
+  "classical_fits": 12,
+  "known_template_diagnostic_fits": 18,
+  "post_test_readout_fits": 18,
+  "point_reference_max_errors_r_T_g": [
+    1.8705037518884637e-12,
+    3.0462388167507015e-10,
+    8.681944052568724e-14
+  ],
+  "max_q32_q64_detector_relative": 7.21626962728045e-10,
+  "max_q8_quad_ODE_detector_relative": 1.6000588161614254e-11,
+  "postfit_q4_q16_relative": 6.205899498843774e-07,
+  "postfit_q8_q16_relative": 1.0855596600856949e-11,
+  "forward_gates": {
+    "radius": true,
+    "time": true,
+    "redshift": true,
+    "leg": true,
+    "conservation": true,
+    "distinct_annuli": true,
+    "detector_quadrature": true,
+    "independent_detector": true,
+    "direct_twins": true
+  },
+  "postfit_gates": {
+    "neural_reconstructions_saved": true,
+    "neural_results_finite": true,
+    "reference_gate_preserved": true,
+    "no_new_physical_calls_in_verification": true,
+    "physical_budget_met": true,
+    "source_superposition": true,
+    "intensity_flux_covariance_equivalent": true,
+    "clock": true,
+    "exact_measure_area_match": true,
+    "radial_branch_monotonicity": true,
+    "trained_renderer_q4_q16": true,
+    "trained_renderer_q8_q16": true
+  },
+  "sigma_at_reference_SNR1000": 0.0016104245653481067,
+  "footprints": [
+    {
+      "order": 0,
+      "source_time_min": -7.012062322893684,
+      "source_time_max": 2.2037299761926903,
+      "area_per_time": 387.3264345269666
+    },
+    {
+      "order": 1,
+      "source_time_min": -33.64316079834538,
+      "source_time_max": -19.254005362758576,
+      "area_per_time": 8.044985854822276
+    },
+    {
+      "order": 2,
+      "source_time_min": -50.41848501393153,
+      "source_time_max": -35.831314282682655,
+      "area_per_time": 0.2602839913324838
+    }
+  ],
+  "footprint_scope": "Envelopes of sampled rays and five times; no claim all intermediate times are observed",
+  "raw_delay_min_metadata": "Misnamed derived field not used for physics; actual flight ranges recorded in verification.json",
+  "event_data_differences": {
+    "event1": {
+      "direct_max_abs": 0.0,
+      "whitened_distance_at_SNR1000": 327.05256499634385,
+      "per_order_distance_at_SNR1000": [
+        0.0,
+        327.05256499634385,
+        0.0
+      ]
+    },
+    "event2": {
+      "direct_max_abs": 0.0,
+      "whitened_distance_at_SNR1000": 332.89610197163137,
+      "per_order_distance_at_SNR1000": [
+        0.0,
+        327.05256499634385,
+        62.10019675668574
+      ]
+    }
+  },
+  "known_shapes_fit": {
+    "SNR": 1000,
+    "acquisition": "all",
+    "nuisance_rank": 6,
+    "conditional_target_rank": 2,
+    "conditional_singular_values": [
+      326.69772262201496,
+      62.09960001692467
+    ],
+    "template_amplitude_standard_errors": [
+      0.0030609334891415416,
+      0.016103163301010942
+    ],
+    "fits": [
+      {
+        "seed": 11,
+        "event_coefficients": [
+          1.0018567835689407,
+          1.0030346326625612
+        ],
+        "whitened_chi2": 0.9658526614041376
+      },
+      {
+        "seed": 22,
+        "event_coefficients": [
+          1.0008017988651738,
+          0.9811587218413323
+        ],
+        "whitened_chi2": 1.0138634050904904
+      },
+      {
+        "seed": 33,
+        "event_coefficients": [
+          1.0038256616972177,
+          0.9976480528645855
+        ],
+        "whitened_chi2": 0.9801209525394187
+      }
+    ]
+  },
+  "known_shapes_scope": "Shapes and orbital law known; two event amplitudes unknown plus six background nuisance coefficients. Dimensionless amplitudes multiply fixed peak-0.5 templates. Not image/movie recovery.",
+  "inverse_medians": [
+    {
+      "method": "comoving_data",
+      "source": "event1",
+      "old_contrast_error": 0.7744557819,
+      "noisy_chi2": 81.9918360508,
+      "event_difference_error": 1.6721886977
+    },
+    {
+      "method": "comoving_data",
+      "source": "event2",
+      "old_contrast_error": 0.6597147876,
+      "noisy_chi2": 78.5912820342,
+      "event_difference_error": 1.066105947
+    },
+    {
+      "method": "comoving_data",
+      "source": "matched",
+      "old_contrast_error": 0.0487216968,
+      "noisy_chi2": 1.2857126278,
+      "event_difference_error": null
+    },
+    {
+      "method": "comoving_robust_PINN",
+      "source": "event1",
+      "old_contrast_error": 0.7941420378,
+      "noisy_chi2": 82.4124765627,
+      "event_difference_error": 1.7161903333
+    },
+    {
+      "method": "comoving_robust_PINN",
+      "source": "event2",
+      "old_contrast_error": 0.6787316461,
+      "noisy_chi2": 78.2206963666,
+      "event_difference_error": 1.0973026603
+    },
+    {
+      "method": "comoving_robust_PINN",
+      "source": "matched",
+      "old_contrast_error": 0.0486268594,
+      "noisy_chi2": 1.2857147824,
+      "event_difference_error": null
+    },
+    {
+      "method": "fourier_spline_ridge",
+      "source": "event1",
+      "old_contrast_error": 4.5018121959,
+      "noisy_chi2": 1.86519116,
+      "event_difference_error": 9.7102404556
+    },
+    {
+      "method": "fourier_spline_ridge",
+      "source": "event2",
+      "old_contrast_error": 4.2168071474,
+      "noisy_chi2": 2.1021589597,
+      "event_difference_error": 6.8008740005
+    },
+    {
+      "method": "fourier_spline_ridge",
+      "source": "matched",
+      "old_contrast_error": 0.2084241855,
+      "noisy_chi2": 0.6881656978,
+      "event_difference_error": null
+    },
+    {
+      "method": "staged_residual_PINN",
+      "source": "event1",
+      "old_contrast_error": 0.6762967332,
+      "noisy_chi2": 78.2029156475,
+      "event_difference_error": 1.4617482029
+    },
+    {
+      "method": "staged_residual_PINN",
+      "source": "event2",
+      "old_contrast_error": 0.6605693134,
+      "noisy_chi2": 77.3111388248,
+      "event_difference_error": 1.0667397614
+    },
+    {
+      "method": "staged_residual_PINN",
+      "source": "matched",
+      "old_contrast_error": 0.0289554667,
+      "noisy_chi2": 1.417290534,
+      "event_difference_error": null
+    }
+  ],
+  "readout_scope": "Post-test frozen-hidden-feature least squares, data loss only; does not optimize full PINN objective or establish globally optimal hidden features",
+  "source_hashes": {
+    "source/build003.py": {
+      "sha256": "646d88a8c4a3c1492885aecb68d9ee4fa13348a213ff974d8a2986ccd1cc2de5",
+      "git_blob": "878ad5b1d64375ce81c1dbf5e7d707db75706b53"
+    },
+    "source/build003_pre_export_fix.txt": {
+      "sha256": "9720c254371b0cd94ba862d15661ff8050a8074d789442b256a119a112d80afe",
+      "git_blob": "e41ef15e408fdf86c32fb9cf37709fa13dfa35df"
+    },
+    "source/diagnostics003.py": {
+      "sha256": "11659f90e7ba33dac618e3327db53eab195169a479855ca88710205374102c86",
+      "git_blob": "b94b95b1bab3aceb25dc330608beb1f62b8a1735"
+    },
+    "source/geodesics003.py": {
+      "sha256": "51735385fead5ba7090acaa2aca99fe43ccb94fbafcbb0ed935524753c52cd41",
+      "git_blob": "637b0c9cd7400d2f2f4a2e5cb886b5d94f3fe696"
+    },
+    "source/inverse003.py": {
+      "sha256": "70efbad94bcf3bbb3b97b11ec51ef494578a4e2475ce7b2b9f25cb330fbf79bd",
+      "git_blob": "452751e34558b36520cbad747d66f9033a4c68cf"
+    },
+    "source/readout_diagnostic003.py": {
+      "sha256": "028c0d49af4e2d2f9d3ac9281c37fb91870fde66912c87fb3d1f12e77ceb034c",
+      "git_blob": "eec36e3e5fc041cc36b37d340552b7d3aa0d00a1"
+    },
+    "source/run_all003.py": {
+      "sha256": "ac91f31b9ba94229144862fb9ac26629d632e173e3d4d90998cb23760e9e271a",
+      "git_blob": "51152fd4dd2849203ea2c599ac7a276c8a3170fc"
+    },
+    "source/verify003.py": {
+      "sha256": "a7f14db1ddea850095175100f5c933960de6b359588892e1e0d6309aa6194f89",
+      "git_blob": "8f7bc61a93357386cb42f08a8711f1794157b1cc"
+    },
+    "source/verify003_initial.txt": {
+      "sha256": "dae8e130ce8e8cd9fc3bd6ba794acf94023c0f9050dfc22b81142e59907de987",
+      "git_blob": "6ceb8384cadd2cec197a75fdedd08b20984256a8"
+    }
+  },
+  "source_delivery_verification": "All seven final Python script blob identities and protocol/requirements/snapshot verified against GitHub tree. Initial build retained in full archive, and changed JSON-only exporter separately disclosed.",
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "torch": "2.10.0+cpu",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "dtype": "float64",
+    "cuda": false,
+    "threads": 1
+  },
+  "full_results": "Camera arrays, model states, prediction arrays, logs and full-precision metrics in downloadable package",
+  "compact_CSV_precision": "Nine significant figures, derived from full-precision all_inverse_metrics.csv",
+  "Paper_I_budget_used": 0,
+  "Paper_I_remaining": 854,
+  "production_suite_run": false,
+  "limitations": [
+    "One smooth background with two designed event variants, three noise/initialization seeds.",
+    "Primary fixed-budget methods not tuned on test-source error; this is not a broad held-out source population.",
+    "Staging changes parameter allocation and representation as well as training sequence.",
+    "Independent formulas share the stated Schwarzschild physics; frequency law not independently re-derived.",
+    "No learned family-to-family neural operator, no Euler optimizer-stack replication, no interval proof.",
+    "Global old-time score includes unobserved times; within-envelope metric is separate.",
+    "Launcher assembled after individually executed phases and not rerun end-to-end."
+  ]
+}
