@@ -1,0 +1,141 @@
+review_id: PAPER_I_TEMPLATE_CLOSEOUT_AND_REVISION_036
+reviewed_commit: 04572c8fa8a90b89e95a64b440ec5d90962cfd7b
+work_branch: research/mahakal_v4_1
+status: TEMPLATE_TEST_CLOSED_NEGATIVE_MANUSCRIPT_REBUILD_AUTHORIZED
+accepted_closeout:
+  archive_test: DETECTOR_TEMPLATE_035_REVIEW_READY
+  candidate: NOT_PROMOTED_WORSE_BY_REGISTERED_MAXIMUM_ALL_THREE_ORDERS
+  median_improvement_at_order2: retain_secondary_result_not_new_success_criterion
+  harmonic_identity: accepted_declared_forty_diagnostic_columns_only
+  deterministic_bound_decomposition: accepted_per_channel_cached_scope
+  payload_split: storage_amendment_not_a_physical_rerun
+  large_payloads_independently_recomputed_by_this_review: false
+preservation:
+  original_freeze_022: immutable
+  prior_source_maps_arrays_results_and_tokens: immutable
+  G1_comparator_and_sampled_absence_scopes: accepted_not_reopened
+  legacy_R2: accepted_under_its_frozen_measure_only
+  C13: full_physical_quadrature_revalidation_remains_open
+  delivery: GitHub_only
+record_only_clarifications:
+  ratio_table_columns: separate_channelwise_maxima_not_one_factorization
+  max_product_equals_product_of_maxima: false
+  sign_cancellation_absent: false
+  detector_identity_global_max: 1.1191048088221578e-13
+  point_identity_global_max: 6.679552744248696e-15
+  original_identity_tolerance: 1.0e-12
+  identity_replay_required: false
+  group_remainder_radii: required_for_that_certificate_not_every_possible_method
+  attached_manuscript_sections: {level_recovery: 9, morphology_recovery: 10}
+next_stage:
+  purpose: actual_corrected_working_manuscript_and_submission_gap_packet
+  editorial_scope_is_final_author_decision: false
+  output_root: docs/revisions/mahakal_v4_1/manuscript036
+  source_format: editable_Markdown_or_LaTeX
+  original_title: retain_unless_authors_choose_otherwise
+  organization: [historical_reach, historical_dimension, historical_recovery]
+  numerical_debug_chronology_as_main_narrative: false
+  existing_claim_routes: use_as_inputs_not_substitute_for_complete_draft
+  new_complete_draft: required
+  source_versions: verify_repository_and_uploaded_document_identity_separately
+  section_numbers_alone_identify_claims: false
+claim_evidence_levels:
+  STRUCTURAL_MATHEMATICS:
+    conditions: actual_domain_regularity_support_and_nonvanishing_assumptions
+    nonzero_column_implies_independent_operational_direction: false
+    sampled_support_null_implies_unchecked_continuum_null: false
+    adding_matched_observations_with_fixed_unknowns_loses_information: false
+    source_enrichment: distinct_from_observation_augmentation
+  REPRODUCED_DISCRETE_BENCHMARK:
+    pin: [operator, source_basis, source_Gram, sampled_rays, quadrature, covariance, noise_normalization, target_nuisance_partition, estimator, evaluation_metric]
+    retained_numbers: authenticate_existing_artifact_and_scope_before_promoting_in_draft
+    legacy_R2_two_modes: label_legacy_measure_no_implicit_corrected_measure_claim
+    corrected_measure_operational_count_bound: preserve_one_to_two_only_where_assumptions_verified
+    unchanged_files_mean_new_physical_validation: false
+    archived_PHYSICAL_END_TO_END_label: analytic_source_target_fidelity_not_instrument_validation
+  PHYSICAL_ACQUISITION_OR_CONTINUUM:
+    status: deferred_or_explicitly_unvalidated_where_evidence_missing
+    full_D026_transfer_accuracy: not_qualified
+    fine_reference_accuracy: not_established_by_pair_agreement
+    uncovered_order2_area_M2: 0.6092285986038317
+    missing_support_is_zero: false
+    index_sum_control_is_physical_unresolved_image: false
+    restoring_order_label_attribution: requires_new_physical_control_and_new_result
+    future_quadrature_pass_retroactively_changes_old_control: false
+required_manuscript_changes:
+  - Correct_abstract_contributions_scope_captions_tables_conclusion_and_limitations_consistently.
+  - Separate_coefficient_metrics_from_source_function_metrics_and_actual_noise_from_SNR_labels.
+  - Retain_index_sum_and_delay_spatial_index_pairing_only_under_declared_synthetic_control_meaning.
+  - Keep_runner_specific_flux_control_semantics.
+  - Distinguish_sampled_discrete_rank_operational_count_and_held_out_recovery.
+  - Preserve_level_dominance_zero_stable_morphology_interval_negative_multifeature_results_and_withdrawn_uncertainty.
+  - Preserve_family_heterogeneity_and_tested_numerical_scope_beside_positive_estimates.
+  - Report_C13_and_unvalidated_physical_acquisition_without_relabeling_it_as_a_solved_extension.
+  - Do_not_claim_author_verification_without_author_confirmation.
+  - Include_the_closed_negative_composite_test_only_where_relevant_to_numerical_limits_not_as_a_new_physics_claim.
+claim_matrix:
+  format: JSON_or_CSV
+  required_fields:
+    - claim_id
+    - original_document_identity
+    - original_exact_text_and_location
+    - revised_text_and_location
+    - disposition
+    - evidence_level
+    - source_commit_path_and_hash
+    - supporting_row_theorem_or_array_key
+    - source_operator_metric_and_noise_assumptions
+    - unresolved_scientific_dependency
+    - candidate_abstract_or_headline_allowed
+  missing_source: unresolved_or_remove_from_candidate_headline_never_invent
+  complete_dependency_chain: required_for_each_proposed_headline_number
+submission_gap_report:
+  separate: [editorial_completion, discrete_result_lineage, physical_claim_revalidation, author_scope_approval]
+  necessary_future_experiment: specify_only_if_required_by_a_retained_physical_claim
+  expensive_common_sky_campaign_is_needed_for_every_finite_model_statement: false
+  finite_label_alone_makes_flawed_physical_claim_publishable: false
+  novelty_or_editor_acceptance_guaranteed: false
+  readback_and_draft_completion_imply_submission_ready: false
+current_authorization:
+  new_physical_rays: 0
+  new_physical_path_integrals: 0
+  new_hull_roots: 0
+  new_target_operators_or_spectra: 0
+  corrected_measure_R2_recompute: not_authorized_here
+  new_truths_or_estimators: 0
+  new_interpolant_candidates_or_sweeps: 0
+  statistical_cancellation_model_fit: not_authorized
+  allowed: [existing_record_readback, document_editing, claim_mapping, elementary_algebra_checks, document_rendering]
+  R3B_or_submission_freeze: not_authorized
+resources:
+  convention: B_native_plus_independent_reference
+  second_batch_spent: 19146
+  second_batch_remaining: 854
+  authorized_new_spend: 0
+  boundary_spent: 33410
+  paid_resources: forbidden
+  prior_runtime_records: preserve_no_reset
+execution:
+  add_new_files_only: true
+  pinned_manuscript_and_canonical_tables: do_not_overwrite
+  write_capable_tests: disposable_worktree_only
+  full_numerical_suite_replay_for_drafting: not_required
+  existing_data_previously_inspected: not_fresh_holdout
+  payload_repack: retain_canonical_per_order_files_no_monolithic_requirement
+  tests_or_checks_claimed_executed: actual_execution_only
+  author_review: required_before_final_scope_and_submission_decision
+return:
+  ready: MANUSCRIPT_REVISION_036_READY_FOR_AUTHOR_REVIEW
+  blocked: MANUSCRIPT_REVISION_036_BLOCKED
+  draft_with_explicit_scientific_gaps: required_even_if_not_submission_ready
+  ready_is_submission_or_R3B_authorization: false
+  stop_after: complete_draft_evidence_matrix_and_gap_report
+outputs:
+  - MANUSCRIPT_036_INPUT_MANIFEST.json
+  - Photon_Ring_Retarded_Time_Tomography_Working_Revision_036.md_or_tex
+  - CLAIM_EVIDENCE_MATRIX_036.json_or_csv
+  - MANUSCRIPT_CORRECTION_LEDGER_036.md
+  - SUBMISSION_GAPS_036.md
+  - MANUSCRIPT_REVISION_036_RETURN.md
+  - MANUSCRIPT_REVISION_036_COMPLETION.json
+  - SHA256SUMS.txt

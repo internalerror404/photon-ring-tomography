@@ -1,0 +1,96 @@
+{
+  "schema": "mahakal-review036-arithmetic/1",
+  "reviewed_commit": "04572c8fa8a90b89e95a64b440ec5d90962cfd7b",
+  "scope": "Review 036: arithmetic readback of explicit connector-returned summaries.\n\nNo campaign NPZ, ray map, geodesic, physical quadrature, target spectrum, or\nrepository test suite is executed. The numerical inputs below are transcribed\nfrom the named JSON sources at the reviewed commit, not a locally rehashed\ncopy of those source files. Run with --output naming a new file.",
+  "summary_sources": [
+    {
+      "path": "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/PER_CHANNEL_RESPONSE_AND_SUPPORT_035.json",
+      "connector_reported_blob": "d31e4c3f03ffad5f96ad72b0cddab441947119e4"
+    },
+    {
+      "path": "artifacts/revisions/mahakal_v4_1/Q035_20260908T004247Z_c1bf640/HARMONIC_TEMPLATE_IDENTITY_035.json",
+      "connector_reported_blob": "3ef43b9b84536bf426d9b619dc632ac361f2b003"
+    }
+  ],
+  "input_method": "Explicit transcription of connector-returned summary values; source files not locally rehashed.",
+  "per_order": [
+    {
+      "order": 0,
+      "baseline": 0.009593926019841242,
+      "candidate": 0.009717724310099523,
+      "baseline_median": 0.00373177141946304,
+      "candidate_median": 0.003854746871573399,
+      "max_A_over_E": 1.1015099071264431,
+      "max_T_over_A": 20.015057536251767,
+      "max_T_over_E": 20.628656941744644,
+      "point_identity": 6.078471059822732e-15,
+      "detector_identity": 1.1191048088221578e-13,
+      "candidate_over_baseline": 1.0129038195627371,
+      "change_in_max_percent": 1.2903819562737118,
+      "baseline_multiple_of_budget": 19.187852039682486,
+      "candidate_multiple_of_budget": 19.435448620199047,
+      "product_of_separate_ratio_maxima": 22.0467841678871,
+      "median_change_percent": 3.2953640051204935
+    },
+    {
+      "order": 1,
+      "baseline": 0.04274351473611188,
+      "candidate": 0.08479504940405201,
+      "baseline_median": 0.02845257124912427,
+      "candidate_median": 0.04430425103859163,
+      "max_A_over_E": 4.569057718344865,
+      "max_T_over_A": 9.023017418644352,
+      "max_T_over_E": 41.04532593548384,
+      "point_identity": 6.679552744248696e-15,
+      "detector_identity": 3.907985046680551e-14,
+      "candidate_over_baseline": 1.9838108758148723,
+      "change_in_max_percent": 98.38108758148722,
+      "baseline_multiple_of_budget": 85.48702947222377,
+      "candidate_multiple_of_budget": 169.59009880810402,
+      "product_of_separate_ratio_maxima": 41.22668737941714,
+      "median_change_percent": 55.712644212973395
+    },
+    {
+      "order": 2,
+      "baseline": 0.5116029567264959,
+      "candidate": 0.6536382198807053,
+      "baseline_median": 0.2629626499643508,
+      "candidate_median": 0.169999185864314,
+      "max_A_over_E": 4.708960202106982,
+      "max_T_over_A": 6.725847197904428,
+      "max_T_over_E": 31.353133225918388,
+      "point_identity": 6.404599073306372e-15,
+      "detector_identity": 4.954370247389761e-15,
+      "candidate_over_baseline": 1.2776279168967777,
+      "change_in_max_percent": 27.76279168967777,
+      "baseline_multiple_of_budget": 1023.2059134529918,
+      "candidate_multiple_of_budget": 1307.2764397614105,
+      "product_of_separate_ratio_maxima": 31.671746780384712,
+      "median_change_percent": -35.352345328372536
+    }
+  ],
+  "identity_global_max": {
+    "pointwise": 6.679552744248696e-15,
+    "after_detector": 1.1191048088221578e-13,
+    "acceptance_atol": 1e-12
+  },
+  "tests": {
+    "candidate_worse_by_registered_max_at_every_order": true,
+    "both_maxima_outside_budget_at_every_order": true,
+    "order2_median_improves_but_maximum_worsens": true,
+    "point_identity_below_original_tolerance": true,
+    "detector_identity_below_original_tolerance": true,
+    "ratio_maxima_product_not_reported_max_product": true,
+    "max_product_upper_bound_is_consistent": true,
+    "reported_second_batch_balance": true
+  },
+  "n_arithmetic_checks": 8,
+  "all_passed": true,
+  "limitation": "No per-channel distribution or campaign array values were independently recomputed.",
+  "physical_queries": 0,
+  "repository_suite_executed": false,
+  "environment": {
+    "python": "3.13.5"
+  },
+  "script_sha256": "3cea810b9ab9d6432ce2d015f753dd9606dd23234d8b03aef00d1ca7f8b969bf"
+}
