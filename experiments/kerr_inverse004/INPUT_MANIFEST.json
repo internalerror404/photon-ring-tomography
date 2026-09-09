@@ -1,0 +1,43 @@
+{
+  "source_archive_sha256": "0ebfdec99421ae41868d4138aa1be3f183d9d424f8e3e93f8a6d02072c42a77a",
+  "base_commit": "9fd5478ac39fe25fcea025176bd735fe9fc4dc36",
+  "files": [
+    {
+      "original_path": "models/coeff_classical9.npz",
+      "local_path": "inputs/coeff_classical9.npz",
+      "bytes": 4545,
+      "sha256": "9d3219f733d47df03ae1e95fe30e73cfa1e2f58c2018bc1827eafed9814ceb70"
+    },
+    {
+      "original_path": "models/coeff_classical17.npz",
+      "local_path": "inputs/coeff_classical17.npz",
+      "bytes": 9271,
+      "sha256": "8c625b30975ea0bde264610ff816fb4641e2ed00594b1a3119f68a6437dc2b08"
+    },
+    {
+      "original_path": "models/coeff_classical33.npz",
+      "local_path": "inputs/coeff_classical33.npz",
+      "bytes": 26780,
+      "sha256": "243bbcd9423c19b9fadb54d36975bcdd76f2e90be4570d68dcd597e11c53e384"
+    },
+    {
+      "original_path": "results/ALL_EVALUATION_ARRAYS.npz",
+      "local_path": "inputs/ALL_EVALUATION_ARRAYS.npz",
+      "bytes": 469490,
+      "sha256": "b35723986d95b86368dc19d6ba65328101784ae92fc8d3d4f2ed95210fe5c2ff"
+    },
+    {
+      "original_path": "results/freeze_setup.npz",
+      "local_path": "inputs/freeze_setup.npz",
+      "bytes": 104486,
+      "sha256": "81b455f8dde47a30b97a8893e3504932f02ed4a26e6e8a232da66091f68f3def"
+    },
+    {
+      "original_path": "source/frozen_consumer.py",
+      "local_path": "inputs/frozen_consumer.py",
+      "bytes": 2015,
+      "sha256": "992bb0984c61e6da1c7e3cc28830ec9a4b358202443adfbc083754ac9292c728"
+    }
+  ],
+  "array_manifest_entries_verified": 21
+}

@@ -1,0 +1,177 @@
+{
+  "experiment": "Mahakal II local Kerr inverse004",
+  "registration_commit": "9098fa5f5d5ee874738b8220367a8adb5f90f400",
+  "source_freeze_commit": "ed32d24d3e42ef09caaa0e4be6bd03754d389a2b",
+  "base_commit": "9fd5478ac39fe25fcea025176bd735fe9fc4dc36",
+  "scope": "one previously selected order-2 Kerr patch; synthetic sources and new inversions through authenticated cached physical transfer tuples",
+  "neural_fits": 24,
+  "known_event_amplitude_model": {
+    "nuisance": 7,
+    "targets": 2,
+    "source_histories": 32,
+    "noise_draws_per_history": 64,
+    "estimates": 16384,
+    "shapes_known": true
+  },
+  "linear_reference": {
+    "0.01": {
+      "target_singular_values": [
+        4.99471838679184,
+        4.165077101634476
+      ],
+      "standard_errors": [
+        0.2023856810586778,
+        0.23826172469915127
+      ],
+      "joint95_coverage": 0.9404296875,
+      "no_event_false_positive_joint95": 0.05078125
+    },
+    "0.001": {
+      "target_singular_values": [
+        49.94718386791838,
+        41.65077101634471
+      ],
+      "standard_errors": [
+        0.020238568105867768,
+        0.02382617246991515
+      ],
+      "joint95_coverage": 0.9404296875,
+      "no_event_false_positive_joint95": 0.05078125
+    }
+  },
+  "approximation_bias_at_sigma_0p001": {
+    "classical9": {
+      "max_abs_noise_free_bias": [
+        3.8464753801703555e-05,
+        0.00017591545096795613
+      ],
+      "max_bias_in_joint_standard_error_units": 0.007689099414254006
+    },
+    "classical17": {
+      "max_abs_noise_free_bias": [
+        1.6236713497597144e-06,
+        7.73813416521385e-06
+      ],
+      "max_bias_in_joint_standard_error_units": 0.000335454500789966
+    },
+    "classical33": {
+      "max_abs_noise_free_bias": [
+        5.8518454137956866e-08,
+        3.024383484762083e-07
+      ],
+      "max_bias_in_joint_standard_error_units": 1.3123836127399071e-05
+    }
+  },
+  "fine_rule_PINN_comparison": [
+    {
+      "scenario": "background",
+      "training_quadrature": 8,
+      "paired_relative_reductions": [
+        0.06015194271352604,
+        -0.00020583110752296182,
+        -0.042823618604226295
+      ],
+      "median_paired_reduction": -0.00020583110752296182,
+      "improved_seeds": 1,
+      "pairs": 3
+    },
+    {
+      "scenario": "events",
+      "training_quadrature": 8,
+      "paired_relative_reductions": [
+        0.04022898196640118,
+        0.07268010530792504,
+        0.014644217279792857
+      ],
+      "median_paired_reduction": 0.04022898196640118,
+      "improved_seeds": 3,
+      "pairs": 3
+    }
+  ],
+  "quadrature_groups": [
+    {
+      "training_q": 3,
+      "fits": 12,
+      "max_actual_reference_whitened_discrepancy": 0.020814802813053264,
+      "max_actual_reference_relative_discrepancy": 5.2636222592715516e-05,
+      "all_pass": true
+    },
+    {
+      "training_q": 8,
+      "fits": 12,
+      "max_actual_reference_whitened_discrepancy": 4.579072025527632e-05,
+      "max_actual_reference_relative_discrepancy": 1.210555449428972e-07,
+      "all_pass": true
+    }
+  ],
+  "reference_fitted_field_q10_q16_max_relative": 2.895576073757262e-12,
+  "gradient_directional_difference_scaled_error": 1.5927081181699165e-10,
+  "finite_MC_coverage_interval": [
+    0.9292884687591014,
+    0.9502881626775417
+  ],
+  "known_template_event_power": {
+    "0.01": {
+      "unit": "known-template Gaussian-noise model only",
+      "squared_whitened_target_norm": 8.892473003880573,
+      "joint95_rejection_probability": 0.7653867750864148
+    },
+    "0.001": {
+      "unit": "known-template Gaussian-noise model only",
+      "squared_whitened_target_norm": 889.2473003880574,
+      "joint95_rejection_probability": 1.0
+    }
+  },
+  "checks": {
+    "linear/cached_inputs_authenticated": true,
+    "linear/reference_template_quad10_16": true,
+    "linear/profile_matches_full_lsq": true,
+    "linear/inverse_bias_identity": true,
+    "linear/joint_bias_bounded_by_forward_defect": true,
+    "linear/reference_ellipse_coverage_expected_noise_model": true,
+    "linear/source_linearity_adjoint": true,
+    "linear/jacobian_spline_matches_reference_weights": true,
+    "readback/all_24_fits_present": true,
+    "readback/input_byte_hashes": true,
+    "readback/frozen_executable_sources_unchanged": true,
+    "readback/model_bytes_unchanged_during_readback": true,
+    "readback/autograd_matches_directional_difference": true,
+    "readback/matched_source_satisfies_assumed_transport": true,
+    "readback/all_actual_fitted_field_response_checks_pass": true,
+    "readback/no_new_ray_or_root_or_path_calls": true
+  },
+  "all_checks_passed": true,
+  "seconds": {
+    "linear": 0.38197238899999775,
+    "neural_training": 145.7938945979999,
+    "neural_including_readbacks": 157.72576380100003,
+    "supplement": 11.963459255999965
+  },
+  "environment": {
+    "numpy": "2.3.5",
+    "torch": "2.10.0+cpu",
+    "precision": "float64",
+    "threads": 1
+  },
+  "new_rays": 0,
+  "new_path_quadratures": 0,
+  "new_hull_or_critical_roots": 0,
+  "PaperI_remaining": 854,
+  "production_suite_run": false,
+  "protocol_scope_notes": [
+    "one previously selected order2 patch and fixed Kerr/emitter model",
+    "No direct-order image comparison or full-sky reconstruction",
+    "Template-amplitude uncertainty assumes known shapes and seven nuisance functions; not a map of pixel confidence",
+    "Neural field metric restricted to chart pullback and tested observer window",
+    "Three noise/initialization seeds on two source scenarios; not a broad source-family benchmark",
+    "Fine-training comparison equal optimizer steps, not equal computation time",
+    "Neural physical-readback supplement was added after partial outcomes; no model/threshold changed",
+    "Reference numerical accuracy inherited from independent chart003 checks and current field quadrature refinements; no global interval proof"
+  ],
+  "execution_notes": [
+    "Streaming API unavailable before process launch; first training process completed24fits without restart.",
+    "Figure output permission issue repaired without retraining.",
+    "Readback fixture emitted PyTorch detach warning without changing values; log retained."
+  ],
+  "full_payload": "Binary inputs/checkpoints/raw arrays and complete report are in the supplied full and source-input packages; not claimed present in the compact GitHub tree."
+}

@@ -1,0 +1,3 @@
+# Post-fit readback supplement
+
+Added after some of the fixed neural outcomes had been inspected. Models and their selection criterion are unchanged. No new physical ray or path integral is executed. Read every fitted model against actual cached10/16-node physical transfer tuples, not only the frozen classical33 spline; separate source-tuple discrepancy, Jacobian interpolation, and integration discrepancy. Retain gradient finite-difference checks and an analytic matched-source transport fixture. Compute known-template Gaussian detection power and the finite-Monte-Carlo binomial interval from already defined Fisher matrices, not an extra test-family fit. This supplement is not described as a prospectively sealed new experiment.
