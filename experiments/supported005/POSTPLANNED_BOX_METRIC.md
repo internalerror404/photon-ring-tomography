@@ -1,0 +1,9 @@
+# Separate source-norm diagnostic (postplanned)
+
+The original sample-norm experiment remains unchanged. Rich dictionaries amplify near-null sampled source directions: their projection can have small chart-sample error and a large detector error away from those sample points. A same-span extended-precision reorthogonalization passes the original orthogonality tolerance and leaves the operational counts unchanged, but does not remove this metric/support limitation.
+
+This supplement changes the declared source norm, not the observations, source dictionary, saved neural fits, or thresholds. It uses normalized r dr dphi dt on the same explicit local box r[6.5,17],phi[-7.56,-7.07],tbar[-7,26]. Compute the cubic-spline Gram exactly by per-knot-piece four-point Gauss rules with analytic Legendre Gram, then Cholesky-normalize without dropping source directions. Recompute the same mode/error/correction diagnostics for all three dictionaries. Evaluate source errors at per-piece6 and8-point quadratures; this is a different source metric and not numerically comparable to the old chart-relative error as though only the estimator changed.
+
+Construct one numerical-null witness from the fixed smooth trial in the largest dictionary. Use the coefficient bound max_(i,j) sum_k |c_ijk|, B-spline partition of unity, and |P_k|<=1 to choose amplitude min(0.1,0.5/bound), giving positive1plus/minus sources throughout the declared box under the represented polynomial model. Independently check q10/q16/q24 data differences below0.1 noise-whitened norm. No claim of exact continuum null from floating-point values.
+
+No neural training, new ray, path quadrature, root, hyperparameter selection or source fit. This is a postplanned methods diagnostic and cannot erase original failed gates. Executable SHA2563896268158cd78a12da36aabc649af214cabfb36729479296c243a31c5ed447e.
