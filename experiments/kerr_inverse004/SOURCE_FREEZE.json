@@ -1,0 +1,13 @@
+{
+  "registration_commit": "9098fa5f5d5ee874738b8220367a8adb5f90f400",
+  "time_before_execution": 1788917353.7412796,
+  "protocol_sha256": "2ee39cec63779f532c1a0c11ffa382e33a7a5b1e60b6913d4c2605222d2d156c",
+  "source_hashes": {
+    "source/run_all.py": "92624f3722b8e010e2bb9937713be48956d0ff456319a81963028253212a3587",
+    "source/neural_inverse.py": "77bd4a3274c283401d4df8ca2a68f6f141d1e0fb5fd703fe0d240da06c8850db",
+    "source/linear_inverse.py": "19a3a48855a4eff48aafdeb2f7c4864c595c85ecfb08c541c4f76a9dec4a3add",
+    "source/common.py": "28fb2fc382a87d027873ff1b2ca040d87d709c10d5123e83a4e5a0ec89fa798f"
+  },
+  "no_outcomes_inspected": true,
+  "scope": "code freeze before new inverse/calibration outcomes; summary reporter can be added later"
+}
