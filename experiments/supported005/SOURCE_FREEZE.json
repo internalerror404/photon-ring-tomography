@@ -1,0 +1,8 @@
+{
+  "source": "source/experiment.py",
+  "source_sha256": "2bdc6fe85beedd0474966c65fb10917b43e138ef8a1a45cf1cd6b8cd7278ce69",
+  "protocol_sha256": "0e59ad0de173612c2507c91692e9259f9617c3de9c89aa9974ddb02791ffd53b",
+  "input_manifest_sha256": "19e0b002da02c715eccb357b8042b0fc8ad1385c4ff4bf9f53a8c154a9844b7d",
+  "new_outcomes_computed": false,
+  "scope": "source and inputs fixed before new mode spectra/projections/corrections; existing outcomes already known"
+}

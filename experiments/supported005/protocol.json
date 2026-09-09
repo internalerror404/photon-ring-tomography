@@ -1,0 +1,32 @@
+{
+  "experiment": "Mahakal II supported-mode separation005",
+  "base_commit": "54dbf7611f1e30b146da4cd65ab504560702d746",
+  "scope": "Archive-only NEW inverse diagnostics on the already checked order2 Kerr patch. No new ray/path/root or neural training. Not a global recoverability certificate.",
+  "noise_density": 0.001,
+  "measurement": "Same 128 integrated light measurements and full-area diagonal covariance as inverse004; cached physical reference q16 primary; q10 independent resolution check; classical33 q24 check.",
+  "source_norm": "RMS contrast on the SAME 4736 chart-induced source/time points used by inverse004, equal weights. Not continuous volume norm.",
+  "source_dictionary": {
+    "domain": {"r":[6.5,17.0], "phi":[-7.56,-7.07], "tbar":[-7.0,26.0]},
+    "spatial_temporal_factors": "open uniform cubic B-splines in r and tbar; Legendre degree0,1,2 in scaled source phi",
+    "nested_classes": [[4,6,3],[5,9,3],[7,15,3]],
+    "nominal_dimensions": [72,135,315],
+    "primary_class": 135,
+    "event_templates_used_in_dictionary": false,
+    "source_orthonormalization": "SVD of synthesis/sqrt(N); retain source singular values above1e-9 times largest; store discarded rank and condition numbers. No jitter.",
+    "numerical_response_rank_rtol": 1e-10,
+    "reference_mode_amplitude_RMS": 0.10,
+    "operational_SNR_thresholds": [1,5],
+    "primary_correction_threshold": 5,
+    "no_threshold_selection_from_source_errors": true
+  },
+  "saved_networks": "All 12 q8 models: 2scenarios x2methods x3seeds; old q3 results remain unchanged and are not new fits.",
+  "readback": ["orthogonal source-error energies: operational modes, remaining retained modes, outside dictionary", "truth projection error and detector response of projection remainder", "training-data fit and actual noise", "pairwise seed differences in observable and weak subspaces"],
+  "candidate_correction": "Freeze each neural field; add source-normalized modes with amplitude*s>=threshold to remove its residual projected on their left singular vectors. A single deterministic linear correction, no optimization. Compare to pure spectral reconstruction and original field. Keep negative or worse outcomes.",
+  "validation": "Re-evaluate corrected detector response with physical q10 vsq16 and frozen chart q24. Include forward operator difference and correction-specific noise-whitened discrepancy. No continuum-bound claim from pair agreement.",
+  "target_nuisance_stress": "Existing two known pulse amplitudes; retain original7 background functions and add each spline dictionary as unknown nuisance. Reorthonormalize combined nuisance on source grid; profile at1e-8/1e-10/1e-12 response rank tolerances. No dynamics penalty counted as data information; singular values below numerical error get unresolved/zero-compatible status, not invented confidence.",
+  "ambiguity_witness": "In largest class, project a fixed smooth trial onto numerical response nullspace (rtol1e-10); fallback first numerical-null right vector if projection vanishes. Normalize RMS; scale amplitude min(0.1,0.5/max|witness|) over declared evaluation/ref10/ref16/q24 sets. Show1plus/minus mode remain positive at checked points. Store source separation and physical q10/q16 data differences. Samplewise positivity not uniform positivity proof.",
+  "gates": {"source_orthonormality":1e-8,"Pythagorean_relative_error":1e-8,"response_numerical_agreement_whitened":0.1,"relative":0.0005,"no_unknown_filled_as_zero":true},
+  "reporting": "Explicit basis/noise/norm dependence; weak does not mean exact null. Existing sources previously inspected, so development readback not fresh holdout. No claims about more than one patch or an actual telescope.",
+  "resources": {"new_rays":0,"new_physical_path_integrals":0,"new_critical_or_hull_roots":0,"new_neural_fits":0,"new_source_mode_operator_constructions":3,"CPU_threads":1,"memory_GiB":4,"compute_seconds":900,"PaperI_remaining":854},
+  "registration": "Written before new spectra/source decompositions/corrections; commit protocol and source hashes before numerical outcomes. Code/source bug corrections require new additive attempt and disclosure, not threshold change."
+}

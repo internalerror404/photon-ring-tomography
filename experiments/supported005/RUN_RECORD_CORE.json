@@ -1,0 +1,149 @@
+{
+  "experiment": "Mahakal II support/prior separation005",
+  "base_commit": "54dbf7611f1e30b146da4cd65ab504560702d746",
+  "registration_commit": "2a5cc4df7f9134ea89094baf28d080d512d56dea",
+  "status": "MODE_OVERWRITE_NOT_PROMOTED; CONDITIONAL_IDENTIFIABILITY_AND_SOURCE_NORM_LIMITS_ESTABLISHED_AT_NUMERICAL_SCOPE",
+  "primary_readback_count": 12,
+  "neural_training": 0,
+  "rays": 0,
+  "PaperI_remaining": 854,
+  "box_metric_postplanned": true,
+  "box_comparison_count": 72,
+  "box_primary_comparisons_worse": 12,
+  "box_primary_correction_medians": [
+    {
+      "scenario": "background",
+      "method": "data_only",
+      "raw_box_error": 0.5588120892006362,
+      "corrected_box_error": 0.645866196133453,
+      "raw_chart_error": 0.2194707796754218,
+      "corrected_chart_error": 0.3121275676271729,
+      "raw_whitened_residual": 9.733378383685347,
+      "corrected_whitened_residual": 7.880267518088228
+    },
+    {
+      "scenario": "background",
+      "method": "robust_pinn",
+      "raw_box_error": 0.5936174654883909,
+      "corrected_box_error": 0.675554184194767,
+      "raw_chart_error": 0.2186587792427603,
+      "corrected_chart_error": 0.3069891622657025,
+      "raw_whitened_residual": 9.70434261240193,
+      "corrected_whitened_residual": 7.872613651281755
+    },
+    {
+      "scenario": "events",
+      "method": "data_only",
+      "raw_box_error": 0.9170420440137449,
+      "corrected_box_error": 0.9278507627174776,
+      "raw_chart_error": 0.16067055942589653,
+      "corrected_chart_error": 0.1676455589544885,
+      "raw_whitened_residual": 8.723189546519553,
+      "corrected_whitened_residual": 7.748272989065511
+    },
+    {
+      "scenario": "events",
+      "method": "robust_pinn",
+      "raw_box_error": 0.7958277405277834,
+      "corrected_box_error": 0.8120008263305402,
+      "raw_chart_error": 0.15420694638822055,
+      "corrected_chart_error": 0.16357308397965106,
+      "raw_whitened_residual": 8.845536882750192,
+      "corrected_whitened_residual": 7.837543039971138
+    }
+  ],
+  "positive_source_witness": {
+    "scope": "fixed polynomial field in declared box; uniform positivity follows from basis envelope, with a numerical safety margin",
+    "source_norm": "normalized box r dr dphi dt",
+    "null_rank_tolerance": 1e-10,
+    "numerical_null_dimension": 187,
+    "analytic_coefficient_sup_envelope": 18.202033237914712,
+    "one_sided_box_RMS": 0.02746945868431903,
+    "two_history_box_RMS_separation": 0.05493891736863806,
+    "guaranteed_minimum_j_from_basis_bound": 0.5000000000005,
+    "chart_pullback_RMS_separation": 0.007742057030463141,
+    "reference16_whitened_difference": 1.0887344161010228e-14,
+    "reference10_whitened_difference": 1.4295030255691859e-05,
+    "classical33_q24_whitened_difference": 1.8778097296883776e-06
+  },
+  "box_supported_counts": [
+    {
+      "basis": "B72",
+      "source_dimension": 72,
+      "numerical_response_rank": 72,
+      "modes_SNR1": 50,
+      "modes_SNR5": 41
+    },
+    {
+      "basis": "B135",
+      "source_dimension": 135,
+      "numerical_response_rank": 120,
+      "modes_SNR1": 74,
+      "modes_SNR5": 60
+    },
+    {
+      "basis": "B315",
+      "source_dimension": 315,
+      "numerical_response_rank": 128,
+      "modes_SNR1": 118,
+      "modes_SNR5": 103
+    }
+  ],
+  "oracle_actual_signal_count_primary_rho5": {
+    "background": 9,
+    "events": 19,
+    "nominal_modes": 60,
+    "used_to_select_estimator": false
+  },
+  "mean_weak_squared_error_fraction": {
+    "background_data": 0.8391258021844289,
+    "background_pinn": 0.8419121807762541,
+    "events_data": 0.955465114532859,
+    "events_pinn": 0.9506950004960716
+  },
+  "profiled_pulse_singular_values": {
+    "old7": [
+      49.94718386791838,
+      41.65077101634471
+    ],
+    "old7_plus72": [
+      2.959641359902275,
+      2.015846799658645
+    ],
+    "old7_plus315": [
+      1.1095707092939026e-13,
+      1.0493161020862555e-13
+    ]
+  },
+  "profiling_scope": "signed unbounded nuisance; fixed template shapes; not arbitrary-image confidence",
+  "original_failed_checks": {
+    "sample135_orthonormality": 4.541971354164318e-08,
+    "orthonormality_limit": 1e-08,
+    "weak_threshold_corrected_field_whitened_failures": 3
+  },
+  "same_span_precision_closeout": {
+    "same_span_source_metric_reorthonormalized": true,
+    "operational_counts_unchanged": true,
+    "original_failed_records_retained": true
+  },
+  "source_loss_refinement": {
+    "max_12_16": 8.751132085788038e-06,
+    "same_gate_pass": true
+  },
+  "reporting_correction": "Initial box chart-only relative-error columns corrected additively; no estimator/full-box loss/spectrum change.",
+  "seconds": {
+    "primary": 6.829314564000015,
+    "precision_closeout": 8.954163711999968,
+    "box_diagnostic": 12.501028789999964,
+    "report_readback": 1.5406699629999139
+  },
+  "limitations": [
+    "one previously chosen order2 chart; no direct-image comparison or observational feasibility",
+    "source dictionaries/norm/amplitude thresholds control mode counts; not nonlinear-neural identifiability certificates",
+    "source error outside chosen dictionary can affect observations; nonzero projection bias must remain explicit",
+    "extended signed-nuisance model has no bound or positivity prior; its loss of amplitude identifiability is conditional",
+    "new full-box norm changes the target relative to original chart-sample metric; reported separately",
+    "no source-training data or threshold selected from oracle coefficient readback",
+    "null witness is a fixed positive polynomial field; near-equivalent observations checked numerically, not globally rigorously enclosed"
+  ]
+}
