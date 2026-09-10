@@ -1,0 +1,37 @@
+{
+  "DIRECT_PHYSICAL": {
+    "information_known": true,
+    "information_conditional": true,
+    "n_operational_known": true,
+    "n_operational_conditional": true,
+    "nuisance_rank": true
+  },
+  "DIRECT_PHYSICAL_rebuilt": {
+    "information_known": 0.0,
+    "information_conditional": 0.0,
+    "n_operational_known": 0,
+    "n_operational_conditional": 0,
+    "nuisance_rank": 140
+  },
+  "RESOLVED_PHYSICAL_s_top3_rebuilt": [
+    1.4371649013558634,
+    1.3458732686433825,
+    0.8062804378838909
+  ],
+  "RESOLVED_PHYSICAL": {
+    "information_known": true,
+    "information_conditional": true,
+    "n_operational_known": true,
+    "n_operational_conditional": true,
+    "nuisance_rank": true,
+    "s_conditional_top3": true
+  },
+  "RESOLVED_PHYSICAL_rebuilt": {
+    "information_known": 11.0536601416515,
+    "information_conditional": 7.198318097661488,
+    "n_operational_known": 3,
+    "n_operational_conditional": 2,
+    "nuisance_rank": 152
+  },
+  "all_pass": true
+}

@@ -1,0 +1,11 @@
+reproduction gate: PASS
+  RESOLVED_PHYSICAL  {'information_known': True, 'information_conditional': True, 'n_operational_known': True, 'n_operational_conditional': True, 'nuisance_rank': True, 's_conditional_top3': True}
+  DIRECT_PHYSICAL    {'information_known': True, 'information_conditional': True, 'n_operational_known': True, 'n_operational_conditional': True, 'nuisance_rank': True}
+    0  ops 0  trFcond 0.000000  s ['0.0000', '0.0000', '0.0000']  nrank 140  angles -
+    1  ops 2  trFcond 6.073790  s ['1.3947', '1.2706', '0.7491']  nrank 120  angles 2.4416;1.6261
+    2  ops 0  trFcond 0.417208  s ['0.2257', '0.2210', '0.1971']  nrank 96  angles -
+   01  ops 2  trFcond 6.276810  s ['1.4098', '1.2954', '0.7606']  nrank 148  angles 3.2121;1.3642
+   02  ops 0  trFcond 0.454620  s ['0.2356', '0.2262', '0.2103']  nrank 152  angles -
+   12  ops 2  trFcond 6.983964  s ['1.4166', '1.3210', '0.7926']  nrank 124  angles 1.9115;0.4522
+  012  ops 2  trFcond 7.198318  s ['1.4372', '1.3459', '0.8063']  nrank 152  angles 0.0000;0.0000
+  runtime 25s

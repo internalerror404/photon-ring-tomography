@@ -1,0 +1,49 @@
+{
+  "schema": "phrt-completion/1",
+  "id": "ORDER_ATTRIBUTION_TRIAGE_041_COMPLETION",
+  "instruction": "ORDER_ATTRIBUTION_TRIAGE_FIRST",
+  "generated_utc": "2026-09-10T21:44:41Z",
+  "commit": "e3c4d0d9fdf13a17d1b8831f4cbc75630ce81885",
+  "return_status": "ORDER_ATTRIBUTION_TRIAGE_041_COMPLETE",
+  "authorizes_funded_replay": false,
+  "authorizes_submission": false,
+  "reproduction_gate": true,
+  "headline": {
+    "two_modes_survive_without_order_2": true,
+    "subset_without_order_2": "01",
+    "s1_without_order_2": 1.4098,
+    "s2_without_order_2": 1.2954,
+    "trF_cond_retained_without_order_2": 0.872,
+    "max_principal_angle_deg_vs_full_two_mode": 3.2121,
+    "order_1_energy_fraction_mode_1": 0.9690458678960125,
+    "order_1_energy_fraction_mode_2": 0.9564466928415172,
+    "collapses_without_order_1": true,
+    "direct_order_nuisance_pinning_gain_trF": 0.20302
+  },
+  "decision_tree_row": "two singular values remain >1 with small subspace angles",
+  "scope_limits": [
+    "dependence inside the frozen model at one geometry, one SNR label, one source class",
+    "not robustness to physical-operator error; transfer quadrature remains unqualified",
+    "0.511603 is a diagnostic-column discrepancy, not ||Delta B_cond||_2; no Weyl margin is read against it",
+    "dropping order 2 removes its target signal and its nuisance rows together"
+  ],
+  "resources": {
+    "convention": "B",
+    "second_batch_spent": 19146,
+    "second_batch_remaining": 854,
+    "spent_under_this_instruction": 0,
+    "boundary_spent": 33410,
+    "new_rays": 0,
+    "new_truths": 0,
+    "new_estimators": 0
+  },
+  "old_results_or_flags_rewritten": false,
+  "files": {
+    "ORDER_ATTRIBUTION_041.csv": "4dafb9ad1b0f7fb3bb570040f41c9712588fb1fd0dd3467518e9fd79348f825e",
+    "ORDER_ATTRIBUTION_041_RETURN.md": "051661d07346045e26b0e772cf7292aa4ef5c3cb97f1120ea7a0c8e247ff3bd8",
+    "ORDER_ENERGY_FRACTIONS_041.json": "7d74d2a199d84eccb64e7c39444547d1d702fe811a77949e3766bfc8e7e7a52f",
+    "REPRODUCTION_GATE_041.json": "2d2c25b145655254560c804cf7eccccec89770ec5cefec2731ceee29505976d2",
+    "run.log": "eb57ad1e28f2b0332d3dc5b44d3e2820cb31173a124caf8b5bdfb95602b972ce",
+    "scripts/revision_v4_1/t041_order_attribution.py": "6e514ddd05948d09a5b399dadaa97d7961e323ade0a0a61a4b768bfdcaf494a9"
+  }
+}

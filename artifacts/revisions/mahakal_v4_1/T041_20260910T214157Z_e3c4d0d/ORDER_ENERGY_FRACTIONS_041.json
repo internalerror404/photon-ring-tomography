@@ -1,0 +1,53 @@
+{
+  "schema": "phrt-order-attribution/1",
+  "definition": "f[j,n] = ||P_n B_cond v_j||^2 / s_j^2 for the full-stack conditional modes; P_n selects the whitened row block of order n. Sums to one across orders by construction.",
+  "geometry": "a050_i050",
+  "snr_label": 100.0,
+  "rho": 1.0,
+  "sigma": 0.011341986814407568,
+  "rtol": 1e-12,
+  "target_columns": 72,
+  "nuisance_columns": 152,
+  "modes": [
+    {
+      "mode": 1,
+      "singular_value": 1.4371649013558636,
+      "f_order0": 0.01778760295194627,
+      "f_order1": 0.9690458678960125,
+      "f_order2": 0.013166529152040488,
+      "sum": 0.9999999999999993
+    },
+    {
+      "mode": 2,
+      "singular_value": 1.3458732686433836,
+      "f_order0": 0.015973325608196923,
+      "f_order1": 0.9564466928415172,
+      "f_order2": 0.02757998155028526,
+      "sum": 0.9999999999999994
+    },
+    {
+      "mode": 3,
+      "singular_value": 0.806280437883891,
+      "f_order0": 0.015580716038859974,
+      "f_order1": 0.9181540289984097,
+      "f_order2": 0.06626525496272828,
+      "sum": 0.999999999999998
+    },
+    {
+      "mode": 4,
+      "singular_value": 0.7117333935908865,
+      "f_order0": 0.0060832413762786286,
+      "f_order1": 0.9563786350797364,
+      "f_order2": 0.03753812354398406,
+      "sum": 0.9999999999999991
+    },
+    {
+      "mode": 5,
+      "singular_value": 0.6531315669702746,
+      "f_order0": 0.008785813387287128,
+      "f_order1": 0.8883895981338743,
+      "f_order2": 0.10282458847883746,
+      "sum": 0.9999999999999989
+    }
+  ]
+}
