@@ -1,0 +1,234 @@
+{
+  "schema": "phrt-core-fine-feasibility/1",
+  "geometry": "a050_i050",
+  "stack": [
+    0,
+    1
+  ],
+  "snr_label": 100.0,
+  "sigma": 0.011341986814407568,
+  "rho": 1.0,
+  "rtol": 1e-12,
+  "target_columns": 72,
+  "nuisance_columns": 152,
+  "gram_nodes": 12800,
+  "interpolation_between_grids": "none; each construction evaluates the declared basis at its own landing coordinates, so no support is zero-filled and none is dropped",
+  "archived_gate_pass": true,
+  "archived_gate": {
+    "s1": {
+      "rebuilt": 1.4097846220742734,
+      "expected": 1.4098
+    },
+    "s2": {
+      "rebuilt": 1.295447068827181,
+      "expected": 1.2954
+    },
+    "s3": {
+      "rebuilt": 0.7605707131119621,
+      "expected": 0.7606
+    },
+    "trF": {
+      "rebuilt": 6.276810432342233,
+      "expected": 6.27681
+    }
+  },
+  "support": {
+    "ARCHIVED": {
+      "order_0": {
+        "rays": 1536,
+        "rows": 12288,
+        "quadrature_sum": 2495.5200000000013,
+        "response_mass_dOmega_g6": 1975.9206128362775,
+        "source_r_min": 1.8866785591673356,
+        "source_r_max": 43.28354177320732,
+        "rays_outside_declared_annulus": 0
+      },
+      "order_1": {
+        "rays": 1536,
+        "rows": 12288,
+        "quadrature_sum": 54.59840000000003,
+        "response_mass_dOmega_g6": 20.89152437308823,
+        "source_r_min": 1.8668247809562608,
+        "source_r_max": 49.88826512210186,
+        "rays_outside_declared_annulus": 0
+      }
+    },
+    "CORE_ALL": {
+      "order_0": {
+        "rays": 15597,
+        "rows": 124776,
+        "quadrature_sum": 2495.5200000000013,
+        "response_mass_dOmega_g6": 1992.0304451510685,
+        "source_r_min": 1.8813616055636389,
+        "source_r_max": 44.199752712927236,
+        "rays_outside_declared_annulus": 0
+      },
+      "order_1": {
+        "rays": 8531,
+        "rows": 68248,
+        "quadrature_sum": 54.59840000000002,
+        "response_mass_dOmega_g6": 20.950622280472544,
+        "source_r_min": 1.8668247809562608,
+        "source_r_max": 49.968925464258135,
+        "rays_outside_declared_annulus": 0
+      }
+    },
+    "FINE_ALL": {
+      "order_0": {
+        "rays": 61635,
+        "rows": 493080,
+        "quadrature_sum": 2465.4000000000015,
+        "response_mass_dOmega_g6": 1966.5526274625126,
+        "source_r_min": 1.8663422453461578,
+        "source_r_max": 44.44325713275991,
+        "rays_outside_declared_annulus": 0
+      },
+      "order_1": {
+        "rays": 34278,
+        "rows": 274224,
+        "quadrature_sum": 54.84480000000002,
+        "response_mass_dOmega_g6": 21.050858048263393,
+        "source_r_min": 1.8666406475757429,
+        "source_r_max": 49.99844310192826,
+        "rays_outside_declared_annulus": 2
+      }
+    }
+  },
+  "spectra": {
+    "ARCHIVED": {
+      "s_top5": [
+        1.4097846220742734,
+        1.295447068827181,
+        0.7605707131119621,
+        0.6935096902427866,
+        0.6003197024453178
+      ],
+      "n_operational": 2,
+      "information_conditional": 6.276810432342233,
+      "nuisance_rank": 148
+    },
+    "CORE_ALL": {
+      "s_top5": [
+        1.3972571736187138,
+        1.2130013870957495,
+        0.6775656291359641,
+        0.6373596066029295,
+        0.5634169873084719
+      ],
+      "n_operational": 2,
+      "information_conditional": 5.977208631348279,
+      "nuisance_rank": 148
+    },
+    "FINE_ALL": {
+      "s_top5": [
+        1.4078875400384188,
+        1.2485071047694565,
+        0.6804904712563318,
+        0.6618397855376693,
+        0.5781480867918666
+      ],
+      "n_operational": 2,
+      "information_conditional": 6.31779632988899,
+      "nuisance_rank": 148
+    }
+  },
+  "comparisons": [
+    {
+      "label": "subsample effect",
+      "from": "ARCHIVED",
+      "to": "CORE_ALL",
+      "gram_difference_operator_norm": 0.49544437861099483,
+      "gram_difference_frobenius": 0.6522013875475884,
+      "max_abs_singular_value_change": 0.08300508397599804,
+      "singular_value_changes_top3": [
+        -0.012527448455559531,
+        -0.08244568173143163,
+        -0.08300508397599804
+      ],
+      "operational_count": [
+        2,
+        2
+      ],
+      "information_conditional": [
+        6.276810432342233,
+        5.977208631348279
+      ],
+      "nuisance_rank": [
+        148,
+        148
+      ],
+      "principal_angles_deg_operational_subspaces": [
+        12.151603403767497,
+        4.96233257473143
+      ],
+      "max_principal_angle_deg": 12.151603403767497
+    },
+    {
+      "label": "refinement effect",
+      "from": "CORE_ALL",
+      "to": "FINE_ALL",
+      "gram_difference_operator_norm": 0.20501317673462474,
+      "gram_difference_frobenius": 0.2646068502572328,
+      "max_abs_singular_value_change": 0.0524411218939112,
+      "singular_value_changes_top3": [
+        0.01063036641970494,
+        0.03550571767370703,
+        0.002924842120367699
+      ],
+      "operational_count": [
+        2,
+        2
+      ],
+      "information_conditional": [
+        5.977208631348279,
+        6.31779632988899
+      ],
+      "nuisance_rank": [
+        148,
+        148
+      ],
+      "principal_angles_deg_operational_subspaces": [
+        6.297057763973783,
+        0.758827399845785
+      ],
+      "max_principal_angle_deg": 6.297057763973783
+    },
+    {
+      "label": "archived to refined",
+      "from": "ARCHIVED",
+      "to": "FINE_ALL",
+      "gram_difference_operator_norm": 0.5371115967803752,
+      "gram_difference_frobenius": 0.746443273931639,
+      "max_abs_singular_value_change": 0.08008024185563034,
+      "singular_value_changes_top3": [
+        -0.0018970820358545915,
+        -0.046939964057724604,
+        -0.08008024185563034
+      ],
+      "operational_count": [
+        2,
+        2
+      ],
+      "information_conditional": [
+        6.276810432342233,
+        6.31779632988899
+      ],
+      "nuisance_rank": [
+        148,
+        148
+      ],
+      "principal_angles_deg_operational_subspaces": [
+        16.900107130380643,
+        5.524001346947701
+      ],
+      "max_principal_angle_deg": 16.900107130380643
+    }
+  ],
+  "threshold_margins": {
+    "s2_minus_rho_core_all": 0.21300138709574945,
+    "rho_minus_s3_core_all": 0.3224343708640359,
+    "s2_minus_rho_fine_all": 0.24850710476945648,
+    "rho_minus_s3_fine_all": 0.3195095287436682
+  },
+  "operator_norm_note": "The three constructions have different row counts, so B_fine - B_core is not an operator and has no norm. The reported quantity is the operator norm of the difference of the 72x72 conditional Grams in source-normalized target coordinates; by Weyl it bounds every change in a squared singular value."
+}

@@ -1,0 +1,8 @@
+ARCHIVED  ops 2  trFcond 6.276810  s ['1.4098', '1.2954', '0.7606']  nrank 148  [1s]
+CORE_ALL  ops 2  trFcond 5.977209  s ['1.3973', '1.2130', '0.6776']  nrank 148  [5s]
+FINE_ALL  ops 2  trFcond 6.317796  s ['1.4079', '1.2485', '0.6805']  nrank 148  [22s]
+archived gate: PASS
+  subsample effect     ||dGram||2 4.9544e-01  max|ds| 8.3005e-02  ops [2, 2]  angle 12.151603403767497
+  refinement effect    ||dGram||2 2.0501e-01  max|ds| 5.2441e-02  ops [2, 2]  angle 6.297057763973783
+  archived to refined  ||dGram||2 5.3711e-01  max|ds| 8.0080e-02  ops [2, 2]  angle 16.900107130380643
+  runtime 22s

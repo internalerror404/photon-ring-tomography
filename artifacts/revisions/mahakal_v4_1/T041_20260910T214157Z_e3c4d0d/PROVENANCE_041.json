@@ -1,0 +1,23 @@
+{
+  "schema": "phrt-provenance/2",
+  "id": "ORDER_ATTRIBUTION_041_PROVENANCE",
+  "supersedes_field": "the single generic 'commit' field of ORDER_ATTRIBUTION_041_COMPLETION.json, which recorded the execution base and could be read as either",
+  "written_utc": "2026-09-10T22:03:15Z",
+  "execution_base_commit": "e3c4d0d9fdf13a17d1b8831f4cbc75630ce81885",
+  "execution_base_subject": "Strengthen Mahakal manuscript with constructive feedback: complete revision042",
+  "execution_base_note": "the tree the operator was rebuilt from and the run directory name is stamped with; no campaign artifact was modified at this commit",
+  "delivery_commit": "91596ff1c382c0e6b1c11161735651e92076a96d",
+  "delivery_subject": "041: order-attribution triage - the two surviving modes do not need order 2",
+  "addendum_commit": "391c23cc45b75d7c42270269a7acc263e284eb6e",
+  "addendum_subject": "041: record the suite result additively",
+  "branch": "research/mahakal_v4_1",
+  "inputs_read_not_written": [
+    "artifacts/configs/R1_MAIN_FREEZE.json",
+    "artifacts/raymaps/a050_i050_n{0,1,2}_core.h5",
+    "artifacts/revisions/mahakal_v4_1/R0_20260906T070540Z_38e1f8a/ (archived R2 endpoints, for the gate)"
+  ],
+  "completion_record_bytes_unchanged": true,
+  "sha256_of_completion_record": "33e29ed80764e1faeda6d22fd386118db86f5fecf2523a6fc22188556154e967",
+  "suite": "691 passed, 2 warnings in 320.18s (0:05:20)",
+  "suite_changes_scientific_ruling": false
+}
