@@ -1,0 +1,137 @@
+{
+  "revision": "042",
+  "input_file": "Photon_Ring_Retarded_Time_Tomography_041(1).pdf",
+  "input_sha256": "4b0e112b321c2c1de7bcbe0aeb7aac39db776385884eeab08b1ca6a1a17d8b1f",
+  "base_repository_commit": "518c255e25b404da70960e96b914c4167938f691",
+  "baseline_pdf_matches_uploaded_file": true,
+  "pdf_pages": 26,
+  "pdf_sha256": "2b28eff90549d7b11e682fd1eefca4729b83321af80325b20bcd86d85a8dec46",
+  "pdf_bytes": 327602,
+  "numbered_equations": 43,
+  "figures": 4,
+  "tables": 9,
+  "references": 14,
+  "abstract_whitespace_token_count": 268,
+  "original_block_preservation": {
+    "equation": {
+      "old_count": 40,
+      "new_count": 40,
+      "all_original_blocks_byte_equal": true
+    },
+    "align": {
+      "old_count": 3,
+      "new_count": 3,
+      "all_original_blocks_byte_equal": true
+    },
+    "figure": {
+      "old_count": 4,
+      "new_count": 4,
+      "all_original_blocks_byte_equal": true
+    },
+    "theorem": {
+      "old_count": 1,
+      "new_count": 1,
+      "all_original_blocks_byte_equal": true
+    },
+    "corollary": {
+      "old_count": 2,
+      "new_count": 2,
+      "all_original_blocks_byte_equal": true
+    },
+    "definition": {
+      "old_count": 1,
+      "new_count": 1,
+      "all_original_blocks_byte_equal": true
+    },
+    "proof": {
+      "old_count": 1,
+      "new_count": 1,
+      "all_original_blocks_byte_equal": true
+    },
+    "tabular": {
+      "old_count": 7,
+      "new_count": 7,
+      "all_original_blocks_byte_equal": true
+    },
+    "longtable": {
+      "old_count": 1,
+      "new_count": 1,
+      "all_original_blocks_byte_equal": true
+    },
+    "unchanged_source_files": {
+      "sections/07_appendices.tex": false,
+      "sections/04_results.tex": false,
+      "sections/02_forward.tex": true,
+      "sections/01_introduction.tex": false,
+      "sections/03_information.tex": true,
+      "sections/06_validation_discussion.tex": false,
+      "sections/05_recovery.tex": true
+    }
+  },
+  "compile_engine": "pdfLaTeX via latexmk",
+  "unresolved_citations_or_refs": false,
+  "overfull_boxes": 0,
+  "font_warning": "Font-size substitutions up to 0.5pt; no missing glyph reported.",
+  "rendering": "pdftoppm at 110 dpi, all 26 final pages; contact sheets visually inspected, enlarged overview table and text checks. The original selected pages were rendered before editing.",
+  "scope": "Editorial/literature revision only. Preserved source blocks are verified as bytes, not newly verified experimental outcomes.",
+  "scientific_experiments_run": false,
+  "production_suite_run": false,
+  "rays_or_physical_integrals": 0,
+  "new_result_values": false,
+  "PaperII_results_used_as_PaperI_validation": false,
+  "files": {
+    "Photon_Ring_Retarded_Time_Tomography_042.tex": {
+      "sha256": "452b2d20b0be30482de0d62de32ce300df7c6844cc35cbf52db5728518599698",
+      "git_blob": "e03edfbbf8506fb5f07aea2729bdb092d43444e6",
+      "bytes": 96834
+    },
+    "main.tex": {
+      "sha256": "ca21f8f065dfb995fe830cd7e8558e9bd4cd8918b2b4ca0eecde198fd8b02973",
+      "git_blob": "4b4c513ea632dcb0b8a04f5c0567e41d2d29dea5",
+      "bytes": 3016
+    },
+    "references.tex": {
+      "sha256": "b8d85a62275c98a2486049e7d6ef2febf2b16ff4aa06358c906609da8367ff4b",
+      "git_blob": "04457cb5d039e18d5cabf609aa0dabe79dda0d5e",
+      "bytes": 3063
+    },
+    "sections/01_introduction.tex": {
+      "sha256": "3d14724e17b38f169730b5f0c37b5883d3fca808e64052816f848382a9a61125",
+      "git_blob": "5142874bff6bc9808362c9791046bd7d03d0d46c",
+      "bytes": 11479
+    },
+    "sections/02_forward.tex": {
+      "sha256": "cc14d628cf867a5d72e6ce4e48973b1b1fc37467e007cd7e9779699201882b7e",
+      "git_blob": "af31e14e0d90119f13728485cdc086c29cc315f7",
+      "bytes": 9681
+    },
+    "sections/03_information.tex": {
+      "sha256": "32e5ffa830db3ffa18d6c545c41c13f32cc16010b94d1f37a380f00bb7b63f10",
+      "git_blob": "bfed6502166e8a9b77f97efea5e1fdf520599dd9",
+      "bytes": 8849
+    },
+    "sections/04_results.tex": {
+      "sha256": "aeff63be7d2e8d77426fce7c68aee59029ab9d04b1af0df345c0036efeb525ad",
+      "git_blob": "5329e13e1c47990609f1c18915fd1765526f4a58",
+      "bytes": 15604
+    },
+    "sections/05_recovery.tex": {
+      "sha256": "bb520cf1ba0b130bd4f74b776f92f5a5f4e8ff04c057d19d26e182388c35c492",
+      "git_blob": "e882e1cb8532869f292091e7c6ad0fe9a6325ce4",
+      "bytes": 14542
+    },
+    "sections/06_validation_discussion.tex": {
+      "sha256": "09ef30a8e9c78d19568906c80b70f8504843d326dfb3b8c77f19c5bc29b8a7fe",
+      "git_blob": "567543c8d73acdc04db153e1e5b48aeca2b2243e",
+      "bytes": 17102
+    },
+    "sections/07_appendices.tex": {
+      "sha256": "76d8e31638c88f50267e03314dd9d9c3dc16439b7e3aa526539ad71f0c5e00a6",
+      "git_blob": "c402e17840dd57736beb06ffb569b146b0d375c5",
+      "bytes": 13248
+    }
+  },
+  "single_file_source_compiles": true,
+  "single_file_and_modular_pdf_text_identical": true,
+  "all_six_modified_tex_blob_identities_match_GitHub_upload": true
+}

@@ -1,0 +1,99 @@
+\section{Retarded-time forward model}\label{sec:forward}
+\subsection{Geometry, transfer maps, and the source}
+We use geometrized units $G=c=1$; a time reported as $aM$ corresponds to $aGM/c^3$. The dimensionless spin is $a_\star$, the inclination is $i$, and $\gamma=(a_\star,i)$ denotes a geometry, avoiding confusion between the metric and the redshift factor. Let $j(r,\phi,t)$ be the declared equatorial emissivity field. Frequency and polarization are suppressed in this scalar model. For screen coordinate $\xi=(\alpha,\beta)$ and observer time $t_o$, define
+\begin{equation}
+(\mathcal T_{\gamma,n}j)(\xi,t_o)
+=\chi_{\gamma,n}(\xi)\,w_{\gamma,n}(\xi)
+ j\!\left(r_{\gamma,n}(\xi),\phi_{\gamma,n}(\xi),t_o-\Delta_{\gamma,n}(\xi)\right).
+\label{eq:transfer}
+\end{equation}
+The mask $\chi$ specifies a physically allowed crossing in the emitting domain. The intensity factor $w$ includes the declared $g^3$ redshift contribution. Pixel area is kept separate. The archived coefficient implementation uses $|g|^3$; this convention is retained when describing those computations rather than silently changing their treatment of the stored redshift values.
+
+The labels $n=0,1,2$ denote the direct band and first two retained indirect bands. They are operational image-order labels, not a statement that every ray completes exactly $n$ full orbits. At the reference geometry the archived delay ranges are approximately $[0,57.9]M$, $[46.3,103.4]M$, and $[62.4,120.2]M$. They are broad and overlapping. These ranges use the legacy delay convention; they must not be combined with a separately recentered detector audit as if the clocks were identical.
+
+For a continuous observer interval $\mathcal O$, a bounding interval for the order's source-time footprint is
+\begin{equation}
+\left[t_{o,\min}-\Delta_{n,\max},\ t_{o,\max}-\Delta_{n,\min}\right].
+\label{eq:boundingfootprint}
+\end{equation}
+For discrete calculations we use the actual sampled retarded times, not the assertion that every point in this bounding interval is sampled. Extending the observing window can increase direct-image reach as well as indirect-image reach. An order-specific extension is therefore a comparison between footprints under the same observer schedule.
+
+\subsection{Finite source representations}
+A synthesis map $Q_d:\R^d\rightarrow X$ defines the linear source space
+\begin{equation}
+\mathcal S_d=\range(Q_d),\qquad A_{\gamma,n}^{(d)}=\mathcal T_{\gamma,n}Q_d
+\quad\text{after the specified sampling and measurement map}.
+\label{eq:restriction}
+\end{equation}
+The continuum map, its sampled matrix, and a bounded collection of source histories are distinct objects. A linear space is not a bounded source set. When a deterministic stability statement needs boundedness, we specify a compact coefficient set $K\subset\R^d$ and use $Q_dK$. A finite sealed bank is compact as a set of stored histories, but an empirical result on that bank is not a uniform guarantee on its convex hull or on a continuous source-family distribution.
+
+The global reference representation, named \texttt{C224} in the archive, uses
+\begin{equation}
+4\text{ radial factors}\ \times\ 7\text{ real azimuthal factors}\ \times\ 8\text{ temporal factors}=224.
+\label{eq:c224}
+\end{equation}
+The radial factors are clamped cubic B-splines on knots in $\log r$. The azimuthal factors are $1$, $\cos(m\phi)$, and $\sin(m\phi)$ for $m=1,2,3$. The temporal factors are global cosine/DCT modes on the declared source-time window. At the reconstruction geometry, the support bounds are
+\begin{align}
+r&\in[1.8660386527060988,\ 49.98205255591607]M,\nonumber\\
+t&\in[-128.82234649196255,\ 29]M.
+\label{eq:referencebounds}
+\end{align}
+The reference observer schedule consists of eight equally spaced samples from $0$ to $20M$.
+
+The localized \texttt{L} representations replace the global temporal factor by compactly supported degree-one B-splines. This replacement changes the mathematical question: it permits source directions supported entirely outside the sampled direct footprint. It is not merely a new name for the global representation. The HMT-2 classes \texttt{L448\_contrast} and \texttt{L896\_radial\_enriched} have nominal factorizations $4\times7\times16$ and $8\times7\times16$. Their inversion removes the axisymmetric factor, leaving 384 and 768 active contrast coefficients. Class identifiers and active fitted dimensions are stated separately.
+
+\subsection{Screen measurement and noise}
+For retained screen sample $p$, let $a_p$ be its declared screen quadrature weight. The archived order-labelled datum is an integrated flux,
+\begin{equation}
+z_p=a_p|g_p|^3 j(r_p,\phi_p,t_o-\Delta_p)+\epsilon_p,
+\qquad \operatorname{Var}(\epsilon_p)=\sigma_\Omega^2 a_p.
+\label{eq:fluxnoise}
+\end{equation}
+Its whitened source-design row is
+\begin{equation}
+B_{p,:}=\frac{\sqrt{a_p}}{\sigma_\Omega}|g_p|^3
+\,Q_d(r_p,\phi_p,t_o-\Delta_p).
+\label{eq:whitenedrow}
+\end{equation}
+A pixel-average intensity would instead have variance $\sigma_\Omega^2/a_p$; converting between averages and integrated flux requires transforming both signal and covariance. Artificial subdivision of a constant-field cell should leave its total information unchanged under this model. This algebraic property does not establish that a particular set of screen weights accurately approximates the continuous sky.
+
+For a stacked order-labelled data vector $z_R$, any prescribed linear readout $L$ has
+\begin{equation}
+z_L=Lz_R,\qquad C_L=LC_RL^T.
+\label{eq:readout}
+\end{equation}
+The same parent noise realization can therefore be used for paired comparisons. A derived arm is not assigned a new noise density from its own signal. The actual covariance and any supported-subspace whitening must nevertheless be specified for that readout; a general mixer can induce off-diagonal covariance.
+
+The archive's index-sum readout adds arrays with matched cardinality but independently selected ray positions. It is a well-defined linear compression of those arrays. It is \emph{not} a co-registered unresolved sky image. Likewise, index-wise substitutions of delay or source position are counterfactual array constructions, not controlled physical remappings. Total-flux readouts are different: summing all retained pixels does not require cross-order pixel correspondence. The E3C flux readout retains separate order totals, whereas the HMT-2 flux readout also sums orders. The same shorthand name must not hide those different measurement maps.
+
+\subsection{Direct-reference SNR normalization}\label{sec:snr}
+The dimensionless $\SNR$ is an operator-normalization parameter, not a current-telescope forecast. Let $B_{\gamma,r}^{(1)}$ be an arm's whitened operator at $\sigma_\Omega=1$ for a fixed geometry and radial-support setting. With constant reference emissivity $j_{\rm ref}=1$ and $m_{\gamma,0}$ direct rows, define
+\begin{equation}
+s_\gamma=\frac{\norm{B_{\gamma,0}^{(1)}j_{\rm ref}}_2}{\sqrt{m_{\gamma,0}}},
+\qquad \sigma_{\Omega,\gamma}(S)=\frac{s_\gamma}{S},
+\qquad B_{\gamma,r}(S)=\frac{S}{s_\gamma}B_{\gamma,r}^{(1)}.
+\label{eq:snr}
+\end{equation}
+Here $S=\SNR$. The noise density is shared across arms at this setting. It is recalibrated across geometries and varies across the SNR sweep. Thus the twelve-geometry experiment compares matched direct-reference SNR, not one identical absolute instrument-noise density.
+
+Equation~\eqref{eq:snr} describes the legacy calibration used by the named records. A later common-count normalization repair is not silently substituted into old tables. Most geometry cells used 1536 retained rays per order; one low-inclination Schwarzschild cell used 1483. The archived normalization audit found no physical-arm endpoint change under the common-count correction, while a nonphysical permutation-control endpoint moved by one age bin. Screen-weight corrections and reference-count corrections are separate interventions.
+
+\subsection{Unit-normalized age probes}
+The scalar historical probe is spatially constant on the declared annulus and localized in source time:
+\begin{equation}
+q_a(r,\phi,t)=\frac{\mathbf1_{[r_{\rm in},r_{\rm out}]}(r)}{N_h}
+\exp\!\left[-\frac{(t+a)^2}{2h^2}\right],\quad
+N_h^2=\pi(r_{\rm out}^2-r_{\rm in}^2)h\sqrt\pi,\quad h=3M.
+\label{eq:probe}
+\end{equation}
+It has unit squared norm under $r\,\dd r\,\dd\phi\,\dd t$ over the annulus and temporal line. This measure is a declared source norm, not a proper-volume element. The probe is evaluated directly through the sampled transfer map rather than projected into the global DCT space.
+
+Information per unit $S^2$ and information at the actual noise level are
+\begin{equation}
+\widehat\I_{\gamma,r}(a)=\frac{\norm{B_{\gamma,r}^{(1)}q_a}_2^2}{s_\gamma^2},
+\qquad \I_{\gamma,r}(a;S)=S^2\widehat\I_{\gamma,r}(a).
+\label{eq:probeinformation}
+\end{equation}
+The age mask passes when $S^2\widehat\I(a)\geq\rho^2$, with $\rho=1$. An already scaled information quantity is not multiplied by $S^2$ again. The scalar age grid spans $0$ to $252M$ in $4M$ steps. The full Gaussian enters the response; its $3h$ operational-support convention is used only for anchor bookkeeping. No independent probe-width study is reported, so a one-bin extension is a threshold-scale result.
+
+For spatially structured age questions, the same Gaussian is crossed with the radial--azimuthal factors, each normalized separately, giving 28 localized directions. Their whitened response matrix $P(a)$ defines $M(a)=P(a)^TP(a)$. The largest eigenvalue tests whether \emph{some} normalized direction in that localized family is detectable. This directional endpoint is not the scalar-probe endpoint and does not by itself define a contiguous reconstructed history.

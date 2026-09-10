@@ -1,0 +1,53 @@
+{
+  "revision": "042",
+  "checked_date": "2026-09-10",
+  "basis": "New citations and narrow related-work comparisons; existing 041 bibliography otherwise retained.",
+  "new_references": [
+    {
+      "key": "echoes2024",
+      "title": "Measuring Black Hole Light Echoes with Very Long Baseline Interferometry",
+      "authors": [
+        "George N. Wong",
+        "Lia Medeiros",
+        "Alejandro Cárdenas-Avendaño",
+        "James M. Stone"
+      ],
+      "arxiv": "2410.10950",
+      "arxiv_version_read": "v1",
+      "journal": "The Astrophysical Journal Letters 975, L40 (2024)",
+      "doi": "10.3847/2041-8213/ad8650",
+      "primary_urls": [
+        "https://arxiv.org/abs/2410.10950",
+        "https://arxiv.org/html/2410.10950"
+      ],
+      "passages_checked": "Abstract; Introduction; Sections II and III identifying echo-delay inference and interferometric proxy measurements. No independent reproduction.",
+      "use": "An existing interferometric echo-delay measurement proposal, not a claim that past source tomography is unprecedented."
+    },
+    {
+      "key": "propagation2026",
+      "title": "Light Propagation Prescriptions for Black Hole Movies",
+      "authors": [
+        "Daniel Rojas-Paternina",
+        "Alejandro Cárdenas-Avendaño"
+      ],
+      "arxiv": "2605.12659",
+      "arxiv_version_read": "v2",
+      "journal": "Physical Review D 114, 023031 (2026)",
+      "doi": "10.1103/nsg2-hy9p",
+      "primary_urls": [
+        "https://arxiv.org/abs/2605.12659",
+        "https://arxiv.org/html/2605.12659",
+        "https://journals.aps.org/prd/abstract/10.1103/nsg2-hy9p"
+      ],
+      "passages_checked": "Publisher metadata and abstract; arXiv Introduction and model/light-propagation prescription sections. No independent reproduction.",
+      "use": "Direct precedent for order-dependent delay distributions and forward-movie prescriptions; the new comparison distinguishes the source-target/nuisance inverse question."
+    }
+  ],
+  "existing_citations_checked_for_comparison": [
+    "https://arxiv.org/abs/2002.05735",
+    "https://arxiv.org/abs/2310.07687",
+    "https://arxiv.org/abs/2010.03683"
+  ],
+  "full_all_references_audit": false,
+  "priority_or_novelty_certification": false
+}
