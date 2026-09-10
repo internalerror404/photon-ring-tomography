@@ -1,0 +1,66 @@
+{
+  "revision": "044",
+  "date": "2026-09-10",
+  "basis": {
+    "manuscript043_commit": "2fac52a21860cdb6a3de6d115879b40d94a921cf",
+    "order_attribution_commit": "91596ff1c382c0e6b1c11161735651e92076a96d",
+    "cached_sampling_commit": "51c27ca462452ec1743b87309593d6385b776094"
+  },
+  "pdf": {
+    "filename": "Photon_Ring_Retarded_Time_Tomography_044.pdf",
+    "sha256": "1a7cdd9cb9cb5441bce9a015fff754711c267db119ca716c81eaa3d2bd1bbfb1",
+    "bytes": 340749,
+    "pages": 28,
+    "rendered_pages_inspected": 28,
+    "render_dpi": 140,
+    "openable": true,
+    "scanned": false,
+    "encrypted": false
+  },
+  "source": {
+    "single_file": "Photon_Ring_Retarded_Time_Tomography_044.tex",
+    "single_file_sha256": "833e99e7d7fd8cd5921114ac3411cd9fd91541440d9a069f69c2d90d4a41ef64",
+    "single_file_bytes": 107512,
+    "abstract_approx_word_count": 284,
+    "numbered_equations": 43,
+    "figures": 4,
+    "tables_including_longtable": 14,
+    "references": 14,
+    "balanced_environments": true,
+    "unique_labels": true
+  },
+  "package": {
+    "filename": "Mahakal_Manuscript_044.zip",
+    "sha256": "d2bf81bf3370fd12b597f0223b75efaf6fe668bd386cc01b98299e7d2077a0b3",
+    "bytes": 429625
+  },
+  "compile": {
+    "engine": "pdfLaTeX via latexmk",
+    "success": true,
+    "unresolved_references_or_citations": false,
+    "overfull_boxes": 0,
+    "font_warning": "Size substitution up to 0.5 pt in the abstract; no missing glyphs."
+  },
+  "scientific_execution": {
+    "new_rays": 0,
+    "new_truths": 0,
+    "new_estimators": 0,
+    "new_physical_integrals": 0,
+    "paper1_convention_B_spent": 19146,
+    "paper1_remaining_units": 854,
+    "repository_suite_rerun_for_revision044": false
+  },
+  "claims_added": [
+    "Order n=1 is the load-bearing historical channel inside the frozen operator.",
+    "Order n=0 improves nuisance rejection despite zero raw target response.",
+    "Order n=2 is not required for either above-threshold historical combination.",
+    "The operational count remains two across the available cached coarse/core/fine all-ray screen samplings.",
+    "The exact two-mode identity is less stable than its operational count."
+  ],
+  "scope_preserved": [
+    "No distance-to-continuum or full transfer-quadrature qualification.",
+    "No physical order-resolution attribution from the index-sum control.",
+    "No Paper II experiment used as Paper I validation.",
+    "The realized R1 eta remains unlocated."
+  ]
+}

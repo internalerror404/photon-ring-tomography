@@ -1,0 +1,77 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{newtxtext}
+\usepackage[a4paper,margin=25mm,headheight=15pt]{geometry}
+\usepackage{amsmath,amsthm,mathtools,bm}
+\usepackage{newtxmath}
+\usepackage{microtype,graphicx,booktabs,tabularx,array,longtable}
+\usepackage{caption,subcaption,float,placeins}
+\usepackage{tikz,pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{arrows.meta,positioning,calc,patterns}
+\usepackage{enumitem,needspace}
+\usepackage{fancyhdr}
+\usepackage[hidelinks,breaklinks]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+\hypersetup{pdftitle={Photon-Ring Retarded-Time Tomography: The Mahakal Phenomenon},pdfauthor={Hina Dixit and Abhinav Chauhan},pdfsubject={Historical reach, identifiability, and bounded recovery from higher-order images}}
+\captionsetup{font=small,labelfont=bf,labelsep=period}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0.25em}
+\setlength{\emergencystretch}{2em}
+% Keep result floats close to their discussion; avoid sparse float-only pages.
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.8}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\raggedbottom
+\renewcommand{\arraystretch}{1.17}
+\setlist{nosep,leftmargin=*}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\newcommand{\dd}{\mathrm d}
+\newcommand{\R}{\mathbb R}
+\newcommand{\A}{\mathcal A}
+\newcommand{\I}{\mathcal I}
+\newcommand{\SNR}{\mathrm{SNR}_0}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\supp}{\operatorname{supp}}
+\newcommand{\range}{\operatorname{range}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\diag}{\operatorname{diag}}
+\newcommand{\med}{\operatorname{median}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\arxiv}[1]{\href{https://arxiv.org/abs/#1}{arXiv:#1}}
+\newcommand{\doi}[1]{\href{https://doi.org/#1}{doi:#1}}
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{\small Dixit and Chauhan}
+\fancyhead[R]{\small Photon-ring retarded-time tomography}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.3pt}
+\title{\vspace{-1.1em}\textbf{Photon-Ring Retarded-Time Tomography:\\The Mahakal Phenomenon}\\[0.6em]\large Historical reach, identifiability, and bounded recovery\\from higher-order images}
+\author{Hina Dixit\qquad Abhinav Chauhan}
+\date{10 September 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Which components of a source's earlier history are distinguishable from black-hole images when the spacetime is known but the rest of the source is not? We formulate this question as retarded-time tomography and separate historical reach, historical dimension, and held-out recovery. The central finite-noise result concerns a 72-dimensional old, non-axisymmetric target within a localized 224-dimensional source model: the sampled direct operator is exactly null on the target, whereas the order-labelled stack retains two operational combinations after all other 152 coefficients are profiled out. Order attribution identifies the first indirect image as the load-bearing historical channel: omitting $n=2$ leaves both modes above threshold, while omitting $n=1$ removes them; $96.90\%$ and $95.64\%$ of their residualized response energy lie in $n=1$. Re-evaluating the $n=0,1$ operator with all cached rays at three available screen samplings leaves the operational count at two at every level, although the supported subspace changes, so the dimension is more stable than the exact mode identity. A support theorem explains the geometric mechanism. On a twelve-geometry grid at matched direct-reference $\SNR=100$, added orders extend the anchor-connected detectable span by $40M$, $24M$, and one $4M$ grid step at inclinations $20^\circ$, $50^\circ$, and $75^\circ$. Two sealed benchmarks then find a baseline-inclusive emissivity span increase from $48M$ to $80M$ in successful regimes and median paired morphology-error reductions of $0.133$ for truncated SVD and $0.164$ for ridge. The level result is baseline dominated; severe mismatch, reliable multi-feature recovery, and stable morphology intervals remain negative. These are finite-model results under ideal order labelling. Full transfer quadrature remains unqualified, and the index-sum control supplies no physical order-resolution attribution. The Mahakal phenomenon names the separation between access to earlier source times and recoverable historical content.
+\end{abstract}
+
+\section{Introduction}\label{sec:intro}
+Light from the vicinity of a black hole can reach a distant observer along substantially different null paths. Direct rays and increasingly bent higher-order rays sample different source positions and emission times. The resulting image hierarchy has established demagnification, rotation, and delay structure \cite{gralla,johnson}. For a time-dependent source, an image order is not a single delayed snapshot: its rays carry a distribution of delays, and different orders have overlapping retarded-time footprints. The inverse question is then precise: \emph{given the spacetime and an observation model, which parts of the earlier source are distinguishable even when the remaining emission is unknown?}
+
+We answer this question at three levels. \emph{Historical reach} asks which earlier source times are sampled and where a prescribed localized perturbation exceeds a sensitivity threshold. \emph{Historical dimension} counts distinguishable directions in a declared source space at finite noise, including when other source coefficients are unknown. \emph{Historical recovery} tests a fixed estimator on unseen histories under a declared loss. Separating these levels is necessary because a sampled old perturbation can be weak, can be mimicked by another source component, or can be detectable without supporting a reliable sequence of reconstructed images. The hierarchy turns an appealing delayed-image picture into distinct mathematical and experimental questions.
+
+\begin{definition}[The Mahakal phenomenon]
+We use the term for the separation between gravitational access to earlier source times and the finite-model dimension and fidelity of the history supported by the observations. Higher-order footprints can enter time regions missed by the direct footprint; resolving that history in a richer source representation can expose null or weak directions hidden by a coarser description. The relation is geometry-, noise-, and source-class-dependent. It is not a new propagation law, a statement that source enrichment always destroys injectivity, or a claim that the black hole contains a recoverable movie.
+\end{definition}
+
+The main information result concerns a 72-dimensional old, non-axisymmetric target within a 224-dimensional localized source model. At the reference geometry, every direct target column is exactly zero. After allowing the other 152 coefficients to vary as nuisance parameters, the labelled stack retains two source-normalized combinations above the declared noise threshold. These nuisance coefficients include recent emission, old axisymmetric factors, and boundary-overlapping factors. The result therefore identifie²È="25œµ±•Ù•°½µÁ…É¥Í½¸™½ÈÑ¡”€‘¸ôÀ°ÄÍÑ…¬¸€‘q¹½Éµíq•±Ñ„õ}ìÉô…¹…¹±•Ì…É”É•±…Ñ¥Ù”Ñ¼Ñ¡”ÁÉ••‘¥¹œ…±°µÉ…ä±•Ù•°°•á•ÁĞ…É¡¥Ù•‘qÑ¼‘½É”œœ…¹…É¡¥Ù•‘qÑ¼‘™¥¹”œœ…Ì±…‰•±±•¸I½Üµ½Õ¹Ğ¡…¹•Ìµ•…¸Ñ¡…Ğ„‘¥É•Ğ‘¥™™•É•¹”½˜É•Ñ…¹Õ±…È½¹‘¥Ñ¥½¹…°½Á•É…Ñ½ÉÌ¥ÌÕ¹‘•™¥¹•ìÑ¡”É•Á½ÉÑ•¹½É´¥Ì™½ÈÑ¡”€ÜÉqÑ¥µ•ÌÜÈ½¹‘¥Ñ¥½¹…°É…´¹ô)q±…‰•±íÑ…ˆéÍ…µÁ±¥¹‘•Ñ…¥±Íô)q‰•¥¹íÑ…‰Õ±…Éõí°ÈÈÈÈÉô)qÑ½ÁÉÕ±”)½µÁ…É¥Í½¸˜‘q¹½Éµíq•±Ñ„õ}ìÉô™5…à€‘ñq•±Ñ„Í}©ğ™5…à…¹±”™=ÁÌ‰•™½É”½…™Ñ•È™QÉ…”‰•™½É”½…™Ñ•Éqp)qµ¥‘ÉÕ±”)½…ÉÍ”‘qÑ¼‘½É”˜À¸ÌÜàÜ˜À¸ÄÄÄÈ˜ÄÜ¸äÁyq¥ÉŒ˜È¼È˜Ô¸äÜĞÜ¼Ô¸äÜÜÉqp)½É”‘qÑ¼‘™¥¹”˜À¸ÈÀÔÀ˜À¸ÀÔÈĞ˜Ø¸ÌÁyq¥ÉŒ˜È¼È˜Ô¸äÜÜÈ¼Ø¸ÌÄÜáqp)É¡¥Ù•‘qÑ¼‘½É”˜À¸ĞäÔĞ˜À¸ÀàÌÀ˜ÄÈ¸ÄÕyq¥ÉŒ˜È¼È˜Ø¸ÈÜØà¼Ô¸äÜÜÉqp)É¡¥Ù•‘qÑ¼‘™¥¹”˜À¸ÔÌÜÄ˜À¸ÀàÀÄ˜ÄØ¸äÁyq¥ÉŒ˜È¼È˜Ø¸ÈÜØà¼Ø¸ÌÄÜáqp)q‰½ÑÑ½µÉÕ±”)q•¹‘íÑ…‰Õ±…Éô)q•¹‘íÑ…‰±•ô()Q¡”Ñ½Ñ…°Ù…±¥ÍÉ••¸İ•¥¡Ğ¡…¹•Ìİ¥Ñ Ñ¡”•µ¥ÑÑ¥¹œ‰½Õ¹‘…ÉäèÉ•±…Ñ¥Ù”Ñ¼Ñ¡”½É”µ…ÁÌ°Ñ¡”½…ÉÍ”Ñ½Ñ…°‘¥™™•ÉÌ‰ä…‰½ÕĞ€È¸Ñp”…¹Ñ¡”™¥¹”Ñ½Ñ…°‰ä…‰½ÕĞ€Ä¸Ép”¸Qİ¼½˜Ñ¡”€ÌÑì±ôÈÜà™¥¹”€‘¸ôÄÙ…±¥É…åÌ±¥”©ÕÍĞ½ÕÑÍ¥‘”Ñ¡”‘•±…É•É…‘¥…°Í½ÕÉ”ÍÕÁÁ½ÉĞ…¹…É”É•Ñ…¥¹•¥¸Ñ¡”É•½É‘•½¹ÍÑÉÕÑ¥½¸É…Ñ¡•ÈÑ¡…¸Í¥±•¹Ñ±äÉ•µ½Ù•¸½¹Í•ÅÕ•¹Ñ±ä¹¼±¥¹”¥¸Ñ¡¥ÌÑ…‰±”‰½Õ¹‘ÌÑ¡”‘¥ÍÑ…¹”Ñ¼Ñ¡”½¹Ñ¥¹ÕÕ´½Á•É…Ñ½È¸Q¡”µ•…ÍÕÉ•µÍÑ•ÀÍ¥¹Õ±…È¥¹Ñ•ÉÙ…±ÌÅÕ½Ñ•¥¸qÉ•™íÍ•ŒéÍ…µÁ±¥¹É•™¥¹•ô½¹‘¥Ñ¥½¸½¹±ä½¸…ÁÁ±å¥¹œÑ¡”±…ÍĞ½¹‘¥Ñ¥½¹…°µÉ…´¡…¹”…Ì„™ÕÉÑ¡•ÈÍ…µ”µÍÁ…”Á•ÉÑÕÉ‰…Ñ¥½¸¸()q9••‘ÍÁ…•ìÀ¸àÉqÑ•áÑ¡•¥¡Ñô)qÍ•Ñ¥½¹í9Õµ•É¥…°µÍ½ÕÉ”¥¹‘•áõq±…‰•±í…ÁÀéÉ•½É‘Íô)Q¡”™½±±½İ¥¹œ¥¹‘•à±¥¹­ÌÑ¡”µ…¥¸ÅÕ…¹Ñ¥Ñ…Ñ¥Ù”ÍÑ…Ñ•µ•¹ÑÌÑ¼Ñ¡”Ù•ÉÍ¥½¹•…É¡¥Ù”q¥Ñ•í…É¡¥Ù•ô¸Q¡”Á…Á•ÈÌÑ…‰±•Ì…É”ÑÉ…¹ÍÉ¥ÁÑ¥½¹Ì½È•±•µ•¹Ñ…ÉäÍÕµµ…É¥•Ì½˜Ñ¡•Í”•á¥ÍÑ¥¹œÉ•½É‘Ì°¹½Ğ¹•Ü½Á•É…Ñ½È½È•ÍÑ¥µ…Ñ½È•á•ÕÑ¥½¹Ì¸Q¡”½µÁ…¹¥½¸Í½ÕÉ”µ…À¥Ù•ÌÑ¡”™Õ±°Á…Ñ¡Ì…¹Ñ¡”‘¥ÍÑ¥¹Ñ¥½¸‰•Ñİ••¸Í½ÕÉ”É•…‘Ì°¥¹¡•É¥Ñ•É•½É‘Ì°…¹±¥Ñ•É…ÑÕÉ”Ù•É¥™¥…Ñ¥½¸¸I•½É‘Ì½¹Ñ…¥¹¥¹œ•…É±¥•È¥¹Ñ•ÉÁÉ•Ñ…Ñ¥½¹Ì…É”É•…Ñ½•Ñ¡•Èİ¥Ñ Ñ¡•¥È±…Ñ•ÈÍ½Á”½ÉÉ•Ñ¥½¹Ì¸()qÍµ…±°)q‰•¥¹í±½¹Ñ…‰±•õìùíqÉ…•‘É¥¡Ñq…ÉÉ…å‰…­Í±…Í¡õÁìÀ¸ÄÑq±¥¹•İ¥‘Ñ¡ôùíqÉ…•‘É¥¡Ñq…ÉÉ…å‰…­Í±…Í¡õÁìÀ¸ÌÍq±¥¹•İ¥‘Ñ¡ôùíqÉ…•‘É¥¡Ñq…ÉÉ…å‰…­Í±…Í¡õÁìÀ¸ĞÍq±¥¹•İ¥‘Ñ¡õô)q…ÁÑ¥½¹íM½ÕÉ”É•½É‘Ì™½ÈÑ¡”¹Õµ•É¥…°ÍÑ…Ñ•µ•¹ÑÌ¸M¡½ÉĞ¥‘•¹Ñ¥™¥•ÉÌ…É”…É¡¥Ù”¹…µ•Ì°¹½Ğ•Ù¥‘•¹”½˜…‘‘¥Ñ¥½¹…°¥¹‘•Á•¹‘•¹Ğ•áÁ•É¥µ•¹ÑÌ¹õq±…‰•±íÑ…ˆéÉ•½É‘Íõqp)qÑ½ÁÉÕ±”)I•ÍÕ±Ğ™AÉ¥µ…ÉäÉ•½É™…µ¥±ä™M½Á”ÕÍ•¡•É•qp)qµ¥‘ÉÕ±•q•¹‘™¥ÉÍÑ¡•…)qÑ½ÁÉÕ±”I•ÍÕ±Ğ™AÉ¥µ…ÉäÉ•½É™…µ¥±ä™M½Á”ÕÍ•¡•É•qqqµ¥‘ÉÕ±•q•¹‘¡•…)ÍÉ•… ™Í•½µ•ÑÉäµİ¥‘”½Á•É…Ñ½ÈÉ•Á½ÉĞìqÑ•áÑÑÑí”Íq}‘•ÁÑ¡q}ÕÉÙ•Íô™Qİ•±Ù”ÁÉ•ÍÉ¥‰••½µ•ÑÉ¥•Ìì…ÑÕ…°‘¥É•ĞµÉ•™•É•¹”¹½Éµ…±¥é…Ñ¥½¸ìÍ…±…Èµ…Í­Ì°½±‘•ÍĞ•¹Ñ•ÉÌ°…¹…¹¡½Èµ½¹¹•Ñ•ÍÁ…¹Ì¹qp)Í•¹É¥¡µ•¹Ğ™ÍÍ½ÕÉ”µ±…ÍÌÉ•Á½ÉĞìqÑ•áÑÑÑí”Í‘q}±…ÍÍq}ÍÁ•ÑÉ…ôìqÑ•áÑÑÑí”Í‘q}‘•ÁÑ¡q}‰åq}±…ÍÍô™Q¡É•”…¹¡½ÉÌì½Á•É…Ñ¥½¹…°™É…Ñ¥½¹Ì½½Õ¹ÑÌ…¹Í•Á…É…Ñ•±ä¹Õµ•É¥…°É…¹­Ì½‘¥É•Ñ¥½¹…°•¹‘Á½¥¹ÑÌ¹qp)HÈ¥¹™½Éµ…Ñ¥½¸™qÑ•áÑÑÑíHÉIA1eô…Ğ•á•ÕÑ¥½¸qÑ•áÑÑÑíˆàÜÌäÀáôìÉ•™•É•¹”µ•½µ•ÑÉä¥¹™½Éµ…Ñ¥½¸Ñ…‰±”˜ÜÈÑ…É•Ğ…¹€ÄÔÈ¹Õ¥Í…¹”½•™™¥¥•¹ÑÌìÍ½ÕÉ”µÉ…´µ¹½Éµ…±¥é•ÍÁ•ÑÉ„Õ¹‘•È™É½é•¸±•…äÍÉ••¸µ•…ÍÕÉ”¹qp)HÈ±½…±¥é…Ñ¥½¸™qÑ•áÑÑÑí1=ÀÈÕôìqÑ•áÑÑÑí1=1%iQ%=9q}I	,¹©Í½¹ô™Må¹Ñ¡•Í¥é•Í½ÕÉ”µ•¹•Éä¥¹Ñ•ÉÙ…±ÌÍÕÁ•ÉÍ•‘”¡½±•Í­äµ½½É‘¥¹…Ñ”•Á½ ¥¹Ñ•ÉÁÉ•Ñ…Ñ¥½¹Ì¹qp)=É‘•È…ÑÑÉ¥‰ÕÑ¥½¸™qÑ•áÑÑÑíPÀĞÅôìqÁ…Ñ¡í=II}QQI%	UQ%=9|ÀĞÄ¹ÍÙôìqÁ…Ñ¡í=II}9Ie}IQ%=9M|ÀĞÄ¹©Í½¹ô™±°Í•Ù•¸½É‘•ÈÍÕ‰Í•ÑÌ…¹‰±½¬µ•¹•Éä™É…Ñ¥½¹Ì…™Ñ•ÈÍÕ‰Í•ĞµÍÁ•¥™¥Œ¹Õ¥Í…¹”ÁÉ½©•Ñ¥½¸¹qp)…¡•Í…µÁ±¥¹œ™qÁ…Ñ¡í=I}%9}M%	%1%Qe|ÀĞÉôìÑ¡É•”µ±•Ù•°É•ÍÁ½¹Í”½É…´É•½É™±°Ù…±¥…¡•É…åÌ™½È€‘¸ôÀ°Ä…Ğ½…ÉÍ”°½É”°…¹™¥¹”ÍÉ••¸Í…µÁ±¥¹Ìì¹¼½¹Ñ¥¹ÕÕ´µ‘¥ÍÑ…¹”±…¥´¹qp)HÄ±•Ù•°™qÑ•áÑÑÑíHÅq}!1q}=UQq}5%9ôì•á•ÕÑ¥½¸qÑ•áÑÑÑìÕ˜ÔÔİ™ˆÙôì™É½é•¸…±±•È…¹Í½É•È˜ØĞÀµ¡¥ÍÑ½ÉäÉ•¥µ”Ñ…‰±”°™¥¹¥Ñ”µÉ¥™¥•±µ•ÑÉ¥Œ…¹¡¥ µM9HÍÑÉÕÑÕÉ…°•¹‘Á½¥¹ĞìÉ•…±¥é•™±½½È¹½Ğ±½…Ñ•¹qp)!5P´Èµ½ÉÁ¡½±½ä™qÑ•áÑÑÑí!5PÉ5ôì•á•ÕÑ¥½¸qÑ•áÑÑÑìäÜÄÍ…˜Éôì•¹‘Á½¥¹Ğ…¹™…µ¥±äÑ…‰±•Ì˜ØÀ¡¥ÍÑ½É¥•Ì°™½ÕÈ‘É…İÌì¡¥ÍÑ½Éäµ±•Ù•°µ•‘¥…¸Á…¥É•É•‘ÕÑ¥½¹Ìì™¥¹¥Ñ”…¹…±åÑ¥ŒµÍ½ÕÉ”…¹¥¸µ±…ÍÌÑ…É•ÑÌ¹qp)•Ñ•Ñ½ÈÉ•ÍÁ½¹Í”™qÑ•áÑÑÑí@ÀÌÑô°qÑ•áÑÑÑíDÀÌÕôÉ•ÍÁ½¹Í”½ÍÕÁÁ½ÉĞÉ•½É‘Ì™M…µ”µÍÕÁÁ½ÉĞ‘¥ÍÉ•Á…¹äÑ¼„™¥¹”¹Õµ•É¥…°½µÁ…É…Ñ½È°¹½Ğ™Õ±°½¹Ñ¥¹Õ½ÕÌÉ•ÍÁ½¹Í”•ÉÉ½È¹qp)½¹ÑÉ½°½ÉÉ•Ñ¥½¹Ì™•™•Ğ…µ•¹‘µ•¹Ğ€ÀÈÌ…¹ÍÕ‰Í•ÅÕ•¹Ğµ•…ÍÕÉ•µ•¹ĞÉ•½É‘Ì™%¹‘•àµÍÕ´…¹¥¹‘•àµÑÉ…¹ÍÁ±…¹ĞÍ•µ…¹Ñ¥Ì°ÉÕ¹¹•ÈµÍÁ•¥™¥Œ™±ÕàÉ•…‘½ÕÑÌ°…É•„½¹½¥Í”½ÉÉ•Ñ¥½¹Ì¹qp)q‰½ÑÑ½µÉÕ±”)q•¹‘í±½¹Ñ…‰±•ô()q¹½Éµ…±Í¥é”()q±•…ÉÁ…”)qÍµ…±°)q‰•¥¹íÑ¡•‰¥‰±¥½É…Á¡åõìäåô)q‰¥‰¥Ñ•µíÉ…±±…ôL¸¸É…±±„…¹¸1ÕÁÍ…Í„°q•µÁ¡í1•¹Í¥¹œ‰ä-•ÉÈ	±…¬!½±•Íô°A¡åÌ¸I•Ø¸qÑ•áÑ‰™ìÄÀÅô°€ÀĞĞÀÌÄ€ ÈÀÈÀ¤°q‘½¥ìÄÀ¸ÄÄÀÌ½A¡åÍI•Ù¸ÄÀÄ¸ÀĞĞÀÌÅô°q…Éá¥ÙìÄäÄÀ¸ÄÈàÜÍô¸)q‰¥‰¥Ñ•µí©½¡¹Í½¹ô4¸¸)½¡¹Í½¸•Ğ…°¸°q•µÁ¡íU¹¥Ù•ÉÍ…°%¹Ñ•É™•É½µ•ÑÉ¥ŒM¥¹…ÑÕÉ•Ì½˜„	±…¬!½±”ÌA¡½Ñ½¸I¥¹ô°M¤¸‘Ø¸qÑ•áÑ‰™ìÙô°•……èÄÌÄÀ€ ÈÀÈÀ¤°q‘½¥ìÄÀ¸ÄÄÈØ½Í¥…‘Ø¹……èÄÌÄÁô°q…Éá¥ÙìÄäÀÜ¸ÀĞÌÈåô¸)q‰¥‰¥Ñ•µí…É¡¥Ù•ô ¸¥á¥Ğ…¹¸¡…Õ¡…¸°q•µÁ¡íA¡½Ñ½¸µÉ¥¹œÑ½µ½É…Á¡ä½µÁÕÑ…Ñ¥½¹…°…É¡¥Ù•ô°É•Á½Í¥Ñ½ÉäÍ¹…ÁÍ¡½ĞqÑ•áÑÑÑìåˆÔäÉ‘Ñ‰‘•ô€ ÈÀÈØ¤°‰É…¹ qÑ•áÑÑÑíÉ•Í•…É ½µ…¡…­…±q}ØÑq|Åô¸9Õµ•É¥…°Í½ÕÉ•Ì…¹•á•ÕÑ¥½¸¥‘•¹Ñ¥Ñ¥•Ì…É”¥¹‘•á•¥¸ÁÁ•¹‘¥áùqÉ•™í…ÁÀéÉ•½É‘Íô¸q¡É•™í¡ÑÑÁÌè¼½¥Ñ¡Õˆ¹½´½¥¹Ñ•É¹…±•ÉÉ½ÈĞÀĞ½Á¡½Ñ½¸µÉ¥¹œµÑ½µ½É…Á¡ä½ÑÉ•”¼åˆÔäÉ‘Ñ‰‘”ÈÀÄàÜäÈÉ•˜åÀØİˆÜÉ…‰•…˜ÄÉ‘‰õíY•ÉÍ¥½¹•Í½ÕÉ”…É¡¥Ù•ô¸)q‰¥‰¥Ñ•µíİ½¹ô¸8¸]½¹œ°q•µÁ¡í	±…¬!½±”±¥µµ•ÈM¥¹…ÑÕÉ•Ì½˜5…ÍÌ°MÁ¥¸°…¹%¹±¥¹…Ñ¥½¹ô€ ÈÀÈÀ¤°q…Éá¥ÙìÈÀÀä¸ÀØØĞÅô¸)q‰¥‰¥Ñ•µí¡…‘…ÉôL¸!…‘…È°4¸¸)½¡¹Í½¸°¸1ÕÁÍ…Í„°…¹¸8¸]½¹œ°q•µÁ¡íA¡½Ñ½¸I¥¹œÕÑ½½ÉÉ•±…Ñ¥½¹Íô°A¡åÌ¸I•Ø¸qÑ•áÑ‰™ìÄÀÍô°€ÄÀĞÀÌà€ ÈÀÈÄ¤°q‘½¥ìÄÀ¸ÄÄÀÌ½A¡åÍI•Ù¸ÄÀÌ¸ÄÀĞÀÌáô°q…Éá¥ÙìÈÀÄÀ¸ÀÌØàÍô¸)q‰¥‰¥Ñ•µí•¡½•ÌÈÀÈÑô¸8¸]½¹œ°0¸5•‘•¥É½Ì°¸p…É‘•¹…ÌµÙ•¹‘…qù¹¼°…¹(¸4¸MÑ½¹”°q•µÁ¡í5•…ÍÕÉ¥¹œ	±…¬!½±”1¥¡Ğ¡½•Ìİ¥Ñ Y•Éä1½¹œ	…Í•±¥¹”%¹Ñ•É™•É½µ•ÑÉåô°ÍÑÉ½Á¡åÌ¸(¸1•ÑĞ¸qÑ•áÑ‰™ìäÜÕô°0ĞÀ€ ÈÀÈĞ¤°q‘½¥ìÄÀ¸ÌàĞÜ¼ÈÀĞÄ´àÈÄÌ½…àØÔÁô°q…Éá¥ÙìÈĞÄÀ¸ÄÀäÔÁô¸)q‰¥‰¥Ñ•µíÁÉ½Á……Ñ¥½¸ÈÀÈÙô¸I½©…ÌµA…Ñ•É¹¥¹„…¹¸p…É‘•¹…ÌµÙ•¹‘…qù¹¼°q•µÁ¡í1¥¡ĞAÉ½Á……Ñ¥½¸AÉ•ÍÉ¥ÁÑ¥½¹Ì™½È	±…¬!½±”5½Ù¥•Íô°A¡åÌ¸I•Ø¸qÑ•áÑ‰™ìÄÄÑô°€ÀÈÌÀÌÄ€ ÈÀÈØ¤°q‘½¥ìÄÀ¸ÄÄÀÌ½¹ÍœÈµ¡äåÁô°q…Éá¥ÙìÈØÀÔ¸ÄÈØÔåô¸)q‰¥‰¥Ñ•µíÑ¥•‘•ô@¸Q¥•‘”° ¸µd¸AÔ°¸¸	É½‘•É¥¬°H¸½±°4¸-…É…µ¤°…¹(¸¸AÉ•¥…‘¼µ1p½Á•è°q•µÁ¡íMÁ…•Ñ¥µ”Q½µ½É…Á¡äUÍ¥¹œÑ¡”Ù•¹Ğ!½É¥é½¸Q•±•Í½Á•ô€ ÈÀÈÀ¤°q‘½¥ìÄÀ¸ÌàĞÜ¼ÄÔÌà´ĞÌÔÜ½…ˆÜĞÑô°q…Éá¥ÙìÈÀÀÈ¸ÀÔÜÌÕô¸)q‰¥‰¥Ñ•µí‰½Õµ…¹ô,¸0¸	½Õµ…¸°4¸¸)½¡¹Í½¸°¸X¸…±„°¸¸¡…•°°¸I½•±½™Ì°L¸L¸½•±•µ…¸°…¹\¸P¸É••µ…¸°q•µÁ¡íI•½¹ÍÑÉÕÑ¥¹œY¥‘•¼™É½´%¹Ñ•É™•É½µ•ÑÉ¥Œ5•…ÍÕÉ•µ•¹ÑÌ½˜Q¥µ”µY…Éå¥¹œM½ÕÉ•Íô€ ÈÀÄÜ¤°q…Éá¥ÙìÄÜÄÄ¸ÀÄÌÔİô¸)q‰¥‰¥Ñ•µí±•Ù¥Íô¸1•Ù¥Ì°¸¸¡…•°°,¸0¸	½Õµ…¸°4¸]¥•±ÕÌ°…¹@¸@¸MÉ¥¹¥Ù…Í…¸°q•µÁ¡í=É‰¥Ñ…°A½±…É¥µ•ÑÉ¥ŒQ½µ½É…Á¡ä½˜„±…É”9•…ÈÑ¡”M…¥ÑÑ…É¥ÕÌ¨MÕÁ•Éµ…ÍÍ¥Ù”	±…¬!½±•ô€ ÈÀÈÌ¤°q…Éá¥ÙìÈÌÄÀ¸ÀÜØàİô¸)q‰¥‰¥Ñ•µí……ÉÑô¸p…É‘•¹…ÌµÙ•¹‘…qù¹¼°¸1ÕÁÍ…Í„°…¹ ¸i¡Ô°q•µÁ¡í‘…ÁÑ¥Ù”¹…±åÑ¥…°I…äQÉ…¥¹œ½˜	±…¬!½±”A¡½Ñ½¸I¥¹Íô°A¡åÌ¸I•Ø¸qÑ•áÑ‰™ìÄÀİô°€ÀĞÌÀÌÀ€ ÈÀÈÌ¤°q‘½¥ìÄÀ¸ÄÄÀÌ½A¡åÍI•Ù¸ÄÀÜ¸ÀĞÌÀÌÁô°q…Éá¥ÙìÈÈÄÄ¸ÀÜĞØåô¸)q‰¥‰¥Ñ•µí±…ÍÍ…Íô4¸1…ÍÍ…Ì°0¸=­Í…¹•¸°@¸MÑ•™…¹½Ø°…¹¸U¡±µ…¹¸°q•µÁ¡íQ¡”1¥¡ĞI…äQÉ…¹Í™½É´½¸1½É•¹Ñé¥…¸5…¹¥™½±‘Íô€ ÈÀÄä¤°q…Éá¥ÙìÄäÀÜ¸ÀÈÈÄÁô¸)q‰¥‰¥Ñ•µí¡…¹Í•¹ô@¸¸!…¹Í•¸°q•µÁ¡íI…¹¬µ•™¥¥•¹Ğ…¹¥ÍÉ•Ñ”%±°µA½Í•AÉ½‰±•µÌè9Õµ•É¥…°ÍÁ•ÑÌ½˜1¥¹•…È%¹Ù•ÉÍ¥½¹ô€¡M%4°A¡¥±…‘•±Á¡¥„°€Äääà¤°q‘½¥ìÄÀ¸ÄÄÌÜ¼Ä¸äÜàÀàäàÜÄäØäİô¸)q‰¥‰¥Ñ•µíÍÑÕ…ÉÑô¸4¸MÑÕ…ÉĞ°q•µÁ¡í%¹Ù•ÉÍ”AÉ½‰±•µÌè	…å•Í¥…¸A•ÉÍÁ•Ñ¥Ù•ô°Ñ„9Õµ•É¥„qÑ•áÑ‰™ìÄåô°€ĞÔÄ´´ÔÔä€ ÈÀÄÀ¤°q‘½¥ìÄÀ¸ÄÀÄÜ½LÀäØÈĞäÈäÄÀÀÀÀÀØÅô¸)q•¹‘íÑ¡•‰¥‰±¥½É…Á¡åô()q•¹‘í‘½Õµ•¹Ñô(

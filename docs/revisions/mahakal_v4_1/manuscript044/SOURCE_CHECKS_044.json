@@ -1,0 +1,24 @@
+{
+  "revision": "044",
+  "balanced_begin_end": true,
+  "labels_unique": true,
+  "numbered_equations": 43,
+  "figure_environments": 4,
+  "table_environments_including_longtable": 14,
+  "physical_queries": 0,
+  "paper1_remaining_units": 854,
+  "source_basis_commits": [
+    "2fac52a21860cdb6a3de6d115879b40d94a921cf",
+    "91596ff1c382c0e6b1c11161735651e92076a96d",
+    "51c27ca462452ec1743b87309593d6385b776094"
+  ],
+  "compiled": true,
+  "pdf_pages": 28,
+  "pdf_sha256": "1a7cdd9cb9cb5441bce9a015fff754711c267db119ca716c81eaa3d2bd1bbfb1",
+  "abstract_approx_word_count": 284,
+  "unresolved_references_or_citations": 0,
+  "overfull_boxes": 0,
+  "all_pages_rendered_and_inspected": true,
+  "continuum_acquisition_qualified": false,
+  "paper2_results_imported_as_validation": false
+}
