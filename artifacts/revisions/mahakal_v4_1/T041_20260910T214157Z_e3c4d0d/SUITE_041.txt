@@ -1,0 +1,10 @@
+691 passed, 2 warnings in 320.18s (0:05:20)
+
+Run in a disposable git worktree at /tmp/claude-0/wt041 (detached at the
+commit under test), so the authoritative archive was not written to by any
+legacy write-capable test. Command: python3 -m pytest -q tests.
+
+Recorded additively after ORDER_ATTRIBUTION_041_COMPLETION.json and
+SHA256SUMS.txt were written; neither of those files was modified, so
+SHA256SUMS.txt covers the original set and this file is checksummed in
+SHA256SUMS_ADDENDUM.txt.
