@@ -1,0 +1,23 @@
+{
+  "experiment": "Mahakal II movie006",
+  "registration_commit": "12c8edb1005ce006a8747e3ef71189b038a187e4",
+  "execution_amendment_commit": "56c9a58fbbd6bbf6d531e211b1d3edf38356d729",
+  "created_before_movie_source_generation_and_inverse_outcomes": true,
+  "discarded_pre_amendment_separated_attempts": 24918,
+  "protocol_sha256": "f1033b9f7209839dbe537014c6e67b13311f697fd6c9e9a01033e269cae98b08",
+  "source_hashes": {
+    "source/kerr.py": "bd9a12532e520a72a26ff556c79d35094bdd05236cd7c8b2258e13ff91dc5d75",
+    "source/experiment.py": "ac30f20458ca48edd843f81fd24050653305cf85a84092ede4f7404243f4c88b"
+  },
+  "physical_recovery_plan": {
+    "new_33x33_chart_calls": 2178,
+    "new_matched_q2_calls": 512,
+    "new_ode_calls": 64,
+    "cumulative_planned_separated_attempts": 27608,
+    "separated_cap": 28000
+  },
+  "geometry_scout_disclosed": true,
+  "movie_outcomes_seen": false,
+  "regularization_selected": false,
+  "paper1_units_used": 0
+}
