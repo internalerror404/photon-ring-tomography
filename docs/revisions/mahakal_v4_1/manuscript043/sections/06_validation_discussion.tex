@@ -1,0 +1,97 @@
+\section{Numerical qualification and the boundary of physical interpretation}\label{sec:validation}
+\subsection{Separate numerical questions}
+A discrete implementation can have an exact adjoint and still be an inaccurate quadrature of the intended continuous image. Agreement between two ray evaluators can validate selected transfer quantities without validating a downstream interpolated detector response. The numerical evidence is therefore separated into source representation, pointwise transfer/domain evaluation, discrete operator mechanics, and continuous acquisition accuracy.
+
+The archive contains dense/matrix-free comparisons, adjoint checks, source-space containment checks, and covariance/readout tests. These support the stated discrete computations under their actual conventions. They do not collectively license an unqualified assertion that the complete physical imaging operator is validated. In particular, the screen-weight audit found stored nominal areas that did not consistently match the realized endpoint-inclusive screen grid. Clipped nodal-dual cell measures and corrected overlap constructors were developed separately; old R1, R2, and morphology tables were not all regenerated with those measures.
+
+The accepted hull qualification uses a conjunction of geometric tests. Its late order-2 tessellation discrepancy, approximately $9.592\times10^{-8}$ against a $10^{-6}$ component budget, is one component rather than the entire hull error. A leaf-assembly partition test reproduces parent overlap per detector--parent pair to approximately $6.9\times10^{-18}$. Such tests establish properties of the supplied geometry, not an envelope for every transferred field inside each cell.
+
+A separate path-domain audit identified 680 previously masked point--order samples as physically absent requested crossings: 532 after escape and 148 after capture. Their exclusion did not require repairing a source-radius formula. The subsequent comparator closeout resolved the tested 66 development cases and agreed on 192 confirmation cases. Its independence is limited: the methods share roots, angular crossing information, and classification inputs while differing in radial integration/reduction policies. These are finite-cohort domain results, not proof that every point of a surrounding cell has the same status. An intentional absence marker is not an interpolatable source tuple.
+
+\subsection{A common detector is a separate acquisition}
+For a detector pixel $D_d$ and a screen integration cell $C_p$,
+\begin{equation}
+O_{dp}=\abs{D_d\cap C_p\cap\Omega_n}
+\label{eq:overlap}
+\end{equation}
+is an area, where $\Omega_n$ is the relevant geometric or emitting domain specified for the calculation. A whole-parent emitting fraction multiplied by the parent overlap is generally not \eqref{eq:overlap}: it can preserve total flux while putting that flux in the wrong detector pixels. Each leaf or certified emitting fragment must retain its own intersection.
+
+Two noise models also remain distinct. If parent-cell brightness noise is inherited, its detector covariance has the form
+\begin{equation}
+C_{\rm inherited}=\sigma^2 O\diag(a_p^{-1})O^T.
+\label{eq:inherited}
+\end{equation}
+If the experiment instead specifies a single physical white-noise detector, a disjoint full pixel of area $A_d$ has integrated-noise variance $\sigma^2 A_d$. The noise is not reduced to the emitting fraction of that pixel. These are different experiments; they cannot be interchanged to create a favorable comparison.
+
+The D026 audit fixes a $[-25,25]M\times[-25,25]M$ screen aperture, $0.4M$ pixel pitch, the reference observer schedule, $\sigma=0.011341986814407566$, and a common recorded clock. This audit is not the observation model retrospectively applied to every legacy result. Its purpose is to test the numerical response on an explicitly common acquisition.
+
+\subsection{What the cached response comparison establishes}
+On identical known support and overlap weights, the audit compares core-derived and fine-sampled fields through the same detector. Six screen channels are combined with five transferred diagnostic fields at each of eight observer times: $g^3$ and its cosine/sine modulations with periods $20M$ and $40M$. The forty transferred columns share an exact five-real-template representation; they are not forty independent trials.
+
+\begin{table}[htbp]
+\centering\small
+\caption{Maximum relative whitened detector discrepancy over the forty transferred diagnostic columns on matched available support. ``Baseline'' interpolates primitive transfer quantities before forming the fields; ``composite first'' transforms them before interpolation. The fine array is a numerical comparator whose continuum accuracy is not independently established.}
+\label{tab:audit}
+\begin{tabular}{c r r r}
+\toprule
+Order&Baseline&Composite first&Component criterion\\
+\midrule
+0&0.009594&0.009718&0.0005\\
+1&0.042744&0.084795&0.0005\\
+2&0.511603&0.653638&0.0005\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The baseline discrepancy exceeds the component criterion in every transferred column at every order. The single composite-first candidate is worse under the registered maximum-channel criterion at all three orders and is not promoted. A better order-2 median does not change that decision. These values are differences between two numerical representations, not measured distances from a known continuum truth.
+
+In particular, the order-2 maximum is not a transferable fractional error bar on an R2 singular value or a morphology endpoint. It establishes a substantial unresolved response discrepancy in the tested construction, but neither demonstrates that the historical modes disappear nor certifies that they survive a corrected acquisition. Resolving their physical robustness requires comparing the relevant target and nuisance responses under a controlled forward calculation, followed by the corresponding inverse endpoints. No such conclusion is inferred from the diagnostic maximum alone.
+
+Order 2 compares approximately 61.7\% of fine emitting nodes and 62.8\% of fine-center-labelled emitting area. The omitted area is approximately $0.6092M^2$ and has no validated response bound. This is a discretized coverage diagnostic, not a converged measure of missing physical light. Agreement or cancellation on the compared subset does not bound its contribution. The common-detector transfer quadrature therefore remains unqualified.
+
+The six zero screen residuals are an equal-input consistency control: both sides use the same screen fields and overlap map. They are not an independent accuracy test of shared geometry. Likewise, a tighter bound on a cached discrepancy cannot improve an unchanged approximation. The reported signed residual already contains its cancellation. Appendix~\ref{app:bounds} records the deterministic distinctions needed to interpret such bounds without assigning the entire conservatism gap to sign cancellation.
+
+\section{Discussion}\label{sec:discussion}
+\subsection{What is established about historical information}
+The combined result is not that the past is completely stored or completely absent. Under a declared transfer model, older source-time factors can be exactly invisible to the direct sampled operator while producing nonzero responses in added orders. At the reference geometry, that structural possibility has a finite-noise realization that survives unrestricted adjustment of the other coefficients in the specified localized model: two operational target combinations remain under the frozen measure.
+
+This result is deliberately distinguished from the earlier restricted-target spectra. Profiling the remainder tests whether another part of the source could mimic the measured old signal. It is not equivalent to assuming the remainder known, and its two surviving combinations are not the same target as a recovered emissivity level or a morphology descriptor. Their broad temporal localization illustrates the difference between identifying a source subspace and reconstructing separately resolved historical frames.
+
+Source enrichment then asks a different question: what happens when the source can express more spatial and temporal detail? The three-anchor audit shows an increasing absolute operational count and a decreasing fraction of supported coefficients, with much smaller positive singular values. Historical directional reach changes little. This coexistence, rather than a universal destruction law, is the source-resolution aspect of the Mahakal phenomenon.
+
+\subsection{What is established about reconstruction}
+The held-out results show that additional labelled measurements can improve specified historical objects in the archived finite model. The level experiment extends an anchor-connected baseline-inclusive span in its successful regimes. The morphology experiment reduces the median history-level relative error against an analytic source as well as an in-class target. These are substantive but different benefits.
+
+Their failure boundaries are equally informative. The level norm is dominated by a spatially constant component; severe mismatch remains negative; old-band structure is not recovered at the reference SNR. Morphology improves in aggregate while the stable interval remains zero and resolved-pair recovery fails. Representation capacity and source-family heterogeneity are part of the outcome, not optional qualifications after a favorable point estimate.
+
+The R2 nuisance result must not be used to upgrade those recovery experiments to a joint recovery claim with arbitrary backgrounds. Their representations, loss functions, and nuisance/background treatments differ. Conversely, a failed movie endpoint does not erase a positive Fisher-information direction. Reach, dimension, and recovery are connected stages, not interchangeable labels for success.
+
+\subsection{From finite-model results to physical acquisition}
+The present evidence separates a conditional mathematical statement, an archived finite-model calculation, and a prospective observational claim. The support theorem requires its stated footprint assumptions; a quantitative physical imaging conclusion additionally requires a controlled approximation of the intended acquisition; an instrument-level claim requires the relevant sampling, sensitivity, and observational systematics. These are different evidential requirements. A stable historical movie is not the only useful endpoint: a well-supported source combination or a bounded historical functional can itself be an appropriate inference target.
+
+The first numerical priority for the central result is a response-converged or error-controlled calculation over the full relevant emitting support, retaining the declared geometry, target, nuisance space, source norm, observer schedule, and noise convention. Both target and nuisance responses must be varied consistently. The decisive readback is whether the nuisance-adjusted modes and their threshold classification remain stable, not merely whether a selected transfer diagnostic has a small scalar discrepancy. Changes to source representation or acquisition define separately labelled comparisons. The fixed-row result in Appendix~\ref{app:reweight} is useful within its assumptions but is not a substitute for this broader test.
+
+The recovery claims require the same discipline: re-evaluate their declared losses and held-out regimes under the qualified forward calculation, retaining the negative endpoints and the recorded uncertainty aggregation. Establishing nonzero stable recovery of spatial structure would be an additional result, not a reinterpretation of the existing baseline-inclusive span or mean morphology improvement.
+
+A physical order-resolution attribution further requires a matched, co-registered acquisition and correctly propagated readout covariance. The index-sum control does not supply that experiment, and accurate quadrature elsewhere cannot retroactively make it a physical unresolved image. The all-order flux comparison retains its narrower interpretation because total integration does not require pixelwise correspondence. Future visibility-domain sampling and realistic noise would then test whether the surviving historical quantities remain measurable for a proposed interferometric acquisition. No success in that observational test is assumed here.
+
+Continuous acquisition accuracy needs controlled emitting-domain support, sufficiently accurate transfer representation and integration, an independently justified reference or error bound, and accounting for uncovered support. No particular interpolation scheme or group-remainder certificate is mandatory; the evidence must support the quantity being inferred. The present audit does not supply full-domain qualification. This manuscript also makes no claim about unknown geometry, scattering, calibration, closure quantities, polarization, a continuous leakage sweep, or arbitrary GRMHD histories. Normalized SNR is not converted to observing time to imply practical accessibility.
+
+\subsection{Reproducibility and retained limitations}
+The numerical claims are inherited from the versioned experimental records, with their corrected interpretation. The reference-count adjustment, screen-area correction, source-Gram integration, and detector covariance are documented as different objects; old results are not labelled as recomputed when only a sidecar or interpretation changed. Source-code-defined methods and contemporaneously recorded scalar inputs are also distinguished. In particular, the unlocated R1 floor limits a claim of exact independent reproduction of that normalization. This revision neither reconstructs the fit bank to recover it nor assumes an unmeasured insensitivity to it.
+
+The geometry audit covers twelve specified cells, enrichment covers three anchors, and inversion covers one geometry. The $3M$ probe width and $4M$ grid are fixed; one-bin extensions do not resolve a new sharp temporal layer. The morphology sample contains ten histories per family. The finite-cohort comparator, supplied-interval bounds, and discrete operator tests each retain their limited domain of qualification.
+
+\section{Conclusion}
+Retarded-time tomography asks which earlier source components are distinguishable from the light, not simply how late higher-order photons arrive. We answer that question through a conditional support theorem, nuisance-adjusted finite-noise information, and held-out recovery tests. Disjoint temporal support produces exactly blind direct columns. In the reference localized model, the labelled stack retains two operational combinations of a 72-dimensional old target after all 152 complementary coefficients are allowed to vary. The fixed-row reweighting analysis permits one or two; it is not a corrected-acquisition spectrum. Those two combinations do not depend on the numerically weakest order: omitting $n=2$ leaves both above threshold within $3.21^\circ$ of the same subspace, while omitting $n=1$ removes them entirely, so the first indirect image is the load-bearing historical channel and the direct image contributes by constraining nuisance rather than by responding to the target.
+
+The remaining experiments give complementary information. Added orders extend scalar-probe anchor-connected span on the prescribed geometry grid. Source enrichment increases the absolute operational count while decreasing the supported fraction and the smallest positive singular values across the full class comparison. Held-out estimators improve a baseline-inclusive level span and aggregate morphology error, with severe-mismatch and multi-feature failures and a zero stable morphology interval defining the limits of those gains.
+
+The resulting contribution is a source-history identifiability framework with explicit finite-model benchmarks: reach determines where to ask a historical question, nuisance-adjusted dimension determines which combinations the likelihood distinguishes, and recovery tests what an estimator achieves under a stated loss. This separation is the Mahakal phenomenon. Converged physical acquisition and a causal advantage from physically resolving image orders remain to be demonstrated; the present results specify the historical quantities and comparisons on which those stronger claims should be tested.
+
+\section*{Data, code, and manuscript provenance}
+The study uses synthetic sources and archived ray maps, not proprietary observations. Source implementations, frozen configurations, run manifests, endpoint tables, and correction records are identified in the computational archive \cite{archive}. The numerical source index in Appendix~\ref{app:records} distinguishes the original experimental outputs from later interpretation and readback records. All figures in this revision are deterministic plots of explicitly cited existing values; no newly generated geodesic, source bank, or reconstruction is presented as an additional experiment. This manuscript and its editable typesetting source are a new, additive revision; earlier records remain unchanged. Public archival deposition and the final release identity require author approval.
+
+\section*{Manuscript preparation}
+AI assistance was used for drafting, source comparison, literature organization, and typesetting this revision under author direction. No new physical simulations were performed as part of manuscript preparation.
+\FloatBarrier

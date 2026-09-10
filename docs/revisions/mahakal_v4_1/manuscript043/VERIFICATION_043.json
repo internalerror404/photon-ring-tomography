@@ -1,0 +1,54 @@
+{
+  "schema": "phrt-manuscript-verification/1",
+  "revision": "043",
+  "written_utc": "2026-09-10T22:09:39Z",
+  "base_revision": "042",
+  "base_revision_commit": "e3c4d0d9fdf13a17d1b8831f4cbc75630ce81885",
+  "execution_base_commit": "51c27ca462452ec1743b87309593d6385b776094",
+  "branch": "research/mahakal_v4_1",
+  "change": "additive promotion of the order-attribution result only",
+  "checked": [
+    "LaTeX environments balanced in every source file",
+    "no dangling \\ref/\\cref: 16 references all resolve against 73 labels",
+    "column counts correct in tab:orderattr, tab:orderattr:full, tab:orderenergy",
+    "every promoted number traced to the T041 run directory records",
+    "manuscript042 left byte-identical in its own directory"
+  ],
+  "not_checked": [
+    "the document was NOT compiled: no TeX engine is installed in this environment",
+    "no rendered page, figure, table placement or overfull box was inspected",
+    "no citation was newly verified for this revision",
+    "no numerical result was recomputed for this revision"
+  ],
+  "pdf_shipped": false,
+  "ready_to_post": false,
+  "ready_to_post_note": "a compile and a page inspection are required first",
+  "numbers_promoted": {
+    "s1_without_order_2": 1.4098,
+    "s2_without_order_2": 1.2954,
+    "trF_fraction_without_order_2": 0.872,
+    "max_principal_angle_deg": 3.21,
+    "order1_energy_mode1": 0.969,
+    "order1_energy_mode2": 0.9564,
+    "direct_order_trF_gain": [
+      6.0738,
+      6.2768
+    ]
+  },
+  "source_records": [
+    "artifacts/revisions/mahakal_v4_1/T041_20260910T214157Z_e3c4d0d/ORDER_ATTRIBUTION_041.csv",
+    "artifacts/revisions/mahakal_v4_1/T041_20260910T214157Z_e3c4d0d/ORDER_ENERGY_FRACTIONS_041.json",
+    "artifacts/revisions/mahakal_v4_1/T041_20260910T214157Z_e3c4d0d/REPRODUCTION_GATE_041.json"
+  ],
+  "source_sha256": {
+    "main.tex": "ca21f8f065dfb995fe830cd7e8558e9bd4cd8918b2b4ca0eecde198fd8b02973",
+    "references.tex": "b8d85a62275c98a2486049e7d6ef2febf2b16ff4aa06358c906609da8367ff4b",
+    "sections/01_introduction.tex": "dbda649afb9878c6ac6a3758387895bf8daf3721b93fae911e270c160de20de0",
+    "sections/02_forward.tex": "cc14d628cf867a5d72e6ce4e48973b1b1fc37467e007cd7e9779699201882b7e",
+    "sections/03_information.tex": "32e5ffa830db3ffa18d6c545c41c13f32cc16010b94d1f37a380f00bb7b63f10",
+    "sections/04_results.tex": "350589280a4826169874c792af5baeddb865c6f2204ca7a94cfb3680dec7754a",
+    "sections/05_recovery.tex": "bb520cf1ba0b130bd4f74b776f92f5a5f4e8ff04c057d19d26e182388c35c492",
+    "sections/06_validation_discussion.tex": "54f6b364675db1d4a0b11a7839a293c1ec28416756de6494a89b1005e2a2360e",
+    "sections/07_appendices.tex": "e93764d885c93a0a1aae5ff50f0d1cb257c57f4c9c7da3a89db80f012d54517f"
+  }
+}

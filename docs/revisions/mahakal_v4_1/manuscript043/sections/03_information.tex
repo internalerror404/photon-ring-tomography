@@ -1,0 +1,99 @@
+\section{Historical reach, dimension, and recovery}\label{sec:information}
+\subsection{Historical equivalence and added observations}
+Two histories are observationally equivalent when their difference belongs to the forward null space. For the order-labelled stack $A_{0:N}$,
+\begin{equation}
+\ker A_{0:N}=\bigcap_{n=0}^N\ker A_n.
+\label{eq:nullintersection}
+\end{equation}
+With independent, correctly whitened order blocks and a fixed source representation, the coefficient Fisher matrix is additive:
+\begin{equation}
+F_{0:N}=\sum_{n=0}^N B_n^TB_n,\qquad
+F_{0:N+1}-F_{0:N}=B_{N+1}^TB_{N+1}\succeq0.
+\label{eq:grammonotonicity}
+\end{equation}
+Adding these observations cannot remove existing information. It need not add an independent direction or an operationally detectable one. Changing the source representation, noise allocation, or acquisition is a different comparison; \eqref{eq:grammonotonicity} does not compare arbitrary experiments merely because one is called ``resolved.''
+
+\subsection{Exact direct-image blindness for localized temporal factors}
+Let the sampled source representation be separable,
+\begin{equation}
+q_{\ell k}(r,\phi,t)=\psi_\ell(r,\phi)\tau_k(t),\qquad
+\mathcal W_n=\{t_o-\Delta_{n,p}:t_o\in\mathcal O,\ p\in\mathcal P_n\},
+\label{eq:supportbasis}
+\end{equation}
+where the retained rows have the specified nonzero transfer weights. The footprint is a set of actual sampled times.
+
+\begin{theorem}[Sampled support-nullity]\label{thm:support}
+If $\supp\tau_k\cap\mathcal W_0=\varnothing$, then $A_0q_{\ell k}=0$ for every spatial factor $\psi_\ell$. The same column is zero in the stack whenever the support misses $\bigcup_{n=0}^N\mathcal W_n$. Conversely, a retained added-order row for which its transfer weight, spatial factor, and temporal factor are all nonzero makes the corresponding stacked column nonzero.
+\end{theorem}
+\begin{proof}
+Each sampled row applied to $q_{\ell k}$ is the product of the fixed row weight, $\psi_\ell(r_{n,p},\phi_{n,p})$, and $\tau_k(t_o-\Delta_{n,p})$. Disjoint support sets the last factor to zero at every direct row. Applying the argument blockwise proves the stacked statement. A nonzero product at one retained added-order row proves nonvanishing of that column. No independence among different nonzero columns follows.
+\end{proof}
+
+\begin{corollary}[Blind-block dimension]\label{cor:dimension}
+If $m$ independent temporal factors miss the direct footprint and they are crossed with an independent $d_s$-dimensional spatial factor space, the sampled direct matrix has at least $md_s$ linearly independent coefficient directions in its null space.
+\end{corollary}
+The independence requirement concerns the input basis products. The corollary does not imply that all corresponding added-order outputs are independent. Compact support alone is insufficient: a compact factor supported inside the direct footprint need not be invisible.
+
+\begin{corollary}[Conditional continuum support-nullity]\label{cor:continuum}
+For the continuum map in \eqref{eq:transfer}, define the closed footprint using all screen--time pairs with nonzero mask and transfer weight. A temporal factor with support disjoint from that footprint gives zero direct response almost everywhere. A nonzero continuum response requires nonvanishing of the complete transfer--source product on a set of positive screen--time measure; isolated intersection of supports is insufficient.
+\end{corollary}
+This is a theorem about an assumed map and its supported domain. The sampled theorem is its finite-operator counterpart, not proof that a chosen quadrature accurately approximates the continuum map. In the application, gravitationally delayed footprints can satisfy the added-order nonvanishing condition where the direct footprint is absent. That is the geometric content of the historical-access result.
+
+\subsection{Reach statistics}
+For the scalar probe, define the passing age set
+\begin{equation}
+\mathcal D_{\gamma,r}(S,\rho)
+=\{a\in\mathcal G_a:S^2\widehat\I_{\gamma,r}(a)\geq\rho^2\},
+\label{eq:ageset}
+\end{equation}
+where $\mathcal G_a$ is the fixed grid. We report three different summaries: the oldest passing grid center, the longest consecutive passing run anywhere on the grid, and the passing span connected to a geometry-specific anchor $a_{\rm anchor}$. The anchor is the youngest fully supported probe center under the registered operational-support convention and is fixed before reading the threshold curve. An anchor-connected span starts at that anchor, not necessarily at the present. Empty-set and grid-ceiling cases retain their declared conventions; a passing endpoint at the ceiling is right-censored.
+
+The threshold-independent old-age innovation is reported separately:
+\begin{equation}
+J_{\rm old}^{(r)}(S)=\int_{a>A_{0,0.999}}
+\log\!\left[1+S^2\widehat\I_{\gamma,r}(a)\right]\,\dd a.
+\label{eq:jold}
+\end{equation}
+Here $A_{0,0.999}$ is the direct order's throughput-weighted age boundary. The logarithm is dimensionless and $J_{\rm old}$ has units of $M$. It measures a declared sensitivity volume beyond a direct-age reference, not bits of a movie and not correctness of the pairing between delay, position, and weight. A nonphysical permutation can preserve substantial old-age sensitivity while assigning it to different spatial directions.
+
+\subsection{Nuisance-adjusted historical dimension}\label{sec:nuisance}
+Let target coefficients $c_T$ and nuisance coefficients $c_N$ enter
+\begin{equation}
+y=A_Tc_T+A_Nc_N+\epsilon,\qquad
+\epsilon\sim\mathcal N(0,C),\qquad
+B_T=C^{-1/2}A_T,\quad B_N=C^{-1/2}A_N.
+\label{eq:targetnuisance}
+\end{equation}
+Let $H_T=R_T^TR_T$ be the positive-definite Gram matrix of target source functions under the declared source norm. For the R2 experiment that norm is based on $r\,\dd r\,\dd\phi\,\dd t$ over the specified source support. Define the orthogonal projector $\Pi_N$ onto $\range(B_N)$. Known-remainder and nuisance-adjusted response matrices in source-normalized coordinates are
+\begin{align}
+\mathcal B_{\rm known}&=B_TR_T^{-1},&
+F_{\rm known}&=\mathcal B_{\rm known}^T\mathcal B_{\rm known},\nonumber\\
+\mathcal B_{\rm cond}&=(I-\Pi_N)B_TR_T^{-1},&
+F_{\rm cond}&=\mathcal B_{\rm cond}^T\mathcal B_{\rm cond}.
+\label{eq:conditionalfisher}
+\end{align}
+Profiling removes target responses that can be reproduced by changing nuisance coefficients. It therefore asks whether the historical signal remains identifiable without knowing the rest of the source. The use of a source Gram prevents a mere rescaling of basis coordinates from determining the quoted information. It does not make different physical source norms interchangeable.
+
+At the declared unit-amplitude convention, an operational direction is counted when a singular value of $\mathcal B_{\rm cond}$ reaches $\rho=1$. Noise scaling already present in $C$ is not applied a second time. The reported information totals are $\tr F$, not entropies. Nuisance projection is specific to this target calculation; the earlier source-class operational ranks were not automatically computed after the same projection.
+
+We distinguish algebraic rank where an exact argument is available, numerical rank at a specified floating-point tolerance, and operational rank at a specified amplitude and noise threshold. Estimator recovery is not another rank. A nonzero column can be dependent on other columns, and a numerically nonzero singular value can be operationally negligible.
+
+\subsection{Recovery and stability}
+For history $j$ and noise draw $b$, let $E_{jb}(a)$ be the registered age-local reconstruction error. The stable anchor-connected span is
+\begin{equation}
+L_{\rm stable}(\varepsilon,q)=
+\sup\left\{T-a_{\rm anchor}:
+\widehat{\Pr}_{j,b}\!\left[
+\max_{a_{\rm anchor}\leq a\leq T} E_{jb}(a)\leq\varepsilon
+\right]\geq q\right\}.
+\label{eq:stable}
+\end{equation}
+The maximum is over the registered grid. Histories, not repeated draws, are the independent bootstrap units. The probability is empirical over the declared source--noise ensemble; it is not a uniform guarantee over arbitrary sources. Different historical objects require different losses: the finite-grid emissivity-level metric and the state-dependent morphology metric are specified in \cref{sec:recovery} and Appendix~\ref{app:metrics}.
+
+A useful deterministic comparison remains conditional. If $\mathcal C$ is a bounded source set and
+\begin{equation}
+\alpha(B;\mathcal C)=
+\inf_{x\ne x'\in\mathcal C}\frac{\norm{B(x-x')}_2}{\norm{x-x'}_X}>0,
+\label{eq:secant}
+\end{equation}
+then an estimate in $\mathcal C$ whose data residual is no larger than the noise norm satisfies $\norm{\widehat x-x_\star}_X\leq2\norm{\epsilon_w}_2/\alpha$. This bound quantifies stability once a positive restricted constant exists; it does not create identifiability or establish that constant for a continuum of source histories.
