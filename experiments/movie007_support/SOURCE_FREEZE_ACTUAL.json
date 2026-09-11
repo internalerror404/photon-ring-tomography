@@ -4,9 +4,10 @@
   "created_before_physical_rendering_source_generation_regularization_and_test_outcomes": true,
   "source_files": {
     "source/kerr.py": "12abafb39f6d5a6ebf4626e0a05c021d3bd0c5c5ca6ae0abd22632656c8f28cf",
-    "source/movie007_run.py": "315ba6d31f9e55286a94ffd4f7c9fb9767e2860f048752169d76290c4db3f66c"
+    "source/movie007_run.py": "314e7092e6bebe96c9198ceb97b5b5ce453eae01227b687a0ec702911d83a382"
   },
   "execution_amendment_sha256": "11f31509df156db171cb641dcfbcd3cd4ee17de2913d9b109b251deda19d8715",
+  "preexecution_correction": "At SNR100, the fixed operator-derived ridge scale follows trace(B^T B) and is one ninth of the SNR300 scale; corrected before any physical or source outcome.",
   "syntax_check": "python -m py_compile PASS",
   "movie_outcomes_seen": false,
   "regularization_selected": false,
