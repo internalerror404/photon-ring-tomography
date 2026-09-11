@@ -1,0 +1,68 @@
+{
+  "audit": "Paper II repository and Movie007 pre-Movie008 audit",
+  "date": "2026-09-10",
+  "repo": "internalerror404/photon-ring-tomography",
+  "branch_head_reviewed": "60caf340c90d8ea5c64d792cc1f2e1d7e23af2a1",
+  "scope": "Paper-II lineage and all files materially used by Movie007/Movie008; not every historical Paper-I byte",
+  "artifact_integrity": {
+    "full_zip_sha256": "3bfbc5ec24d14a17515dc3c3beadc3e95ca2b9b5eea40922ebb614f67289edad",
+    "manifest_entries": 49,
+    "manifest_errors": 0,
+    "all_numeric_npz_arrays_finite": true
+  },
+  "source_hashes": {
+    "finalize.py": "b622e7e3468b59be4d396d4e82a3a9746e1c7605a6c0c18b5a0af19e5a904820",
+    "kerr.py": "12abafb39f6d5a6ebf4626e0a05c021d3bd0c5c5ca6ae0abd22632656c8f28cf",
+    "movie007_run.py": "8b80d533cd48400570e505423053a6557e4a2ea6f3d82367adfd5c88b34e5cf1",
+    "offbasis.py": "54c1e0ca0f1b2e2d94c34604eecb19c44c4c96a9e59b377f74b303b35aac4b97"
+  },
+  "independent_replay": {
+    "regularization_choices_match": true,
+    "max_validation_score_difference": 3.2318062146430293e-06,
+    "max_reconstruction_coefficient_abs_difference": 6.095413063178512e-11,
+    "max_per_history_metric_difference": 7.527845014010381e-11,
+    "max_per_frame_error_difference": 1.9845458609779598e-10,
+    "max_per_frame_correlation_difference": 8.053183064848923e-09
+  },
+  "physical_readback": {
+    "random_tuple_weight_checks": 64,
+    "max_tuple_abs_difference": 0.0,
+    "max_weight_abs_difference": 0.0,
+    "ode_gate_pass": true,
+    "clean_q8_q12_gate_pass": true,
+    "fitted_q8_q12_gate_pass": true
+  },
+  "direct_null_structure": {
+    "basis_dimension": 595,
+    "old_nonaxisymmetric_subspace_dimension": 210,
+    "direct_q8_max_abs_on_subspace": 0.0,
+    "direct_q12_max_abs_on_subspace": 0.0,
+    "order1_q8_rank_on_subspace_at_1e-12": 183,
+    "order1_source_normalized_singular_values_top6_SNR300": [269.1015405310053,268.37176980803997,267.033200419896,264.4821693304638,235.46422146124684,232.0865863315044],
+    "order1_q8_q12_mode_correlations_top6": [0.9999999992266745,0.9999999998483505,0.9999999981169428,0.9999999959358166,0.9999999932292187,0.9999999939567817]
+  },
+  "repository_findings": {
+    "movie007_registration_present": true,
+    "movie007_failure_and_correction_records_present": true,
+    "movie007_compact_results_present": true,
+    "movie007_executed_source_bytes_present_before_audit": false,
+    "movie006_completion_present": false,
+    "movie006_status": "physical/operator stages reached under amendments; no committed final inverse/movie endpoint",
+    "movie007_ci_statuses": 0,
+    "movie007_workflow_runs": 0
+  },
+  "limitations_requiring_movie008_design": [
+    "Movie007 primary union-support metric mixes historical-time reach with source-plane coverage.",
+    "Movie007 is in-basis at SNR0=300; SNR0=100 reliable span is only 2M.",
+    "Off-basis narrow-hotspot and shearing-spiral spans are 0M.",
+    "Actual per-family source RNGs used 70061/70062 plus 1000*family index, not a single shared stream exactly as terse registration wording suggested.",
+    "Movie007 source bytes were hash-frozen and shipped in the artifact, but not deposited in GitHub before this audit.",
+    "No CI workflow or repository test suite ran on Movie007."
+  ],
+  "movie008_recommendation": {
+    "construction": "exact q8 direct-null old non-axisymmetric subspace; freeze modes before q12 validation and fresh twin generation",
+    "new_physical_calls": 0,
+    "primary_causal_endpoint": "balanced twin identity/reconstruction: direct observations exactly identical; order1 observations distinguish",
+    "avoid": "using union-support 0M versus 28M alone as causal evidence"
+  }
+}
