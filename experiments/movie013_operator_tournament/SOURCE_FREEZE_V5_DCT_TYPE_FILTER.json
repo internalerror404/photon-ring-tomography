@@ -1,0 +1,13 @@
+{
+  "experiment": "Mahakal II Movie013 controlled operator tournament",
+  "failure_record_commit": "7b9e1338cd64b8b8f4e25386a83ec3340450b7ef",
+  "execution_source": {
+    "sha256": "8e01b5fd3cdbd57a6488fb56cfd6568de413cad7139a387ad28d0bd9cfdb93c0",
+    "compressed_archive_sha256": "a296737dfa0a53ffdd5be9ad282f4e9f6568c513c11f3a521d9b8c40e836594d",
+    "syntax_check": "python -m py_compile PASS"
+  },
+  "change": "Exclude boolean metadata from the numeric DCT discrepancy maximum.",
+  "scientific_tables_and_variant_outcomes_changed": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
