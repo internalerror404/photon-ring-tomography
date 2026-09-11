@@ -1,0 +1,254 @@
+{
+  "experiment": "Mahakal II Movie008 direct-null twin movie recovery",
+  "registration_commit": "a72b15f459881c1741072ad53681e53e6759126f",
+  "preoutcome_amendment_commit": "c341b1174c5de322c5517362c7edd66921568651",
+  "audit_base_commit": "e93c659f16ac1d8723968c13dea9f91e8bea66ef",
+  "inputs": [
+    {
+      "path": "inputs/PHYSICAL_AND_OPERATOR_ARRAYS.npz",
+      "bytes": 6616724,
+      "sha256": "54204f14b8c834fb3c54dc012c9827e711f339fc6c30251802fea71ac6d8274e",
+      "arrays": {
+        "H": {
+          "shape": [
+            595,
+            595
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "H_chol": {
+          "shape": [
+            595,
+            595
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "penalty": {
+          "shape": [
+            595,
+            595
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "base_q8_n0": {
+          "shape": [
+            832
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "base_q8_n1": {
+          "shape": [
+            832
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "base_q12_n0": {
+          "shape": [
+            832
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "base_q12_n1": {
+          "shape": [
+            832
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "A_q8_n0": {
+          "shape": [
+            832,
+            595
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "A_q8_n1": {
+          "shape": [
+            832,
+            595
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "A_q12_n0": {
+          "shape": [
+            832,
+            595
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "A_q12_n1": {
+          "shape": [
+            832,
+            595
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "tuples_q8_n0": {
+          "shape": [
+            4096,
+            4
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "tuples_q8_n1": {
+          "shape": [
+            4096,
+            4
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "tuples_q12_n0": {
+          "shape": [
+            9216,
+            4
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "tuples_q12_n1": {
+          "shape": [
+            9216,
+            4
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "weights_q8_n0": {
+          "shape": [
+            4096
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "weights_q8_n1": {
+          "shape": [
+            4096
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "weights_q12_n0": {
+          "shape": [
+            9216
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "weights_q12_n1": {
+          "shape": [
+            9216
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "pixel_q8_n0": {
+          "shape": [
+            4096
+          ],
+          "dtype": "int64",
+          "finite": true
+        },
+        "pixel_q8_n1": {
+          "shape": [
+            4096
+          ],
+          "dtype": "int64",
+          "finite": true
+        },
+        "pixel_q12_n0": {
+          "shape": [
+            9216
+          ],
+          "dtype": "int64",
+          "finite": true
+        },
+        "pixel_q12_n1": {
+          "shape": [
+            9216
+          ],
+          "dtype": "int64",
+          "finite": true
+        }
+      }
+    },
+    {
+      "path": "inputs/REGULARIZATION_SELECTION.json",
+      "bytes": 34474,
+      "sha256": "f3739497a08973bec6ed0b5c174188ad1b2321b469efa06750de2b43bcddf090"
+    },
+    {
+      "path": "inputs/SUPPORT_WEIGHTS.npz",
+      "bytes": 140788,
+      "sha256": "72080e09e722b01a821d2989d706f21eccfc9ce7671d1fa2f18f66bcd56a7952",
+      "arrays": {
+        "support": {
+          "shape": [
+            15,
+            32,
+            64
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "full_annulus": {
+          "shape": [
+            15,
+            32,
+            64
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "times": {
+          "shape": [
+            15
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "r": {
+          "shape": [
+            32
+          ],
+          "dtype": "float64",
+          "finite": true
+        },
+        "phi": {
+          "shape": [
+            64
+          ],
+          "dtype": "float64",
+          "finite": true
+        }
+      }
+    },
+    {
+      "path": "inputs/kerr.py",
+      "bytes": 7146,
+      "sha256": "12abafb39f6d5a6ebf4626e0a05c021d3bd0c5c5ca6ae0abd22632656c8f28cf"
+    },
+    {
+      "path": "inputs/movie007_run.py",
+      "bytes": 38864,
+      "sha256": "8b80d533cd48400570e505423053a6557e4a2ea6f3d82367adfd5c88b34e5cf1"
+    }
+  ],
+  "environment": {
+    "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "pandas": "2.2.3"
+  }
+}

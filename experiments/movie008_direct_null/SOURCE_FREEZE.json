@@ -1,0 +1,22 @@
+{
+  "experiment": "Mahakal II Movie008 direct-null twin movie recovery",
+  "registration_commit": "a72b15f459881c1741072ad53681e53e6759126f",
+  "preoutcome_amendment_commit": "c341b1174c5de322c5517362c7edd66921568651",
+  "created_before_mode_bank_and_fresh_source_outcomes": true,
+  "source_hashes": {
+    "source/build_mode_bank.py": "89e019f8c90c4b4658b10a218cf3cf4da2065bd8aca8fde9308700cd13544b50",
+    "source/common.py": "19665537ce13705faa6e28912ace61420a1be70e8c9cb94fcc71fe9035154455",
+    "source/run_all.py": "db1ff35b54c5d5a2c7c40f282feb4c34648169fbc89e0161c20d9d9c0fc6f13c",
+    "source/run_experiment.py": "7f118923b7344d6b1982de25a63b72a7506f9642765bd7c549608c795ea683f7",
+    "source/verify_and_report.py": "df2134067c4a40c94a36877849953a6c74931cdc8a5074e0fcfab946b99797d8"
+  },
+  "input_manifest_sha256": "c5269bced7c56b72a02160744b71f66218e1c15d4a48723b29341537c145874d",
+  "syntax_check": "python -m py_compile source/*.py PASS",
+  "fresh_mode_bank_created": false,
+  "fresh_backgrounds_created": false,
+  "fresh_target_directions_created": false,
+  "fresh_noise_created": false,
+  "movie_outcomes_seen": false,
+  "new_physical_calls_authorized": 0,
+  "paper1_units_authorized": 0
+}
