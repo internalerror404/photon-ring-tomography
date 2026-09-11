@@ -1,0 +1,24 @@
+{
+  "experiment": "Movie012 Retarded Latent Neural Field — reimplemented registered design",
+  "failure_record_commit": "d7852e33ffa9bedcc706092705c915d0da95cbea",
+  "created_before_source_population_PCA_training_validation_or_test_outcomes": true,
+  "execution_source": {
+    "archive_path": "source/Movie012_Reimplemented_Source_V3.tar.xz",
+    "archive_sha256": "28646a35ecbdcac2595028c366bf1463e98f714d50c324065fc6d45ff0dba7a1",
+    "archive_bytes": 14352,
+    "member": "source/run_movie012_recovered.py",
+    "member_sha256": "53814308cc000b43e9ba5f1b4c2339f9f0344101bbf3f821d4c731279d0ca6e7",
+    "member_bytes": 51540,
+    "syntax_check": "python -m py_compile PASS",
+    "self_test": "SELF_TEST_PASS"
+  },
+  "correction": "Register the dynamically created frozen Movie007 module in sys.modules before exec_module so Python 3.13 dataclass annotation resolution matches ordinary import semantics.",
+  "physical_inputs_source_formulas_seeds_architecture_metrics_thresholds_and_gate_changed": false,
+  "source_population_generated": false,
+  "source_pca_fit": false,
+  "observation_pca_fit": false,
+  "neural_weights_trained": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
