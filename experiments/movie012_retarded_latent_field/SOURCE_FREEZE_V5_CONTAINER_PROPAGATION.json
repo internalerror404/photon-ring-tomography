@@ -1,0 +1,12 @@
+{
+  "experiment": "Movie012 Retarded Latent Neural Field — recovered implementation",
+  "failure_record": "EXECUTION_FAILURE_003_RECOVERED.md",
+  "created_before_source_generation_PCA_training_or_test_outcomes": true,
+  "source_identity": "MOVIE012_RECOVERED_V4_CONTAINER_PRESERVING_FULL_REPLAY_20260911",
+  "change": "Preserve dataclass/object container types while propagating full-operator-recovered coordinate and kernel arrays to the physical replay caller; write a pre-outcome recovery diagnostic.",
+  "source_formulas_populations_seeds_PCA_ranks_architecture_optimizer_metrics_thresholds_and_gates_changed": false,
+  "syntax_check": "PASS",
+  "source_or_test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
