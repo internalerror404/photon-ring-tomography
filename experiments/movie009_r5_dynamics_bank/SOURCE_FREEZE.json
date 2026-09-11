@@ -1,0 +1,28 @@
+{
+  "experiment": "Mahakal II Movie009-R5 family-blind analytic dynamics bank",
+  "registration_commit": "d132b8a89021ae235a43b91189aea93e289cb6bd",
+  "lazy_q12_amendment_commit": "e3ff28bf7dfeec40cea70f98e4bd80d6d26bc531",
+  "created_before_bank_generation_candidate_selection_or_test_outcomes": true,
+  "execution_source": {
+    "path_in_delivery": "source/run_movie009_r5.py",
+    "sha256": "9bfbe57c46ea2d78d1ee9e7b93d6bf113465e10564ae7f2ef1618e381bd7839a",
+    "syntax_check": "PASS"
+  },
+  "bank": {
+    "seed": 490090,
+    "parameter_records_per_family": 1024,
+    "variants_per_record": 2,
+    "families": ["narrow_hotspot","shearing_spiral","split_merge","radial_plume"],
+    "total_candidates": 8192,
+    "amplitude_bounds": [0.20,0.70]
+  },
+  "population": {
+    "SOURCE_SPECS.json": "4b1d3a85f82dcefc66a44554aac33ad28eda40c8ef64792fb9992859f517ae43",
+    "test_pairs": 64,
+    "paired_noise_draws": 4
+  },
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0,
+  "note": "Exact source bytes are locally hash-frozen and will be deposited with the completion record."
+}
