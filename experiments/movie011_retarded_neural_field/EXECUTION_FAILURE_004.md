@@ -1,0 +1,5 @@
+# Movie011 execution failure 004 — candidate-ledger serialization
+
+The atomic uncompressed preparation completed in 34.5 seconds and produced a valid, fully readable `POPULATIONS.npz` plus `SOURCE_SPECS.json`: 900 training histories, 24 validation pairs, 64 test pairs, and all stored q8/q12 analytic responses. It then stopped before writing the candidate ledger and clean-gate record because candidates rejected by the activity predicate carried an internal unevaluated positivity placeholder `+inf`, while strict JSON correctly rejects non-finite values.
+
+The population and source-spec files are retained; they were generated under source freeze V4 and are not altered. No neural weight, checkpoint selection, reconstruction, or test endpoint exists. The reporting repair deterministically replays candidate admission, verifies the accepted specs byte-for-value against `SOURCE_SPECS.json`, represents unevaluated positivity as JSON `null`, and derives the clean q8/q12 gate from the already stored response arrays. It changes no source, observation, model, threshold, or scientific endpoint.
