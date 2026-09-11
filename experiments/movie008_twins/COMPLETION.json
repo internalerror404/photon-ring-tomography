@@ -1,0 +1,49 @@
+{
+  "return_token": "MOVIE008_DIRECT_NULL_TWIN_MOVIE_PASS",
+  "base_movie007_head": "60caf340c90d8ea5c64d792cc1f2e1d7e23af2a1",
+  "primary": {
+    "snr0": 300,
+    "half_amplitude": 0.30,
+    "backgrounds": 54,
+    "modes": 6,
+    "noise_draws": 4,
+    "individual_twins": 432,
+    "direct_individual_sign_accuracy": 0.5,
+    "direct_pair_both_correct_rate": 0.0,
+    "labelled_individual_sign_accuracy": 1.0,
+    "labelled_pair_both_correct_rate": 1.0,
+    "direct_amplitude_RMSE": 0.3243,
+    "labelled_amplitude_RMSE": 0.0014643960626391,
+    "direct_median_support_movie_error": 0.9613,
+    "labelled_median_support_movie_error": 0.0724757132220486,
+    "direct_span95_M": 0,
+    "labelled_span95_M": 26,
+    "direct_span90_M": 0,
+    "labelled_span90_M": 28,
+    "direct_differential_movies_passing_all_frames": 0,
+    "labelled_differential_movies_passing_all_frames": 216
+  },
+  "causal_construction": {
+    "earliest_q12_direct_source_time_M": -2.533454,
+    "latest_mode_temporal_support_M": -5.75,
+    "support_gap_M": 3.216546,
+    "maximum_direct_twin_difference_whitened": 6.74e-15,
+    "uniform_emissivity_lower_bound": 0.40
+  },
+  "secondary_independent_sibling_noise": {
+    "snr300_amplitude0p003_labelled_sign_accuracy": 0.9745,
+    "snr300_amplitude0p003_pair_both_correct": 0.9537,
+    "snr100_amplitude0p003_labelled_sign_accuracy": 0.7778
+  },
+  "numerical_gates": {
+    "clean_q8_q12_max_relative": 1.44e-4,
+    "clean_q8_q12_max_whitened": 1.28e-4,
+    "fitted_q8_q12_max_relative": 2.38e-6,
+    "fitted_q8_q12_max_whitened": 0.0396,
+    "all_primary_gates_pass": true
+  },
+  "scope": "One Kerr chart, ideal order labels, six in-basis old-time support-null modes, frozen Movie007 ridge estimator, measured-support movie metric; not off-basis, full-annulus, visibility-domain, telescope, or observational recovery.",
+  "new_physical_calls": 0,
+  "paper1_units_used": 0,
+  "full_payload_sha256": "163e7b0d7e394e9ed81051081bba7517b44c910f81697ed416ad8f0df9334e57"
+}
