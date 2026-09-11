@@ -1,0 +1,45 @@
+{
+  "checks": {
+    "input_hashes_match_summary": true,
+    "source_arrays_finite": true,
+    "noise_arrays_finite": true,
+    "mode_source_orthonormality": true,
+    "target_direction_gram": true,
+    "fresh_direct_q8_exact_zero": true,
+    "fresh_direct_q12_exact_zero": true,
+    "analytic_positivity": true,
+    "aggregate_readback": true,
+    "bootstrap_readback": true,
+    "independent_conditional_GLS": true,
+    "paired_direct_byte_identical": true,
+    "threshold_recomputed": true,
+    "threshold_rows_recomputed": true,
+    "case_count": true,
+    "frame_count": true,
+    "construction_count": true,
+    "all_tables_finite": true,
+    "no_physical_attempt_ledger": true
+  },
+  "all_checks_pass": true,
+  "aggregate_max_abs_readback": 2.220446049250313e-16,
+  "bootstrap_max_abs_readback": 0.0,
+  "independent_conditional_GLS_max_abs": 5.6380775048658904e-11,
+  "target_direction_gram_error": 3.411962882826978e-14,
+  "minimum_analytic_emissivity_bound": 0.584189052087146,
+  "direct_pair_max_abs_difference": 0.0,
+  "recomputed_alpha_star": 0.32,
+  "recomputed_threshold_rows": [
+    {"alpha": 0.08, "passed": false},
+    {"alpha": 0.16, "passed": false},
+    {"alpha": 0.24, "passed": false},
+    {"alpha": 0.32, "passed": true},
+    {"alpha": 0.40, "passed": true},
+    {"alpha": 0.48, "passed": true}
+  ],
+  "record_closeout": {
+    "initial_verifier_scientific_readback_passed": true,
+    "initial_stop_reason": "threshold-row enumeration format mismatch",
+    "scientific_files_byte_identical_before_after_closeout": true,
+    "final_verifier_passed": true
+  }
+}
