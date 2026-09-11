@@ -1,0 +1,27 @@
+{
+  "experiment": "Mahakal II Movie009-R2 background-conditioned historical-innovation reconstruction",
+  "registration_commit": "db54e5b22b5ae317b0f774f10552e48a69cb86be",
+  "first_source_freeze_commit": "5ed4cd1419bc2437aaf4c55d3f9a86a7ec2eb2e5",
+  "failure_record_commit": "a41e3c6e7b010c13d2f340a26d5e188587586236",
+  "corrected_archive_deposit_commit": "bff6b4cb508aa9e4b88900f009a8a6917b69c3fc",
+  "corrected_launcher_commit": "bd5dd69f2e116d2af64948c6eba0a399be95c3fe",
+  "created_before_any_source_population_PCA_regularization_neural_weight_or_test_outcome": true,
+  "implementation": {
+    "encoded_archive_path": "experiments/movie009_r2_factorized/source/Movie009_R2_Source_V2.tar.xz.b64",
+    "decoded_archive_sha256": "88b8e5610c8d79c402108743237980784ce002fadd3fa0059f450439f201eea0",
+    "extracted_source_path": "run_movie009_r2.py",
+    "extracted_source_sha256": "04e2c39f3819cca96b2c8735c43fd7a849480251a458d981d1288539fb0f204d",
+    "extracted_source_bytes": 51372,
+    "syntax_check": "PASS",
+    "self_test": "PASS"
+  },
+  "correction": "Register the dynamically loaded authenticated Movie007 module in sys.modules before exec_module so Python 3.13 dataclass namespace resolution succeeds.",
+  "scientific_design_source_families_seeds_operator_noise_latent_rank_architecture_metrics_thresholds_and_gate_changed": false,
+  "source_candidates_generated": false,
+  "source_pca_fit": false,
+  "regularization_selected": false,
+  "neural_weights_trained": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
