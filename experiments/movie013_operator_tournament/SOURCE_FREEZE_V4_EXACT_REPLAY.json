@@ -1,0 +1,19 @@
+{
+  "experiment": "Mahakal II Movie013 controlled operator tournament",
+  "amendment_commit": "eaf9e786dbbece71a153037e98988778ae2b9dec",
+  "created_before_replacement_tournament_summary": true,
+  "execution_source": {
+    "sha256": "024c4da5beb43f728e3aefee55b53e141e92bf62f3639d3db41a0dd5c054830e",
+    "compressed_archive_sha256": "f7ae547eb8c68840e88c3e8a28622994736155dd0328490a1e9789dbb6f06cbd",
+    "syntax_check": "python -m py_compile PASS"
+  },
+  "fixed_before_rerun": [
+    "consume archived off-basis Gaussian noise in per-history order0-then-order1 order",
+    "filter archived aggregate replay to ridge rows before one-to-one merge",
+    "verify transformed DCT Gram and RHS, then solve the exact invariant normal equations"
+  ],
+  "superseded_summary_preserved": true,
+  "source_history_operator_regularization_grid_metrics_and_winner_rule_changed": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
