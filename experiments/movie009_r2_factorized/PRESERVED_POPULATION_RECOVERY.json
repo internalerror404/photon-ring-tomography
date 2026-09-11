@@ -1,0 +1,35 @@
+{
+  "experiment": "Mahakal II Movie009-R2 background-conditioned historical-innovation reconstruction",
+  "derived_after_failure": "EXECUTION_FAILURE_004.md",
+  "purpose": "Resume from the already accepted deterministic population without replaying 986526 candidate attempts.",
+  "source_candidate_ledger": {
+    "path_in_delivery": "results/SOURCE_CANDIDATE_LEDGER.jsonl.gz",
+    "sha256": "d3963d5222bdbb052cb13083c2cf51e3e7b5f2d5d9944d1006e5ddbe7101d10d",
+    "total_candidates": 986526,
+    "rejected_candidates": 985898,
+    "accepted_candidates": 628
+  },
+  "accepted_source_cache": {
+    "path_in_delivery": "results/ACCEPTED_SOURCE_SPECS.json",
+    "sha256": "c05db38fa7a595fa1611ff905036b1f67d2253255fe1a57dab8d81b16cedb438",
+    "bytes": 628121,
+    "derivation": "Stream the candidate ledger in order and retain exactly rows with accepted=true; no new source draw, admission decision, physical response, inverse, or endpoint."
+  },
+  "counts": {
+    "training/narrow_hotspot": 180,
+    "training/shearing_spiral": 180,
+    "training/split_merge": 180,
+    "validation/narrow_hotspot": 8,
+    "validation/shearing_spiral": 8,
+    "validation/split_merge": 8,
+    "test/narrow_hotspot": 16,
+    "test/shearing_spiral": 16,
+    "test/split_merge": 16,
+    "test/radial_plume": 16
+  },
+  "index_check": "PASS: each split/family accepted index is exactly 0..count-1 in ledger order",
+  "scientific_outcomes_seen": false,
+  "neural_training_started": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
