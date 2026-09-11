@@ -1,0 +1,67 @@
+{
+  "return_token": "MOVIE009_R3_BACKGROUND_POSTERIOR_FAIL",
+  "registration_commit": "a48e73ca0c97725217243c19e3f82b60b1449f15",
+  "deterministic_latent_amendment_commit": "3116d684b3dda13071d0bd34a2027fc3decd25cc",
+  "source_freeze_commit": "f2e21fb145e68f4625159f6004ef7fcf8229d6c0",
+  "population": "Exact examined Movie009-R2 population; postplanned mechanism experiment, not fresh confirmation",
+  "primary_snr0": 300,
+  "point_estimate_replay": {
+    "identity_accuracy": 0.99609375,
+    "pair_both_correct": 0.9921875,
+    "span95_M": 6,
+    "span90_M": 8,
+    "median_error": 0.23390243433573232,
+    "differential_pass_rate": 0.296875
+  },
+  "posterior_beam_map_k9": {
+    "identity_accuracy": 1.0,
+    "pair_both_correct": 1.0,
+    "span95_M": 6,
+    "span90_M": 10,
+    "median_error": 0.211134,
+    "differential_pass_rate": 0.234375
+  },
+  "posterior_beam_map_k65": {
+    "identity_accuracy": 1.0,
+    "pair_both_correct": 1.0,
+    "span95_M": 6,
+    "span90_M": 10,
+    "median_error": 0.214333,
+    "differential_pass_rate": 0.230469,
+    "q8_q12_max_relative": 0.000087,
+    "q8_q12_max_whitened": 1.166158
+  },
+  "true_background_same_rank96_latent": {
+    "identity_accuracy": 1.0,
+    "pair_both_correct": 1.0,
+    "span95_M": 10,
+    "span90_M": 14,
+    "median_error": 0.163478,
+    "differential_pass_rate": 0.296875,
+    "q8_q12_max_whitened": 1.150394
+  },
+  "beam_diagnostics": {
+    "median_effective_posterior_size": 1.0,
+    "median_max_weight": 1.0,
+    "first_forecast_singular_values": [209.1482394, 110.9659057, 37.5021339, 20.7711899]
+  },
+  "gate": {
+    "r2_point_replay": true,
+    "direct_chance": true,
+    "labelled_identification": true,
+    "movie_span": false,
+    "family_improvement_including_plume": true,
+    "differential_movie": false,
+    "q8_q12": false,
+    "pass": false
+  },
+  "interpretation": "Retaining a 65-hypothesis Gaussian background beam modestly improves median error and the 90%-reliable span, but does not improve the 95%-reliable span or differential-movie fidelity. Even supplying the true background to the same rank-96 latent representation fails the registered movie and numerical gates. Background point-estimation is therefore not the sole bottleneck; the historical representation/inverse and fitted-field numerical stability are binding.",
+  "artifact_hashes": {
+    "SUMMARY.json": "54fce9f58f534909e2279b440c3aca2a19a7b0a81c197f28a163d8036df03858",
+    "AGGREGATE.csv": "27d1260e60627b652f1626f4d2d6e3a45f1c4ac366e423c19d565f43fadbcd62",
+    "FAMILY.csv": "b8d5882132c03604d007f8a566f832ef1a30f8b867c42ac3a49823e2ee2de949",
+    "BEAM_SCORES.csv": "a4a79acf039011ab65d6878eb41f2e719158efea079116cc76ea18c68c26f16e"
+  },
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
