@@ -4,13 +4,14 @@
     "source/movie007_run.py": "8b80d533cd48400570e505423053a6557e4a2ea6f3d82367adfd5c88b34e5cf1"
   },
   "delivered_additional_source": {
-    "source/finalize.py": "3c0b8e3a898996d03d9d1feec772a99fb48d7f0eea25d257a72bfac54d3fa393",
-    "source/offbasis.py": "129686783d40cf23802148bf28336667017bf9add3c92e5e9017477099e5cb860"
+    "source/finalize.py": "b622e7e3468b59be4d396d4e82a3a9746e1c7605a6c0c18b5a0af19e5a904820",
+    "source/offbasis.py": "54c1e0ca0f1b2e2d94c34604eecb19c44c4c96a9e59b377f74b303b35aac4b97"
   },
   "artifacts": {
-    "full_zip": "090187d19655182c380d06bd91dcebd0e57342645da630362e20dea5fba37f3f",
-    "compact_zip": "4f827f2779e7d6d064031ca0f7f18a0637201de1a38820580df7a83e3993bd2f",
-    "report_before_offbasis_append": "61d4ca12fa2d2508d3e22825eb82af726d19bf590afddba47e56b0bd88961b83"
+    "full_zip": "3bfbc5ec24d14a17515dc3c3beadc3e95ca2b9b5eea40922ebb614f67289edad",
+    "compact_zip": "780cee5b68cc348f55d2674f22381c8fcbb9d804363c073169a1e3412a2d1326",
+    "report": "61d4ca12fa2d2508d3e22825eb82af726d19bf590afddba47e56b0bd88961b83",
+    "summary": "232c34a5c9dbf03184bffc811d446f952095852a86be7150165a038e0cb760eb"
   },
   "note": "Complete source, binary physical arrays, source banks, reconstructions, per-frame metrics, figures, logs and manifests are in the delivered artifact packages; compact GitHub results do not claim those binaries are present."
 }
