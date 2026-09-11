@@ -1,0 +1,53 @@
+{
+  "return_token": "MOVIE009_R6_DYNAMICS_MIXTURE_FAIL",
+  "registration_commit": "7cd2f3ec0507931845a911a2e1722ca4304779cc",
+  "source_freeze_commit": "fe8f19cb7f9ac4bff5a5b35c05a78b502581ab1f",
+  "reporting_failure_commit": "92856a06b4b5c910b93d09c20d6d4dfaba146d23",
+  "selected": {"K":32,"ridge_exponent":-6,"validation_median_error":0.0564840367},
+  "primary": {
+    "method":"FAMILY_BLIND_MIX_K32",
+    "identity_accuracy":1.0,
+    "pair_both_correct":1.0,
+    "span95_M":26,
+    "span90_M":28,
+    "median_error":0.060283,
+    "median_innovation_error":0.095834,
+    "differential_pass_rate":0.84375,
+    "inferred_family_accuracy":0.888672,
+    "median_nonzero_atoms":8.0,
+    "median_effective_atoms":4.417559,
+    "q8_q12_max_relative":7.973274e-7,
+    "q8_q12_max_whitened":0.008954
+  },
+  "true_family_diagnostic": {
+    "span95_M":26,
+    "span90_M":28,
+    "median_error":0.063365,
+    "differential_pass_rate":0.875
+  },
+  "mixture_size_ladder": [
+    {"K":4,"span95_M":18,"median_error":0.108952,"differential_pass_rate":0.652344},
+    {"K":8,"span95_M":26,"median_error":0.085161,"differential_pass_rate":0.800781},
+    {"K":16,"span95_M":26,"median_error":0.070065,"differential_pass_rate":0.804688},
+    {"K":32,"span95_M":26,"median_error":0.060283,"differential_pass_rate":0.84375}
+  ],
+  "gate": {
+    "direct_chance":true,
+    "identity":true,
+    "span":true,
+    "differential":false,
+    "all_family_improvement":true,
+    "q8_q12":true,
+    "pass":false
+  },
+  "interpretation":"A validation-selected nonnegative mixture over nearby analytic dynamics atoms removes the PCA numerical failure and recovers a 26M 95%-reliable movie with perfect twin identification. The sole scientific gate failure is differential all-active-frame fidelity at 84.375% versus 90%. Supplying the true family raises it only to 87.5%, so continuous parameter/template refinement—not family classification—is the justified next test.",
+  "artifact_hashes": {
+    "SUMMARY.json":"beb856f7c2f52484beb3a173857d951b4e0fe329d445e2929e73f0fce62a14ee",
+    "AGGREGATE.csv":"e3c587bcc8fe940277abe5db7e3f0430142d79fbc012208f0f9d64bd3e5d7286",
+    "FAMILY.csv":"9b8246567b5f52480bf490f7720eb29d31abffcb12edb5f76ea5a71c5c7a5baa",
+    "Q8_Q12.csv":"bca295953cd5f053e881989d4ab091e631b69c4f30208264776bd40857581cf7",
+    "MIXTURES.csv":"4d73a9ebb6b143c4d995609395366be1279728cbe2f00228f6fe2b8c1027e836"
+  },
+  "new_physical_calls":0,
+  "paper1_units":0
+}
