@@ -1,0 +1,31 @@
+{
+  "experiment": "Mahakal II Movie009-R3 background-posterior historical movie recovery",
+  "registration_commit": "a48e73ca0c97725217243c19e3f82b60b1449f15",
+  "preexecution_amendment_commit": "3116d684b3dda13071d0bd34a2027fc3decd25cc",
+  "created_before_any_R3_posterior_hypothesis_or_scientific_endpoint": true,
+  "execution_source": {
+    "run_movie009_r3.py": "8ba79b8610932c01bbe35aabd22f2068e65b63d509662507558ab7482322a945",
+    "recovered_support_run_movie009_r2.py": "0d7dc472719c5d5c48c3b202667c413cd8d351df83c913352991e7e7f3651a96",
+    "Movie009_R3_Source.tar.xz": "9d0325ddf59bae2a0837b7035b540b4ae5526cb55033f88e9ec5b663356f3254",
+    "syntax_check": "PASS",
+    "self_test": "PASS"
+  },
+  "preserved_population": {
+    "results/SOURCE_SPECS.json": "4b1d3a85f82dcefc66a44554aac33ad28eda40c8ef64792fb9992859f517ae43",
+    "training_pairs": 540,
+    "validation_pairs": 24,
+    "test_pairs": 64
+  },
+  "inputs": {
+    "PHYSICAL_AND_OPERATOR_ARRAYS.npz": "54204f14b8c834fb3c54dc012c9827e711f339fc6c30251802fea71ac6d8274e",
+    "SUPPORT_WEIGHTS.npz": "72080e09e722b01a821d2989d706f21eccfc9ce7671d1fa2f18f66bcd56a7952",
+    "REGULARIZATION_SELECTION.json": "f3739497a08973bec6ed0b5c174188ad1b2321b469efa06750de2b43bcddf090",
+    "movie007_run.py": "8b80d533cd48400570e505423053a6557e4a2ea6f3d82367adfd5c88b34e5cf1",
+    "kerr.py": "12abafb39f6d5a6ebf4626e0a05c021d3bd0c5c5ca6ae0abd22632656c8f28cf"
+  },
+  "primary_method": "deterministic validation-selected latent ridge under a 65-hypothesis direct-background posterior beam",
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0,
+  "note": "Exact source archive is locally hash-frozen and will be deposited with the completion record; this file does not claim the binary archive was already present in GitHub."
+}
