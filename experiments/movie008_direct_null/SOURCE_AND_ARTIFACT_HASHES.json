@@ -1,0 +1,20 @@
+{
+  "Movie008_Compact_Record.tar.xz": {"bytes":42648,"sha256":"b2670c6fd7b692934beade71f2065dea09a59835e8444d68e30a69769be23174"},
+  "REPORT.md": {"bytes":6722,"sha256":"f9bbf0d2405d3faff493f1d61176eb68ac028ffa2fb5935092bc991d06e85b2d"},
+  "COMPLETION.json": {"bytes":7454,"sha256":"2b88ff5887794865890a83b6879234e54f2d511a565e4b3c4237d431a0ba7284"},
+  "SUMMARY.json": {"bytes":32561,"sha256":"ec194c7ff2276aa063db25988d9809fc370d149d04f7f5e57484b48956b40a68"},
+  "results/AGGREGATE.csv": {"bytes":2662,"sha256":"fb379ca23b87497ed73a2c25c6205a990a27e33c622d7693ce2c4397a8e04b47"},
+  "results/GROUP_RESULTS.csv": {"bytes":4698,"sha256":"57c94bf39265dc749722a5ba41e0774c5e460a6ed11b1514cb484f28c7144862"},
+  "results/PRIMARY_PER_ACTIVE_FRAME_SUMMARY.csv": {"bytes":1010,"sha256":"a9960ad9fa408910aac76a7c4c35f0a430f5897e12c361bac6e8d7a57f92d2b6"},
+  "results/POSTPLANNED_SIGNAL_DIAGNOSTIC.json": {"bytes":5619,"sha256":"b8c3963e1796d2920c22c32b57f1784a4318dafb7abfff466190882db12c4e8b"},
+  "results/VERIFICATION.json": {"bytes":1831,"sha256":"df939bdbbd3eddfbfcd8133b728ee7b40c77f5ef267e5fb73e4b4695e6a0a290"},
+  "source/run_experiment_batched.py": {"bytes":31740,"sha256":"3f0d2854bec598c48aa3fdfe6452c906f80b9283af8da4840497fcf1ceb84aa5"},
+  "source/verify_and_report_batched.py": {"bytes":10918,"sha256":"467e55deaa51467a7e72d67063b9f5d8e599aba538bd00cb1af8375cdd038876"},
+  "source/run_all_batched.py": {"bytes":740,"sha256":"de2972dd1440ec7cfabd2680252d3dea64c498bf376c981036b2a92bd6d6f661"},
+  "Mahakal_II_Movie008_Full.zip": {"bytes":15601581,"sha256":"12e81bef7763046abd9be4600d9f56728a77491feb9f71793b9d788c8dae5af9"},
+  "Mahakal_II_Movie008_Compact.zip": {"bytes":1257826,"sha256":"3874eb940a50de136aff96d70d3a2c8736e8295130a359a3063820b0aaa4e229"},
+  "Movie008_Direct_Null_Twin_Example.gif": {"bytes":488545,"sha256":"4ba0d5bb061419d0538199b8b9b6078227d9c2d8eb7991125d7b533c61d2eefa"},
+  "Movie008_Causal_Endpoints.png": {"bytes":88809,"sha256":"4e9b9b98da55b28f9da142c6026703c6549da2f3ef364a3dcf52ec8ad8e4aa39"},
+  "Movie008_Per_Frame_Pass.png": {"bytes":115647,"sha256":"e71e17f3d3db3ba393e3b25c468b296884a577fd809853aa468234c6f96b3dd8"},
+  "Movie008_Postplanned_Signal_Diagnostic.png": {"bytes":107624,"sha256":"5c369586959c5e1b215721952abf2251be594d151fdd1941c6e658290cf6dffc"}
+}
