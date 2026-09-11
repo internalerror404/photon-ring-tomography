@@ -1,0 +1,19 @@
+{
+  "experiment": "Mahakal II Movie007 measured-support recovery",
+  "execution_amendment_commit": "8175115cc611f5bdac8eddb3d74c001ba1cd3b71",
+  "created_before_physical_rendering_source_generation_regularization_and_test_outcomes": true,
+  "source_files": {
+    "source/kerr.py": "12abafb39f6d5a6ebf4626e0a05c021d3bd0c5c5ca6ae0abd22632656c8f28cf",
+    "source/movie007_run.py": "315ba6d31f9e55286a94ffd4f7c9fb9767e2860f048752169d76290c4db3f66c"
+  },
+  "execution_amendment_sha256": "11f31509df156db171cb641dcfbcd3cd4ee17de2913d9b109b251deda19d8715",
+  "syntax_check": "python -m py_compile PASS",
+  "movie_outcomes_seen": false,
+  "regularization_selected": false,
+  "test_sources_generated": false,
+  "paper1_units_authorized": 0,
+  "physical_limits": {
+    "separated_quadrature_calls": 28000,
+    "independent_ode_calls": 80
+  }
+}
