@@ -1,0 +1,20 @@
+{
+  "experiment": "Mahakal II Movie010 isolated off-basis historical twins",
+  "registration_commit": "0c84739ffd62c05f27783077357b15b1566f4f63",
+  "created_unix_before_source_generation_or_outcomes": 1789107674.5187268,
+  "files": {
+    "source/movie010_common.py": {"bytes": 3650, "sha256": "e5f06c6c50af55e53acf7a22372c2df04c02d2de3c5cc8105b49f5a0fa94d41f"},
+    "source/movie009_common.py": {"bytes": 21905, "sha256": "ad633c9047295cd8077c1985f64c2179824df6da8acf5c8dbd0acd3d8f36dd83"},
+    "source/stageA_classical.py": {"bytes": 19997, "sha256": "d8b14486daec9a4a382be9431b3f84cc413979ba235102f17610c5becb4d23a1"},
+    "results/RICH_OPERATOR.npz": {"bytes": 32047045, "sha256": "ddd63429fb1deff01a2ae9bba8dcbc39371ea38e9c1c0b20130971e7686460d1"},
+    "inputs/PHYSICAL_AND_OPERATOR_ARRAYS.npz": {"bytes": 6616724, "sha256": "54204f14b8c834fb3c54dc012c9827e711f339fc6c30251802fea71ac6d8274e"},
+    "inputs/SUPPORT_WEIGHTS.npz": {"bytes": 140788, "sha256": "72080e09e722b01a821d2989d706f21eccfc9ce7671d1fa2f18f66bcd56a7952"},
+    "inputs/REGULARIZATION_SELECTION.json": {"bytes": 34474, "sha256": "f3739497a08973bec6ed0b5c174188ad1b2321b469efa06750de2b43bcddf090"}
+  },
+  "sources_generated": false,
+  "regularization_selected": false,
+  "neural_trained": false,
+  "outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
