@@ -1,0 +1,18 @@
+{
+  "experiment": "Mahakal II Movie013 controlled operator tournament",
+  "registration_commit": "3afddc3533bb548702173c1f38ce048886c8ae89",
+  "failure_record_commit": "37a8ce642a3c2965b06d4845b35490f8a263721b",
+  "created_before_any_heldout_variant_outcome": true,
+  "preserved_progress": "input authentication, Movie007 selection replay, DCT validation equivalence, and nested operator construction only",
+  "execution_source": {
+    "path_in_delivery": "source/run_movie013.py",
+    "sha256": "76e1b0c36109c400a1ba2e93138656bfd29bc4fcded7d27efa25bc77df0b8766",
+    "compressed_archive_sha256": "26094f8412de1b8d11c36ed547eefc0242e323ced7ca93bf5382ba4e72318baf",
+    "syntax_check": "python -m py_compile PASS"
+  },
+  "correction": "When the direct old-target response has exactly zero trace scale, set that unobservable target estimate to zero and select only nuisance regularization. The labelled 5x5 old/nuisance grid is unchanged.",
+  "sources_noise_operators_thresholds_and_metrics_changed": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
