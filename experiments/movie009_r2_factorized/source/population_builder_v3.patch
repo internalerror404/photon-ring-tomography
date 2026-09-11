@@ -1,0 +1,137 @@
+--- a/run_movie009_r2.py
++++ b/run_movie009_r2.py
+@@ -9,6 +9,7 @@
+ """
+ 
+ import argparse
++import gzip
+ import hashlib
+ import importlib.util
+ import json
+@@ -286,33 +287,83 @@
+     return np.sqrt(np.sum(W * feature_frames**2, axis=(1, 2)))
+ 
+ 
+-def generate_pairs(m7, W: np.ndarray, split: str, families: Iterable[str], count: int, seed: int, grams) -> tuple[list[PairRecord], list[dict[str, Any]]]:
++def generate_pairs(
++    m7,
++    W: np.ndarray,
++    split: str,
++    families: Iterable[str],
++    count: int,
++    seed: int,
++    grams,
++    ledger_handle,
++) -> list[PairRecord]:
++    """Return the first accepted records in the registered RNG stream.
++
++    Feature activity is independent of the projected shared background.  We
++    therefore evaluate that response-free gate first and project the already
++    drawn background only for activity-eligible candidates.  This preserves the
++    accepted stream while avoiding expensive work on deterministic rejections.
++    Every candidate is written to a compressed JSON-lines ledger.
++    """
+     rng = np.random.default_rng(seed)
+     records: list[PairRecord] = []
+-    ledger: list[dict[str, Any]] = []
++    pending_lines: list[str] = []
++
++    def emit(record: dict[str, Any]) -> None:
++        pending_lines.append(json.dumps(record, allow_nan=False, separators=(",", ":")))
++        if len(pending_lines) >= 1024:
++            ledger_handle.write("\n".join(pending_lines) + "\n")
++            pending_lines.clear()
++
+     for fi, family in enumerate(families):
+         accepted = 0
+         attempts = 0
+-        while accepted < count and attempts < count * 50:
++        max_attempts = count * 5000
++        while accepted < count and attempts < max_attempts:
+             attempts += 1
+             bg_family = BACKGROUND_FAMILIES[(fi + accepted) % len(BACKGROUND_FAMILIES)]
++            # Draws remain in the exact registered order.  make_background uses
++            # no RNG and can be deferred until the feature-only gate passes.
+             bgp = draw_background(bg_family, rng)
+             fp = draw_feature_pair(family, rng)
+-            c_bg, bg_frames = make_background(m7, grams, bg_family, bgp)
+             fminus = feature_on_eval(family, fp, -1)
+             fplus = feature_on_eval(family, fp, +1)
+             a1 = source_activity(fminus, W)
+             a2 = source_activity(fplus, W)
+-            minj = min(float(np.min(1.0 + bg_frames + fminus)), float(np.min(1.0 + bg_frames + fplus)))
+             active = min(int(np.sum(a1[3:] >= 0.03)), int(np.sum(a2[3:] >= 0.03)))
+             finite = bool(np.isfinite(fminus).all() and np.isfinite(fplus).all())
+-            ok = finite and minj >= 0.0 and active >= 9
+-            ledger.append(
++            if not finite or active < 9:
++                emit(
++                    {
++                        "split": split,
++                        "family": family,
++                        "attempt": attempts,
++                        "accepted_index_before": accepted,
++                        "accepted": False,
++                        "reason": "nonfinite_feature" if not finite else "insufficient_old_frame_activity",
++                        "minimum_emissivity": None,
++                        "active_old_frames": active,
++                        "background_family": bg_family,
++                        "background_params": bgp,
++                        "feature_params": fp,
++                    }
++                )
++                continue
++
++            c_bg, bg_frames = make_background(m7, grams, bg_family, bgp)
++            minj = min(
++                float(np.min(1.0 + bg_frames + fminus)),
++                float(np.min(1.0 + bg_frames + fplus)),
++            )
++            ok = minj >= 0.0
++            emit(
+                 {
+                     "split": split,
+                     "family": family,
+                     "attempt": attempts,
++                    "accepted_index_before": accepted,
+                     "accepted": ok,
++                    "reason": "accepted" if ok else "nonpositive_total_source",
+                     "minimum_emissivity": minj,
+                     "active_old_frames": active,
+                     "background_family": bg_family,
+@@ -324,9 +375,17 @@
+                 continue
+             records.append(PairRecord(split, family, accepted, bg_family, bgp, fp, c_bg, bg_frames))
+             accepted += 1
++
+         if accepted != count:
+-            raise RuntimeError(f"could not fill {split}/{family}: {accepted}/{count}")
+-    return records, ledger
++            if pending_lines:
++                ledger_handle.write("\n".join(pending_lines) + "\n")
++                pending_lines.clear()
++            raise RuntimeError(f"could not fill {split}/{family}: {accepted}/{count} after {attempts} attempts")
++        print(f"  {split}/{family}: {accepted} accepted from {attempts} candidates", flush=True)
++
++    if pending_lines:
++        ledger_handle.write("\n".join(pending_lines) + "\n")
++    return records
+ 
+ 
+ def tuple_group(z: np.lib.npyio.NpzFile, q: int, n: int) -> dict[str, np.ndarray]:
+@@ -575,10 +634,11 @@
+         raise RuntimeError("Movie007 regularization replay failed")
+ 
+     print("Generating fresh source populations...", flush=True)
+-    train, led_train = generate_pairs(m7, W, "training", TRAIN_FAMILIES, TRAIN_PAIRS_PER_FAMILY, SEEDS["training_sources"], grams)
+-    val, led_val = generate_pairs(m7, W, "validation", TRAIN_FAMILIES, VAL_PAIRS_PER_FAMILY, SEEDS["validation_sources"], grams)
+-    test, led_test = generate_pairs(m7, W, "test", TEST_FAMILIES, TEST_PAIRS_PER_FAMILY, SEEDS["test_sources"], grams)
+-    dump(RES / "SOURCE_CANDIDATE_LEDGER.json", led_train + led_val + led_test)
++    ledger_path = RES / "SOURCE_CANDIDATE_LEDGER.jsonl.gz"
++    with gzip.open(ledger_path, "wt", encoding="utf-8", compresslevel=6) as ledger:
++        train = generate_pairs(m7, W, "training", TRAIN_FAMILIES, TRAIN_PAIRS_PER_FAMILY, SEEDS["training_sources"], grams, ledger)
++        val = generate_pairs(m7, W, "validation", TRAIN_FAMILIES, VAL_PAIRS_PER_FAMILY, SEEDS["validation_sources"], grams, ledger)
++        test = generate_pairs(m7, W, "test", TEST_FAMILIES, TEST_PAIRS_PER_FAMILY, SEEDS["test_sources"], grams, ledger)
+ 
+     # Training feature matrices on latent grid; both siblings enter.
+     print("Building source PCA...", flush=True)
