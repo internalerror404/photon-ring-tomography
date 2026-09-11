@@ -1,0 +1,7 @@
+# Movie009-R2 execution failure 002 — source-population construction exceeded the execution envelope
+
+The rerun under `SOURCE_FREEZE_V2_IMPORT_FIX.json` passed input authentication and entered fresh source-population construction, but exceeded the 45-minute local execution envelope before producing a source ledger, accepted source bank, PCA decoder, regularization choice, neural weight, reconstruction, or scientific endpoint. The process was terminated by the execution envelope; no process remains and the results directory contains no scientific output.
+
+Profiling is restricted to the pre-outcome population builder. The expensive path repeatedly projects independently drawn broad backgrounds into the same frozen 595-dimensional class inside the candidate-admission loop. The repair may vectorize or batch that mathematically identical projection, cache deterministic basis evaluations, and write accepted populations atomically, but may not change RNG order, candidate parameters, admission predicates, accepted-source order, family counts, seeds, physics, metrics, thresholds, or inverse definitions.
+
+The timeout is an implementation/resource failure, not a Movie009-R2 scientific pass or fail. Any optimized source is syntax-checked, equivalence-tested on frozen development candidates, and committed before another execution.
