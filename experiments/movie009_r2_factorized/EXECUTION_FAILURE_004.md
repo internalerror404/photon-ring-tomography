@@ -1,0 +1,9 @@
+# Movie009-R2 execution failure 004 — vector/block RHS assembly
+
+The V3 execution completed the fresh deterministic source population, rank-96 source PCA, q8/q12 latent response matrices, representation-floor readback, clean/direct-null gates, background regularization selection, and rank-128 residual-observation PCA. It then stopped during the first validation-only joint-trust candidate, before neural training, frozen trust selection, held-out reconstruction, movie metrics, or any success-gate endpoint.
+
+`joint_solve` formed a 595-coordinate background right-hand side and a 96-coordinate latent right-hand side. For a single validation sample both are one-dimensional vectors; `numpy.vstack` incorrectly interpreted them as two equal-width rows and raised because their lengths differ. The intended block normal equation requires concatenation along the coordinate axis for vectors and vertical stacking only for batched matrices.
+
+The repair makes that dimensional dispatch explicit and adds scalar-versus-one-column equivalence checks. It does not alter the joint objective, matrices, trust grid, source population, PCA, physics, noise, estimators, thresholds, or metrics.
+
+The accepted source population already exists inside the compressed candidate ledger. A deterministic resume artifact may be derived from accepted ledger rows only, with counts, parameters, and hashes checked, so the nearly one-million-candidate stream is not regenerated. Existing PCA and clean-gate artifacts may be reused only after their byte hashes and reconstructed population identity pass. No held-out outcome has been seen, and no new physical call or Paper-I unit is used.
