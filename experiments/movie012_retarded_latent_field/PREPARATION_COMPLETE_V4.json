@@ -1,0 +1,47 @@
+{
+  "status": "MOVIE012_PREPARATION_COMPLETE",
+  "source_freeze_commit": "0f6e1b880765e8cb5366031b3f1b6c46822d6bfe",
+  "created_before_any_neural_weight_checkpoint_validation_selection_or_test_endpoint": true,
+  "artifacts": {
+    "PREPARED.npz": {"bytes": 94312638, "sha256": "42f1b9d2fb61fd2b7ea40e105fd9342f9f8bdd07b69cf3c6a43364dc9e694c6a"},
+    "PREPARATION.json": {"bytes": 1592, "sha256": "780e5bff7163a1026d7d6950be0b1c53b5b414388722913c0557b1e8fe566021"},
+    "SOURCE_SPECS.json": {"bytes": 584341, "sha256": "6c645441f6ce74b2dec400452a0d4e55751d3fd20ad34d675a506186ff8271a6"},
+    "SOURCE_CANDIDATE_LEDGER.json": {"bytes": 852886, "sha256": "45d6170dbfa04c014e9d0524feb21f9a443512510bd2dbecb18ef3b9ca6f748f"}
+  },
+  "counts": {
+    "training_pairs": 540,
+    "training_movies": 1080,
+    "validation_pairs": 24,
+    "validation_movies": 48,
+    "test_pairs": 64,
+    "test_movies": 128
+  },
+  "representations": {
+    "source_grid": [15, 48, 25],
+    "source_values_per_movie": 18000,
+    "source_pca_rank": 192,
+    "source_pca_explained_variance_ratio": 0.9934605360031128,
+    "observation_pca_rank_per_arm": 256,
+    "test_representation_floor_median_support_error": 0.07917466172899446,
+    "test_representation_floor_span95_M": 16
+  },
+  "clean_gates": {
+    "max_direct_twin_difference": 0.0,
+    "max_q8_q12_relative": 4.751160314407329e-06,
+    "max_q8_q12_whitened": 0.009171086268456394,
+    "pass": true
+  },
+  "minimum_emissivity": {
+    "training": 0.8200262188911438,
+    "validation": 0.8455518484115601,
+    "test": 0.8363025188446045
+  },
+  "source_activity_admission_norm": "fixed full-annulus source norm; registered union measurement support remains the primary recovery metric",
+  "preparation_runtime_seconds": 94.76839709281921,
+  "source_population_selected_by_order1_response_or_reconstruction": false,
+  "neural_weights_trained": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0,
+  "note": "The large prepared population/PCA artifact is hash-sealed here and will be included in the final reproducibility package rather than committed as a GitHub blob."
+}
