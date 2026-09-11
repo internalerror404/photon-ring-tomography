@@ -7,8 +7,8 @@
   "preserved_population": {
     "path": "results/POPULATIONS.npz",
     "bytes": 157107300,
-    "sha256": "ba2477910cc065015442e89e4cde27f29fa4f8fdabf553e3e91c37fe2cf9b694",
-    "source_specs_sha256": "b0737575f9c7043450265e799478432d2b8a7722c1d2fb683aa92313551c8fdb"
+    "sha256": "8652d89f0c8d1fb041d933981cabe7db36870cc53324016bcf2508c53dad22b9",
+    "source_specs_sha256": "c4ead135f5cdaf30432c7c46036acb6c2530f7b33996c1f3f94db6ec0cf2c0b7"
   },
   "execution_source": {
     "path_in_artifact": "source/movie011_rnf.py",
@@ -17,6 +17,7 @@
     "self_test": "SELF_TEST_PASS",
     "change": "Reporting-only deterministic admission replay; verifies accepted specs exactly, represents unevaluated positivity as JSON null, and derives clean q8/q12 gates from frozen population responses."
   },
+  "hash_correction": "The preceding commit contained transcription placeholders for the two preserved-population hashes. Corrected by direct sha256sum before neural training; no scientific byte changed.",
   "neural_weights_trained": false,
   "checkpoint_selected": false,
   "test_reconstruction_outcomes_seen": false,
