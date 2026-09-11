@@ -1,0 +1,28 @@
+{
+  "experiment": "Mahakal II Movie009-R6 local nonnegative dynamics mixture",
+  "registration_commit": "7cd2f3ec0507931845a911a2e1722ca4304779cc",
+  "created_before_validation_selection_or_test_outcomes": true,
+  "execution_source": {
+    "path_in_delivery": "source/run_movie009_r6.py",
+    "sha256": "719b887bad6a83c251ccad30c498473e546c36f7e687b5ffe40431c429ee3d05",
+    "syntax_check": "PASS"
+  },
+  "candidate_bank": {
+    "source": "exact Movie009-R5 bank",
+    "seed": 490090,
+    "candidate_count": 8192
+  },
+  "validation_grid": {
+    "K": [4,8,16,32],
+    "ridge_exponents": [-6,-4,-2,0],
+    "objective": "median support-weighted total-movie error at SNR0=300 with true background"
+  },
+  "mixture_constraints": {
+    "nonnegative": true,
+    "total_amplitude_interval": [0.20,0.70]
+  },
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0,
+  "note": "Exact source bytes are locally hash-frozen and will be deposited with completion."
+}
