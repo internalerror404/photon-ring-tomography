@@ -1,0 +1,20 @@
+{
+  "experiment": "Mahakal II Movie011 Retarded Neural Field",
+  "registration_commit": "bf2c5034054a9cb6987cd21cb35a2266da5809ad",
+  "readback_amendment_commit": "4d646953c2b1a841b98234cd1789d8cfe6ded91a",
+  "serialization_failure_commit": "138e86072cce1d484254f0995ffcb59a07f5a773",
+  "created_before_any_usable_population_neural_weight_or_test_endpoint": true,
+  "execution_source": {
+    "path_in_artifact": "source/movie011_rnf.py",
+    "sha256": "8058413ca682edb466b1648d45a1b2089016c7138c6b08dc522979b44aeeda9b",
+    "syntax_check": "PASS",
+    "self_test": "SELF_TEST_PASS",
+    "change": "Serialize the deterministic population as uncompressed NPZ to a temporary file, read every stored array, then atomically rename. Scientific arrays and generation formulas are unchanged."
+  },
+  "corrupted_partial_population_removed": true,
+  "usable_population_exists": false,
+  "neural_weights_trained": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
