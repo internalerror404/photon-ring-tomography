@@ -1,0 +1,38 @@
+{
+  "status": "POSTPLANNED_SAME_TEST_DIAGNOSTIC_NOT_A_MOVIE008_ENDPOINT",
+  "purpose": "Explain why exact twin identification did not imply 95%-reliable all-active-frame recovery. No candidate or result is promoted.",
+  "best_scalar_shrink": {
+    "gamma": 0.9,
+    "movie_pass_rate": 0.16666666666666666,
+    "median_target_relative_error": 0.26312313051359004,
+    "p90_target_relative_error": 0.3892869534535527
+  },
+  "fixed_source_norm_projection": {
+    "movie_pass_rate": 0.18541666666666667,
+    "median_target_relative_error": 0.22682403339917973,
+    "p90_target_relative_error": 0.37329280002854576
+  },
+  "same_noise_affine_amplitude_readback": [
+    {"alpha":0.04,"movie_pass_rate":0.020833333333333332,"median_target_relative_error":0.540012710956842},
+    {"alpha":0.06,"movie_pass_rate":0.058333333333333334,"median_target_relative_error":0.3600082836436812},
+    {"alpha":0.08,"movie_pass_rate":0.12916666666666668,"median_target_relative_error":0.2700060700095479},
+    {"alpha":0.10,"movie_pass_rate":0.25,"median_target_relative_error":0.21600474184702573},
+    {"alpha":0.12,"movie_pass_rate":0.37083333333333335,"median_target_relative_error":0.18000385642030914},
+    {"alpha":0.16,"movie_pass_rate":0.5125,"median_target_relative_error":0.13500274967058434},
+    {"alpha":0.20,"movie_pass_rate":0.7041666666666667,"median_target_relative_error":0.10800208565666544},
+    {"alpha":0.24,"movie_pass_rate":0.7958333333333333,"median_target_relative_error":0.0900016430106495},
+    {"alpha":0.28,"movie_pass_rate":0.8791666666666667,"median_target_relative_error":0.07714418400343542},
+    {"alpha":0.32,"movie_pass_rate":0.9083333333333333,"median_target_relative_error":0.06750108977047267},
+    {"alpha":0.36,"movie_pass_rate":0.9375,"median_target_relative_error":0.06000090538701089},
+    {"alpha":0.40,"movie_pass_rate":0.9583333333333334,"median_target_relative_error":0.05400075789819986},
+    {"alpha":0.48,"movie_pass_rate":0.9916666666666667,"median_target_relative_error":0.045000536709879524},
+    {"alpha":0.60,"movie_pass_rate":1.0,"median_target_relative_error":0.03600031561135258}
+  ],
+  "failed_active_frame_count_distribution": {"0":62,"1":86,"2":118,"3":92,"4":86,"5":26,"6":10},
+  "interpretation": "The primary coefficient estimate contains enough information to select the correct twin at alpha=0.08, but noise perturbs low-amplitude and cancellation-sensitive frames. A stronger signal may cross the strict all-frame threshold.",
+  "limitations": [
+    "Shrinkage and fixed-norm transforms were examined after the registered result and do not rescue Movie008.",
+    "Amplitudes above 0.08 reuse the same test directions, backgrounds, and noise through the exactly affine linear estimator; they are not a fresh registered experiment.",
+    "A separately registered fresh successor is required to test a stronger amplitude or a changed estimator."
+  ]
+}
