@@ -1,0 +1,66 @@
+{
+  "return_token": "MOVIE008_DIRECT_NULL_TWIN_IDENTIFICATION_PASS_MOVIE_FIDELITY_FAIL",
+  "registered_status": "MOVIE008_DIRECT_NULL_TWIN_MOVIE_FAIL",
+  "lineage": {
+    "registration_commit": "a72b15f459881c1741072ad53681e53e6759126f",
+    "preoutcome_complexity_amendment_commit": "c341b1174c5de322c5517362c7edd66921568651",
+    "preoutcome_source_commit": "1474d638e34969da983cec51e059a27da19b983d",
+    "mode_bank_commit": "d9de4c4bbdb7ff5c4b64a70847232e0b33ee1db9",
+    "scalar_timeout_record_commit": "acaa0869b0b31d610250abfade564ce8de940377",
+    "batched_amendment_commit": "f7d4b809af25d3d0094b21deca3f833349b5e41d",
+    "batched_source_commit": "d35f5474cf81b87c357d85a6780a51334036bc3d"
+  },
+  "primary": {
+    "snr0": 300,
+    "target_source_norm_alpha": 0.08,
+    "estimator": "nuisance-profiled four-mode conditional GLS",
+    "cases_per_arm": 480,
+    "direct_identity_accuracy": 0.5,
+    "direct_plus_order1_identity_accuracy": 1.0,
+    "direct_plus_order1_median_target_relative_error": 0.2700060700095479,
+    "direct_plus_order1_p90_target_relative_error": 0.4033890919193467,
+    "direct_plus_order1_all_active_frame_movie_pass_rate": 0.12916666666666668,
+    "minimum_q12_twin_whitened_separation": 14.371695861668222,
+    "bootstrap_identity_median_p2p5_p97p5": [1.0, 1.0, 1.0],
+    "bootstrap_movie_pass_median_p2p5_p97p5": [0.12916666666666668, 0.0875, 0.17916666666666667]
+  },
+  "complexity_groups_primary": {
+    "two_mode": {"identity_accuracy": 1.0, "median_target_relative_error": 0.2616073331952133, "movie_pass_rate": 0.1375},
+    "three_mode": {"identity_accuracy": 1.0, "median_target_relative_error": 0.2736174696699219, "movie_pass_rate": 0.1125},
+    "four_mode": {"identity_accuracy": 1.0, "median_target_relative_error": 0.2714829998546763, "movie_pass_rate": 0.1375}
+  },
+  "passed_gates": [
+    "authenticated inputs and frozen mode bank",
+    "four source-orthonormal modes from the 210-dimensional exact direct-null parent",
+    "exact q8 and q12 direct nullness",
+    "byte-identical paired noisy direct observations",
+    "minimum labelled twin separation at least 5 whitened units",
+    "100 percent labelled twin identification",
+    "median and p90 four-mode coefficient error thresholds",
+    "at least 90 percent identity in every complexity group",
+    "analytic positivity",
+    "q8/q12 response gates",
+    "scalar/batched equivalence and independent readback",
+    "zero new physical calls and zero Paper-I units"
+  ],
+  "failed_gates": [
+    "95 percent all-active-frame labelled movie fidelity: observed 12.9167 percent"
+  ],
+  "numerical": {
+    "fresh_direct_q8_max_abs": 0.0,
+    "fresh_direct_q12_max_abs": 0.0,
+    "max_q8_q12_twin_response_relative": 0.0001402,
+    "max_q8_q12_twin_response_whitened": 0.002021,
+    "minimum_emissivity_bound": 0.7215,
+    "mode_source_orthonormality_error": 2.0682011831743153e-15,
+    "scalar_batch_conditional_max_abs": 0.0,
+    "scalar_batch_ridge_max_abs": 0.0,
+    "scalar_batch_tsvd_max_abs": 0.0,
+    "scalar_batch_metric_error_max_abs": 5.967448757360216e-16,
+    "scalar_batch_metric_correlation_max_abs": 1.1102230246251565e-16
+  },
+  "scientific_interpretation": "The first indirect image identifies the correct member and recovers its four low-dimensional historical coefficients, but the registered noisy estimate is not a 95%-reliable frame-by-frame movie at alpha=0.08.",
+  "scope": "One Kerr chart, ideal order labels, four q8-selected old nonaxisymmetric modes, explicit 385-dimensional nuisance movie and balanced positive twins. Not arbitrary, off-basis, full-annulus, visibility-domain, telescope, or observational movie recovery.",
+  "new_physical_calls": 0,
+  "paper1_units_used": 0
+}
