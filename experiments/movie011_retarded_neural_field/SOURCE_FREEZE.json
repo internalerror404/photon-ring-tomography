@@ -1,0 +1,32 @@
+{
+  "experiment": "Mahakal II Movie011 Retarded Neural Field",
+  "registration_commit": "bf2c5034054a9cb6987cd21cb35a2266da5809ad",
+  "readback_amendment_commit": "4d646953c2b1a841b98234cd1789d8cfe6ded91a",
+  "created_before_source_generation_training_or_test_outcomes": true,
+  "execution_source": {
+    "path_in_artifact": "source/movie011_rnf.py",
+    "bytes": 41371,
+    "sha256": "e89725dda38d6319d80d414870321a9194a5c402b064c76fef5b3b4a41f6aaaf",
+    "syntax_check": "python -m py_compile PASS",
+    "self_test": "SELF_TEST_PASS, 68833 trainable parameters for the 37-row synthetic encoder fixture",
+    "committed_at_freeze": false,
+    "disposition": "Exact frozen bytes are retained in the final artifact package; the hash is committed before any registered population is generated. No later source change may inherit this freeze."
+  },
+  "inherited_source_hashes": {
+    "source/movie010_common.py": "e5f06c6c50af55e53acf7a22372c2df04c02d2de3c5cc8105b49f5a0fa94d41f",
+    "source/movie009_common.py": "ad633c9047295cd8077c1985f64c2179824df6da8acf5c8dbd0acd3d8f36dd83",
+    "source/movie007_run.py": "8b80d533cd48400570e505423053a6557e4a2ea6f3d82367adfd5c88b34e5cf1",
+    "source/kerr.py": "12abafb39f6d5a6ebf4626e0a05c021d3bd0c5c5ca6ae0abd22632656c8f28cf"
+  },
+  "input_hashes": {
+    "inputs/PHYSICAL_AND_OPERATOR_ARRAYS.npz": "54204f14b8c834fb3c54dc012c9827e711f339fc6c30251802fea71ac6d8274e",
+    "inputs/SUPPORT_WEIGHTS.npz": "72080e09e722b01a821d2989d706f21eccfc9ce7671d1fa2f18f66bcd56a7952",
+    "inputs/REGULARIZATION_SELECTION.json": "f3739497a08973bec6ed0b5c174188ad1b2321b469efa06750de2b43bcddf090"
+  },
+  "registered_populations_generated": false,
+  "neural_weights_trained": false,
+  "validation_checkpoint_selected": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls_authorized": 0,
+  "paper1_units_authorized": 0
+}
