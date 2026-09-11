@@ -1,0 +1,23 @@
+{
+  "experiment": "Mahakal II Movie009 natural off-basis direct-null twins",
+  "registration_commit": "96f5a2ffc4eb8c47bcd6c387f2fde97bae16c1a8",
+  "created_unix_before_source_generation_or_outcomes": 1789107244.434414,
+  "external_preregistration": false,
+  "repo_audit_disposition": "MOVIE009_REPO_AUDIT_PASS_WITH_NO_CI_CLAIM",
+  "files": {
+    "REPO_AUDIT.md": {"bytes": 3466, "sha256": "c35fc99d794a42fade09329137097194e7ca8d204aaf096253279eaa9ca207d3"},
+    "source/movie009_common.py": {"bytes": 21601, "sha256": "615d03902c238713adef245f58b0c22ad3298c08e00130066f0712ef1ade73d1"},
+    "source/stageA_classical.py": {"bytes": 19986, "sha256": "2adb6f58494aea856206097820cc594aaf58659c57c899c34ecc092c35aaec18"},
+    "source/movie007_run.py": {"bytes": 38864, "sha256": "8b80d533cd48400570e505423053a6557e4a2ea6f3d82367adfd5c88b34e5cf1"},
+    "source/kerr.py": {"bytes": 7146, "sha256": "12abafb39f6d5a6ebf4626e0a05c021d3bd0c5c5ca6ae0abd22632656c8f28cf"},
+    "inputs/PHYSICAL_AND_OPERATOR_ARRAYS.npz": {"bytes": 6616724, "sha256": "54204f14b8c834fb3c54dc012c9827e711f339fc6c30251802fea71ac6d8274e"},
+    "inputs/SUPPORT_WEIGHTS.npz": {"bytes": 140788, "sha256": "72080e09e722b01a821d2989d706f21eccfc9ce7671d1fa2f18f66bcd56a7952"},
+    "inputs/REGULARIZATION_SELECTION.json": {"bytes": 34474, "sha256": "f3739497a08973bec6ed0b5c174188ad1b2321b469efa06750de2b43bcddf090"}
+  },
+  "movie009_sources_generated": false,
+  "regularization_selected": false,
+  "neural_weights_trained": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls_authorized": 0,
+  "paper1_units_authorized": 0
+}
