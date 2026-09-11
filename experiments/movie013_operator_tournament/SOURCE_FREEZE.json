@@ -1,0 +1,28 @@
+{
+  "experiment": "Mahakal II Movie013 controlled operator tournament",
+  "registration_commit": "3afddc3533bb548702173c1f38ce048886c8ae89",
+  "created_before_variant_construction_regularization_selection_or_test_outcomes": true,
+  "execution_source": {
+    "path_in_delivery": "source/run_movie013.py",
+    "bytes": 48824,
+    "sha256": "63ee7c76b90d3d49a08c3f7418e771ccf2546248241d4a4116508df0b0cd6102",
+    "compressed_archive_sha256": "ad478f811a29a2384df53626d20e98206920cef75fe26bb8f8a366a5b7ce1460",
+    "syntax_check": "python -m py_compile PASS"
+  },
+  "inputs": {
+    "PHYSICAL_AND_OPERATOR_ARRAYS.npz": "54204f14b8c834fb3c54dc012c9827e711f339fc6c30251802fea71ac6d8274e",
+    "SUPPORT_WEIGHTS.npz": "72080e09e722b01a821d2989d706f21eccfc9ce7671d1fa2f18f66bcd56a7952",
+    "REGULARIZATION_SELECTION.json": "f3739497a08973bec6ed0b5c174188ad1b2321b469efa06750de2b43bcddf090",
+    "SOURCE_BANKS.npz": "24abb4528f988386d461d3545d5ffa081f062be6d0351d4c801a61e753c21f82",
+    "RECONSTRUCTIONS.npz": "cd45d7441a4bc58a5c6dad9256013deb09199d47439b24bb22fd9ce6db9e991d",
+    "movie007_run.py": "8b80d533cd48400570e505423053a6557e4a2ea6f3d82367adfd5c88b34e5cf1",
+    "offbasis.py": "54c1e0ca0f1b2e2d94c34604eecb19c44c4c96a9e59b377f74b303b35aac4b97",
+    "kerr.py": "12abafb39f6d5a6ebf4626e0a05c021d3bd0c5c5ca6ae0abd22632656c8f28cf"
+  },
+  "operator_variants_constructed": false,
+  "regularization_selected": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0,
+  "note": "The exact source archive is locally hash-frozen before execution and will be deposited with the completion record. This record does not backdate source presence in GitHub."
+}
