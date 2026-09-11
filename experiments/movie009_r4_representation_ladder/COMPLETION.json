@@ -1,0 +1,28 @@
+{
+  "return_token": "MOVIE009_R4_REPRESENTATION_LADDER_NO_WINNER",
+  "registration_commit": "21b6eda39f8ae050e806f4118b1ed9958f93b036",
+  "joint_replay_amendment_commit": "b2d225959b727399fb49d5661373a972389e7571",
+  "reporting_repair_commit": "a67ba7cab0cd38bfe8729bf186fd30932c8afac2",
+  "source_freeze_v2_commit": "c54c1656c24735cc11bdbbe4a99d4a39d74c1ac2",
+  "population": "Exact examined Movie009-R2 population with the true shared background supplied",
+  "best_span_variants": [
+    {"name":"UNWEIGHTED_PCA_R192","span95_M":12,"span90_M":22,"median_error":0.1622768439,"differential_pass_rate":0.328125,"q8_q12_max_whitened":1.1645816614},
+    {"name":"MEASUREMENT_WEIGHTED_PCA_R96","span95_M":12,"span90_M":22,"median_error":0.1588387924,"differential_pass_rate":0.34375,"q8_q12_max_whitened":1.1835283199}
+  ],
+  "representation_floor": {
+    "UNWEIGHTED_PCA_R96_test_median_error": 0.276206,
+    "UNWEIGHTED_PCA_R384_test_median_error": 0.177983,
+    "MEASUREMENT_WEIGHTED_PCA_R384_test_median_error": 0.167683,
+    "MEASUREMENT_WEIGHTED_PCA_R384_all_active_pass_rate": 0.953125
+  },
+  "gate": {
+    "input_hashes": true,
+    "R3_rank96_replay": true,
+    "any_representation_winner": false,
+    "all_fitted_q8_q12_gates": false,
+    "pass": false
+  },
+  "interpretation": "Increasing linear PCA rank or weighting it toward the measured source region improves the representation floor and can reach the 12M span threshold, but inversion fidelity does not improve monotonically, differential all-frame recovery stays below 38%, and every fitted representation fails the q8/q12 whitened gate near 1.14-1.18. Linear PCA rank/weighting is not the missing ingredient; a nonlinear dynamics-aware historical model is required.",
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
