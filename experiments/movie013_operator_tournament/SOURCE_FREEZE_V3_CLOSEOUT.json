@@ -1,0 +1,19 @@
+{
+  "experiment": "Mahakal II Movie013 controlled operator tournament",
+  "failure_record_commit": "1d2f80fdf4770d93c04102643d77657983815d4b",
+  "created_before_summary_or_winner_record": true,
+  "scientific_tables_already_written": {
+    "PER_CASE.csv": "3935e4931970c917f2bac56756eecddd1640148cee6eaafc1f2f813119410aad",
+    "AGGREGATE.csv": "5f9386d7393fbd90944c21d70aa0c06efae15d1ddc8d8e62d4648fbba547fff9",
+    "FAMILY.csv": "7ffb58bf48b8d81c5a96fd037fc11a75f63416672764aa5805e3a84ca117c0da"
+  },
+  "execution_source": {
+    "sha256": "5dbe8c4dae20ee2841f77a8a6388968bdf09b01d2a7c9af48f627965e664c84d",
+    "compressed_archive_sha256": "7b31572e9eea3164176759aaa17d135b73255cf44e7f947c17e270617ca2da0c",
+    "syntax_check": "python -m py_compile PASS"
+  },
+  "change": "Use the existing merged column `median_error` rather than nonexistent `median_error_new` when comparing the deterministic baseline aggregate with the archived table.",
+  "operator_source_noise_selection_metrics_and_thresholds_changed": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
