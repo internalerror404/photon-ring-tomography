@@ -1,0 +1,12 @@
+{
+  "experiment": "Movie012 Retarded Latent Neural Field — recovered implementation",
+  "failure_record": "EXECUTION_FAILURE_004_RECOVERED.md",
+  "created_before_source_generation_PCA_training_or_test_outcomes": true,
+  "source_identity": "MOVIE012_RECOVERED_V5_TEMPLATE_THEN_FULL_REPLAY_20260911",
+  "change": "Use the inherited adapter only to construct a candidate design container; suppress its weak pilot-kernel adjudication and enforce the recovered all-595-column replay immediately afterward.",
+  "source_formulas_populations_seeds_PCA_ranks_architecture_optimizer_metrics_thresholds_and_gates_changed": false,
+  "syntax_check": "PASS",
+  "source_or_test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
