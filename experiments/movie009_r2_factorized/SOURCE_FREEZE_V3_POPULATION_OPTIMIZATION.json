@@ -1,0 +1,35 @@
+{
+  "experiment": "Mahakal II Movie009-R2 background-conditioned historical-innovation reconstruction",
+  "registration_commit": "db54e5b22b5ae317b0f774f10552e48a69cb86be",
+  "timeout_failure_commit": "51abf0b3a250951cbd265aa483e1dec8b349d082",
+  "population_amendment_commit": "98dec83fed5d1d7bdaa5ae325a91d06a93692896",
+  "patch_deposit_commit": "3430fd3f069c3c4bacb36fe2dca20e01c869c7b5",
+  "launcher_commit": "71845c894689f384016a0e8f7e75370f25090cff",
+  "created_before_any_accepted_population_file_PCA_regularization_neural_weight_or_test_outcome": true,
+  "implementation": {
+    "base_decoded_archive_sha256": "88b8e5610c8d79c402108743237980784ce002fadd3fa0059f450439f201eea0",
+    "patch_path": "experiments/movie009_r2_factorized/source/population_builder_v3.patch",
+    "patch_sha256": "6e45fe525fbb57f7ef5a858b80fb7caab47881035e0993f6947948f141facaa0",
+    "patched_source_sha256": "4e4f3a54bb24dc9d6aab8db1ca270063b6a550643d6966c69f6913e33355b50f",
+    "patched_source_bytes": 53627,
+    "syntax_check": "PASS",
+    "self_test": "PASS",
+    "development_equivalence": {
+      "seed": 190000,
+      "family": "shearing_spiral",
+      "accepted_candidate_number": 11,
+      "background_coefficients_max_abs_difference": 0.0,
+      "background_frames_max_abs_difference": 0.0,
+      "candidate_ledger_line_count_match": true
+    }
+  },
+  "population_semantics": "First accepted candidates under the same RNG stream and unchanged finite/activity/positivity predicates; only response-independent gate ordering, search cap, and ledger serialization changed.",
+  "source_families_parameter_ranges_seeds_physics_noise_latent_rank_estimators_architecture_metrics_thresholds_and_gate_changed": false,
+  "accepted_source_population_exists": false,
+  "source_pca_fit": false,
+  "regularization_selected": false,
+  "neural_weights_trained": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
