@@ -1,0 +1,29 @@
+{
+  "status": "MOVIE012_TRAINING_COMPLETE",
+  "preparation_record_commit": "b8ec2234c935d7de3ab623ee6a3128b5fff26cff",
+  "created_before_heldout_test_evaluation": true,
+  "latent_ridge_selection": {
+    "direct": {"selected_exponent": 1, "operator_scale": 2.277912577325005, "median_validation_support_error": 0.7047199221927043},
+    "labelled": {"selected_exponent": -3, "operator_scale": 9.607705554371806, "median_validation_support_error": 0.0982957749838512},
+    "record": {"bytes": 13863, "sha256": "f5b8cf0fbd3e8019ebe81a2190fa6a9de8138985f63bfd67180847d94698296b"}
+  },
+  "neural_checkpoints": {
+    "direct_seed11.pt": {"bytes": 726877, "sha256": "8778c079124ea2da4c56b56d1434612b41439bd0a003183ea193e5a048963dcb"},
+    "direct_seed22.pt": {"bytes": 726877, "sha256": "d9f066b5a2aec7f87671e0e028683ea7e33017e36c17203c329e0fe0a5b5cfe9"},
+    "direct_seed33.pt": {"bytes": 726877, "sha256": "8f2ddf358db5a6e0284a480eb001ee972c46436c77a98cfdb0771bcea494c812"},
+    "labelled_seed11.pt": {"bytes": 726901, "sha256": "76b7c0a63846480da129be1b37a5e0db80f0555d27b245d8ff9028a13b3b9dd3"},
+    "labelled_seed22.pt": {"bytes": 726901, "sha256": "30f294b480aa297234f30e0c34afe8f3d4f6d96a63bce3957ff4adb1ac656143"},
+    "labelled_seed33.pt": {"bytes": 726901, "sha256": "6a9cbc2aa2d21c7a00f055bd4147c844acaa739bb4cba3da83ebf7ff23013818"}
+  },
+  "training_record": {"bytes": 98647, "sha256": "2e989124502f5d782c8cd3a1cd98644acdbc004704277a5046baec761871d5c1"},
+  "architecture": "rank-256 observation scores -> 256 SiLU -> 256 SiLU -> rank-192 source latent",
+  "registered_seeds": [11, 22, 33],
+  "epochs_per_model": 80,
+  "training_runtime_seconds": 43.579890727996826,
+  "test_sources_used_for_selection_or_training": false,
+  "radial_plume_used_for_training_or_selection": false,
+  "heldout_test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0,
+  "note": "Checkpoints and the full training trace are hash-sealed here and will be included in the final reproducibility package rather than committed as large GitHub blobs."
+}
