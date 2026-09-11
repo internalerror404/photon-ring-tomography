@@ -1,0 +1,23 @@
+{
+  "experiment": "Mahakal II Movie009-R2 background-conditioned historical-innovation reconstruction",
+  "registration_commit": "db54e5b22b5ae317b0f774f10552e48a69cb86be",
+  "placeholder_commit": "2c2f3e3e8340ceb96630c07144c94ba5d78d31ed",
+  "created_before_source_population_PCA_regularization_neural_training_or_test_outcomes": true,
+  "implementation": {
+    "archive_path": "experiments/movie009_r2_factorized/source/Movie009_R2_Source.tar.xz",
+    "archive_sha256": "90c7c91bbb645b3cf201b2f1c44a1eb5e12446ca432411f3c75d990b3e489bf1",
+    "extracted_source_path": "run_movie009_r2.py",
+    "extracted_source_sha256": "34f1de8b5d3bc473d6a625668b7686de1c1f2056f05ea9e3f849751ba33d34e6",
+    "extracted_source_bytes": 51339,
+    "syntax_check": "PASS",
+    "self_test": "PASS: authenticated all Movie007 inputs, compact C2 window, and periodic interpolation shape"
+  },
+  "scientific_design_changed_from_registration": false,
+  "source_candidates_generated": false,
+  "source_pca_fit": false,
+  "regularization_selected": false,
+  "neural_weights_trained": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
