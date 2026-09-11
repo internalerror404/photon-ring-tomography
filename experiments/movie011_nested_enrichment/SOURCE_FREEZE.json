@@ -1,0 +1,18 @@
+{
+  "experiment": "Movie011 nested enrichment",
+  "registration_commit": "e952aae92cd860bae85c0ea5570b9551b2933587",
+  "created_before_sources_selection_or_outcomes": 1789109916.4913156,
+  "files": {
+    "source/run_movie011.py": {"bytes": 19411, "sha256": "8788a71eac95ace165380694bf282b1486220d067ef667938014590ac2595bdd"},
+    "source/movie007_run.py": {"bytes": 38864, "sha256": "8b80d533cd48400570e505423053a6557e4a2ea6f3b1143309f9f3d947f1666b84"},
+    "source/kerr.py": {"bytes": 7146, "sha256": "12abafb39f6d5a6ebf4626e0a05c021d3bd0c5c5ca6ae0abd22632656c8f28cf"},
+    "inputs/PHYSICAL_AND_OPERATOR_ARRAYS.npz": {"bytes": 6616724, "sha256": "54204f14b8c834fb3c54dc012c9827e711f339fc6c30251802fea71ac6d8274e"},
+    "inputs/SUPPORT_WEIGHTS.npz": {"bytes": 140788, "sha256": "72080e09e722b01a821d2989d706f21eccfc9ce7671d1fa2f18f66bcd56a7952"},
+    "inputs/REGULARIZATION_SELECTION.json": {"bytes": 34474, "sha256": "f3739497a08973bec6ed0b5c174188ad1b2321b469efa06750de2b43bcddf090"}
+  },
+  "sources_generated": false,
+  "selection_done": false,
+  "outcomes_seen": false,
+  "physical_calls": 0,
+  "paper1_units": 0
+}
