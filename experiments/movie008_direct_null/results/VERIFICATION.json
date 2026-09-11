@@ -1,0 +1,36 @@
+{
+  "checks": {
+    "summary_status_matches_checks": true,
+    "input_hashes_match": true,
+    "mode_source_orthonormality": true,
+    "fresh_target_direct_q8_exact_zero": true,
+    "fresh_target_direct_q12_exact_zero": true,
+    "direct_estimates_identical_within_pairs": true,
+    "direct_estimates_all_zero": true,
+    "mode_projection_roundtrip": true,
+    "saved_metric_readback": true,
+    "all_numeric_tables_finite": true,
+    "primary_case_count_480_per_arm": true,
+    "primary_identity_recomputed": true,
+    "primary_median_error_recomputed": true,
+    "primary_p90_error_recomputed": true,
+    "aggregate_identity_matches": true,
+    "aggregate_median_error_matches": true,
+    "no_physical_attempt_ledger_created": true
+  },
+  "all_checks_pass": true,
+  "mode_source_orthonormality_error": 2.0682011831743153e-15,
+  "fresh_direct_q8_max_abs": 0.0,
+  "fresh_direct_q12_max_abs": 0.0,
+  "mode_projection_roundtrip_max_abs": 1.249000902703301e-16,
+  "saved_metric_readback_max_abs": 1.1345091532888318e-15,
+  "source_hashes": {
+    "build_mode_bank.py": "89e019f8c90c4b4658b10a218cf3cf4da2065bd8aca8fde9308700cd13544b50",
+    "common.py": "19665537ce13705faa6e28912ace61420a1be70e8c9cb94fcc71fe9035154455",
+    "run_experiment_batched.py": "3f0d2854bec598c48aa3fdfe6452c906f80b9283af8da4840497fcf1ceb84aa5",
+    "verify_and_report_batched.py": "467e55deaa51467a7e72d67063b9f5d8e599aba538bd00cb1af8375cdd038876",
+    "run_all_batched.py": "de2972dd1440ec7cfabd2680252d3dea64c498bf376c981036b2a92bd6d6f661"
+  },
+  "new_physical_calls": 0,
+  "paper1_units_used": 0
+}
