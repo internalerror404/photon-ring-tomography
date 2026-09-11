@@ -1,0 +1,21 @@
+{
+  "experiment": "Mahakal II Movie011 Retarded Neural Field",
+  "registration_commit": "bf2c5034054a9cb6987cd21cb35a2266da5809ad",
+  "readback_amendment_commit": "4d646953c2b1a841b98234cd1789d8cfe6ded91a",
+  "closeout_failure_commit": "e2486b66e60f738f8b8eb545688bcbe0ca1656af",
+  "created_before_any_neural_model_checkpoint_or_test_endpoint": true,
+  "preserved_population_sha256": "8652d89f0c8d1fb041d933981cabe7db36870cc53324016bcf2508c53dad22b9",
+  "preserved_source_specs_sha256": "c4ead135f5cdaf30432c7c46036acb6c2530f7b33996c1f3f94db6ec0cf2c0b7",
+  "execution_source": {
+    "path_in_artifact": "source/movie011_rnf.py",
+    "sha256": "9a6174bd9cd21aba19ab3eb345afb31790095ac283dd852c51daaed3d349ca3d",
+    "syntax_check": "PASS",
+    "self_test": "SELF_TEST_PASS",
+    "change": "Evaluate the already-failed nine-frame activity predicate before requiring a non-null positivity value in deterministic candidate-ledger replay."
+  },
+  "neural_weights_trained": false,
+  "checkpoint_selected": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
