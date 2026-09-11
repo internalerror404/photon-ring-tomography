@@ -1,0 +1,12 @@
+{
+  "experiment": "Movie010 resume after selection-serialization failure",
+  "created_before_test_reconstruction_or_endpoints": 1789109649.121583,
+  "validation_selection_already_fixed_by_registered_rule": {"direct": -2, "labelled": -1},
+  "correction": "copy selected score record before attaching score list; no scientific value changes",
+  "files": {
+    "EXECUTION_FAILURE_001.md": {"bytes": 996, "sha256": "abc5ed5541ccf550a56c53e76123b7391893b11f38951859a3d200bbfe226c63"},
+    "source/run_movie010.py": {"bytes": 19084, "sha256": "985ca336df03d269db8734176aa2a00e1d7b2f7088bc3f4f243d9629ec6e10c3"},
+    "results/RICH.npz": {"bytes": 32063482, "sha256": "b2e0fe8fdae57251793bc0f24dc05bf40e94b9919128d97ea3effda2b6f2b122"},
+    "results/SOURCE_LEDGER.json": {"bytes": 470101, "sha256": "7f2626fbfd679d8bc1b906636ef4645883c0004a9f1d5d465d4c7fcaf6123d53"}
+  }
+}
