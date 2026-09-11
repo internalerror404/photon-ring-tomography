@@ -1,0 +1,13 @@
+{
+  "experiment": "Movie012 Retarded Latent Neural Field — recovered implementation",
+  "failure_record": "EXECUTION_FAILURE_002_RECOVERED.md",
+  "created_before_source_generation_PCA_training_or_test_outcomes": true,
+  "source_identity": "MOVIE012_RECOVERED_V3_FULL_595_COLUMN_KERNEL_REPLAY_20260911",
+  "change": "Recover the static per-pixel/node integration kernel from every frozen 595-column operator row across all 13 observer times at the authenticated cached coordinates, and require full replay relative error <=2e-8.",
+  "physical_calls": 0,
+  "source_formulas_populations_seeds_PCA_ranks_architecture_optimizer_metrics_thresholds_and_gates_changed": false,
+  "syntax_check": "PASS",
+  "source_or_test_outcomes_seen": false,
+  "paper1_units": 0,
+  "note": "The exact executable hash is recorded in the local pre-outcome artifact manifest and will be deposited with completion; this GitHub record identifies the scientific source version before outcomes."
+}
