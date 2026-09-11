@@ -1,0 +1,31 @@
+{
+  "experiment": "Mahakal II movie006",
+  "registration_commit": "12c8edb1005ce006a8747e3ef71189b038a187e4",
+  "amendment_001_commit": "56c9a58fbbd6bbf6d531e211b1d3edf38356d729",
+  "amendment_002_commit": "805ea67279c8dac36e5aa4ff06108c02a5b3b754",
+  "created_before_regularization_selection_and_movie_outcomes": true,
+  "completed_inputs": [
+    "results/PHYSICAL_ARRAYS.npz",
+    "results/PHYSICAL_SUMMARY.json",
+    "results/SOURCES.npz",
+    "results/SOURCE_MANIFEST.json",
+    "results/OPERATORS.npz",
+    "results/INTEGRATION_GATES.json"
+  ],
+  "completed_input_outcomes": {
+    "physical_gate": true,
+    "max_q8_q12_source_relative": 1.560458251433936e-06,
+    "max_q8_q12_source_whitened_SNR300": 0.019746517837650728,
+    "matched_q2_basis_max_relative": 2.2256343741534482e-05
+  },
+  "source_hashes": {
+    "source/kerr.py": "bd9a12532e520a72a26ff556c79d35094bdd05236cd7c8b2258e13ff91dc5d75",
+    "source/experiment.py": "ac30f20458ca48edd843f81fd24050653305cf85a84092ede4f7404243f4c88b",
+    "source/resume_inverse.py": "303ee0a066b71f604761da92026ca6b5899012298411ac6be72a907f137fa8f7"
+  },
+  "regularization_selected": false,
+  "test_reconstructions_run": false,
+  "movie_spans_seen": false,
+  "additional_physical_calls_authorized": 0,
+  "paper1_units_used": 0
+}
