@@ -1,0 +1,53 @@
+{
+  "return_token": "MOVIE009_R5_DYNAMICS_BANK_FAIL",
+  "registration_commit": "d132b8a89021ae235a43b91189aea93e289cb6bd",
+  "lazy_q12_amendment_commit": "e3ff28bf7dfeec40cea70f98e4bd80d6d26bc531",
+  "source_freeze_commit": "fdbdaa9ca5e68b6356c134715548f105848039a0",
+  "reporting_failure_commit": "dca6a7d875999cc60367d53415af37bf699564e8",
+  "primary": {
+    "method": "FAMILY_BLIND_BANK_8192",
+    "identity_accuracy": 0.9921875,
+    "pair_both_correct": 0.984375,
+    "span95_M": 6,
+    "span90_M": 10,
+    "median_error": 0.179258,
+    "median_innovation_error": 0.281915,
+    "differential_pass_rate": 0.324219,
+    "inferred_family_accuracy": 0.705078,
+    "q8_q12_max_relative": 7.984658e-7,
+    "q8_q12_max_whitened": 0.008954
+  },
+  "true_family_diagnostic": {
+    "identity_accuracy": 1.0,
+    "pair_both_correct": 1.0,
+    "span95_M": 6,
+    "span90_M": 8,
+    "median_error": 0.179511,
+    "differential_pass_rate": 0.355469
+  },
+  "bank_size_ladder": [
+    {"candidates":1024,"median_error":0.264195,"differential_pass_rate":0.015625},
+    {"candidates":2048,"median_error":0.233725,"differential_pass_rate":0.0625},
+    {"candidates":4096,"median_error":0.203660,"differential_pass_rate":0.171875},
+    {"candidates":8192,"median_error":0.179258,"differential_pass_rate":0.324219}
+  ],
+  "gate": {
+    "direct_chance": true,
+    "identity": true,
+    "span": false,
+    "differential": false,
+    "all_family_improvement": true,
+    "q8_q12": true,
+    "pass": false
+  },
+  "interpretation": "Replacing global PCA with direct analytic dynamics removes the fitted-field q8/q12 failure and improves monotonically with bank size, but finite template quantization still limits 95%-reliable span to 6M and differential all-frame recovery to 32.4%. Supplying the true family barely changes the result, so discrete family selection is not the main bottleneck. Continuous nonlinear parameter refinement is the justified successor.",
+  "artifact_hashes": {
+    "SUMMARY.json": "263f66a1363d4883ab0b5de200fb32f611c7898a555ab74cec8db3f7915d8199",
+    "AGGREGATE.csv": "4c83cc641a52ba25da97387d6e80bc0d9fcba5d1d55ebaf812a2553867a0faef",
+    "FAMILY.csv": "ff818ad75f8ee7efba8bff9c049291fe68afddcee018bd577c4a896aa18ffe31",
+    "Q8_Q12.csv": "67dc7dd1c805a5bed48011819af38a35a50809fd707bd6fd399c402434d7c72d",
+    "SELECTIONS.csv": "0e572a6c46cf5909dee34ad0650cf7bb02de37ce0b5ac2c2dc90af74d62ad628"
+  },
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
