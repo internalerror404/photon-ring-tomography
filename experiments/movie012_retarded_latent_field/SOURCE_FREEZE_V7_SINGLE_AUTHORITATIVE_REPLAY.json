@@ -1,0 +1,11 @@
+{
+  "experiment": "Movie012 Retarded Latent Neural Field — recovered implementation",
+  "created_before_source_generation_PCA_training_or_test_outcomes": true,
+  "source_identity": "MOVIE012_RECOVERED_V6_SINGLE_AUTHORITATIVE_FULL_REPLAY_20260911",
+  "change": "Remove every remaining pilot-level `physical replay` raise from the inherited candidate-template routine. The recovered wrapper is now the sole adjudicator and must reproduce all 595 frozen columns before returning a physical design.",
+  "source_formulas_populations_seeds_PCA_ranks_architecture_optimizer_metrics_thresholds_and_gates_changed": false,
+  "syntax_check": "PASS",
+  "source_or_test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
