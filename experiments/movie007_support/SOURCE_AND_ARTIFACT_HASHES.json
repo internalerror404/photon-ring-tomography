@@ -11,7 +11,8 @@
     "full_zip": "3bfbc5ec24d14a17515dc3c3beadc3e95ca2b9b5eea40922ebb614f67289edad",
     "compact_zip": "780cee5b68cc348f55d2674f22381c8fcbb9d804363c073169a1e3412a2d1326",
     "report": "61d4ca12fa2d2508d3e22825eb82af726d19bf590afddba47e56b0bd88961b83",
-    "summary": "232c34a5c9dbf03184bffc811d446f952095852a86be7150165a038e0cb760eb"
+    "summary": "232c34a5c9dbf03184bffc811d446f952095852a86be7150165a038e0cb760eb",
+    "executed_source_tar_gz": "8b612decc04a4df9394083c60a7b5109cee1eb5cb3e8a5ee610481573cc3e2fd"
   },
-  "note": "Complete source, binary physical arrays, source banks, reconstructions, per-frame metrics, figures, logs and manifests are in the delivered artifact packages; compact GitHub results do not claim those binaries are present."
+  "note": "The exact frozen Movie007 source bytes are now deposited post-execution under executed_source/. Complete binary physical arrays, source banks, reconstructions, metrics, figures, logs and manifests remain in the delivered artifact packages; compact GitHub results do not claim those binaries are present."
 }
