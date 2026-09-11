@@ -1,0 +1,4 @@
+group,identity_accuracy,median_target_relative_error,movie_pass_rate,cases
+two_mode,1.0,0.0615899539055238,0.9625,160
+three_mode,1.0,0.0617779180235522,0.975,160
+four_mode,1.0,0.0637762507312491,0.925,160
