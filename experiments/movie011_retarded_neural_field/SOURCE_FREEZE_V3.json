@@ -1,0 +1,25 @@
+{
+  "experiment": "Mahakal II Movie011 Retarded Neural Field",
+  "registration_commit": "bf2c5034054a9cb6987cd21cb35a2266da5809ad",
+  "readback_amendment_commit": "4d646953c2b1a841b98234cd1789d8cfe6ded91a",
+  "first_failure_commit": "213b1f13c48745ab3c4a372e2fb4b9ab18ca4c10",
+  "second_failure_commit": "6431df89f5fa14245d6d418b91b943682dc10cf6",
+  "created_before_any_completed_population_neural_weight_or_scientific_endpoint": true,
+  "execution_source": {
+    "path_in_artifact": "source/movie011_rnf.py",
+    "sha256": "f798b5aebf0570e026d6ef9a9391eb1fc0400e936cc157a268f3e34fd1a9a1ec",
+    "syntax_check": "PASS",
+    "self_test": "SELF_TEST_PASS",
+    "equivalence": {
+      "fixed_source_grid_max_abs": 0.0,
+      "q8_physical_response_max_abs": 0.0
+    },
+    "change": "Vectorize the same analytic source formulas over fixed movie frames and observer-time/ray arrays; evaluate positivity only after the unchanged nine-frame activity predicate passes. No accepted-source rule or scientific setting changed."
+  },
+  "population_files_written": false,
+  "clean_response_results_written": false,
+  "neural_weights_trained": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
