@@ -1,0 +1,29 @@
+{
+  "experiment": "Mahakal II Movie009-R4 historical representation ladder",
+  "registration_commit": "21b6eda39f8ae050e806f4118b1ed9958f93b036",
+  "joint_replay_amendment_commit": "b2d225959b727399fb49d5661373a972389e7571",
+  "created_before_any_R4_PCA_fit_regularization_selection_or_test_endpoint": true,
+  "execution_source": {
+    "path_in_delivery": "source/run_movie009_r4.py",
+    "sha256": "af565da0b45acfe0d5ddd17dab3f48795ece736e987a9953e4a06707125ca136",
+    "syntax_check": "PASS"
+  },
+  "preserved_population": {
+    "SOURCE_SPECS.json": "4b1d3a85f82dcefc66a44554aac33ad28eda40c8ef64792fb9992859f517ae43",
+    "training_pairs": 540,
+    "validation_pairs": 24,
+    "test_pairs": 64
+  },
+  "candidate_representations": [
+    "UNWEIGHTED_PCA_R96",
+    "UNWEIGHTED_PCA_R192",
+    "UNWEIGHTED_PCA_R384",
+    "MEASUREMENT_WEIGHTED_PCA_R96",
+    "MEASUREMENT_WEIGHTED_PCA_R192",
+    "MEASUREMENT_WEIGHTED_PCA_R384"
+  ],
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0,
+  "note": "Exact source bytes are locally hash-frozen and will be deposited with the completion record."
+}
