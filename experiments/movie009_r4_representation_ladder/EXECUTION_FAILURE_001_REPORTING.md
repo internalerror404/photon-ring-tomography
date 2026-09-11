@@ -1,0 +1,5 @@
+# Movie009-R4 execution failure 001 — reporting-only Series conversion
+
+All six preregistered PCA variants completed, including validation selection, test reconstruction, representation floors, and q8/q12 checks. The process then stopped before writing the deterministic tables and `SUMMARY.json` because a diagnostic dictionary attempted `float(base)` after `base` had been rebound to the rank-96 aggregate pandas Series.
+
+This is a closeout/reporting defect only. The printed variant outputs are preserved in the execution log. The repair removes the unused placeholder dictionary expression and writes the already defined scalar weight diagnostics. No source population, PCA construction, rank, seed, validation choice, reconstructed movie, metric, q8/q12 calculation, winner rule, or numerical endpoint changes. The complete deterministic experiment is rerun from the same frozen inputs because the first process had not yet serialized its in-memory tables.
