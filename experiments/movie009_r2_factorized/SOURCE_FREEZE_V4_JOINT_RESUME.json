@@ -1,0 +1,35 @@
+{
+  "experiment": "Mahakal II Movie009-R2 background-conditioned historical-innovation reconstruction",
+  "registration_commit": "db54e5b22b5ae317b0f774f10552e48a69cb86be",
+  "joint_failure_commit": "d50c802c7d788d07e5461a4488566b5deef417f2",
+  "population_recovery_commit": "5c4109ae88f22bcfd5d0180caca38a54186bd609",
+  "patch_deposit_commit": "476267d17b89d546b701389e85b42e186574e3db",
+  "launcher_commit": "d0f35e42f53887f9f18eae35f766320eef2404f4",
+  "created_before_neural_training_trust_selection_heldout_reconstruction_or_test_outcomes": true,
+  "implementation": {
+    "joint_resume_patch_path": "experiments/movie009_r2_factorized/source/joint_resume_v4.patch",
+    "joint_resume_patch_sha256": "ce4eb176e48488ce73195b06c2eb847dfca8c563e1478b1d696ccf82238f408e",
+    "final_patched_source_sha256": "39cfbcf12c1918eb86a1ef842714fa900bb3204ed0078e692d243740ce4cadff",
+    "final_patched_source_bytes": 60160,
+    "syntax_check": "PASS",
+    "self_test": "PASS",
+    "joint_scalar_vs_one_column_max_abs": 0.0
+  },
+  "preserved_population": {
+    "accepted_source_specs_sha256": "c05db38fa7a595fa1611ff905036b1f67d2253255fe1a57dab8d81b16cedb438",
+    "candidate_ledger_sha256": "d3963d5222bdbb052cb13083c2cf51e3e7b5f2d5d9944d1006e5ddbe7101d10d",
+    "accepted_pairs": {"training": 540, "validation": 24, "test": 64},
+    "resume_semantics": "No source redraw or admission decision; deterministically reconstruct background coefficients and frames from accepted parameter records after hash verification."
+  },
+  "corrections": [
+    "Concatenate scalar background and latent right-hand-side vectors; vertically stack only batched matrices.",
+    "Replace warning-producing correlation division with value-equivalent masked numpy.divide.",
+    "Resume from the exact hash-bound accepted population rather than replaying 986526 candidate attempts."
+  ],
+  "source_population_parameters_physics_noise_latent_rank_inverse_objective_trust_grid_neural_architecture_metrics_thresholds_and_success_gate_changed": false,
+  "neural_training_started": false,
+  "trust_selected": false,
+  "heldout_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
