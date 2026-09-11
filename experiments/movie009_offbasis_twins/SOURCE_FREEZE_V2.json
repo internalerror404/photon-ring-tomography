@@ -1,0 +1,20 @@
+{
+  "experiment": "Mahakal II Movie009 natural off-basis direct-null twins",
+  "registration_commit": "96f5a2ffc4eb8c47bcd6c387f2fde97bae16c1a8",
+  "failure_commit": "93893aa0a508a074f1961f58e6e2346e2b236b0a",
+  "amendment_commit": "6176870c79c6e2146d626593456691f6ffd394c5",
+  "created_before_first_accepted_source_or_inverse_outcome": true,
+  "source": {
+    "source/movie009_common.py": "ad633c9047295cd8077c1985f64c2179824df6da8acf5c8dbd0acd3d8f36dd83",
+    "source/stageA_classical.py": "2adb6f58494aea856206097820cc594aaf58659c57c899c34ecc092c35aaec18"
+  },
+  "retained_source_independent_cache": {
+    "results/RICH_OPERATOR.npz": "ddd63429fb1deff01a2ae9bba8dcbc39371ea38e9c1c0b20130971e7686460d1"
+  },
+  "change": "Replace the incompatible polynomial old-time envelope by the registered compact C2 plateau window; no family, amplitude, seed, estimator, threshold, or endpoint changed.",
+  "accepted_sources_so_far": 0,
+  "regularization_selected": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
