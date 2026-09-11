@@ -1,0 +1,20 @@
+{
+  "experiment": "Mahakal II Movie008 direct-null twin movie recovery",
+  "preoutcome_source_commit": "1474d638e34969da983cec51e059a27da19b983d",
+  "created_after_mode_bank_before_fresh_sources_noise_or_outcomes": true,
+  "mode_bank_npz_sha256": "da24a26323d615b8f1896be6caa5b9f571601c70446c5bc95e916a7abd0029e1",
+  "mode_bank_json_sha256": "fce5265591510b9c58c462239849c92d4f631750210a4d816043d774819f22ac",
+  "target_dimension": 210,
+  "nuisance_dimension": 385,
+  "mode_count": 4,
+  "direct_q8_max_abs": 0.0,
+  "direct_q12_max_abs": 0.0,
+  "q8_conditional_singular_values_top4": [91.39218099,90.75558247,89.66106939,87.07776033],
+  "q8_q12_response_correlations": [0.9999999996,0.9999999966,0.9999999894,0.9999999597],
+  "fresh_backgrounds_created": false,
+  "fresh_target_directions_created": false,
+  "fresh_noise_created": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units_used": 0
+}

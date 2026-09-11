@@ -1,0 +1,37 @@
+{
+  "experiment": "Movie008 q8-frozen direct-null mode bank",
+  "input_hashes": {
+    "PHYSICAL_AND_OPERATOR_ARRAYS.npz": "54204f14b8c834fb3c54dc012c9827e711f339fc6c30251802fea71ac6d8274e",
+    "SUPPORT_WEIGHTS.npz": "72080e09e722b01a821d2989d706f21eccfc9ce7671d1fa2f18f66bcd56a7952",
+    "REGULARIZATION_SELECTION.json": "f3739497a08973bec6ed0b5c174188ad1b2321b469efa06750de2b43bcddf090",
+    "movie007_run.py": "8b80d533cd48400570e505423053a6557e4a2ea6f3d82367adfd5c88b34e5cf1",
+    "kerr.py": "12abafb39f6d5a6ebf4626e0a05c021d3bd0c5c5ca6ae0abd22632656c8f28cf"
+  },
+  "target_dimension": 210,
+  "nuisance_dimension": 385,
+  "nuisance_rank_q8": 322,
+  "nuisance_rank_q12": 322,
+  "parent_source_orthonormality_error": 3.074393028552435e-15,
+  "mode_source_orthonormality_error": 2.0682011831743153e-15,
+  "direct_q8_max_abs": 0.0,
+  "direct_q12_max_abs": 0.0,
+  "q8_conditional_singular_values_top10": [91.3921809940589,90.7555824696958,89.66106938872514,87.0777603312349,73.06650679203804,72.5145203141284,71.63808416595569,69.92585393504608,69.16125263892614,66.40374252214735],
+  "q12_frozen_mode_bank_singular_values": [91.39201500334921,90.75491197789994,89.66011738156114,87.0769864221488],
+  "q8_q12_mode_response_correlations": [0.9999999996146827,0.9999999966390812,0.9999999894252888,0.9999999597182784],
+  "mode_bank_sha256": "da24a26323d615b8f1896be6caa5b9f571601c70446c5bc95e916a7abd0029e1",
+  "checks": {
+    "authenticated_inputs": true,
+    "target_dimension_210": true,
+    "nuisance_dimension_385": true,
+    "disjoint_target_nuisance": true,
+    "parent_source_orthonormal": true,
+    "four_modes_source_orthonormal": true,
+    "direct_q8_exact_zero": true,
+    "direct_q12_exact_zero": true,
+    "q8_q12_conditional_response_correlation": true,
+    "q8_nuisance_rank_stable": true,
+    "q12_nuisance_rank_stable": true
+  },
+  "seconds": 0.6717214850000346,
+  "q12_status": "q12 behavior was inspected in the pre-registration audit; it is a numerical cross-rule record, not a fresh held-out mode-selection gate"
+}
