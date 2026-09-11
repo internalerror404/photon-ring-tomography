@@ -1,0 +1,12 @@
+{
+  "experiment": "Movie012 Retarded Latent Neural Field — recovered implementation",
+  "failure_record": "EXECUTION_FAILURE_001_RECOVERED.md",
+  "created_before_source_generation_PCA_training_or_test_outcomes": true,
+  "source_identity": "MOVIE012_RECOVERED_V2_SEPARATE_FIELD_CACHE_ADAPTER_20260911",
+  "change": "Assemble cached source radius, phase, delay/source time, redshift and quadrature arrays from separate authenticated fields. Candidate conventions are accepted only if they replay every frozen 595-column q8/q12 operator to relative error <=2e-8.",
+  "source_formulas_populations_PCA_ranks_architecture_optimizer_metrics_thresholds_and_gates_changed": false,
+  "syntax_check": "PASS",
+  "source_or_test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
