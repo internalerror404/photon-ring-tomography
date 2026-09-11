@@ -1,0 +1,26 @@
+{
+  "experiment": "Movie012 Retarded Latent Neural Field — reimplemented registered design",
+  "failure_record_commit": "eed6dac06a6f2b17a1340b8bcc1dc6bff1f3e1a2",
+  "created_before_source_population_PCA_training_validation_or_test_outcomes": true,
+  "execution_source": {
+    "local_path_in_delivery": "source/run_movie012_recovered.py",
+    "member_sha256": "005672acbb1c0c9afe4867961c5aaeeb64635e82f888049a978e9f2620ee83e1",
+    "member_bytes": 52235,
+    "archive_name": "Movie012_Reimplemented_Source_V4.tar.xz",
+    "archive_sha256": "34fe0fcbf2c9a5219be4a35b2270ba9e3e885b54da46655956975a82deb96339",
+    "archive_bytes": 14536,
+    "syntax_check": "python -m py_compile PASS",
+    "self_test": "SELF_TEST_PASS"
+  },
+  "correction": "Use the fixed full-annulus source norm for the response-independent nine-old-frame source-activity admission rule. Retain the registered union measurement-support mask for every primary recovery endpoint.",
+  "reason": "The prior reimplementation-only union-support admission was not required by the original Movie012 registration and did not fill the narrow-hotspot or split-merge training populations. The repaired admission tests source existence rather than order-1 detector coverage.",
+  "source_feature_formulas_parameter_ranges_seeds_positivity_physical_observations_architecture_metrics_thresholds_and_success_gate_changed": false,
+  "source_population_generated": false,
+  "source_pca_fit": false,
+  "observation_pca_fit": false,
+  "neural_weights_trained": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0,
+  "note": "The exact source archive is locally hash-frozen before execution and will be deposited with the completion or failure closeout."
+}
