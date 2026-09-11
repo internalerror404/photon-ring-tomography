@@ -1,0 +1,29 @@
+{
+  "status": "POSTPLANNED_NUMERICAL_VERIFICATION_COMPLETE",
+  "purpose": "Complete clean/fitted q8-q12 checks on the exact archived off-basis population and independently replay the tournament decision; no candidate or endpoint changed.",
+  "clean_offbasis_q8_q12": [
+    {"arm":"direct","max_relative":1.4325544395331688e-15,"max_whitened":1.5159875864353164e-11,"pass":true},
+    {"arm":"labelled","max_relative":6.424766608640412e-12,"max_whitened":7.093692556366074e-08,"pass":true}
+  ],
+  "fitted_offbasis_q8_q12": [
+    {"variant":"RAY595_BASELINE","arm":"direct","max_relative":3.69675554404119e-7,"max_whitened":0.003798023244788827,"pass":true},
+    {"variant":"RETARDED_TIME_DCT_EQUIVALENT","arm":"direct","max_relative":3.69675554404119e-7,"max_whitened":0.003798023244788827,"pass":true},
+    {"variant":"GREEN_NESTED_1445","arm":"direct","max_relative":2.822215784297598e-7,"max_whitened":0.0029491573073987714,"pass":true},
+    {"variant":"HISTORICAL_INNOVATION_1445","arm":"direct","max_relative":2.8720800822613563e-7,"max_whitened":0.0030047058605153876,"pass":true},
+    {"variant":"RAY595_BASELINE","arm":"labelled","max_relative":4.078209491320244e-6,"max_whitened":0.05235240643876788,"pass":true},
+    {"variant":"RETARDED_TIME_DCT_EQUIVALENT","arm":"labelled","max_relative":4.078209491320244e-6,"max_whitened":0.05235240643876788,"pass":true},
+    {"variant":"GREEN_NESTED_1445","arm":"labelled","max_relative":5.07282428809846e-6,"max_whitened":0.06519032958660508,"pass":true},
+    {"variant":"HISTORICAL_INNOVATION_1445","arm":"labelled","max_relative":9.563923795370588e-6,"max_whitened":0.12511686448871853,"pass":false}
+  ],
+  "winner_replay_matches_summary": true,
+  "scientific_file_hashes": {
+    "PER_CASE.csv": "d1a4d32640d89d87d2964d4a6a5acaa50d5113b117954c1e761417d139414536",
+    "AGGREGATE.csv": "9672be12a2e81ad27b0e505dc1065a76ba1f97fcee9cc408a3677947ce5f8c44",
+    "FAMILY.csv": "3d48db6bd9172b10af11d757d0634274f3b3da553e08c9c22d8bd49c8838b0ed",
+    "SUMMARY.json": "71312148256fc26c7ebb220039f0c7f147c6416b6f4cdbd28e8b0a6502ea6325"
+  },
+  "limitations": [
+    "Post-outcome exact-sample verification; it cannot promote a failed variant.",
+    "q8/q12 agreement is a two-rule numerical check, not a continuum certificate."
+  ]
+}

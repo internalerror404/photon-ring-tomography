@@ -1,0 +1,11 @@
+{
+  "run_movie013.py": "8e01b5fd3cdbd57a6488fb56cfd6568de413cad7139a387ad28d0bd9cfdb93c0",
+  "verify_movie013_postplanned.py": "929562a7cfa20dc6778f91e20eeef49fb43b4b3d623483a76f1f841ac9bcd096",
+  "Movie013_Final_Source.tar.xz": "f40ac29030e1d6816c293f885e27108a5e9e1d33b78dfc2eaeabf5d13e9b76fa",
+  "PER_CASE.csv": "d1a4d32640d89d87d2964d4a6a5acaa50d5113b117954c1e761417d139414536",
+  "AGGREGATE.csv": "9672be12a2e81ad27b0e505dc1065a76ba1f97fcee9cc408a3677947ce5f8c44",
+  "FAMILY.csv": "3d48db6bd9172b10af11d757d0634274f3b3da553e08c9c22d8bd49c8838b0ed",
+  "SUMMARY.json": "71312148256fc26c7ebb220039f0c7f147c6416b6f4cdbd28e8b0a6502ea6325",
+  "postplanned_verification": "929562a7cfa20dc6778f91e20eeef49fb43b4b3d623483a76f1f841ac9bcd096",
+  "note": "Full arrays, per-case table, logs, superseded summary, figures, and authenticated inputs are in the delivered artifact packages."
+}

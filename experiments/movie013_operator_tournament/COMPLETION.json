@@ -1,0 +1,72 @@
+{
+  "return_token": "MOVIE013_OPERATOR_TOURNAMENT_COMPLETE_NO_WINNER",
+  "registration_commit": "3afddc3533bb548702173c1f38ce048886c8ae89",
+  "final_source_freeze_commit": "b9cfa32c380146ffd914f5ec43104e9d72b62cb5",
+  "population": "Exact frozen Movie007 in-basis and off-basis histories, observations, noise, rows, and metrics",
+  "primary_snr0": 300,
+  "variants": {
+    "RAY595_BASELINE": {
+      "interpretation": "Current ray-to-pixel operator plus the frozen 595D structured prior",
+      "inbasis_labelled_median_error": 0.0466436937154979,
+      "inbasis_labelled_span95_M": 28,
+      "offbasis_narrow_labelled_error": 0.928669505663452,
+      "offbasis_spiral_labelled_error": 0.7520814978099708,
+      "offbasis_span90_M": 0
+    },
+    "RETARDED_TIME_DCT_EQUIVALENT": {
+      "interpretation": "Orthogonal retarded-time row re-expression; no new information",
+      "max_gram_rhs_coefficient_movie_disagreement": 1.0387683715077932e-15,
+      "identical_recovery_to_baseline": true
+    },
+    "GREEN_NESTED_1445": {
+      "interpretation": "Same physical acquisition with an exact nested m<=8 continuous source representation and isotropic source-norm ridge",
+      "inbasis_labelled_median_error": 0.1792,
+      "inbasis_labelled_span95_M": 0,
+      "offbasis_relative_change_vs_baseline": {
+        "narrow_hotspot": 0.40192443734281635,
+        "shearing_spiral": 0.3263776312753388
+      },
+      "offbasis_fitted_q8_q12_max_whitened": 0.06519032958660508,
+      "winner": false
+    },
+    "HISTORICAL_INNOVATION_1445": {
+      "interpretation": "Same physical acquisition with separate old-target and recent/background quadratic regularization",
+      "inbasis_labelled_median_error": 0.20329,
+      "inbasis_labelled_span95_M": 0,
+      "offbasis_relative_change_vs_baseline": {
+        "narrow_hotspot": 1.9651878923549133,
+        "shearing_spiral": 1.5992580879696017
+      },
+      "offbasis_fitted_q8_q12_max_whitened": 0.12511686448871853,
+      "offbasis_fitted_q8_q12_gate": "FAIL: criterion <=0.1",
+      "winner": false
+    }
+  },
+  "mechanics": {
+    "input_hashes": true,
+    "baseline_selection_replay": true,
+    "baseline_coefficients_max_abs": 0.0,
+    "baseline_aggregate_max_abs": 9.020562075079397e-17,
+    "baseline_offbasis_labelled_error_max_abs": 1.6653345369377348e-15,
+    "dct_max_disagreement": 1.0387683715077932e-15,
+    "dct_equivalent": true,
+    "nested_containment_max_abs": 1.1102230246251565e-16,
+    "nested_containment_pass": true,
+    "all_inbasis_fitted_q8_q12_pass": true,
+    "all_clean_offbasis_q8_q12_pass": true,
+    "green_nested_offbasis_fitted_q8_q12_pass": true,
+    "historical_innovation_offbasis_fitted_q8_q12_pass": false,
+    "winner_replay_matches_summary": true,
+    "new_physical_calls": 0,
+    "paper1_units": 0
+  },
+  "winner_names": [],
+  "scientific_interpretation": "No tested same-data operator representation beats the baseline. The orthogonal DCT is exactly equivalent. Enlarging the source class or splitting old/recent quadratic regularization opens more weak directions and worsens recovery. The current cached Kerr ray-to-pixel map is therefore not identified as the practical bottleneck on these samples; the inverse prior/regularization is the next target.",
+  "scope": [
+    "No visibility-domain or delay-resolved acquisition was run.",
+    "O2 and O3 change source representation/regularization, not the underlying Kerr photon map.",
+    "The result does not prove the current physical operator is globally optimal.",
+    "q8/q12 agreement is not a continuum error certificate.",
+    "No new physical calls and no Paper-I units were used."
+  ]
+}
