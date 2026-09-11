@@ -1,0 +1,25 @@
+{
+  "experiment": "Mahakal II Movie011 Retarded Neural Field",
+  "registration_commit": "bf2c5034054a9cb6987cd21cb35a2266da5809ad",
+  "readback_amendment_commit": "4d646953c2b1a841b98234cd1789d8cfe6ded91a",
+  "ledger_failure_commit": "c8cdaa34b7be97d7856014e18644c885e811232a",
+  "created_after_valid_population_before_any_neural_weight_checkpoint_or_test_endpoint": true,
+  "preserved_population": {
+    "path": "results/POPULATIONS.npz",
+    "bytes": 157107300,
+    "sha256": "ba2477910cc065015442e89e4cde27f29fa4f8fdabf553e3e91c37fe2cf9b694",
+    "source_specs_sha256": "b0737575f9c7043450265e799478432d2b8a7722c1d2fb683aa92313551c8fdb"
+  },
+  "execution_source": {
+    "path_in_artifact": "source/movie011_rnf.py",
+    "sha256": "8d7770e801d44acc7d6f2ae8f62a4b1a8431625d4b98cd89632e7eced6bb6908",
+    "syntax_check": "PASS",
+    "self_test": "SELF_TEST_PASS",
+    "change": "Reporting-only deterministic admission replay; verifies accepted specs exactly, represents unevaluated positivity as JSON null, and derives clean q8/q12 gates from frozen population responses."
+  },
+  "neural_weights_trained": false,
+  "checkpoint_selected": false,
+  "test_reconstruction_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
