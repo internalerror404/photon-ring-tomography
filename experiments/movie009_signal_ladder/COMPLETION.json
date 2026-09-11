@@ -1,0 +1,57 @@
+{
+  "return_token": "MOVIE009_CAUSAL_MOVIE_THRESHOLD_PASS",
+  "lineage": {
+    "movie008_completion_commit": "9fec2492b818ccf37e409e9644638913b61e96b5",
+    "registration_commit": "2ec8dac19844d0fff68b76f6118b5c51717a373e",
+    "source_freeze_commit": "877d1810904abbac11d8f398fc4f96134617fe7c",
+    "record_closeout_amendment_commit": "95889b6703b3a8cd1b32c1527c36362e7e9dfe51"
+  },
+  "primary": {
+    "snr0": 300,
+    "alpha_star": 0.32,
+    "threshold_bracket": [0.24, 0.32],
+    "direct_identity_accuracy": 0.5,
+    "direct_movie_pass_rate": 0.0,
+    "labelled_identity_accuracy": 1.0,
+    "labelled_median_target_relative_error": 0.0626290979461709,
+    "labelled_p90_target_relative_error": 0.0937962141093971,
+    "labelled_movie_pass_rate": 0.9541666666666668,
+    "bootstrap_movie_median_p2p5_p97p5": [0.9541666666666668, 0.9291666666666668, 0.975]
+  },
+  "complexity_groups_at_threshold": {
+    "two_mode": {"identity_accuracy": 1.0, "median_target_relative_error": 0.0615899539055238, "movie_pass_rate": 0.9625},
+    "three_mode": {"identity_accuracy": 1.0, "median_target_relative_error": 0.0617779180235522, "movie_pass_rate": 0.975},
+    "four_mode": {"identity_accuracy": 1.0, "median_target_relative_error": 0.0637762507312491, "movie_pass_rate": 0.925}
+  },
+  "boundaries": {
+    "snr100_threshold_reached_by_alpha_0p48": false,
+    "snr100_max_movie_pass_rate": 0.6291666666666667,
+    "arbitrary_or_off_basis_movie_recovery": false,
+    "full_annulus_movie_recovery": false,
+    "visibility_or_telescope_recovery": false
+  },
+  "numerical": {
+    "target_source_gram_error": 3.411962882826978e-14,
+    "direct_q8_q12_target_response_exact_zero": true,
+    "paired_noisy_direct_observations_byte_identical": true,
+    "max_q8_q12_twin_relative": 0.00014637033996679953,
+    "max_q8_q12_twin_whitened": 0.012648898828960444,
+    "minimum_analytic_emissivity_bound": 0.584189052087146,
+    "independent_conditional_gls_max_abs": 5.6380775048658904e-11,
+    "all_19_final_verification_checks_pass": true
+  },
+  "governance": {
+    "fresh_background_seed": 81061,
+    "fresh_direction_seed": 81062,
+    "fresh_noise_seed": 81063,
+    "bootstrap_seed": 81064,
+    "fresh_pairs": 60,
+    "signs": 2,
+    "draws": 4,
+    "amplitudes": [0.08, 0.16, 0.24, 0.32, 0.40, 0.48],
+    "new_physical_calls": 0,
+    "paper1_units_used": 0,
+    "record_only_closeout_changed_scientific_files": false
+  },
+  "scope": "One Kerr chart, ideal direct/order-1 labels, four frozen old nonaxisymmetric modes, a declared 385-dimensional nuisance movie, and a measurement-support movie metric. Not arbitrary, off-basis, full-annulus, multi-chart, visibility-domain, telescope, or observational movie recovery."
+}
