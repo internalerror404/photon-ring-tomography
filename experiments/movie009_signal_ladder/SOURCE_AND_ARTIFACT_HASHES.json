@@ -1,0 +1,29 @@
+{
+  "source_freeze": {
+    "registration_commit": "2ec8dac19844d0fff68b76f6118b5c51717a373e",
+    "source_freeze_commit": "877d1810904abbac11d8f398fc4f96134617fe7c",
+    "source_archive_sha256": "0323810d876c95e283d5c6359787ea9b913fce2583efab59766938e62bdf3d7c",
+    "common_py": "19665537ce13705faa6e28912ace61420a1be70e8c9cb94fcc71fe9035154455",
+    "run_all_py": "55da932251da3825eaa8f1df152c05b05854dad39ce2cef7f2c57dfcffbff616",
+    "run_signal_ladder_py": "9b3904db577005a87476b7de99f215bdf4baf83919351268e1c78a2d37d0d5a3",
+    "verify_py": "dbb30bc31e2b117dd87dc329153c6d393f222491d1af55ae054da6f1ee499c5d"
+  },
+  "authenticated_inputs": {
+    "PHYSICAL_AND_OPERATOR_ARRAYS.npz": "54204f14b8c834fb3c54dc012c9827e711f339fc6c30251802fea71ac6d8274e",
+    "SUPPORT_WEIGHTS.npz": "72080e09e722b01a821d2989d706f21eccfc9ce7671d1fa2f18f66bcd56a7952",
+    "REGULARIZATION_SELECTION.json": "f3739497a08973bec6ed0b5c174188ad1b2321b469efa06750de2b43bcddf090",
+    "MODE_BANK.npz": "da24a26323d615b8f1896be6caa5b9f571601c70446c5bc95e916a7abd0029e1"
+  },
+  "delivered_artifacts": {
+    "Mahakal_II_Movie009_Signal_Ladder_Full.zip": "3fb3d18335f4931b71542417c5f3df7e997d1cb07a2c376f4f6144b121436330",
+    "Mahakal_II_Movie009_Signal_Ladder_Compact.zip": "1016242a7e120bb1d22582117c4bffc6627fa866b26d3ebce031a71c3f5dfd64",
+    "Movie009_Compact_Records.tar.xz": "6935bb4d6f805fc370bffa72389d58a23651afa8146b8ea6618eb16fb5cde344"
+  },
+  "record_closeout": {
+    "summary_pre_closeout_sha256": "e067ab9ab9365ba315c09ef4a490e7f73070b3b1b53f9a69acaf1e7baecba454",
+    "summary_post_closeout_sha256": "4ae9f4baeb3caab38ed57d2cf54c036e21147d08239a46aabf94ebbe74b1d1c8",
+    "failed_verification_sha256": "e7b21fa4821d5756c909102a7297330d15ab0b15f0542aff68d8d62d0cc36304",
+    "scientific_files_byte_identical": true
+  },
+  "note": "The full binary inputs, fresh source/noise arrays, estimates, per-frame tables, bootstraps, figures, animations, and execution logs are in the delivered full package. The repository carries the frozen source archive and compact readable records."
+}
