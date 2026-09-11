@@ -1,0 +1,22 @@
+{
+  "experiment": "Mahakal II Movie011 Retarded Neural Field",
+  "registration_commit": "bf2c5034054a9cb6987cd21cb35a2266da5809ad",
+  "readback_amendment_commit": "4d646953c2b1a841b98234cd1789d8cfe6ded91a",
+  "first_freeze_commit": "491a371677eaaf5f2cffd225f0e03014181128b8",
+  "failure_commit": "213b1f13c48745ab3c4a372e2fb4b9ab18ca4c10",
+  "created_before_any_saved_population_neural_weight_or_scientific_endpoint": true,
+  "execution_source": {
+    "path_in_artifact": "source/movie011_rnf.py",
+    "sha256": "2e1e2d4fa32e736f3784c57c40283c72864bd08544ffd588f2b0e7925869e5e7",
+    "syntax_check": "PASS",
+    "self_test": "SELF_TEST_PASS",
+    "change_from_first_freeze": "Extend only the training candidate cap from inherited 800 to 5000 while preserving the same deterministic RNG stream and identical admission rule; retain the first 300 accepted candidates per first-three family."
+  },
+  "population_targets": {"training_per_family": 300, "validation_pairs_per_family": 8, "test_pairs_per_family": 16},
+  "accepted_population_files_written": false,
+  "validation_or_test_sources_written": false,
+  "neural_weights_trained": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
