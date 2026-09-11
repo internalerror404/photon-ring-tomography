@@ -1,0 +1,35 @@
+{
+  "experiment": "Movie012 Retarded Latent Neural Field — recovered implementation",
+  "registration_commit": "c818b70785201a29803025846248f92903340b9b",
+  "observation_pca_amendment_commit": "29604e27d8bd038506c2236c66f3601dfbf3ef25",
+  "reimplementation_amendment_commit": "e15a00c8fa2d0e8c73dc0d40c7bd9005aa7bca43",
+  "created_before_source_population_PCA_training_validation_or_test_outcomes": true,
+  "source_identity": "MOVIE012_RECOVERED_V1_FIXED_REGISTRATION_20260911",
+  "source_files_to_be_deposited_with_result": [
+    "source/run_movie012_recovered.py",
+    "source/movie010_source_recovered.py"
+  ],
+  "syntax_checks": {
+    "run_movie012_recovered.py": "PASS",
+    "movie010_source_recovered.py": "PASS"
+  },
+  "scientific_design_unchanged": {
+    "source_pca_rank": 192,
+    "observation_pca_rank": 256,
+    "training_pairs_per_trained_family": 180,
+    "validation_pairs_per_trained_family": 8,
+    "test_pairs_per_family": 16,
+    "hidden_widths": [256,256],
+    "neural_seeds": [11,22,33],
+    "epochs": 80,
+    "batch_size": 64,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "primary_snr0": 300,
+    "secondary_snr0": 100
+  },
+  "source_or_test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0,
+  "note": "The original recorded source hashes refer to unavailable, unexecuted bytes. Amendment 002 explicitly authorizes this fully deposited implementation of the same registered design; it is not claimed byte-identical to the unavailable source."
+}
