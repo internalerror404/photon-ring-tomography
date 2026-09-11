@@ -1,0 +1,13 @@
+{
+  "experiment": "Mahakal II Movie009-R4 historical representation ladder",
+  "failure_record_commit": "a67ba7cab0cd38bfe8729bf186fd30932c8afac2",
+  "created_before_replacement_summary": true,
+  "execution_source": {
+    "sha256": "ac161b1e456ff6aeed9ba05a73450343c04b16051aaaa4ada2698cd8c486aad6",
+    "syntax_check": "PASS"
+  },
+  "change": "Remove an unused diagnostic expression that attempted to convert the rank-96 aggregate pandas Series to float; write the existing scalar weight diagnostics directly.",
+  "source_population_PCA_construction_ranks_seeds_validation_reconstructions_metrics_gates_changed": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
