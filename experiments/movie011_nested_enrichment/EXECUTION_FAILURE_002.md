@@ -1,0 +1,5 @@
+# Movie011 execution failure 002 — pre-outcome source-transform audit
+
+The first clean-restart implementation was inspected before accepting any Movie011 scientific endpoint. The audit found three source-coordinate defects: the temporal Gram inverse was applied twice while projecting the old-class background; normalized coefficients were mapped back to the raw tensor with transposed factor contractions; and the old-to-new containment check attempted an unnecessarily large least-squares construction before using the registered separable nesting relation. The validation/test noise generator also did not yet guarantee that the labelled arm reused the exact direct noise block.
+
+Any local output from that implementation is invalidated. It is not a scientific pass or fail. The corrected implementation uses exact factor-wise Cholesky maps, exact radial/azimuthal/temporal embeddings, paired direct noise, and both relative and whitened q8/q12 gates. Source populations, dimensions, thresholds, seeds, and endpoints are unchanged. The corrected bytes are locally hash-frozen before execution and will be delivered and committed with the result.
