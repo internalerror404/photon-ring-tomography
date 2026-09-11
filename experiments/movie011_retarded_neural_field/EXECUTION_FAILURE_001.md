@@ -1,0 +1,5 @@
+# Movie011 execution failure 001 — training population not filled
+
+The first `prepare` attempt authenticated and replayed the frozen Movie007 inputs, then stopped while constructing the registered training population. The inherited helper caps source candidates at 800 per family; under the unchanged positivity and nine-old-frame activity admission, it admitted 161 of the required 300 narrow-hotspot histories and raised before moving to the other families.
+
+No population file, validation/test source bank, clean-response table, neural weight, checkpoint, regularization choice, or scientific endpoint was written. The candidate acceptance rule, source parameter ranges, seeds, population target, and held-out family are unchanged. The repair replaces only the inherited 800-candidate loop for the 300-per-family training population by a recorded 5,000-candidate cap, retaining the first 300 accepted candidates in the identical deterministic RNG stream. Validation and test construction remain unchanged.
