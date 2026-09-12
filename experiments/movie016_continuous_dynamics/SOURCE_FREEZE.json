@@ -1,0 +1,30 @@
+{
+  "experiment": "Mahakal II Movie016 family-blind continuous dynamics refinement",
+  "registration_commit": "1d8149d9633ae893aa706408337b7ee9e2cc7ee2",
+  "created_before_any_nonlinear_fit_or_endpoint": true,
+  "pilot_subset": {
+    "pairs": [0,1,2,3,16,17,18,19,32,33,34,35,48,49,50,51],
+    "draws": [0,1],
+    "siblings_per_pair": 2,
+    "observations": 64,
+    "snr0": 300
+  },
+  "execution_source": {
+    "sha256": "62b2ee0f646d493436001037bda40469e37f072006702bf9573150fa19f9fca7",
+    "bytes": 15848,
+    "self_test": {"response_shape":[832],"finite":true,"pass":true},
+    "github_source_note": "The committed source path is a provenance stub; the byte-complete executable is locally hash-frozen and delivered with the result package."
+  },
+  "local_source_archive": {
+    "sha256": "9b3479ce13cf8a7b2a4518c7eaeade41a2077d1461b2237119da18d92b8a1c3f",
+    "bytes": 24884
+  },
+  "starts_per_observation_max": 4,
+  "max_function_evaluations": 80,
+  "optimizer": "scipy least_squares trust-region reflective",
+  "truth_labels_or_parameters_supplied": false,
+  "nonlinear_fits_started": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
