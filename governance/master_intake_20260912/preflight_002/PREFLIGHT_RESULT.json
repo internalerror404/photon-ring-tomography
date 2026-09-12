@@ -1,0 +1,24 @@
+{
+  "status": "EXECUTION_BLOCKED_MISSING_FROZEN_INPUTS",
+  "original_93d990_execution_recovered": false,
+  "github_v4_source_recovered_and_verified": true,
+  "source_sha256": "39cfbcf12c1918eb86a1ef842714fa900bb3204ed0078e692d243740ce4cadff",
+  "source_bytes": 60160,
+  "entrypoint_returncode": 1,
+  "helper_tests": 12,
+  "helper_passed": 12,
+  "registered_self_test_passed": false,
+  "movie_reconstruction_ran": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0,
+  "population_generation_calls": 0,
+  "elapsed_seconds": 4.091865783999992,
+  "peak_self_rss_KiB": 322452,
+  "v4_files_before": {
+    "v4/source/run_movie009_r2.py": "39cfbcf12c1918eb86a1ef842714fa900bb3204ed0078e692d243740ce4cadff"
+  },
+  "v4_nonbytecode_files_after": {
+    "v4/source/run_movie009_r2.py": "39cfbcf12c1918eb86a1ef842714fa900bb3204ed0078e692d243740ce4cadff",
+    "v4/results/FAILURE.json": "c03e78b897ea13159c66088965d727b0a40da25fbf053dbff5fff668bec37682"
+  }
+}
