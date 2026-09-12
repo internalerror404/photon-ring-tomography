@@ -1,0 +1,27 @@
+{
+  "experiment": "Mahakal II Movie009-R3 multi-hypothesis background posterior",
+  "registration_commit": "6aefd2e89aad7d9f3916ea54918c523a6f724234",
+  "preexecution_amendment_commit": "2a7113e379ebf3e4353ebda9da96f068a87cdff8",
+  "created_before_source_generation_candidate_banks_validation_or_test_outcomes": true,
+  "source": {
+    "run_movie009_r3.py_sha256": "8861e1bb80991237b0cf32cfc96e4d490d55eb4d3cbf4c282ec09d3bbd3d4916",
+    "source_archive_sha256": "ad478f811a29a2384df53626d20e98206920cef75fe26bb8f8a366a5b7ce1460",
+    "launcher_sha256": "534ee455008cc724c5d4ce537b2d9ae5995010c9020a791dfda290770ae3966b",
+    "syntax_check": "PASS",
+    "self_test": "PASS",
+    "self_test_direct_feature_max_abs": 0.0
+  },
+  "inputs": {
+    "PHYSICAL_AND_OPERATOR_ARRAYS.npz": "54204f14b8c834fb3c54dc012c9827e711f339fc6c30251802fea71ac6d8274e",
+    "SUPPORT_WEIGHTS.npz": "72080e09e722b01a821d2989d706f21eccfc9ce7671d1fa2f18f66bcd56a7952",
+    "REGULARIZATION_SELECTION.json": "f3739497a08973bec6ed0b5c174188ad1b2321b469efa06750de2b43bcddf090",
+    "movie007_run.py": "8b80d533cd48400570e96b914c4167938f691",
+    "kerr.py": "12abafb39f6d5a6ebf4626e0a05c021d3bd0c5c5ca6ae0abd22632656c8f28cf"
+  },
+  "candidate_banks_built": false,
+  "sources_generated": false,
+  "validation_seen": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
