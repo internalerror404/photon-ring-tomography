@@ -1,0 +1,5 @@
+{
+  "type": "FileNotFoundError",
+  "message": "/mnt/data/mahakal_recovery_20260912/v4/inputs/PHYSICAL_AND_OPERATOR_ARRAYS.npz",
+  "traceback": "Traceback (most recent call last):\n  File \"/mnt/data/mahakal_recovery_20260912/v4/source/run_movie009_r2.py\", line 1121, in main\n    try:run()\n        ~~~^^\n  File \"/mnt/data/mahakal_recovery_20260912/v4/source/run_movie009_r2.py\", line 731, in run\n    auth = authenticate()\n  File \"/mnt/data/mahakal_recovery_20260912/v4/source/run_movie009_r2.py\", line 122, in authenticate\n    raise FileNotFoundError(path)\nFileNotFoundError: /mnt/data/mahakal_recovery_20260912/v4/inputs/PHYSICAL_AND_OPERATOR_ARRAYS.npz\n"
+}
