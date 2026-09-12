@@ -1,0 +1,13 @@
+{
+  "commit": "c0ac7e314bc10b2624cf6ff9f54856405ad9a951",
+  "branch": "research/mahakal_II_knot_quadrature002_20260912",
+  "source_git_blobs_verified": {
+    "basis001.py": "0cba8e6798ee5dc0d4d366897b54543b18698ab7",
+    "kerr_chart003_original.py": "e0537f82d9cc71dde9ce46b44be010d31bb52712",
+    "numerical_fields.py": "4c80528168127ccae3d3ccf6020144c4670ce1c5",
+    "run002.py": "0341e48e9b365ebb11261ae7e08f37d055c9a075",
+    "test002.py": "cb97ee485ecee9c471f28a7effcb56c88e4392cc"
+  },
+  "physical_calls_before_receipt": 0,
+  "created_utc": "2026-09-12T23:02:37.245883+00:00"
+}

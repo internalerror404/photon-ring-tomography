@@ -1,0 +1,82 @@
+{
+  "experiment": "KNOT_QUADRATURE_002",
+  "status": "KNOT_QUADRATURE_002_PASS",
+  "scope": "numerical qualification only; no movie or posterior fit",
+  "full_manifest_payload_files": 52,
+  "full_manifest_location": "Complete delivered ZIP; the manifest excludes subsequently added GitHub index/receipt/checksum metadata.",
+  "binary_location": "Complete delivered ZIP, not deposited as GitHub binary blobs.",
+  "artifacts": {
+    "ARTIFACT_MANIFEST.json": {
+      "bytes": 8605,
+      "sha256": "f4164a8b558a3fcab52fb19b86ac2f52a0645f1b62f82f075412f5a745f78c06"
+    },
+    "results/COMPLETION.json": {
+      "bytes": 4774,
+      "sha256": "bba98e864f985def3e31b1350a32299ee7b3e9c75f2a4dd6127414a8a3902c3a"
+    },
+    "results/POSTPLANNED_READBACK.json": {
+      "bytes": 749,
+      "sha256": "e2e701ab73a068cbd0fc25cdb9b457b341c00a319cd5ff10234bae5fe72e1c6f"
+    },
+    "attempts/physical_calls.jsonl.gz": {
+      "bytes": 65649079,
+      "sha256": "857b2fe8e62390f8a86670d79abb40448da24f10bddae66e305b2d2b7083a496"
+    },
+    "results/OPERATORS.npz": {
+      "bytes": 3576632,
+      "sha256": "0e76ae87493688ca29e7020ad3daa88d3e42f76cabda7e32a01a0d44b086477d"
+    },
+    "results/KNOT_q8_n0_RAYS.npz": {
+      "bytes": 873570,
+      "sha256": "b3012757f59af928548d86c687242a905644af037f791fe0b7628451be59900f"
+    },
+    "results/KNOT_q8_n1_RAYS.npz": {
+      "bytes": 1787144,
+      "sha256": "f70af91bb63d8a7be0a5e0d6d20ff1571d8d5429acf6a06684bd08be237bbfc8"
+    },
+    "results/KNOT_q12_n0_RAYS.npz": {
+      "bytes": 1929083,
+      "sha256": "523c3caa08de4c6c670aedd1c627e4f7844756511b3416060f292dbf82767701"
+    },
+    "results/KNOT_q12_n1_RAYS.npz": {
+      "bytes": 3962120,
+      "sha256": "a60fe660cbae2696300b8859a5ce333934e0ee7c8ccf01d38faba5c7df72332a"
+    },
+    "results/UNIFORM2_q8_n0_RAYS.npz": {
+      "bytes": 653105,
+      "sha256": "396440d79ab0d62669a114efa18519edca99a939d5dad53eb0b3450f9161cd48"
+    },
+    "results/UNIFORM2_q8_n1_RAYS.npz": {
+      "bytes": 655664,
+      "sha256": "14e2f8a4f605131db4e78f206219f2d4350327a0bc91c7e75066347f5a3f146a"
+    },
+    "results/UNIFORM2_q12_n0_RAYS.npz": {
+      "bytes": 1447141,
+      "sha256": "9f1387e75f45d39e8b54d33c365b45187619c84e6449503e8abe5212f98566cd"
+    },
+    "results/UNIFORM2_q12_n1_RAYS.npz": {
+      "bytes": 1458277,
+      "sha256": "470a5eb090b4bf3ce0ecbed2600f65935fd9b2833fb69da37fa705e08ada451b"
+    },
+    "results/KNOT_BASIS.json": {
+      "bytes": 239949,
+      "sha256": "11e2a67ce27f6b8457726aac336536a10734e5e710b6c1c03506f7abd94e3752"
+    },
+    "results/KNOT_ANALYTIC.json": {
+      "bytes": 86541,
+      "sha256": "e656df8866ec4b9085fb070b53f0467cf29f684f1303a375dc3503615921f00d"
+    },
+    "results/UNIFORM2_BASIS.json": {
+      "bytes": 239141,
+      "sha256": "c467d964f656015be6ff715a94eef722b27edf72ee2d96d22f69948674be3f7a"
+    },
+    "results/UNIFORM2_ANALYTIC.json": {
+      "bytes": 86559,
+      "sha256": "d50fcc2f095379a59f60a552162577b84a82332eadc50fdca302b382b5a1975b"
+    },
+    "results/OUTER_PARTITIONS.json": {
+      "bytes": 11514,
+      "sha256": "f12299f444a187cfb194000c6e5afdede415a91afdb39e03a14307172c0914aa"
+    }
+  }
+}

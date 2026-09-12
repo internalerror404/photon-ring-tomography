@@ -1,0 +1,19 @@
+{
+  "status": "POSTPLANNED_KNOT002_READBACK_PASS",
+  "original_status": "KNOT_QUADRATURE_002_PASS",
+  "physical_calls": 0,
+  "ledger_calls_checked": 404087,
+  "ledger_events_checked": 808174,
+  "quadrature_nodes_checked": 307840,
+  "basis_arm_checks": 3570,
+  "analytic_arm_checks": 1068,
+  "gate_mismatches": 0,
+  "basis_metric_max_abs_difference": 0,
+  "analytic_metric_max_abs_difference": 1.0857039794821868e-11,
+  "max_chart_area_abs_error": 8.673617379884035e-17,
+  "random_field_contractions": 32,
+  "random_contraction_max_abs_error": 6.288372600415926e-18,
+  "direct_feature_whitened_max": 0,
+  "source_hashes_unchanged": true,
+  "scope": "New summation and saved-node auditing; no independent source physics or continuum certification."
+}

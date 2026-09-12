@@ -1,0 +1,173 @@
+{
+  "area_checks_pass": true,
+  "baseline": {
+    "checks": 1785,
+    "failures": 142,
+    "max_relative": 0.13412914380662044,
+    "max_whitened": 0.1738557761133685,
+    "relative_failures": 100,
+    "whitened_failures": 42
+  },
+  "experiment": "KNOT_QUADRATURE_002",
+  "ledger_events": 808174,
+  "ledger_tail": "c8c701d3d99480679aa0a93a9262eabfdc81b3e6dbbaba4973067a891b6bf9db",
+  "memoized_hits": 51911,
+  "methods": {
+    "KNOT": {
+      "analytic": {
+        "checks": 534,
+        "failures": 0,
+        "max_relative": 1.0648844111096696e-06,
+        "max_whitened": 1.033288262316511e-05,
+        "relative_failures": 0,
+        "whitened_failures": 0
+      },
+      "basis": {
+        "checks": 1785,
+        "failures": 0,
+        "max_relative": 1.5981307347843947e-11,
+        "max_whitened": 5.624637033515916e-11,
+        "relative_failures": 0,
+        "whitened_failures": 0
+      },
+      "basis_by_arm": {
+        "direct": {
+          "checks": 595,
+          "failures": 0,
+          "max_relative": 2.3016013901115352e-14,
+          "max_whitened": 3.691903394190833e-12,
+          "relative_failures": 0,
+          "whitened_failures": 0
+        },
+        "labelled": {
+          "checks": 595,
+          "failures": 0,
+          "max_relative": 1.5981307347843947e-11,
+          "max_whitened": 5.624637033515916e-11,
+          "relative_failures": 0,
+          "whitened_failures": 0
+        },
+        "order1": {
+          "checks": 595,
+          "failures": 0,
+          "max_relative": 1.5981307347843947e-11,
+          "max_whitened": 5.624637033515916e-11,
+          "relative_failures": 0,
+          "whitened_failures": 0
+        }
+      },
+      "direct_null_max": 0,
+      "nodes": {
+        "q12_n0": {
+          "inner_panels": 3840,
+          "max_inner_panels": 2,
+          "quadrature_nodes": 46080
+        },
+        "q12_n1": {
+          "inner_panels": 7776,
+          "max_inner_panels": 6,
+          "quadrature_nodes": 93312
+        },
+        "q8_n0": {
+          "inner_panels": 2560,
+          "max_inner_panels": 2,
+          "quadrature_nodes": 20480
+        },
+        "q8_n1": {
+          "inner_panels": 5184,
+          "max_inner_panels": 6,
+          "quadrature_nodes": 41472
+        }
+      },
+      "source_norm_q8_q12_spectral": 1.8323658483671884e-11
+    },
+    "UNIFORM2": {
+      "analytic": {
+        "checks": 534,
+        "failures": 0,
+        "max_relative": 2.3503162691310538e-07,
+        "max_whitened": 2.0607665896423388e-05,
+        "relative_failures": 0,
+        "whitened_failures": 0
+      },
+      "basis": {
+        "checks": 1785,
+        "failures": 34,
+        "max_relative": 0.0224057886250107,
+        "max_whitened": 0.01842673778569161,
+        "relative_failures": 34,
+        "whitened_failures": 0
+      },
+      "basis_by_arm": {
+        "direct": {
+          "checks": 595,
+          "failures": 6,
+          "max_relative": 0.0005909600655106779,
+          "max_whitened": 0.004350348349135321,
+          "relative_failures": 6,
+          "whitened_failures": 0
+        },
+        "labelled": {
+          "checks": 595,
+          "failures": 14,
+          "max_relative": 0.0224057886250107,
+          "max_whitened": 0.01842673778569161,
+          "relative_failures": 14,
+          "whitened_failures": 0
+        },
+        "order1": {
+          "checks": 595,
+          "failures": 14,
+          "max_relative": 0.0224057886250107,
+          "max_whitened": 0.01842673778569161,
+          "relative_failures": 14,
+          "whitened_failures": 0
+        }
+      },
+      "direct_null_max": 0,
+      "nodes": {
+        "q12_n0": {
+          "inner_panels": 3072,
+          "max_inner_panels": 2,
+          "quadrature_nodes": 36864
+        },
+        "q12_n1": {
+          "inner_panels": 3072,
+          "max_inner_panels": 2,
+          "quadrature_nodes": 36864
+        },
+        "q8_n0": {
+          "inner_panels": 2048,
+          "max_inner_panels": 2,
+          "quadrature_nodes": 16384
+        },
+        "q8_n1": {
+          "inner_panels": 2048,
+          "max_inner_panels": 2,
+          "quadrature_nodes": 16384
+        }
+      },
+      "source_norm_q8_q12_spectral": 0.01007382579474358
+    }
+  },
+  "movie_fits": 0,
+  "paper1_units": 0,
+  "peak_rss_KiB": 448664,
+  "physical_calls": 404087,
+  "physical_phase_counts": {
+    "KNOT_q12_n0": 64127,
+    "KNOT_q12_n1": 131066,
+    "KNOT_q8_n0": 32503,
+    "KNOT_q8_n1": 66644,
+    "UNIFORM2_q12_n0": 36864,
+    "UNIFORM2_q12_n1": 36864,
+    "UNIFORM2_q8_n0": 16384,
+    "UNIFORM2_q8_n1": 16384,
+    "edge_partitions": 3251
+  },
+  "posterior_fits": 0,
+  "registration": "c0ac7e314bc10b2624cf6ff9f54856405ad9a951",
+  "saved_arrays_exact": true,
+  "seconds": 312.568581162,
+  "status": "KNOT_QUADRATURE_002_PASS"
+}
