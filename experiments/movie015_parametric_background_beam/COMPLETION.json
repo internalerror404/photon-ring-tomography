@@ -1,0 +1,60 @@
+{
+  "return_token": "MOVIE015_PARAMETRIC_BACKGROUND_BEAM_FAIL",
+  "registration_commit": "55890d0ca925d6471c82abefdb0bb09b4e523a38",
+  "primary_snr0": 300,
+  "direct": {
+    "identity_accuracy": 0.5,
+    "pair_both_correct": 0.0,
+    "median_error": 0.843454,
+    "span95_M": 0,
+    "span90_M": 0
+  },
+  "single_parametric_map": {
+    "identity_accuracy": 0.982421875,
+    "pair_both_correct": 0.96484375,
+    "median_error": 0.295356,
+    "span95_M": 2,
+    "span90_M": 6,
+    "differential_pass_rate": 0.1875
+  },
+  "parametric_beam": {
+    "identity_accuracy": 0.982421875,
+    "pair_both_correct": 0.96484375,
+    "median_error": 0.295356,
+    "span95_M": 2,
+    "span90_M": 6,
+    "differential_pass_rate": 0.1875,
+    "median_background_forecast_coverage_whitened": 32.984616,
+    "background_family_accuracy": 0.75390625,
+    "median_effective_hypotheses": 1.0
+  },
+  "gate": {
+    "authentication_and_replay": true,
+    "direct_nullness": true,
+    "coverage_improvement": true,
+    "labelled_identification": true,
+    "labelled_movie_span": false,
+    "differential_movie": false,
+    "family_improvement": true,
+    "beam_beats_map": false,
+    "q8_q12_gates": true,
+    "pass": false
+  },
+  "postplanned_true_background_library": {
+    "identity_accuracy": 0.984375,
+    "pair_both_correct": 0.96875,
+    "median_error": 0.24326255426131932,
+    "span95_M": 6,
+    "span90_M": 8,
+    "differential_pass_rate": 0.23046875,
+    "interpretation": "Even with the exact background, the finite historical library does not satisfy the movie endpoint; continuous dynamics refinement is the next bottleneck."
+  },
+  "numerical": {
+    "clean_q8_q12_max_whitened": 0.005512875018625476,
+    "fitted_q8_q12_max_whitened": 0.0052626388785652675,
+    "all_pass": true
+  },
+  "scientific_interpretation": "Global multi-family background search largely solves the background forecast problem and crosses the causal identification gate, but a finite historical template library cannot reconstruct complete natural movie frames reliably. Posterior averaging still collapses to the MAP. The next experiment requires continuous family-blind refinement of the historical dynamics.",
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
