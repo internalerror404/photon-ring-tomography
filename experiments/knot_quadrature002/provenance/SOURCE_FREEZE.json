@@ -1,0 +1,19 @@
+{
+  "experiment": "KNOT_QUADRATURE_002",
+  "created_utc": "2026-09-12T22:59:47.356524+00:00",
+  "physical_calls_at_freeze": 0,
+  "source_tests": 17,
+  "sha256": {
+    "REGISTRATION.md": "91f97efff4dee6c49315ed8633e671cd70dac6e7be471db2124fdd2167f2846b",
+    "source/basis001.py": "c680db265991854a17c1d7dc831fecceb39de57ac3370501378f681e204dfa6e",
+    "source/kerr_chart003_original.py": "2e8150cb114ba5e89d86da46a265642c077ed9319f697c72af4041cc018e219d",
+    "source/numerical_fields.py": "31a2ca008d3364bc420fa2a91d977a326a30b6f68d47e9e075aecc03b627f0ba",
+    "source/run002.py": "e6c04595c89075dcfdd36067a5229a2fa88e7b67a4e7622534798f902ad16c93",
+    "source/test002.py": "e6ed6623eece4bbeb0e49b152c8db4d1c64679515efb2297fa08a6f3ab5b1529",
+    "inputs/BASIS_Q8_Q12.json": "caf5f7c24d36cf9ad49b95f9df54fe3f255d9902721b8f67860eb1f003e00596",
+    "inputs/COMPLETION.json": "8abf7184e5d2f675cc285db3ea4f5b4c55594e76a6548a0bf1450a00c7b7bce4",
+    "inputs/NUMERICAL_PROBE_SPECS.json": "9c807bdaa9aebc135565f13420e963b1f293cdda806a0d3a818d0cf33f0d0f15",
+    "inputs/REBUILT_PHYSICAL_AND_OPERATOR_ARRAYS.npz": "b8a9774cc2f8d0dc5e157da7655c75e002497ef9f8c3a2d56fc7c96d1f4fe6b9",
+    "inputs/REBUILT_SUPPORT_WEIGHTS.npz": "9426ca216e18560d59812555b2cd0c851932554a7ab5f47a4552bdefaebe0294"
+  }
+}
