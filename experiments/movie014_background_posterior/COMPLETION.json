@@ -1,0 +1,46 @@
+{
+  "return_token": "MOVIE014_BACKGROUND_POSTERIOR_FAIL",
+  "registration_commit": "a0b5bbf7726c2722bf80bbcf1b95603ae2c78660",
+  "shortlist_amendment_commit": "5169259718ca8920681bdfad3b5dd0e6298ecfda",
+  "primary_snr0": 300,
+  "point_map": {
+    "identity_accuracy": 0.859375,
+    "pair_both_correct": 0.71875,
+    "median_error": 0.799681,
+    "span95_M": 0,
+    "differential_pass_rate": 0.0390625
+  },
+  "posterior_beam": {
+    "identity_accuracy": 0.859375,
+    "pair_both_correct": 0.71875,
+    "median_error": 0.799681,
+    "span95_M": 0,
+    "span90_M": 0,
+    "differential_pass_rate": 0.0390625,
+    "median_effective_hypotheses": 1.0000000000000002,
+    "median_minimum_order1_background_forecast_error_whitened": 446.091220
+  },
+  "gate": {
+    "input_authentication_and_replay": true,
+    "direct_nullness": true,
+    "sources_nonnegative_and_filled": true,
+    "labelled_identification": false,
+    "labelled_movie_span": false,
+    "family_improvement_including_plume": true,
+    "differential_movie": false,
+    "q8_q12_gates": true,
+    "posterior_beats_point_map": false,
+    "pass": false
+  },
+  "numerical": {
+    "clean_q8_q12_SNR300_max_relative": 4.8971431519518e-7,
+    "clean_q8_q12_SNR300_max_whitened": 0.005512875018625476,
+    "fitted_q8_q12_SNR300_max_relative": 2.547660955395582e-7,
+    "fitted_q8_q12_SNR300_max_whitened": 0.0030538164212187487,
+    "all_pass": true
+  },
+  "scientific_interpretation": "A local Gaussian sigma-point approximation around one direct MAP background does not capture the nonlinear or multimodal background uncertainty that controls the first-indirect prediction. The posterior collapses to the same joint hypothesis as the point estimate and therefore does not improve recovery.",
+  "next_experiment": "Multi-family parametric background hypotheses with nonlinear multi-start fitting and family-blind historical dynamics, followed by joint posterior ranking.",
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
