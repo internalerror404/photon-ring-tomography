@@ -1,0 +1,7 @@
+# Movie009-R3 execution failure 001 — sequential optimizer cannot meet the registered runtime budget
+
+The first frozen execution authenticated every input, generated the registered validation/test source populations, rendered the analytic q8/q12 truths, built both proposal banks, and completed 20 of 96 validation sibling fits. It was stopped before the validation readout rule or temperature was selected and before any test reconstruction or scientific endpoint existed.
+
+The observed sequential rate projected beyond the registered 45-minute execution budget. This is an implementation/runtime failure, not a scientific pass or fail. The source populations, candidate banks, parameter bounds, objective functions, local optimization tolerances, beam sizes, metrics, thresholds, and success gate are unchanged.
+
+The successor implementation groups the two siblings of each pair/noise draw so they share one background beam and executes independent pair/draw tasks in four forked CPU workers with one BLAS thread per worker. Parallelization changes only scheduling. Deterministic seeds, candidate order, local optimizer starts, and result ordering are preserved. No validation score, selected readout, or test outcome was inspected before this amendment.
