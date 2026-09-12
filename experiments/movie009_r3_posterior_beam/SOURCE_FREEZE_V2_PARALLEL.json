@@ -1,0 +1,26 @@
+{
+  "experiment": "Mahakal II Movie009-R3 multi-hypothesis background posterior",
+  "registration_commit": "6aefd2e89aad7d9f3916ea54918c523a6f724234",
+  "preexecution_amendment_commit": "2a7113e379ebf3e4353ebda9da96f068a87cdff8",
+  "sequential_failure_commit": "29cc219c66d51ed1684fdf98a97f331994b1477b",
+  "created_before_validation_selection_or_test_outcomes": true,
+  "preserved_v1_progress": "source populations, analytic q8/q12 truths, proposal banks, and 20 of 96 incomplete validation sibling fits; no readout rule, temperature, test reconstruction, or endpoint existed",
+  "source": {
+    "run_movie009_r3.py_sha256": "5e64828af3767a371ee859cf95299d90820970b5fe667408a9c3b3957ed7dac9",
+    "source_archive_sha256": "3ba64000741a0164a9e421a044503c21ab215e4b900c35ee21359435ee2b0c09",
+    "source_archive_base64_sha256": "484924c15be146289aff8a25b225f90b47d76463c1cab27146edb5f9e51e62b2",
+    "launcher_sha256": "b592ac729d4d2b975ce6344a9a7ba0705262d5afe8472b48faa396be7b581575",
+    "syntax_check": "PASS",
+    "self_test": "PASS"
+  },
+  "change": [
+    "group the two siblings of each pair/noise draw so they share one background beam",
+    "run independent pair/draw tasks in four forked CPU workers with one BLAS thread per worker",
+    "preserve deterministic seeds, candidate order, optimizer starts and tolerances, validation definitions, metrics, thresholds, and result ordering"
+  ],
+  "scientific_sources_candidate_banks_objectives_or_gates_changed": false,
+  "validation_selection_seen": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
