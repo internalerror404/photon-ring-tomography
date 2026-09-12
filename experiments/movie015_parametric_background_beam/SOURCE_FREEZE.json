@@ -1,0 +1,32 @@
+{
+  "experiment": "Mahakal II Movie015 multi-family parametric background beam",
+  "registration_commit": "55890d0ca925d6471c82abefdb0bb09b4e523a38",
+  "created_before_background_library_source_replay_or_outcomes": true,
+  "execution_source": {
+    "sha256": "33fce683c9272e7cb9a0e8d5a7b13b9b99c21e854e9dd1729d739cc5db573955",
+    "bytes": 16471,
+    "self_test": {
+      "coeff_shape": [595],
+      "finite": true,
+      "pass": true
+    },
+    "github_source_note": "The committed source path is a provenance stub. The complete executable is locally hash-frozen and delivered with the result package; no byte-complete GitHub deposition is claimed before execution."
+  },
+  "local_source_archive": {
+    "sha256": "43a57f37aba47b9a82a3b8d3a321c55bcadd0ea7624bf68f683c30b5f6e3edc2",
+    "bytes": 21916
+  },
+  "authenticated_inputs": {
+    "PHYSICAL_AND_OPERATOR_ARRAYS.npz": "54204f14b8c834fb3c54dc012c9827e711f339fc6c30251802fea71ac6d8274e",
+    "SUPPORT_WEIGHTS.npz": "72080e09e722b01a821d2989d706f21eccfc9ce7671d1fa2f18f66bcd56a7952",
+    "REGULARIZATION_SELECTION.json": "f3739497a08973bec6ed0b5c174188ad1b2321b469efa06750de2b43bcddf090",
+    "movie007_run.py": "8b80d533cd48400570e505423053a6557e4a2ea6f3d82367adfd5c88b34e5cf1",
+    "movie009_r2_source.py": "93d990c11e39a5cb7bd127967bf65bff07fe28d3c118630077e88d4457c26c2a",
+    "movie014_source.py": "32b760e2a8d9744bf05bbc821384f5fa8c82c3b2ff2d0cfa1ccc771dbdeff552"
+  },
+  "background_library_generated": false,
+  "historical_library_generated": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
