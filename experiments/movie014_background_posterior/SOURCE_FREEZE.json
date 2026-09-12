@@ -1,1 +1,36 @@
-noop
+{
+  "experiment": "Mahakal II Movie014 background-posterior analysis-by-synthesis",
+  "registration_commit": "a0b5bbf7726c2722bf80bbcf1b95603ae2c78660",
+  "shortlist_amendment_commit": "5169259718ca8920681bdfad3b5dd0e6298ecfda",
+  "created_before_source_generation_candidate_library_or_outcomes": true,
+  "execution_source": {
+    "local_artifact_path": "source/run_movie014.py",
+    "sha256": "32b760e2a8d9744bf05bbc821384f5fa8c82c3b2ff2d0cfa1ccc771dbdeff552",
+    "bytes": 20128,
+    "self_test": {
+      "directions_shape": [595, 12],
+      "H_orthonormality_error": 1.3662515563339639e-11,
+      "pass": true
+    },
+    "github_source_note": "The committed Python file records the mechanics and self-test but omits the full main execution body. The complete executed source is locally hash-frozen and must be delivered with the result package; this record does not claim byte-complete GitHub source deposition before execution."
+  },
+  "local_source_archive": {
+    "sha256": "15071a38b29ef575c1fec610ec1c03b74a09a5793e7704c47a2c47c5e9818e91",
+    "bytes": 19508
+  },
+  "authenticated_inputs": {
+    "PHYSICAL_AND_OPERATOR_ARRAYS.npz": "54204f14b8c834fb3c54dc012c9827e711f339fc6c30251802fea71ac6d8274e",
+    "SUPPORT_WEIGHTS.npz": "72080e09e722b01a821d2989d706f21eccfc9ce7671d1fa2f18f66bcd56a7952",
+    "REGULARIZATION_SELECTION.json": "f3739497a08973bec6ed0b5c174188ad1b2321b469efa06750de2b43bcddf090",
+    "movie007_run.py": "8b80d533cd48400570e505423053a6557e4a2ea6f3d82367adfd5c88b34e5cf1",
+    "kerr.py": "12abafb39f6d5a6ebf4626e0a05c021d3bd0c5c5ca6ae0abd22632656c8f28cf",
+    "movie009_r2_source.py": "93d990c11e39a5cb7bd127967bf65bff07fe28d3c118630077e88d4457c26c2a"
+  },
+  "governance_correction": "An accidental no-op overwrite of this freeze file occurred before any source generation or scientific outcome. This commit restores the intended preexecution record; no experiment had started.",
+  "source_populations_generated": false,
+  "library_generated": false,
+  "validation_selected": false,
+  "test_outcomes_seen": false,
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
