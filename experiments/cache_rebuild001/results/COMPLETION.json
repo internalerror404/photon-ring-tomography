@@ -1,0 +1,49 @@
+{
+  "analytic_failures": 0,
+  "analytic_max_relative": 7.993054267570888e-06,
+  "analytic_max_whitened": 0.0001848876899178873,
+  "analytic_probe_count": 89,
+  "basis_failures": 142,
+  "basis_max_relative": 0.13412914380662044,
+  "basis_max_whitened": 0.1738557761133685,
+  "counts": {
+    "compactified_ode": 64,
+    "separated_quadrature": 26752
+  },
+  "elapsed_seconds": 23.183804974000054,
+  "experiment": "CACHE_REBUILD_001",
+  "gates": {
+    "analytic_q8_q12": true,
+    "basis_q8_q12": false,
+    "direct_null": true,
+    "expected_physical_counts": true,
+    "operator_contraction": true,
+    "ray_validation": true,
+    "saved_array_readback": true,
+    "source_gram": true,
+    "support_normalization": true
+  },
+  "ledger_tail_sha256": "56b253c9f8ca30a0fbcfb034206d18b50d186e4b1ec3f77170a92cde53ad75dc",
+  "operator_contraction_max": 1.734723475976807e-18,
+  "original_R2_provenance_repaired": false,
+  "paper1_units": 0,
+  "peak_rss_KiB": 246944,
+  "posterior_runs": 0,
+  "ray_refinement_max": [
+    3.765876499528531e-13,
+    3.241851231905457e-14,
+    4.121147867408581e-13,
+    5.329070518200751e-15
+  ],
+  "ray_validation_max": [
+    5.302425165609748e-13,
+    5.967937255491051e-11,
+    5.366445066101733e-10,
+    1.3433698597964394e-14
+  ],
+  "regularization_selection_performed": false,
+  "scientific_movie_runs": 0,
+  "source_gram_condition": 216.8047287207667,
+  "source_gram_error": 1.2987156904783766e-16,
+  "status": "CACHE_REBUILD_001_COMPLETE_NUMERICAL_GATE_FAIL"
+}

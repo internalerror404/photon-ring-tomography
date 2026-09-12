@@ -1,0 +1,11 @@
+{
+  "status": "POSTPLANNED_ANALYTIC_RESPONSE_REPLAY_PASS",
+  "numerical_fields": 89,
+  "arm_checks": 267,
+  "changed_gate_decisions": 0,
+  "max_absolute_metric_difference": 1.6650403079562796e-12,
+  "minimum_evaluated_source_probe_value": 0.0,
+  "max_direct_feature_whitened": 0.0,
+  "physical_calls": 0,
+  "scope": "Independent pixel-summation implementation; same source formulas and saved ray tuples. Not independent source-physics validation."
+}

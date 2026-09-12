@@ -1,0 +1,10 @@
+{
+  "experiment": "CACHE_REBUILD_001",
+  "registration_commit": "af1a93803f8a24959e63fdd64a5368d2f793a1ea",
+  "branch": "research/mahakal_II_cache_rebuild001_20260912",
+  "source_freeze_readback_git_blob": "1a6995faa5357d2bb71e490d60c2be488175efb1",
+  "registration_readback_git_blob": "b5978f60a4e29a74ea6efdadac88cd8d54127e6d",
+  "physical_calls_before_authorization": 0,
+  "authorization": "User explicitly approved Paper-II-only new physical cache integrations; bounded 001 registration only",
+  "recorded_utc": "2026-09-12T22:38:51.090990+00:00"
+}

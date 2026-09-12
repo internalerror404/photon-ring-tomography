@@ -1,0 +1,75 @@
+{
+  "scope": "model-free software tests only; zero physical integrations",
+  "tests": [
+    {
+      "name": "radial_partition",
+      "passed": true
+    },
+    {
+      "name": "radial_support",
+      "passed": true
+    },
+    {
+      "name": "temporal_partition",
+      "passed": true
+    },
+    {
+      "name": "temporal_cardinality",
+      "passed": true
+    },
+    {
+      "name": "temporal_compact_support",
+      "passed": true
+    },
+    {
+      "name": "angular_periodicity",
+      "passed": true
+    },
+    {
+      "name": "gram_spd_and_cholesky",
+      "passed": true
+    },
+    {
+      "name": "constant_source_partition",
+      "passed": true
+    },
+    {
+      "name": "q8_count_area_pixel_assignment",
+      "passed": true
+    },
+    {
+      "name": "q12_count_area_pixel_assignment",
+      "passed": true
+    },
+    {
+      "name": "toy_operator_linear_contraction",
+      "passed": true
+    },
+    {
+      "name": "historical_support_window",
+      "passed": true
+    },
+    {
+      "name": "phase_wrapped_difference",
+      "passed": true
+    },
+    {
+      "name": "whitened_norm_not_RMS",
+      "passed": true
+    },
+    {
+      "name": "ledger_toy_event_0",
+      "passed": true
+    },
+    {
+      "name": "ledger_toy_event_1",
+      "passed": true
+    },
+    {
+      "name": "ledger_toy_final_tail",
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "count": 17
+}

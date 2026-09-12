@@ -1,0 +1,143 @@
+{
+  "status": "POSTPLANNED_SAVED_ARRAY_AUDIT_PASS",
+  "original_registered_status_unchanged": "CACHE_REBUILD_001_COMPLETE_NUMERICAL_GATE_FAIL",
+  "physical_calls_in_audit": 0,
+  "ledger_events": 53632,
+  "ledger_all_matched": true,
+  "ledger_tail": "56b253c9f8ca30a0fbcfb034206d18b50d186e4b1ec3f77170a92cde53ad75dc",
+  "counts": {
+    "separated_quadrature": 26752,
+    "compactified_ode": 64
+  },
+  "phase_counts": {
+    "independent_validation_q64": 64,
+    "independent_validation_q128": 64,
+    "independent_validation_ode": 64,
+    "cache_q8_order0": 4096,
+    "cache_q8_order1": 4096,
+    "cache_q12_order0": 9216,
+    "cache_q12_order1": 9216
+  },
+  "ray_array_replay": {
+    "q8_n0": 4096,
+    "q8_n1": 4096,
+    "q12_n0": 9216,
+    "q12_n1": 9216
+  },
+  "ranges": {
+    "q8_n0": {
+      "radius_min": 6.246907867071824,
+      "radius_max": 8.91531595546851,
+      "delay_min": 98.673319379703,
+      "delay_max": 102.52329216726848,
+      "tobs0_source_time_min": -2.5232921672684796,
+      "tobs0_source_time_max": 1.3266806202969974
+    },
+    "q8_n1": {
+      "radius_min": 6.066708911198593,
+      "radius_max": 12.376324661839282,
+      "delay_min": 122.41589715186889,
+      "delay_max": 129.69360630304567,
+      "tobs0_source_time_min": -29.69360630304567,
+      "tobs0_source_time_max": -22.41589715186889
+    },
+    "q12_n0": {
+      "radius_min": 6.241258046452125,
+      "radius_max": 8.917635498668325,
+      "delay_min": 98.67074415362994,
+      "delay_max": 102.53345423308507,
+      "tobs0_source_time_min": -2.5334542330850667,
+      "tobs0_source_time_max": 1.3292558463700601
+    },
+    "q12_n1": {
+      "radius_min": 6.0633261429435965,
+      "radius_max": 12.399662256732881,
+      "delay_min": 122.41277702665246,
+      "delay_max": 129.7208720768714,
+      "tobs0_source_time_min": -29.720872076871387,
+      "tobs0_source_time_max": -22.412777026652464
+    }
+  },
+  "basis_by_arm": {
+    "direct": {
+      "checks": 595,
+      "passed": 567,
+      "failed": 28,
+      "relative_failed": 28,
+      "whitened_failed": 0,
+      "both_failed": 0,
+      "max_relative": 0.004869494078415801,
+      "max_relative_column": 415,
+      "max_relative_column_indices": [
+        3,
+        3,
+        7
+      ],
+      "max_relative_column_q12_raw_norm": 1.7037353173449793e-07,
+      "max_relative_column_whitened": 1.0525090486414068e-05,
+      "max_whitened": 0.04041649564839224,
+      "max_whitened_column": 132,
+      "max_whitened_column_indices": [
+        1,
+        0,
+        13
+      ]
+    },
+    "order1": {
+      "checks": 595,
+      "passed": 538,
+      "failed": 57,
+      "relative_failed": 36,
+      "whitened_failed": 21,
+      "both_failed": 0,
+      "max_relative": 0.13412914380662044,
+      "max_relative_column": 570,
+      "max_relative_column_indices": [
+        4,
+        5,
+        9
+      ],
+      "max_relative_column_q12_raw_norm": 2.341218513032e-09,
+      "max_relative_column_whitened": 4.097259294265558e-06,
+      "max_whitened": 0.17385577418622505,
+      "max_whitened_column": 364,
+      "max_whitened_column_indices": [
+        3,
+        0,
+        7
+      ]
+    },
+    "labelled": {
+      "checks": 595,
+      "passed": 538,
+      "failed": 57,
+      "relative_failed": 36,
+      "whitened_failed": 21,
+      "both_failed": 0,
+      "max_relative": 0.13412914380662044,
+      "max_relative_column": 570,
+      "max_relative_column_indices": [
+        4,
+        5,
+        9
+      ],
+      "max_relative_column_q12_raw_norm": 2.341218513032e-09,
+      "max_relative_column_whitened": 4.097259294265558e-06,
+      "max_whitened": 0.1738557761133685,
+      "max_whitened_column": 364,
+      "max_whitened_column_indices": [
+        3,
+        0,
+        7
+      ]
+    }
+  },
+  "basis_metric_replay_max": 0.0,
+  "unique_failed_basis_columns": 76,
+  "analytic_arm_checks": 267,
+  "analytic_passed": 267,
+  "direct_null_feature_checks": 64,
+  "all_direct_feature_responses_exact_zero": true,
+  "source_hashes_unchanged": true,
+  "limit": "Analytic metric counters checked from saved records; this audit does not independently regenerate their 89 source responses."
+}

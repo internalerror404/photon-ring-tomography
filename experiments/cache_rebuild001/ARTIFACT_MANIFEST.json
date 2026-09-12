@@ -1,0 +1,193 @@
+{
+  "experiment": "CACHE_REBUILD_001",
+  "manifest_type": "postexecution source and full artifacts",
+  "registration_commit": "af1a93803f8a24959e63fdd64a5368d2f793a1ea",
+  "original_R2_provenance_repaired": false,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2473,
+      "sha256": "ae0234f5acb900380ed2ec3aeb1a1aa2c86408801b1640cc2e62fc1787315df8"
+    },
+    {
+      "path": "REGISTRATION.md",
+      "bytes": 7720,
+      "sha256": "ccc150e8a9092af3738b2ada6f9f51ca93ccc09331e21d79e0ee1566f16844fc"
+    },
+    {
+      "path": "RESULTS.md",
+      "bytes": 5257,
+      "sha256": "13af8dc274f20d3800c20edfdb379bb6760ca65bb6a8a2ede9493e3ace4db65f"
+    },
+    {
+      "path": "attempts/physical_calls.jsonl",
+      "bytes": 30665456,
+      "sha256": "3d3b4225e5937c28db502241f5f13d036be8a57fdc1611f7ffd3ae925607ffe5"
+    },
+    {
+      "path": "logs/analytic_readback.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/analytic_readback.stdout.txt",
+      "bytes": 450,
+      "sha256": "c8e12bdf7a7f90c9f7790447fd9297c00530163085bcb76f7eccf5d48518a279"
+    },
+    {
+      "path": "logs/readback.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/readback.stdout.txt",
+      "bytes": 4127,
+      "sha256": "ceaec5c5bcbdc846498fe4f0ce410b029e24c5e47bf47bd5b58709fade0aafab"
+    },
+    {
+      "path": "logs/run.stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "logs/run.stdout.txt",
+      "bytes": 1683,
+      "sha256": "dc2e69d08d2580e7b3c2b778b860fe2017a52ef2e7d875df7d3948a098a748b8"
+    },
+    {
+      "path": "provenance/EXECUTION_AUTHORIZATION.json",
+      "bytes": 553,
+      "sha256": "d9ad61bd0cb2e984b3f1d9ded08f39f19fd3b7cd4dd5d4b27b4acfb475f7325d"
+    },
+    {
+      "path": "provenance/LAUNCH.json",
+      "bytes": 55,
+      "sha256": "45fe6798bfe0f9afdb9e5d74a91578cb1acc325cf80339ddf18eeb7bd7f87d04"
+    },
+    {
+      "path": "provenance/PREEXECUTION_TESTS.json",
+      "bytes": 1386,
+      "sha256": "ee6ffc08b97808fdb1e3ab46603b3182ee544fb8a9c9ef0aee868d67956c0e8c"
+    },
+    {
+      "path": "provenance/SOURCE_FREEZE.json",
+      "bytes": 663,
+      "sha256": "013892546afff4984af8a0430d6d91cffe207ac4ae808d110557b978a694e1d4"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 27,
+      "sha256": "1668a3152e33680d94637b13421c15e68bd97cd8701f7f555c691f5bc5c0b9f3"
+    },
+    {
+      "path": "results/ANALYTIC_Q8_Q12.json",
+      "bytes": 42463,
+      "sha256": "e353a868f1d856a112a26c0ae71d409e9602315878da58a5116435f6f87a4f41"
+    },
+    {
+      "path": "results/BASIS_Q8_Q12.json",
+      "bytes": 238217,
+      "sha256": "caf5f7c24d36cf9ad49b95f9df54fe3f255d9902721b8f67860eb1f003e00596"
+    },
+    {
+      "path": "results/COMPLETION.json",
+      "bytes": 1492,
+      "sha256": "8abf7184e5d2f675cc285db3ea4f5b4c55594e76a6548a0bf1450a00c7b7bce4"
+    },
+    {
+      "path": "results/DIRECT_NULL.json",
+      "bytes": 6435,
+      "sha256": "a49c4f3a2dced66cbc7bb633da04d72f5ee5d297efffbace905dbcf76334659c"
+    },
+    {
+      "path": "results/ENVIRONMENT.json",
+      "bytes": 183,
+      "sha256": "ad9a8c895875f5f5521b7575d27b40445bfd772ee02139cd78c86f179aaebb44"
+    },
+    {
+      "path": "results/NOISE_CALIBRATION.json",
+      "bytes": 216,
+      "sha256": "92d54c63ac9c565cbfbfc4d222fb88bf9715d6c484de9bab5f2d0a8691f48825"
+    },
+    {
+      "path": "results/NUMERICAL_PROBE_SPECS.json",
+      "bytes": 42795,
+      "sha256": "9c807bdaa9aebc135565f13420e963b1f293cdda806a0d3a818d0cf33f0d0f15"
+    },
+    {
+      "path": "results/POSTPLANNED_ANALYTIC_REPLAY.json",
+      "bytes": 450,
+      "sha256": "c8e12bdf7a7f90c9f7790447fd9297c00530163085bcb76f7eccf5d48518a279"
+    },
+    {
+      "path": "results/POSTPLANNED_READBACK.json",
+      "bytes": 4127,
+      "sha256": "ceaec5c5bcbdc846498fe4f0ce410b029e24c5e47bf47bd5b58709fade0aafab"
+    },
+    {
+      "path": "results/RAYS_q12_n0.npz",
+      "bytes": 654593,
+      "sha256": "fa142a676758fc0b1f1db42909725cee134894898fb09b475f7ae58198cc3ead"
+    },
+    {
+      "path": "results/RAYS_q12_n1.npz",
+      "bytes": 656486,
+      "sha256": "3ab9f888f92c195770029eb037f1e58a5495d8cdcbac97422f09a3545e09212a"
+    },
+    {
+      "path": "results/RAYS_q8_n0.npz",
+      "bytes": 293360,
+      "sha256": "0566820e49f30aadc1a5abb6d0587b89a7796078deb4374d62d004982064b986"
+    },
+    {
+      "path": "results/RAYS_q8_n1.npz",
+      "bytes": 294362,
+      "sha256": "6c3f9a98da758827357e775533ff9df22233f9160cd3c553d28b372ec6aad1c2"
+    },
+    {
+      "path": "results/RAY_VALIDATION.json",
+      "bytes": 52807,
+      "sha256": "88020392f3a787f20f4868a971ce2362791404f7238eb1bdd6f29b2122eb37c0"
+    },
+    {
+      "path": "results/REBUILT_PHYSICAL_AND_OPERATOR_ARRAYS.npz",
+      "bytes": 5162129,
+      "sha256": "b8a9774cc2f8d0dc5e157da7655c75e002497ef9f8c3a2d56fc7c96d1f4fe6b9"
+    },
+    {
+      "path": "results/REBUILT_SUPPORT_WEIGHTS.npz",
+      "bytes": 139747,
+      "sha256": "9426ca216e18560d59812555b2cd0c851932554a7ab5f47a4552bdefaebe0294"
+    },
+    {
+      "path": "source/audit_analytic_responses.py",
+      "bytes": 2888,
+      "sha256": "a3c86668ac743db8402f569a207b1df1acab1ee3d161bc2e119b3a6130f4239a"
+    },
+    {
+      "path": "source/audit_cached_outputs.py",
+      "bytes": 6564,
+      "sha256": "b2a9f68eaaf24b9950c6fecc644261c6060c313511b42b10357f50f203d45e26"
+    },
+    {
+      "path": "source/kerr_chart003_original.py",
+      "bytes": 7145,
+      "sha256": "2e8150cb114ba5e89d86da46a265642c077ed9319f697c72af4041cc018e219d"
+    },
+    {
+      "path": "source/numerical_fields.py",
+      "bytes": 5646,
+      "sha256": "31a2ca008d3364bc420fa2a91d977a326a30b6f68d47e9e075aecc03b627f0ba"
+    },
+    {
+      "path": "source/rebuild.py",
+      "bytes": 16330,
+      "sha256": "c680db265991854a17c1d7dc831fecceb39de57ac3370501378f681e204dfa6e"
+    },
+    {
+      "path": "source/test_rebuild.py",
+      "bytes": 3190,
+      "sha256": "ba8cda711c085eb6da349ed6b664188cbe30bb773458cd143c9321fd99dc11d7"
+    }
+  ]
+}

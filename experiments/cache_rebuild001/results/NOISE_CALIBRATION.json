@@ -1,0 +1,6 @@
+{
+  "law": "sigma_Omega * sqrt(q12 full pixel area); q12 direct constant-source whitened RMS is 300",
+  "sigma100": 0.001230093378631841,
+  "sigma300": 0.0004100311262106136,
+  "source_time": "tau=tobs-delay+100M"
+}
