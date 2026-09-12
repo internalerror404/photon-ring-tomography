@@ -1,0 +1,13 @@
+{
+  "experiment": "CACHE_REBUILD_001",
+  "created_utc": "2026-09-12T22:37:14.432199+00:00",
+  "physical_calls_so_far": 0,
+  "scientific_movie_runs": 0,
+  "sha256": {
+    "REGISTRATION.md": "ccc150e8a9092af3738b2ada6f9f51ca93ccc09331e21d79e0ee1566f16844fc",
+    "source/kerr_chart003_original.py": "2e8150cb114ba5e89d86da46a265642c077ed9319f697c72af4041cc018e219d",
+    "source/numerical_fields.py": "31a2ca008d3364bc420fa2a91d977a326a30b6f68d47e9e075aecc03b627f0ba",
+    "source/rebuild.py": "c680db265991854a17c1d7dc831fecceb39de57ac3370501378f681e204dfa6e",
+    "source/test_rebuild.py": "ba8cda711c085eb6da349ed6b664188cbe30bb773458cd143c9321fd99dc11d7"
+  }
+}
