@@ -1,0 +1,23 @@
+{
+  "experiment": "Mahakal II Movie009-R3 multi-hypothesis background posterior",
+  "registration_commit": "6aefd2e89aad7d9f3916ea54918c523a6f724234",
+  "parallel_freeze_commit": "f8bec0b85e58be417ad9cd8200106c38c0c1405d",
+  "forked_npz_failure_commit": "b1bb467244c7179270c81301f67de6b7c2dd012d",
+  "created_before_validation_selection_or_test_outcomes": true,
+  "source": {
+    "run_movie009_r3.py_sha256": "c2f59e659c2ca596af5c180399b3f1d1202ca6a80802be1b3562a9366d678409",
+    "source_archive_sha256": "1ceb373f92a966091ad33318f07e7d4bd507ee07f3c40874cec8e91fe6fb465e",
+    "source_archive_base64_sha256": "ca9bf598c35a41232bf0ac18c032278ca30a193ddacab0e4934bf53974df1a3c",
+    "launcher_sha256": "dc58abf90705471ff0bdbfc79b85392ca2ac58c95d779cec6dfaf40e24d562b5",
+    "syntax_check": "PASS",
+    "self_test": "PASS",
+    "self_test_direct_feature_max_abs": 0.0
+  },
+  "change": "Materialize every authenticated NPZ member into an ordinary in-memory NumPy dictionary before forking workers; remove concurrent access to an inherited lazy ZIP handle.",
+  "source_populations_candidate_banks_optimizer_starts_objectives_metrics_thresholds_and_gate_changed": false,
+  "validation_selection_seen": false,
+  "test_outcomes_seen": false,
+  "source_archive_deposition": "The complete V3 source archive and launcher are retained in the execution artifact and will be deposited with the completion or failure record.",
+  "new_physical_calls": 0,
+  "paper1_units": 0
+}
