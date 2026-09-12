@@ -1,0 +1,9 @@
+{
+  "experiment": "JOINT_POSTERIOR_003",
+  "archive": "SOURCE_BUNDLE.tar.gz",
+  "bytes": 24989,
+  "sha256": "89356b48147683feb2b74b1c384b4739a189607dfc2d9602a9949919a95c2d55",
+  "scope": "Actual locally frozen source, configuration, full registration, freeze and pretests before any experiment outcome. Archive bytes to be deposited without alteration; this identity record is not itself the archive.",
+  "original_R2_recovered": false,
+  "source_or_noise_generated": false
+}

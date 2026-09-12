@@ -1,0 +1,29 @@
+{
+  "created_utc": "2026-09-12T23:38:54.636993+00:00",
+  "experiment": "JOINT_POSTERIOR_003",
+  "files": {
+    "REGISTRATION.md": "781e626842e009833396a3de4a746316e73f3d6516c084b51073ce55591eea5d",
+    "config.json": "2ce203aab18bc2207f2ce5267870bcab3d7efc6db68a911cc8316e0b23e432f3",
+    "inputs/KNOT002_COMPLETION.json": "bba98e864f985def3e31b1350a32299ee7b3e9c75f2a4dd6127414a8a3902c3a",
+    "inputs/KNOT_q12_n0_RAYS.npz": "523c3caa08de4c6c670aedd1c627e4f7844756511b3416060f292dbf82767701",
+    "inputs/KNOT_q12_n1_RAYS.npz": "a60fe660cbae2696300b8859a5ce333934e0ee7c8ccf01d38faba5c7df72332a",
+    "inputs/KNOT_q8_n0_RAYS.npz": "b3012757f59af928548d86c687242a905644af037f791fe0b7628451be59900f",
+    "inputs/KNOT_q8_n1_RAYS.npz": "f70af91bb63d8a7be0a5e0d6d20ff1571d8d5429acf6a06684bd08be237bbfc8",
+    "inputs/OPERATORS.npz": "0e76ae87493688ca29e7020ad3daa88d3e42f76cabda7e32a01a0d44b086477d",
+    "inputs/REBUILT_PHYSICAL_AND_OPERATOR_ARRAYS.npz": "b8a9774cc2f8d0dc5e157da7655c75e002497ef9f8c3a2d56fc7c96d1f4fe6b9",
+    "inputs/REBUILT_SUPPORT_WEIGHTS.npz": "9426ca216e18560d59812555b2cd0c851932554a7ab5f47a4552bdefaebe0294",
+    "source/experiment_model.py": "711381ab91d779dadc167227bfcb0607bccdb9fbe341e7219ca79ef8644dd4e3",
+    "source/gaussian_mixture.py": "ad0190dffb0915c0fad5b4e29ef0dacca31decc3cfe25c4e410c69d4e8a7e2a3",
+    "source/numerical_fields.py": "31a2ca008d3364bc420fa2a91d977a326a30b6f68d47e9e075aecc03b627f0ba",
+    "source/run003.py": "cad16edc00aae94882744358d051c7430cb739f5d0963156f3997d3bd1908fc4",
+    "source/scoring.py": "b8158be2412e8316fdab19d11141b9aedd68336c561b1a9a7a12574cbe3cbc61",
+    "source/test_cache_contract.py": "2829c93830ec4ae330d4264598a9c09f870dc3b170fb7193fff052a448d27327",
+    "source/test_engine.py": "4724bff09d185da3a88642bcc2addbf3b0ca03871e5f0e71d66ff895e64757ad"
+  },
+  "physical_calls": 0,
+  "sources_and_observations_generated": false,
+  "tests": {
+    "cache_contract": 8,
+    "model_free": 24
+  }
+}
