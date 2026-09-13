@@ -1,0 +1,26 @@
+{
+  "experiment": "TEMPERED_POSTERIOR_004",
+  "stage": "toy_calibration",
+  "status": "TOY_CALIBRATION_PASS",
+  "registration_commit": "55b76e2f9f66ad5e069e9de68f451ec609268031",
+  "cases": 64,
+  "rank_chisquare": [11.9375, 9.75, 5.687499999999999],
+  "rank_limit": 27.877164871256568,
+  "coverage90": [0.9375, 0.921875],
+  "coverage95": [0.96875, 0.96875],
+  "mean_reference_error": 0.01188276257132862,
+  "max_reference_error": 0.033670825231445434,
+  "mean_family_error": 0.015838395499766254,
+  "mean_log_evidence_error": 0.05359597630285716,
+  "independent_reference_replay": {
+    "quadrature_order": 96,
+    "maximum_reference_metric_difference": 1.7763568394002505e-15,
+    "changed_gate_decisions": 0,
+    "new_inference_runs": 0
+  },
+  "scope": "Two-dimensional algorithm validation only, not physical posterior qualification or a movie-recovery result.",
+  "source_deposition": "Exact actual source and full protocol were locally committed and remotely hash-bound before any draw. A later source-tree upload was blocked. The complete source and raw toy records remain in the local artifact package; they are not claimed to be deposited here.",
+  "physical_panel_complete": false,
+  "new_Kerr_rays": 0,
+  "paper1_units": 0
+}
