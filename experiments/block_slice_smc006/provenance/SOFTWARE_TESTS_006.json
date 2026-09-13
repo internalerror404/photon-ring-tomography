@@ -1,0 +1,16 @@
+{
+  "scope": "model-free software fixtures; zero benchmark observations",
+  "passed": true,
+  "count": 9,
+  "tests": [
+    {"name": "line_contains_zero", "passed": true},
+    {"name": "line_hits_boundary", "passed": true},
+    {"name": "first_bridge_unit_temperature", "passed": true},
+    {"name": "native_bridge_unit_temperature", "passed": true},
+    {"name": "slice_inside_cube", "passed": true},
+    {"name": "constant_slice_accepts", "passed": true},
+    {"name": "strict_boundary_rejected", "passed": true},
+    {"name": "inside_boundary_accepted", "passed": true},
+    {"name": "linear_evidence_pool", "passed": true}
+  ]
+}
