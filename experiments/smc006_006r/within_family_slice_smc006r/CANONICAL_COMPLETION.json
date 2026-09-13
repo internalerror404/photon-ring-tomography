@@ -1,0 +1,79 @@
+{
+  "artifact_index": {
+    "Mahakal_II_SMC006_006R_GitHub_Deposit_Payload.tar.gz": {"bytes": 135150, "sha256": "0269e784649542bbf52663d83564cd12141e8769bbcfbf54d0d595478d5fe349"},
+    "Mahakal_II_SMC006_006R_GitHub_Deposit_Payload.tar.gz.b64": {"bytes": 180200, "sha256": "b3442e84dead027e224c7216c5ae7d7d1c6ab78be05c302fd4b1830aaacb7f37"},
+    "Mahakal_II_Within_Family_SMC006_006R_20260913.zip": {"bytes": 69778629, "sha256": "37035c10fa9972af9c6593b1c6bd13dbb3fe9bbddead4a3933dd3ceba670d08c"}
+  },
+  "fresh_datasets": 128,
+  "local_closeout_commit": "1bc7b7d",
+  "local_completion_receipt_commit": "c85d108d9daf6cac07022ef676b2ddb4822a9ef4",
+  "method_case_runs": 480,
+  "movie_reconstructions": 0,
+  "new_physical_rays": 0,
+  "next_experiment": "FAMILY_EVIDENCE_BRIDGE_007: freeze conditional sampler; compare normalized bridge sampling and fixed thermodynamic integration on fresh exact-reference 8D/16D targets before physical release.",
+  "paper1_units": 0,
+  "physical_observations": 0,
+  "postplanned_audit": "PASS",
+  "postplanned_mechanism": {
+    "exact_family_weight_mean_error_R1": 0.023396000789358537,
+    "exact_family_weight_mean_error_R2": 0.02373523227771905,
+    "interpretation": "Conditional posterior exploration improved; conditional evidence estimation/family weighting is now the dominant measured algorithmic bottleneck.",
+    "pooled_linear_evidence_family_error": 0.0431826348001107
+  },
+  "preoutcome_local_receipt_commit": "1bc6bd19816f55517de3c15c1815553296de1bac",
+  "preoutcome_local_registration_commit": "f8816f2e8fb69643c083678d2b78677f15cdd872",
+  "primary8D": {
+    "RW128x2_mean_parameter_error": 0.0520732693916339,
+    "SLICE128x2_R1_family_error": 0.057274839436060855,
+    "SLICE128x2_R1_mean_parameter_error": 0.026816628462628663,
+    "SLICE128x2_R2_family_error": 0.06829147240687214,
+    "SLICE128x2_R2_mean_parameter_error": 0.02627226283520132,
+    "SLICE256x2_family_error": 0.04838984975823519,
+    "SLICE256x2_mean_parameter_error": 0.02111767678380845,
+    "replicate_mean_family_difference": 0.10076624002220055,
+    "replicate_mean_log_evidence_difference": 0.41739735782193765,
+    "replicate_mean_parameter_difference": 0.03601680850605604
+  },
+  "release_gates": {
+    "pass": false,
+    "primary8D_R1": false,
+    "primary8D_R2": false,
+    "primary8D_independent_agreement": false,
+    "regression2D_R1": true,
+    "regression2D_R2": true
+  },
+  "return_token": "WITHIN_FAMILY_SLICE_SMC_006R_COMPLETE_DIAGNOSTIC_FAIL",
+  "scientific_disposition": {
+    "conditional_evidence_and_family_probability": "FAILED",
+    "independent_run_agreement": "FAILED",
+    "movie_claim": "NONE",
+    "physical_posterior_release": "BLOCKED",
+    "within_family_slice_exploration": "ACCEPTED_AT_SYNTHETIC_BENCHMARK_SCOPE"
+  },
+  "source_and_record_hashes": {
+    "NEXT_STAGE_DRAFT.md": {"bytes": 2305, "sha256": "e2876ca00ced5805187d473408fb0070feca1923292d69d64373de5e45f19e27"},
+    "REGISTRATION.md": {"bytes": 5556, "sha256": "6adb2ffd7ee457432807770a6e712fef288662fade94da24f7b57097214a0012"},
+    "RESULTS.md": {"bytes": 6351, "sha256": "6b08bf38814c64b261087f9832a6b24b6ceff6c9c71eada9d1e3e0914366aae2"},
+    "provenance/PREOUTCOME_COMMIT.json": {"bytes": 352, "sha256": "e1cfc58388b11f64ae98e3bb76bf8bf4abf245cc23e45bbd4cb642285294231a"},
+    "provenance/SOFTWARE_TESTS_006R.json": {"bytes": 1277, "sha256": "a56ed1d2c185e4b53fcb5e236f1fc39f2179dde623a8cda78870a81a4502f7ca"},
+    "provenance/SOURCE_FREEZE_006R.json": {"bytes": 1952, "sha256": "ea2f41d51d3f73526fa9fab640dc344b2683ad4f2c349c7400fe7b263c477a50"},
+    "requirements.txt": {"bytes": 27, "sha256": "1668a3152e33680d94637b13421c15e68bd97cd8701f7f555c691f5bc5c0b9f3"},
+    "results/ADJUDICATION.json": {"bytes": 1642, "sha256": "aec7dd3f4ba2f0ac1f7c33bebcf4eb7cf2943705644394e210dca592ef347ed7"},
+    "results/ALL_CASES.json": {"bytes": 1084391, "sha256": "97d3a54fd19423462eec5f81946ab3779654acddf961769de2780aefda10672a"},
+    "results/COMPLETION.json": {"bytes": 26297, "sha256": "1cdcf3d9e8411669c90753063bf1bb26538bcdbb9fcef6bbc5c666367e26a375"},
+    "results/POSTPLANNED_AUDIT.json": {"bytes": 16315, "sha256": "edab611e0150a1ecdc6a614f8a3f4acdd2d5e4880be1197380dd80906148f039"},
+    "results/POSTPLANNED_EVIDENCE_DIAGNOSTIC.json": {"bytes": 22171, "sha256": "bdea5a5e0fc6ed8cd1973edbbb26b21623a90d0701362321c88ab44e54ea5d3a"},
+    "results/POSTPLANNED_PAIRED_BOOTSTRAP.json": {"bytes": 2228, "sha256": "f257b84156887bfcb90a7e931634830b3b84c98bcdbeddc288951f99110ecc0b"},
+    "results/SCHEDULE.json": {"bytes": 13392, "sha256": "60a99a39607585c73cf02b4306a074a08873ff0ac466cd7b1ff05de5d34ad742"},
+    "source/audit006r.py": {"bytes": 8605, "sha256": "7574af94a0e52892597ff1fbf0d11cfbefc5fe1cb8c5d3cc73dbc9c761175467"},
+    "source/benchmark_model.py": {"bytes": 6048, "sha256": "14f870fe6a8f863bfdbe8060e5ba91a85cd67d377db791f6ebf252d14ecd4fdb"},
+    "source/importance.py": {"bytes": 2384, "sha256": "68a186f93861a52589a571fff8eba5bd29e426a962239c3846a151e5f362e812"},
+    "source/postplanned_bootstrap006r.py": {"bytes": 1299, "sha256": "860a688fa540fd0e7346cb0f7392bb4e40a747f36482ff66d1428295862915b9"},
+    "source/postplanned_evidence_diagnostic006r.py": {"bytes": 2982, "sha256": "eb0301eb6cf14f2b7f714489e37f0de06bcbb0f373ec4e6991feacb4cfa67e7e"},
+    "source/run006.py": {"bytes": 14316, "sha256": "f192ed44747ac3d93f82cee2a6a5437f0dfe30242fb4d3518242b81f147e3791"},
+    "source/slice_smc.py": {"bytes": 13881, "sha256": "57ac52629d5c17ed871fd5bbbcd1f2dcd511508b85c07a6a8e38a7c7c62c3e90"},
+    "source/smc005.py": {"bytes": 8855, "sha256": "10022137b2d73f121f8b67ba1892e70d3bfcb23285b3665cb7bee09ad65b7f22"},
+    "source/tests006.py": {"bytes": 3631, "sha256": "e2cfc3e15ea9515845a7a6db62c1680be495adf1e2eb803fe12c21ce4a248a36"}
+  },
+  "source_changed_after_outcome": false
+}

@@ -1,0 +1,32 @@
+{
+  "cause": "Numerical boundary handling in the new unit-cube slice kernel rejected particles at machine-saturated logit boundaries.",
+  "completed_cases": 11,
+  "incomplete_cases": 117,
+  "local_closeout_commit": "21b66dea7f3308219e57d5566b708828304ad836",
+  "new_physical_rays": 0,
+  "next_action": "Preserve 006; use fresh 006R with new seeds and corrected interior clipping.",
+  "paper1_units": 0,
+  "partial_results_promoted": false,
+  "physical_observations": 0,
+  "preoutcome_local_receipt_commit": "eca8f930",
+  "preoutcome_local_registration_commit": "638668198f3e4a4514ddaa4be71c0c319f27c809",
+  "return_token": "WITHIN_FAMILY_SLICE_SMC_006_INCOMPLETE",
+  "scheduled_cases": 128,
+  "scientific_disposition": "NO_BENCHMARK_RESULT",
+  "source_and_record_hashes": {
+    "REGISTRATION.md": {"bytes": 8552, "sha256": "9744a06a46cfc47b5fe0ffb02f9b6977227e9727bdcd1bedca286fd49f28435c"},
+    "RESULTS.md": {"bytes": 1211, "sha256": "2d7d014683e9ba211f9048d853782dc9a34d1e30da3f2817e5f2e73b3815626b"},
+    "provenance/PREOUTCOME_COMMIT.json": {"bytes": 311, "sha256": "f6c0dd7bcef0e650db4e455194f548b4f5bee28047d5bcd118288cbdd6ca1f90"},
+    "provenance/SOURCE_FREEZE_006.json": {"bytes": 1726, "sha256": "aeb71554e8dbeb9b4cb6382953c087bee6b418bd20434ff980c4b29b561fc20e"},
+    "requirements.txt": {"bytes": 27, "sha256": "1668a3152e33680d94637b13421c15e68bd97cd8701f7f555c691f5bc5c0b9f3"},
+    "results/ADJUDICATION.json": {"bytes": 760, "sha256": "efe00ca88d9cf979210870a6ff02e5a5ef5b3987a39a630a42bf936ea65ba40a"},
+    "results/FAILURE.json": {"bytes": 2191, "sha256": "ce78a70b4cf822c261f1c9fb6340361f028e2d4d489dcdaeb4db6968cd2dec5d"},
+    "results/SCHEDULE.json": {"bytes": 13388, "sha256": "757948ea4ffff91299f1a6ea811e4c38599a02087be33da419f21d4e0bcd0713"},
+    "source/benchmark_model.py": {"bytes": 6048, "sha256": "14f870fe6a8f863bfdbe8060e5ba91a85cd67d377db791f6ebf252d14ecd4fdb"},
+    "source/importance.py": {"bytes": 2384, "sha256": "68a186f93861a52589a571fff8eba5bd29e426a962239c3846a151e5f362e812"},
+    "source/run006.py": {"bytes": 14310, "sha256": "ad42aa2213c95808130f30b734ec453eb9715cd6f1d0b36f864c8ba62b9c7974"},
+    "source/slice_smc.py": {"bytes": 13646, "sha256": "63b51293c04484ac4f8e77381708fa912887a10706cc8d9aea393269e29cac31"},
+    "source/smc005.py": {"bytes": 8855, "sha256": "10022137b2d73f121f8b67ba1892e70d3bfcb23285b3665cb7bee09ad65b7f22"},
+    "source/tests006.py": {"bytes": 3121, "sha256": "9a8caa9ee3adf6317fccadb585991507e50bb8df576fed89e1f3a3165076cc0b"}
+  }
+}
