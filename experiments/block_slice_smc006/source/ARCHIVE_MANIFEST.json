@@ -1,0 +1,28 @@
+{
+  "base64_sha256": "7c9c5e347e667f0dafd66a5adc73c4af0984b1208aa68b27a3fc0f1ab7334c3d",
+  "created_utc": "2026-09-13T08:55:52.529923+00:00",
+  "decoded_archive_bytes": 20242,
+  "decoded_archive_sha256": "c2afd59a555599dc145a063156cfc9139fa9080c39fc3c39e51b5b58382896ae",
+  "experiment": "BLOCK_SLICE_SMC_006",
+  "files": {
+    "REGISTRATION.md": "285d0c3ba792d297a74210b655fc26ee49e44da41fd2bd60195455c6ce472ad0",
+    "provenance/LOCAL_PREOUTCOME_COMMIT.txt": "ecd14430d42c5b9a11fca508ed96d0f31c30e26739b7c00d9b52838aa1b63781",
+    "provenance/PARENT005_ADJUDICATION.json": "b4b99490a6bf5f1ae52a4ca4ca390d2ed6d98b00bc2b593cc58bedb1deb954eb",
+    "provenance/PARENT005_COMPLETION.json": "42608e3a50da63614736fda0e2fbbebaeeb00f40b52adf1f77d59014d51bd179",
+    "provenance/PARENT005_LOCAL_GIT_RECEIPT.json": "c14cc3abb4d93ae454bdd2d5b29936671710b488107e34505e7d3be503b0cb45",
+    "provenance/PARENT005_SOURCE_FREEZE.json": "e2ddb28241b19b272c8eac16a1d45c35a2b90512495e817e5e5550273e94c80b",
+    "provenance/PARENT_PACKAGE_SHA256.txt": "a28a9107765bcff000d095d0da950653903106111fb50ed59d0d3629a2014b7e",
+    "provenance/SOFTWARE_TESTS_006.json": "0592de654b8c85ecd633d7dd4a087c012d392c98bfdfbc0530b223409adb5e0f",
+    "provenance/SOURCE_FREEZE_006.json": "92409ddf5afaf7004f8b994b659d6b80c08ba64a78f214124f6085b2b379b965",
+    "requirements.txt": "1668a3152e33680d94637b13421c15e68bd97cd8701f7f555c691f5bc5c0b9f3",
+    "source/audit006.py": "2d033266e32a6535ce64528afcaab1f2e687e3de23243752170ed348f1215274",
+    "source/block_smc.py": "986545d0547274c9de7d63fc5ff455b4818ba4dd14ea36ab4422824bba101404",
+    "source/importance.py": "68a186f93861a52589a571fff8eba5bd29e426a962239c3846a151e5f362e812",
+    "source/run006.py": "122b287675daf6db35d4fb7d39f86c4315d346ac16eba23c28db3cfd0435e3c2",
+    "source/smc005.py": "10022137b2d73f121f8b67ba1892e70d3bfcb23285b3665cb7bee09ad65b7f22",
+    "source/supervisor.py": "fa688cb32620d51818ee0cc4167f91e64d494ff4dc485fa170e4d8622a98dda8",
+    "source/tests006.py": "938dc857b267e63850871fbc2debafe28321a0220c1f08867f6ac80e51e12176"
+  },
+  "outcomes_seen": false,
+  "transport": "base64(gzip(tar))"
+}
