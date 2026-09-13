@@ -1,0 +1,23 @@
+{
+  "experiment": "BLOCK_SLICE_SMC_006",
+  "status": "POSTPLANNED_INCOMPLETE_RUN_FORENSIC_AUDIT",
+  "registered_disposition": "BLOCK_SLICE_SMC_006_INCOMPLETE",
+  "scheduled_cases": 64,
+  "case_directories_created": 32,
+  "case_status_counts": {"failed": 26, "complete": 2, "partial": 4},
+  "completed_case_indices": [5, 12],
+  "failed_case_indices": [0,1,2,3,4,6,7,8,9,10,11,13,14,15,16,17,18,19,20,21,22,24,25,26,27,28],
+  "partial_case_indices": [23,29,30,31],
+  "failure_types": {"RuntimeError('invalid bounded slice interval')": 26},
+  "saved_method_particle_banks": {"RWM128_A": 32,"RWM128_B": 29,"SLICE128_A": 4,"SLICE128_B": 2,"SLICE_POOLED": 2,"RWM_POOLED": 2},
+  "first_scientific_exception": "RuntimeError('invalid bounded slice interval')",
+  "source_location": "source/block_smc.py:_line_interval",
+  "likely_numerical_mechanism": "At least one current unit-cube coordinate was not strictly inside (1e-9,1-1e-9), so the full feasible line interval did not contain zero. This is a diagnosis from the saved traceback and source, not a repaired result.",
+  "supervisor_note": "The outer execution environment timed out and terminated the supervisor process before its 1800-second cleanup completed, leaving the process group orphaned. The process group was later detected beyond the registered cap and terminated. No completion endpoint is valid.",
+  "all_partial_and_complete_outputs_preserved": true,
+  "scientific_endpoint_computed": false,
+  "subset_promoted": false,
+  "physical_calls": 0,
+  "paper1_units": 0,
+  "audit_scope": "File/count/traceback readback only; no sampler rerun and no use of incomplete subsets for scientific gates."
+}
