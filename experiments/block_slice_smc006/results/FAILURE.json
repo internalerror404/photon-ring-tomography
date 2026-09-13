@@ -1,0 +1,24 @@
+{
+  "experiment": "BLOCK_SLICE_SMC_006",
+  "status": "BLOCK_SLICE_SMC_006_INCOMPLETE",
+  "reason": [
+    "implementation exception in registered block-slice kernel",
+    "registered wall-time cap exceeded after supervisor orphaning"
+  ],
+  "schedule_complete": false,
+  "scheduled_cases": 64,
+  "completed_cases": 2,
+  "failed_cases": 26,
+  "partial_cases": 4,
+  "unstarted_cases": 32,
+  "primary_gate_evaluated": false,
+  "scientific_endpoint": null,
+  "subset_promoted": false,
+  "source_changed_after_outcome": false,
+  "physical_observations": 0,
+  "new_physical_rays": 0,
+  "paper1_units": 0,
+  "registration_source_commit": "ca598e2d4c48ccea5147d4fcea732b66703c1af6",
+  "preflight_amendment_head": "5c5ef403bb9179bb777d2903b92f14c0c1b38ace",
+  "forensic_record": "results/POSTPLANNED_FORENSIC_AUDIT.json"
+}
