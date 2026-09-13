@@ -1,0 +1,17 @@
+{
+  "experiment": "BLOCK_SLICE_SMC_006",
+  "status": "PREOUTCOME_RECEIPT_SCHEMA_FAILURE",
+  "returncode": 1,
+  "failure": "run006.py required REGISTRATION_RECEIPT.json field github_commit; the record used field commit",
+  "source_changed": false,
+  "datasets_generated": 0,
+  "benchmark_outcomes_seen": false,
+  "results_files_generated": 0,
+  "physical_calls": 0,
+  "paper1_units": 0,
+  "preserved_logs": [
+    "provenance/failures/EXECUTION_001_stdout.txt",
+    "provenance/failures/EXECUTION_001_stderr.txt",
+    "provenance/failures/EXECUTION_001_EXIT.json"
+  ]
+}
