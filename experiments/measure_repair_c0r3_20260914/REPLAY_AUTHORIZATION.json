@@ -1,0 +1,38 @@
+{
+  "experiment": "SMR_C0R3_20260914",
+  "base_registration": "47574fb50cb958ff7d4b7f94ef64cb57d751377a",
+  "scope": "One complete, same-seed software regression replay; not independent calibration evidence. C0R1/R2 incomplete subsets remain unpromoted.",
+  "change": "Only config experiment identity and freeze metadata change. No engine, checker, runner, seed, target, threshold, schedule or budget change. Explicitly replaces prior no-retry instruction for this newly identified whole-campaign operational replay only.",
+  "execution": "Launch once with persisted PID, stdout and exit code; supervise/poll until completion within the same interactive session. Experimental max_wall_seconds stays 1200. No future delivery or unattended continuation.",
+  "reconstruct": [
+    "Reconstruct C0R2 from its immutable base and exact deltas.",
+    "In config.json replace SMR_C0R2_20260914 with SMR_C0R3_20260914 exactly once.",
+    "Parse the base FREEZE.json preserving insertion order; set experiment=SMR_C0R3_20260914 and prior_version_outcomes as below; replace files[config.json] with config_identity below; json.dumps(indent=2) plus newline. All other frozen source bytes remain unchanged."
+  ],
+  "config_identity": {
+    "bytes": 1632,
+    "sha256": "93d2f58ed2e604dde60645db3eea5c31dc6267b632b4867df30b91c260e63099",
+    "git_blob": "87033524e7ba09c1822465c941f7535ecaa1fe52"
+  },
+  "prior_version_outcomes": "C0 blocked; C0R1 and C0R2 externally interrupted; preserved",
+  "freeze_identity": {
+    "bytes": 2173,
+    "sha256": "cc13705e6487f92ea57e3fdc343d463fec9fc23001ccaacf703d8e8dfbdc370b",
+    "git_blob": "4b17fe1d15f9b64193fa7604824889a93777a02d"
+  },
+  "effective_precedence": "This authorization defines C0R3 and overrides inherited C0/R1/R2 identity and no-prior-outcome statements. All scientific scope and stop rules remain. Physical release and evidence-only 007 remain blocked.",
+  "R3_outcomes_exist": false,
+  "previous_stop": {
+    "experiment": "SMR_C0R2_20260914",
+    "status": "INCOMPLETE_EXTERNAL_INTERRUPTION",
+    "law_gates": 114,
+    "law_failures": 0,
+    "completed_archive_count": 79,
+    "incomplete_archives": [],
+    "completion_written": false,
+    "subset_promoted": false,
+    "reason": "Execution tool timed out again despite requested 600000 ms; no runner survived.",
+    "physical_calls": 0,
+    "paper1_units": 0
+  }
+}
