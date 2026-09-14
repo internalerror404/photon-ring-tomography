@@ -1,0 +1,380 @@
+{
+  "audit_id": "MAHAKAL_II_READ_ONLY_AUDIT_20260913",
+  "disposition": "CONFIRMED_SAMPLER_CORRECTNESS_DEFECTS",
+  "written_utc": "2026-09-13T18:51:41.919842+00:00",
+  "scope": "Original frozen code and saved artifacts for 003 through 006R; targeted forensic software tests, not a new scientific inference experiment.",
+  "original_files_modified": false,
+  "github_writes": 0,
+  "new_physical_calls": 0,
+  "new_scientific_datasets": 0,
+  "paper1_units": 0,
+  "original_006R_status_unchanged": "WITHIN_FAMILY_SLICE_SMC_006R_COMPLETE_DIAGNOSTIC_FAIL",
+  "acceptance_subclaim_to_withdraw": "Within-family slice exploration accepted as an adequate sampler; freezing this conditional sampler for FAMILY_EVIDENCE_BRIDGE_007.",
+  "canonical_reference": {
+    "repo": "internalerror404/photon-ring-tomography",
+    "commit": "05b465529a905252051b155209a6b134df605f07",
+    "path": "experiments/smc006_006r/within_family_slice_smc006r/CANONICAL_COMPLETION.json"
+  },
+  "integrity": {
+    "manifest_entries_checked": 8216,
+    "mismatches": 0,
+    "archive_006_006R_sha256": "37035c10fa9972af9c6593b1c6bd13bdb3fe9bbddead4a3933dd3ceba670d08c"
+  },
+  "findings": [
+    {
+      "id": "A01",
+      "severity": "critical",
+      "classification": "source-level probability-measure defect plus exact archived initial-draw replay",
+      "title": "Clipped proposal draws do not have the continuous density used to score them",
+      "source": "evidence/006R/source/slice_smc.py",
+      "lines": [
+        17,
+        26,
+        77,
+        91,
+        225,
+        236
+      ],
+      "evidence": {
+        "regression2D": {
+          "particle_banks": 64,
+          "particles": 8192,
+          "clipped_particles": 373,
+          "banks_with_clipping": 31,
+          "clipped_coordinates": 386,
+          "clipped_particle_fraction": 0.0455322265625
+        },
+        "primary8D": {
+          "particle_banks": 192,
+          "particles": 32768,
+          "clipped_particles": 4508,
+          "banks_with_clipping": 182,
+          "clipped_coordinates": 4998,
+          "clipped_particle_fraction": 0.1375732421875
+        },
+        "stress16D": {
+          "particle_banks": 96,
+          "particles": 16384,
+          "clipped_particles": 3409,
+          "banks_with_clipping": 94,
+          "clipped_coordinates": 4079,
+          "clipped_particle_fraction": 0.20806884765625
+        }
+      },
+      "scope_limit": "Family-0 initial draws only, not every family or terminal particle. Clipping frequency is not a measured final posterior-bias magnitude."
+    },
+    {
+      "id": "A02",
+      "severity": "critical",
+      "classification": "source defect with deterministic uniform-target stationarity counterexample",
+      "title": "Initial slice bracket is repositioned by clipping its left endpoint before constructing its right endpoint",
+      "source": "evidence/006R/source/slice_smc.py",
+      "lines": [
+        125,
+        190
+      ],
+      "original_transition_reduction_check": {
+        "checks": 600,
+        "max_absolute_difference": 1.1102230246251565e-16,
+        "note": "Exact original transition versus algebraic uniform-target reduction; two direction signs, default max_steps_out=8."
+      },
+      "uniform_second_moment_checks": [
+        {
+          "quadrature_order": 1024,
+          "width": 0.25,
+          "corrected_bracket_control": false,
+          "mean": 0.4999999999999999,
+          "second_moment": 0.33275462969631137,
+          "expected_second_moment": 0.3333333333333333,
+          "second_moment_bias": -0.0005787036370219489,
+          "prob_below_point1": 0.09827253550503962,
+          "prob_above_point9": 0.09827253550503957
+        },
+        {
+          "quadrature_order": 1024,
+          "width": 0.25,
+          "corrected_bracket_control": true,
+          "mean": 0.4999999999999999,
+          "second_moment": 0.333333333388327,
+          "expected_second_moment": 0.3333333333333333,
+          "second_moment_bias": 5.499367627948004e-11,
+          "prob_below_point1": 0.10000000015035701,
+          "prob_above_point9": 0.10000000015035695
+        }
+      ],
+      "scope_limit": "Corrected-bracket control is an isolated forensic test, not a fully repaired or qualified sampler."
+    },
+    {
+      "id": "A03",
+      "severity": "high",
+      "classification": "test-design and audit-scope deficiency",
+      "title": "Arithmetic and integrity checks were mistaken for distributional correctness checks",
+      "sources": [
+        "evidence/006R/source/tests006.py",
+        "evidence/006R/source/audit006r.py",
+        "evidence/006R/source/run006.py"
+      ],
+      "detail": "Constant-likelihood test checks finite evidence, in-cube particles, uniqueness and normalized weights, not exact normalization or invariant-distribution moments. Mutation proposals were not independently replayed; writer hooks were not enabled by the production caller."
+    },
+    {
+      "id": "A04",
+      "severity": "high",
+      "classification": "unsupported mechanistic inference",
+      "title": "Low posterior-mean error and an exact-family-weight oracle did not establish adequate conditional posterior sampling",
+      "detail": "Primary R1 95% coverage includes 55/64 and 56/64; the registered coverage gate fails. Exact family weights do not verify within-family tails, covariance or invariance."
+    },
+    {
+      "id": "A05",
+      "severity": "medium",
+      "classification": "comparison and interpretation limitation",
+      "title": "Lower error was not an equal-compute result",
+      "evidence": [
+        {
+          "method": "RW128x2",
+          "mean_error": 0.0520732693916339,
+          "mean_family_error": 0.04384255498468032,
+          "native_calls": 426.71875,
+          "surrogate_calls": 15256.0,
+          "total_calls": 15682.71875,
+          "native_call_ratio_to_parent": 1.0,
+          "total_call_ratio_to_parent": 1.0,
+          "coverage95": [
+            0.921875,
+            0.859375,
+            0.9375,
+            0.84375,
+            0.90625,
+            0.90625,
+            0.9375,
+            0.90625
+          ],
+          "gates": {
+            "coverage90": false,
+            "coverage95": false,
+            "family_error": false,
+            "max_reference_error": true,
+            "mean_reference_error": false,
+            "rank_uniformity": true
+          }
+        },
+        {
+          "method": "SLICE128x2_R1",
+          "mean_error": 0.026816628462628663,
+          "mean_family_error": 0.057274839436060855,
+          "native_calls": 5106.0625,
+          "surrogate_calls": 64038.15625,
+          "total_calls": 69144.21875,
+          "native_call_ratio_to_parent": 11.965873306481143,
+          "total_call_ratio_to_parent": 4.408943363216279,
+          "coverage95": [
+            0.953125,
+            0.859375,
+            0.984375,
+            0.875,
+            0.953125,
+            0.953125,
+            0.984375,
+            0.90625
+          ],
+          "gates": {
+            "coverage90": true,
+            "coverage95": false,
+            "family_error": false,
+            "max_reference_error": true,
+            "mean_reference_error": true,
+            "rank_uniformity": true
+          }
+        },
+        {
+          "method": "SLICE128x2_R2",
+          "mean_error": 0.02627226283520132,
+          "mean_family_error": 0.06829147240687214,
+          "native_calls": 5105.453125,
+          "surrogate_calls": 64114.125,
+          "total_calls": 69219.578125,
+          "native_call_ratio_to_parent": 11.9644452581472,
+          "total_call_ratio_to_parent": 4.413748612624963,
+          "coverage95": [
+            0.953125,
+            0.90625,
+            0.96875,
+            0.921875,
+            0.921875,
+            0.9375,
+            0.953125,
+            0.9375
+          ],
+          "gates": {
+            "coverage90": true,
+            "coverage95": true,
+            "family_error": false,
+            "max_reference_error": true,
+            "mean_reference_error": true,
+            "rank_uniformity": true
+          }
+        },
+        {
+          "method": "SLICE256x2",
+          "mean_error": 0.02111767678380845,
+          "mean_family_error": 0.04838984975823519,
+          "native_calls": 10231.640625,
+          "surrogate_calls": 127447.3125,
+          "total_calls": 137678.953125,
+          "native_call_ratio_to_parent": 23.97748077627243,
+          "total_call_ratio_to_parent": 8.779023287974223,
+          "coverage95": [
+            0.9375,
+            0.890625,
+            0.96875,
+            0.90625,
+            0.921875,
+            0.9375,
+            0.953125,
+            0.953125
+          ],
+          "gates": {
+            "coverage90": true,
+            "coverage95": true,
+            "family_error": false,
+            "max_reference_error": true,
+            "mean_reference_error": true,
+            "rank_uniformity": true
+          }
+        }
+      ],
+      "detail": "128-particle slice R1 consumes 4.40894 times all likelihood evaluations and 11.96587 times native evaluations relative to the parent. Counts are not direct wall-time ratios."
+    },
+    {
+      "id": "A06",
+      "severity": "medium",
+      "classification": "benchmark scope and prioritization limitation",
+      "title": "Family discrimination in the 8D and 16D reference benchmark depends only on its first 2D block",
+      "evidence": {
+        "cases": 128,
+        "max_family_probability_difference": 6.661338147750939e-15
+      },
+      "detail": "Useful for sampler testing, but not a coupled high-dimensional physical family-identification validation. Family-independent nuisance evidence factors should be used as a cancellation/control diagnostic."
+    },
+    {
+      "id": "A07",
+      "severity": "high",
+      "classification": "physical-claim scope limitation, not a new invalidation of the canary",
+      "title": "003 is an eight-observation, four-cluster matched-family canary, not population-level movie recovery or marginalization advantage",
+      "evidence": [
+        {
+          "pair": 0,
+          "family": "narrow_hotspot",
+          "background_family": 1,
+          "differential_active_frames": 4,
+          "differential_active_times": [
+            -22,
+            -24,
+            -26,
+            -28
+          ],
+          "total_active_frame_counts": [
+            14,
+            8
+          ],
+          "supported_spans": [
+            28,
+            28
+          ],
+          "full_annulus_spans": [
+            28,
+            6
+          ]
+        },
+        {
+          "pair": 1,
+          "family": "shearing_spiral",
+          "background_family": 1,
+          "differential_active_frames": 2,
+          "differential_active_times": [
+            -10,
+            -12
+          ],
+          "total_active_frame_counts": [
+            11,
+            11
+          ],
+          "supported_spans": [
+            28,
+            28
+          ],
+          "full_annulus_spans": [
+            28,
+            28
+          ]
+        },
+        {
+          "pair": 2,
+          "family": "split_merge",
+          "background_family": 1,
+          "differential_active_frames": 7,
+          "differential_active_times": [
+            -10,
+            -12,
+            -14,
+            -22,
+            -24,
+            -26,
+            -28
+          ],
+          "total_active_frame_counts": [
+            7,
+            6
+          ],
+          "supported_spans": [
+            28,
+            28
+          ],
+          "full_annulus_spans": [
+            28,
+            28
+          ]
+        },
+        {
+          "pair": 3,
+          "family": "radial_plume",
+          "background_family": 0,
+          "differential_active_frames": 3,
+          "differential_active_times": [
+            -8,
+            -10,
+            -12
+          ],
+          "total_active_frame_counts": [
+            13,
+            13
+          ],
+          "supported_spans": [
+            28,
+            28
+          ],
+          "full_annulus_spans": [
+            28,
+            28
+          ]
+        }
+      ],
+      "detail": "Three double-hotspot and one single-hotspot backgrounds; no flare-drift truth. Differential active frame counts 4,2,7,3. The registered inactive-frame rule remains legitimate. Single-best joint fit also passes and has lower aggregate mean error than the weighted mean."
+    },
+    {
+      "id": "A08",
+      "severity": "medium",
+      "classification": "provenance availability and reporting deficiency",
+      "title": "Compact canonical records do not equal full remote source/results deposition; percentage-complete estimates lacked a defined basis",
+      "detail": "006R checked GitHub directory has a canonical JSON, short RESULTS and NEXT_STAGE only. Exact source and banks exist in the hash-matching ZIP. Original R2 provenance remains unresolved. Withdraw percentage-complete estimates without replacing them."
+    }
+  ],
+  "preserved_conclusions": [
+    "006R completed and failed; descriptive metrics remain results of the as-coded program.",
+    "006 remains incomplete with no promoted subset.",
+    "KNOT_QUADRATURE_002 finite-panel numerical pass is not invalidated by these sampler defects.",
+    "003 point-reconstruction canary is not retroactively invalidated by bugs in the later slice implementation; its original uncertainty failure and scope limits remain.",
+    "No conclusion that the physical movie-recovery hypothesis is false follows from the sampler defects."
+  ],
+  "next_action": "Correct and independently test the proposal measure and mutation invariance before freezing a conditional sampler or executing evidence-only 007; then use fresh coupled calibration targets and matched-cost controls, followed by a separately registered physical calibration.",
+  "causal_limit": "This audit does not quantify how much each defect contributed to the original 006R family-evidence or coverage errors; a controlled corrected rerun is needed."
+}
