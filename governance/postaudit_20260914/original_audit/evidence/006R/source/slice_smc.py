@@ -76,8 +76,8 @@ def _state(
 ) -> EvalState:
     uu = np.clip(np.asarray(u, float), INTERIOR_EPS, 1.0 - INTERIOR_EPS)
     lq = logq_u(proposal, family, uu)
-    ls = counter.surrogate(0, uu)
-    ln = counter.native(0, uu) if need_native else np.nan
+    ls = counter.surrogate(family, uu)
+    ln = counter.native(family, uu) if need_native else np.nan
     if bridge == "proposal_to_surrogate":
         lt = (1.0 - temperature) * lq + temperature * ls
     elif bridge == "surrogate_to_native":
