@@ -1,0 +1,16 @@
+{
+  "experiment": "SMR_C0R3_20260914",
+  "status": "SMR_C0_FINITE_FIXTURE_PASS",
+  "registration_commit": "4bb03b2a0b640122be5b33d02a4af1dacdda2150",
+  "law_gates": 114,
+  "law_failures": 0,
+  "stratum_runs": 96,
+  "replay_checks": 50240,
+  "replay_errors": 0,
+  "failures": [],
+  "seconds": 35.06021650399998,
+  "target_calls": 4595581,
+  "physical_calls": 0,
+  "paper1_units": 0,
+  "scope": "Declared software fixtures only. Not SBC, conditional posterior release, matched-work superiority, or physical movie evidence."
+}
