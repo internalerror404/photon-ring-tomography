@@ -1,0 +1,17 @@
+{
+  "experiment": "SMR_C0R1_20260914",
+  "status": "INCOMPLETE_EXTERNAL_INTERRUPTION",
+  "registration_commit": "9de7d66360427ab438c205e36e839b7d740b6b34",
+  "record_type": "post-execution operational sidecar; not original runner completion",
+  "law_gates": 114,
+  "law_failures": 0,
+  "stratum_archives_with_final_record": 84,
+  "incomplete_archive": "curve_logit_prior_r2_f0.zip",
+  "runner_completion_written": false,
+  "full_aggregate_adjudication": false,
+  "reason": "container.exec killed the command at 180000 ms; no process survived",
+  "configured_experiment_wall_cap_seconds": 1200,
+  "subset_promoted": false,
+  "physical_calls": 0,
+  "paper1_units": 0
+}
