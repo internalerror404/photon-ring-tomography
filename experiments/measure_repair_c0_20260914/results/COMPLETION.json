@@ -1,0 +1,18 @@
+{
+  "experiment": "SMR_C0_20260914",
+  "status": "SMR_C0_FAILED_OR_BLOCKED",
+  "registration_commit": "63d5a74ff9abc8b97cf0522cf7cb468d037a73fd",
+  "law_gates": 114,
+  "law_failures": 1,
+  "stratum_runs": 0,
+  "replay_checks": 0,
+  "replay_errors": 0,
+  "failures": [
+    "RuntimeError('law gate failed; pipeline blocked')"
+  ],
+  "seconds": 4.691664026999888,
+  "target_calls": 0,
+  "physical_calls": 0,
+  "paper1_units": 0,
+  "scope": "Declared software fixtures only. Not SBC, conditional posterior release, matched-work superiority, or physical movie evidence."
+}
