@@ -1,0 +1,50 @@
+{
+  "record_type": "ADDITIVE_POSTAUDIT_DEPOSITION_RECEIPT",
+  "date": "2026-09-14",
+  "repository": "internalerror404/photon-ring-tomography",
+  "branch": "research/mahakal_II_postaudit_intake_20260914",
+  "verified_evidence_commit": "b9329f9e0b69747b6ba7cd8abe4ac43d3636ba16",
+  "historical_parent_commit": "05b465529a905252051b155209a6b134df605f07",
+  "files_read_back": [
+    {
+      "path": "governance/postaudit_20260914/AUDIT_CORRECTION.md",
+      "git_blob": "4ff236c7eb4be6c89fc209e92d1a5006be87cab8",
+      "scope": "New additive interpretation correction; complete text read back."
+    },
+    {
+      "path": "governance/postaudit_20260914/original_audit/FINDINGS.json",
+      "bytes": 13982,
+      "sha256_of_original_local_bytes": "209f9ffbbc183c349b65b9cc88d60123ca63692c6ff61aa7d2438a4548197005",
+      "git_blob": "984393f1c0756e0356c88664e759fbbc1c4268bf",
+      "verification": "Readback Git blob matches locally computed original Git blob."
+    },
+    {
+      "path": "governance/postaudit_20260914/original_audit/evidence/006R/source/slice_smc.py",
+      "bytes": 13881,
+      "sha256_of_original_local_bytes": "57ac52629d5c17ed871fd5bbbcd1f2dcd511508b85c07a6a8e38a7c7c62c3e90",
+      "git_blob": "7c3ea35cbc2ad8e7f23d667c58a0e85c11c3a8fc",
+      "verification": "Readback Git blob matches locally computed original Git blob; originally defective source preserved, not repaired or executed."
+    }
+  ],
+  "rejected_intermediate_evidence_copies": [
+    {
+      "commit": "03833d59bc1ed99eb8211a2b64beac0ccec7eb65",
+      "path_suffix": "slice_smc.py",
+      "reason": "Two transcription substitutions in the newly created evidence copy; original archives were not changed.",
+      "corrected_at": "68e263167c67c4639fbc51163136f0c9f707fdc7"
+    },
+    {
+      "commit": "d20724070031c128b72c209157c865f7bd380aa6",
+      "path_suffix": "FINDINGS.json",
+      "reason": "Transposed characters in the copied archive hash; original audit file was not changed.",
+      "corrected_at": "b9329f9e0b69747b6ba7cd8abe4ac43d3636ba16"
+    }
+  ],
+  "history_rewritten": false,
+  "full_audit_archive_remotely_deposited_by_this_intake": false,
+  "full_scientific_archives_remotely_deposited_by_this_intake": false,
+  "new_source_or_configuration_registration": false,
+  "new_sampler_or_physical_experiment": false,
+  "paper1_units": 0,
+  "remaining_limits": "Only the additive correction, original findings, and exact defective slice source are qualified by this receipt. Full audit source/dependency/results closure and full scientific raw-bank/archive remote deposition remain unverified. Missing transfer state files, indexes and verifier have not been reconstructed."
+}
