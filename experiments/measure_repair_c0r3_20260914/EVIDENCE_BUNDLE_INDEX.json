@@ -1,0 +1,27 @@
+{
+  "experiment": "SMR_C0R3_20260914",
+  "registration_commit": "4bb03b2a0b640122be5b33d02a4af1dacdda2150",
+  "bundles": {
+    "Mahakal_SMR_C0_Implementation_and_Results_20260914.zip": {
+      "bytes": 198994,
+      "sha256": "455ad69569cf232ce43a25a6910fa4bb91f6d00008c15d5a430bae217a18b5f1",
+      "outer_zip_integrity": "PASS"
+    },
+    "Mahakal_SMR_C0R3_Full_Evidence_20260914.zip": {
+      "bytes": 265234110,
+      "sha256": "509ffbe754f6ff99b11d53ef62446c1d73a21ef12b1a8f5383a12ee159762342",
+      "outer_zip_integrity": "PASS"
+    },
+    "Mahakal_SMR_C0_Preserved_Prior_Runs_20260914.zip": {
+      "bytes": 534630839,
+      "sha256": "f219b696c7d2cf80f9bba646e4126d40ac7f5803658d6852dd09fd2f9330e481",
+      "outer_zip_integrity": "PASS"
+    }
+  },
+  "detailed_records_capsule": {
+    "bytes": 5289,
+    "sha256": "d0b344ad85a787fc3232c909e99f38e012daba2267da8bd4654f6a2c41dc5d83"
+  },
+  "deposition_scope": "Bundle bytes exist in this conversation; only compact completion/summary and registration source records are being placed in GitHub. Full NPZ tapes and complete bundles are not claimed to be in GitHub.",
+  "incomplete_inner_archive_preserved": "C0R1 curve_logit_prior_r2_f0.zip is intentionally preserved as incomplete; outer ZIP integrity does not certify it."
+}

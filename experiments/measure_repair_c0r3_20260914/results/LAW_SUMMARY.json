@@ -1,0 +1,51 @@
+{
+  "record_type": "POSTEXECUTION_COMPACT_SUMMARY_OF_ORIGINAL_LAW_RECORDS",
+  "original_law_sha256": "078ea5333895fa7fe5bf7cbb41977b65c89cf24891df7d99b52b0f318d30bea4",
+  "law_count": 114,
+  "failure_count": 0,
+  "core": [
+    {
+      "name": "stable_jacobian_extreme_logits",
+      "passed": true,
+      "max_absolute_error": 0.0
+    },
+    {
+      "name": "proposal_normalizer",
+      "passed": true,
+      "normalizer": 1.0000000000000002,
+      "error_bound": 7.421608623349257e-12
+    },
+    {
+      "name": "proposal_samples_match_density",
+      "passed": true,
+      "ks": 0.0033320293349184127,
+      "dkw_bound": 0.006146446687868593
+    },
+    {
+      "name": "A01_negative_control_detected",
+      "passed": true,
+      "clipped_fraction": 0.2162628173828125,
+      "density_tail_mass": 0.21595951008326775,
+      "scope": "new one-dimensional stress fixture, not archived 006R replay"
+    },
+    {
+      "name": "A02_negative_control_detected",
+      "passed": true,
+      "second_moment": 0.332754629479932,
+      "bias": -0.0005787038534013078
+    },
+    {
+      "name": "isolated_bracket_control",
+      "passed": true,
+      "second_moment": 0.33333333321885444,
+      "scope": "isolated reduction; not a repaired slice sampler"
+    }
+  ],
+  "stationarity": {
+    "test_count": 12,
+    "n_each": 65536,
+    "max_ks": 0.004983095938693505,
+    "dkw_bound": 0.008772036072768646
+  },
+  "full_records_location": "Included without modification in attached implementation/results bundle and EXECUTED_RECORDS.tar.gz; this summary is not the full law record."
+}
