@@ -1,0 +1,41 @@
+{
+  "record_type": "REVIEWER_RESPONSE_DELIVERY_IDENTITIES",
+  "registration_commit": "ecd6a94f90fa318e3330a7b930ab5683711f6b43",
+  "result_commit": "a33c91e466caffd1486eb04c68cf38a8fa740057",
+  "result_summary_blob_read_back": "403731f7aae3d2ce17d663bf126e7906a5bf663b",
+  "files": {
+    "Mahakal_Unified_Manuscript_v3_15pages_20260921.pdf": {
+      "bytes": 610358,
+      "sha256": "52cc2e0f36e5853df44b8bcb77127e62ee5243b90c720a102162659bb0e43ca0"
+    },
+    "Mahakal_Unified_Manuscript_v3_Source_and_Review_20260921.zip": {
+      "bytes": 9281380,
+      "sha256": "767b43aae57e9e8702648acfbb6f985207079bcc1dcb55b3f1c1d4955de2b5cb"
+    },
+    "Mahakal_Reviewer_Experiments_EPC1_LBR1_Full_Evidence_20260921.zip": {
+      "bytes": 368122817,
+      "sha256": "a41990bb433350deba059287c160e27169271ccb148d858adb7092a2205595a7"
+    },
+    "Mahakal_Reviewer_Response_and_New_Results_20260921.md": {
+      "bytes": 15932,
+      "sha256": "e9e5f52fde942c93c217a824dee892ddeefa5fa84e7b122808661cbb361d5d33"
+    },
+    "Mahakal_Reviewer_Tests_Verification_20260921.json": {
+      "bytes": 993,
+      "sha256": "41ae5a9b109e8eb2b37a57364a1d5c81953f12f4963b575d19cebe725debfc03"
+    }
+  },
+  "checks": {
+    "both_outer_ZIP_CRC_checks": "PASS",
+    "manuscript_manifest_entries_verified": 164,
+    "full_experiment_manifest_entries_verified": 1368,
+    "registered_source_members_unchanged": 8,
+    "original_input_files_rechecked": 783,
+    "independent_replay_assertions": 7196,
+    "independent_replay_errors": 0,
+    "manuscript_pages_including_references": 15,
+    "visual_pages_inspected": 15,
+    "overfull_text_or_unresolved_citations": false
+  },
+  "scope": "These file bytes are supplied in the conversation. GitHub contains source registration, compact results and these identities, not the complete paper/evidence ZIP bytes. The full evidence archive covers the new EPC1/LBR1 tests and their dependencies, not all historical C1 traces or missing Movie007/R2 records. No further experiment is authorized or claimed by this delivery index."
+}
