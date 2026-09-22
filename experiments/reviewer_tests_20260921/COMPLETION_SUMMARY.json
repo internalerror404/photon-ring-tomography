@@ -1,0 +1,63 @@
+{
+  "record_type": "ADDITIVE_REVIEWER_RESPONSE_RESULT_SUMMARY",
+  "registration_commit": "ecd6a94f90fa318e3330a7b930ab5683711f6b43",
+  "source_local_commit": "bc61baa4f28f318e44e71e32c6b2432ea41fdc6e",
+  "EPC1": {
+    "status": "EPC1_COMPLETE",
+    "existing_independent_C1_datasets": 256,
+    "control_replicates_per_dataset": 2,
+    "method_case_records": 3072,
+    "checks": 4096,
+    "check_failures": 0,
+    "particles_per_conditional_family": 512,
+    "independent_evaluation_samples_per_family": 32768,
+    "nominal95_mean_reference_mass_16D": {
+      "population_oracle": 0.9499875227631195,
+      "iid_same_constructor": 0.9299370231695155,
+      "iid_predictive_F": 0.9502571898396265,
+      "iid_split_radius": 0.9545112855236394,
+      "saved_prior_baseline": 0.9052196753356296,
+      "saved_fitted_bridge": 0.8835733724147881
+    },
+    "iid_minus_fitted_mass95_16D": 0.046363650754727294,
+    "paired_dataset_bootstrap95": [0.03590348212943448, 0.05876660962317011],
+    "registered_lower_bound_materiality": 0.02,
+    "fitted_16D_contrast_clears_materiality": true,
+    "baseline_16D_contrast_clears_materiality": false,
+    "scope": "Exact-sample controls on previously examined C1 datasets; not fresh population confirmation, a new candidate sampler run, or a repair of weighted SMC. Finite-bank region construction contributes to undercoverage but alone does not explain the fitted 16D deficit."
+  },
+  "LBR1": {
+    "status": "LBR1_COMPLETE",
+    "fresh_independent_histories": 60,
+    "source_activity_response_admission_filter": false,
+    "fixed_estimator_settings": 10,
+    "paired_noise_draws_per_history": 32,
+    "reconstructions": 19200,
+    "sealed_source_frame_risk_predictions": 9000,
+    "max_abs_prediction_standard_errors": 3.9468399700136216,
+    "registered_prediction_cutoff": 7.0,
+    "checks": 36,
+    "check_failures": 0,
+    "all_clean_and_actual_fitted_contrast_q8_q12_gates_pass": true,
+    "largest_empirical_span95_M": 2,
+    "SNR300_labelled_ridge1_whole_interval_pairs": [1361, 1920],
+    "SNR300_labelled_ridge1_histories_all32_draws": [13, 60],
+    "scope": "A new finite KNOT-operator prediction/reconstruction experiment with source-Gram ridge/TSVD, not a Movie007 replay. Bias and variance explain squared-error behavior; correlation failures restrict the passing interval. No setting establishes the inherited physical movie-release requirements."
+  },
+  "independent_replay_checks": 7196,
+  "independent_replay_errors": 0,
+  "independence_scope": "Separately implemented checking code, not independent human review.",
+  "registered_source_members_unchanged": 8,
+  "inherited_input_hashes_rechecked": 783,
+  "new_ray_calls": 0,
+  "paper1_units": 0,
+  "paper1_protected_commit": "084fb45fedae99f203393dbc1e9cdda9ab250c2d",
+  "manuscript_version": "v3, 15 pages including appendix and references",
+  "remaining_limits": [
+    "Original Movie007 per-history arrays, filmstrip, whole-interval counts, and admission ledger remain unavailable.",
+    "No continuum certificate, original-acquisition reintegration, or common-sky instrumental experiment was performed.",
+    "Original Movie009-R2 provenance remains missing; later caches do not authenticate it.",
+    "006R sampler adequacy remains withdrawn; C2 calibrated physical-posterior release and evidence-only FAMILY_EVIDENCE_BRIDGE_007 remain HOLD."
+  ],
+  "deposition_scope": "Actual source capsule and registration plus this compact result summary are in GitHub. Full experiment inputs, raw/derived results, and manuscript source are provided separately in the conversation, not claimed fully deposited remotely."
+}
